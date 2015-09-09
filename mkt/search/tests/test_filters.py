@@ -197,7 +197,7 @@ class TestFormFilter(FilterTestsBase):
 
     def test_premium_types(self):
         def ptype(p):
-            return mkt.WEBAPP_PREMIUM_API_LOOKUP.get(p)
+            return mkt.ADDON_PREMIUM_API_LOOKUP.get(p)
 
         # Test a single premium type.
         qs = self._filter(data={'premium_types': ['free']})

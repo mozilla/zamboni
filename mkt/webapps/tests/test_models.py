@@ -33,13 +33,13 @@ from mkt.constants.iarc_mappings import (DESCS, INTERACTIVES, REVERSE_DESCS,
                                          REVERSE_INTERACTIVES)
 from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
 from mkt.constants.regions import RESTOFWORLD
-from mkt.developers.models import (WebappPaymentAccount, PaymentAccount,
+from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.developers.providers import ALL_PROVIDERS
 from mkt.files.models import File
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.files.utils import WebAppParser
-from mkt.prices.models import WebappPremium, Price, PriceCurrency
+from mkt.prices.models import AddonPremium, Price, PriceCurrency
 from mkt.reviewers.models import EscalationQueue, QUEUE_TARAKO, RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
@@ -53,8 +53,8 @@ from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import update_status, Version
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import (WebappDeviceType, WebappExcludedRegion,
-                                WebappUpsell, AppFeatures, AppManifest,
+from mkt.webapps.models import (AddonDeviceType, AddonExcludedRegion,
+                                AddonUpsell, AppFeatures, AppManifest,
                                 BlockedSlug, ContentRating, Geodata,
                                 get_excluded_in, IARCInfo, Installed, Preview,
                                 RatingDescriptors, RatingInteractives,
@@ -74,8 +74,8 @@ class TestWebapp(WebappTestCase):
             user=user,
             seller_uri=uuid.uuid4(),
             uri=uuid.uuid4())
-        return WebappPaymentAccount.objects.create(
-            webapp=app, payment_account=payment, product_uri=uuid.uuid4())
+        return AddonPaymentAccount.objects.create(
+            addon=app, payment_account=payment, product_uri=uuid.uuid4())
 
     def test_get_icon_url(self):
         app = self.get_app()
@@ -83,7 +83,7 @@ class TestWebapp(WebappTestCase):
             path = '%s/%s-%s.png' % (app.get_icon_dir(), app.pk, 32)
             expected = '%s?modified=never' % public_storage.url(path)
         else:
-            expected = (static_url('WEBAPP_ICON_URL')
+            expected = (static_url('ADDON_ICON_URL')
                         % (str(app.id)[0:3], app.id, 32, 'never'))
         assert app.get_icon_url(32).endswith(expected), (
             'Expected %s, got %s' % (expected, app.icon_url))
@@ -213,7 +213,7 @@ class TestWebapp(WebappTestCase):
     def test_excluded_in(self):
         app = self.get_app()
         region = mkt.regions.BRA
-        WebappExcludedRegion.objects.create(webapp=app, region=region.id)
+        AddonExcludedRegion.objects.create(addon=app, region=region.id)
         self.assertSetEqual(get_excluded_in(region.id), [app.id])
 
     def test_supported_locale_property(self):
@@ -373,7 +373,7 @@ class TestWebapp(WebappTestCase):
 class TestCleanSlug(TestCase):
 
     def test_clean_slug_new_object(self):
-        # Make sure there's at least an webapp with the "webapp" slug,
+        # Make sure there's at least an addon with the "webapp" slug,
         # subsequent ones should be "webapp-1", "webapp-2", etc.
         a = Webapp.objects.create()
         eq_(a.app_slug, 'webapp')
@@ -391,19 +391,19 @@ class TestCleanSlug(TestCase):
         c.clean_slug()
         eq_(c.app_slug, 'webapp-2')
 
-        # Even if an webapp is deleted, don't clash with its slug.
+        # Even if an addon is deleted, don't clash with its slug.
         c.status = mkt.STATUS_DELETED
         # Now save the instance to the database for future clashes.
         c.save()
 
         # And yet another object without an id. Make sure we're not trying to
-        # assign the 'webapp-2' slug from the deleted webapp.
+        # assign the 'webapp-2' slug from the deleted addon.
         d = Webapp()
         d.clean_slug()
         eq_(d.app_slug, 'webapp-3')
 
     def test_clean_slug_with_id(self):
-        # Create an webapp and save it to have an id.
+        # Create an addon and save it to have an id.
         a = Webapp.objects.create()
         # Start over: don't use the name nor the id to generate the slug.
         a.app_slug = a.name = ""
@@ -424,7 +424,7 @@ class TestCleanSlug(TestCase):
         eq_(b.app_slug, "%s~-1" % b.id)
 
     def test_clean_slug_with_name(self):
-        # Make sure there's at least an webapp with the "fooname" slug,
+        # Make sure there's at least an addon with the "fooname" slug,
         # subsequent ones should be "fooname-1", "fooname-2" ...
         a = Webapp.objects.create(name="fooname")
         eq_(a.app_slug, "fooname")
@@ -434,7 +434,7 @@ class TestCleanSlug(TestCase):
         eq_(b.app_slug, "fooname-1")
 
     def test_clean_slug_with_slug(self):
-        # Make sure there's at least an webapp with the "fooslug" slug,
+        # Make sure there's at least an addon with the "fooslug" slug,
         # subsequent ones should be "fooslug-1", "fooslug-2" ...
         a = Webapp.objects.create(name="fooslug")
         eq_(a.app_slug, "fooslug")
@@ -499,11 +499,10 @@ class TestCleanSlug(TestCase):
     def test_clean_slug_worst_case_scenario(self):
         long_slug = "this_is_a_very_long_slug_that_is_longer_than_thirty_chars"
 
-        # Generate 100 webapps with this very long slug. We should encounter
-        # the worst case scenario where all the available clashes have been
-        # avoided. Check the comment in webapps.models.clean_slug, in the
-        # "else" part of the "for" loop checking for available slugs not yet
-        # assigned.
+        # Generate 100 addons with this very long slug. We should encounter the
+        # worst case scenario where all the available clashes have been
+        # avoided. Check the comment in addons.models.clean_slug, in the "else"
+        # part of the "for" loop checking for available slugs not yet assigned.
         for i in range(100):
             Webapp.objects.create(app_slug=long_slug)
         with self.assertRaises(RuntimeError):  # Fail on the 100th clash.
@@ -514,7 +513,7 @@ class TestPreviewModel(mkt.site.tests.TestCase):
 
     def setUp(self):
         app = Webapp.objects.create()
-        self.preview = Preview.objects.create(webapp=app, filetype='image/png',
+        self.preview = Preview.objects.create(addon=app, filetype='image/png',
                                               thumbtype='image/png',
                                               caption='my preview')
 
@@ -563,9 +562,9 @@ class TestRemoveLocale(mkt.site.tests.TestCase):
 class TestUpdateNames(mkt.site.tests.TestCase):
 
     def setUp(self):
-        self.webapp = Webapp.objects.create()
-        self.webapp.name = self.names = {'en-US': 'woo'}
-        self.webapp.save()
+        self.addon = Webapp.objects.create()
+        self.addon.name = self.names = {'en-US': 'woo'}
+        self.addon.save()
 
     def get_name(self, app, locale='en-US'):
         return Translation.objects.get(id=app.name_id, locale=locale)
@@ -573,81 +572,81 @@ class TestUpdateNames(mkt.site.tests.TestCase):
     def check_names(self, names):
         """`names` in {locale: name} format."""
         for locale, localized_string in names.iteritems():
-            eq_(self.get_name(self.webapp, locale).localized_string,
+            eq_(self.get_name(self.addon, locale).localized_string,
                 localized_string)
 
     def test_new_name(self):
         names = dict(self.names, **{'de': u'frü'})
-        self.webapp.update_names(names)
-        self.webapp.save()
+        self.addon.update_names(names)
+        self.addon.save()
         self.check_names(names)
 
     def test_new_names(self):
         names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
-        self.webapp.update_names(names)
-        self.webapp.save()
+        self.addon.update_names(names)
+        self.addon.save()
         self.check_names(names)
 
     def test_remove_name_missing(self):
         names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
-        self.webapp.update_names(names)
-        self.webapp.save()
+        self.addon.update_names(names)
+        self.addon.save()
         self.check_names(names)
         # Now update without de to remove it.
         del names['de']
-        self.webapp.update_names(names)
-        self.webapp.save()
+        self.addon.update_names(names)
+        self.addon.save()
         names['de'] = None
         self.check_names(names)
 
     def test_remove_name_with_none(self):
         names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
-        self.webapp.update_names(names)
-        self.webapp.save()
+        self.addon.update_names(names)
+        self.addon.save()
         self.check_names(names)
         # Now update without de to remove it.
         names['de'] = None
-        self.webapp.update_names(names)
-        self.webapp.save()
+        self.addon.update_names(names)
+        self.addon.save()
         self.check_names(names)
 
     def test_add_and_remove(self):
         names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
-        self.webapp.update_names(names)
-        self.webapp.save()
+        self.addon.update_names(names)
+        self.addon.save()
         self.check_names(names)
         # Now add a new locale and remove an existing one.
         names['de'] = None
         names['fr'] = u'oui'
-        self.webapp.update_names(names)
-        self.webapp.save()
+        self.addon.update_names(names)
+        self.addon.save()
         self.check_names(names)
 
     def test_default_locale_change(self):
         names = dict(self.names, **{'de': u'frü', 'es': u'eso'})
-        self.webapp.default_locale = 'de'
-        self.webapp.update_names(names)
-        self.webapp.save()
+        self.addon.default_locale = 'de'
+        self.addon.update_names(names)
+        self.addon.save()
         self.check_names(names)
-        webapp = self.webapp.reload()
-        eq_(webapp.default_locale, 'de')
+        addon = self.addon.reload()
+        eq_(addon.default_locale, 'de')
 
     def test_default_locale_change_remove_old(self):
         names = dict(self.names, **{'de': u'frü', 'es': u'eso', 'en-US': None})
-        self.webapp.default_locale = 'de'
-        self.webapp.update_names(names)
-        self.webapp.save()
+        self.addon.default_locale = 'de'
+        self.addon.update_names(names)
+        self.addon.save()
         self.check_names(names)
-        eq_(self.webapp.reload().default_locale, 'de')
+        eq_(self.addon.reload().default_locale, 'de')
 
     def test_default_locale_removal_not_deleted(self):
         names = {'en-US': None}
-        self.webapp.update_names(names)
-        self.webapp.save()
+        self.addon.update_names(names)
+        self.addon.save()
         self.check_names(self.names)
 
 
-class TestWebappWatchDisabled(mkt.site.tests.TestCase):
+class TestAddonWatchDisabled(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141')
 
     def setUp(self):
@@ -662,21 +661,21 @@ class TestWebappWatchDisabled(mkt.site.tests.TestCase):
 
     @patch('mkt.webapps.models.File.hide_disabled_file')
     @patch('mkt.webapps.models.File.unhide_disabled_file')
-    def test_disable_webapp(self, unhide, hide):
+    def test_disable_addon(self, unhide, hide):
         self.app.update(disabled_by_user=True)
         assert not unhide.called
         assert hide.called
 
     @patch('mkt.webapps.models.File.hide_disabled_file')
     @patch('mkt.webapps.models.File.unhide_disabled_file')
-    def test_admin_disable_webapp(self, unhide, hide):
+    def test_admin_disable_addon(self, unhide, hide):
         self.app.update(status=mkt.STATUS_DISABLED)
         assert not unhide.called
         assert hide.called
 
     @patch('mkt.webapps.models.File.hide_disabled_file')
     @patch('mkt.webapps.models.File.unhide_disabled_file')
-    def test_enable_webapp(self, unhide, hide):
+    def test_enable_addon(self, unhide, hide):
         self.app.update(status=mkt.STATUS_DISABLED)
         unhide.reset_mock()
         hide.reset_mock()
@@ -685,13 +684,13 @@ class TestWebappWatchDisabled(mkt.site.tests.TestCase):
         assert not hide.called
 
 
-class TestWebappUpsell(mkt.site.tests.TestCase):
+class TestAddonUpsell(mkt.site.tests.TestCase):
 
     def setUp(self):
         self.one = Webapp.objects.create(name='free')
         self.two = Webapp.objects.create(name='premium')
-        self.upsell = WebappUpsell.objects.create(free=self.one,
-                                                  premium=self.two)
+        self.upsell = AddonUpsell.objects.create(free=self.one,
+                                                 premium=self.two)
 
     def test_create_upsell(self):
         eq_(self.one.upsell.free, self.one)
@@ -699,56 +698,56 @@ class TestWebappUpsell(mkt.site.tests.TestCase):
         eq_(self.two.upsell, None)
 
     def test_delete(self):
-        self.upsell = WebappUpsell.objects.create(free=self.two,
-                                                  premium=self.one)
+        self.upsell = AddonUpsell.objects.create(free=self.two,
+                                                 premium=self.one)
         # Note: delete ignores if status 0.
         self.one.update(status=mkt.STATUS_PUBLIC)
         self.one.delete()
-        eq_(WebappUpsell.objects.count(), 0)
+        eq_(AddonUpsell.objects.count(), 0)
 
 
-class TestWebappPurchase(mkt.site.tests.TestCase):
+class TestAddonPurchase(mkt.site.tests.TestCase):
     fixtures = fixture('user_999')
 
     def setUp(self):
         self.user = UserProfile.objects.get(pk=999)
-        self.webapp = Webapp.objects.create(premium_type=mkt.WEBAPP_PREMIUM,
-                                            name='premium')
+        self.addon = Webapp.objects.create(premium_type=mkt.ADDON_PREMIUM,
+                                           name='premium')
 
     def test_no_premium(self):
         # If you've purchased something, the fact that its now free
         # doesn't change the fact that you purchased it.
-        self.webapp.webapppurchase_set.create(user=self.user)
-        self.webapp.update(premium_type=mkt.WEBAPP_FREE)
-        assert self.webapp.has_purchased(self.user)
+        self.addon.addonpurchase_set.create(user=self.user)
+        self.addon.update(premium_type=mkt.ADDON_FREE)
+        assert self.addon.has_purchased(self.user)
 
     def test_has_purchased(self):
-        self.webapp.webapppurchase_set.create(user=self.user)
-        assert self.webapp.has_purchased(self.user)
+        self.addon.addonpurchase_set.create(user=self.user)
+        assert self.addon.has_purchased(self.user)
 
     def test_not_purchased(self):
-        assert not self.webapp.has_purchased(self.user)
+        assert not self.addon.has_purchased(self.user)
 
     def test_anonymous(self):
-        assert not self.webapp.has_purchased(None)
-        assert not self.webapp.has_purchased(AnonymousUser)
+        assert not self.addon.has_purchased(None)
+        assert not self.addon.has_purchased(AnonymousUser)
 
     def test_is_refunded(self):
-        self.webapp.webapppurchase_set.create(user=self.user,
-                                              type=mkt.CONTRIB_REFUND)
-        assert self.webapp.is_refunded(self.user)
+        self.addon.addonpurchase_set.create(user=self.user,
+                                            type=mkt.CONTRIB_REFUND)
+        assert self.addon.is_refunded(self.user)
 
     def test_is_chargeback(self):
-        self.webapp.webapppurchase_set.create(user=self.user,
-                                              type=mkt.CONTRIB_CHARGEBACK)
-        assert self.webapp.is_chargeback(self.user)
+        self.addon.addonpurchase_set.create(user=self.user,
+                                            type=mkt.CONTRIB_CHARGEBACK)
+        assert self.addon.is_chargeback(self.user)
 
     def test_purchase_state(self):
-        purchase = self.webapp.webapppurchase_set.create(user=self.user)
+        purchase = self.addon.addonpurchase_set.create(user=self.user)
         for state in [mkt.CONTRIB_PURCHASE, mkt.CONTRIB_REFUND,
                       mkt.CONTRIB_CHARGEBACK]:
             purchase.update(type=state)
-            eq_(state, self.webapp.get_purchase_type(self.user))
+            eq_(state, self.addon.get_purchase_type(self.user))
 
 
 class TestWebappLight(mkt.site.tests.TestCase):
@@ -846,7 +845,7 @@ class TestWebappLight(mkt.site.tests.TestCase):
         w = Webapp.objects.create()
         eq_(w.get_promo(), None)
 
-        p = Preview.objects.create(webapp=w, position=0)
+        p = Preview.objects.create(addon=w, position=0)
         eq_(list(w.get_previews()), [p])
 
         p.update(position=-1)
@@ -856,7 +855,7 @@ class TestWebappLight(mkt.site.tests.TestCase):
         w = Webapp.objects.create()
         eq_(w.get_promo(), None)
 
-        p = Preview.objects.create(webapp=w, position=0)
+        p = Preview.objects.create(addon=w, position=0)
         eq_(w.get_promo(), None)
 
         p.update(position=-1)
@@ -886,7 +885,7 @@ class TestWebappLight(mkt.site.tests.TestCase):
         eq_(webapp.current_version, None)
 
     def test_has_premium(self):
-        webapp = Webapp(premium_type=mkt.WEBAPP_PREMIUM)
+        webapp = Webapp(premium_type=mkt.ADDON_PREMIUM)
         webapp._premium = mock.Mock()
         webapp._premium.price = 1
         eq_(webapp.has_premium(), True)
@@ -895,7 +894,7 @@ class TestWebappLight(mkt.site.tests.TestCase):
         eq_(webapp.has_premium(), True)
 
     def test_get_price_no_premium(self):
-        webapp = Webapp(premium_type=mkt.WEBAPP_PREMIUM)
+        webapp = Webapp(premium_type=mkt.ADDON_PREMIUM)
         webapp.save()
         # Needed because get_price accesses excluded, which triggers geodata
         # which triggers a save to the db.
@@ -903,7 +902,7 @@ class TestWebappLight(mkt.site.tests.TestCase):
         eq_(webapp.get_price_locale(), None)
 
     def test_has_no_premium(self):
-        webapp = Webapp(premium_type=mkt.WEBAPP_PREMIUM)
+        webapp = Webapp(premium_type=mkt.ADDON_PREMIUM)
         webapp._premium = None
         eq_(webapp.has_premium(), False)
 
@@ -914,12 +913,9 @@ class TestWebappLight(mkt.site.tests.TestCase):
         w1 = Webapp.objects.create()
         w2 = Webapp.objects.create()
 
-        WebappExcludedRegion.objects.create(
-            webapp=w1, region=mkt.regions.BRA.id)
-        WebappExcludedRegion.objects.create(
-            webapp=w1, region=mkt.regions.USA.id)
-        WebappExcludedRegion.objects.create(
-            webapp=w2, region=mkt.regions.GBR.id)
+        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.BRA.id)
+        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.USA.id)
+        AddonExcludedRegion.objects.create(addon=w2, region=mkt.regions.GBR.id)
 
         w1_regions = list(mkt.regions.REGION_IDS)
         w1_regions.remove(mkt.regions.BRA.id)
@@ -937,12 +933,9 @@ class TestWebappLight(mkt.site.tests.TestCase):
         w1 = Webapp.objects.create()
         w2 = Webapp.objects.create()
 
-        WebappExcludedRegion.objects.create(
-            webapp=w1, region=mkt.regions.BRA.id)
-        WebappExcludedRegion.objects.create(
-            webapp=w1, region=mkt.regions.USA.id)
-        WebappExcludedRegion.objects.create(
-            webapp=w2, region=mkt.regions.GBR.id)
+        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.BRA.id)
+        AddonExcludedRegion.objects.create(addon=w1, region=mkt.regions.USA.id)
+        AddonExcludedRegion.objects.create(addon=w2, region=mkt.regions.GBR.id)
 
         all_regions = mkt.regions.REGIONS_CHOICES_ID_DICT.values()
 
@@ -978,23 +971,22 @@ class TestWebappLight(mkt.site.tests.TestCase):
 
     def test_is_premium_type_upgrade_check(self):
         app = Webapp()
-        ALL = set(mkt.WEBAPP_FREES + mkt.WEBAPP_PREMIUMS)
-        free_upgrade = ALL - set([mkt.WEBAPP_FREE])
-        free_inapp_upgrade = ALL - set([mkt.WEBAPP_FREE,
-                                        mkt.WEBAPP_FREE_INAPP])
+        ALL = set(mkt.ADDON_FREES + mkt.ADDON_PREMIUMS)
+        free_upgrade = ALL - set([mkt.ADDON_FREE])
+        free_inapp_upgrade = ALL - set([mkt.ADDON_FREE, mkt.ADDON_FREE_INAPP])
 
-        # Checking WEBAPP_FREE changes.
-        app.premium_type = mkt.WEBAPP_FREE
+        # Checking ADDON_FREE changes.
+        app.premium_type = mkt.ADDON_FREE
         for pt in ALL:
             eq_(app.is_premium_type_upgrade(pt), pt in free_upgrade)
 
-        # Checking WEBAPP_FREE_INAPP changes.
-        app.premium_type = mkt.WEBAPP_FREE_INAPP
+        # Checking ADDON_FREE_INAPP changes.
+        app.premium_type = mkt.ADDON_FREE_INAPP
         for pt in ALL:
             eq_(app.is_premium_type_upgrade(pt), pt in free_inapp_upgrade)
 
         # All else is false.
-        for pt_old in ALL - set([mkt.WEBAPP_FREE, mkt.WEBAPP_FREE_INAPP]):
+        for pt_old in ALL - set([mkt.ADDON_FREE, mkt.ADDON_FREE_INAPP]):
             app.premium_type = pt_old
             for pt_new in ALL:
                 eq_(app.is_premium_type_upgrade(pt_new), False)
@@ -1030,7 +1022,7 @@ class TestWebappLight(mkt.site.tests.TestCase):
         old_ver = app.versions.latest()
         old_ver.update(nomination=self.days_ago(1))
         old_ver.all_files[0].update(status=mkt.STATUS_PENDING)
-        v = Version.objects.create(webapp=app, version='1.9')
+        v = Version.objects.create(addon=app, version='1.9')
         eq_(v.nomination, old_ver.nomination)
 
     def test_nomination_pkg_public_new_version(self):
@@ -1039,7 +1031,7 @@ class TestWebappLight(mkt.site.tests.TestCase):
         app.update(is_packaged=True)
         old_ver = app.versions.latest()
         old_ver.update(nomination=self.days_ago(1))
-        v = Version.objects.create(webapp=app, version='1.9')
+        v = Version.objects.create(addon=app, version='1.9')
         self.assertCloseToNow(v.nomination)
 
     def test_nomination_approved(self):
@@ -1049,7 +1041,7 @@ class TestWebappLight(mkt.site.tests.TestCase):
         old_ver = app.versions.latest()
         old_ver.update(nomination=self.days_ago(1))
         old_ver.all_files[0].update(status=mkt.STATUS_APPROVED)
-        v = Version.objects.create(webapp=app, version='1.9')
+        v = Version.objects.create(addon=app, version='1.9')
         self.assertCloseToNow(v.nomination)
 
     def test_excluded_in_iarc(self):
@@ -1110,7 +1102,7 @@ class TestWebappLight(mkt.site.tests.TestCase):
 
     def test_meta_translated_fields(self):
         """Test that we don't load translations for all the translated fields
-        that live on Webapp but we don't need in Webapp."""
+        that live on Addon but we don't need in Webapp."""
         useless_fields = ()
         useful_fields = ('homepage', 'privacy_policy', 'name', 'description',
                          'support_email', 'support_url')
@@ -1182,7 +1174,7 @@ class TestWebappContentRatings(TestCase):
         for expected in [(rb.CLASSIND.id, rb.CLASSIND_L.id),
                          (rb.PEGI.id, rb.PEGI_3.id)]:
             assert ContentRating.objects.filter(
-                webapp=app, ratings_body=expected[0],
+                addon=app, ratings_body=expected[0],
                 rating=expected[1]).exists()
         eq_(app.reload().status, mkt.STATUS_PENDING)
 
@@ -1196,7 +1188,7 @@ class TestWebappContentRatings(TestCase):
                          (rb.PEGI.id, rb.PEGI_3.id),
                          (rb.GENERIC.id, rb.GENERIC_18.id)]:
             assert ContentRating.objects.filter(
-                webapp=app, ratings_body=expected[0],
+                addon=app, ratings_body=expected[0],
                 rating=expected[1]).exists()
         eq_(app.reload().status, mkt.STATUS_PENDING)
 
@@ -1204,30 +1196,30 @@ class TestWebappContentRatings(TestCase):
         app = app_factory(rated=True)
 
         # Ensure we have some data to start with.
-        ok_(IARCInfo.objects.filter(webapp=app).exists())
-        ok_(ContentRating.objects.filter(webapp=app).exists())
-        ok_(RatingDescriptors.objects.filter(webapp=app).exists())
-        ok_(RatingInteractives.objects.filter(webapp=app).exists())
+        ok_(IARCInfo.objects.filter(addon=app).exists())
+        ok_(ContentRating.objects.filter(addon=app).exists())
+        ok_(RatingDescriptors.objects.filter(addon=app).exists())
+        ok_(RatingInteractives.objects.filter(addon=app).exists())
 
         # Delete.
         app.delete()
         msg = 'Related IARC data should be deleted.'
-        ok_(not IARCInfo.objects.filter(webapp=app).exists(), msg)
-        ok_(not ContentRating.objects.filter(webapp=app).exists(), msg)
-        ok_(not RatingDescriptors.objects.filter(webapp=app).exists(), msg)
-        ok_(not RatingInteractives.objects.filter(webapp=app).exists(), msg)
+        ok_(not IARCInfo.objects.filter(addon=app).exists(), msg)
+        ok_(not ContentRating.objects.filter(addon=app).exists(), msg)
+        ok_(not RatingDescriptors.objects.filter(addon=app).exists(), msg)
+        ok_(not RatingInteractives.objects.filter(addon=app).exists(), msg)
 
     def test_set_content_ratings_usk_refused(self):
         app = app_factory()
         app.set_content_ratings({
             mkt.ratingsbodies.USK: mkt.ratingsbodies.USK_REJECTED
         })
-        ok_(Geodata.objects.get(webapp=app).region_de_usk_exclude)
+        ok_(Geodata.objects.get(addon=app).region_de_usk_exclude)
 
         app.set_content_ratings({
             mkt.ratingsbodies.USK: mkt.ratingsbodies.USK_12
         })
-        ok_(not Geodata.objects.get(webapp=app).region_de_usk_exclude)
+        ok_(not Geodata.objects.get(addon=app).region_de_usk_exclude)
 
     def test_set_content_ratings_iarc_games_unexclude(self):
         app = app_factory()
@@ -1238,7 +1230,7 @@ class TestWebappContentRatings(TestCase):
             mkt.ratingsbodies.USK: mkt.ratingsbodies.USK_12
         })
 
-        geodata = Geodata.objects.get(webapp=app)
+        geodata = Geodata.objects.get(addon=app)
         ok_(not geodata.region_br_iarc_exclude)
         ok_(not geodata.region_de_iarc_exclude)
 
@@ -1258,7 +1250,7 @@ class TestWebappContentRatings(TestCase):
         eq_(RatingDescriptors.objects.count(), 0)
         app.set_descriptors([])
 
-        descriptors = RatingDescriptors.objects.get(webapp=app)
+        descriptors = RatingDescriptors.objects.get(addon=app)
         assert not descriptors.has_classind_drugs
         assert not descriptors.has_esrb_blood  # Blood-deuh!
 
@@ -1266,7 +1258,7 @@ class TestWebappContentRatings(TestCase):
         app.set_descriptors([
             'has_classind_drugs', 'has_pegi_scary', 'has_generic_drugs'
         ])
-        descriptors = RatingDescriptors.objects.get(webapp=app)
+        descriptors = RatingDescriptors.objects.get(addon=app)
         assert descriptors.has_classind_drugs
         assert descriptors.has_pegi_scary
         assert descriptors.has_generic_drugs
@@ -1276,7 +1268,7 @@ class TestWebappContentRatings(TestCase):
         app.set_descriptors([
             'has_esrb_blood', 'has_classind_drugs'
         ])
-        descriptors = RatingDescriptors.objects.get(webapp=app)
+        descriptors = RatingDescriptors.objects.get(addon=app)
         assert descriptors.has_esrb_blood
         assert descriptors.has_classind_drugs
         assert not descriptors.has_pegi_scary
@@ -1286,7 +1278,7 @@ class TestWebappContentRatings(TestCase):
         app = app_factory()
         app.set_interactives([])
         eq_(RatingInteractives.objects.count(), 1)
-        app_interactives = RatingInteractives.objects.get(webapp=app)
+        app_interactives = RatingInteractives.objects.get(addon=app)
         assert not app_interactives.has_shares_info
         assert not app_interactives.has_digital_purchases
 
@@ -1295,7 +1287,7 @@ class TestWebappContentRatings(TestCase):
             'has_shares_info', 'has_digital_purchases', 'has_UWOTM8'
         ])
         eq_(RatingInteractives.objects.count(), 1)
-        app_interactives = RatingInteractives.objects.get(webapp=app)
+        app_interactives = RatingInteractives.objects.get(addon=app)
         assert app_interactives.has_shares_info
         assert app_interactives.has_digital_purchases
         assert not app_interactives.has_users_interact
@@ -1305,7 +1297,7 @@ class TestWebappContentRatings(TestCase):
             'has_digital_purchases', 'has_shares_ur_mum'
         ])
         eq_(RatingInteractives.objects.count(), 1)
-        app_interactives = RatingInteractives.objects.get(webapp=app)
+        app_interactives = RatingInteractives.objects.get(addon=app)
         assert not app_interactives.has_shares_info
         assert app_interactives.has_digital_purchases
 
@@ -1456,13 +1448,13 @@ class TestExclusions(TestCase):
     fixtures = fixture('prices')
 
     def setUp(self):
-        self.app = Webapp.objects.create(premium_type=mkt.WEBAPP_PREMIUM)
-        self.app.webappexcludedregion.create(region=mkt.regions.USA.id)
+        self.app = Webapp.objects.create(premium_type=mkt.ADDON_PREMIUM)
+        self.app.addonexcludedregion.create(region=mkt.regions.USA.id)
         self.geodata = self.app._geodata
 
     def make_tier(self):
         self.price = Price.objects.get(pk=1)
-        WebappPremium.objects.create(webapp=self.app, price=self.price)
+        AddonPremium.objects.create(addon=self.app, price=self.price)
         self.row = PriceCurrency.objects.create(
             currency='USD',
             dev=True,
@@ -1495,7 +1487,7 @@ class TestExclusions(TestCase):
 
     def test_premium_remove_tier(self):
         self.make_tier()
-        self.app.webappexcludedregion.create(region=mkt.regions.RESTOFWORLD.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.RESTOFWORLD.id)
         # If we exclude the rest of the world, then we'll exclude Nicaragua
         # which has no price currency.
         ok_(mkt.regions.NIC.id in self.app.get_excluded_region_ids())
@@ -1573,7 +1565,7 @@ class TestPackagedAppManifestUpdates(mkt.site.tests.TestCase):
             'name': u'Good App Name',
         }
         latest_version = version_factory(
-            webapp=self.webapp, version='2.3',
+            addon=self.webapp, version='2.3',
             file_kw=dict(status=mkt.STATUS_DISABLED))
         current_version = self.webapp.current_version
         AppManifest.objects.create(version=current_version,
@@ -1592,12 +1584,12 @@ class TestWebappVersion(mkt.site.tests.TestCase):
 
     def test_no_file(self):
         webapp = Webapp.objects.create(manifest_url='http://foo.com')
-        webapp._current_version = Version.objects.create(webapp=webapp)
+        webapp._current_version = Version.objects.create(addon=webapp)
         eq_(webapp.get_latest_file(), None)
 
     def test_right_file(self):
         webapp = Webapp.objects.create(manifest_url='http://foo.com')
-        version = Version.objects.create(webapp=webapp)
+        version = Version.objects.create(addon=webapp)
         old_file = File.objects.create(version=version)
         old_file.update(created=datetime.now() - timedelta(days=1))
         new_file = File.objects.create(version=version)
@@ -1625,7 +1617,7 @@ class TestWebappManager(TestCase):
 class TestManifest(BaseWebAppTest):
 
     def test_get_manifest_json(self):
-        webapp = self.post_webapp()
+        webapp = self.post_addon()
         assert webapp.latest_version
         assert webapp.latest_version.has_files
         with open(self.manifest, 'r') as mf:
@@ -1696,7 +1688,7 @@ class TestPackagedManifest(BasePackagedAppTest):
         return json.loads(data)
 
     def test_get_manifest_json(self):
-        webapp = self.post_webapp()
+        webapp = self.post_addon()
         webapp.update(status=mkt.STATUS_PUBLIC)
         file_ = webapp.latest_version.all_files[0]
         file_.update(status=mkt.STATUS_PUBLIC)
@@ -1711,11 +1703,11 @@ class TestPackagedManifest(BasePackagedAppTest):
 
     def test_get_manifest_json_multiple_versions(self):
         """Test `get_manifest_json` gets the right version."""
-        webapp = self.post_webapp()
+        webapp = self.post_addon()
         webapp.update(status=mkt.STATUS_PUBLIC)
         latest_version = webapp.latest_version
         latest_version.files.update(status=mkt.STATUS_PUBLIC)
-        version = version_factory(webapp=webapp, version='0.5',
+        version = version_factory(addon=webapp, version='0.5',
                                   created=self.days_ago(1),
                                   file_kw={'status': mkt.STATUS_PENDING})
         version.files.update(created=self.days_ago(1))
@@ -1728,11 +1720,11 @@ class TestPackagedManifest(BasePackagedAppTest):
     def test_get_manifest_json_multiple_version_disabled(self):
         # Post an app, then emulate a reviewer reject and add a new, pending
         # version.
-        webapp = self.post_webapp()
+        webapp = self.post_addon()
         webapp.latest_version.files.update(status=mkt.STATUS_DISABLED)
         webapp.latest_version.update(created=self.days_ago(1))
         webapp.update(status=mkt.STATUS_REJECTED, _current_version=None)
-        version = version_factory(webapp=webapp, version='2.0',
+        version = version_factory(addon=webapp, version='2.0',
                                   file_kw={'status': mkt.STATUS_PENDING})
         mf = self._get_manifest_json()
         AppManifest.objects.create(version=version,
@@ -1745,7 +1737,7 @@ class TestPackagedManifest(BasePackagedAppTest):
         eq_(webapp.get_manifest_json(self.file), mf)
 
     def test_cached_manifest_is_cached(self):
-        webapp = self.post_webapp()
+        webapp = self.post_addon()
         # First call does queries and caches results.
         webapp.get_cached_manifest()
         # Subsequent calls are cached.
@@ -1754,14 +1746,14 @@ class TestPackagedManifest(BasePackagedAppTest):
 
     @mock.patch('mkt.webapps.utils.cache')
     def test_cached_manifest_no_version_not_cached(self, cache_mock):
-        webapp = self.post_webapp(
+        webapp = self.post_addon(
             data={'packaged': True, 'free_platforms': 'free-firefoxos'})
         webapp._current_version = None
         eq_(webapp.get_cached_manifest(force=True), '{}')
         assert not cache_mock.called
 
     def test_cached_manifest_contents(self):
-        webapp = self.post_webapp(
+        webapp = self.post_addon(
             data={'packaged': True, 'free_platforms': 'free-firefoxos'})
         webapp.update(status=mkt.STATUS_PUBLIC)
         version = webapp.latest_version
@@ -1783,7 +1775,7 @@ class TestPackagedManifest(BasePackagedAppTest):
         eq_(data['locales'], manifest['locales'])
 
     def _createPackage(self):
-        webapp = self.post_webapp(
+        webapp = self.post_addon(
             data={'packaged': True, 'free_platforms': 'free-firefoxos'})
         webapp.update(status=mkt.STATUS_PUBLIC)
         version = webapp.latest_version
@@ -1803,7 +1795,7 @@ class TestPackagedManifest(BasePackagedAppTest):
         DEFAULT_FILE_STORAGE='mkt.site.storage_utils.S3BotoPrivateStorage')
     def test_package_path_storage(self):
         file = self._createPackage()
-        file.version.webapp.get_cached_manifest(force=True)
+        file.version.addon.get_cached_manifest(force=True)
         res = self.client.get(file.get_url_path('manifest'))
         self.assert3xx(res, public_storage.url(file.signed_file_path))
 
@@ -1871,9 +1863,9 @@ class TestTransformer(mkt.site.tests.TestCase):
                 ok_(isinstance(webapp.current_version, Version))
 
     def test_previews(self):
-        p1 = Preview.objects.create(filetype='image/png', webapp_id=337141,
+        p1 = Preview.objects.create(filetype='image/png', addon_id=337141,
                                     position=0)
-        p2 = Preview.objects.create(filetype='image/png', webapp_id=337141,
+        p2 = Preview.objects.create(filetype='image/png', addon_id=337141,
                                     position=1)
 
         webapps = list(Webapp.objects.all())
@@ -1898,8 +1890,8 @@ class TestTransformer(mkt.site.tests.TestCase):
                 eq_(webapp.get_tier(), None)
 
     def test_device_types(self):
-        WebappDeviceType.objects.create(webapp_id=337141,
-                                        device_type=self.device)
+        AddonDeviceType.objects.create(addon_id=337141,
+                                       device_type=self.device)
         webapps = list(Webapp.objects.filter(id=337141))
 
         with self.assertNumQueries(0):
@@ -1936,7 +1928,7 @@ class TestDetailsComplete(mkt.site.tests.TestCase):
         self.webapp.save()
         self.fail('device')
 
-        self.webapp.webappdevicetype_set.create(device_type=self.device)
+        self.webapp.addondevicetype_set.create(device_type=self.device)
         self.webapp.save()
         self.fail('category')
 
@@ -1955,20 +1947,20 @@ class TestDetailsComplete(mkt.site.tests.TestCase):
         eq_(self.webapp.details_complete(), True)
 
 
-class TestWebappExcludedRegion(mkt.site.tests.WebappTestCase):
+class TestAddonExcludedRegion(mkt.site.tests.WebappTestCase):
 
     def setUp(self):
-        super(TestWebappExcludedRegion, self).setUp()
-        self.excluded = self.app.webappexcludedregion
+        super(TestAddonExcludedRegion, self).setUp()
+        self.excluded = self.app.addonexcludedregion
 
         eq_(list(self.excluded.values_list('id', flat=True)), [])
-        self.er = self.app.webappexcludedregion.create(
+        self.er = self.app.addonexcludedregion.create(
             region=mkt.regions.GBR.id)
         eq_(list(self.excluded.values_list('id', flat=True)), [self.er.id])
 
     def test_exclude_multiple(self):
-        other = WebappExcludedRegion.objects.create(webapp=self.app,
-                                                    region=mkt.regions.BRA.id)
+        other = AddonExcludedRegion.objects.create(addon=self.app,
+                                                   region=mkt.regions.BRA.id)
         self.assertSetEqual(self.excluded.values_list('id', flat=True),
                             [self.er.id, other.id])
 
@@ -1995,7 +1987,7 @@ class TestContentRating(mkt.site.tests.WebappTestCase):
                        mkt.ratingsbodies.GENERIC)
     def test_get_regions_and_slugs(self):
         classind_rating = ContentRating.objects.create(
-            webapp=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
+            addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
             rating=0)
         regions = classind_rating.get_regions()
         assert mkt.regions.BRA in regions
@@ -2014,7 +2006,7 @@ class TestContentRating(mkt.site.tests.WebappTestCase):
                        mkt.ratingsbodies.GENERIC)
     def test_get_regions_and_slugs_generic_fallback(self):
         gen_rating = ContentRating.objects.create(
-            webapp=self.app, ratings_body=mkt.ratingsbodies.GENERIC.id,
+            addon=self.app, ratings_body=mkt.ratingsbodies.GENERIC.id,
             rating=0)
         regions = gen_rating.get_regions()
         assert mkt.regions.BRA not in regions
@@ -2036,14 +2028,14 @@ class TestContentRating(mkt.site.tests.WebappTestCase):
     def test_get_ratings(self):
         # Infer the label from the name.
         cr = ContentRating.objects.create(
-            webapp=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
+            addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
             rating=mkt.ratingsbodies.CLASSIND_10.id)
         eq_(cr.get_rating().label, '10')
         eq_(cr.get_body().label, 'classind')
 
         # When already has label set.
         eq_(ContentRating.objects.create(
-            webapp=self.app, ratings_body=mkt.ratingsbodies.ESRB.id,
+            addon=self.app, ratings_body=mkt.ratingsbodies.ESRB.id,
             rating=mkt.ratingsbodies.ESRB_E.id).get_rating().label,
             '10')
 
@@ -2055,8 +2047,8 @@ class TestContentRatingsIn(mkt.site.tests.WebappTestCase):
             eq_(self.app.content_ratings_in(region=region), [])
 
         for region in mkt.regions.ALL_REGIONS:
-            WebappExcludedRegion.objects.create(webapp=self.app,
-                                                region=region.id)
+            AddonExcludedRegion.objects.create(addon=self.app,
+                                               region=region.id)
             eq_(self.get_app().content_ratings_in(region=region), [])
 
     def test_in_region_and_category(self):
@@ -2076,7 +2068,7 @@ class TestContentRatingsIn(mkt.site.tests.WebappTestCase):
     def test_generic_fallback(self):
         # Test region with no rating body returns generic content rating.
         crs = ContentRating.objects.create(
-            webapp=self.app, ratings_body=mkt.ratingsbodies.GENERIC.id,
+            addon=self.app, ratings_body=mkt.ratingsbodies.GENERIC.id,
             rating=mkt.ratingsbodies.GENERIC_3.id)
         eq_(self.app.content_ratings_in(region=mkt.regions.COL), [crs])
 
@@ -2091,7 +2083,7 @@ class TestIARCInfo(mkt.site.tests.WebappTestCase):
             self.app.iarc_info
 
     def test_info(self):
-        IARCInfo.objects.create(webapp=self.app, submission_id=1,
+        IARCInfo.objects.create(addon=self.app, submission_id=1,
                                 security_code='s3kr3t')
         eq_(self.app.iarc_info.submission_id, 1)
         eq_(self.app.iarc_info.security_code, 's3kr3t')
@@ -2101,12 +2093,12 @@ class TestQueue(mkt.site.tests.WebappTestCase):
 
     def test_in_rereview_queue(self):
         assert not self.app.in_rereview_queue()
-        RereviewQueue.objects.create(webapp=self.app)
+        RereviewQueue.objects.create(addon=self.app)
         assert self.app.in_rereview_queue()
 
     def test_in_escalation_queue(self):
         assert not self.app.in_escalation_queue()
-        EscalationQueue.objects.create(webapp=self.app)
+        EscalationQueue.objects.create(addon=self.app)
         assert self.app.in_escalation_queue()
 
 
@@ -2160,7 +2152,7 @@ class TestUpdateStatus(mkt.site.tests.TestCase):
 
     def test_version_no_files(self):
         app = Webapp.objects.create(status=mkt.STATUS_PUBLIC)
-        Version(webapp=app).save()
+        Version(addon=app).save()
         app.update_status()
         eq_(app.status, mkt.STATUS_NULL)
 
@@ -2172,7 +2164,7 @@ class TestUpdateStatus(mkt.site.tests.TestCase):
 
     def test_other_version_deleted(self):
         app = app_factory(status=mkt.STATUS_REJECTED)
-        version_factory(webapp=app)
+        version_factory(addon=app)
         app.latest_version.delete()
         app.update_status()
         eq_(app.status, mkt.STATUS_REJECTED)
@@ -2180,7 +2172,7 @@ class TestUpdateStatus(mkt.site.tests.TestCase):
     def test_one_version_pending(self):
         app = app_factory(status=mkt.STATUS_REJECTED,
                           file_kw=dict(status=mkt.STATUS_DISABLED))
-        version_factory(webapp=app,
+        version_factory(addon=app,
                         file_kw=dict(status=mkt.STATUS_PENDING))
         with mock.patch('mkt.webapps.models.Webapp.is_fully_complete') as comp:
             comp.return_value = True
@@ -2190,7 +2182,7 @@ class TestUpdateStatus(mkt.site.tests.TestCase):
     def test_one_version_pending_not_fully_complete(self):
         app = app_factory(status=mkt.STATUS_REJECTED,
                           file_kw=dict(status=mkt.STATUS_DISABLED))
-        version_factory(webapp=app,
+        version_factory(addon=app,
                         file_kw=dict(status=mkt.STATUS_PENDING))
         with mock.patch('mkt.webapps.models.Webapp.is_fully_complete') as comp:
             comp.return_value = False
@@ -2199,15 +2191,15 @@ class TestUpdateStatus(mkt.site.tests.TestCase):
 
     def test_one_version_public(self):
         app = app_factory(status=mkt.STATUS_PUBLIC)
-        version_factory(webapp=app,
+        version_factory(addon=app,
                         file_kw=dict(status=mkt.STATUS_DISABLED))
         app.update_status()
         eq_(app.status, mkt.STATUS_PUBLIC)
 
     def test_was_approved_then_new_version(self):
         app = app_factory(status=mkt.STATUS_APPROVED)
-        File.objects.filter(version__webapp=app).update(status=app.status)
-        version_factory(webapp=app,
+        File.objects.filter(version__addon=app).update(status=app.status)
+        version_factory(addon=app,
                         file_kw=dict(status=mkt.STATUS_PENDING))
         app.update_status()
         eq_(app.status, mkt.STATUS_APPROVED)
@@ -2225,7 +2217,7 @@ class TestInstalled(mkt.site.tests.TestCase):
         user = UserProfile.objects.create(email='f@f.com')
         app = Webapp.objects.create()
         self.m = functools.partial(Installed.objects.safer_get_or_create,
-                                   user=user, webapp=app)
+                                   user=user, addon=app)
 
     def test_install_type(self):
         assert self.m(install_type=apps.INSTALL_TYPE_USER)[1]
@@ -2275,19 +2267,19 @@ class TestRatingDescriptors(mkt.site.tests.TestCase):
         super(TestRatingDescriptors, self).setUp()
 
     def test_desc_mapping(self):
-        descs = RatingDescriptors.objects.create(webapp=app_factory())
+        descs = RatingDescriptors.objects.create(addon=app_factory())
         for body, mapping in DESCS.items():
             for native, rating_desc_field in mapping.items():
                 assert hasattr(descs, rating_desc_field), rating_desc_field
 
     def test_reverse_desc_mapping(self):
-        descs = RatingDescriptors.objects.create(webapp=app_factory())
+        descs = RatingDescriptors.objects.create(addon=app_factory())
         for desc in descs._fields():
             eq_(type(REVERSE_DESCS.get(desc)), unicode, desc)
 
     def test_iarc_deserialize(self):
         descs = RatingDescriptors.objects.create(
-            webapp=app_factory(), has_esrb_blood=True, has_pegi_scary=True)
+            addon=app_factory(), has_esrb_blood=True, has_pegi_scary=True)
         self.assertSetEqual(descs.iarc_deserialize().split(', '),
                             ['Blood', 'Fear'])
         eq_(descs.iarc_deserialize(body=mkt.ratingsbodies.ESRB), 'Blood')
@@ -2299,19 +2291,18 @@ class TestRatingInteractives(mkt.site.tests.TestCase):
         super(TestRatingInteractives, self).setUp()
 
     def test_interactives_mapping(self):
-        interactives = RatingInteractives.objects.create(webapp=app_factory())
+        interactives = RatingInteractives.objects.create(addon=app_factory())
         for native, field in INTERACTIVES.items():
             assert hasattr(interactives, field)
 
     def test_reverse_interactives_mapping(self):
-        interactives = RatingInteractives.objects.create(webapp=app_factory())
+        interactives = RatingInteractives.objects.create(addon=app_factory())
         for interactive_field in interactives._fields():
             assert REVERSE_INTERACTIVES.get(interactive_field)
 
     def test_iarc_deserialize(self):
         interactives = RatingInteractives.objects.create(
-            webapp=app_factory(), has_users_interact=True,
-            has_shares_info=True)
+            addon=app_factory(), has_users_interact=True, has_shares_info=True)
         self.assertSetEqual(
             interactives.iarc_deserialize().split(', '),
             ['Shares Info', 'Users Interact'])
@@ -2326,16 +2317,16 @@ class TestManifestUpload(BaseUploadTest, mkt.site.tests.TestCase):
 
     def manifest(self, name):
         return os.path.join(settings.ROOT, 'mkt', 'developers', 'tests',
-                            'webapps', name)
+                            'addons', name)
 
-    @mock.patch('mkt.webapps.models.parse_webapp')
-    def test_manifest_updated_developer_name(self, parse_webapp):
-        parse_webapp.return_value = {
+    @mock.patch('mkt.webapps.models.parse_addon')
+    def test_manifest_updated_developer_name(self, parse_addon):
+        parse_addon.return_value = {
             'version': '4.0',
             'developer_name': u'Méâ'
         }
         # Note: we need a valid FileUpload instance, but in the end we are not
-        # using its contents since we are mocking parse_webapp().
+        # using its contents since we are mocking parse_addon().
         upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
         app = Webapp.objects.get(pk=337141)
         app.manifest_updated('', upload)
@@ -2343,16 +2334,16 @@ class TestManifestUpload(BaseUploadTest, mkt.site.tests.TestCase):
         eq_(version.version, '4.0')
         eq_(version.developer_name, u'Méâ')
 
-    @mock.patch('mkt.webapps.models.parse_webapp')
-    def test_manifest_updated_long_developer_name(self, parse_webapp):
+    @mock.patch('mkt.webapps.models.parse_addon')
+    def test_manifest_updated_long_developer_name(self, parse_addon):
         truncated_developer_name = u'é' * 255
         long_developer_name = truncated_developer_name + u'ßßßß'
-        parse_webapp.return_value = {
+        parse_addon.return_value = {
             'version': '4.1',
             'developer_name': long_developer_name,
         }
         # Note: we need a valid FileUpload instance, but in the end we are not
-        # using its contents since we are mocking parse_webapp().
+        # using its contents since we are mocking parse_addon().
         upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
         app = Webapp.objects.get(pk=337141)
         app.manifest_updated('', upload)
@@ -2362,22 +2353,22 @@ class TestManifestUpload(BaseUploadTest, mkt.site.tests.TestCase):
 
     def test_manifest_url(self):
         upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
-        webapp = Webapp.from_upload(upload)
-        eq_(webapp.manifest_url, upload.name)
+        addon = Webapp.from_upload(upload)
+        eq_(addon.manifest_url, upload.name)
 
     def test_app_domain(self):
         upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
         upload.name = 'http://mozilla.com/my/rad/app.webapp'  # manifest URL
-        webapp = Webapp.from_upload(upload)
-        eq_(webapp.app_domain, 'http://mozilla.com')
+        addon = Webapp.from_upload(upload)
+        eq_(addon.app_domain, 'http://mozilla.com')
 
     def test_non_english_app(self):
         upload = self.get_upload(abspath=self.manifest('non-english.webapp'))
         upload.name = 'http://mozilla.com/my/rad/app.webapp'  # manifest URL
-        webapp = Webapp.from_upload(upload)
-        eq_(webapp.default_locale, 'it')
-        eq_(unicode(webapp.name), 'ItalianMozBall')
-        eq_(webapp.name.locale, 'it')
+        addon = Webapp.from_upload(upload)
+        eq_(addon.default_locale, 'it')
+        eq_(unicode(addon.name), 'ItalianMozBall')
+        eq_(addon.name.locale, 'it')
 
     def test_webapp_default_locale_override(self):
         with nested(tempfile.NamedTemporaryFile('w', suffix='.webapp'),
@@ -2387,8 +2378,8 @@ class TestManifestUpload(BaseUploadTest, mkt.site.tests.TestCase):
             tmp.write(json.dumps(mf))
             tmp.flush()
             upload = self.get_upload(abspath=tmp.name)
-        webapp = Webapp.from_upload(upload)
-        eq_(webapp.default_locale, 'es')
+        addon = Webapp.from_upload(upload)
+        eq_(addon.default_locale, 'es')
 
     def test_webapp_default_locale_unsupported(self):
         with nested(tempfile.NamedTemporaryFile('w', suffix='.webapp'),
@@ -2398,15 +2389,15 @@ class TestManifestUpload(BaseUploadTest, mkt.site.tests.TestCase):
             tmp.write(json.dumps(mf))
             tmp.flush()
             upload = self.get_upload(abspath=tmp.name)
-        webapp = Webapp.from_upload(upload)
-        eq_(webapp.default_locale, 'en-US')
+        addon = Webapp.from_upload(upload)
+        eq_(addon.default_locale, 'en-US')
 
     def test_browsing_locale_does_not_override(self):
         with translation.override('fr'):
             # Upload app with en-US as default.
             upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
-            webapp = Webapp.from_upload(upload)
-            eq_(webapp.default_locale, 'en-US')  # not fr
+            addon = Webapp.from_upload(upload)
+            eq_(addon.default_locale, 'en-US')  # not fr
 
     @raises(forms.ValidationError)
     def test_malformed_locales(self):
@@ -2474,11 +2465,11 @@ class TestPreGenAPKs(mkt.site.tests.WebappTestCase):
         self.app.update(status=mkt.STATUS_PUBLIC,
                         manifest_url=self.manifest_url)
         # Set up the app to support Android.
-        self.app.webappdevicetype_set.create(device_type=mkt.DEVICE_MOBILE.id)
+        self.app.addondevicetype_set.create(device_type=mkt.DEVICE_MOBILE.id)
 
     def switch_device(self, device_id):
-        self.app.webappdevicetype_set.all().delete()
-        self.app.webappdevicetype_set.create(device_type=device_id)
+        self.app.addondevicetype_set.all().delete()
+        self.app.addondevicetype_set.create(device_type=device_id)
 
     def test_approved_apps(self, pre_gen_task):
         assert not pre_gen_task.delay.called

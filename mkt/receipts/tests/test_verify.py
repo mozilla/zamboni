@@ -18,7 +18,7 @@ from services import utils, verify
 import mkt
 import mkt.site.tests
 from mkt.inapp.models import InAppProduct
-from mkt.prices.models import WebappPurchase, Price
+from mkt.prices.models import AddonPurchase, Price
 from mkt.purchase.models import Contribution
 from mkt.receipts.utils import create_receipt, create_receipt_data
 from mkt.site.fixtures import fixture
@@ -49,7 +49,7 @@ class ReceiptTest(mkt.site.tests.TestCase):
         return create_receipt_data(self.app, self.user, 'some-uuid')
 
     def sample_inapp_receipt(self, contribution):
-        return create_receipt_data(contribution.webapp,
+        return create_receipt_data(contribution.addon,
                                    contribution.user,
                                    'some-uuid',
                                    flavour='inapp',
@@ -87,21 +87,21 @@ class TestVerify(ReceiptTest):
         return self.verify_signed_receipt('', check_purchase=check_purchase)
 
     def make_purchase(self):
-        return WebappPurchase.objects.create(webapp=self.app, user=self.user,
-                                             uuid='some-uuid')
+        return AddonPurchase.objects.create(addon=self.app, user=self.user,
+                                            uuid='some-uuid')
 
     def make_contribution(self, type=mkt.CONTRIB_PURCHASE):
-        contribution = Contribution.objects.create(webapp=self.app,
+        contribution = Contribution.objects.create(addon=self.app,
                                                    user=self.user,
                                                    type=type)
         # This was created by the contribution, but we need to tweak
         # the uuid to ensure its correct.
-        WebappPurchase.objects.get().update(uuid='some-uuid')
+        AddonPurchase.objects.get().update(uuid='some-uuid')
         return contribution
 
     def make_inapp_contribution(self, type=mkt.CONTRIB_PURCHASE):
         return Contribution.objects.create(
-            webapp=self.app,
+            addon=self.app,
             inapp_product=self.inapp,
             type=type,
             user=self.user,
@@ -213,13 +213,13 @@ class TestVerify(ReceiptTest):
         eq_(res['status'], 'expired')
 
     def test_premium_app_not_purchased(self):
-        self.app.update(premium_type=mkt.WEBAPP_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         res = self.verify_receipt_data(self.sample_app_receipt())
         eq_(res['status'], 'invalid')
         eq_(res['reason'], 'NO_PURCHASE')
 
     def test_premium_dont_check(self):
-        self.app.update(premium_type=mkt.WEBAPP_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         res = self.verify_receipt_data(
             self.sample_app_receipt(),
             check_purchase=False
@@ -230,14 +230,14 @@ class TestVerify(ReceiptTest):
 
     @mock.patch.object(utils.settings, 'DOMAIN', 'foo.com')
     def test_premium_dont_check_properly(self):
-        self.app.update(premium_type=mkt.WEBAPP_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         receipt_data = self.sample_app_receipt()
         receipt_data['typ'] = 'developer-receipt'
         res = self.verify_receipt_data(receipt_data, check_purchase=False)
         eq_(res['status'], 'ok', res)
 
     def test_premium_app_purchased(self):
-        self.app.update(premium_type=mkt.WEBAPP_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         self.make_purchase()
         res = self.verify_receipt_data(self.sample_app_receipt())
         eq_(res['status'], 'ok', res)
@@ -248,7 +248,7 @@ class TestVerify(ReceiptTest):
         eq_(res['status'], 'ok', res)
 
     def test_premium_app_contribution(self):
-        self.app.update(premium_type=mkt.WEBAPP_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         # There's no purchase, but the last entry we have is a sale.
         self.make_contribution()
         res = self.verify_receipt_data(self.sample_app_receipt())
@@ -256,7 +256,7 @@ class TestVerify(ReceiptTest):
 
     @mock.patch('services.verify.receipt_cef.log')
     def test_premium_app_refund(self, log):
-        self.app.update(premium_type=mkt.WEBAPP_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         purchase = self.make_purchase()
         for type in [mkt.CONTRIB_REFUND, mkt.CONTRIB_CHARGEBACK]:
             purchase.update(type=type)
@@ -274,7 +274,7 @@ class TestVerify(ReceiptTest):
         eq_(log.call_count, 2)
 
     def test_premium_no_charge(self):
-        self.app.update(premium_type=mkt.WEBAPP_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         purchase = self.make_purchase()
         purchase.update(type=mkt.CONTRIB_NO_CHARGE)
         res = self.verify_receipt_data(self.sample_app_receipt())
@@ -287,7 +287,7 @@ class TestVerify(ReceiptTest):
 
     def test_other_premiums(self):
         self.make_purchase()
-        for k in (mkt.WEBAPP_PREMIUM, mkt.WEBAPP_PREMIUM_INAPP):
+        for k in (mkt.ADDON_PREMIUM, mkt.ADDON_PREMIUM_INAPP):
             self.app.update(premium_type=k)
             res = self.verify_receipt_data(self.sample_app_receipt())
             eq_(res['status'], 'ok', res)
@@ -343,7 +343,7 @@ class TestVerify(ReceiptTest):
         # Check that we can decode our receipt and get a dictionary back.
         self.app.update(manifest_url='http://a.com')
         purchase = self.make_purchase()
-        receipt = create_receipt(purchase.webapp, purchase.user, purchase.uuid)
+        receipt = create_receipt(purchase.addon, purchase.user, purchase.uuid)
         result = verify.decode_receipt(receipt)
         eq_(result['typ'], u'purchase-receipt')
 
@@ -360,7 +360,7 @@ class TestVerify(ReceiptTest):
     def test_crack_borked_receipt(self):
         self.app.update(manifest_url='http://a.com')
         purchase = self.make_purchase()
-        receipt = create_receipt(purchase.webapp, purchase.user, purchase.uuid)
+        receipt = create_receipt(purchase.addon, purchase.user, purchase.uuid)
         self.assertRaises(M2Crypto.RSA.RSAError, verify.decode_receipt,
                           receipt + 'x')
 

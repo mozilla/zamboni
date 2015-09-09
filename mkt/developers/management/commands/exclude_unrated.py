@@ -21,7 +21,7 @@ class Command(BaseCommand):
 
         for app in apps:
             save = False
-            geodata, c = Geodata.objects.safer_get_or_create(webapp=app)
+            geodata, c = Geodata.objects.safer_get_or_create(addon=app)
 
             # Germany.
             if (not app.content_ratings.filter(

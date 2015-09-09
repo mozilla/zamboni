@@ -140,7 +140,7 @@ def check_upload(file_obj, upload_type, content_type):
 
 def escalate_app(app, version, user, msg, log_type):
     # Add to escalation queue
-    EscalationQueue.objects.get_or_create(webapp=app)
+    EscalationQueue.objects.get_or_create(addon=app)
 
     # Create comm note
     create_comm_note(app, version, user, msg,
@@ -152,9 +152,9 @@ def escalate_app(app, version, user, msg, log_type):
     log.info(u'[app:%s] escalated - %s' % (app.name, msg))
 
 
-def handle_vip(webapp, version, user):
+def handle_vip(addon, version, user):
     escalate_app(
-        webapp, version, user, u'VIP app updated',
+        addon, version, user, u'VIP app updated',
         mkt.LOG.ESCALATION_VIP_APP)
 
 

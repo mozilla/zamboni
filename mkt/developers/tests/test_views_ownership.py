@@ -11,7 +11,7 @@ from mkt.developers.models import ActivityLog
 from mkt.site.fixtures import fixture
 from mkt.site.tests import formset
 from mkt.users.models import UserProfile
-from mkt.webapps.models import WebappUser, Webapp
+from mkt.webapps.models import AddonUser, Webapp
 
 
 class TestOwnership(mkt.site.tests.TestCase):
@@ -59,7 +59,7 @@ class TestEditAuthor(TestOwnership):
         eq_(ActivityLog.objects.all().count(), orig)
 
     def test_success_add_user(self):
-        q = (WebappUser.objects.filter(webapp=self.webapp.id)
+        q = (AddonUser.objects.filter(addon=self.webapp.id)
              .values_list('user', flat=True))
         eq_(list(q.all()), [31337])
 
@@ -78,8 +78,7 @@ class TestEditAuthor(TestOwnership):
                  role=mkt.AUTHOR_ROLE_DEV, position=1)
         data = self.formset(f.initial, u, initial_count=1)
         self.client.post(self.url, data)
-        eq_(WebappUser.objects.get(webapp=self.webapp.id, user=999).listed,
-            True)
+        eq_(AddonUser.objects.get(addon=self.webapp.id, user=999).listed, True)
 
         # Edit the user we just added.
         user_form = self.client.get(self.url).context['user_form']
@@ -89,7 +88,7 @@ class TestEditAuthor(TestOwnership):
         data = self.formset(one.initial, two.initial, empty, initial_count=2)
         r = self.client.post(self.url, data)
         self.assert3xx(r, self.url, 302)
-        eq_(WebappUser.objects.get(webapp=self.webapp.id, user=999).listed,
+        eq_(AddonUser.objects.get(addon=self.webapp.id, user=999).listed,
             False)
 
     def test_add_user_twice(self):
@@ -114,7 +113,7 @@ class TestEditAuthor(TestOwnership):
         data = self.formset(one.initial, two.initial, initial_count=2)
         r = self.client.post(self.url, data)
         eq_(r.status_code, 302)
-        eq_(WebappUser.objects.get(webapp=self.webapp.id).user_id, 999)
+        eq_(AddonUser.objects.get(addon=self.webapp.id).user_id, 999)
 
     def test_delete_unsub_comm(self):
         """Test that removing owner will unsubscribe them from Comm threads."""
@@ -174,7 +173,7 @@ class TestEditAuthor(TestOwnership):
         data = self.formset(f.initial, initial_count=1)
         r = self.client.post(self.url, data)
         eq_(r.status_code, 302)
-        eq_(WebappUser.objects.get(webapp=self.webapp.id).user_id, 999)
+        eq_(AddonUser.objects.get(addon=self.webapp.id).user_id, 999)
         eq_(ActivityLog.objects.filter(
             action=mkt.LOG.ADD_USER_WITH_ROLE.id).count(), 1)
         eq_(ActivityLog.objects.filter(
@@ -190,13 +189,13 @@ class TestEditAuthor(TestOwnership):
         self.login('regular@mozilla.com')
         self.client.post(self.url, data, follow=True)
 
-        # Try deleting the other WebappUser.
+        # Try deleting the other AddonUser.
         one, two = self.client.get(self.url).context['user_form'].initial_forms
         one.initial['DELETE'] = True
         data = self.formset(one.initial, two.initial, initial_count=2)
         r = self.client.post(self.url, data, follow=True)
         eq_(r.status_code, 403)
-        eq_(WebappUser.objects.filter(webapp=self.webapp.id).count(), 2)
+        eq_(AddonUser.objects.filter(addon=self.webapp.id).count(), 2)
 
     def test_must_have_listed(self):
         f = self.client.get(self.url).context['user_form'].initial_forms[0]
@@ -255,7 +254,7 @@ class TestEditWebappAuthors(mkt.site.tests.TestCase):
                  position=0)
         r = self.client.post(self.url, formset(u, initial_count=0))
         self.assert3xx(r, self.url, 302)
-        owners = (WebappUser.objects.filter(webapp=self.webapp.id)
+        owners = (AddonUser.objects.filter(addon=self.webapp.id)
                   .values_list('user', flat=True))
         eq_(set(owners), set([31337, 999]))
 
@@ -266,11 +265,11 @@ class TestDeveloperRoleAccess(mkt.site.tests.TestCase):
     def setUp(self):
         self.login('regular@mozilla.com')
         self.webapp = Webapp.objects.get(pk=337141)
-        self.webapp.update(premium_type=mkt.WEBAPP_PREMIUM)
+        self.webapp.update(premium_type=mkt.ADDON_PREMIUM)
 
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        WebappUser.objects.create(webapp=self.webapp, user=user,
-                                  role=mkt.AUTHOR_ROLE_DEV)
+        AddonUser.objects.create(addon=self.webapp, user=user,
+                                 role=mkt.AUTHOR_ROLE_DEV)
 
     def _check_it(self, url):
         res = self.client.get(url, follow=True)

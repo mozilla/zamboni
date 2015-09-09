@@ -25,7 +25,7 @@ def get_uuid(app, user):
     :params user: the UserProfile record.
     """
     try:
-        return app.webapppurchase_set.get(user=user).uuid
+        return app.addonpurchase_set.get(user=user).uuid
     except ObjectDoesNotExist:
         return 'none'
 
@@ -123,7 +123,7 @@ def create_inapp_receipt(contrib):
         return create_test_receipt(settings.SITE_URL, 'ok',
                                    storedata=storedata)
 
-    return create_receipt(contrib.webapp, None, 'anonymous-user',
+    return create_receipt(contrib.addon, None, 'anonymous-user',
                           flavour='inapp', contrib=contrib)
 
 

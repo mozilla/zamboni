@@ -24,11 +24,11 @@ def download_file(request, file_id, type=None):
     file_ = get_object_or_404(File.objects.select_related('version'),
                               pk=file_id)
     webapp = get_object_or_404(Webapp.objects.all().no_transforms(),
-                               pk=file_.version.webapp_id, is_packaged=True)
+                               pk=file_.version.addon_id, is_packaged=True)
 
     if webapp.is_disabled or file_.status == mkt.STATUS_DISABLED:
-        if not acl.check_webapp_ownership(request, webapp, viewer=True,
-                                          ignore_disabled=True):
+        if not acl.check_addon_ownership(request, webapp, viewer=True,
+                                         ignore_disabled=True):
             raise http.Http404()
 
     # We treat blocked files like public files so users get the update.
@@ -38,7 +38,7 @@ def download_file(request, file_id, type=None):
 
     else:
         # This is someone asking for an unsigned packaged app.
-        if not acl.check_webapp_ownership(request, webapp, dev=True):
+        if not acl.check_addon_ownership(request, webapp, dev=True):
             raise http.Http404()
 
         path = file_.file_path

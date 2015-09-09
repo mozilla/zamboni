@@ -176,7 +176,7 @@ class ApiSearchForm(SimpleSearchForm):
         """After cleaned, return a list of ints for the constants."""
         pt_ids = []
         for pt in self.cleaned_data.get('premium_types'):
-            pt_id = mkt.WEBAPP_PREMIUM_API_LOOKUP.get(pt)
+            pt_id = mkt.ADDON_PREMIUM_API_LOOKUP.get(pt)
             if pt_id is not None:
                 pt_ids.append(pt_id)
         if pt_ids:
@@ -186,14 +186,14 @@ class ApiSearchForm(SimpleSearchForm):
         """After cleaned, return a list of ints for the constants."""
         at_ids = []
         for at in self.cleaned_data.get('app_type'):
-            at_id = mkt.WEBAPP_TYPES_LOOKUP.get(at)
+            at_id = mkt.ADDON_WEBAPP_TYPES_LOOKUP.get(at)
             if at_id is not None:
                 at_ids.append(at_id)
 
         # Include privileged apps even when we search for packaged.
-        if (mkt.WEBAPP_PACKAGED in at_ids and
-                mkt.WEBAPP_PRIVILEGED not in at_ids):
-            at_ids.append(mkt.WEBAPP_PRIVILEGED)
+        if (mkt.ADDON_WEBAPP_PACKAGED in at_ids and
+                mkt.ADDON_WEBAPP_PRIVILEGED not in at_ids):
+            at_ids.append(mkt.ADDON_WEBAPP_PRIVILEGED)
 
         if at_ids:
             return at_ids

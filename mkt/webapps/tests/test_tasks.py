@@ -28,7 +28,7 @@ from mkt.site.utils import app_factory
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.cron import dump_user_installs_cron
-from mkt.webapps.models import WebappUser, Webapp
+from mkt.webapps.models import AddonUser, Webapp
 from mkt.webapps.tasks import (dump_app, export_data,
                                notify_developers_of_failure, pre_generate_apk,
                                PreGenAPKError, rm_directory, update_manifests)
@@ -100,24 +100,24 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
 
         # Not using app factory since it creates translations with an invalid
         # locale of "en-us".
-        self.webapp = Webapp.objects.create()
-        self.version = Version.objects.create(webapp=self.webapp,
+        self.addon = Webapp.objects.create()
+        self.version = Version.objects.create(addon=self.addon,
                                               _developer_name='Mozilla')
         self.file = File.objects.create(
             version=self.version, hash=ohash, status=mkt.STATUS_PUBLIC,
-            filename='%s-%s' % (self.webapp.id, self.version.id))
+            filename='%s-%s' % (self.addon.id, self.version.id))
 
-        self.webapp.name = {
+        self.addon.name = {
             'en-US': 'MozillaBall',
             'de': 'Mozilla Kugel',
         }
-        self.webapp.status = mkt.STATUS_PUBLIC
-        self.webapp.manifest_url = 'http://nowhere.allizom.org/manifest.webapp'
-        self.webapp.save()
+        self.addon.status = mkt.STATUS_PUBLIC
+        self.addon.manifest_url = 'http://nowhere.allizom.org/manifest.webapp'
+        self.addon.save()
 
-        self.webapp.update_version()
+        self.addon.update_version()
 
-        self.webapp.webappuser_set.create(user_id=999)
+        self.addon.addonuser_set.create(user_id=999)
 
         with public_storage.open(self.file.file_path, 'w') as fh:
             fh.write(json.dumps(original))
@@ -149,7 +149,7 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
     def _run(self, _get_content_hash, **kw):
         # Will run the task and will act depending upon how you've set hash.
         _get_content_hash.return_value = self._hash
-        update_manifests(ids=(self.webapp.pk,), **kw)
+        update_manifests(ids=(self.addon.pk,), **kw)
 
     def _data(self):
         return json.dumps(self.new)
@@ -158,12 +158,12 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
     @mock.patch('mkt.webapps.models.copy_stored_file')
     def test_new_version_not_created(self, _copy_stored_file, _manifest_json):
         # Test that update_manifest doesn't create multiple versions/files.
-        eq_(self.webapp.versions.count(), 1)
-        old_version = self.webapp.current_version
-        old_file = self.webapp.get_latest_file()
+        eq_(self.addon.versions.count(), 1)
+        old_version = self.addon.current_version
+        old_file = self.addon.get_latest_file()
         self._run()
 
-        app = self.webapp.reload()
+        app = self.addon.reload()
         version = app.current_version
         file_ = app.get_latest_file()
 
@@ -186,21 +186,21 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         self._hash = 'foo'
         self._run()
 
-        app = self.webapp.reload()
+        app = self.addon.reload()
         eq_(app.versions.latest().version, '1.1')
 
     def test_not_log(self):
         self._hash = ohash
         self._run()
-        eq_(ActivityLog.objects.for_apps([self.webapp]).count(), 0)
+        eq_(ActivityLog.objects.for_apps([self.addon]).count(), 0)
 
     def test_log(self):
         self._run()
-        eq_(ActivityLog.objects.for_apps([self.webapp]).count(), 1)
+        eq_(ActivityLog.objects.for_apps([self.addon]).count(), 1)
 
     @mock.patch('mkt.webapps.tasks._update_manifest')
     def test_pending(self, mock_):
-        self.webapp.update(status=mkt.STATUS_PENDING)
+        self.addon.update(status=mkt.STATUS_PENDING)
         call_command('process_addons', task='update_manifests')
         assert mock_.called
 
@@ -209,31 +209,31 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         PENDING apps don't have a current version. This test makes sure
         everything still works in this case.
         """
-        self.webapp.update(status=mkt.STATUS_PENDING)
+        self.addon.update(status=mkt.STATUS_PENDING)
         self._run()
-        eq_(self.webapp.latest_version.reload().version, '1.0')
+        eq_(self.addon.latest_version.reload().version, '1.0')
 
     @mock.patch('mkt.webapps.tasks._update_manifest')
     def test_approved(self, mock_):
-        self.webapp.update(status=mkt.STATUS_APPROVED)
+        self.addon.update(status=mkt.STATUS_APPROVED)
         call_command('process_addons', task='update_manifests')
         assert mock_.called
 
     @mock.patch('mkt.webapps.tasks._update_manifest')
     def test_ignore_disabled(self, mock_):
-        self.webapp.update(status=mkt.STATUS_DISABLED)
+        self.addon.update(status=mkt.STATUS_DISABLED)
         call_command('process_addons', task='update_manifests')
         assert not mock_.called
 
     @mock.patch('mkt.webapps.tasks._update_manifest')
     def test_ignore_packaged(self, mock_):
-        self.webapp.update(is_packaged=True)
+        self.addon.update(is_packaged=True)
         call_command('process_addons', task='update_manifests')
         assert not mock_.called
 
     @mock.patch('mkt.webapps.tasks._update_manifest')
     def test_get_webapp(self, mock_):
-        eq_(self.webapp.status, mkt.STATUS_PUBLIC)
+        eq_(self.addon.status, mkt.STATUS_PUBLIC)
         call_command('process_addons', task='update_manifests')
         assert mock_.called
 
@@ -241,7 +241,7 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
     @mock.patch('mkt.webapps.tasks.update_manifests.retry')
     def test_update_manifest(self, retry, fetch):
         fetch.return_value = '{}'
-        update_manifests(ids=(self.webapp.pk,))
+        update_manifests(ids=(self.addon.pk,))
         assert not retry.called
 
     @mock.patch('mkt.webapps.tasks._fetch_manifest')
@@ -249,12 +249,12 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
     def test_manifest_fetch_fail(self, retry, fetch):
         later = datetime.datetime.now() + datetime.timedelta(seconds=3600)
         fetch.side_effect = RuntimeError
-        update_manifests(ids=(self.webapp.pk,))
+        update_manifests(ids=(self.addon.pk,))
         retry.assert_called()
         # Not using assert_called_with b/c eta is a datetime.
-        eq_(retry.call_args[1]['args'], ([self.webapp.pk],))
+        eq_(retry.call_args[1]['args'], ([self.addon.pk],))
         eq_(retry.call_args[1]['kwargs'], {'check_hash': True,
-                                           'retries': {self.webapp.pk: 1}})
+                                           'retries': {self.addon.pk: 1}})
         self.assertCloseToNow(retry.call_args[1]['eta'], later)
         eq_(retry.call_args[1]['max_retries'], 5)
         eq_(len(mail.outbox), 0)
@@ -262,36 +262,36 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
     def test_notify_failure_lang(self):
         user1 = UserProfile.objects.get(pk=999)
         user2 = UserProfile.objects.get(pk=2519)
-        WebappUser.objects.create(webapp=self.webapp, user=user2)
+        AddonUser.objects.create(addon=self.addon, user=user2)
         user1.update(lang='de')
         user2.update(lang='en')
-        notify_developers_of_failure(self.webapp, 'blah')
+        notify_developers_of_failure(self.addon, 'blah')
         eq_(len(mail.outbox), 2)
         ok_(u'Mozilla Kugel' in mail.outbox[0].subject)
         ok_(u'MozillaBall' in mail.outbox[1].subject)
 
     def test_notify_failure_with_rereview(self):
-        RereviewQueue.flag(self.webapp, mkt.LOG.REREVIEW_MANIFEST_CHANGE,
+        RereviewQueue.flag(self.addon, mkt.LOG.REREVIEW_MANIFEST_CHANGE,
                            'This app is flagged!')
-        notify_developers_of_failure(self.webapp, 'blah')
+        notify_developers_of_failure(self.addon, 'blah')
         eq_(len(mail.outbox), 0)
 
     def test_notify_failure_not_public(self):
-        self.webapp.update(status=mkt.STATUS_PENDING)
-        notify_developers_of_failure(self.webapp, 'blah')
+        self.addon.update(status=mkt.STATUS_PENDING)
+        notify_developers_of_failure(self.addon, 'blah')
         eq_(len(mail.outbox), 0)
 
     @mock.patch('mkt.webapps.tasks._fetch_manifest')
     @mock.patch('mkt.webapps.tasks.update_manifests.retry')
     def test_manifest_fetch_3rd_attempt(self, retry, fetch):
         fetch.side_effect = RuntimeError
-        update_manifests(ids=(self.webapp.pk,), retries={self.webapp.pk: 2})
+        update_manifests(ids=(self.addon.pk,), retries={self.addon.pk: 2})
         # We already tried twice before, this is the 3rd attempt,
         # We should notify the developer that something is wrong.
         eq_(len(mail.outbox), 1)
         msg = mail.outbox[0]
         ok_(msg.subject.startswith('Issue with your app'))
-        expected = u'Failed to get manifest from %s' % self.webapp.manifest_url
+        expected = u'Failed to get manifest from %s' % self.addon.manifest_url
         ok_(expected in msg.body)
         ok_(settings.SUPPORT_GROUP in msg.body)
 
@@ -299,21 +299,21 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         assert retry.called
 
         # We shouldn't have put the app in the rereview queue yet.
-        assert not RereviewQueue.objects.filter(webapp=self.webapp).exists()
+        assert not RereviewQueue.objects.filter(addon=self.addon).exists()
 
     @mock.patch('mkt.webapps.tasks._fetch_manifest')
     @mock.patch('mkt.webapps.tasks.update_manifests.retry')
     @mock.patch('mkt.webapps.tasks.notify_developers_of_failure')
     def test_manifest_fetch_4th_attempt(self, notify, retry, fetch):
         fetch.side_effect = RuntimeError
-        update_manifests(ids=(self.webapp.pk,), retries={self.webapp.pk: 3})
+        update_manifests(ids=(self.addon.pk,), retries={self.addon.pk: 3})
         # We already tried 3 times before, this is the 4th and last attempt,
         # we shouldn't retry anymore, instead we should just add the app to
         # the re-review queue. We shouldn't notify the developer either at this
         # step, it should have been done before already.
         assert not notify.called
         assert not retry.called
-        assert RereviewQueue.objects.filter(webapp=self.webapp).exists()
+        assert RereviewQueue.objects.filter(addon=self.addon).exists()
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     def test_manifest_validation_failure(self, _iarc):
@@ -369,7 +369,7 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         self._run()
         eq_(RereviewQueue.objects.count(), 1)
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
-        eq_(ActivityLog.objects.for_apps([self.webapp]).count(), 2)
+        eq_(ActivityLog.objects.for_apps([self.addon]).count(), 2)
         ok_(_iarc.called)
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
@@ -384,7 +384,7 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         self._run()
         eq_(RereviewQueue.objects.count(), 1)
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
-        eq_(ActivityLog.objects.for_apps([self.webapp]).count(), 2)
+        eq_(ActivityLog.objects.for_apps([self.addon]).count(), 2)
         log = ActivityLog.objects.filter(
             action=mkt.LOG.REREVIEW_MANIFEST_CHANGE.id)[0]
         eq_(log.details.get('comments'),
@@ -403,7 +403,7 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         self._run()
         eq_(RereviewQueue.objects.count(), 1)
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
-        eq_(ActivityLog.objects.for_apps([self.webapp]).count(), 2)
+        eq_(ActivityLog.objects.for_apps([self.addon]).count(), 2)
         log = ActivityLog.objects.filter(
             action=mkt.LOG.REREVIEW_MANIFEST_CHANGE.id)[0]
         eq_(log.details.get('comments'),
@@ -423,9 +423,9 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         eq_(RereviewQueue.objects.count(), 0)
         self._run()
         eq_(RereviewQueue.objects.count(), 1)
-        eq_(self.webapp.reload().default_locale, 'es')
+        eq_(self.addon.reload().default_locale, 'es')
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
-        eq_(ActivityLog.objects.for_apps([self.webapp]).count(), 2)
+        eq_(ActivityLog.objects.for_apps([self.addon]).count(), 2)
         log = ActivityLog.objects.filter(
             action=mkt.LOG.REREVIEW_MANIFEST_CHANGE.id)[0]
         eq_(log.details.get('comments'),
@@ -449,7 +449,7 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         self._run()
         eq_(RereviewQueue.objects.count(), 0)
         # Log for manifest update.
-        eq_(ActivityLog.objects.for_apps([self.webapp]).count(), 1)
+        eq_(ActivityLog.objects.for_apps([self.addon]).count(), 1)
         ok_(not _iarc.called)
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
@@ -470,7 +470,7 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         eq_(RereviewQueue.objects.count(), 1)
 
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
-        eq_(ActivityLog.objects.for_apps([self.webapp]).count(), 2)
+        eq_(ActivityLog.objects.for_apps([self.addon]).count(), 2)
 
         ok_(_iarc.called)
 
@@ -481,7 +481,7 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         Test both PUBLIC and PENDING to catch apps w/o `current_version`.
         """
         for status in (mkt.STATUS_PUBLIC, mkt.STATUS_PENDING):
-            self.webapp.update(status=status)
+            self.addon.update(status=status)
 
             # Mock original manifest file lookup.
             _manifest.return_value = original
@@ -508,7 +508,7 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         # We should get a re-review because of the developer name change.
         eq_(RereviewQueue.objects.count(), 1)
         # 2 logs: 1 for manifest update, 1 for re-review trigger.
-        eq_(ActivityLog.objects.for_apps([self.webapp]).count(), 2)
+        eq_(ActivityLog.objects.for_apps([self.addon]).count(), 2)
 
         ok_(_iarc.called)
 
@@ -697,6 +697,7 @@ class TestExportData(mkt.site.tests.TestCase):
         app.update(status=mkt.STATUS_PUBLIC)
         self.create_export('tarball-name')
         assert private_storage.exists(app_path)
+
         app.update(status=mkt.STATUS_PENDING)
         self.create_export('tarball-name')
         assert not private_storage.exists(app_path)

@@ -14,11 +14,11 @@ app_receipt_patterns = patterns(
 
 receipt_patterns = patterns(
     '',
-    url(r'^verify/%s$' % mkt.WEBAPP_UUID, views.verify,
+    url(r'^verify/%s$' % mkt.ADDON_UUID, views.verify,
         name='receipt.verify'),
     url(r'^issue/%s$' % mkt.APP_SLUG, views.issue,
         name='receipt.issue'),
-    url(r'^check/%s$' % mkt.WEBAPP_UUID, views.check,
+    url(r'^check/%s$' % mkt.ADDON_UUID, views.check,
         name='receipt.check'),
 )
 

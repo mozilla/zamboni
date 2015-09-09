@@ -23,12 +23,12 @@ def send_purchase_receipt(contrib_id, **kw):
     contrib = Contribution.objects.get(pk=contrib_id)
 
     with contrib.user.activate_lang():
-        webapp = contrib.webapp
-        version = webapp.current_version or webapp.latest_version
+        addon = contrib.addon
+        version = addon.current_version or addon.latest_version
         # L10n: {0} is the app name.
-        subject = _('Receipt for {0}').format(contrib.webapp.name)
+        subject = _('Receipt for {0}').format(contrib.addon.name)
         data = {
-            'app_name': webapp.name,
+            'app_name': addon.name,
             'developer_name': version.developer_name if version else '',
             'price': contrib.get_amount_locale(get_locale_from_lang(
                 contrib.source_locale)),
@@ -38,7 +38,7 @@ def send_purchase_receipt(contrib_id, **kw):
             # 'purchaser_last_four': '',
             'transaction_id': contrib.uuid,
             'purchases_url': absolutify('/purchases'),
-            'support_url': webapp.support_url,
+            'support_url': addon.support_url,
             'terms_of_service_url': absolutify('/terms-of-use'),
         }
 

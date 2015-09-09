@@ -23,32 +23,32 @@ from mkt.site.decorators import json_view
 from mkt.site.utils import get_file_response
 
 
-log = commonware.log.getLogger('z.webapps')
+log = commonware.log.getLogger('z.addons')
 
 
 def setup_viewer(request, file_obj):
     data = {'file': file_obj,
             'version': file_obj.version,
-            'webapp': file_obj.version.webapp,
+            'addon': file_obj.version.addon,
             'status': False,
             'selected': {},
             'validate_url': ''}
 
     if (acl.check_reviewer(request) or
-        acl.check_webapp_ownership(request, file_obj.version.webapp,
-                                   viewer=True, ignore_disabled=True)):
+        acl.check_addon_ownership(request, file_obj.version.addon,
+                                  viewer=True, ignore_disabled=True)):
         data['validate_url'] = reverse(
             'mkt.developers.apps.json_file_validation',
-            args=[file_obj.version.webapp.app_slug, file_obj.id])
+            args=[file_obj.version.addon.app_slug, file_obj.id])
 
     if acl.check_reviewer(request):
         data['file_link'] = {'text': _('Back to review'),
                              'url': reverse('reviewers.apps.review',
-                                            args=[data['webapp'].app_slug])}
+                                            args=[data['addon'].app_slug])}
     else:
         data['file_link'] = {
             'text': _('Back to app'),
-            'url': reverse('detail', args=[data['webapp'].pk])
+            'url': reverse('detail', args=[data['addon'].pk])
         }
     return data
 
@@ -79,7 +79,7 @@ def check_compare_form(request, form):
 @webapp_file_view
 @condition(etag_func=etag, last_modified_func=last_modified)
 def browse(request, viewer, key=None, type_='file'):
-    form = forms.FileCompareForm(request.POST or None, webapp=viewer.webapp,
+    form = forms.FileCompareForm(request.POST or None, addon=viewer.addon,
                                  initial={'left': viewer.file})
     response = check_compare_form(request, form)
     if response:
@@ -130,7 +130,7 @@ def compare_poll(request, diff):
 @compare_webapp_file_view
 @condition(etag_func=etag, last_modified_func=last_modified)
 def compare(request, diff, key=None, type_='file'):
-    form = forms.FileCompareForm(request.POST or None, webapp=diff.webapp,
+    form = forms.FileCompareForm(request.POST or None, addon=diff.addon,
                                  initial={'left': diff.left.file,
                                           'right': diff.right.file})
     response = check_compare_form(request, form)

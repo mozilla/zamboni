@@ -2,9 +2,9 @@
 {% from 'developers/includes/macros.html' import empty_unless, required, some_html_tip, tip %}
 
 {% set title = _('Compatibility & Payments') %}
-{% block title %}{{ hub_page_title(title, webapp) }}{% endblock %}
+{% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
-{% set can_edit = check_webapp_ownership(request, webapp) %}
+{% set can_edit = check_addon_ownership(request, addon) %}
 {% block bodyclass %}
   {{ super() }}{% if not can_edit %} no-edit{% endif %}
 {% endblock %}
@@ -33,11 +33,11 @@
 
 {% block content %}
   <header>
-    {{ hub_breadcrumbs(webapp, items=[(None, title)]) }}
+    {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
     <h1>{{ title }}</h1>
   </header>
   <section class="primary payments devhub-form" role="main">
-    <form action="{{ webapp.get_dev_url('payments') }}" method="post">
+    <form action="{{ addon.get_dev_url('payments') }}" method="post">
       {{ csrf() }}
       <input type="hidden" name="toggle-paid" value="" />
 
@@ -119,7 +119,7 @@
       <h2>{{ _('Payment Accounts') }}</h2>
 
       <div id="paid-island">
-        <div id="paid-island-incomplete" class="island warning{% if webapp.has_payment_account() %} hidden{% endif %}">
+        <div id="paid-island-incomplete" class="island warning{% if addon.has_payment_account() %} hidden{% endif %}">
           {%- trans %}
             Your app is currently incomplete. Select a payment account and
             price point to restore it.
@@ -138,7 +138,7 @@
                       </label>
                     </th>
                     <td>
-                      <div id="{{ provider.name }}-account-list" data-url="{{ url('mkt.developers.provider.payment_accounts_form') }}?provider={{ provider.name }}&app_slug={{ webapp.app_slug }}">
+                      <div id="{{ provider.name }}-account-list" data-url="{{ url('mkt.developers.provider.payment_accounts_form') }}?provider={{ provider.name }}&app_slug={{ addon.app_slug }}">
                         {{ account_list_form.errors }}
                         {% include 'developers/payments/includes/accounts_list.html' %}
                         <p class="provider-regions">{{ _('Countries') }}:
@@ -240,7 +240,7 @@
                         </tbody>
                       </table>
 
-                      <p class="hint no-payment-regions {% if webapp.has_payment_account() %}hidden{% endif %}">
+                      <p class="hint no-payment-regions {% if addon.has_payment_account() %}hidden{% endif %}">
                        <em>{{ _('Add a payment account to enable your app for sale in more regions') }}</em>
                       </p>
 

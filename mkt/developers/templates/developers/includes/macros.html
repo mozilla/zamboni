@@ -88,8 +88,8 @@
   </div>
 {% endmacro %}
 
-{% macro queue_position(webapp, tag='p') %}
-  {% set position = get_position(webapp) %}
+{% macro queue_position(addon, tag='p') %}
+  {% set position = get_position(addon) %}
   {% if position %}
     {% if position.pos and position.total %}
       <{{ tag }} class="queue-position">

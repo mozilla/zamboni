@@ -203,7 +203,7 @@ class SafeUnzip(object):
         return True
 
     def is_signed(self):
-        """Tells us if an webapp is signed."""
+        """Tells us if an addon is signed."""
         finds = []
         for info in self.info:
             match = SIGNED_RE.match(info.filename)
@@ -269,7 +269,7 @@ def copy_over(source, dest):
     shutil.rmtree(source)
 
 
-def parse_webapp(pkg, webapp=None):
+def parse_addon(pkg, addon=None):
     """
     pkg is a filepath or a django.core.files.UploadedFile
     or files.models.FileUpload.

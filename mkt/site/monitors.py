@@ -131,9 +131,9 @@ def path():
     rw = (settings.TMP_PATH,
           settings.NETAPP_STORAGE,
           settings.UPLOADS_PATH,
-          settings.WEBAPPS_PATH,
-          settings.GUARDED_WEBAPPS_PATH,
-          settings.WEBAPP_ICONS_PATH,
+          settings.ADDONS_PATH,
+          settings.GUARDED_ADDONS_PATH,
+          settings.ADDON_ICONS_PATH,
           settings.WEBSITE_ICONS_PATH,
           settings.PREVIEWS_PATH,
           settings.REVIEWER_ATTACHMENTS_PATH,)

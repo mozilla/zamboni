@@ -8,16 +8,16 @@
 
 {% block submit_next_step %}{% endblock %}
 
-{% set icon_status_url = webapp.get_dev_url('ajax.image.status') %}
-{% set icon_upload_url = webapp.get_dev_url('upload_icon') %}
-{% set screenshot_upload_url = webapp.get_dev_url('upload_preview') %}
+{% set icon_status_url = addon.get_dev_url('ajax.image.status') %}
+{% set icon_upload_url = addon.get_dev_url('upload_icon') %}
+{% set screenshot_upload_url = addon.get_dev_url('upload_preview') %}
 
 {% block content %}
-  {{ hub_breadcrumbs(webapp, items=[(None, _('Submit App'))]) }}
-  <div id="temp-locale-container">{{ l10n_menu(webapp.default_locale) }}</div>
+  {{ hub_breadcrumbs(addon, items=[(None, _('Submit App'))]) }}
+  <div id="temp-locale-container">{{ l10n_menu(addon.default_locale) }}</div>
   <header class="submit-header c">
     <h1>{{ _('Submit an App') }}</h1>
-    {{ progress(request, webapp=webapp, step=step) }}
+    {{ progress(request, addon=addon, step=step) }}
   </header>
   <section id="submit-details" class="primary">
     <h2>{{ title }}</h2>
@@ -26,12 +26,12 @@
            "as much as we can from your manifest.") }}
     </p>
     <form enctype="multipart/form-data" method="post" class="devhub-form submit-media"
-          id="submit-media" data-checkurl="{{ webapp.get_dev_url('ajax.image.status') }}">
+          id="submit-media" data-checkurl="{{ addon.get_dev_url('ajax.image.status') }}">
       {{ csrf() }}
       <header id="general-details" class="island swagger c">
         <div id="icon_preview" class="invisible-upload">
           <div id="icon_preview_64" class="icon_preview">
-            <img src="{{ webapp.get_icon_url(64) }}"
+            <img src="{{ addon.get_icon_url(64) }}"
                  data-checkurl="{{ icon_status_url }}">
             <input type="file" id="id_icon_upload" name="icon_upload"
                    data-allowed-types="image/jpeg|image/png"
@@ -40,13 +40,13 @@
         </div>
         <div class="houdini{{ ' ready' if not form_basic.app_slug.errors }}">
           <div class="before">
-            <!-- {{ webapp.name }} -->
-            <h2 class="output">{{ webapp.name }}</h2>
+            <!-- {{ addon.name }} -->
+            <h2 class="output">{{ addon.name }}</h2>
             {# The URL for the details page hasn't been finalized,
                so let's not reverse it just yet. #}
             {{ settings.SITE_URL }}/&hellip;/
-            {{ webapp.app_slug }}
-            <a class="view" href="{{ webapp.get_url_path() }}"
+            {{ addon.app_slug }}
+            <a class="view" href="{{ addon.get_url_path() }}"
                target="_blank">{{ _('Open details page') }}</a>
           </div>
           <div class="after">
@@ -63,7 +63,7 @@
                             your app manifest.')) }}
                 </th>
                 <td>
-                  {{ webapp.name }}
+                  {{ addon.name }}
                 </td>
               </tr>
               <tr{% if form_basic.app_slug.errors %} class="error"{% endif %}>

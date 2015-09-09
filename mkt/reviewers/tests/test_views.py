@@ -53,7 +53,7 @@ from mkt.submit.tests.test_views import BasePackagedAppTest, SetupFilesMixin
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
-from mkt.webapps.models import WebappDeviceType, Webapp
+from mkt.webapps.models import AddonDeviceType, Webapp
 from mkt.webapps.tasks import unindex_webapps
 from mkt.websites.utils import website_factory
 from mkt.zadmin.models import get_config, set_config
@@ -198,7 +198,7 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
         self.packaged_app = app_factory(name='Dinosaur',
                                         status=mkt.STATUS_PUBLIC,
                                         is_packaged=True)
-        version_factory(webapp=self.packaged_app,
+        version_factory(addon=self.packaged_app,
                         file_kw={'status': mkt.STATUS_PENDING})
 
         # Add a disabled app for good measure.
@@ -208,11 +208,11 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
         # Escalate one app to make sure it doesn't affect stats.
         escalated = app_factory(name='Eyelash Pit Viper',
                                 status=mkt.STATUS_PENDING)
-        EscalationQueue.objects.create(webapp=escalated)
+        EscalationQueue.objects.create(addon=escalated)
 
         # Add a public app under re-review.
         rereviewed = app_factory(name='Finch', status=mkt.STATUS_PUBLIC)
-        rq = RereviewQueue.objects.create(webapp=rereviewed)
+        rq = RereviewQueue.objects.create(addon=rereviewed)
         rq.update(created=self.days_ago(1))
 
         # Add an app with latest update deleted. It shouldn't affect anything.
@@ -220,7 +220,7 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
                           status=mkt.STATUS_PUBLIC,
                           version_kw={'version': '1.0'},
                           is_packaged=True)
-        v = version_factory(webapp=app,
+        v = version_factory(addon=app,
                             version='2.1',
                             file_kw={'status': mkt.STATUS_PENDING})
         v.update(deleted=True)
@@ -247,9 +247,9 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
         self.assertAlmostEqual(percentages['pending']['med'], 33.333333333333)
 
     def test_progress_rereview(self):
-        rq = RereviewQueue.objects.create(webapp=self.apps[0])
+        rq = RereviewQueue.objects.create(addon=self.apps[0])
         rq.update(created=self.days_ago(8))
-        rq = RereviewQueue.objects.create(webapp=self.apps[1])
+        rq = RereviewQueue.objects.create(addon=self.apps[1])
         rq.update(created=self.days_ago(15))
         counts, percentages = _progress()
         eq_(counts['rereview']['week'], 1)
@@ -265,7 +265,7 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
                                 status=mkt.STATUS_PUBLIC,
                                 is_packaged=True,
                                 created=self.days_ago(35))
-        version_factory(webapp=extra_app,
+        version_factory(addon=extra_app,
                         file_kw={'status': mkt.STATUS_PENDING},
                         created=self.days_ago(25),
                         nomination=self.days_ago(8))
@@ -273,7 +273,7 @@ class TestReviewersHome(AppReviewerTest, AccessMixin):
                                 status=mkt.STATUS_PUBLIC,
                                 is_packaged=True,
                                 created=self.days_ago(35))
-        version_factory(webapp=extra_app,
+        version_factory(addon=extra_app,
                         file_kw={'status': mkt.STATUS_PENDING},
                         created=self.days_ago(25),
                         nomination=self.days_ago(25))
@@ -365,7 +365,7 @@ class FlagsMixin(object):
         eq_(flag.length, 1)
 
     def test_flag_premium_app(self):
-        self.apps[0].update(premium_type=mkt.WEBAPP_PREMIUM)
+        self.apps[0].update(premium_type=mkt.ADDON_PREMIUM)
         if self.uses_es():
             self.reindex(Webapp)
         eq_(self.apps[0].is_premium(), True)
@@ -376,7 +376,7 @@ class FlagsMixin(object):
         eq_(flags.length, 1)
 
     def test_flag_free_inapp_app(self):
-        self.apps[0].update(premium_type=mkt.WEBAPP_FREE_INAPP)
+        self.apps[0].update(premium_type=mkt.ADDON_FREE_INAPP)
         if self.uses_es():
             self.reindex(Webapp)
         res = self.client.get(self.url)
@@ -384,7 +384,7 @@ class FlagsMixin(object):
         eq_(tds('div.sprite-reviewer-premium.inapp.free').length, 1)
 
     def test_flag_premium_inapp_app(self):
-        self.apps[0].update(premium_type=mkt.WEBAPP_PREMIUM_INAPP)
+        self.apps[0].update(premium_type=mkt.ADDON_PREMIUM_INAPP)
         if self.uses_es():
             self.reindex(Webapp)
         res = self.client.get(self.url)
@@ -444,7 +444,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.apps[0].update(created=self.days_ago(12))
         self.apps[1].update(created=self.days_ago(11))
 
-        RereviewQueue.objects.create(webapp=self.apps[2])
+        RereviewQueue.objects.create(addon=self.apps[2])
 
         self.url = reverse('reviewers.apps.queue_pending')
 
@@ -537,8 +537,8 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.check_actions(expected, actions)
 
     def test_devices(self):
-        WebappDeviceType.objects.create(webapp=self.apps[0], device_type=1)
-        WebappDeviceType.objects.create(webapp=self.apps[0], device_type=2)
+        AddonDeviceType.objects.create(addon=self.apps[0], device_type=1)
+        AddonDeviceType.objects.create(addon=self.apps[0], device_type=2)
         if self.uses_es():
             self.reindex(Webapp)
         r = self.client.get(self.url)
@@ -547,17 +547,17 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(tds('ul li:not(.unavailable)').length, 2)
 
     def test_payments(self):
-        self.apps[0].update(premium_type=mkt.WEBAPP_PREMIUM)
-        self.apps[1].update(premium_type=mkt.WEBAPP_FREE_INAPP)
+        self.apps[0].update(premium_type=mkt.ADDON_PREMIUM)
+        self.apps[1].update(premium_type=mkt.ADDON_FREE_INAPP)
         if self.uses_es():
             self.reindex(Webapp)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         tds = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(6)')
         eq_(tds.eq(0).text(),
-            unicode(mkt.WEBAPP_PREMIUM_TYPES[mkt.WEBAPP_PREMIUM]))
+            unicode(mkt.ADDON_PREMIUM_TYPES[mkt.ADDON_PREMIUM]))
         eq_(tds.eq(1).text(),
-            unicode(mkt.WEBAPP_PREMIUM_TYPES[mkt.WEBAPP_FREE_INAPP]))
+            unicode(mkt.ADDON_PREMIUM_TYPES[mkt.ADDON_FREE_INAPP]))
 
     def test_invalid_page(self):
         r = self.client.get(self.url, {'page': 999})
@@ -586,12 +586,12 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
     def test_escalated_not_in_queue(self):
         self.login_as_senior_reviewer()
-        EscalationQueue.objects.create(webapp=self.apps[0])
+        EscalationQueue.objects.create(addon=self.apps[0])
         if self.uses_es():
             self.reindex(Webapp)
         res = self.client.get(self.url)
         # self.apps[2] is not pending so doesn't show up either.
-        eq_([a.app.id for a in res.context['webapps']], [self.apps[1].id])
+        eq_([a.app.id for a in res.context['addons']], [self.apps[1].id])
 
         doc = pq(res.content)
         links = doc('.tabnav li a')
@@ -671,7 +671,7 @@ class TestRegionQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.login_as_senior_reviewer()
         self.apps[0].escalationqueue_set.create()
         res = self.client.get(self.url)
-        eq_([a.app for a in res.context['webapps']], [self.apps[1]])
+        eq_([a.app for a in res.context['addons']], [self.apps[1]])
 
 
 @mock.patch('mkt.versions.models.Version.is_privileged', False)
@@ -683,11 +683,11 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.apps = [app_factory(name='XXX'),
                      app_factory(name='YYY'),
                      app_factory(name='ZZZ')]
-        RereviewQueue.objects.create(webapp=self.apps[0]).update(
+        RereviewQueue.objects.create(addon=self.apps[0]).update(
             created=self.days_ago(5))
-        RereviewQueue.objects.create(webapp=self.apps[1]).update(
+        RereviewQueue.objects.create(addon=self.apps[1]).update(
             created=self.days_ago(3))
-        RereviewQueue.objects.create(webapp=self.apps[2]).update(
+        RereviewQueue.objects.create(addon=self.apps[2]).update(
             created=self.days_ago(1))
         self.apps[0].update(created=self.days_ago(15))
         self.apps[1].update(created=self.days_ago(13))
@@ -710,7 +710,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
-        apps = [rq.webapp for rq in
+        apps = [rq.addon for rq in
                 RereviewQueue.objects.all().order_by('created')]
         expected = [
             (unicode(apps[0].name), self.review_url(apps[0])),
@@ -800,15 +800,15 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
     def test_escalated_not_in_queue(self):
         self.login_as_senior_reviewer()
-        EscalationQueue.objects.create(webapp=self.apps[0])
+        EscalationQueue.objects.create(addon=self.apps[0])
         if self.uses_es():
             self.reindex(Webapp)
         res = self.client.get(self.url)
         if self.uses_es():
-            self.assertSetEqual([a.id for a in res.context['webapps']],
+            self.assertSetEqual([a.id for a in res.context['addons']],
                                 [a.id for a in self.apps[1:]])
         else:
-            self.assertSetEqual([a.app for a in res.context['webapps']],
+            self.assertSetEqual([a.app for a in res.context['addons']],
                                 self.apps[1:])
 
         doc = pq(res.content)
@@ -818,10 +818,10 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(links[2].text, u'Updates (0)')
         eq_(links[3].text, u'Escalations (1)')
 
-    def test_webapp_deleted(self):
+    def test_addon_deleted(self):
         app = self.apps[0]
         app.delete()
-        eq_(RereviewQueue.objects.filter(webapp=app).exists(), False)
+        eq_(RereviewQueue.objects.filter(addon=app).exists(), False)
 
 
 class TestRereviewQueueES(mkt.site.tests.ESTestCase, TestRereviewQueue):
@@ -847,10 +847,10 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                                        'created': self.days_ago(2),
                                        'nomination': self.days_ago(2)})
 
-        version_factory(webapp=app1, version='1.1', created=self.days_ago(1),
+        version_factory(addon=app1, version='1.1', created=self.days_ago(1),
                         nomination=self.days_ago(1),
                         file_kw={'status': mkt.STATUS_PENDING})
-        version_factory(webapp=app2, version='1.1', created=self.days_ago(1),
+        version_factory(addon=app2, version='1.1', created=self.days_ago(1),
                         nomination=self.days_ago(1),
                         file_kw={'status': mkt.STATUS_PENDING})
 
@@ -953,11 +953,11 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
     def test_escalated_not_in_queue(self):
         self.login_as_senior_reviewer()
-        EscalationQueue.objects.create(webapp=self.apps[0])
+        EscalationQueue.objects.create(addon=self.apps[0])
         if self.uses_es():
             self.reindex(Webapp)
         res = self.client.get(self.url)
-        eq_([a.app.id for a in res.context['webapps']],
+        eq_([a.app.id for a in res.context['addons']],
             [app.id for app in self.apps[1:]])
 
         doc = pq(res.content)
@@ -975,7 +975,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         if self.uses_es():
             self.reindex(Webapp)
         res = self.client.get(self.url)
-        apps = list(res.context['webapps'])
+        apps = list(res.context['addons'])
         eq_(apps[0].app.id, self.apps[1].id)
         eq_(apps[1].app.id, self.apps[0].id)
 
@@ -989,7 +989,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         if self.uses_es():
             self.reindex(Webapp)
         res = self.client.get(self.url)
-        apps = [a.app for a in res.context['webapps']]
+        apps = [a.app for a in res.context['addons']]
         assert app not in apps, (
             'Unexpected: Found a new packaged app in the updates queue.')
         eq_(pq(res.content)('.tabnav li a')[2].text, u'Updates (2)')
@@ -1001,16 +1001,16 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                                       'created': self.days_ago(2),
                                       'nomination': self.days_ago(2)})
         self.apps.append(app)
-        File.objects.filter(version__webapp=app).update(status=app.status)
+        File.objects.filter(version__addon=app).update(status=app.status)
 
-        version_factory(webapp=app, version='1.1', created=self.days_ago(1),
+        version_factory(addon=app, version='1.1', created=self.days_ago(1),
                         nomination=self.days_ago(1),
                         file_kw={'status': mkt.STATUS_PENDING})
 
         if self.uses_es():
             self.reindex(Webapp)
         res = self.client.get(self.url)
-        assert app.id in [a.app.id for a in res.context['webapps']]
+        assert app.id in [a.app.id for a in res.context['addons']]
         eq_(pq(res.content)('.tabnav li a')[2].text, u'Updates (3)')
 
     def test_update_queue_with_empty_nomination(self):
@@ -1021,7 +1021,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                                       'nomination': None})
         self.apps.append(app)
         first_version = app.latest_version
-        version_factory(webapp=app, version='1.1', created=self.days_ago(1),
+        version_factory(addon=app, version='1.1', created=self.days_ago(1),
                         nomination=None,
                         file_kw={'status': mkt.STATUS_PENDING})
 
@@ -1036,7 +1036,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
             self.reindex(Webapp)
 
         res = self.client.get(self.url)
-        assert app.id in [a.app.id for a in res.context['webapps']]
+        assert app.id in [a.app.id for a in res.context['addons']]
         eq_(pq(res.content)('.tabnav li a')[2].text, u'Updates (3)')
 
     def test_deleted_version_not_in_queue(self):
@@ -1059,12 +1059,12 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(res.status_code, 200)
 
         # Verify that our app has 2 versions.
-        eq_(Version.with_deleted.filter(webapp=app).count(), 2)
+        eq_(Version.with_deleted.filter(addon=app).count(), 2)
 
         # Verify the apps in the context are what we expect.
         doc = pq(res.content)
         eq_(doc('.tabnav li a')[2].text, u'Updates (1)')
-        apps = [a.app.id for a in res.context['webapps']]
+        apps = [a.app.id for a in res.context['addons']]
         ok_(app.id not in apps)
         ok_(self.apps[1].id in apps)
 
@@ -1096,11 +1096,11 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
                      app_factory(name='YYY'),
                      app_factory(name='ZZZ')]
 
-        EscalationQueue.objects.create(webapp=self.apps[0]).update(
+        EscalationQueue.objects.create(addon=self.apps[0]).update(
             created=self.days_ago(5))
-        EscalationQueue.objects.create(webapp=self.apps[1]).update(
+        EscalationQueue.objects.create(addon=self.apps[1]).update(
             created=self.days_ago(3))
-        EscalationQueue.objects.create(webapp=self.apps[2]).update(
+        EscalationQueue.objects.create(addon=self.apps[2]).update(
             created=self.days_ago(1))
         self.apps[0].update(created=self.days_ago(15))
         self.apps[1].update(created=self.days_ago(13))
@@ -1138,8 +1138,8 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         links = pq(r.content)('#addon-queue tbody')('tr td:nth-of-type(2) a')
-        apps = [rq.webapp for rq in
-                EscalationQueue.objects.all().order_by('webapp__created')]
+        apps = [rq.addon for rq in
+                EscalationQueue.objects.all().order_by('addon__created')]
         expected = [
             (unicode(apps[0].name), self.review_url(apps[0])),
             (unicode(apps[1].name), self.review_url(apps[1])),
@@ -1202,10 +1202,10 @@ class TestEscalationQueue(AppReviewerTest, AccessMixin, FlagsMixin,
         eq_(links[2].text, u'Updates (0)')
         eq_(links[3].text, u'Escalations (3)')
 
-    def test_webapp_deleted(self):
+    def test_addon_deleted(self):
         app = self.apps[0]
         app.delete()
-        eq_(EscalationQueue.objects.filter(webapp=app).exists(), False)
+        eq_(EscalationQueue.objects.filter(addon=app).exists(), False)
 
 
 class TestEscalationQueueES(mkt.site.tests.ESTestCase, TestEscalationQueue):
@@ -1344,7 +1344,7 @@ class TestReviewMixin(object):
 
     def _check_log(self, action):
         assert AppLog.objects.filter(
-            webapp=self.app, activity_log__action=action.id).exists(), (
+            addon=self.app, activity_log__action=action.id).exists(), (
                 "Didn't find `%s` action in logs." % action.short)
 
     def _check_score(self, reviewed_type):
@@ -1393,7 +1393,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
 
     def test_cannot_review_my_app(self):
         with self.settings(ALLOW_SELF_REVIEWS=False):
-            self.app.webappuser_set.create(
+            self.app.addonuser_set.create(
                 user=UserProfile.objects.get(email='editor@mozilla.com'))
             res = self.client.head(self.url)
             self.assert3xx(res, reverse('reviewers.home'))
@@ -1437,10 +1437,10 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
 
     def test_pending_to_reject_w_device_overrides(self):
         # This shouldn't be possible unless there's form hacking.
-        WebappDeviceType.objects.create(webapp=self.app,
-                                        device_type=mkt.DEVICE_DESKTOP.id)
-        WebappDeviceType.objects.create(webapp=self.app,
-                                        device_type=mkt.DEVICE_TABLET.id)
+        AddonDeviceType.objects.create(addon=self.app,
+                                       device_type=mkt.DEVICE_DESKTOP.id)
+        AddonDeviceType.objects.create(addon=self.app,
+                                       device_type=mkt.DEVICE_TABLET.id)
         eq_(self.app.publish_type, mkt.PUBLISH_IMMEDIATE)
         data = {'action': 'reject', 'comments': 'something',
                 'device_override': [mkt.DEVICE_DESKTOP.id]}
@@ -1502,7 +1502,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         eq_(app.status, mkt.STATUS_PUBLIC)
         action_id = mkt.LOG.REVIEW_FEATURES_OVERRIDE.id
         assert not AppLog.objects.filter(
-            webapp=self.app, activity_log__action=action_id).exists()
+            addon=self.app, activity_log__action=action_id).exists()
 
     @mock.patch('mkt.reviewers.views.messages.success', new=mock.Mock)
     def test_incomplete_cant_approve(self):
@@ -1624,7 +1624,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     def test_escalation_to_public(self, storefront_mock):
-        EscalationQueue.objects.create(webapp=self.app)
+        EscalationQueue.objects.create(addon=self.app)
         eq_(self.app.status, mkt.STATUS_PENDING)
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -1642,7 +1642,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         assert storefront_mock.called
 
     def test_escalation_to_reject(self):
-        EscalationQueue.objects.create(webapp=self.app)
+        EscalationQueue.objects.create(addon=self.app)
         eq_(self.app.status, mkt.STATUS_PENDING)
         files = list(self.version.files.values_list('id', flat=True))
         data = {'action': 'reject', 'comments': 'something'}
@@ -1661,7 +1661,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
 
     def test_escalation_to_disable_senior_reviewer(self):
         self.login_as_senior_reviewer()
-        EscalationQueue.objects.create(webapp=self.app)
+        EscalationQueue.objects.create(addon=self.app)
         self.app.update(status=mkt.STATUS_PUBLIC)
         self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'banned ur app'}
@@ -1676,7 +1676,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         self._check_email_dev_and_contact('Banned')
 
     def test_escalation_to_disable(self):
-        EscalationQueue.objects.create(webapp=self.app)
+        EscalationQueue.objects.create(addon=self.app)
         self.app.update(status=mkt.STATUS_PUBLIC)
         self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'banned ur app'}
@@ -1692,7 +1692,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
     def test_clear_escalation(self):
         self.app.update(status=mkt.STATUS_PUBLIC)
         self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
-        EscalationQueue.objects.create(webapp=self.app)
+        EscalationQueue.objects.create(addon=self.app)
         data = {'action': 'clear_escalation', 'comments': 'all clear'}
         data.update(self._attachment_management_form(num=0))
         data.update(self._testedon_management_form())
@@ -1704,7 +1704,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         self._check_email(mail.outbox[0], None, to=[self.mozilla_contact])
 
     def test_rereview_to_reject(self):
-        RereviewQueue.objects.create(webapp=self.app)
+        RereviewQueue.objects.create(addon=self.app)
         self.app.update(status=mkt.STATUS_PUBLIC)
         self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         data = {'action': 'reject', 'comments': 'something'}
@@ -1722,7 +1722,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
     def test_rereview_to_disable_senior_reviewer(self):
         self.login_as_senior_reviewer()
 
-        RereviewQueue.objects.create(webapp=self.app)
+        RereviewQueue.objects.create(addon=self.app)
         self.app.update(status=mkt.STATUS_PUBLIC)
         self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'something'}
@@ -1731,11 +1731,11 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         self.post(data, queue='rereview')
         eq_(self.get_app().status, mkt.STATUS_DISABLED)
         self._check_log(mkt.LOG.APP_DISABLED)
-        eq_(RereviewQueue.objects.filter(webapp=self.app).count(), 0)
+        eq_(RereviewQueue.objects.filter(addon=self.app).count(), 0)
         self._check_email_dev_and_contact('Banned')
 
     def test_rereview_to_disable(self):
-        RereviewQueue.objects.create(webapp=self.app)
+        RereviewQueue.objects.create(addon=self.app)
         self.app.update(status=mkt.STATUS_PUBLIC)
         self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
         data = {'action': 'disable', 'comments': 'banned ur app'}
@@ -1745,7 +1745,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         eq_(res.status_code, 200)
         ok_('action' in res.context['form'].errors)
         eq_(self.get_app().status, mkt.STATUS_PUBLIC)
-        eq_(RereviewQueue.objects.filter(webapp=self.app).count(), 1)
+        eq_(RereviewQueue.objects.filter(addon=self.app).count(), 1)
         eq_(len(mail.outbox), 0)
 
     def test_manual_rereview(self):
@@ -1767,7 +1767,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
     def test_clear_rereview(self):
         self.app.update(status=mkt.STATUS_PUBLIC)
         self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
-        RereviewQueue.objects.create(webapp=self.app)
+        RereviewQueue.objects.create(addon=self.app)
         data = {'action': 'clear_rereview', 'comments': 'all clear'}
         data.update(self._attachment_management_form(num=0))
         data.update(self._testedon_management_form())
@@ -1782,7 +1782,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
     def test_clear_rereview_unlisted(self):
         self.app.update(status=mkt.STATUS_UNLISTED)
         self.app.latest_version.files.update(status=mkt.STATUS_PUBLIC)
-        RereviewQueue.objects.create(webapp=self.app)
+        RereviewQueue.objects.create(addon=self.app)
         data = {'action': 'clear_rereview', 'comments': 'all clear'}
         data.update(self._attachment_management_form(num=0))
         data.update(self._testedon_management_form())
@@ -1795,7 +1795,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         self._check_score(mkt.REVIEWED_WEBAPP_REREVIEW)
 
     def test_rereview_to_escalation(self):
-        RereviewQueue.objects.create(webapp=self.app)
+        RereviewQueue.objects.create(addon=self.app)
         data = {'action': 'escalate', 'comments': 'soup her man'}
         data.update(self._attachment_management_form(num=0))
         data.update(self._testedon_management_form())
@@ -1855,7 +1855,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         eq_(len(pq(res.content)('#receipt-check-result')), 0)
 
     def test_receipt_has_node(self):
-        self.get_app().update(premium_type=mkt.WEBAPP_PREMIUM)
+        self.get_app().update(premium_type=mkt.ADDON_PREMIUM)
         res = self.client.get(self.url)
         eq_(len(pq(res.content)('.reviewers-desktop #receipt-check-result')),
             1)
@@ -1969,7 +1969,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
              'camera': {'description': '&lt;script&gt;', 'type': 'priv'}})
 
     def test_abuse(self):
-        AbuseReport.objects.create(webapp=self.app, message='!@#$')
+        AbuseReport.objects.create(addon=self.app, message='!@#$')
         res = self.client.get(self.url)
         doc = pq(res.content)
         dd = doc('.reviewers-desktop #summary dd.abuse-reports')
@@ -2067,8 +2067,8 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
 
     def test_versions_history_pagination(self):
         self.app.update(is_packaged=True)
-        version_factory(webapp=self.app, version='2.0')
-        version_factory(webapp=self.app, version='3.0')
+        version_factory(addon=self.app, version='2.0')
+        version_factory(addon=self.app, version='3.0')
 
         # Mock paginate to paginate with only 2 versions to limit the
         # number of versions this test has to create.
@@ -2450,7 +2450,7 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
                         publish_type=mkt.PUBLISH_PRIVATE)
         self.file.update(status=mkt.STATUS_DISABLED)
         self.new_version = version_factory(
-            webapp=self.app, version='1.1',
+            addon=self.app, version='1.1',
             file_kw={'status': mkt.STATUS_PENDING})
 
         index_webapps.delay.reset_mock()
@@ -2514,7 +2514,7 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
                         mozilla_contact=self.mozilla_contact,
                         is_packaged=True)
         self.new_version = version_factory(
-            webapp=self.app, version='2.0',
+            addon=self.app, version='2.0',
             file_kw={'status': mkt.STATUS_PENDING})
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
 
@@ -2971,7 +2971,7 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
         eq_(r.status_code, 200)
         eq_(pq(r.content)('.no-results').length, 1)
 
-    def test_search_webapp_exists(self):
+    def test_search_addon_exists(self):
         """Search by add-on name."""
         self.make_approvals()
         app = self.apps[0]
@@ -2981,7 +2981,7 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
         eq_(tr.length, 1)
         eq_(tr.siblings('.comments').text(), 'youwin')
 
-    def test_search_webapp_by_slug_exists(self):
+    def test_search_addon_by_slug_exists(self):
         """Search by app slug."""
         app = self.apps[0]
         app.app_slug = 'a-fox-was-sly'
@@ -2993,7 +2993,7 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
         eq_(tr.length, 1)
         eq_(tr.siblings('.comments').text(), 'youwin')
 
-    def test_search_webapp_doesnt_exist(self):
+    def test_search_addon_doesnt_exist(self):
         """Search by add-on name, with no results."""
         self.make_approvals()
         r = self.client.get(self.url, dict(search='zzz'))
@@ -3001,7 +3001,7 @@ class TestReviewLog(AppReviewerTest, AccessMixin):
         eq_(pq(r.content)('.no-results').length, 1)
 
     @mock.patch('mkt.developers.models.ActivityLog.arguments', new=mock.Mock)
-    def test_webapp_missing(self):
+    def test_addon_missing(self):
         self.make_approvals()
         r = self.client.get(self.url)
         eq_(pq(r.content)('#log-listing tr td').eq(1).text(),
@@ -3085,7 +3085,7 @@ class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin,
         super(TestReviewAppComm, self).setUp()
         self.app = app_factory(rated=True, status=mkt.STATUS_PENDING,
                                mozilla_contact='contact@mozilla.com')
-        self.app.webappuser_set.create(user=user_factory(email='steamcube'))
+        self.app.addonuser_set.create(user=user_factory(email='steamcube'))
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
 
         self.mozilla_contact = 'contact@mozilla.com'
@@ -3287,12 +3287,12 @@ class TestModeratedQueue(mkt.site.tests.TestCase, AccessMixin):
 
         self.url = reverse('reviewers.apps.queue_moderated')
 
-        self.review1 = Review.objects.create(webapp=self.app, body='body',
+        self.review1 = Review.objects.create(addon=self.app, body='body',
                                              user=user1, rating=3,
                                              editorreview=True)
         ReviewFlag.objects.create(review=self.review1, flag=ReviewFlag.SPAM,
                                   user=user1)
-        self.review2 = Review.objects.create(webapp=self.app, body='body',
+        self.review2 = Review.objects.create(addon=self.app, body='body',
                                              user=user2, rating=4,
                                              editorreview=True)
         ReviewFlag.objects.create(review=self.review2, flag=ReviewFlag.SUPPORT,
@@ -3502,15 +3502,15 @@ class TestAppAbuseQueue(mkt.site.tests.TestCase, AccessMixin,
         user2 = user_factory()
 
         AbuseReport.objects.create(reporter=user1, ip_address='123.45.67.89',
-                                   webapp=app1, message='bad')
+                                   addon=app1, message='bad')
         AbuseReport.objects.create(reporter=user2, ip_address='123.01.67.89',
-                                   webapp=app1, message='terrible')
+                                   addon=app1, message='terrible')
         AbuseReport.objects.create(reporter=user1, ip_address='123.01.02.89',
-                                   webapp=app2, message='the worst')
+                                   addon=app2, message='the worst')
 
     def test_setup(self):
         eq_(AbuseReport.objects.filter(read=False).count(), 3)
-        eq_(AbuseReport.objects.filter(webapp=Webapp.objects.all()[0]).count(),
+        eq_(AbuseReport.objects.filter(addon=Webapp.objects.all()[0]).count(),
             2)
 
         res = self.client.get(self.url)
@@ -3800,7 +3800,7 @@ class TestQueueSort(AppReviewerTest):
                                  is_packaged=False,
                                  version_kw={'version': '1.0'},
                                  file_kw={'status': mkt.STATUS_PENDING},
-                                 premium_type=mkt.WEBAPP_FREE),
+                                 premium_type=mkt.ADDON_FREE),
                      app_factory(name='Batum',
                                  status=mkt.STATUS_PENDING,
                                  is_packaged=True,
@@ -3808,16 +3808,16 @@ class TestQueueSort(AppReviewerTest):
                                              'has_editor_comment': True,
                                              'has_info_request': True},
                                  file_kw={'status': mkt.STATUS_PENDING},
-                                 premium_type=mkt.WEBAPP_PREMIUM)]
+                                 premium_type=mkt.ADDON_PREMIUM)]
 
         # Set up app attributes.
         self.apps[0].update(created=self.days_ago(2))
         self.apps[1].update(created=self.days_ago(5))
-        self.apps[0].webappuser_set.create(user=user_factory(email='XXX'))
-        self.apps[1].webappuser_set.create(user=user_factory(email='illmatic'))
-        self.apps[0].webappdevicetype_set.create(
+        self.apps[0].addonuser_set.create(user=user_factory(email='XXX'))
+        self.apps[1].addonuser_set.create(user=user_factory(email='illmatic'))
+        self.apps[0].addondevicetype_set.create(
             device_type=mkt.DEVICE_DESKTOP.id)
-        self.apps[1].webappdevicetype_set.create(
+        self.apps[1].addondevicetype_set.create(
             device_type=mkt.DEVICE_MOBILE.id)
 
         self.url = reverse('reviewers.apps.queue_pending')
@@ -3859,11 +3859,11 @@ class TestQueueSort(AppReviewerTest):
         version_1.update(nomination=days_ago(2))
 
         # Throw in some disabled versions, they shouldn't affect order.
-        version_factory({'status': mkt.STATUS_DISABLED}, webapp=self.apps[0],
+        version_factory({'status': mkt.STATUS_DISABLED}, addon=self.apps[0],
                         nomination=days_ago(10))
-        version_factory({'status': mkt.STATUS_DISABLED}, webapp=self.apps[1],
+        version_factory({'status': mkt.STATUS_DISABLED}, addon=self.apps[1],
                         nomination=days_ago(1))
-        version_factory({'status': mkt.STATUS_DISABLED}, webapp=self.apps[1],
+        version_factory({'status': mkt.STATUS_DISABLED}, addon=self.apps[1],
                         nomination=days_ago(20))
 
         req = mkt.site.tests.req_factory_factory(
@@ -3871,24 +3871,24 @@ class TestQueueSort(AppReviewerTest):
         res = queue_apps(req)
         doc = pq(res.content)
         # Desktop and mobile (hidden on desktop) alternate, so we jump by 2.
-        eq_(doc('tbody tr')[0].get('data-addon'), str(version_1.webapp.id))
-        eq_(doc('tbody tr')[2].get('data-addon'), str(version_0.webapp.id))
+        eq_(doc('tbody tr')[0].get('data-addon'), str(version_1.addon.id))
+        eq_(doc('tbody tr')[2].get('data-addon'), str(version_0.addon.id))
 
         req = mkt.site.tests.req_factory_factory(
             url, user=user, data={'sort': 'nomination', 'order': 'desc'})
         res = queue_apps(req)
         doc = pq(res.content)
         # Desktop and mobile (hidden on desktop) alternate, so we jump by 2.
-        eq_(doc('tbody tr')[0].get('data-addon'), str(version_0.webapp.id))
-        eq_(doc('tbody tr')[2].get('data-addon'), str(version_1.webapp.id))
+        eq_(doc('tbody tr')[0].get('data-addon'), str(version_0.addon.id))
+        eq_(doc('tbody tr')[2].get('data-addon'), str(version_1.addon.id))
 
     def test_do_sort_queue_object(self):
         """Tests sorting queue object."""
         rf = RequestFactory()
         url = reverse('reviewers.apps.queue_rereview')
 
-        earlier_rrq = RereviewQueue.objects.create(webapp=self.apps[0])
-        later_rrq = RereviewQueue.objects.create(webapp=self.apps[1])
+        earlier_rrq = RereviewQueue.objects.create(addon=self.apps[0])
+        later_rrq = RereviewQueue.objects.create(addon=self.apps[1])
         later_rrq.created += timedelta(days=1)
         later_rrq.save()
 
@@ -3897,19 +3897,19 @@ class TestQueueSort(AppReviewerTest):
 
         # Assert the order that RereviewQueue objects were created is
         # maintained.
-        eq_([earlier_rrq.webapp, later_rrq.webapp], list(apps))
+        eq_([earlier_rrq.addon, later_rrq.addon], list(apps))
 
         request = rf.get(url, {'sort': 'created', 'order': 'desc'})
         apps = ReviewersQueuesHelper(request).sort(RereviewQueue.objects.all())
-        eq_([later_rrq.webapp, earlier_rrq.webapp], list(apps))
+        eq_([later_rrq.addon, earlier_rrq.addon], list(apps))
 
         request = rf.get(url, {'sort': 'name', 'order': 'asc'})
         apps = ReviewersQueuesHelper(request).sort(RereviewQueue.objects.all())
-        eq_([later_rrq.webapp, earlier_rrq.webapp], list(apps))
+        eq_([later_rrq.addon, earlier_rrq.addon], list(apps))
 
         request = rf.get(url, {'sort': 'name', 'order': 'desc'})
         apps = ReviewersQueuesHelper(request).sort(RereviewQueue.objects.all())
-        eq_([earlier_rrq.webapp, later_rrq.webapp], list(apps))
+        eq_([earlier_rrq.addon, later_rrq.addon], list(apps))
 
     def test_sort_with_priority_review(self):
         """Tests the sorts are correct with a priority review flagged app."""
@@ -3920,14 +3920,14 @@ class TestQueueSort(AppReviewerTest):
                                      is_packaged=False,
                                      version_kw={'version': '1.0'},
                                      file_kw={'status': mkt.STATUS_PENDING},
-                                     premium_type=mkt.WEBAPP_FREE,
+                                     premium_type=mkt.ADDON_FREE,
                                      priority_review=True))
 
         # Set up app attributes.
         self.apps[2].update(created=self.days_ago(1))
-        self.apps[2].webappuser_set.create(
+        self.apps[2].addonuser_set.create(
             user=user_factory(email='redpanda@mozilla.com'))
-        self.apps[2].webappdevicetype_set.create(
+        self.apps[2].addondevicetype_set.create(
             device_type=mkt.DEVICE_DESKTOP.id)
 
         # And check it also comes out top of waiting time with Webapp model.
@@ -3952,10 +3952,10 @@ class TestQueueSort(AppReviewerTest):
 
         qs = (Version.objects.filter(
               files__status=mkt.STATUS_PENDING,
-              webapp__disabled_by_user=False,
-              webapp__status=mkt.STATUS_PENDING)
+              addon__disabled_by_user=False,
+              addon__status=mkt.STATUS_PENDING)
               .order_by('nomination', 'created')
-              .select_related('webapp', 'files').no_transforms())
+              .select_related('addon', 'files').no_transforms())
 
         req = rf.get(self.url, {'sort': 'nomination'})
         sorted_qs = ReviewersQueuesHelper(req).sort(qs, date_sort='nomination')
@@ -3968,22 +3968,22 @@ class TestQueueSort(AppReviewerTest):
         # And with Rereview model.
         url = reverse('reviewers.apps.queue_rereview')
 
-        earlier_rrq = RereviewQueue.objects.create(webapp=self.apps[0])
+        earlier_rrq = RereviewQueue.objects.create(addon=self.apps[0])
         earlier_rrq.created += timedelta(days=1)
         earlier_rrq.save()
-        later_rrq = RereviewQueue.objects.create(webapp=self.apps[1])
+        later_rrq = RereviewQueue.objects.create(addon=self.apps[1])
         later_rrq.created += timedelta(days=2)
         later_rrq.save()
-        pri_rrq = RereviewQueue.objects.create(webapp=self.apps[2])
+        pri_rrq = RereviewQueue.objects.create(addon=self.apps[2])
         pri_rrq.save()
 
         request = rf.get(url, {'sort': 'created'})
         apps = ReviewersQueuesHelper(request).sort(RereviewQueue.objects.all())
-        eq_([pri_rrq.webapp, earlier_rrq.webapp, later_rrq.webapp], list(apps))
+        eq_([pri_rrq.addon, earlier_rrq.addon, later_rrq.addon], list(apps))
 
         request = rf.get(url, {'sort': 'created', 'order': 'desc'})
         apps = ReviewersQueuesHelper(request).sort(RereviewQueue.objects.all())
-        eq_([pri_rrq.webapp, later_rrq.webapp, earlier_rrq.webapp], list(apps))
+        eq_([pri_rrq.addon, later_rrq.addon, earlier_rrq.addon], list(apps))
 
 
 class TestAppsReviewing(AppReviewerTest, AccessMixin):
@@ -4000,7 +4000,7 @@ class TestAppsReviewing(AppReviewerTest, AccessMixin):
 
     def _view_app(self, app_id):
         self.client.post(reverse('reviewers.review_viewing'), {
-            'webapp_id': app_id})
+            'addon_id': app_id})
 
     def test_no_apps_reviewing(self):
         res = self.client.get(self.url)
@@ -4119,7 +4119,7 @@ class TestAbusePage(AppReviewerTest):
         self.app = app_factory(name=u'My app é <script>alert(5)</script>')
         self.url = reverse('reviewers.apps.review.abuse',
                            args=[self.app.app_slug])
-        AbuseReport.objects.create(webapp=self.app, message=self.app.name)
+        AbuseReport.objects.create(addon=self.app, message=self.app.name)
 
     def testXSS(self):
         from django.utils.encoding import smart_unicode
@@ -4138,12 +4138,12 @@ class TestReviewTranslate(RestOAuth):
         user = user_factory(email='diego')
         app = app_factory(app_slug='myapp~-_')
         self.review = app.reviews.create(title=u'yes', body=u'oui',
-                                         webapp=app, user=user,
+                                         addon=app, user=user,
                                          editorreview=True, rating=4)
 
     def test_regular_call(self):
         res = self.client.get(reverse('reviewers.review_translate',
-                                      args=[self.review.webapp.app_slug,
+                                      args=[self.review.addon.app_slug,
                                             self.review.id, 'fr']))
         self.assert3xx(res, 'https://translate.google.com/#auto/fr/oui', 302)
 
@@ -4164,7 +4164,7 @@ class TestReviewTranslate(RestOAuth):
         # Call translation.
         review = self.review
         url = reverse('reviewers.review_translate',
-                      args=[review.webapp.app_slug, review.id, 'fr'])
+                      args=[review.addon.app_slug, review.id, 'fr'])
         res = self.client.get(url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         eq_(res.status_code, 200)
         eq_(res.content, '{"body": "oui", "title": "oui"}')
@@ -4190,7 +4190,7 @@ class TestReviewTranslate(RestOAuth):
         review = self.review
         res = self.client.get(
             reverse('reviewers.review_translate',
-                    args=[review.webapp.app_slug, review.id, 'fr']),
+                    args=[review.addon.app_slug, review.id, 'fr']),
             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         eq_(res.status_code, 400)
 
@@ -4224,7 +4224,7 @@ class TestReviewHistory(mkt.site.tests.TestCase, CommTestMixin):
 
     def setUp(self):
         super(TestReviewHistory, self).setUp()
-        self.app = self.webapp = app_factory()
+        self.app = self.addon = app_factory()
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
         self.grant_permission(user_factory(email='editor'), 'Apps:Review')
         self.login('editor@mozilla.com')
@@ -4234,7 +4234,7 @@ class TestReviewHistory(mkt.site.tests.TestCase, CommTestMixin):
         r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(doc('#history .item-history').attr('data-comm-app-url'),
-            reverse('api-v2:comm-app-list', args=[self.webapp.app_slug]) +
+            reverse('api-v2:comm-app-list', args=[self.addon.app_slug]) +
             '?limit=1&serializer=simple')
 
     def test_comm_url_multiple_thread(self):
@@ -4242,17 +4242,17 @@ class TestReviewHistory(mkt.site.tests.TestCase, CommTestMixin):
         r = self.client.get(self.url)
         doc = pq(r.content)
         eq_(doc('#history .item-history').attr('data-comm-app-url'),
-            reverse('api-v2:comm-app-list', args=[self.webapp.app_slug]) +
+            reverse('api-v2:comm-app-list', args=[self.addon.app_slug]) +
             '?limit=2&serializer=simple')
 
     def test_comm_url_no_encode(self):
-        self.webapp = app_factory(app_slug='&#21488;&#21271;')
+        self.addon = app_factory(app_slug='&#21488;&#21271;')
         self._thread_factory()
-        url = reverse('reviewers.apps.review', args=[self.webapp.app_slug])
+        url = reverse('reviewers.apps.review', args=[self.addon.app_slug])
         r = self.client.get(url)
         doc = pq(r.content)
         eq_(doc('#history .item-history').attr('data-comm-app-url'),
-            reverse('api-v2:comm-app-list', args=[self.webapp.app_slug]) +
+            reverse('api-v2:comm-app-list', args=[self.addon.app_slug]) +
             '?limit=1&serializer=simple')
 
 
@@ -4260,7 +4260,7 @@ class ModerateLogTest(mkt.site.tests.TestCase):
 
     def setUp(self):
         super(ModerateLogTest, self).setUp()
-        self.review = Review.objects.create(webapp=app_factory(), body='body',
+        self.review = Review.objects.create(addon=app_factory(), body='body',
                                             user=user_factory(), rating=4,
                                             editorreview=True)
         self.moderator_user = user_factory(email='moderator')
@@ -4292,7 +4292,7 @@ class TestModerateLog(ModerateLogTest, AccessMixin):
         Make sure that if our end date is 1/1/2011, that we include items from
         1/1/2011.
         """
-        mkt.log(mkt.LOG.APPROVE_REVIEW, self.review, self.review.webapp,
+        mkt.log(mkt.LOG.APPROVE_REVIEW, self.review, self.review.addon,
                 created=datetime(2011, 1, 1))
 
         r = self.client.get(self.url, dict(end='2011-01-01'))
@@ -4305,8 +4305,8 @@ class TestModerateLog(ModerateLogTest, AccessMixin):
         reviews.
         """
         for i in xrange(2):
-            mkt.log(mkt.LOG.APPROVE_REVIEW, self.review.webapp, self.review)
-            mkt.log(mkt.LOG.DELETE_REVIEW, self.review.webapp, self.review)
+            mkt.log(mkt.LOG.APPROVE_REVIEW, self.review.addon, self.review)
+            mkt.log(mkt.LOG.DELETE_REVIEW, self.review.addon, self.review)
         r = self.client.get(self.url, dict(search='deleted'))
         eq_(pq(r.content)('tbody tr').length, 2)
 
@@ -4316,7 +4316,7 @@ class TestModerateLog(ModerateLogTest, AccessMixin):
         assert no_results in r.content, 'Expected no results to be found.'
 
     def test_display_name_xss(self):
-        mkt.log(mkt.LOG.APPROVE_REVIEW, self.review, self.review.webapp,
+        mkt.log(mkt.LOG.APPROVE_REVIEW, self.review, self.review.addon,
                 user=self.admin_user)
         self.admin_user.display_name = '<script>alert("xss")</script>'
         self.admin_user.save()
@@ -4339,14 +4339,14 @@ class TestModerateLogDetail(ModerateLogTest, AccessMixin):
         return reverse('reviewers.apps.moderatelog.detail', args=[id])
 
     def test_detail_page(self):
-        mkt.log(mkt.LOG.APPROVE_REVIEW, self.review.webapp, self.review)
+        mkt.log(mkt.LOG.APPROVE_REVIEW, self.review.addon, self.review)
         e_id = ActivityLog.objects.editor_events()[0].id
         r = self.client.get(self._url(e_id))
         eq_(r.status_code, 200)
 
     def test_undelete_selfmoderation(self):
         e_id = mkt.log(
-            mkt.LOG.DELETE_REVIEW, self.review.webapp, self.review).id
+            mkt.LOG.DELETE_REVIEW, self.review.addon, self.review).id
         self.review.delete()
         r = self.client.post(self._url(e_id), {'action': 'undelete'})
         eq_(r.status_code, 302)
@@ -4355,7 +4355,7 @@ class TestModerateLogDetail(ModerateLogTest, AccessMixin):
 
     def test_undelete_admin(self):
         e_id = mkt.log(
-            mkt.LOG.DELETE_REVIEW, self.review.webapp, self.review).id
+            mkt.LOG.DELETE_REVIEW, self.review.addon, self.review).id
         self.review.delete()
         self.client.logout()
         self.login(self.admin_user)
@@ -4366,7 +4366,7 @@ class TestModerateLogDetail(ModerateLogTest, AccessMixin):
 
     def test_undelete_unauthorized(self):
         # Delete as admin (or any other user than the reviewer).
-        e_id = mkt.log(mkt.LOG.DELETE_REVIEW, self.review.webapp, self.review,
+        e_id = mkt.log(mkt.LOG.DELETE_REVIEW, self.review.addon, self.review,
                        user=self.admin_user).id
         self.review.delete()
         # Try to undelete as normal reviewer.

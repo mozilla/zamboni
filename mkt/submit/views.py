@@ -36,7 +36,7 @@ from mkt.submit.models import AppSubmissionChecklist
 from mkt.submit.serializers import (AppStatusSerializer, FileUploadSerializer,
                                     PreviewSerializer)
 from mkt.users.models import UserProfile
-from mkt.webapps.models import WebappUser, Preview, Webapp
+from mkt.webapps.models import AddonUser, Preview, Webapp
 
 from . import forms
 from .decorators import read_dev_agreement_required, submit_step
@@ -102,42 +102,42 @@ def manifest(request):
             features_form_valid):
 
         upload = form.cleaned_data['upload']
-        webapp = Webapp.from_upload(upload, is_packaged=form.is_packaged())
-        file_obj = webapp.latest_version.all_files[0]
+        addon = Webapp.from_upload(upload, is_packaged=form.is_packaged())
+        file_obj = addon.latest_version.all_files[0]
 
         if form.is_packaged():
             validation = json.loads(upload.validation)
             escalate_prerelease_permissions(
-                webapp, validation, webapp.latest_version)
+                addon, validation, addon.latest_version)
 
         # Set the device type.
         for device in form.get_devices():
-            webapp.webappdevicetype_set.get_or_create(
+            addon.addondevicetype_set.get_or_create(
                 device_type=device.id)
 
         # Set the premium type, only bother if it's not free.
         premium = form.get_paid()
         if premium:
-            webapp.update(premium_type=premium)
+            addon.update(premium_type=premium)
 
-        if webapp.has_icon_in_manifest(file_obj):
+        if addon.has_icon_in_manifest(file_obj):
             # Fetch the icon, do polling.
-            webapp.update(icon_type='image/png')
+            addon.update(icon_type='image/png')
         else:
             # In this case there is no need to do any polling.
-            webapp.update(icon_type='')
+            addon.update(icon_type='')
 
-        WebappUser(webapp=webapp, user=request.user).save()
+        AddonUser(addon=addon, user=request.user).save()
         # Checking it once. Checking it twice.
-        AppSubmissionChecklist.objects.create(webapp=webapp, terms=True,
+        AppSubmissionChecklist.objects.create(addon=addon, terms=True,
                                               manifest=True, details=False)
 
         # Create feature profile.
-        webapp.latest_version.features.update(**features_form.cleaned_data)
+        addon.latest_version.features.update(**features_form.cleaned_data)
 
-        tasks.fetch_icon.delay(webapp.pk, file_obj.pk)
+        tasks.fetch_icon.delay(addon.pk, file_obj.pk)
 
-        return redirect('submit.app.details', webapp.app_slug)
+        return redirect('submit.app.details', addon.app_slug)
 
     return render(request, 'submit/manifest.html',
                   {'step': 'manifest', 'features_form': features_form,
@@ -146,22 +146,22 @@ def manifest(request):
 
 @dev_required
 @submit_step('details')
-def details(request, webapp_id, webapp):
+def details(request, addon_id, addon):
     # Name, Slug, Description, Privacy Policy, Homepage URL, Support URL,
     # Support Email.
-    form_basic = AppDetailsBasicForm(request.POST or None, instance=webapp,
+    form_basic = AppDetailsBasicForm(request.POST or None, instance=addon,
                                      request=request)
-    form_cats = CategoryForm(request.POST or None, product=webapp,
+    form_cats = CategoryForm(request.POST or None, product=addon,
                              request=request)
     form_icon = AppFormMedia(request.POST or None, request.FILES or None,
-                             instance=webapp, request=request)
+                             instance=addon, request=request)
     form_previews = PreviewFormSet(request.POST or None, prefix='files',
-                                   queryset=webapp.get_previews())
+                                   queryset=addon.get_previews())
 
     # For empty webapp-locale (or no-locale) fields that have
     # form-locale values, duplicate them to satisfy the requirement.
     form_locale = request.COOKIES.get('current_locale', '')
-    app_locale = to_language(webapp.default_locale)
+    app_locale = to_language(addon.default_locale)
     for name, value in request.POST.items():
         if value:
             if name.endswith(form_locale):
@@ -178,74 +178,74 @@ def details(request, webapp_id, webapp):
         'form_previews': form_previews,
     }
     if request.POST and all(f.is_valid() for f in forms.itervalues()):
-        webapp = form_basic.save(webapp)
+        addon = form_basic.save(addon)
         form_cats.save()
-        form_icon.save(webapp)
+        form_icon.save(addon)
         for preview in form_previews.forms:
-            preview.save(webapp)
+            preview.save(addon)
         # If this is an incomplete app from the legacy submission flow, it may
         # not have device types set yet - so assume it works everywhere.
-        if not webapp.device_types:
+        if not addon.device_types:
             for device in mkt.DEVICE_TYPES:
-                webapp.webappdevicetype_set.create(device_type=device)
+                addon.addondevicetype_set.create(device_type=device)
 
-        AppSubmissionChecklist.objects.get(webapp=webapp).update(details=True)
+        AppSubmissionChecklist.objects.get(addon=addon).update(details=True)
 
-        if webapp.needs_payment():
+        if addon.needs_payment():
             # Paid apps get STATUS_NULL until payment information and content
             # ratings entered.
-            webapp.update(status=mkt.STATUS_NULL,
-                          highest_status=mkt.STATUS_PENDING)
+            addon.update(status=mkt.STATUS_NULL,
+                         highest_status=mkt.STATUS_PENDING)
 
         # Mark as pending in special regions (i.e., China).
         # By default, the column is set to pending when the row is inserted.
         # But we need to set a nomination date so we know to list the app
         # in the China Review Queue now (and sort it by that date too).
         for region in mkt.regions.SPECIAL_REGIONS:
-            webapp.geodata.set_nominated_date(region, save=True)
+            addon.geodata.set_nominated_date(region, save=True)
             log.info(u'[Webapp:%s] Setting nomination date to '
-                     u'now for region (%s).' % (webapp, region.slug))
+                     u'now for region (%s).' % (addon, region.slug))
 
-        record_action('app-submitted', request, {'app-id': webapp.pk})
+        record_action('app-submitted', request, {'app-id': addon.pk})
 
-        return redirect('submit.app.done', webapp.app_slug)
+        return redirect('submit.app.done', addon.app_slug)
 
     ctx = {
         'step': 'details',
-        'webapp': webapp,
+        'addon': addon,
     }
     ctx.update(forms)
     return render(request, 'submit/details.html', ctx)
 
 
 @dev_required
-def done(request, webapp_id, webapp):
+def done(request, addon_id, addon):
     # No submit step forced on this page, we don't really care.
     return render(request, 'submit/next_steps.html',
-                  {'step': 'next_steps', 'webapp': webapp})
+                  {'step': 'next_steps', 'addon': addon})
 
 
 @dev_required
-def resume(request, webapp_id, webapp):
+def resume(request, addon_id, addon):
     try:
         # If it didn't go through the app submission
         # checklist. Don't die. This will be useful for
         # creating apps with an API later.
-        step = webapp.appsubmissionchecklist.get_next()
+        step = addon.appsubmissionchecklist.get_next()
     except ObjectDoesNotExist:
         step = None
 
-    return _resume(webapp, step)
+    return _resume(addon, step)
 
 
-def _resume(webapp, step):
+def _resume(addon, step):
     if step:
         if step in ['terms', 'manifest']:
             return redirect('submit.app.%s' % step)
         return redirect(reverse('submit.app.%s' % step,
-                                args=[webapp.app_slug]))
+                                args=[addon.app_slug]))
 
-    return redirect(webapp.get_dev_url('edit'))
+    return redirect(addon.get_dev_url('edit'))
 
 
 class ValidationViewSet(CORSMixin, mixins.CreateModelMixin,

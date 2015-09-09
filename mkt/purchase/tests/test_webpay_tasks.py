@@ -16,7 +16,7 @@ class TestReceiptEmail(PurchaseTest):
 
     def setUp(self):
         super(TestReceiptEmail, self).setUp()
-        self.contrib = Contribution.objects.create(webapp_id=self.webapp.id,
+        self.contrib = Contribution.objects.create(addon_id=self.addon.id,
                                                    amount=self.price.price,
                                                    uuid=str(uuid.uuid4()),
                                                    type=mkt.CONTRIB_PURCHASE,
@@ -43,7 +43,7 @@ class TestReceiptEmail(PurchaseTest):
         data = args[0][3]
 
         eq_(args[1]['recipient_list'], [self.user.email])
-        eq_(data['app_name'], self.webapp.name)
-        eq_(data['developer_name'], self.webapp.current_version.developer_name)
+        eq_(data['app_name'], self.addon.name)
+        eq_(data['developer_name'], self.addon.current_version.developer_name)
         eq_(data['price'], self.contrib.get_amount_locale('en_US'))
         ok_(data['purchases_url'].startswith('http://f.com'))

@@ -27,14 +27,14 @@ def email_daily_ratings():
                                               created__lt=today)
 
     # For each app in yesterday's set of reviews, gather reviews and email out.
-    apps = set(review.webapp for review in yesterday_reviews)
+    apps = set(review.addon for review in yesterday_reviews)
     for app in apps:
         # Email all reviews in one email for current app in loop.
         author_emails = app.authors.values_list('email', flat=True)
         subject = 'Firefox Marketplace reviews for %s on %s' % (app.name,
                                                                 pretty_date)
 
-        context = {'reviews': (yesterday_reviews.filter(webapp=app).
+        context = {'reviews': (yesterday_reviews.filter(addon=app).
                                order_by('-created')),
                    'base_url': settings.SITE_URL,
                    'pretty_date': pretty_date}

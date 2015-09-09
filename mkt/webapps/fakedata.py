@@ -19,21 +19,21 @@ from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.constants.base import STATUS_CHOICES_API_LOOKUP
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.constants.payments import ACCESS_PURCHASE
-from mkt.developers.models import (WebappPaymentAccount, PaymentAccount,
+from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    UserInappKey)
 from mkt.developers.providers import Reference
 from mkt.developers.tasks import resize_preview, save_icon
 from mkt.files.utils import WebAppParser
-from mkt.prices.models import WebappPremium, Price
+from mkt.prices.models import AddonPremium, Price
 from mkt.ratings.models import Review
-from mkt.ratings.tasks import webapp_review_aggregates
+from mkt.ratings.tasks import addon_review_aggregates
 from mkt.reviewers.models import AdditionalReview, RereviewQueue
 from mkt.site.storage_utils import (copy_stored_file, local_storage,
                                     private_storage)
 from mkt.site.utils import app_factory, slugify, version_factory
 from mkt.users.models import UserProfile
 from mkt.users.utils import create_user
-from mkt.webapps.models import WebappUser, AppManifest, Preview, Webapp
+from mkt.webapps.models import AddonUser, AppManifest, Preview, Webapp
 
 
 adjectives = [u'Exquisite', u'Delicious', u'Elegant', u'Swanky', u'Spicy',
@@ -87,7 +87,7 @@ def generate_previews(app, n=1):
     for i in range(n):
         img = gen.generate(unicode(app.name) + unichr(i), 320, 480,
                            output_format="png")
-        p = Preview.objects.create(webapp=app, filetype="image/png",
+        p = Preview.objects.create(addon=app, filetype="image/png",
                                    thumbtype="image/png",
                                    caption="screenshot " + str(i),
                                    position=i)
@@ -129,7 +129,7 @@ def generate_ratings(app, num):
             email=email, source=mkt.LOGIN_SOURCE_UNKNOWN,
             display_name=email)
         Review.objects.create(
-            webapp=app, user=user, rating=random.randrange(1, 6),
+            addon=app, user=user, rating=random.randrange(1, 6),
             title="Test Review " + str(n), body="review text")
 
 
@@ -146,9 +146,9 @@ def generate_hosted_app(name, categories, developer_name,
                     manifest_url=spec.get('manifest_url', generated_url))
     if device_types:
         for dt in device_types:
-            a.webappdevicetype_set.create(device_type=DEVICE_CHOICES_IDS[dt])
+            a.addondevicetype_set.create(device_type=DEVICE_CHOICES_IDS[dt])
     else:
-        a.webappdevicetype_set.create(device_type=1)
+        a.addondevicetype_set.create(device_type=1)
     a.versions.latest().update(reviewed=datetime.datetime.now(),
                                _developer_name=developer_name)
     if 'manifest_file' in spec:
@@ -246,9 +246,9 @@ def generate_packaged_app(namedict, apptype, categories, developer_name,
                       file_kw={'status': status, 'uses_flash': uses_flash})
     if device_types:
         for dt in device_types:
-            app.webappdevicetype_set.create(device_type=DEVICE_CHOICES_IDS[dt])
+            app.addondevicetype_set.create(device_type=DEVICE_CHOICES_IDS[dt])
     else:
-        app.webappdevicetype_set.create(device_type=1)
+        app.addondevicetype_set.create(device_type=1)
     f = app.latest_version.all_files[0]
     f.update(filename=f.generate_filename())
     fp = os.path.join(app.latest_version.path_prefix, f.filename)
@@ -268,7 +268,7 @@ def generate_packaged_app(namedict, apptype, categories, developer_name,
     for i, vspec in enumerate(versions, 1):
         st = STATUS_CHOICES_API_LOOKUP[vspec.get("status", "public")]
         rtime = (now + datetime.timedelta(i))
-        v = version_factory(version="1." + str(i), webapp=app,
+        v = version_factory(version="1." + str(i), addon=app,
                             reviewed=rtime if st >= 4 else None,
                             nomination=rtime if st > 0 else None,
                             created=rtime,
@@ -409,14 +409,14 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
             t = tempfile.mktemp()
             copy_stored_file(f, t, src_storage=local_storage,
                              dst_storage=private_storage)
-            p = Preview.objects.create(webapp=app, filetype="video/webm",
+            p = Preview.objects.create(addon=app, filetype="video/webm",
                                        thumbtype="image/png",
                                        caption="video " + str(i),
                                        position=i)
             resize_video(t, p.pk)
     if preview_files:
         for i, f in enumerate(preview_files):
-            p = Preview.objects.create(webapp=app, filetype="image/png",
+            p = Preview.objects.create(addon=app, filetype="image/png",
                                        thumbtype="image/png",
                                        caption="screenshot " + str(i),
                                        position=i + len(video_files))
@@ -431,21 +431,21 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
     app.description = description
     app.privacy_policy = privacy_policy
     app.support_email = developer_email
-    premium_type = mkt.WEBAPP_PREMIUM_API_LOOKUP[premium_type]
+    premium_type = mkt.ADDON_PREMIUM_API_LOOKUP[premium_type]
     app.premium_type = premium_type
     app.default_locale = default_locale
     if popularity:
         app.popularity.create(value=popularity)
-    if premium_type != mkt.WEBAPP_FREE and status != mkt.STATUS_NULL:
+    if premium_type != mkt.ADDON_FREE and status != mkt.STATUS_NULL:
         acct = get_or_create_payment_account(developer_email, developer_name)
         product_uri = Reference().product_create(acct, app)
-        WebappPaymentAccount.objects.create(webapp=app, payment_account=acct,
-                                            account_uri=acct.uri,
-                                            product_uri=product_uri)
-        if premium_type in (mkt.WEBAPP_PREMIUM, mkt.WEBAPP_PREMIUM_INAPP):
+        AddonPaymentAccount.objects.create(addon=app, payment_account=acct,
+                                           account_uri=acct.uri,
+                                           product_uri=product_uri)
+        if premium_type in (mkt.ADDON_PREMIUM, mkt.ADDON_PREMIUM_INAPP):
             price = get_or_create_price(spec.get('price', '0.99'))
-            WebappPremium.objects.create(webapp=app, price=price)
-        if premium_type in (mkt.WEBAPP_FREE_INAPP, mkt.WEBAPP_PREMIUM_INAPP):
+            AddonPremium.objects.create(addon=app, price=price)
+        if premium_type in (mkt.ADDON_FREE_INAPP, mkt.ADDON_PREMIUM_INAPP):
             UserInappKey.create(acct.user, secret=inapp_secret,
                                 public_id=inapp_id,
                                 access_type=ACCESS_PURCHASE)
@@ -464,14 +464,14 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                               STATUS_CHOICES_API_LOOKUP[region_status]})
     if tarako:
         AdditionalReview.objects.create(app=app, queue='tarako')
-    webapp_review_aggregates(app.pk)
+    addon_review_aggregates(app.pk)
     if rereview:
-        RereviewQueue.objects.get_or_create(webapp=app)
+        RereviewQueue.objects.get_or_create(addon=app)
     try:
         u = UserProfile.objects.get(email=developer_email)
     except UserProfile.DoesNotExist:
         u = create_user(developer_email)
         u.display_name = developer_name
         u.save()
-    WebappUser.objects.create(user=u, webapp=app)
+    AddonUser.objects.create(user=u, addon=app)
     return app

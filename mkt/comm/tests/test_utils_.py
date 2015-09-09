@@ -26,7 +26,7 @@ class TestCreateCommNote(TestCase, AttachmentManagementMixin):
             note_type=comm.APPROVAL)
 
         # Check Thread.
-        eq_(thread.webapp, self.app)
+        eq_(thread.addon, self.app)
         eq_(thread.version, self.app.current_version)
         expected = {
             'public': False, 'developer': True, 'reviewer': True,

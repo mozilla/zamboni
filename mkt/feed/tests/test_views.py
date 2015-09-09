@@ -413,7 +413,7 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
         eq_(data['color'], color)
 
     def test_create_with_preview(self):
-        preview = Preview.objects.create(webapp=self.app, position=0)
+        preview = Preview.objects.create(addon=self.app, position=0)
         self.feedapp_data.update(preview=preview.pk)
         res, data = self.test_create_with_permission()
         eq_(data['preview']['id'], preview.id)
@@ -1667,7 +1667,7 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
 
     def test_feedapp(self):
         feed_item = self.feed_item_factory(item_type=feed.FEED_TYPE_APP)
-        feed_item.app.app.webappdevicetype_set.create(
+        feed_item.app.app.addondevicetype_set.create(
             device_type=applications.DEVICE_DESKTOP.id)
 
         # Mobile doesn't show desktop apps.
@@ -1687,11 +1687,11 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         app_gaia = mkt.site.tests.app_factory()
         app_android = mkt.site.tests.app_factory()
         app_desktop = mkt.site.tests.app_factory()
-        app_gaia.webappdevicetype_set.create(
+        app_gaia.addondevicetype_set.create(
             device_type=applications.DEVICE_GAIA.id)
-        app_android.webappdevicetype_set.create(
+        app_android.addondevicetype_set.create(
             device_type=applications.DEVICE_MOBILE.id)
-        app_desktop.webappdevicetype_set.create(
+        app_desktop.addondevicetype_set.create(
             device_type=applications.DEVICE_DESKTOP.id)
 
         # Create coll containing apps for different devices.
@@ -1727,9 +1727,9 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
 
     def test_multiple_device_types(self):
         feed_item = self.feed_item_factory(item_type=feed.FEED_TYPE_APP)
-        feed_item.app.app.webappdevicetype_set.create(
+        feed_item.app.app.addondevicetype_set.create(
             device_type=applications.DEVICE_DESKTOP.id)
-        feed_item.app.app.webappdevicetype_set.create(
+        feed_item.app.app.addondevicetype_set.create(
             device_type=applications.DEVICE_GAIA.id)
 
         # Shows up on Desktop and Gaia.
@@ -1749,7 +1749,7 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
 
     def test_no_filtering(self):
         app_gaia = mkt.site.tests.app_factory()
-        app_gaia.webappdevicetype_set.create(
+        app_gaia.addondevicetype_set.create(
             device_type=applications.DEVICE_GAIA.id)
         coll = self.feed_collection_factory(app_ids=[app_gaia.id])
         FeedItem.objects.create(item_type=feed.FEED_TYPE_COLL, collection=coll,
@@ -1779,7 +1779,7 @@ class TestFeedViewRegionFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         feed_item = self.feed_item_factory(item_type=feed.FEED_TYPE_APP)
         app = feed_item.app.app
         # Exclude from Germany.
-        app.webappexcludedregion.create(region=mkt.regions.DEU.id)
+        app.addonexcludedregion.create(region=mkt.regions.DEU.id)
         res, data = self._get()
         ok_(data['objects'])
         res, data = self._get(region='de')
@@ -1791,8 +1791,8 @@ class TestFeedViewRegionFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
     def test_coll(self):
         app_excluded_br = mkt.site.tests.app_factory()
         app_excluded_de = mkt.site.tests.app_factory()
-        app_excluded_br.webappexcludedregion.create(region=mkt.regions.BRA.id)
-        app_excluded_de.webappexcludedregion.create(region=mkt.regions.DEU.id)
+        app_excluded_br.addonexcludedregion.create(region=mkt.regions.BRA.id)
+        app_excluded_de.addonexcludedregion.create(region=mkt.regions.DEU.id)
         coll = self.feed_collection_factory(app_ids=[app_excluded_br.id,
                                                      app_excluded_de.id])
 
@@ -1818,7 +1818,7 @@ class TestFeedViewRegionFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
 
     def test_no_filtering(self):
         app_excluded_br = mkt.site.tests.app_factory()
-        app_excluded_br.webappexcludedregion.create(region=mkt.regions.BRA.id)
+        app_excluded_br.addonexcludedregion.create(region=mkt.regions.BRA.id)
         coll = self.feed_collection_factory(app_ids=[app_excluded_br.id])
         FeedItem.objects.create(item_type=feed.FEED_TYPE_COLL, collection=coll,
                                 region=1)
@@ -2049,11 +2049,11 @@ class TestFeedElementGetView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         app_gaia = mkt.site.tests.app_factory()
         app_android = mkt.site.tests.app_factory()
         app_desktop = mkt.site.tests.app_factory()
-        app_gaia.webappdevicetype_set.create(
+        app_gaia.addondevicetype_set.create(
             device_type=applications.DEVICE_GAIA.id)
-        app_android.webappdevicetype_set.create(
+        app_android.addondevicetype_set.create(
             device_type=applications.DEVICE_MOBILE.id)
-        app_desktop.webappdevicetype_set.create(
+        app_desktop.addondevicetype_set.create(
             device_type=applications.DEVICE_DESKTOP.id)
 
         # Create coll containing apps for different devices.

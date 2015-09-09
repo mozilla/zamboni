@@ -1,34 +1,34 @@
 {% extends 'developers/base_impala.html' %}
 {% from 'developers/includes/macros.html' import queue_position with context %}
 
-{% if webapp.is_packaged %}
+{% if addon.is_packaged %}
   {% set title = _('Status & Versions') %}
 {% else %}
   {% set title = _('Status') %}
 {% endif %}
-{% block title %}{{ hub_page_title(title, webapp) }}{% endblock %}
+{% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% macro status(msg) %}
-  <strong class="status {{ mkt_status_class(webapp) }}">{{ msg }}</strong>
+  <strong class="status {{ mkt_status_class(addon) }}">{{ msg }}</strong>
 {% endmacro %}
 
 {% block content %}
   <header>
-    {{ hub_breadcrumbs(webapp, items=[(None, title)]) }}
+    {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
     <h1>{{ title }}</h1>
   </header>
   <section id="edit-addon" class="primary devhub-form manage">
     <h2>{{ _('Current Status') }}</h2>
 
     <section>
-      <div class="island" id="version-status" data-status="{{ webapp.status }}">
+      <div class="island" id="version-status" data-status="{{ addon.status }}">
         <div class="status-info">
 
           {# Show important app status changes regardless of packaged or hosted. #}
-          {% if webapp.disabled_by_user and webapp.status != mkt.STATUS_DISABLED %}
+          {% if addon.disabled_by_user and addon.status != mkt.STATUS_DISABLED %}
             {{ status(_('You have <b>delisted</b> this app.')) }}
 
-          {% elif webapp.status == mkt.STATUS_NULL %}
+          {% elif addon.status == mkt.STATUS_NULL %}
             {# Links to complete app submission. #}
             {{ status(_('This app is <b>incomplete</b>.')) }}
             {% if next_step %}
@@ -38,10 +38,10 @@
               {% endtrans %}
             {% endif %}
 
-          {% elif webapp.status == mkt.STATUS_DISABLED %}
-            {% if webapp.iarc_purged %}
+          {% elif addon.status == mkt.STATUS_DISABLED %}
+            {% if addon.iarc_purged %}
               {{ status(_('This app has been <b>disabled by Mozilla</b>.')) }}
-              {% trans ratings_url=webapp.get_dev_url('ratings') %}
+              {% trans ratings_url=addon.get_dev_url('ratings') %}
                 Your app was disabled because it is missing content ratings. It will
                 automatically be re-enabled after
                 <a href="{{ ratings_url }}">obtaining content ratings</a>.
@@ -54,68 +54,68 @@
               {% endtrans %}
             {% endif %}
 
-          {% elif webapp.status == mkt.STATUS_BLOCKED %}
+          {% elif addon.status == mkt.STATUS_BLOCKED %}
             {{ status(_('Your app has been <b>blocked by Mozilla</b>.')) }}
             {% trans support_url=settings.SUPPORT_GROUP %}
               Your app was blocked by a site administrator. If you have any
               questions, please <a href="{{ support_url }}"> contact us</a>.
             {% endtrans %}
 
-          {% elif webapp.status == mkt.STATUS_REJECTED %}
+          {% elif addon.status == mkt.STATUS_REJECTED %}
             {{ status(_('This app has been <b>rejected</b> by a Firefox Marketplace reviewer.')) }}
 
           {% endif %}
 
-          {% if not webapp.disabled_by_user %}
+          {% if not addon.disabled_by_user %}
 
             {# Showing version information for packaged apps in approved statuses. #}
-            {% if webapp.is_packaged and webapp.status in mkt.WEBAPPS_APPROVED_STATUSES %}
+            {% if addon.is_packaged and addon.status in mkt.WEBAPPS_APPROVED_STATUSES %}
               {# Display some extra information about the status of the versions. #}
-              {% if webapp.current_version %}
-                {% set file_status = webapp.current_version.all_files[0].status %}
+              {% if addon.current_version %}
+                {% set file_status = addon.current_version.all_files[0].status %}
                 <p>
                   {# L10n: {0} is an app version string. {1} is a file status like 'approved'. #}
-                  {{ _('Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>')|fe(webapp.current_version.version, mkt.MKT_STATUS_FILE_CHOICES[file_status]) }}.
+                  {{ _('Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>')|fe(addon.current_version.version, mkt.MKT_STATUS_FILE_CHOICES[file_status]) }}.
                 </p>
               {% endif %}
-              {% if webapp.current_version and webapp.latest_version != webapp.current_version %}
-                {% set file_status = webapp.latest_version.all_files[0].status %}
+              {% if addon.current_version and addon.latest_version != addon.current_version %}
+                {% set file_status = addon.latest_version.all_files[0].status %}
                 {# L10n: {0} is an app version string. {1} is a file status like 'approved'. #}
                 <p>
                   {# L10n: {0} is an app version string. {1} is a file status like 'approved'. #}
-                  {{ _('Version <b>{0}</b> of your app is <b>{1}</b>')|fe(webapp.latest_version.version, mkt.MKT_STATUS_FILE_CHOICES[file_status]) }}.
+                  {{ _('Version <b>{0}</b> of your app is <b>{1}</b>')|fe(addon.latest_version.version, mkt.MKT_STATUS_FILE_CHOICES[file_status]) }}.
                 </p>
-                {% if file_status == mkt.STATUS_PENDING %}{{ queue_position(webapp, 'p') }}{% endif %}
+                {% if file_status == mkt.STATUS_PENDING %}{{ queue_position(addon, 'p') }}{% endif %}
               {% endif %}
             {% endif %}
 
-            {% if webapp.status == mkt.STATUS_PENDING %}
+            {% if addon.status == mkt.STATUS_PENDING %}
               <p>{{ status(_('This app is <b>pending review</b> by a Firefox Marketplace reviewer.')) }}</p>
-              {{ queue_position(webapp, 'p') }}
+              {{ queue_position(addon, 'p') }}
               <p>{{ _('You will receive an email when the review is complete.') }}</p>
 
-            {% elif webapp.status == mkt.STATUS_PUBLIC and not webapp.is_packaged %}
+            {% elif addon.status == mkt.STATUS_PUBLIC and not addon.is_packaged %}
               <p>
                 {{ status(_('This app is <b>published</b>.')) }}
               </p>
 
-            {% elif webapp.status == mkt.STATUS_UNLISTED %}
-              {% if not webapp.is_packaged %}
+            {% elif addon.status == mkt.STATUS_UNLISTED %}
+              {% if not addon.is_packaged %}
                 {{ status(_('Your app has been <b>approved</b> and is currently <b>unlisted</b>.')) }}
               {% endif %}
               <p>
-                {% trans app_url=webapp.get_detail_url()|absolutify %}
+                {% trans app_url=addon.get_detail_url()|absolutify %}
                   Only those with the following URL can view and install this app:<br>
                   <a href="{{ app_url }}">{{ app_url }}</a>.
                 {% endtrans %}
               </p>
 
-            {% elif webapp.status == mkt.STATUS_APPROVED %}
-              {% if not webapp.is_packaged %}
+            {% elif addon.status == mkt.STATUS_APPROVED %}
+              {% if not addon.is_packaged %}
                 {{ status(_('Your app has been <b>approved</b> and is currently only visible to team members.')) }}
               {% endif %}
               <p>
-                {% trans app_url=webapp.get_detail_url()|absolutify %}
+                {% trans app_url=addon.get_detail_url()|absolutify %}
                   Only <b>team members</b> with the following URL can view and install this app:<br>
                   <a href="{{ app_url }}">{{ app_url }}</a>.
                 {% endtrans %}
@@ -123,13 +123,13 @@
 
             {% endif %}
 
-            {% if webapp.status not in mkt.WEBAPPS_APPROVED_STATUSES %}
+            {% if addon.status not in mkt.WEBAPPS_APPROVED_STATUSES %}
               <p><a href="https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Review"
                  target="_blank">{{ _('Learn about Review Criteria for apps') }}</a></p>
             {% endif %}
 
             {# If app is in an approved status, show the app visibility form. #}
-            {% if webapp.status in mkt.WEBAPPS_APPROVED_STATUSES %}
+            {% if addon.status in mkt.WEBAPPS_APPROVED_STATUSES %}
               <form method="post">
                 {{ form_field(publish_form.publish_type) }}
                 {{ form_field(publish_form.limited, cls='field-limited') }}
@@ -141,7 +141,7 @@
               </form>
             {% endif %}
 
-            {% if webapp.status == mkt.STATUS_REJECTED %}
+            {% if addon.status == mkt.STATUS_REJECTED %}
               {% if rejection %}
                 <div class="island swagger" id="rejection">
                   <h3>
@@ -157,7 +157,7 @@
                   </blockquote>
                 </div>
                 <p>
-                  {% if webapp.is_packaged %}
+                  {% if addon.is_packaged %}
                     {% trans resubmit_url='#upload-new-version' %}
                       Once you have addressed these concerns, you may <a href="{{ resubmit_url }}">resubmit your
                       app below</a>.
@@ -170,14 +170,14 @@
                   {% endif %}
                 </p>
               {% endif %}
-              {% if not webapp.is_packaged and webapp.is_rated() %}
+              {% if not addon.is_packaged and addon.is_rated() %}
                 <form method="post">
                   {{ csrf() }}
                   {{ form_field(appeal_form.notes, opt=True) }}
                   <p><button type="submit" name="resubmit-app">{{ _('Resubmit App') }}</button></p>
                 </form>
-              {% elif not webapp.is_rated() %}
-                {% trans ratings_url=webapp.get_dev_url('ratings') %}
+              {% elif not addon.is_rated() %}
+                {% trans ratings_url=addon.get_dev_url('ratings') %}
                   You must <a href="{{ ratings_url }}">obtain content ratings</a>
                   before resubmitting your app.
                 {% endtrans %}
@@ -188,8 +188,8 @@
       </div>
     </section>
 
-    {% if webapp.is_packaged %}
-      {% set versions = webapp.versions.all() %}
+    {% if addon.is_packaged %}
+      {% set versions = addon.versions.all() %}
       {% if versions %}
         <h2>{{ _('Packaged Versions') }}</h2>
 
@@ -206,14 +206,14 @@
               </thead>
               <tbody>
                 {% for version in versions %}
-                  <tr{% if version == webapp.current_version %} class="current"{% endif %}>
-                    <td><h4><a href="{{ webapp.get_dev_url('versions.edit', [version.pk]) }}">{{ version.version }}</a></h4></td>
+                  <tr{% if version == addon.current_version %} class="current"{% endif %}>
+                    <td><h4><a href="{{ addon.get_dev_url('versions.edit', [version.pk]) }}">{{ version.version }}</a></h4></td>
                     <td>
-                      {% if webapp.disabled_by_user %}
-                        <span class="{{ mkt_file_status_class(webapp, version) }}"><b>{{ _('Disabled') }}</b></span>
+                      {% if addon.disabled_by_user %}
+                        <span class="{{ mkt_file_status_class(addon, version) }}"><b>{{ _('Disabled') }}</b></span>
                       {% else %}
-                        <span class="{{ mkt_file_status_class(webapp, version) }}">
-                          {% if version == webapp.current_version %}
+                        <span class="{{ mkt_file_status_class(addon, version) }}">
+                          {% if version == addon.current_version %}
                             <b>{{ version.status|join(', ') }} | Active</b>
                           {% else %}
                             <b>{{ version.status|join(', ') }}</b>
@@ -227,7 +227,7 @@
                         <div class="buttons">
                           <a href="{{ version.all_files[0].get_url_path('') }}" class="download">{{ _('Download') }}</a>
                           {% if version.all_files[0].status == mkt.STATUS_APPROVED %}
-                            <form method="post" action="{{ webapp.get_dev_url('versions.publicise') }}">
+                            <form method="post" action="{{ addon.get_dev_url('versions.publicise') }}">
                               {{ csrf() }}
                               <input type="hidden" name="version_id" value="{{ version.id }}">
                               <button type="submit">{{ _('Make Active') }}</button>
@@ -256,14 +256,14 @@
               {% endtrans %}
             </p>
             <p>
-              {% trans ratings_url=webapp.get_dev_url('ratings') %}
+              {% trans ratings_url=addon.get_dev_url('ratings') %}
                 Remember to update the app's <a href="{{ ratings_url }}">content ratings</a>
                 if a large portion of the app's content has changed.
               {% endtrans %}
             </p>
             <div id="upload-file">
               <div class="hidden">{{ upload_form.upload }}</div>
-              <input type="file" id="upload-app" data-upload-url="{{ url('mkt.developers.upload_for_webapp', webapp.app_slug) }}">
+              <input type="file" id="upload-app" data-upload-url="{{ url('mkt.developers.upload_for_addon', addon.app_slug) }}">
               {% if upload_form.non_field_errors() or upload_form.upload.errors %}
                 <div class="post-validation-errors">
                   {{ upload_form.non_field_errors() }}
@@ -313,11 +313,11 @@
           </p>
         {% endif %}
 
-        {% if not has_tarako_region(webapp) %}
+        {% if not has_tarako_region(addon) %}
           <p>
             {{ _('Your app is not enabled in any regions with low-memory devices.') }}
             {{ _('You can update your regions on the <a href="{compatibility_page}">compatibility page</a>.')
-               |fe(compatibility_page=url('mkt.developers.apps.payments', webapp.app_slug) + '#regions-and-listings') }}
+               |fe(compatibility_page=url('mkt.developers.apps.payments', addon.app_slug) + '#regions-and-listings') }}
         {% endif %}
 
         {% set can_request_review = not (tarako_review and tarako_review.pending) %}
@@ -338,7 +338,7 @@
         {% elif can_request_review %}
           <div class="listing-footer">
             <form id="request-tarako" action="{{ url('additionalreviews') }}" method="post">
-              <input type="hidden" name="app" value="{{ webapp.pk }}">
+              <input type="hidden" name="app" value="{{ addon.pk }}">
               <input type="hidden" name="queue" value="{{ QUEUE_TARAKO }}">
               <span class="error"></span>
               <button class="only-child">
@@ -352,7 +352,7 @@
     {% if waffle.switch('preload-apps') %}
       <section id="preload">
         <h2>{{ _('Pre-Installed App Status') }}</h2>
-        <a class="help" href="{{ webapp.get_dev_url('preload_home') }}"></a>
+        <a class="help" href="{{ addon.get_dev_url('preload_home') }}"></a>
 
         <div class="version island c">
           <p>
@@ -374,11 +374,11 @@
           {% endif %}
           <p class="listing-footer">
             {% if test_plan %}
-              {%- trans lnk_url=webapp.get_dev_url('preload_' + next_step_suffix) %}
+              {%- trans lnk_url=addon.get_dev_url('preload_' + next_step_suffix) %}
                 <a href="{{ lnk_url }}">Update your test plan</a>
               {% endtrans -%}
             {% else %}
-              {%- trans lnk_url=webapp.get_dev_url('preload_' + next_step_suffix) %}
+              {%- trans lnk_url=addon.get_dev_url('preload_' + next_step_suffix) %}
                 <a href="{{ lnk_url }}">Learn how</a> to get your app pre-installed on Firefox OS devices
               {% endtrans -%}
             {% endif %}
@@ -387,8 +387,8 @@
       </section>
     {% endif %}
 
-    {% if check_webapp_ownership(request, webapp, dev=True) %}
-      {% set is_disabled = webapp.disabled_by_user and webapp.status != mkt.STATUS_DISABLED %}
+    {% if check_addon_ownership(request, addon, dev=True) %}
+      {% set is_disabled = addon.disabled_by_user and addon.status != mkt.STATUS_DISABLED %}
       <section>
         <h2>{{ _('List App') if is_disabled else _('Delist App') }}</h2>
         <div class="island c">
@@ -407,9 +407,9 @@
           </p>
           <p class="listing-footer">
             {% if is_disabled %}
-              <a href="{{ webapp.get_dev_url('enable') }}" class="button" id="enable-addon">
+              <a href="{{ addon.get_dev_url('enable') }}" class="button" id="enable-addon">
                 {{ _('List App') }}</a>
-            {% elif not webapp.is_disabled %}
+            {% elif not addon.is_disabled %}
               <a href="#" class="button" id="disable-addon">
                 {{ _('Delist App') }}</a>
             {% endif %}
@@ -418,7 +418,7 @@
       </section>
     {% endif %}
 
-    {% if check_webapp_ownership(request, webapp) and webapp.can_be_deleted() %}
+    {% if check_addon_ownership(request, addon) and addon.can_be_deleted() %}
       <h2>{{ _('Delete App') }}</h2>
 
       <section>
@@ -436,12 +436,12 @@
       </section>
     {% endif %}
 
-    {% if webapp.is_packaged and webapp.status == mkt.STATUS_PUBLIC and action_allowed('Apps', 'Configure') %}
+    {% if addon.is_packaged and addon.status == mkt.STATUS_PUBLIC and action_allowed('Apps', 'Configure') %}
       <h2>{{ _('Blocklist App') }}</h2>
 
       <section>
         <div class="island">
-          <form method="post" id="blocklist-app" action="{{ webapp.get_dev_url('blocklist') }}">
+          <form method="post" id="blocklist-app" action="{{ addon.get_dev_url('blocklist') }}">
             <p>
             {% trans %}
               Blocklisting an app will upgrade the users to a special version
@@ -461,15 +461,15 @@
   </section>
 
   <div id="modals">
-    {% if webapp.can_be_deleted() %}
+    {% if addon.can_be_deleted() %}
       <div id="modal-delete" class="modal modal-delete">
         {% include "developers/apps/listing/delete_form.html" %}
       </div>
     {% endif %}
 
-    {% if not webapp.disabled_by_user and not webapp.is_disabled %}
+    {% if not addon.disabled_by_user and not addon.is_disabled %}
       <div id="modal-disable" class="modal">
-        <form method="post" action="{{ webapp.get_dev_url('disable') }}">
+        <form method="post" action="{{ addon.get_dev_url('disable') }}">
           {{ csrf() }}
           <h3>{{ _('Delist App') }}</h3>
           <p>
@@ -483,9 +483,9 @@
       </div>
     {% endif %}
 
-    {% if webapp.is_packaged %}
+    {% if addon.is_packaged %}
       <div id="modal-delete-version" class="modal modal-delete" data-versions="{{ version_strings }}">
-        <form method="post" action="{{ webapp.get_dev_url('versions.delete') }}">
+        <form method="post" action="{{ addon.get_dev_url('versions.delete') }}">
           {{ csrf() }}
           <h3 data-tmpl="{{ _('Delete Version &quot;{version}&quot;') }}"></h3>
           <p id="last-version" class="hidden">{{ _('Deleting the only version will result in the following:') }}</p>
@@ -513,7 +513,7 @@
         </p>
         <p class="error"></p>
         <p class="listing-footer">
-          <button id="remove-tarako-tag" class="bad" data-action="{{ url('app-tags-detail', webapp.app_slug, QUEUE_TARAKO) }}">
+          <button id="remove-tarako-tag" class="bad" data-action="{{ url('app-tags-detail', addon.app_slug, QUEUE_TARAKO) }}">
             {{ _("Do not show my app on low-memory devices") }}
           </button>
           {{ _('or') }}

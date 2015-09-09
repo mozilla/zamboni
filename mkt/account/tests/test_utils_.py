@@ -22,56 +22,56 @@ class TestUtils(mkt.site.tests.TestCase):
 
     def test_user(self):
         self.user.installed_set.create(
-            webapp=self.app,
+            addon=self.app,
             install_type=apps.INSTALL_TYPE_USER)
         eq_(list(purchase_list(self.req, self.user).object_list), [self.app])
 
     def test_developer(self):
         self.user.installed_set.create(
-            webapp=self.app,
+            addon=self.app,
             install_type=apps.INSTALL_TYPE_DEVELOPER)
         eq_(list(purchase_list(self.req, self.user).object_list), [self.app])
 
     def test_reviewer(self):
         self.user.installed_set.create(
-            webapp=self.app,
+            addon=self.app,
             install_type=apps.INSTALL_TYPE_REVIEWER)
         eq_(list(purchase_list(self.req, self.user).object_list), [])
 
     def test_ordering(self):
         self.user.installed_set.create(
-            webapp=self.app,
+            addon=self.app,
             install_type=apps.INSTALL_TYPE_USER)
         app2 = app_factory()
         self.user.installed_set.create(
-            webapp=app2,
+            addon=app2,
             install_type=apps.INSTALL_TYPE_USER)
         eq_(list(purchase_list(self.req, self.user).object_list),
             [app2, self.app])
 
     def test_contribution_purchase(self):
         self.user.contribution_set.create(
-            webapp=self.app,
+            addon=self.app,
             type=mkt.CONTRIB_PURCHASE)
         eq_(list(purchase_list(self.req, self.user).object_list), [self.app])
 
     def test_contribution_refund(self):
         self.user.contribution_set.create(
-            webapp=self.app,
+            addon=self.app,
             type=mkt.CONTRIB_REFUND)
         eq_(list(purchase_list(self.req, self.user).object_list), [self.app])
 
     def test_contribution_chargeback(self):
         self.user.contribution_set.create(
-            webapp=self.app,
+            addon=self.app,
             type=mkt.CONTRIB_CHARGEBACK)
         eq_(list(purchase_list(self.req, self.user).object_list), [self.app])
 
     def test_contribution_installed_same_app(self):
         self.user.installed_set.create(
-            webapp=self.app,
+            addon=self.app,
             install_type=apps.INSTALL_TYPE_USER)
         self.user.contribution_set.create(
-            webapp=self.app,
+            addon=self.app,
             type=mkt.CONTRIB_PURCHASE)
         eq_(list(purchase_list(self.req, self.user).object_list), [self.app])

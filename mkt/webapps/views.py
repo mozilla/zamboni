@@ -23,7 +23,7 @@ from mkt.files.models import FileUpload
 from mkt.regions import get_region
 from mkt.submit.views import PreviewViewSet
 from mkt.tags.models import Tag
-from mkt.webapps.models import WebappUser, get_excluded_in, Webapp
+from mkt.webapps.models import AddonUser, get_excluded_in, Webapp
 from mkt.webapps.serializers import AppSerializer
 
 
@@ -97,7 +97,7 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
             obj = Webapp.from_upload(upload, is_packaged=is_packaged)
         except serializers.ValidationError as e:
             raise exceptions.ParseError(unicode(e))
-        WebappUser(webapp=obj, user=request.user).save()
+        AddonUser(addon=obj, user=request.user).save()
         tasks.fetch_icon.delay(obj.pk, obj.latest_version.all_files[0].pk)
         record_action('app-submitted', request, {'app-id': obj.pk})
 

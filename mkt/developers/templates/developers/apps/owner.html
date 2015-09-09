@@ -2,17 +2,17 @@
 
 {% set title = _('Team Members') %}
 {% block title %}
-  {{ hub_page_title(title, webapp) }}
+  {{ hub_page_title(title, addon) }}
 {% endblock %}
 
-{% set can_edit = check_webapp_ownership(request, webapp) %}
+{% set can_edit = check_addon_ownership(request, addon) %}
 {% block bodyclass %}
   {{ super() }}{% if not can_edit %} no-edit{% endif %}
 {% endblock %}
 
 {% block content %}
   <header>
-    {{ hub_breadcrumbs(webapp, items=[(None, title)]) }}
+    {{ hub_breadcrumbs(addon, items=[(None, title)]) }}
     <h1>{{ title }}</h1>
   </header>
 

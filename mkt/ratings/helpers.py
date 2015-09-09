@@ -26,7 +26,7 @@ def user_can_delete_review(request, review):
 
     """
     is_editor = acl.check_reviewer(request)
-    is_author = review.webapp.has_author(request.user)
+    is_author = review.addon.has_author(request.user)
     return (
         review.user_id == request.user.id or
         not is_author and (

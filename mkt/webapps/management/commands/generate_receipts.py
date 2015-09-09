@@ -16,7 +16,7 @@ class Command(BaseCommand):
     load testing. The receipts need to be generated because they use
     the receipt key for the particular server.
 
-    This will create users, webapps and installed records, so that the
+    This will create users, addons and installed records, so that the
     verify script can be load tested properly.
 
     These records are placed into a JSON file. Run the delete command
@@ -68,13 +68,13 @@ class Command(BaseCommand):
 
         for x in xrange(number):
             name = 'generate-receipt-%s-%s' % (stamp, x)
-            webapp = Webapp.objects.create(
-                name=name, manifest_url='http://a.com/m.webapp')
-            created['webapps'].append(webapp.pk)
+            addon = Webapp.objects.create(name=name,
+                                          manifest_url='http://a.com/m.webapp')
+            created['webapps'].append(addon.pk)
 
         for x in xrange(number):
             installed = Installed.objects.create(
-                webapp_id=created['webapps'][x],
+                addon_id=created['webapps'][x],
                 user_id=created['users'][x])
             created['installed'].append(installed.pk)
             filename = self.filename('%s.%s.receipt' %

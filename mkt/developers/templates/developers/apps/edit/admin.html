@@ -1,11 +1,11 @@
 {% from 'developers/includes/macros.html' import empty_unless, flags, some_html_tip, tip %}
-<form action="{{ webapp.get_dev_url('section', args=['admin', 'edit']) }}"
+<form action="{{ addon.get_dev_url('section', args=['admin', 'edit']) }}"
       enctype="multipart/form-data" method="post">
   {{ csrf() }}
   <h2>
     Admin Settings
     {% if not editable %}
-      <a href="#" data-editurl="{{ webapp.get_dev_url('section', args=['admin', 'edit']) }}" class="button">
+      <a href="#" data-editurl="{{ addon.get_dev_url('section', args=['admin', 'edit']) }}" class="button">
         {{ _('Edit') }}</a>
     {% endif %}
   </h2>
@@ -20,7 +20,7 @@
             </span>
           </th>
           <td>
-            {% set preview = webapp.get_promo() %}
+            {% set preview = addon.get_promo() %}
             {% if editable and form %}
               {{ form.non_field_errors() }}
               <div id="file-list" data-max="1">
@@ -55,7 +55,7 @@
                 <input type="file" name="uploads"
                        class="screenshot_upload edit-admin-promo"
                        data-allowed-types="image/jpeg|image/png"
-                       data-upload-url="{{ webapp.get_dev_url('upload_preview') }}">
+                       data-upload-url="{{ addon.get_dev_url('upload_preview') }}">
               </div>
             {% else %}
               {% call empty_unless(preview) %}
@@ -80,7 +80,7 @@
               {{ form.mozilla_contact }}
               {{ form.mozilla_contact.errors }}
             {% else %}
-              {{ webapp.mozilla_contact }}
+              {{ addon.mozilla_contact }}
             {% endif %}
           </td>
         </tr>
@@ -98,7 +98,7 @@
               {{ form.vip_app }}
               {{ form.vip_app.errors }}
             {% else %}
-              <input type="checkbox" disabled{{ ' checked' if webapp.vip_app }}>
+              <input type="checkbox" disabled{{ ' checked' if addon.vip_app }}>
             {% endif %}
           </td>
         </tr>
@@ -116,7 +116,7 @@
               {{ form.priority_review }}
               {{ form.priority_review.errors }}
             {% else %}
-              <input type="checkbox" disabled{{ ' checked' if webapp.priority_review }}>
+              <input type="checkbox" disabled{{ ' checked' if addon.priority_review }}>
             {% endif %}
           </td>
         </tr>
@@ -134,7 +134,7 @@
                 {{ form.banner_message.errors }}
               {% else %}
                 <em id="id_banner_message">
-                  {{ webapp.geodata|all_locales('banner_message', nl2br=True, prettify_empty=True) }}
+                  {{ addon.geodata|all_locales('banner_message', nl2br=True, prettify_empty=True) }}
                 </em>
                 <br />
               {% endif %}
@@ -158,7 +158,7 @@
                 </div>
               {% else %}
                 <span id="id_banner_regions">
-                  {{ webapp.geodata.banner_regions_names()|join(', ') }}
+                  {{ addon.geodata.banner_regions_names()|join(', ') }}
                 </span>
               {% endif %}
           </td>
@@ -168,7 +168,7 @@
     {% if editable %}
       <div class="edit-media-button listing-footer">
         <button>{{ _('Save Changes') }}</button> {{ _('or') }}
-        <a href="{{ webapp.get_dev_url('section', ['admin']) }}"
+        <a href="{{ addon.get_dev_url('section', ['admin']) }}"
            class="addon-edit-cancel">{{ _('Cancel') }}</a>
       </div>
     {% endif %}

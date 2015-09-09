@@ -53,7 +53,7 @@ def reviewers_breadcrumbs(context, queue=None, items=None):
         if items:
             url = reverse('reviewers.apps.queue_%s' % queue)
         else:
-            # The Webapp is the end of the trail.
+            # The Addon is the end of the trail.
             url = None
         crumbs.append((url, queues[queue]))
 
@@ -186,7 +186,7 @@ def file_compare(file_obj, version):
 
 
 @register.function
-def file_review_status(webapp, file):
+def file_review_status(addon, file):
     if file.status in [mkt.STATUS_DISABLED, mkt.STATUS_REJECTED]:
         if file.reviewed is not None:
             return _(u'Rejected')
@@ -198,7 +198,7 @@ def file_review_status(webapp, file):
 
 
 @register.function
-def version_status(webapp, version):
+def version_status(addon, version):
     return ','.join(unicode(s) for s in version.status)
 
 
@@ -230,7 +230,7 @@ def get_avg_app_waiting_time():
     cursor = connection.cursor()
     cursor.execute('''
         SELECT AVG(DATEDIFF(reviewed, nomination)) FROM versions
-        RIGHT JOIN webapps ON versions.webapp_id = webapps.id
+        RIGHT JOIN addons ON versions.addon_id = addons.id
         WHERE status = %s AND reviewed >= DATE_SUB(NOW(), INTERVAL 30 DAY)
     ''', (mkt.STATUS_PUBLIC, ))
     row = cursor.fetchone()
@@ -244,25 +244,25 @@ def get_avg_app_waiting_time():
 
 
 @register.function
-def get_position(webapp):
-    excluded_ids = EscalationQueue.objects.values_list('webapp', flat=True)
+def get_position(addon):
+    excluded_ids = EscalationQueue.objects.values_list('addon', flat=True)
     # Look at all regular versions of webapps which have pending files.
     # This includes both new apps and updates to existing apps, to combine
     # both the regular and updates queue in one big list (In theory, it
     # should take the same time for reviewers to process an app in either
     # queue). Escalated apps are excluded just like in reviewer tools.
-    qs = (Version.objects.filter(webapp__disabled_by_user=False,
+    qs = (Version.objects.filter(addon__disabled_by_user=False,
                                  files__status=mkt.STATUS_PENDING,
                                  deleted=False)
-          .exclude(webapp__status__in=(mkt.STATUS_DISABLED,
-                                       mkt.STATUS_DELETED, mkt.STATUS_NULL))
-          .exclude(webapp__id__in=excluded_ids)
-          .order_by('nomination', 'created').select_related('webapp')
-          .no_transforms().values_list('webapp_id', 'nomination'))
+          .exclude(addon__status__in=(mkt.STATUS_DISABLED,
+                                      mkt.STATUS_DELETED, mkt.STATUS_NULL))
+          .exclude(addon__id__in=excluded_ids)
+          .order_by('nomination', 'created').select_related('addon')
+          .no_transforms().values_list('addon_id', 'nomination'))
     position = 0
     nomination_date = None
-    for idx, (webapp_id, nomination) in enumerate(qs, start=1):
-        if webapp_id == webapp.id:
+    for idx, (addon_id, nomination) in enumerate(qs, start=1):
+        if addon_id == addon.id:
             position = idx
             nomination_date = nomination
             break

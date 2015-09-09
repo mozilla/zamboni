@@ -23,7 +23,7 @@ from mkt.site.utils import app_factory, make_rated, version_factory
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
-from mkt.webapps.models import WebappUser, Webapp
+from mkt.webapps.models import AddonUser, Webapp
 
 
 class TestVersion(mkt.site.tests.TestCase):
@@ -114,7 +114,7 @@ class TestVersion(mkt.site.tests.TestCase):
             'Files for reapplied apps should get marked as pending')
         action = mkt.LOG.WEBAPP_RESUBMIT
         assert AppLog.objects.filter(
-            webapp=webapp, activity_log__action=action.id).exists(), (
+            addon=webapp, activity_log__action=action.id).exists(), (
                 "Didn't find `%s` action in logs." % action.short)
 
     def test_no_ratings_no_resubmit(self):
@@ -168,7 +168,7 @@ class BaseAddVersionTest(BasePackagedAppTest):
                                version_kw=dict(version='1.0'))
         self.url = self.app.get_dev_url('versions')
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        WebappUser.objects.create(user=self.user, webapp=self.app)
+        AddonUser.objects.create(user=self.user, addon=self.app)
 
     def _post(self, expected_status=200):
         res = self.client.post(self.url, {'upload': self.upload.pk,
@@ -209,7 +209,7 @@ class TestAddVersion(BaseAddVersionTest):
     def test_pending_on_new_version(self):
         # Test app rejection, then new version, updates app status to pending.
         self.app.update(status=mkt.STATUS_REJECTED)
-        files = File.objects.filter(version__webapp=self.app)
+        files = File.objects.filter(version__addon=self.app)
         files.update(status=mkt.STATUS_DISABLED)
         self._post(302)
         self.app.reload()
@@ -237,7 +237,7 @@ class TestAddVersion(BaseAddVersionTest):
         # Test app blocked, then new version, doesn't update app status, and
         # app shows up in escalation queue.
         self.app.update(status=mkt.STATUS_BLOCKED)
-        files = File.objects.filter(version__webapp=self.app)
+        files = File.objects.filter(version__addon=self.app)
         files.update(status=mkt.STATUS_DISABLED)
         self._post(302)
         version = self.app.versions.latest()
@@ -245,12 +245,12 @@ class TestAddVersion(BaseAddVersionTest):
         eq_(version.all_files[0].status, mkt.STATUS_PENDING)
         self.app.update_status()
         eq_(self.app.status, mkt.STATUS_BLOCKED)
-        assert EscalationQueue.objects.filter(webapp=self.app).exists(), (
+        assert EscalationQueue.objects.filter(addon=self.app).exists(), (
             'App not in escalation queue')
 
     def test_new_version_when_incomplete(self):
         self.app.update(status=mkt.STATUS_NULL)
-        files = File.objects.filter(version__webapp=self.app)
+        files = File.objects.filter(version__addon=self.app)
         files.update(status=mkt.STATUS_DISABLED)
         self._post(302)
         self.app.reload()
@@ -263,7 +263,7 @@ class TestAddVersion(BaseAddVersionTest):
         self.app.update(vip_app=True)
         self._post(302)
 
-        assert EscalationQueue.objects.filter(webapp=self.app).exists(), (
+        assert EscalationQueue.objects.filter(addon=self.app).exists(), (
             'VIP App not in escalation queue')
 
 
@@ -278,7 +278,7 @@ class TestAddVersionPrereleasePermissions(BaseAddVersionTest):
         user_factory(email=settings.NOBODY_EMAIL_ADDRESS)
         self.app.current_version.update(version='0.9',
                                         created=self.days_ago(1))
-        ok_(not EscalationQueue.objects.filter(webapp=self.app).exists(),
+        ok_(not EscalationQueue.objects.filter(addon=self.app).exists(),
             'App in escalation queue')
         self._post(302)
         version = self.app.versions.latest()
@@ -286,7 +286,7 @@ class TestAddVersionPrereleasePermissions(BaseAddVersionTest):
         eq_(version.all_files[0].status, mkt.STATUS_PENDING)
         self.app.update_status()
         eq_(self.app.status, mkt.STATUS_PUBLIC)
-        ok_(EscalationQueue.objects.filter(webapp=self.app).exists(),
+        ok_(EscalationQueue.objects.filter(addon=self.app).exists(),
             'App not in escalation queue')
 
 
@@ -300,7 +300,7 @@ class TestAddVersionNoPermissions(BaseAddVersionTest):
         """Test that apps that do not use permissions are not escalated."""
         self.app.current_version.update(version='0.9',
                                         created=self.days_ago(1))
-        ok_(not EscalationQueue.objects.filter(webapp=self.app).exists(),
+        ok_(not EscalationQueue.objects.filter(addon=self.app).exists(),
             'App in escalation queue')
         self._post(302)
         version = self.app.versions.latest()
@@ -308,7 +308,7 @@ class TestAddVersionNoPermissions(BaseAddVersionTest):
         eq_(version.all_files[0].status, mkt.STATUS_PENDING)
         self.app.update_status()
         eq_(self.app.status, mkt.STATUS_PUBLIC)
-        ok_(not EscalationQueue.objects.filter(webapp=self.app).exists(),
+        ok_(not EscalationQueue.objects.filter(addon=self.app).exists(),
             'App in escalation queue')
 
 
@@ -324,8 +324,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         make_rated(self.app)
         if not self.app.categories:
             self.app.update(categories=['utilities'])
-        self.app.webappdevicetype_set.create(
-            device_type=DEVICE_TYPES.keys()[0])
+        self.app.addondevicetype_set.create(device_type=DEVICE_TYPES.keys()[0])
         self.app.previews.create()
 
         self.url = self.app.get_dev_url('versions')
@@ -342,7 +341,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
 
     def test_version_list_packaged(self):
         self.app.update(is_packaged=True)
-        version_factory(webapp=self.app, version='2.0',
+        version_factory(addon=self.app, version='2.0',
                         file_kw=dict(status=mkt.STATUS_PENDING))
         self.app = self.get_app()
         doc = pq(self.client.get(self.url).content)
@@ -399,7 +398,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         ver1 = self.app.latest_version
         ver1.all_files[0].update(status=mkt.STATUS_APPROVED)
         ver2 = version_factory(
-            webapp=self.app, version='2.0',
+            addon=self.app, version='2.0',
             file_kw=dict(status=mkt.STATUS_PUBLIC))
 
         self.client.post(self.delete_url, {'version_id': ver2.pk})
@@ -417,7 +416,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         eq_(self.app.status, mkt.STATUS_PUBLIC)
         ver1 = self.app.latest_version
         ver2 = version_factory(
-            webapp=self.app, version='2.0',
+            addon=self.app, version='2.0',
             file_kw=dict(status=mkt.STATUS_PUBLIC))
         eq_(self.app.latest_version, ver2)
         eq_(self.app.current_version, ver2)
@@ -441,7 +440,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         self.app.update(status=mkt.STATUS_UNLISTED)
         ver1 = self.app.latest_version
         ver2 = version_factory(
-            webapp=self.app, version='2.0',
+            addon=self.app, version='2.0',
             file_kw=dict(status=mkt.STATUS_PUBLIC))
         eq_(self.app.latest_version, ver2)
         eq_(self.app.current_version, ver2)
@@ -472,7 +471,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         self.app.update(status=mkt.STATUS_APPROVED)
         ver1 = self.app.latest_version
         ver2 = version_factory(
-            webapp=self.app, version='2.0',
+            addon=self.app, version='2.0',
             file_kw=dict(status=mkt.STATUS_PUBLIC))
         eq_(self.app.latest_version, ver2)
         eq_(self.app.current_version, ver2)
@@ -521,12 +520,12 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
     @mock.patch.object(Version, 'delete')
     def test_roles_and_delete(self, mock_version):
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        webapp_user = WebappUser.objects.create(user=user, webapp=self.app)
+        addon_user = AddonUser.objects.create(user=user, addon=self.app)
         allowed = [mkt.AUTHOR_ROLE_OWNER, mkt.AUTHOR_ROLE_DEV]
         for role in [r[0] for r in mkt.AUTHOR_CHOICES]:
             self.client.logout()
-            webapp_user.role = role
-            webapp_user.save()
+            addon_user.role = role
+            addon_user.save()
             self.login('regular@mozilla.com')
             version = self.app.versions.latest()
             res = self.client.post(self.delete_url,
@@ -622,7 +621,7 @@ class TestPreloadSubmit(mkt.site.tests.TestCase):
 
     def _assert_submit(self, endswith, content_type, save_mock):
         test_plan = PreloadTestPlan.objects.get()
-        eq_(test_plan.webapp, self.webapp)
+        eq_(test_plan.addon, self.webapp)
         assert test_plan.filename.startswith('test_plan_')
         assert test_plan.filename.endswith(endswith)
         self.assertCloseToNow(test_plan.last_submission)

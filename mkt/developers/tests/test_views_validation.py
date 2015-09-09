@@ -149,7 +149,7 @@ class TestTrapDuplicate(BaseWebAppTest):
         assert not trap_duplicate_mock.called
 
     def test_trap_duplicate(self):
-        self.post_webapp()
+        self.post_addon()
         standalone_hosted_upload(self.req)
         assert trap_duplicate(self.req, 'http://allizom.org/mozball.webapp')
 
@@ -205,7 +205,7 @@ class TestStandaloneValidation(BaseUploadTest):
     def test_hosted_detail(self, fetch_manifest):
         def update_upload(url, upload):
             with open(os.path.join(os.path.dirname(__file__),
-                                   'webapps', 'mozball.webapp'), 'r') as data:
+                                   'addons', 'mozball.webapp'), 'r') as data:
                 return data.read()
 
         fetch_manifest.side_effect = update_upload

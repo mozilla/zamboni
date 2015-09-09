@@ -26,31 +26,31 @@ STATS = {
     'apps_ratings': {
         'qs': Review.objects
         .filter(editorreview=0)
-        .values('webapp')
-        .annotate(count=Count('webapp')),
+        .values('addon')
+        .annotate(count=Count('addon')),
         'type': 'slice',
         'field_map': {
             'count': 'count',
-            'app-id': 'webapp'},
+            'app-id': 'addon'},
     },
     'apps_average_rating': {
         'qs': Review.objects
         .filter(editorreview=0)
-        .values('webapp')
+        .values('addon')
         .annotate(avg=Avg('rating')),
         'type': 'total',
         'field_map': {
             'count': 'avg',
-            'app-id': 'webapp'},
+            'app-id': 'addon'},
     },
     'apps_abuse_reports': {
         'qs': AbuseReport.objects
-        .values('webapp')
-        .annotate(count=Count('webapp')),
+        .values('addon')
+        .annotate(count=Count('addon')),
         'type': 'slice',
         'field_map': {
             'count': 'count',
-            'app-id': 'webapp'},
+            'app-id': 'addon'},
     }
 }
 

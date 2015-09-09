@@ -18,7 +18,7 @@
   <h1>{{ page_title }}</h1>
 
   <section id="queue-island" class="island search-toggle">
-    {% if webapps %}
+    {% if addons %}
       {{ additional_review_table(
             table_class="regional-queue",
             app_detail_src="queue-region-{slug}".format(slug=region.slug)) }}

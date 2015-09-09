@@ -17,7 +17,7 @@ from mkt.constants.applications import DEVICE_TYPES
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.constants.features import FeatureProfile
 from mkt.constants.payments import PROVIDER_BANGO
-from mkt.prices.models import WebappPremium, Price
+from mkt.prices.models import AddonPremium, Price
 from mkt.search.serializers import BaseESSerializer, es_to_datetime
 from mkt.site.helpers import absolutify
 from mkt.submit.forms import mark_for_rereview
@@ -25,7 +25,7 @@ from mkt.submit.serializers import PreviewSerializer, SimplePreviewSerializer
 from mkt.tags.models import attach_tags
 from mkt.translations.utils import no_translation
 from mkt.versions.models import Version
-from mkt.webapps.models import (WebappUpsell, AppFeatures, Geodata, Preview,
+from mkt.webapps.models import (AddonUpsell, AppFeatures, Geodata, Preview,
                                 Webapp)
 from mkt.webapps.utils import dehydrate_content_rating
 
@@ -62,7 +62,7 @@ class RegionSerializer(serializers.Serializer):
 
 class AppSerializer(serializers.ModelSerializer):
     app_type = serializers.ChoiceField(
-        choices=mkt.WEBAPP_TYPES_LOOKUP.items(), read_only=True)
+        choices=mkt.ADDON_WEBAPP_TYPES_LOOKUP.items(), read_only=True)
     author = serializers.CharField(source='developer_name', read_only=True)
     banner_message = TranslationSerializerField(
         read_only=True,
@@ -95,7 +95,7 @@ class AppSerializer(serializers.ModelSerializer):
     payment_required = serializers.SerializerMethodField(
         'get_payment_required')
     premium_type = ReverseChoiceField(
-        choices_dict=mkt.WEBAPP_PREMIUM_API, required=False)
+        choices_dict=mkt.ADDON_PREMIUM_API, required=False)
     previews = PreviewSerializer(many=True, required=False,
                                  source='all_previews')
     price = SemiSerializerMethodField('get_price')
@@ -250,7 +250,7 @@ class AppSerializer(serializers.ModelSerializer):
         if request and request.user.is_authenticated():
             user = request.user
             return {
-                'developed': app.webappuser_set.filter(
+                'developed': app.addonuser_set.filter(
                     user=user, role=mkt.AUTHOR_ROLE_OWNER).exists(),
                 'installed': app.has_installed(user),
                 'purchased': app.pk in user.purchase_ids(),
@@ -292,9 +292,9 @@ class AppSerializer(serializers.ModelSerializer):
         removed_devices = set(old_types) - set(new_types)
 
         for d in added_devices:
-            obj.webappdevicetype_set.create(device_type=d)
+            obj.addondevicetype_set.create(device_type=d)
         for d in removed_devices:
-            obj.webappdevicetype_set.filter(device_type=d).delete()
+            obj.addondevicetype_set.filter(device_type=d).delete()
 
         # Send app to re-review queue if public and new devices are added.
         if added_devices and obj.status in mkt.WEBAPPS_APPROVED_STATUSES:
@@ -305,7 +305,7 @@ class AppSerializer(serializers.ModelSerializer):
         if upsold and upsold != obj.upsold.free:
             if not current_upsell:
                 log.debug('[1@%s] Creating app upsell' % obj.pk)
-                current_upsell = WebappUpsell(premium=obj)
+                current_upsell = AddonUpsell(premium=obj)
             current_upsell.free = upsold
             current_upsell.save()
 
@@ -317,8 +317,8 @@ class AppSerializer(serializers.ModelSerializer):
     def save_price(self, obj, price):
         premium = obj.premium
         if not premium:
-            premium = WebappPremium()
-            premium.webapp = obj
+            premium = AddonPremium()
+            premium.addon = obj
         premium.price = Price.objects.active().get(price=price)
         premium.save()
 
@@ -332,8 +332,8 @@ class AppSerializer(serializers.ModelSerializer):
         return attrs
 
     def validate_price(self, attrs, source):
-        if attrs.get('premium_type', None) not in (mkt.WEBAPP_FREE,
-                                                   mkt.WEBAPP_FREE_INAPP):
+        if attrs.get('premium_type', None) not in (mkt.ADDON_FREE,
+                                                   mkt.ADDON_FREE_INAPP):
             valid_prices = Price.objects.exclude(
                 price='0.00').values_list('price', flat=True)
             price = attrs.get('price')
@@ -401,8 +401,8 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
 
     def fake_object(self, data):
         """Create a fake instance of Webapp and related models from ES data."""
-        is_packaged = data['app_type'] != mkt.WEBAPP_HOSTED
-        is_privileged = data['app_type'] == mkt.WEBAPP_PRIVILEGED
+        is_packaged = data['app_type'] != mkt.ADDON_WEBAPP_HOSTED
+        is_privileged = data['app_type'] == mkt.ADDON_WEBAPP_PRIVILEGED
 
         obj = Webapp(id=data['id'], app_slug=data['app_slug'],
                      is_packaged=is_packaged, icon_type='image/png')
@@ -414,7 +414,7 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
         # it's used by obj.app_type_id.
         obj.listed_authors = []
         obj._current_version = Version()
-        obj._current_version.webapp = obj
+        obj._current_version.addon = obj
         obj._current_version._developer_name = data['author']
         obj._current_version.supported_locales = data['supported_locales']
         obj._current_version.version = data['current_version']

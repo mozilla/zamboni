@@ -33,7 +33,7 @@ def send_mail_comm(note):
     Given a note (its actions and permissions), recipients are determined and
     emails are sent to appropriate people.
     """
-    log.info(u'Sending emails for %s' % note.thread.webapp)
+    log.info(u'Sending emails for %s' % note.thread.addon)
 
     if note.note_type in comm.EMAIL_SENIOR_REVIEWERS_AND_DEV:
         # Email senior reviewers (such as for escalations).
@@ -51,7 +51,7 @@ def send_mail_comm(note):
         # Also send mail to the fallback emailing list.
         if note.note_type == comm.DEVELOPER_COMMENT:
             subject = '%s: %s' % (unicode(comm.NOTE_TYPES[note.note_type]),
-                                  note.thread.webapp.name)
+                                  note.thread.addon.name)
             mail_template = comm.COMM_MAIL_MAP.get(note.note_type, 'generic')
             send_mail_jinja(subject, 'comm/emails/%s.html' % mail_template,
                             get_mail_context(note),
@@ -101,7 +101,7 @@ def email_recipients(recipients, note, template=None, extra_context=None):
     template -- override which template we use.
     """
     subject = '%s: %s' % (unicode(comm.NOTE_TYPES[note.note_type]),
-                          note.thread.webapp.name)
+                          note.thread.addon.name)
 
     for email, tok in tokenize_recipients(recipients, note.thread):
         headers = {}
@@ -126,11 +126,11 @@ def get_mail_context(note):
     """
     Get context data for comm emails, specifically for review action emails.
     """
-    app = note.thread.webapp
+    app = note.thread.addon
 
     if app.name and app.name.locale != app.default_locale:
         # We need to display the name in some language that is relevant to the
-        # recipient(s) instead of using the reviewer's. webapp.default_locale
+        # recipient(s) instead of using the reviewer's. addon.default_locale
         # should work.
         lang = to_language(app.default_locale)
         with translation.override(lang):
@@ -248,12 +248,12 @@ def save_from_email_reply(reply_text):
     if user_has_perm_thread(tok.thread, tok.user) and tok.is_valid():
         # Deduce an appropriate note type.
         note_type = comm.NO_ACTION
-        if (tok.user.webappuser_set.filter(webapp=tok.thread.webapp).exists()):
+        if (tok.user.addonuser_set.filter(addon=tok.thread.addon).exists()):
             note_type = comm.DEVELOPER_COMMENT
         elif acl.action_allowed_user(tok.user, 'Apps', 'Review'):
             note_type = comm.REVIEWER_COMMENT
 
-        t, note = create_comm_note(tok.thread.webapp, tok.thread.version,
+        t, note = create_comm_note(tok.thread.addon, tok.thread.version,
                                    tok.user, parser.get_body(),
                                    note_type=note_type)
         log.info('A new note has been created (from %s using tokenid %s).'
@@ -286,7 +286,7 @@ def get_reply_token(thread, user_id):
 
 
 def get_developers(note):
-    return list(note.thread.webapp.authors.values_list('id', 'email'))
+    return list(note.thread.addon.authors.values_list('id', 'email'))
 
 
 def get_senior_reviewers():

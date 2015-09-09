@@ -34,30 +34,30 @@ class BaseReviewFlagFormSet(BaseModelFormSet):
                         flag.delete()
 
                 review = form.instance
-                webapp = review.webapp
+                addon = review.addon
                 if action == REVIEW_MODERATE_DELETE:
                     review.delete()
-                    mkt.log(mkt.LOG.DELETE_REVIEW, webapp, review,
+                    mkt.log(mkt.LOG.DELETE_REVIEW, addon, review,
                             details=dict(title=unicode(review.title),
                                          body=unicode(review.body),
-                                         webapp_id=webapp.id,
-                                         webapp_title=unicode(webapp.name),
+                                         addon_id=addon.id,
+                                         addon_title=unicode(addon.name),
                                          is_flagged=is_flagged))
                     if self.request:
                         ReviewerScore.award_moderation_points(
-                            self.request.user, webapp, review.id)
+                            self.request.user, addon, review.id)
                 elif action == REVIEW_MODERATE_KEEP:
                     review.editorreview = False
                     review.save()
-                    mkt.log(mkt.LOG.APPROVE_REVIEW, webapp, review,
+                    mkt.log(mkt.LOG.APPROVE_REVIEW, addon, review,
                             details=dict(title=unicode(review.title),
                                          body=unicode(review.body),
-                                         webapp_id=webapp.id,
-                                         webapp_title=unicode(webapp.name),
+                                         addon_id=addon.id,
+                                         addon_title=unicode(addon.name),
                                          is_flagged=is_flagged))
                     if self.request:
                         ReviewerScore.award_moderation_points(
-                            self.request.user, webapp, review.id)
+                            self.request.user, addon, review.id)
 
 
 class ModerateReviewFlagForm(happyforms.ModelForm):

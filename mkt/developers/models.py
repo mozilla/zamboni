@@ -88,8 +88,7 @@ class PaymentAccount(ModelBase):
         will be set to STATUS_NULL.
 
         """
-        account_refs = WebappPaymentAccount.objects.filter(
-            account_uri=self.uri)
+        account_refs = AddonPaymentAccount.objects.filter(account_uri=self.uri)
         if self.shared and account_refs:
             # With sharing a payment account comes great responsibility. It
             # would be really mean to create a payment account, share it
@@ -111,14 +110,14 @@ class PaymentAccount(ModelBase):
 
         for acc_ref in account_refs:
             if (disable_refs and
-                    not acc_ref.webapp.has_multiple_payment_accounts()):
+                    not acc_ref.addon.has_multiple_payment_accounts()):
                 log.info('Changing app status to NULL for app: {0}'
                          'because of payment account deletion'.format(
-                             acc_ref.webapp_id))
+                             acc_ref.addon_id))
 
-                acc_ref.webapp.update(status=mkt.STATUS_NULL)
-            log.info('Deleting WebappPaymentAccount for app: {0} because of '
-                     'payment account deletion'.format(acc_ref.webapp_id))
+                acc_ref.addon.update(status=mkt.STATUS_NULL)
+            log.info('Deleting AddonPaymentAccount for app: {0} because of '
+                     'payment account deletion'.format(acc_ref.addon_id))
             acc_ref.delete()
 
     def get_provider(self):
@@ -139,15 +138,15 @@ class PaymentAccount(ModelBase):
         return reverse('mkt.developers.provider.agreement', args=[self.pk])
 
 
-class WebappPaymentAccount(ModelBase):
-    webapp = models.ForeignKey(
+class AddonPaymentAccount(ModelBase):
+    addon = models.ForeignKey(
         'webapps.Webapp', related_name='app_payment_accounts')
     payment_account = models.ForeignKey(PaymentAccount)
     account_uri = models.CharField(max_length=255)
     product_uri = models.CharField(max_length=255, unique=True)
 
     class Meta:
-        db_table = 'webapp_payment_account'
+        db_table = 'addon_payment_account'
 
     @property
     def user(self):
@@ -195,7 +194,7 @@ class UserInappKey(ModelBase):
 
 
 class PreloadTestPlan(ModelBase):
-    webapp = models.ForeignKey('webapps.Webapp')
+    addon = models.ForeignKey('webapps.Webapp')
     last_submission = models.DateTimeField(auto_now_add=True)
     filename = models.CharField(max_length=60)
     status = models.PositiveSmallIntegerField(default=mkt.STATUS_PUBLIC)
@@ -209,20 +208,20 @@ class PreloadTestPlan(ModelBase):
         if storage_is_remote():
             return private_storage.url(self.preload_test_plan_path)
         else:
-            host = (settings.PRIVATE_MIRROR_URL if self.webapp.is_disabled
+            host = (settings.PRIVATE_MIRROR_URL if self.addon.is_disabled
                     else settings.LOCAL_MIRROR_URL)
-            return os.path.join(host, str(self.webapp.id), self.filename)
+            return os.path.join(host, str(self.addon.id), self.filename)
 
     @property
     def preload_test_plan_path(self):
-        return os.path.join(settings.WEBAPPS_PATH, str(self.webapp_id),
+        return os.path.join(settings.ADDONS_PATH, str(self.addon_id),
                             self.filename)
 
 
 # When an app is deleted we need to remove the preload test plan.
 def preload_cleanup(*args, **kwargs):
     instance = kwargs.get('instance')
-    PreloadTestPlan.objects.filter(webapp=instance).delete()
+    PreloadTestPlan.objects.filter(addon=instance).delete()
 
 
 models.signals.post_delete.connect(preload_cleanup, sender=Webapp,
@@ -233,7 +232,7 @@ class AppLog(ModelBase):
     """
     This table is for indexing the activity log by app.
     """
-    webapp = models.ForeignKey('webapps.Webapp', db_constraint=False)
+    addon = models.ForeignKey('webapps.Webapp', db_constraint=False)
     activity_log = models.ForeignKey('ActivityLog')
 
     class Meta:
@@ -293,7 +292,7 @@ class GroupLog(ModelBase):
 class ActivityLogManager(ManagerBase):
 
     def for_apps(self, apps):
-        vals = (AppLog.objects.filter(webapp__in=apps)
+        vals = (AppLog.objects.filter(addon__in=apps)
                 .values_list('activity_log', flat=True))
 
         if vals:
@@ -402,11 +401,10 @@ class ActivityLog(ModelBase):
 
         try:
             # d is a structure:
-            # ``d = [{'webapps.webapp':12}, {'webapps.webapp':1}, ... ]``
+            # ``d = [{'addons.addon':12}, {'addons.addon':1}, ... ]``
             d = json.loads(self._arguments)
         except:
-            log.debug('unserializing data from webapp_log failed: %s' %
-                      self.id)
+            log.debug('unserializing data from addon_log failed: %s' % self.id)
             return None
 
         objs = []
@@ -446,7 +444,7 @@ class ActivityLog(ModelBase):
             elif isinstance(arg, (int, long)):
                 serialize_me.append({'int': arg})
             elif isinstance(arg, tuple):
-                # Instead of passing an webapp instance you can pass a tuple:
+                # Instead of passing an addon instance you can pass a tuple:
                 # (Webapp, 3) for Webapp with pk=3
                 serialize_me.append(dict(((unicode(arg[0]._meta), arg[1]),)))
             elif arg is not None:
@@ -477,7 +475,7 @@ class ActivityLog(ModelBase):
         # We need to copy arguments so we can remove elements from it
         # while we loop over self.arguments.
         arguments = copy(self.arguments)
-        webapp = None
+        addon = None
         review = None
         version = None
         collection = None
@@ -486,9 +484,9 @@ class ActivityLog(ModelBase):
         website = None
 
         for arg in self.arguments:
-            if isinstance(arg, Webapp) and not webapp:
-                webapp = self.f(u'<a href="{0}">{1}</a>',
-                                arg.get_url_path(), arg.name)
+            if isinstance(arg, Webapp) and not addon:
+                addon = self.f(u'<a href="{0}">{1}</a>',
+                               arg.get_url_path(), arg.name)
                 arguments.remove(arg)
             if isinstance(arg, Review) and not review:
                 review = self.f(u'<a href="{0}">{1}</a>',
@@ -513,8 +511,8 @@ class ActivityLog(ModelBase):
                 arguments.remove(arg)
 
         try:
-            kw = dict(webapp=webapp, review=review, version=version,
-                      group=group, collection=collection, tag=tag,
+            kw = dict(addon=addon, review=review, version=version, group=group,
+                      collection=collection, tag=tag,
                       user=self.user.display_name)
             return self.f(format, *arguments, **kw)
         except (AttributeError, KeyError, IndexError):

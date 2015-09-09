@@ -22,7 +22,7 @@ class Command(BaseCommand):
         region = parse_region(region_slug)
 
         for app in Webapp.objects.all():
-            aer, created = app.webappexcludedregion.get_or_create(
+            aer, created = app.addonexcludedregion.get_or_create(
                 region=region.id)
             if created:
                 log.info('[App %s - %s] Excluded in region %r'

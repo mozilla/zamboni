@@ -13,7 +13,7 @@ from mozpay.verify import verify_claims, verify_keys
 from nose.tools import eq_, ok_, raises
 
 from mkt.constants.payments import PROVIDER_REFERENCE
-from mkt.developers.models import WebappPaymentAccount, PaymentAccount
+from mkt.developers.models import AddonPaymentAccount, PaymentAccount
 from mkt.purchase.models import Contribution
 from mkt.purchase.tests.utils import InAppPurchaseTest, PurchaseTest
 from mkt.site.helpers import absolutify
@@ -25,10 +25,10 @@ class TestPurchaseJWT(PurchaseTest):
 
     def setUp(self):
         super(TestPurchaseJWT, self).setUp()
-        self.product = WebAppProduct(self.webapp)
+        self.product = WebAppProduct(self.addon)
         self.contribution = Contribution.objects.create(
             user=self.user,
-            webapp=self.webapp,
+            addon=self.addon,
         )
 
     def decode_token(self):
@@ -76,7 +76,7 @@ class TestPurchaseJWT(PurchaseTest):
 
     @raises(ValueError)
     def test_empty_public_id(self):
-        self.webapp.update(solitude_public_id=None)
+        self.addon.update(solitude_public_id=None)
         self.decode_token()
 
     def test_no_user(self):
@@ -103,10 +103,10 @@ class TestPurchaseJWT(PurchaseTest):
 class BaseTestWebAppProduct(PurchaseTest):
     def setUp(self):
         super(BaseTestWebAppProduct, self).setUp()
-        self.product = WebAppProduct(self.webapp)
+        self.product = WebAppProduct(self.addon)
         self.contribution = Contribution.objects.create(
             user=self.user,
-            webapp=self.webapp,
+            addon=self.addon,
         )
         self.contribution = Contribution.objects.get()
 
@@ -116,36 +116,36 @@ class TestWebAppProduct(BaseTestWebAppProduct):
     def test_external_id_with_no_domain(self):
         with self.settings(DOMAIN=None):
             eq_(self.product.external_id(),
-                'marketplace-dev:{0}'.format(self.webapp.pk))
+                'marketplace-dev:{0}'.format(self.addon.pk))
 
     def test_external_id_with_domain(self):
         with self.settings(DOMAIN='marketplace.allizom.org'):
             eq_(self.product.external_id(),
-                'marketplace:{0}'.format(self.webapp.pk))
+                'marketplace:{0}'.format(self.addon.pk))
 
     def test_webapp_product(self):
-        eq_(self.product.id(), self.webapp.pk)
-        eq_(self.product.name(), unicode(self.webapp.name))
-        eq_(self.product.webapp(), self.webapp)
-        eq_(self.product.default_locale(), self.webapp.default_locale)
-        eq_(self.product.price(), self.webapp.premium.price)
+        eq_(self.product.id(), self.addon.pk)
+        eq_(self.product.name(), unicode(self.addon.name))
+        eq_(self.product.addon(), self.addon)
+        eq_(self.product.default_locale(), self.addon.default_locale)
+        eq_(self.product.price(), self.addon.premium.price)
         eq_(self.product.icons()['64'],
-            absolutify(self.webapp.get_icon_url(64)))
-        eq_(self.product.description(), self.webapp.description)
+            absolutify(self.addon.get_icon_url(64)))
+        eq_(self.product.description(), self.addon.description)
         eq_(self.product.application_size(),
-            self.webapp.current_version.all_files[0].size)
+            self.addon.current_version.all_files[0].size)
         eq_(self.product.simulation(), None)
 
         product_data = self.product.product_data(self.contribution)
         eq_(product_data['contrib_uuid'], self.contribution.uuid)
         eq_(product_data['public_id'], self.public_id)
-        eq_(product_data['webapp_id'], self.product.webapp().pk)
+        eq_(product_data['addon_id'], self.product.addon().pk)
         eq_(product_data['application_size'], self.product.application_size())
 
     @override_settings(AMO_LANGUAGES=('en-US', 'es', 'fr'))
     def test_localized_properties(self):
-        en_name = unicode(self.webapp.name)
-        en_desc = unicode(self.webapp.description)
+        en_name = unicode(self.addon.name)
+        en_desc = unicode(self.addon.description)
         loc_names = {
             'fr': 'Le Vaurien',
             'es': 'El Mocoso',
@@ -154,9 +154,9 @@ class TestWebAppProduct(BaseTestWebAppProduct):
             'fr': u"ceci est une description d'application",
             'es': u'se trata de una descripción de la aplicación',
         }
-        self.webapp.name = loc_names
-        self.webapp.description = loc_desc
-        self.webapp.save()
+        self.addon.name = loc_names
+        self.addon.description = loc_desc
+        self.addon.save()
 
         names = self.product.localized_properties()
         eq_(names['es']['name'], loc_names['es'])
@@ -175,15 +175,15 @@ class TestWebAppProductMultipleProviders(BaseTestWebAppProduct):
             user=self.user, uri='foo', name='test', inactive=False,
             solitude_seller=self.seller, account_id=321, seller_uri='abc',
             provider=PROVIDER_REFERENCE)
-        WebappPaymentAccount.objects.create(
-            webapp=self.webapp, account_uri='foo',
+        AddonPaymentAccount.objects.create(
+            addon=self.addon, account_uri='foo',
             payment_account=account, product_uri='newuri')
 
     def test_webapp_product_multiple_providers(self):
         product_data = self.product.product_data(self.contribution)
         eq_(product_data['contrib_uuid'], self.contribution.uuid)
         eq_(product_data['public_id'], self.public_id)
-        eq_(product_data['webapp_id'], self.product.webapp().pk)
+        eq_(product_data['addon_id'], self.product.addon().pk)
         eq_(product_data['application_size'],
             self.product.application_size())
 
@@ -194,7 +194,7 @@ class TestInAppProduct(InAppPurchaseTest):
         super(TestInAppProduct, self).setUp()
         self.contribution = Contribution.objects.create(
             user=self.user,
-            webapp=self.webapp,
+            addon=self.addon,
         )
         self.product = InAppProduct(self.inapp)
 
@@ -211,7 +211,7 @@ class TestInAppProduct(InAppPurchaseTest):
     def test_inapp_product(self):
         eq_(self.product.id(), self.inapp.pk)
         eq_(self.product.name(), unicode(self.inapp.name))
-        eq_(self.product.webapp(), self.inapp.webapp)
+        eq_(self.product.addon(), self.inapp.webapp)
         eq_(self.product.price(), self.inapp.price)
         eq_(self.product.icons()[64], absolutify(self.inapp.logo_url))
         eq_(self.product.description(), self.inapp.webapp.description)
@@ -220,7 +220,7 @@ class TestInAppProduct(InAppPurchaseTest):
 
         product_data = self.product.product_data(self.contribution)
         eq_(product_data['contrib_uuid'], self.contribution.uuid)
-        eq_(product_data['webapp_id'], self.product.webapp().pk)
+        eq_(product_data['addon_id'], self.product.addon().pk)
         eq_(product_data['inapp_id'], self.product.id())
         eq_(product_data['application_size'], self.product.application_size())
         eq_(product_data['public_id'], self.public_id)
@@ -250,7 +250,7 @@ class TestSimulatedInAppProduct(InAppPurchaseTest):
     def test_inapp_product(self):
         eq_(self.product.id(), self.inapp.pk)
         eq_(self.product.name(), unicode(self.inapp.name))
-        eq_(self.product.webapp(), None)
+        eq_(self.product.addon(), None)
         eq_(self.product.price(), self.inapp.price)
         eq_(self.product.icons()[64], absolutify(self.inapp.logo_url))
         eq_(self.product.application_size(), None)

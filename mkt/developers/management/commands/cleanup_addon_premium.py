@@ -1,13 +1,12 @@
 from django.core.management.base import BaseCommand
 
 import mkt
-from mkt.webapps.models import WebappPremium
+from mkt.webapps.models import AddonPremium
 
 
 class Command(BaseCommand):
-    help = 'Clean up existing WebappPremium objects for free apps.'
+    help = 'Clean up existing AddonPremium objects for free apps.'
 
     def handle(self, *args, **options):
-        (WebappPremium.objects.filter(
-            webapp__premium_type__in=mkt.WEBAPP_FREES)
-         .delete())
+        (AddonPremium.objects.filter(addon__premium_type__in=mkt.ADDON_FREES)
+                             .delete())

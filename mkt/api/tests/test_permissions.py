@@ -238,7 +238,7 @@ class TestAllowRelatedAppOwner(TestCase):
         self.request.user = self.owner
         self.request.user = self.owner
         obj = Mock()
-        obj.webapp = self.app
+        obj.addon = self.app
         eq_(self.permission.has_object_permission(self.request, 'myview', obj),
             True)
 
@@ -246,7 +246,7 @@ class TestAllowRelatedAppOwner(TestCase):
         self.request.user = UserProfile.objects.get(pk=2519)
         self.request.user = self.request.user
         obj = Mock()
-        obj.webapp = self.app
+        obj.addon = self.app
         eq_(self.permission.has_object_permission(self.request, 'myview', obj),
             False)
 

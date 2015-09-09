@@ -1,10 +1,10 @@
 {% from 'developers/includes/macros.html' import required, some_html_tip, tip %}
 {% set req_if_edit = required() if editable %}
-<form id="details" method="post" action="{{ webapp.get_dev_url('section', args=['details', 'edit']) }}">
+<form id="details" method="post" action="{{ addon.get_dev_url('section', args=['details', 'edit']) }}">
   <h2>
     {{ _('App Details') }}
     {% if not editable %}
-      <a href="#" data-editurl="{{ webapp.get_dev_url('section', args=['details', 'edit']) }}" class="button">
+      <a href="#" data-editurl="{{ addon.get_dev_url('section', args=['details', 'edit']) }}" class="button">
       {{ _('Edit') }}</a>
     {% endif %}
   </h2>
@@ -25,7 +25,7 @@
               {{ form.default_locale }}
               {{ form.default_locale.errors }}
             {% else %}
-              {{ webapp.language_ascii() }}
+              {{ addon.language_ascii() }}
             {% endif %}
           </td>
         </tr>
@@ -45,7 +45,7 @@
               {{ form.homepage }}
               {{ form.homepage.errors }}
             {% else %}
-              {{ webapp|all_locales('homepage', prettify_empty=True) }}
+              {{ addon|all_locales('homepage', prettify_empty=True) }}
             {% endif %}
           </td>
         </tr>
@@ -67,7 +67,7 @@
               {{ some_html_tip() }}
             {% else %}
               <div id="addon-privacy-policy" class="prose">
-                {{ webapp|all_locales('privacy_policy', nl2br=True, prettify_empty=True) }}
+                {{ addon|all_locales('privacy_policy', nl2br=True, prettify_empty=True) }}
               </div>
             {% endif %}
           </td>
@@ -77,7 +77,7 @@
     {% if editable %}
     <div class="listing-footer">
       <button>{{ _('Save Changes') }}</button> {{ _('or') }}
-        <a href="{{ webapp.get_dev_url('section', ['details']) }}"
+        <a href="{{ addon.get_dev_url('section', ['details']) }}"
            class="addon-edit-cancel">{{ _('Cancel') }}</a>
     </div>
     {% endif %}

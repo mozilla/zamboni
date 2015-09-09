@@ -1,42 +1,42 @@
 {% set urls = [
-  (webapp.get_dev_url(), _('Edit Listing'))
+  (addon.get_dev_url(), _('Edit Listing'))
 ] %}
 
-{% if webapp.is_packaged %}
-  {% do urls.append((webapp.get_dev_url('versions'), _('Status &amp; Versions'))) %}
+{% if addon.is_packaged %}
+  {% do urls.append((addon.get_dev_url('versions'), _('Status &amp; Versions'))) %}
 {% else %}
-  {% do urls.append((webapp.get_dev_url('versions'), _('Status'))) %}
+  {% do urls.append((addon.get_dev_url('versions'), _('Status'))) %}
 {% endif %}
 
 {% do urls.append(
-  (webapp.get_dev_url('ratings'), _('Content Ratings'))
+  (addon.get_dev_url('ratings'), _('Content Ratings'))
 ) %}
 
-{% if webapp.needs_payment() %}
-  {% do urls.append((webapp.get_dev_url('payments'),
+{% if addon.needs_payment() %}
+  {% do urls.append((addon.get_dev_url('payments'),
                      _('Compatibility & Payments'))) %}
-  {% if webapp.premium_type in mkt.WEBAPP_INAPPS %}
+  {% if addon.premium_type in mkt.ADDON_INAPPS %}
     {% do urls.insert(4,
-      (webapp.get_dev_url('in_app_payments'), _('In-App Payments'))
+      (addon.get_dev_url('in_app_payments'), _('In-App Payments'))
     ) %}
   {% endif %}
 {% else %}
-  {% do urls.append((webapp.get_dev_url('payments'),
+  {% do urls.append((addon.get_dev_url('payments'),
                      _('Compatibility'))) %}
 {% endif %}
 
-{% do urls.append((webapp.get_dev_url('owner'), _('Team Members'))) %}
-{% do urls.append((webapp.get_url_path(), _('View Listing'))) %}
+{% do urls.append((addon.get_dev_url('owner'), _('Team Members'))) %}
+{% do urls.append((addon.get_url_path(), _('View Listing'))) %}
 
 
 {% set other_urls = [
-  (webapp.get_comm_thread_url(), _('Messages')),
-  (webapp.get_stats_url(), _('Statistics'))
+  (addon.get_comm_thread_url(), _('Messages')),
+  (addon.get_stats_url(), _('Statistics'))
 ] %}
 
 {% if waffle.switch('view-transactions') %}
   {% do other_urls.append(
-    (url('mkt.developers.transactions')|urlparams(app=webapp.id), _('Transactions')),
+    (url('mkt.developers.transactions')|urlparams(app=addon.id), _('Transactions')),
   ) %}
 {% endif %}
 

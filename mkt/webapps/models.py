@@ -37,8 +37,8 @@ from mkt.constants.applications import DEVICE_TYPES
 from mkt.constants.payments import PROVIDER_CHOICES
 from mkt.constants.regions import RESTOFWORLD
 from mkt.files.models import File, nfd_str
-from mkt.files.utils import parse_webapp, WebAppParser
-from mkt.prices.models import WebappPremium
+from mkt.files.utils import parse_addon, WebAppParser
+from mkt.prices.models import AddonPremium
 from mkt.ratings.models import Review
 from mkt.regions.utils import parse_region
 from mkt.site.decorators import use_master
@@ -64,7 +64,7 @@ from mkt.webapps.utils import (dehydrate_content_rating, get_locale_properties,
                                get_cached_minifest, get_supported_locales)
 
 
-log = commonware.log.getLogger('z.webapps')
+log = commonware.log.getLogger('z.addons')
 
 
 def clean_slug(instance, slug_field='app_slug'):
@@ -95,11 +95,11 @@ def clean_slug(instance, slug_field='app_slug'):
 
     # The following trick makes sure we are using a manager that returns
     # all the objects, as otherwise we could have a slug clash on our hands.
-    # Eg with the "Webapp.objects" manager, which doesn't list deleted webapps,
+    # Eg with the "Addon.objects" manager, which doesn't list deleted addons,
     # we could have a "clean" slug which is in fact already assigned to an
-    # already existing (deleted) webapp.
+    # already existing (deleted) addon.
     # Also, make sure we use the base class (eg Webapp, which inherits from
-    # Webapp, shouldn't clash with webapps). This is extra paranoid, as webapps
+    # Addon, shouldn't clash with addons). This is extra paranoid, as webapps
     # have a different slug field, but just in case we need this in the future.
     manager = models.Manager()
     manager.model = instance._meta.proxy_for_model or instance.__class__
@@ -145,17 +145,17 @@ def clean_slug(instance, slug_field='app_slug'):
     return instance
 
 
-class WebappDeviceType(ModelBase):
-    webapp = models.ForeignKey('Webapp')
+class AddonDeviceType(ModelBase):
+    addon = models.ForeignKey('Webapp')
     device_type = models.PositiveIntegerField(
         default=mkt.DEVICE_DESKTOP.id, choices=do_dictsort(mkt.DEVICE_TYPES))
 
     class Meta:
-        db_table = 'webapps_devicetypes'
-        unique_together = ('webapp', 'device_type')
+        db_table = 'addons_devicetypes'
+        unique_together = ('addon', 'device_type')
 
     def __unicode__(self):
-        return u'%s: %s' % (self.webapp.name, self.device.name)
+        return u'%s: %s' % (self.addon.name, self.device.name)
 
     @property
     def device(self):
@@ -168,31 +168,31 @@ def version_changed(sender, **kw):
     tasks.version_changed.delay(sender.id)
 
 
-def attach_devices(webapps):
-    webapp_dict = dict((a.id, a) for a in webapps)
-    devices = (WebappDeviceType.objects.filter(webapp__in=webapp_dict)
-               .values_list('webapp', 'device_type'))
-    for webapp, device_types in sorted_groupby(devices, lambda x: x[0]):
-        webapp_dict[webapp].device_ids = [d[1] for d in device_types]
+def attach_devices(addons):
+    addon_dict = dict((a.id, a) for a in addons)
+    devices = (AddonDeviceType.objects.filter(addon__in=addon_dict)
+               .values_list('addon', 'device_type'))
+    for addon, device_types in sorted_groupby(devices, lambda x: x[0]):
+        addon_dict[addon].device_ids = [d[1] for d in device_types]
 
 
-def attach_prices(webapps):
-    webapp_dict = dict((a.id, a) for a in webapps)
-    prices = (WebappPremium.objects
-              .filter(webapp__in=webapp_dict,
-                      webapp__premium_type__in=mkt.WEBAPP_PREMIUMS)
-              .values_list('webapp', 'price__price'))
-    for webapp, price in prices:
-        webapp_dict[webapp].price = price
+def attach_prices(addons):
+    addon_dict = dict((a.id, a) for a in addons)
+    prices = (AddonPremium.objects
+              .filter(addon__in=addon_dict,
+                      addon__premium_type__in=mkt.ADDON_PREMIUMS)
+              .values_list('addon', 'price__price'))
+    for addon, price in prices:
+        addon_dict[addon].price = price
 
 
-def attach_translations(webapps):
+def attach_translations(addons):
     """Put all translations into a translations dict."""
-    attach_trans_dict(Webapp, webapps)
+    attach_trans_dict(Webapp, addons)
 
 
-class WebappUser(models.Model):
-    webapp = models.ForeignKey('Webapp')
+class AddonUser(models.Model):
+    addon = models.ForeignKey('Webapp')
     user = UserForeignKey()
     role = models.PositiveSmallIntegerField(default=mkt.AUTHOR_ROLE_OWNER,
                                             choices=mkt.AUTHOR_CHOICES)
@@ -200,19 +200,19 @@ class WebappUser(models.Model):
     position = models.IntegerField(default=0)
 
     def __init__(self, *args, **kwargs):
-        super(WebappUser, self).__init__(*args, **kwargs)
+        super(AddonUser, self).__init__(*args, **kwargs)
         self._original_role = self.role
         self._original_user_id = self.user_id
 
     class Meta:
-        db_table = 'webapps_users'
-        unique_together = ('webapp', 'user')
-        index_together = (('webapp', 'user', 'listed'),
-                          ('webapp', 'listed'))
+        db_table = 'addons_users'
+        unique_together = ('addon', 'user')
+        index_together = (('addon', 'user', 'listed'),
+                          ('addon', 'listed'))
 
 
 class Preview(ModelBase):
-    webapp = models.ForeignKey('Webapp', related_name='previews')
+    addon = models.ForeignKey('Webapp', related_name='previews')
     filetype = models.CharField(max_length=25)
     thumbtype = models.CharField(max_length=25)
     caption = TranslatedField()
@@ -223,7 +223,7 @@ class Preview(ModelBase):
     class Meta:
         db_table = 'previews'
         ordering = ('position', 'created')
-        index_together = ('webapp', 'position', 'created')
+        index_together = ('addon', 'position', 'created')
 
     def _image_url(self, is_thumbnail=False):
         if self.modified is not None:
@@ -309,7 +309,7 @@ class BlockedSlug(ModelBase):
     name = models.CharField(max_length=255, unique=True, default='')
 
     class Meta:
-        db_table = 'webapps_blocked_slug'
+        db_table = 'addons_blocked_slug'
 
     def __unicode__(self):
         return self.name
@@ -457,11 +457,11 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     disabled_by_user = models.BooleanField(default=False, db_index=True,
                                            db_column='inactive')
     public_stats = models.BooleanField(default=False, db_column='publicstats')
-    authors = models.ManyToManyField('users.UserProfile', through='WebappUser',
-                                     related_name='webapps')
+    authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
+                                     related_name='addons')
     categories = JSONField(default=None)
     premium_type = models.PositiveSmallIntegerField(
-        choices=mkt.WEBAPP_PREMIUM_TYPES.items(), default=mkt.WEBAPP_FREE)
+        choices=mkt.ADDON_PREMIUM_TYPES.items(), default=mkt.ADDON_FREE)
     manifest_url = models.URLField(max_length=255, blank=True, null=True)
     app_domain = models.CharField(max_length=255, blank=True, null=True,
                                   db_index=True)
@@ -497,7 +497,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         """The app has no payment account for the query."""
 
     class Meta:
-        db_table = 'webapps'
+        db_table = 'addons'
 
     def __unicode__(self):
         return u'%s: %s' % (self.id, self.name)
@@ -509,7 +509,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         if creating:
             # Create Geodata object (a 1-to-1 relationship).
             if not hasattr(self, '_geodata'):
-                Geodata.objects.create(webapp=self)
+                Geodata.objects.create(addon=self)
 
     @transaction.atomic
     def delete(self, msg='', reason=''):
@@ -524,10 +524,10 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         # Tell IARC this app is delisted from the set_iarc_storefront_data.
         tasks.set_storefront_data.delay(self.pk, disable=True)
 
-        # Fetch previews before deleting the webapp instance, so that we can
+        # Fetch previews before deleting the addon instance, so that we can
         # pass the list of files to delete to the delete_preview_files task
-        # after the webapp is deleted.
-        previews = list(Preview.objects.filter(webapp__id=id)
+        # after the addon is deleted.
+        previews = list(Preview.objects.filter(addon__id=id)
                         .values_list('id', flat=True))
 
         log.debug('Deleting app: %s' % self.id)
@@ -583,27 +583,27 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         clean_slug(self, slug_field='app_slug')
 
     @staticmethod
-    def attach_related_versions(webapps, webapp_dict=None):
-        if webapp_dict is None:
-            webapp_dict = dict((a.id, a) for a in webapps)
+    def attach_related_versions(addons, addon_dict=None):
+        if addon_dict is None:
+            addon_dict = dict((a.id, a) for a in addons)
 
-        current_ids = filter(None, (a._current_version_id for a in webapps))
-        latest_ids = filter(None, (a._latest_version_id for a in webapps))
+        current_ids = filter(None, (a._current_version_id for a in addons))
+        latest_ids = filter(None, (a._latest_version_id for a in addons))
         all_ids = set(current_ids) | set(latest_ids)
 
         versions = list(Version.objects.filter(id__in=all_ids).order_by())
         for version in versions:
             try:
-                webapp = webapp_dict[version.webapp_id]
+                addon = addon_dict[version.addon_id]
             except KeyError:
                 log.debug('Version %s has an invalid add-on id.' % version.id)
                 continue
-            if webapp._current_version_id == version.id:
-                webapp._current_version = version
-            if webapp._latest_version_id == version.id:
-                webapp._latest_version = version
+            if addon._current_version_id == version.id:
+                addon._current_version = version
+            if addon._latest_version_id == version.id:
+                addon._latest_version = version
 
-            version.webapp = webapp
+            version.addon = addon
 
     @classmethod
     def get_indexer(cls):
@@ -611,65 +611,65 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
     @classmethod
     def from_upload(cls, upload, is_packaged=False):
-        data = parse_webapp(upload)
+        data = parse_addon(upload)
         fields = cls._meta.get_all_field_names()
-        webapp = Webapp(**dict((k, v) for k, v in data.items() if k in fields))
-        webapp.status = mkt.STATUS_NULL
-        locale_is_set = (webapp.default_locale and
-                         webapp.default_locale in (
+        addon = Webapp(**dict((k, v) for k, v in data.items() if k in fields))
+        addon.status = mkt.STATUS_NULL
+        locale_is_set = (addon.default_locale and
+                         addon.default_locale in (
                              settings.AMO_LANGUAGES) and
-                         data.get('default_locale') == webapp.default_locale)
+                         data.get('default_locale') == addon.default_locale)
         if not locale_is_set:
-            webapp.default_locale = to_language(translation.get_language())
-        webapp.is_packaged = is_packaged
+            addon.default_locale = to_language(translation.get_language())
+        addon.is_packaged = is_packaged
         if is_packaged:
-            webapp.app_domain = data.get('origin')
+            addon.app_domain = data.get('origin')
         else:
-            webapp.manifest_url = upload.name
-            webapp.app_domain = webapp.domain_from_url(webapp.manifest_url)
-        webapp.save()
-        Version.from_upload(upload, webapp)
+            addon.manifest_url = upload.name
+            addon.app_domain = addon.domain_from_url(addon.manifest_url)
+        addon.save()
+        Version.from_upload(upload, addon)
 
-        mkt.log(mkt.LOG.CREATE_WEBAPP, webapp)
-        log.debug('New webapp %r from %r' % (webapp, upload))
+        mkt.log(mkt.LOG.CREATE_ADDON, addon)
+        log.debug('New addon %r from %r' % (addon, upload))
 
-        return webapp
+        return addon
 
     @staticmethod
-    def attach_previews(webapps, webapp_dict=None, no_transforms=False):
-        if webapp_dict is None:
-            webapp_dict = dict((a.id, a) for a in webapps)
+    def attach_previews(addons, addon_dict=None, no_transforms=False):
+        if addon_dict is None:
+            addon_dict = dict((a.id, a) for a in addons)
 
-        qs = Preview.objects.filter(webapp__in=webapps,
+        qs = Preview.objects.filter(addon__in=addons,
                                     position__gte=0).order_by()
         if no_transforms:
             qs = qs.no_transforms()
-        qs = sorted(qs, key=lambda x: (x.webapp_id, x.position, x.created))
-        for webapp, previews in itertools.groupby(qs, lambda x: x.webapp_id):
-            webapp_dict[webapp].all_previews = list(previews)
-        # FIXME: set all_previews to empty list on webapps without previews.
+        qs = sorted(qs, key=lambda x: (x.addon_id, x.position, x.created))
+        for addon, previews in itertools.groupby(qs, lambda x: x.addon_id):
+            addon_dict[addon].all_previews = list(previews)
+        # FIXME: set all_previews to empty list on addons without previews.
 
     @staticmethod
-    def attach_premiums(webapps, webapp_dict=None):
-        if webapp_dict is None:
-            webapp_dict = dict((a.id, a) for a in webapps)
+    def attach_premiums(addons, addon_dict=None):
+        if addon_dict is None:
+            addon_dict = dict((a.id, a) for a in addons)
 
-        # Attach premium webapps.
-        qs = (WebappPremium.objects.select_related('price')
-              .filter(webapp__in=webapps))
+        # Attach premium addons.
+        qs = (AddonPremium.objects.select_related('price')
+                                  .filter(addon__in=addons))
 
-        premium_dict = dict((ap.webapp_id, ap) for ap in qs)
+        premium_dict = dict((ap.addon_id, ap) for ap in qs)
 
-        # Attach premiums to webapps, making sure to attach None to free
-        # webapps where the corresponding WebappPremium is missing.
-        for webapp in webapps:
-            if webapp.is_premium():
-                webapp_p = premium_dict.get(webapp.id)
-                if webapp_p:
-                    webapp_p.webapp = webapp
-                webapp._premium = webapp_p
+        # Attach premiums to addons, making sure to attach None to free addons
+        # or addons where the corresponding AddonPremium is missing.
+        for addon in addons:
+            if addon.is_premium():
+                addon_p = premium_dict.get(addon.id)
+                if addon_p:
+                    addon_p.addon = addon
+                addon._premium = addon_p
             else:
-                webapp._premium = None
+                addon._premium = None
 
     def is_public(self):
         """
@@ -718,7 +718,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
     @property
     def is_disabled(self):
-        """True if this Webapp is disabled.
+        """True if this Addon is disabled.
 
         It could be disabled by an admin or disabled by the developer
         """
@@ -731,11 +731,11 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
     def is_premium(self):
         """
-        If the webapp is premium. Will include webapps that are premium
+        If the addon is premium. Will include addons that are premium
         and have a price of zero. Primarily of use in the devhub to determine
         if an app is intending to be premium.
         """
-        return self.premium_type in mkt.WEBAPP_PREMIUMS
+        return self.premium_type in mkt.ADDON_PREMIUMS
 
     def is_free(self):
         """
@@ -747,11 +747,11 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
                     self.premium.price)
 
     def is_free_inapp(self):
-        return self.premium_type == mkt.WEBAPP_FREE_INAPP
+        return self.premium_type == mkt.ADDON_FREE_INAPP
 
     def needs_payment(self):
         return (self.premium_type not in
-                (mkt.WEBAPP_FREE, mkt.WEBAPP_OTHER_INAPP))
+                (mkt.ADDON_FREE, mkt.ADDON_OTHER_INAPP))
 
     def can_be_deleted(self):
         return not self.is_deleted
@@ -759,7 +759,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     @classmethod
     def _last_updated_queries(cls):
         """
-        Get the queries used to calculate webapp.last_updated.
+        Get the queries used to calculate addon.last_updated.
         """
         return (Webapp.objects
                 .filter(status=mkt.STATUS_PUBLIC,
@@ -803,13 +803,13 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             return False
         if roles is None:
             roles = dict(mkt.AUTHOR_CHOICES).keys()
-        return WebappUser.objects.filter(webapp=self, user=user,
-                                         role__in=roles).exists()
+        return AddonUser.objects.filter(addon=self, user=user,
+                                        role__in=roles).exists()
 
     def get_purchase_type(self, user):
         if user and isinstance(user, UserProfile):
             try:
-                return self.webapppurchase_set.get(user=user).type
+                return self.addonpurchase_set.get(user=user).type
             except models.ObjectDoesNotExist:
                 pass
 
@@ -861,7 +861,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         Returns a message that can be used in logs showing what names were
         added or updated.
 
-        Note: This method doesn't save the changes made to the webapp object.
+        Note: This method doesn't save the changes made to the addon object.
         Don't forget to call save() in your calling method.
         """
         updated_locales = {}
@@ -931,8 +931,8 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         """
         if not hasattr(self, '_premium'):
             try:
-                self._premium = self.webapppremium
-            except WebappPremium.DoesNotExist:
+                self._premium = self.addonpremium
+            except AddonPremium.DoesNotExist:
                 self._premium = None
         return self._premium
 
@@ -959,18 +959,18 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     @cached_property(writable=True)
     def listed_authors(self):
         return UserProfile.objects.filter(
-            webapps=self,
-            webappuser__listed=True).order_by('webappuser__position')
+            addons=self,
+            addonuser__listed=True).order_by('addonuser__position')
 
     @property
     def reviews(self):
-        return Review.objects.filter(webapp=self, reply_to=None)
+        return Review.objects.filter(addon=self, reply_to=None)
 
     def get_icon_dir(self):
-        return os.path.join(settings.WEBAPP_ICONS_PATH, str(self.id / 1000))
+        return os.path.join(settings.ADDON_ICONS_PATH, str(self.id / 1000))
 
     def get_icon_url(self, size):
-        return get_icon_url(static_url('WEBAPP_ICON_URL'), self, size)
+        return get_icon_url(static_url('ADDON_ICON_URL'), self, size)
 
     def get_promo_img_dir(self):
         return os.path.join(settings.WEBAPP_PROMO_IMG_PATH,
@@ -997,14 +997,14 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         # therefore don't have translations.
         Webapp.attach_previews(apps, apps_dict, no_transforms=True)
 
-        # Attach WebappPremium instances.
+        # Attach AddonPremium instances.
         Webapp.attach_premiums(apps, apps_dict)
 
         # FIXME: re-use attach_devices instead ?
-        for adt in WebappDeviceType.objects.filter(webapp__in=apps_dict):
-            if not getattr(apps_dict[adt.webapp_id], '_device_types', None):
-                apps_dict[adt.webapp_id]._device_types = []
-            apps_dict[adt.webapp_id]._device_types.append(
+        for adt in AddonDeviceType.objects.filter(addon__in=apps_dict):
+            if not getattr(apps_dict[adt.addon_id], '_device_types', None):
+                apps_dict[adt.addon_id]._device_types = []
+            apps_dict[adt.addon_id]._device_types.append(
                 DEVICE_TYPES[adt.device_type])
 
         # FIXME: attach geodata and content ratings. Maybe in a different
@@ -1019,8 +1019,8 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             return apps
 
         ids = set(app.id for app in apps)
-        versions = (Version.objects.filter(webapp__in=ids)
-                    .select_related('webapp'))
+        versions = (Version.objects.filter(addon__in=ids)
+                    .select_related('addon'))
         vids = [v.id for v in versions]
         files = (File.objects.filter(version__in=vids)
                              .select_related('version'))
@@ -1032,14 +1032,14 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             version.all_files = f_dict.get(version.id, [])
         # Attach the versions to the apps.
         v_dict = dict((k, list(vs)) for k, vs in
-                      sorted_groupby(versions, 'webapp_id'))
+                      sorted_groupby(versions, 'addon_id'))
         for app in apps:
             app.all_versions = v_dict.get(app.id, [])
 
         return apps
 
     def get_public_version(self):
-        """Retrieves the latest PUBLIC version of an webapp."""
+        """Retrieves the latest PUBLIC version of an addon."""
         if self.status not in mkt.WEBAPPS_APPROVED_STATUSES:
             # Apps that aren't in an approved status have no current version.
             return None
@@ -1123,12 +1123,12 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
                 if send_signal and _signal:
                     signals.version_changed.send(sender=self)
                 log.info(u'Version changed from current: %s to %s, '
-                         u'latest: %s to %s for webapp %s'
+                         u'latest: %s to %s for addon %s'
                          % tuple(diff + [self]))
             except Exception, e:
                 log.error(u'Could not save version changes '
                           u'current: %s to %s, latest: %s to %s '
-                          u'for webapp %s (%s)'
+                          u'for addon %s (%s)'
                           % tuple(diff + [self, e]))
 
         return bool(updated)
@@ -1161,7 +1161,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     def geodata(self):
         if hasattr(self, '_geodata'):
             return self._geodata
-        return Geodata.objects.get_or_create(webapp=self)[0]
+        return Geodata.objects.get_or_create(addon=self)[0]
 
     def get_api_url(self, action=None, api=None, resource=None, pk=False):
         """Reverse a URL for the API."""
@@ -1233,7 +1233,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         if hasattr(self, '_device_types'):
             return self._device_types
         return [DEVICE_TYPES[d.device_type] for d in
-                self.webappdevicetype_set.order_by('device_type')]
+                self.addondevicetype_set.order_by('device_type')]
 
     @property
     def origin(self):
@@ -1295,7 +1295,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         This is intended to be used for hosted apps only, which have only a
         single version and a single file.
         """
-        data = parse_webapp(upload, self)
+        data = parse_addon(upload, self)
         manifest = WebAppParser().get_json_data(upload)
         version = self.versions.latest()
         max_ = Version._meta.get_field_by_name('_developer_name')[0].max_length
@@ -1364,14 +1364,14 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
                 .all())
 
     def payment_account(self, provider_id):
-        from mkt.developers.models import WebappPaymentAccount
+        from mkt.developers.models import AddonPaymentAccount
 
         qs = (self.app_payment_accounts.select_related('payment_account')
               .filter(payment_account__provider=provider_id))
 
         try:
             return qs.get()
-        except WebappPaymentAccount.DoesNotExist, exc:
+        except AddonPaymentAccount.DoesNotExist, exc:
             log.info('non-existant payment account for app {app}: '
                      '{exc.__class__.__name__}: {exc}'
                      .format(app=self, exc=exc))
@@ -1523,11 +1523,11 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             _log('has pending but no public files')
             return
 
-    def authors_other_webapps(self, app=None):
+    def authors_other_addons(self, app=None):
         """Return other apps by the same author."""
         return (self.__class__.objects.visible()
                               .exclude(id=self.id).distinct()
-                              .filter(webappuser__listed=True,
+                              .filter(addonuser__listed=True,
                                       authors__in=self.listed_authors))
 
     def can_be_purchased(self):
@@ -1647,13 +1647,13 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         """
         Return IDs of regions for which this app is excluded.
 
-        This will be all the webapp excluded regions. If the app is premium,
+        This will be all the addon excluded regions. If the app is premium,
         this will also exclude any region that does not have the price tier
         set.
 
         Note: free and in-app are not included in this.
         """
-        excluded = set(self.webappexcludedregion
+        excluded = set(self.addonexcludedregion
                            .values_list('region', flat=True))
 
         if self.is_premium():
@@ -1766,7 +1766,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         version of this manifest, e.g., when a new version of the packaged app
         is approved.
 
-        If the webapp is not a packaged app, this will not cache anything.
+        If the addon is not a packaged app, this will not cache anything.
 
         Ensure that the calling method checks various permissions if needed.
         E.g. see mkt/detail/views.py. This is also called as a task after
@@ -1789,15 +1789,14 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         Returns True if changing self.premium_type from current value to passed
         in value is considered an upgrade that should trigger a re-review.
         """
-        ALL = set(mkt.WEBAPP_FREES + mkt.WEBAPP_PREMIUMS)
-        free_upgrade = ALL - set([mkt.WEBAPP_FREE])
-        free_inapp_upgrade = ALL - set([mkt.WEBAPP_FREE,
-                                        mkt.WEBAPP_FREE_INAPP])
+        ALL = set(mkt.ADDON_FREES + mkt.ADDON_PREMIUMS)
+        free_upgrade = ALL - set([mkt.ADDON_FREE])
+        free_inapp_upgrade = ALL - set([mkt.ADDON_FREE, mkt.ADDON_FREE_INAPP])
 
-        if (self.premium_type == mkt.WEBAPP_FREE and
+        if (self.premium_type == mkt.ADDON_FREE and
                 premium_type in free_upgrade):
             return True
-        if (self.premium_type == mkt.WEBAPP_FREE_INAPP and
+        if (self.premium_type == mkt.ADDON_FREE_INAPP and
                 premium_type in free_inapp_upgrade):
             return True
         return False
@@ -1810,7 +1809,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         """
         blocklisted_path = os.path.join(settings.MEDIA_ROOT, 'packaged-apps',
                                         'blocklisted.zip')
-        v = Version.objects.create(webapp=self, version='blocklisted')
+        v = Version.objects.create(addon=self, version='blocklisted')
         f = File(version=v, status=mkt.STATUS_BLOCKED)
         f.filename = f.generate_filename()
         copy_stored_file(
@@ -1883,10 +1882,10 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         Used by ES.
         """
         if self.latest_version and self.latest_version.is_privileged:
-            return mkt.WEBAPP_PRIVILEGED
+            return mkt.ADDON_WEBAPP_PRIVILEGED
         elif self.is_packaged:
-            return mkt.WEBAPP_PACKAGED
-        return mkt.WEBAPP_HOSTED
+            return mkt.ADDON_WEBAPP_PACKAGED
+        return mkt.ADDON_WEBAPP_HOSTED
 
     @property
     def app_type(self):
@@ -1894,21 +1893,21 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         Returns string of 'hosted', 'packaged', or 'privileged'.
         Used in the API.
         """
-        return mkt.WEBAPP_TYPES[self.app_type_id]
+        return mkt.ADDON_WEBAPP_TYPES[self.app_type_id]
 
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):
         """
         Used by acl.check_ownership to see if request.user has permissions for
-        the webapp.
+        the addon.
         """
         if require_author:
             require_owner = False
             ignore_disabled = True
             admin = False
-        return acl.check_webapp_ownership(request, self, admin=admin,
-                                          viewer=(not require_owner),
-                                          ignore_disabled=ignore_disabled)
+        return acl.check_addon_ownership(request, self, admin=admin,
+                                         viewer=(not require_owner),
+                                         ignore_disabled=ignore_disabled)
 
     @property
     def supported_locales(self):
@@ -1993,7 +1992,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         data = {'submission_id': submission_id,
                 'security_code': security_code}
         info, created = IARCInfo.objects.safer_get_or_create(
-            webapp=self, defaults=data)
+            addon=self, defaults=data)
         if not created:
             info.update(**data)
 
@@ -2025,7 +2024,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         log.info('IARC content ratings set for app:%s:%s' %
                  (self.id, self.app_slug))
 
-        geodata, c = Geodata.objects.get_or_create(webapp=self)
+        geodata, c = Geodata.objects.get_or_create(addon=self)
         save = False
 
         # If app gets USK Rating Refused, exclude it from Germany.
@@ -2065,7 +2064,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
                 create_kwargs[db_flag] = db_flag in data
 
         rd, created = RatingDescriptors.objects.get_or_create(
-            webapp=self, defaults=create_kwargs)
+            addon=self, defaults=create_kwargs)
         if not created:
             rd.update(modified=datetime.datetime.now(),
                       **create_kwargs)
@@ -2082,7 +2081,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             create_kwargs[db_flag] = db_flag in data
 
         ri, created = RatingInteractives.objects.get_or_create(
-            webapp=self, defaults=create_kwargs)
+            addon=self, defaults=create_kwargs)
         if not created:
             ri.update(**create_kwargs)
 
@@ -2141,19 +2140,19 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             return self.content_ratings.order_by('-modified')[0].modified
 
 
-class WebappUpsell(ModelBase):
+class AddonUpsell(ModelBase):
     free = models.ForeignKey(Webapp, related_name='_upsell_from')
     premium = models.ForeignKey(Webapp, related_name='_upsell_to')
 
     class Meta:
-        db_table = 'webapp_upsell'
+        db_table = 'addon_upsell'
         unique_together = ('free', 'premium')
 
     def __unicode__(self):
         return u'Free: %s to Premium: %s' % (self.free, self.premium)
 
     @cached_property
-    def premium_webapp(self):
+    def premium_addon(self):
         """
         Return the premium version, or None if there isn't one.
         """
@@ -2177,36 +2176,36 @@ def cleanup_upsell(sender, instance, **kw):
         return
 
     both = Q(free=instance) | Q(premium=instance)
-    for upsell in list(WebappUpsell.objects.filter(both)):
+    for upsell in list(AddonUpsell.objects.filter(both)):
         upsell.cleanup()
 
 dbsignals.post_delete.connect(cleanup_upsell, sender=Webapp,
-                              dispatch_uid='webapp_upsell')
+                              dispatch_uid='addon_upsell')
 
 
 class Installs(ModelBase):
-    webapp = models.ForeignKey(Webapp, related_name='popularity')
+    addon = models.ForeignKey(Webapp, related_name='popularity')
     value = models.FloatField(default=0.0)
     # When region=0, we count across all regions.
     region = models.PositiveIntegerField(null=False, default=0, db_index=True)
 
     class Meta:
-        db_table = 'webapps_installs'
-        unique_together = ('webapp', 'region')
+        db_table = 'addons_installs'
+        unique_together = ('addon', 'region')
 
 
 class Trending(ModelBase):
-    webapp = models.ForeignKey(Webapp, related_name='trending')
+    addon = models.ForeignKey(Webapp, related_name='trending')
     value = models.FloatField(default=0.0)
     # When region=0, it's trending using install counts across all regions.
     region = models.PositiveIntegerField(null=False, default=0, db_index=True)
 
     class Meta:
-        db_table = 'webapps_trending'
-        unique_together = ('webapp', 'region')
+        db_table = 'addons_trending'
+        unique_together = ('addon', 'region')
 
 
-# Set translated_fields manually to avoid querying translations for webapp
+# Set translated_fields manually to avoid querying translations for addon
 # fields we don't use.
 Webapp._meta.translated_fields = [
     Webapp._meta.get_field('homepage'),
@@ -2228,10 +2227,10 @@ def update_search_index(sender, instance, **kw):
         tasks.index_webapps.delay([instance.id])
 
 
-@receiver(dbsignals.post_save, sender=WebappUpsell,
-          dispatch_uid='webappupsell.search.index')
+@receiver(dbsignals.post_save, sender=AddonUpsell,
+          dispatch_uid='addonupsell.search.index')
 def update_search_index_upsell(sender, instance, **kw):
-    # When saving an WebappUpsell instance, reindex both apps to update their
+    # When saving an AddonUpsell instance, reindex both apps to update their
     # upsell/upsold properties in ES.
     from . import tasks
     if instance.free:
@@ -2257,7 +2256,7 @@ def watch_status(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
     new_status = new_attr.get('status')
     if not new_status:
         return
-    webapp = instance
+    addon = instance
     old_status = old_attr['status']
 
     # Log all status changes.
@@ -2265,7 +2264,7 @@ def watch_status(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
         log.info(
             '[Webapp:{id}] Status changed from {old_status}:{old_status_name} '
             'to {new_status}:{new_status_name}'.format(
-                id=webapp.id, old_status=old_status,
+                id=addon.id, old_status=old_status,
                 old_status_name=mkt.STATUS_CHOICES_API.get(old_status,
                                                            'unknown'),
                 new_status=new_status,
@@ -2275,20 +2274,19 @@ def watch_status(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
         # We always set nomination date when app switches to PENDING, even if
         # previously rejected.
         try:
-            latest = webapp.versions.latest()
-            log.debug('[Webapp:%s] Setting nomination date to now.' %
-                      webapp.id)
+            latest = addon.versions.latest()
+            log.debug('[Webapp:%s] Setting nomination date to now.' % addon.id)
             latest.update(nomination=datetime.datetime.now())
         except Version.DoesNotExist:
             log.debug('[Webapp:%s] Missing version, no nomination set.'
-                      % webapp.id)
+                      % addon.id)
 
 
 @Webapp.on_change
 def watch_disabled(old_attr={}, new_attr={}, instance=None, sender=None, **kw):
     attrs = dict((k, v) for k, v in old_attr.items()
                  if k in ('disabled_by_user', 'status'))
-    qs = (File.objects.filter(version__webapp=instance.id)
+    qs = (File.objects.filter(version__addon=instance.id)
                       .exclude(version__deleted=True))
     if Webapp(**attrs).is_disabled and not instance.is_disabled:
         for f in qs:
@@ -2325,20 +2323,20 @@ def pre_generate_apk(sender=None, instance=None, **kw):
 
 class Installed(ModelBase):
     """Track WebApp installations."""
-    webapp = models.ForeignKey(Webapp, related_name='installed')
+    addon = models.ForeignKey(Webapp, related_name='installed')
     user = models.ForeignKey('users.UserProfile')
     uuid = models.CharField(max_length=255, db_index=True, unique=True)
-    # Because the webapp could change between free and premium,
+    # Because the addon could change between free and premium,
     # we need to store the state at time of install here.
     premium_type = models.PositiveIntegerField(
-        null=True, default=None, choices=mkt.WEBAPP_PREMIUM_TYPES.items())
+        null=True, default=None, choices=mkt.ADDON_PREMIUM_TYPES.items())
     install_type = models.PositiveIntegerField(
         db_index=True, default=apps.INSTALL_TYPE_USER,
         choices=apps.INSTALL_TYPES.items())
 
     class Meta:
         db_table = 'users_install'
-        unique_together = ('webapp', 'user', 'install_type')
+        unique_together = ('addon', 'user', 'install_type')
 
 
 @receiver(models.signals.post_save, sender=Installed)
@@ -2347,26 +2345,26 @@ def add_uuid(sender, **kw):
         install = kw['instance']
         if not install.uuid and install.premium_type is None:
             install.uuid = ('%s-%s' % (install.pk, str(uuid.uuid4())))
-            install.premium_type = install.webapp.premium_type
+            install.premium_type = install.addon.premium_type
             install.save()
 
 
-class WebappExcludedRegion(ModelBase):
+class AddonExcludedRegion(ModelBase):
     """
     Apps are listed in all regions by default.
     When regions are unchecked, we remember those excluded regions.
     """
-    webapp = models.ForeignKey(Webapp, related_name='webappexcludedregion')
+    addon = models.ForeignKey(Webapp, related_name='addonexcludedregion')
     region = models.PositiveIntegerField(
         choices=mkt.regions.REGIONS_CHOICES_ID, db_index=True)
 
     class Meta:
-        db_table = 'webapps_excluded_regions'
-        unique_together = ('webapp', 'region')
+        db_table = 'addons_excluded_regions'
+        unique_together = ('addon', 'region')
 
     def __unicode__(self):
         region = self.get_region()
-        return u'%s: %s' % (self.webapp, region.slug if region else None)
+        return u'%s: %s' % (self.addon, region.slug if region else None)
 
     def get_region(self):
         return mkt.regions.REGIONS_CHOICES_ID_DICT.get(self.region)
@@ -2378,8 +2376,8 @@ def get_excluded_in(region_id):
     Return IDs of Webapp objects excluded from a particular region or excluded
     due to Geodata flags.
     """
-    aers = list(WebappExcludedRegion.objects.filter(region=region_id)
-                .values_list('webapp', flat=True))
+    aers = list(AddonExcludedRegion.objects.filter(region=region_id)
+                .values_list('addon', flat=True))
 
     # For pre-IARC unrated games in Brazil/Germany.
     geodata_qs = Q()
@@ -2393,11 +2391,11 @@ def get_excluded_in(region_id):
     geodata_exclusions = []
     if geodata_qs:
         geodata_exclusions = list(Geodata.objects.filter(geodata_qs)
-                                  .values_list('webapp', flat=True))
+                                  .values_list('addon', flat=True))
     return set(aers + geodata_exclusions)
 
 
-@receiver(models.signals.post_save, sender=WebappExcludedRegion,
+@receiver(models.signals.post_save, sender=AddonExcludedRegion,
           dispatch_uid='clean_memoized_exclusions')
 def clean_memoized_exclusions(sender, **kw):
     if not kw.get('raw'):
@@ -2409,7 +2407,7 @@ class IARCInfo(ModelBase):
     """
     Stored data for IARC.
     """
-    webapp = models.OneToOneField(Webapp, related_name='iarc_info')
+    addon = models.OneToOneField(Webapp, related_name='iarc_info')
     submission_id = models.PositiveIntegerField(null=False)
     security_code = models.CharField(max_length=10)
 
@@ -2417,14 +2415,14 @@ class IARCInfo(ModelBase):
         db_table = 'webapps_iarc_info'
 
     def __unicode__(self):
-        return u'app:%s' % self.webapp.app_slug
+        return u'app:%s' % self.addon.app_slug
 
 
 class ContentRating(ModelBase):
     """
     Ratings body information about an app.
     """
-    webapp = models.ForeignKey(Webapp, related_name='content_ratings')
+    addon = models.ForeignKey(Webapp, related_name='content_ratings')
     ratings_body = models.PositiveIntegerField(
         choices=[(k, rb.name) for k, rb in
                  mkt.ratingsbodies.RATINGS_BODIES.items()],
@@ -2433,10 +2431,10 @@ class ContentRating(ModelBase):
 
     class Meta:
         db_table = 'webapps_contentrating'
-        unique_together = ('webapp', 'ratings_body')
+        unique_together = ('addon', 'ratings_body')
 
     def __unicode__(self):
-        return u'%s: %s' % (self.webapp, self.get_label())
+        return u'%s: %s' % (self.addon, self.get_label())
 
     def get_regions(self):
         """Gives us a list of Region classes that use this rating body."""
@@ -2481,9 +2479,9 @@ class ContentRating(ModelBase):
 
 def update_status_content_ratings(sender, instance, **kw):
     # Flips the app's status from NULL if it has everything else together.
-    if (instance.webapp.has_incomplete_status() and
-            instance.webapp.is_fully_complete()):
-        instance.webapp.update(status=mkt.STATUS_PENDING)
+    if (instance.addon.has_incomplete_status() and
+            instance.addon.is_fully_complete()):
+        instance.addon.update(status=mkt.STATUS_PENDING)
 
 
 models.signals.post_save.connect(update_status_content_ratings,
@@ -2498,13 +2496,13 @@ class RatingDescriptors(ModelBase, DynamicBoolFieldsMixin):
     A dynamically generated model that contains a set of boolean values
     stating if an app is rated with a particular descriptor.
     """
-    webapp = models.OneToOneField(Webapp, related_name='rating_descriptors')
+    addon = models.OneToOneField(Webapp, related_name='rating_descriptors')
 
     class Meta:
         db_table = 'webapps_rating_descriptors'
 
     def __unicode__(self):
-        return u'%s: %s' % (self.id, self.webapp.name)
+        return u'%s: %s' % (self.id, self.addon.name)
 
     def to_keys_by_body(self, body):
         return [key for key in self.to_keys() if
@@ -2531,13 +2529,13 @@ class RatingInteractives(ModelBase, DynamicBoolFieldsMixin):
     A dynamically generated model that contains a set of boolean values
     stating if an app features a particular interactive element.
     """
-    webapp = models.OneToOneField(Webapp, related_name='rating_interactives')
+    addon = models.OneToOneField(Webapp, related_name='rating_interactives')
 
     class Meta:
         db_table = 'webapps_rating_interactives'
 
     def __unicode__(self):
-        return u'%s: %s' % (self.id, self.webapp.name)
+        return u'%s: %s' % (self.id, self.addon.name)
 
     def iarc_deserialize(self):
         """Map our descriptor strings back to the IARC ones (comma-sep.)."""
@@ -2553,10 +2551,10 @@ for interactive, db_flag in mkt.iarc_mappings.INTERACTIVES.items():
 
 def iarc_cleanup(*args, **kwargs):
     instance = kwargs.get('instance')
-    IARCInfo.objects.filter(webapp=instance).delete()
-    ContentRating.objects.filter(webapp=instance).delete()
-    RatingDescriptors.objects.filter(webapp=instance).delete()
-    RatingInteractives.objects.filter(webapp=instance).delete()
+    IARCInfo.objects.filter(addon=instance).delete()
+    ContentRating.objects.filter(addon=instance).delete()
+    RatingDescriptors.objects.filter(addon=instance).delete()
+    RatingInteractives.objects.filter(addon=instance).delete()
 
 
 # When an app is deleted we need to remove the IARC data so the certificate can
@@ -2576,7 +2574,7 @@ class AppFeatures(ModelBase, DynamicBoolFieldsMixin):
     field_source = APP_FEATURES
 
     class Meta:
-        db_table = 'webapps_features'
+        db_table = 'addons_features'
 
     def __unicode__(self):
         return u'Version: %s: %s' % (self.version.id, self.to_signature())
@@ -2660,7 +2658,7 @@ class RegionListField(JSONField):
 
 class Geodata(ModelBase):
     """TODO: Forgo AER and use bool columns for every region and carrier."""
-    webapp = models.OneToOneField(Webapp, related_name='_geodata')
+    addon = models.OneToOneField(Webapp, related_name='_geodata')
     restricted = models.BooleanField(default=False)
     popular_region = models.CharField(max_length=10, null=True)
     banner_regions = RegionListField(default=None, null=True)
@@ -2674,7 +2672,7 @@ class Geodata(ModelBase):
     def __unicode__(self):
         return u'%s (%s): <Webapp %s>' % (
             self.id, 'restricted' if self.restricted else 'unrestricted',
-            self.webapp.id)
+            self.addon.id)
 
     def get_status(self, region):
         """
