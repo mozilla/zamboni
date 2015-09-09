@@ -61,25 +61,6 @@
   </dl>
 </div>
 
-<div class="notification-box {{ status(status_summary.redis) }}">
-  <h2>[Redis] Redis Info ({{ redis_timer }}ms)</h2>
-  <dl>
-  <dt>Cache</dt>
-  <dd>
-    {% if redis_results %}
-      <ul>
-        {% for k, v in redis_results|dictsort %}
-          <li><code>{{ k }}: {{ v }}</code></li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <strong>Error!</strong>
-      <code>{{ error }}</code>
-    {% endif %}
-  </dd>
-  </dl>
-</div>
-
 <div class="notification-box {{ status(status_summary.elastic) }}">
   <h2>[Elastic Search] Health Check ({{ elastic_timer }}ms)</h2>
   <ul>
