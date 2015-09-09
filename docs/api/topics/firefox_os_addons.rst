@@ -11,12 +11,12 @@ Firefox OS Add-ons
     production. This API is not ready for public consumption yet and can change
     at any moment.
 
-Add-on
-======
-
 The two main resources that are manipulated through this API are
 :ref:`Add-ons <addon-detail>` and :ref:`Add-ons Versions <addon-version-detail>`.
 
+
+Add-on
+======
 
 Detail
 ------
