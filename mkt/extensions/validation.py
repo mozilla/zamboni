@@ -13,6 +13,8 @@ class ExtensionValidator(object):
     """
     errors = {
         'BAD_CONTENT_TYPE': _('The file sent has an unsupported content-type'),
+        'DESCRIPTION_TOO_LONG': _(('The `description` property cannot be '
+                                   'longer than 132 characters.')),
         'INVALID_JSON': _(("'manifest.json' in the archive is not a valid JSON"
                            " file.")),
         'INVALID_ZIP': _('The file sent is not a valid ZIP file.'),
@@ -49,6 +51,7 @@ class ExtensionValidator(object):
         self.manifest = self.validate_file(self.file)
         self.json = self.validate_json(self.manifest)
         self.validate_name(self.json)
+        self.validate_description(self.json)
 
     def validate_file(self, file_obj):
         """
@@ -81,7 +84,7 @@ class ExtensionValidator(object):
         Ensure that the name property of the manifest exists and is a string
         between 1 and 45 characters long.
 
-        https://developer.chrome.com/extensions/manifest/name#name
+        https://developer.chrome.com/extensions/manifest/name
         """
         try:
             name = manifest_json['name']
@@ -93,3 +96,14 @@ class ExtensionValidator(object):
             raise ParseError(self.errors['NAME_TOO_SHORT'])
         if len(name) > 45:
             raise ParseError(self.errors['NAME_TOO_LONG'])
+
+    def validate_description(self, manifest_json):
+        """
+        Ensures that, if present, the description property is no longer than
+        132 characters.
+
+        https://developer.chrome.com/extensions/manifest/description
+        """
+        description = manifest_json.get('description')
+        if description and len(description) > 132:
+            raise ParseError(self.errors['DESCRIPTION_TOO_LONG'])
