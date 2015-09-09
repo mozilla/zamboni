@@ -117,6 +117,18 @@ class TestExtensionValidationViewSet(MktPaths, RestOAuth):
                 **headers)
         eq_(response.status_code, 400)
 
+    @mock.patch('mkt.extensions.views.ExtensionValidator.validate')
+    def test_validation_called(self, mock_validate):
+        headers = {
+            'HTTP_CONTENT_TYPE': 'application/foobar',
+            'HTTP_CONTENT_DISPOSITION': 'form-data; name="binary_data"; '
+                                        'filename="foo.zip"'
+        }
+        with open(self.packaged_app_path('extension.zip'), 'rb') as fd:
+            self.client.post(self.list_url, fd.read(),
+                             content_type='application/zip', **headers)
+        ok_(mock_validate.called)
+
     def test_view_result_anonymous(self):
         upload = FileUpload.objects.create(valid=True)
         url = reverse('api-v2:extension-validation-detail',
