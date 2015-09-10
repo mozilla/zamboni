@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-09-10 13:53+0000\n"
+"PO-Revision-Date: 2015-09-10 13:59+0000\n"
 "Last-Translator: Aleksandra Uzelac <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -2225,15 +2225,15 @@ msgstr ""
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
-msgstr ""
+msgstr "Свети Мартин (Француска)"
 
 #: mkt/constants/regions.py:212
 msgid "Macedonia, the former Yugoslav Republic of"
-msgstr ""
+msgstr "Македонија, Бивша Југословенска Република"
 
 #: mkt/constants/regions.py:251
 msgid "Palestine, State of"
-msgstr ""
+msgstr "Палестина, држава"
 
 #: mkt/constants/regions.py:256
 msgid "Russia"
@@ -2245,7 +2245,7 @@ msgstr "Сенегал"
 
 #: mkt/constants/regions.py:263
 msgid "Saint Helena, Ascension and Tristan da Cunha"
-msgstr ""
+msgstr "Света Јелена, Асенсион и Тристан да Куња"
 
 #: mkt/constants/regions.py:295
 msgid "Taiwan"
@@ -2257,7 +2257,7 @@ msgstr "Танзанија"
 
 #: mkt/constants/regions.py:303
 msgid "Holy See"
-msgstr ""
+msgstr "Ватикан"
 
 #: mkt/constants/regions.py:305
 msgid "Venezuela"
