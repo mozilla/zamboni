@@ -15,8 +15,9 @@ from tower import ugettext as _
 from uuidfield.fields import UUIDField
 
 from lib.crypto.packaged import sign_app, SigningError
-from mkt.constants.base import (STATUS_CHOICES, STATUS_NULL, STATUS_PENDING,
-                                STATUS_PUBLIC, STATUS_REJECTED)
+from mkt.constants.base import (MKT_STATUS_FILE_CHOICES, STATUS_DISABLED,
+                                STATUS_NULL, STATUS_PENDING, STATUS_PUBLIC,
+                                STATUS_REJECTED)
 from mkt.extensions.indexers import ExtensionIndexer
 from mkt.extensions.utils import ExtensionParser
 from mkt.files.models import cleanup_file, nfd_str
@@ -40,11 +41,20 @@ class ExtensionManager(ManagerBase):
         return self.filter(status=STATUS_PUBLIC).order_by('id')
 
 
+class ExtensionVersionManager(ManagerBase):
+    def pending(self):
+        return self.filter(status=STATUS_PENDING).order_by('id')
+
+    def public(self):
+        return self.filter(status=STATUS_PUBLIC).order_by('id')
+
+
 class Extension(ModelBase):
     # Automatically handled fields.
     uuid = UUIDField(auto=True)
     status = models.PositiveSmallIntegerField(
-        choices=STATUS_CHOICES.items(), db_index=True, default=STATUS_NULL)
+        choices=MKT_STATUS_FILE_CHOICES.items(), db_index=True,
+        default=STATUS_NULL)
 
     # Fields for which the manifest is the source of truth - can't be
     # overridden by the API.
@@ -61,7 +71,7 @@ class Extension(ModelBase):
 
     @cached_property(writable=True)
     def latest_public_version(self):
-        return self.versions.filter(status=STATUS_PUBLIC).latest('pk')
+        return self.versions.public().latest('pk')
 
     @cached_property(writable=True)
     def latest_version(self):
@@ -186,7 +196,10 @@ class ExtensionVersion(ModelBase):
     manifest = JSONField()
     version = models.CharField(max_length=23, default='')
     status = models.PositiveSmallIntegerField(
-        choices=STATUS_CHOICES.items(), db_index=True, default=STATUS_NULL)
+        choices=MKT_STATUS_FILE_CHOICES.items(), db_index=True,
+        default=STATUS_NULL)
+
+    objects = ExtensionVersionManager()
 
     class Meta:
         unique_together = (('extension', 'version'),)
@@ -247,10 +260,14 @@ class ExtensionVersion(ModelBase):
             raise ValidationError(
                 _('An extension with this version number already exists.'))
 
-        # Now that the instance has been saved, we can generate a file path,
-        # move the file and set it to PENDING. That should also set the status
-        # on the parent.
+        # Now that the instance has been saved, we can generate a file path
+        # and move the file.
         instance.handle_file_operations(upload)
+
+        # Now that the file is there, all that's left is making older pending
+        # versions obsolete and setting this one as pending. That should also
+        # set the status # on the parent.
+        instance.set_older_pending_versions_as_obsolete()
         instance.update(status=STATUS_PENDING)
         return instance
 
@@ -284,6 +301,22 @@ class ExtensionVersion(ModelBase):
     def remove_signed_file(self):
         if public_storage.exists(self.signed_file_path):
             public_storage.delete(self.signed_file_path)
+
+    def set_older_pending_versions_as_obsolete(self):
+        """Set all pending versions older than this one attached to the same
+        Extension as DISABLED (obsolete).
+
+        To be on the safe side this method does not trigger signals and needs
+        to be called when creating a new pending version, before actually
+        changing its status to PENDING. That way we avoid having extra versions
+        laying around when we automatically update the status on the parent
+        Extension."""
+        qs = self.__class__.objects.pending().filter(
+            extension=self.extension, pk__lt=self.pk)
+
+        # Call <queryset>.update() directly, bypassing signals etc, that should
+        # not be needed since it should be followed by a self.save().
+        qs.update(status=STATUS_DISABLED)
 
     def sign_and_move_file(self):
         """Sign and move extension file from the unsigned path (`file_path`) on
@@ -352,7 +385,6 @@ def delete_search_index(sender, instance, **kw):
 @receiver([models.signals.post_delete, models.signals.post_save],
           sender=ExtensionVersion, dispatch_uid='extension_version_change')
 def update_extension_status(sender, instance, **kw):
-    # FIXME: should render obsolete older pending uploads as well.
     instance.extension.update_status_according_to_versions()
 
 
