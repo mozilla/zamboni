@@ -28,31 +28,31 @@ class Command(BaseCommand):
         self.stdout.write(msg)
         self.stdout.flush()
 
-    def upload(self, webapp, path):
+    def upload(self, addon, path):
         """Create FileUpload instance from local file."""
         self.info('Creating FileUpload...')
         package_file = open(path)
         package_size = os.stat(path).st_size
         upload = FileUpload()
-        upload.user = webapp.authors.all()[0]
+        upload.user = addon.authors.all()[0]
         upload.add_file(package_file.read(), 'marketplace-package.zip',
                         package_size)
         self.info('Created FileUpload %s.' % upload)
         return upload
 
-    def create_version(self, webapp, upload):
+    def create_version(self, addon, upload):
         """Create new Version instance from a FileUpload instance"""
         self.info('Creating new Version...')
-        version = Version.from_upload(upload, webapp)
+        version = Version.from_upload(upload, addon)
         self.info('Created new Version %s.' % version)
         return version
 
-    def sign_and_publicise(self, webapp, version):
+    def sign_and_publicise(self, addon, version):
         """Sign the version we just created and make it public."""
         # Note: most of this is lifted from mkt/reviewers/utils.py, but without
         # the dependency on `request` and isolating only what we need.
         self.info('Signing version...')
-        webapp.sign_if_packaged(version.pk)
+        addon.sign_if_packaged(version.pk)
         self.info('Signing version %s done.' % version)
         self.info('Setting File to public...')
         file_ = version.all_files[0]
@@ -61,7 +61,7 @@ class Command(BaseCommand):
         self.info('File for version %s set to public.' % version)
         self.info('Setting version %s as the current version...' % version)
         version.update(_signal=False, reviewed=datetime.now())
-        webapp.update_version(_signal=False)
+        addon.update_version(_signal=False)
         self.info('Set version %s as the current version.' % version)
 
     @use_master
@@ -78,7 +78,7 @@ class Command(BaseCommand):
         if not os.path.exists(path):
             raise CommandError('File does not exist')
 
-        webapp = Webapp.objects.get(app_slug=slug)
+        addon = Webapp.objects.get(app_slug=slug)
 
         # Wrap everything we're doing in a transaction, if there is an uncaught
         # exception everything will be rolled back. We force a connect() call
@@ -86,8 +86,8 @@ class Command(BaseCommand):
         # not properly reset, messing up transaction.atomic() blocks).
         connections['default'].connect()
         with transaction.atomic():
-            upload = self.upload(webapp, path)
-            version = self.create_version(webapp, upload)
-            self.sign_and_publicise(webapp, version)
+            upload = self.upload(addon, path)
+            version = self.create_version(addon, upload)
+            self.sign_and_publicise(addon, version)
 
             self.info('Excellent! Version %s is the now live \o/' % version)

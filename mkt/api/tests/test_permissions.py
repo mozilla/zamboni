@@ -238,7 +238,7 @@ class TestAllowRelatedAppOwner(TestCase):
         self.request.user = self.owner
         self.request.user = self.owner
         obj = Mock()
-        obj.webapp = self.app
+        obj.addon = self.app
         eq_(self.permission.has_object_permission(self.request, 'myview', obj),
             True)
 
@@ -246,7 +246,7 @@ class TestAllowRelatedAppOwner(TestCase):
         self.request.user = UserProfile.objects.get(pk=2519)
         self.request.user = self.request.user
         obj = Mock()
-        obj.webapp = self.app
+        obj.addon = self.app
         eq_(self.permission.has_object_permission(self.request, 'myview', obj),
             False)
 
@@ -286,10 +286,7 @@ class TestAllowReadOnlyIfPublic(TestCase):
         self.anonymous = AnonymousUser()
         self.request_factory = RequestFactory()
 
-        # 'patch' is missing because it's absent from RequestFactory in
-        # django < 1.5. Usually we don't special case 'put' vs 'patch' in
-        # permissions code though, so it's fine.
-        self.unsafe_methods = ('post', 'put', 'delete')
+        self.unsafe_methods = ('patch', 'post', 'put', 'delete')
         self.safe_methods = ('get', 'options', 'head')
 
     def _request(self, verb):

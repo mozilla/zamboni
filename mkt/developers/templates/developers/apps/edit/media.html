@@ -2,11 +2,11 @@
 <h2>
   {{ _('Media') }}
   {% if not editable %}
-    <a href="#" data-editurl="{{ webapp.get_dev_url('section', args=['media', 'edit']) }}" class="button">
+    <a href="#" data-editurl="{{ addon.get_dev_url('section', args=['media', 'edit']) }}" class="button">
     {{ _('Edit') }}</a>
   {% endif %}
 </h2>
-<form method="post" action="{{ webapp.get_dev_url('section', args=['media', 'edit']) }}"
+<form method="post" action="{{ addon.get_dev_url('section', args=['media', 'edit']) }}"
       enctype="multipart/form-data">
   {% set context = 'edit' %}
   {% include "developers/apps/forms_shared/media.html" %}

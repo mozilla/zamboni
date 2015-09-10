@@ -22,7 +22,7 @@ If omitted, all signed apps will be re-signed.
 """
 
 
-log = logging.getLogger('z.webapps')
+log = logging.getLogger('z.addons')
 
 
 class Command(BaseCommand):

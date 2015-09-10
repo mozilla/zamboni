@@ -23,7 +23,7 @@
     <h1>{{ title }}</h1>
   </header>
   <section id="dashboard" class="island listing primary full">
-    {% if not webapps %}
+    {% if not addons %}
       <h2>{{ _('Welcome to the Developer Dashboard') }}</h2>
       <p>
         {% trans app_url="https://developer.mozilla.org/apps" %}
@@ -39,9 +39,9 @@
     {% else %}
       {% include "webapps/impala/listing/sorter.html" %}
       <div class="items">
-        {{ hub_webapp_listing_items(webapps.object_list) }}
+        {{ hub_addon_listing_items(addons.object_list) }}
       </div>
-      {{ webapps|impala_paginator }}
+      {{ addons|impala_paginator }}
     {% endif %}
   </section>
 {% endblock %}

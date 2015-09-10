@@ -38,7 +38,7 @@ class CommTestMixin(object):
             create_perms['read_permission_%s' % perm] = False
         kw.update(create_perms)
 
-        thread = self.webapp.threads.create(**kw)
+        thread = self.addon.threads.create(**kw)
         if note:
             self._note_factory(thread)
             CommunicationThreadCC.objects.create(user=self.profile,
@@ -90,7 +90,7 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
 
     def setUp(self):
         super(TestThreadDetail, self).setUp()
-        self.webapp = Webapp.objects.get(pk=337141)
+        self.addon = Webapp.objects.get(pk=337141)
 
     def check_permissions(self, thread):
         req = req_factory_factory(
@@ -107,23 +107,23 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
             reverse('comm-thread-detail', kwargs={'pk': thread.pk}))
         eq_(res.status_code, 200)
         eq_(len(res.json['recent_notes']), 1)
-        eq_(res.json['webapp'], self.webapp.id)
+        eq_(res.json['addon'], self.addon.id)
 
     def test_response_deleted_app(self):
-        self.webapp.update(status=mkt.STATUS_DELETED)
+        self.addon.update(status=mkt.STATUS_DELETED)
 
         thread = self._thread_factory(note=True)
         res = self.client.get(
             reverse('comm-thread-detail', kwargs={'pk': thread.pk}))
 
         eq_(res.status_code, 200)
-        eq_(res.json['webapp'], self.webapp.id)
-        eq_(res.json['webapp_meta']['name'], self.webapp.name)
+        eq_(res.json['addon'], self.addon.id)
+        eq_(res.json['addon_meta']['name'], self.addon.name)
 
     def test_response_deleted_version_app(self):
-        self.webapp.update(status=mkt.STATUS_DELETED)
+        self.addon.update(status=mkt.STATUS_DELETED)
         thread = self._thread_factory(note=True)
-        version = version_factory(webapp=self.webapp)
+        version = version_factory(addon=self.addon)
         version.update(deleted=True)
         thread.update(_version=version)
 
@@ -131,15 +131,15 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
             reverse('comm-thread-detail', kwargs={'pk': thread.pk}))
 
         eq_(res.status_code, 200)
-        eq_(res.json['webapp'], self.webapp.id)
-        eq_(res.json['webapp_meta']['name'], self.webapp.name)
+        eq_(res.json['addon'], self.addon.id)
+        eq_(res.json['addon_meta']['name'], self.addon.name)
         eq_(res.json['version'], version.id)
         eq_(res.json['version_number'], version.version)
         eq_(res.json['version_is_obsolete'], True)
 
     def test_recent_notes_perm(self):
         staff = UserProfile.objects.get(email='support-staff@mozilla.com')
-        self.webapp.webappuser_set.create(user=self.profile)
+        self.addon.addonuser_set.create(user=self.profile)
         thread = self._thread_factory(read_permission_developer=True)
         self._note_factory(
             thread, perms=['developer'], author=staff, body='allowed')
@@ -152,7 +152,7 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
         eq_(res.status_code, 200)
         eq_(len(res.json['recent_notes']), 1)
         eq_(res.json['recent_notes'][0]['body'], 'allowed')
-        eq_(res.json['webapp'], self.webapp.id)
+        eq_(res.json['addon'], self.addon.id)
 
         # Test that the author always has permissions.
         no_dev_note.update(author=self.profile)
@@ -169,15 +169,15 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
         thread.thread_cc.create(user=self.profile)
         assert self.check_permissions(thread)
 
-    def test_webapp_dev_allowed(self):
+    def test_addon_dev_allowed(self):
         thread = self._thread_factory(perms=['developer'])
-        self.webapp.webappuser_set.create(user=self.profile)
+        self.addon.addonuser_set.create(user=self.profile)
         assert self.check_permissions(thread)
 
-    def test_webapp_dev_denied(self):
+    def test_addon_dev_denied(self):
         """Test when the user is a developer of a different add-on."""
         thread = self._thread_factory(perms=['developer'])
-        self.profile.webappuser_set.create(webapp=app_factory())
+        self.profile.addonuser_set.create(addon=app_factory())
         assert not self.check_permissions(thread)
 
     def test_read_public(self):
@@ -186,7 +186,7 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
 
     def test_read_moz_contact(self):
         thread = self._thread_factory(perms=['mozilla_contact'])
-        self.webapp.update(mozilla_contact=self.profile.email)
+        self.addon.update(mozilla_contact=self.profile.email)
         assert self.check_permissions(thread)
 
     def test_read_reviewer(self):
@@ -217,13 +217,13 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
         res = self.client.get(
             reverse('comm-thread-detail', kwargs={'pk': thread.pk}))
         eq_(res.status_code, 200)
-        eq_(res.json['webapp_meta']['review_url'],
-            reverse('reviewers.apps.review', args=[self.webapp.app_slug]))
+        eq_(res.json['addon_meta']['review_url'],
+            reverse('reviewers.apps.review', args=[self.addon.app_slug]))
 
     def test_version_number(self):
-        version = version_factory(webapp=self.webapp, version='7.12')
+        version = version_factory(addon=self.addon, version='7.12')
         thread = CommunicationThread.objects.create(
-            _webapp=self.webapp, _version=version, read_permission_public=True)
+            _addon=self.addon, _version=version, read_permission_public=True)
 
         res = self.client.get(reverse('comm-thread-detail', args=[thread.pk]))
         eq_(json.loads(res.content)['version_number'], '7.12')
@@ -235,15 +235,13 @@ class TestThreadDetail(RestOAuth, CommTestMixin):
         eq_(json.loads(res.content)['version_is_obsolete'], True)
 
     def test_app_threads(self):
-        version1 = version_factory(webapp=self.webapp, version='7.12')
+        version1 = version_factory(addon=self.addon, version='7.12')
         thread1 = CommunicationThread.objects.create(
-            _webapp=self.webapp, _version=version1,
-            read_permission_public=True)
+            _addon=self.addon, _version=version1, read_permission_public=True)
 
-        version2 = version_factory(webapp=self.webapp, version='1.16')
+        version2 = version_factory(addon=self.addon, version='1.16')
         thread2 = CommunicationThread.objects.create(
-            _webapp=self.webapp, _version=version2,
-            read_permission_public=True)
+            _addon=self.addon, _version=version2, read_permission_public=True)
 
         for thread in (thread1, thread2):
             res = self.client.get(reverse('comm-thread-detail',
@@ -259,7 +257,7 @@ class TestThreadList(RestOAuth, CommTestMixin):
 
     def setUp(self):
         super(TestThreadList, self).setUp()
-        self.webapp = Webapp.objects.get(pk=337141)
+        self.addon = Webapp.objects.get(pk=337141)
         self.list_url = reverse('comm-thread-list')
 
     def test_response(self):
@@ -270,7 +268,7 @@ class TestThreadList(RestOAuth, CommTestMixin):
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 1)
 
-    def test_webapp_filter(self):
+    def test_addon_filter(self):
         self._thread_factory(note=True)
 
         self.grant_permission(self.user, 'Apps:Review')
@@ -283,48 +281,46 @@ class TestThreadList(RestOAuth, CommTestMixin):
         eq_(res.status_code, 404)
 
     def test_app_slug(self):
-        thread = CommunicationThread.objects.create(_webapp=self.webapp)
+        thread = CommunicationThread.objects.create(_addon=self.addon)
         CommunicationNote.objects.create(author=self.profile, thread=thread,
                                          note_type=0, body='something')
 
         self.grant_permission(self.user, 'Apps:Review')
-        res = self.client.get(self.list_url, {'app': self.webapp.app_slug})
+        res = self.client.get(self.list_url, {'app': self.addon.app_slug})
         eq_(res.status_code, 200)
-        eq_(res.json['objects'][0]['webapp_meta']['app_slug'],
-            self.webapp.app_slug)
+        eq_(res.json['objects'][0]['addon_meta']['app_slug'],
+            self.addon.app_slug)
 
     def test_app_threads(self):
-        version1 = version_factory(webapp=self.webapp, version='7.12')
+        version1 = version_factory(addon=self.addon, version='7.12')
         thread1 = CommunicationThread.objects.create(
-            _webapp=self.webapp, _version=version1,
-            read_permission_public=True)
+            _addon=self.addon, _version=version1, read_permission_public=True)
         CommunicationThreadCC.objects.create(user=self.profile, thread=thread1)
 
-        version2 = version_factory(webapp=self.webapp, version='1.16')
+        version2 = version_factory(addon=self.addon, version='1.16')
         thread2 = CommunicationThread.objects.create(
-            _webapp=self.webapp, _version=version2,
-            read_permission_public=True)
+            _addon=self.addon, _version=version2, read_permission_public=True)
         CommunicationThreadCC.objects.create(user=self.profile, thread=thread2)
 
         self.grant_permission(self.user, 'Apps:Review')
-        res = self.client.get(self.list_url, {'app': self.webapp.app_slug})
+        res = self.client.get(self.list_url, {'app': self.addon.app_slug})
         eq_(res.status_code, 200)
         eq_(res.json['app_threads'],
             [{'id': thread2.id, 'version__version': version2.version},
              {'id': thread1.id, 'version__version': version1.version}])
 
     def test_create(self):
-        version_factory(webapp=self.webapp, version='1.1')
+        version_factory(addon=self.addon, version='1.1')
         data = {
-            'app': self.webapp.app_slug,
+            'app': self.addon.app_slug,
             'version': '1.1',
             'note_type': '0',
             'body': 'flylikebee'
         }
-        self.webapp.webappuser_set.create(user=self.user)
+        self.addon.addonuser_set.create(user=self.user)
         res = self.client.post(self.list_url, data=json.dumps(data))
         eq_(res.status_code, 201)
-        assert self.webapp.threads.count()
+        assert self.addon.threads.count()
 
 
 class NoteSetupMixin(RestOAuth, CommTestMixin, AttachmentManagementMixin):
@@ -333,16 +329,16 @@ class NoteSetupMixin(RestOAuth, CommTestMixin, AttachmentManagementMixin):
 
     def setUp(self):
         super(NoteSetupMixin, self).setUp()
-        self.webapp = Webapp.objects.get(pk=337141)
-        self.version = self.webapp.current_version
+        self.addon = Webapp.objects.get(pk=337141)
+        self.version = self.addon.current_version
         self.thread = self._thread_factory(
-            perms=['developer'], version=self.webapp.current_version)
+            perms=['developer'], version=self.addon.current_version)
         self.thread_url = reverse(
             'comm-thread-detail', kwargs={'pk': self.thread.id})
         self.list_url = reverse(
             'comm-note-list', kwargs={'thread_id': self.thread.id})
 
-        self.profile.webappuser_set.create(webapp=self.webapp)
+        self.profile.addonuser_set.create(addon=self.addon)
 
 
 class TestNote(NoteSetupMixin):
@@ -391,7 +387,7 @@ class TestNote(NoteSetupMixin):
         eq_(res.json['body'], 'something')
 
     def test_create_app_deleted(self):
-        self.webapp.update(status=mkt.STATUS_DELETED)
+        self.addon.update(status=mkt.STATUS_DELETED)
         res = self.client.post(self.list_url, data=json.dumps(
                                {'note_type': '0', 'body': 'something'}))
         eq_(res.status_code, 201)
@@ -410,7 +406,7 @@ class TestNote(NoteSetupMixin):
                                 'body': 'something'}))
         eq_(res.status_code, 201)
 
-        self.webapp.webappuser_set.filter(user=self.profile).delete()
+        self.addon.addonuser_set.filter(user=self.profile).delete()
         res = self.client.post(self.list_url, data=json.dumps(
                                {'note_type': comm.DEVELOPER_COMMENT,
                                 'body': 'something'}))
@@ -531,7 +527,7 @@ class TestAttachments(NoteSetupMixin):
 
         # Remove perms.
         self.note.update(author=user_factory())
-        self.profile.webappuser_set.all().delete()
+        self.profile.addonuser_set.all().delete()
         get_attachment_url = reverse('comm-attachment-detail',
                                      args=[self.note.id, attachment_id])
         res = self.client.get(get_attachment_url)
@@ -559,7 +555,7 @@ class TestEmailApi(RestOAuth):
         app = app_factory()
         user = user_factory()
         self.grant_permission(user, 'Admin:*')
-        t = CommunicationThread.objects.create(_webapp=app,
+        t = CommunicationThread.objects.create(_addon=app,
                                                _version=app.current_version)
         t.token.create(user=user, uuid='5a0b8a83d501412589cc5d562334b46b')
 
@@ -599,7 +595,7 @@ class TestCommCC(RestOAuth, CommTestMixin):
 
     def setUp(self):
         super(TestCommCC, self).setUp()
-        self.webapp = Webapp.objects.get(pk=337141)
+        self.addon = Webapp.objects.get(pk=337141)
         self.profile = UserProfile.objects.get(id=2519)
 
     def test_delete(self):
@@ -616,36 +612,36 @@ class TestCommAppListView(RestOAuth, CommTestMixin):
 
     def setUp(self):
         super(TestCommAppListView, self).setUp()
-        self.webapp = Webapp.objects.get(pk=337141)
+        self.addon = Webapp.objects.get(pk=337141)
         self.profile = UserProfile.objects.get(id=2519)
-        self.profile.webappuser_set.create(webapp=self.webapp)
+        self.profile.addonuser_set.create(addon=self.addon)
 
     def test_list(self):
         [self._thread_factory() for x in range(2)]
 
         res = self.client.get(reverse('api-v2:comm-app-list',
-                                      args=[self.webapp.app_slug]))
+                                      args=[self.addon.app_slug]))
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 2)
 
     def test_single(self):
-        thread = self._thread_factory(_version=self.webapp.current_version)
+        thread = self._thread_factory(_version=self.addon.current_version)
 
         res = self.client.get(reverse('api-v2:comm-app-list',
-                                      args=[self.webapp.app_slug])).json
+                                      args=[self.addon.app_slug])).json
 
         res_thread = res['objects'][0]
         eq_(res_thread['id'], thread.id)
-        eq_(res_thread['app']['id'], self.webapp.id)
+        eq_(res_thread['app']['id'], self.addon.id)
         eq_(res_thread['notes_count'], 0)
         eq_(res_thread['version']['version'],
-            self.webapp.current_version.version)
+            self.addon.current_version.version)
 
     def test_simple(self):
-        thread = self._thread_factory(_version=self.webapp.current_version)
+        thread = self._thread_factory(_version=self.addon.current_version)
 
         res = self.client.get(reverse('api-v2:comm-app-list',
-                                      args=[self.webapp.app_slug]),
+                                      args=[self.addon.app_slug]),
                               data={'serializer': 'simple'})
 
         eq_(res.status_code, 200)
@@ -658,9 +654,9 @@ class TestCommAppListView(RestOAuth, CommTestMixin):
         })
 
     def test_403(self):
-        self.profile.webappuser_set.all().delete()
+        self.profile.addonuser_set.all().delete()
         res = self.client.get(reverse('api-v2:comm-app-list',
-                              args=[self.webapp.app_slug]))
+                              args=[self.addon.app_slug]))
         eq_(res.status_code, 403)
 
     def test_404(self):
@@ -674,12 +670,12 @@ class TestThreadViewSetV2(RestOAuth, CommTestMixin):
 
     def setUp(self):
         super(TestThreadViewSetV2, self).setUp()
-        self.webapp = Webapp.objects.get(pk=337141)
+        self.addon = Webapp.objects.get(pk=337141)
         self.profile = UserProfile.objects.get(id=2519)
 
     def test_list(self):
         thread1 = self._thread_factory()
-        thread2 = self._thread_factory(_version=self.webapp.current_version)
+        thread2 = self._thread_factory(_version=self.addon.current_version)
         thread1.thread_cc.create(user=self.profile)
         thread2.thread_cc.create(user=self.profile)
 
@@ -687,7 +683,7 @@ class TestThreadViewSetV2(RestOAuth, CommTestMixin):
         eq_(len(res.json['objects']), 2)
 
     def test_single(self):
-        thread = self._thread_factory(_version=self.webapp.current_version)
+        thread = self._thread_factory(_version=self.addon.current_version)
         thread.thread_cc.create(user=self.profile)
         res = self.client.get(reverse('api-v2:comm-thread-list'))
 
@@ -695,10 +691,10 @@ class TestThreadViewSetV2(RestOAuth, CommTestMixin):
         eq_(len(res.json['objects']), 1)
         res_thread = res.json['objects'][0]
         eq_(res_thread['id'], thread.id)
-        eq_(res_thread['app']['id'], self.webapp.id)
+        eq_(res_thread['app']['id'], self.addon.id)
         eq_(res_thread['notes_count'], 0)
         eq_(res_thread['version']['version'],
-            self.webapp.current_version.version)
+            self.addon.current_version.version)
 
     def test_empty(self):
         res = self.client.get(reverse('api-v2:comm-thread-list'))

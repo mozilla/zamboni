@@ -17,7 +17,7 @@ from mkt.search.forms import COLOMBIA_WEBSITE
 from mkt.site.fixtures import fixture
 from mkt.site.tests import app_factory, ESTestCase, TestCase
 from mkt.tags.models import Tag
-from mkt.webapps.models import WebappUser, Installed, Webapp
+from mkt.webapps.models import AddonUser, Installed, Webapp
 from mkt.websites.models import Website, WebsitePopularity
 from mkt.websites.utils import website_factory
 
@@ -269,7 +269,7 @@ class TestConsumerInfoView(RestOAuth, TestCase):
     def test_with_user_developed(self, region_from_request):
         region_from_request.return_value = mkt.regions.BRA
         developed_app = app_factory()
-        WebappUser.objects.create(user=self.user, webapp=developed_app)
+        AddonUser.objects.create(user=self.user, addon=developed_app)
         res = self.client.get(self.url)
         data = json.loads(res.content)
         eq_(data['region'], 'br')
@@ -281,7 +281,7 @@ class TestConsumerInfoView(RestOAuth, TestCase):
     def test_with_user_installed(self, region_from_request):
         region_from_request.return_value = mkt.regions.BRA
         installed_app = app_factory()
-        Installed.objects.create(user=self.user, webapp=installed_app)
+        Installed.objects.create(user=self.user, addon=installed_app)
         res = self.client.get(self.url)
         data = json.loads(res.content)
         eq_(data['region'], 'br')

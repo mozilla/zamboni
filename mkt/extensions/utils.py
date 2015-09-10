@@ -9,14 +9,14 @@ from tower import ugettext as _
 
 from mkt.files.utils import get_file, SafeUnzip
 from mkt.site.utils import cached_property, strip_bom
+from mkt.translations.utils import to_language
 
 
 log = logging.getLogger('extensions.utils')
 
 
 class ExtensionParser(object):
-    def __init__(self, fileorpath, instance=None):
-        self.instance = instance
+    def __init__(self, fileorpath):
         self.fileorpath = fileorpath
 
     @cached_property
@@ -60,22 +60,32 @@ class ExtensionParser(object):
                 _('The addon manifest is not valid JSON.'))
 
     def parse(self):
-        """Parse archive and return extension data.
-         May raise forms.ValidationError()"""
-        data = self.manifest_contents
-        output = {}
+        """Parse archive and return extension data as expected by the models.
+
+        May raise forms.ValidationError."""
+        raw_data = self.manifest_contents
+        data = {}
 
         required_fields = ('name', 'version')
         for field in required_fields:
-            if not data.get(field):
+            if not raw_data.get(field):
                 raise forms.ValidationError(
                     _(u'The "%s" field is missing or empty in the'
                       u' add-on manifest.' % field))
-            output[field] = data[field]
+            data[field] = raw_data[field]
 
-        allowed_fields = ('author', 'default_locale', 'description', 'icons')
-        for field in allowed_fields:
-            if field in data:
-                output[field] = data[field]
+        extra_fields = ('description',)
+        for field in extra_fields:
+            if field in raw_data:
+                data[field] = raw_data[field]
 
-        return output
+        default_locale = raw_data.get('default_locale')
+        if default_locale:
+            # We actually need language (e.g. "en-US") for translations, not
+            # locale (e.g. "en_US"). The extension contains locales though, not
+            # languages, so transform the field in the manifest before adding
+            # it to the data we'll pass to the model.
+            data['default_language'] = to_language(default_locale)
+
+        data['manifest'] = self.manifest_contents
+        return data

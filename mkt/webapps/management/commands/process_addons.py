@@ -28,7 +28,7 @@ tasks = {
 
 class Command(BaseCommand):
     """
-    A generic command to run a task on webapps.
+    A generic command to run a task on addons.
     Add tasks to the tasks dictionary, providing a list of Q objects if you'd
     like to filter the list down.
 
@@ -39,7 +39,7 @@ class Command(BaseCommand):
     """
     option_list = BaseCommand.option_list + (
         make_option('--task', action='store', type='string',
-                    dest='task', help='Run task on the webapps.'),
+                    dest='task', help='Run task on the addons.'),
     )
 
     def handle(self, *args, **options):

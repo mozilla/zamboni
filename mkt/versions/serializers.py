@@ -17,17 +17,17 @@ class SimpleVersionSerializer(serializers.ModelSerializer):
 
 
 class VersionSerializer(serializers.ModelSerializer):
-    webapp = serializers.HyperlinkedRelatedField(view_name='app-detail',
-                                                 read_only=True)
+    addon = serializers.HyperlinkedRelatedField(view_name='app-detail',
+                                                read_only=True)
 
     class Meta:
         model = Version
-        fields = ('id', 'webapp', '_developer_name', 'releasenotes', 'version')
+        fields = ('id', 'addon', '_developer_name', 'releasenotes', 'version')
         depth = 0
         field_rename = {
             '_developer_name': 'developer_name',
             'releasenotes': 'release_notes',
-            'webapp': 'app'
+            'addon': 'app'
         }
 
     def to_native(self, obj):
@@ -36,7 +36,7 @@ class VersionSerializer(serializers.ModelSerializer):
         # Add non-field data to the response.
         native.update({
             'features': AppFeaturesSerializer().to_native(obj.features),
-            'is_current_version': obj.webapp.current_version == obj,
+            'is_current_version': obj.addon.current_version == obj,
             'releasenotes': (unicode(obj.releasenotes) if obj.releasenotes else
                              None),
         })

@@ -137,51 +137,51 @@ AUTHOR_CHOICES = (
 AUTHOR_CHOICES_NAMES = dict(AUTHOR_CHOICES)
 
 
-# WEBAPP Types
-WEBAPP_HOSTED = 1
-WEBAPP_PACKAGED = 2
-WEBAPP_PRIVILEGED = 3
+# ADDON_WEBAPP Types
+ADDON_WEBAPP_HOSTED = 1
+ADDON_WEBAPP_PACKAGED = 2
+ADDON_WEBAPP_PRIVILEGED = 3
 
-WEBAPP_TYPES = {
-    WEBAPP_HOSTED: 'hosted',
-    WEBAPP_PACKAGED: 'packaged',
-    WEBAPP_PRIVILEGED: 'privileged',
+ADDON_WEBAPP_TYPES = {
+    ADDON_WEBAPP_HOSTED: 'hosted',
+    ADDON_WEBAPP_PACKAGED: 'packaged',
+    ADDON_WEBAPP_PRIVILEGED: 'privileged',
 }
-WEBAPP_TYPES_LOOKUP = dict((v, k) for k, v in WEBAPP_TYPES.items())
+ADDON_WEBAPP_TYPES_LOOKUP = dict((v, k) for k, v in ADDON_WEBAPP_TYPES.items())
 
-WEBAPP_FREE = 0
-WEBAPP_PREMIUM = 1
-WEBAPP_PREMIUM_INAPP = 2
-WEBAPP_FREE_INAPP = 3
-# The webapp will have payments, but they aren't using our payment system.
-WEBAPP_OTHER_INAPP = 4
+ADDON_FREE = 0
+ADDON_PREMIUM = 1
+ADDON_PREMIUM_INAPP = 2
+ADDON_FREE_INAPP = 3
+# The addon will have payments, but they aren't using our payment system.
+ADDON_OTHER_INAPP = 4
 
-WEBAPP_PREMIUM_TYPES = {
-    WEBAPP_FREE: _('Free'),
-    WEBAPP_PREMIUM: _('Premium'),
-    WEBAPP_PREMIUM_INAPP: _('Premium with in-app payments'),
-    WEBAPP_FREE_INAPP: _('Free with in-app payments'),
-    WEBAPP_OTHER_INAPP: _("I'll use my own system for in-app payments")
+ADDON_PREMIUM_TYPES = {
+    ADDON_FREE: _('Free'),
+    ADDON_PREMIUM: _('Premium'),
+    ADDON_PREMIUM_INAPP: _('Premium with in-app payments'),
+    ADDON_FREE_INAPP: _('Free with in-app payments'),
+    ADDON_OTHER_INAPP: _("I'll use my own system for in-app payments")
 }
 
 # Non-locale versions for the API.
-WEBAPP_PREMIUM_API = {
-    WEBAPP_FREE: 'free',
-    WEBAPP_PREMIUM: 'premium',
-    WEBAPP_PREMIUM_INAPP: 'premium-inapp',
-    WEBAPP_FREE_INAPP: 'free-inapp',
-    WEBAPP_OTHER_INAPP: 'other',
+ADDON_PREMIUM_API = {
+    ADDON_FREE: 'free',
+    ADDON_PREMIUM: 'premium',
+    ADDON_PREMIUM_INAPP: 'premium-inapp',
+    ADDON_FREE_INAPP: 'free-inapp',
+    ADDON_OTHER_INAPP: 'other',
 }
-WEBAPP_PREMIUM_API_LOOKUP = dict((v, k) for k, v in WEBAPP_PREMIUM_API.items())
+ADDON_PREMIUM_API_LOOKUP = dict((v, k) for k, v in ADDON_PREMIUM_API.items())
 
 # Apps that require some sort of payment prior to installing.
-WEBAPP_PREMIUMS = (WEBAPP_PREMIUM, WEBAPP_PREMIUM_INAPP)
+ADDON_PREMIUMS = (ADDON_PREMIUM, ADDON_PREMIUM_INAPP)
 # Apps that do *not* require a payment prior to installing.
-WEBAPP_FREES = (WEBAPP_FREE, WEBAPP_FREE_INAPP, WEBAPP_OTHER_INAPP)
-WEBAPP_INAPPS = (WEBAPP_PREMIUM_INAPP, WEBAPP_FREE_INAPP)
-WEBAPP_HAS_PAYMENTS = (WEBAPP_FREE_INAPP, WEBAPP_PREMIUM, WEBAPP_PREMIUM_INAPP)
+ADDON_FREES = (ADDON_FREE, ADDON_FREE_INAPP, ADDON_OTHER_INAPP)
+ADDON_INAPPS = (ADDON_PREMIUM_INAPP, ADDON_FREE_INAPP)
+ADDON_HAS_PAYMENTS = (ADDON_FREE_INAPP, ADDON_PREMIUM, ADDON_PREMIUM_INAPP)
 
-# Edit webapp information
+# Edit addon information
 MAX_TAGS = 20
 MIN_TAG_LENGTH = 2
 MAX_CATEGORIES = 2
@@ -195,7 +195,7 @@ PROMO_IMG_SIZES = [320, 640, 1050]
 PROMO_IMG_MINIMUMS = (1050, 300)
 
 # Preview upload sizes [thumb, full]
-WEBAPP_PREVIEW_SIZES = [(200, 150), (700, 525)]
+ADDON_PREVIEW_SIZES = [(200, 150), (700, 525)]
 
 # Accepted image MIME-types
 IMG_TYPES = ('image/png', 'image/jpeg', 'image/jpg')
@@ -205,7 +205,7 @@ VIDEO_TYPES = ('video/webm',)
 EDITOR_VIEWING_INTERVAL = 8  # How often we ping for "who's watching?"
 
 # For use in urls.
-WEBAPP_UUID = r'(?P<uuid>[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12})'
+ADDON_UUID = r'(?P<uuid>[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12})'
 APP_SLUG = r"""(?P<app_slug>[^/<>"']+)"""
 
 # Reviewer Incentive Scores.

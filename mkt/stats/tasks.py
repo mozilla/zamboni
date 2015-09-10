@@ -9,7 +9,7 @@ from mkt.constants.regions import REGIONS_CHOICES_SLUG
 from mkt.monolith.models import MonolithRecord
 from mkt.site.decorators import use_master
 from mkt.ratings.models import Review
-from mkt.webapps.models import WebappUser, Webapp
+from mkt.webapps.models import AddonUser, Webapp
 from mkt.users.models import UserProfile
 
 
@@ -90,7 +90,7 @@ def _get_monolith_jobs(date=None):
 
         # New developers.
         'mmo_developer_count_total': [{
-            'count': WebappUser.objects.filter(
+            'count': AddonUser.objects.filter(
                 user__created__lt=next_date).values('user').distinct().count,
         }],
 
@@ -108,8 +108,8 @@ def _get_monolith_jobs(date=None):
     premium_counts = []
 
     # privileged==packaged for our consideration.
-    package_types = mkt.WEBAPP_TYPES.copy()
-    package_types.pop(mkt.WEBAPP_PRIVILEGED)
+    package_types = mkt.ADDON_WEBAPP_TYPES.copy()
+    package_types.pop(mkt.ADDON_WEBAPP_PRIVILEGED)
 
     for region_slug, region in REGIONS_CHOICES_SLUG:
         # Apps added by package type and region.
@@ -117,18 +117,18 @@ def _get_monolith_jobs(date=None):
             package_counts.append({
                 'count': (apps
                           .filter(is_packaged=package_type == 'packaged')
-                          .exclude(webappexcludedregion__region=region.id)
+                          .exclude(addonexcludedregion__region=region.id)
                           .count),
                 'dimensions': {'region': region_slug,
                                'package_type': package_type},
             })
 
         # Apps added by premium type and region.
-        for premium_type, pt_name in mkt.WEBAPP_PREMIUM_API.items():
+        for premium_type, pt_name in mkt.ADDON_PREMIUM_API.items():
             premium_counts.append({
                 'count': (apps
                           .filter(premium_type=premium_type)
-                          .exclude(webappexcludedregion__region=region.id)
+                          .exclude(addonexcludedregion__region=region.id)
                           .count),
                 'dimensions': {'region': region_slug,
                                'premium_type': pt_name},
@@ -150,18 +150,18 @@ def _get_monolith_jobs(date=None):
             package_counts.append({
                 'count': (apps
                           .filter(is_packaged=package_type == 'packaged')
-                          .exclude(webappexcludedregion__region=region.id)
+                          .exclude(addonexcludedregion__region=region.id)
                           .count),
                 'dimensions': {'region': region_slug,
                                'package_type': package_type},
             })
 
         # Apps available by premium type and region.
-        for premium_type, pt_name in mkt.WEBAPP_PREMIUM_API.items():
+        for premium_type, pt_name in mkt.ADDON_PREMIUM_API.items():
             premium_counts.append({
                 'count': (apps
                           .filter(premium_type=premium_type)
-                          .exclude(webappexcludedregion__region=region.id)
+                          .exclude(addonexcludedregion__region=region.id)
                           .count),
                 'dimensions': {'region': region_slug,
                                'premium_type': pt_name},

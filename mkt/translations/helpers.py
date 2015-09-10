@@ -50,21 +50,21 @@ def l10n_menu(context, default_locale='en-us', remove_locale_url=''):
     default_locale = default_locale.lower()
     languages = dict((i.lower(), j) for i, j in settings.LANGUAGES.items())
     c = dict(context.items())
-    if 'webapp' in c:
-        remove_locale_url = c['webapp'].get_dev_url('remove-locale')
+    if 'addon' in c:
+        remove_locale_url = c['addon'].get_dev_url('remove-locale')
     c.update({'languages': languages, 'default_locale': default_locale,
               'remove_locale_url': remove_locale_url})
     return c
 
 
 @jingo.register.filter
-def all_locales(webapp, field_name, nl2br=False, prettify_empty=False):
-    field = getattr(webapp, field_name, None)
-    if not webapp or field is None:
+def all_locales(addon, field_name, nl2br=False, prettify_empty=False):
+    field = getattr(addon, field_name, None)
+    if not addon or field is None:
         return
     trans = field.__class__.objects.filter(id=field.id,
                                            localized_string__isnull=False)
-    ctx = dict(webapp=webapp, field=field, field_name=field_name,
+    ctx = dict(addon=addon, field=field, field_name=field_name,
                translations=trans, nl2br=nl2br, prettify_empty=prettify_empty)
     t = jingo.env.get_template('translations/all-locales.html')
     return jinja2.Markup(t.render(ctx))

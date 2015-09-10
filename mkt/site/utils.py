@@ -547,7 +547,7 @@ def app_factory(status=mkt.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
 
     # Save 1.
     app = Webapp.objects.create(**kwargs)
-    version = version_factory(file_kw, webapp=app, **version_kw)  # Save 2.
+    version = version_factory(file_kw, addon=app, **version_kw)  # Save 2.
     app.status = status
     app.update_version()
 
@@ -559,7 +559,7 @@ def app_factory(status=mkt.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
 
     if 'nomination' in version_kw:
         # If a nomination date was set on the version, then it might have been
-        # erased at post_save by webapps.models.watch_status() or
+        # erased at post_save by addons.models.watch_status() or
         # mkt.webapps.models.watch_status().
         version.save()
 
@@ -569,7 +569,7 @@ def app_factory(status=mkt.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     if complete:
         if not app.categories:
             app.update(categories=['utilities'])
-        app.webappdevicetype_set.create(device_type=DEVICE_TYPES.keys()[0])
+        app.addondevicetype_set.create(device_type=DEVICE_TYPES.keys()[0])
         app.previews.create()
 
     return app
@@ -579,7 +579,7 @@ def file_factory(**kw):
     from mkt.files.models import File
     v = kw['version']
     status = kw.pop('status', mkt.STATUS_PUBLIC)
-    f = File.objects.create(filename='%s-%s' % (v.webapp_id, v.id),
+    f = File.objects.create(filename='%s-%s' % (v.addon_id, v.id),
                             status=status, **kw)
     return f
 
@@ -635,7 +635,7 @@ def get_icon_url(base_url_format, obj, size,
     """
     Returns either the icon URL for a given (`obj`, `size`). base_url_format`
     is a string that will be used for url formatting if we are not using a
-    remote storage, see WEBAPP_ICON_URL for an example.
+    remote storage, see ADDON_ICON_URL for an example.
 
     If no icon type if set on the `obj`, then the url for the
     appropriate default icon for the given `size` will be returned.

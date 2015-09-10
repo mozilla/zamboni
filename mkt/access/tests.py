@@ -10,7 +10,7 @@ from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
 
-from .acl import (action_allowed, check_webapp_ownership, check_ownership,
+from .acl import (action_allowed, check_addon_ownership, check_ownership,
                   check_reviewer, match_rules)
 
 
@@ -63,7 +63,7 @@ class TestHasPerm(mkt.site.tests.TestCase):
     def setUp(self):
         self.user = UserProfile.objects.get(pk=999)
         self.app = Webapp.objects.get(pk=337141)
-        self.app.webappuser_set.create(user=self.user)
+        self.app.addonuser_set.create(user=self.user)
 
         self.request = mock.Mock()
         self.request.groups = ()
@@ -77,14 +77,14 @@ class TestHasPerm(mkt.site.tests.TestCase):
     def test_anonymous(self):
         self.request.user = AnonymousUser()
         self.client.logout()
-        assert not check_webapp_ownership(self.request, self.app)
+        assert not check_addon_ownership(self.request, self.app)
 
     def test_admin(self):
         self.request.user = self.login_admin()
         self.request.groups = self.request.user.groups.all()
-        assert check_webapp_ownership(self.request, self.app)
-        assert check_webapp_ownership(self.request, self.app, admin=True)
-        assert not check_webapp_ownership(self.request, self.app, admin=False)
+        assert check_addon_ownership(self.request, self.app)
+        assert check_addon_ownership(self.request, self.app, admin=True)
+        assert not check_addon_ownership(self.request, self.app, admin=False)
 
     def test_require_author(self):
         self.login(self.user)
@@ -102,76 +102,76 @@ class TestHasPerm(mkt.site.tests.TestCase):
     def test_disabled(self):
         self.login(self.user)
         self.app.update(status=mkt.STATUS_DISABLED)
-        assert not check_webapp_ownership(self.request, self.app)
+        assert not check_addon_ownership(self.request, self.app)
         self.test_admin()
 
     def test_deleted(self):
         self.login(self.user)
         self.app.update(status=mkt.STATUS_DELETED)
-        assert not check_webapp_ownership(self.request, self.app)
+        assert not check_addon_ownership(self.request, self.app)
         self.request.user = self.login_admin()
         self.request.groups = self.request.user.groups.all()
-        assert not check_webapp_ownership(self.request, self.app)
+        assert not check_addon_ownership(self.request, self.app)
 
     def test_ignore_disabled(self):
         self.login(self.user)
         self.app.update(status=mkt.STATUS_DISABLED)
-        assert check_webapp_ownership(self.request, self.app,
-                                      ignore_disabled=True)
+        assert check_addon_ownership(self.request, self.app,
+                                     ignore_disabled=True)
 
     def test_owner(self):
         self.login(self.user)
-        assert check_webapp_ownership(self.request, self.app)
+        assert check_addon_ownership(self.request, self.app)
 
-        self.app.webappuser_set.update(role=mkt.AUTHOR_ROLE_DEV)
-        assert not check_webapp_ownership(self.request, self.app)
+        self.app.addonuser_set.update(role=mkt.AUTHOR_ROLE_DEV)
+        assert not check_addon_ownership(self.request, self.app)
 
-        self.app.webappuser_set.update(role=mkt.AUTHOR_ROLE_VIEWER)
-        assert not check_webapp_ownership(self.request, self.app)
+        self.app.addonuser_set.update(role=mkt.AUTHOR_ROLE_VIEWER)
+        assert not check_addon_ownership(self.request, self.app)
 
-        self.app.webappuser_set.update(role=mkt.AUTHOR_ROLE_SUPPORT)
-        assert not check_webapp_ownership(self.request, self.app)
+        self.app.addonuser_set.update(role=mkt.AUTHOR_ROLE_SUPPORT)
+        assert not check_addon_ownership(self.request, self.app)
 
     def test_dev(self):
         self.login(self.user)
-        assert check_webapp_ownership(self.request, self.app, dev=True)
+        assert check_addon_ownership(self.request, self.app, dev=True)
 
-        self.app.webappuser_set.update(role=mkt.AUTHOR_ROLE_DEV)
-        assert check_webapp_ownership(self.request, self.app, dev=True)
+        self.app.addonuser_set.update(role=mkt.AUTHOR_ROLE_DEV)
+        assert check_addon_ownership(self.request, self.app, dev=True)
 
-        self.app.webappuser_set.update(role=mkt.AUTHOR_ROLE_VIEWER)
-        assert not check_webapp_ownership(self.request, self.app, dev=True)
+        self.app.addonuser_set.update(role=mkt.AUTHOR_ROLE_VIEWER)
+        assert not check_addon_ownership(self.request, self.app, dev=True)
 
-        self.app.webappuser_set.update(role=mkt.AUTHOR_ROLE_SUPPORT)
-        assert not check_webapp_ownership(self.request, self.app, dev=True)
+        self.app.addonuser_set.update(role=mkt.AUTHOR_ROLE_SUPPORT)
+        assert not check_addon_ownership(self.request, self.app, dev=True)
 
     def test_viewer(self):
         self.login(self.user)
-        assert check_webapp_ownership(self.request, self.app, viewer=True)
+        assert check_addon_ownership(self.request, self.app, viewer=True)
 
-        self.app.webappuser_set.update(role=mkt.AUTHOR_ROLE_DEV)
-        assert check_webapp_ownership(self.request, self.app, viewer=True)
+        self.app.addonuser_set.update(role=mkt.AUTHOR_ROLE_DEV)
+        assert check_addon_ownership(self.request, self.app, viewer=True)
 
-        self.app.webappuser_set.update(role=mkt.AUTHOR_ROLE_VIEWER)
-        assert check_webapp_ownership(self.request, self.app, viewer=True)
+        self.app.addonuser_set.update(role=mkt.AUTHOR_ROLE_VIEWER)
+        assert check_addon_ownership(self.request, self.app, viewer=True)
 
-        self.app.webappuser_set.update(role=mkt.AUTHOR_ROLE_SUPPORT)
-        assert check_webapp_ownership(self.request, self.app, viewer=True)
+        self.app.addonuser_set.update(role=mkt.AUTHOR_ROLE_SUPPORT)
+        assert check_addon_ownership(self.request, self.app, viewer=True)
 
     def test_support(self):
         self.login(self.user)
-        assert check_webapp_ownership(self.request, self.app, viewer=True)
+        assert check_addon_ownership(self.request, self.app, viewer=True)
 
-        self.app.webappuser_set.update(role=mkt.AUTHOR_ROLE_DEV)
-        assert not check_webapp_ownership(self.request, self.app,
-                                          support=True)
+        self.app.addonuser_set.update(role=mkt.AUTHOR_ROLE_DEV)
+        assert not check_addon_ownership(self.request, self.app,
+                                         support=True)
 
-        self.app.webappuser_set.update(role=mkt.AUTHOR_ROLE_VIEWER)
-        assert not check_webapp_ownership(self.request, self.app,
-                                          support=True)
+        self.app.addonuser_set.update(role=mkt.AUTHOR_ROLE_VIEWER)
+        assert not check_addon_ownership(self.request, self.app,
+                                         support=True)
 
-        self.app.webappuser_set.update(role=mkt.AUTHOR_ROLE_SUPPORT)
-        assert check_webapp_ownership(self.request, self.app, support=True)
+        self.app.addonuser_set.update(role=mkt.AUTHOR_ROLE_SUPPORT)
+        assert check_addon_ownership(self.request, self.app, support=True)
 
 
 class TestCheckReviewer(mkt.site.tests.TestCase):

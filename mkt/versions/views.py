@@ -38,14 +38,14 @@ class VersionStatusViewSet(mixins.UpdateModelMixin, viewsets.GenericViewSet):
             raise MethodNotAllowed('PUT')
         res = super(VersionStatusViewSet, self).update(
             request, *args, **kwargs)
-        app = self.object.version.webapp
+        app = self.object.version.addon
         res.data['app_status'] = mkt.STATUS_CHOICES_API[app.status]
         return res
 
 
 class VersionViewSet(CORSMixin, mixins.RetrieveModelMixin,
                      mixins.UpdateModelMixin, viewsets.GenericViewSet):
-    queryset = Version.objects.exclude(webapp__status=mkt.STATUS_DELETED)
+    queryset = Version.objects.exclude(addon__status=mkt.STATUS_DELETED)
     serializer_class = VersionSerializer
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,

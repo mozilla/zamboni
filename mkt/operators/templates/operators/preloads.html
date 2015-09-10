@@ -23,17 +23,17 @@
       {% for preload in preloads %}
         <tr>
           <td>
-            <a href="{{ preload.webapp.get_detail_url() }}"><img src="{{ preload.webapp.get_icon_url(32) }}"></a>
-            <h3><a href="{{ preload.webapp.get_detail_url() }}">{{ preload.webapp.name }}</a></h3>
-            <p>{{ preload.webapp.description|truncate(length=150) }}</p>
+            <a href="{{ preload.addon.get_detail_url() }}"><img src="{{ preload.addon.get_icon_url(32) }}"></a>
+            <h3><a href="{{ preload.addon.get_detail_url() }}">{{ preload.addon.name }}</a></h3>
+            <p>{{ preload.addon.description|truncate(length=150) }}</p>
           </td>
           <td>
-            {% if preload.webapp.authors.exists() %}
-              {{ emaillink(preload.webapp.authors.all()[0].email) }}
+            {% if preload.addon.authors.exists() %}
+              {{ emaillink(preload.addon.authors.all()[0].email) }}
             {% endif %}
           </td>
           <td>
-            {% set cats = preload.webapp.categories %}
+            {% set cats = preload.addon.categories %}
             {% if cats and cats|length > 1 %}
               {# L10N: {0} and {1} are category names. #}
               {{ _('{0}, {1}')|fe(cats[0], cats[1]) }}

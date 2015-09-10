@@ -51,7 +51,7 @@
           {% else %}
             {{ _('Hosted app') }};
           {% endif %}
-          {{ mkt.WEBAPP_PREMIUM_TYPES[app.premium_type] }}
+          {{ mkt.ADDON_PREMIUM_TYPES[app.premium_type] }}
           {% if price %}
             ({{ price.tier_locale() }})
           {% endif %}

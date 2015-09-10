@@ -23,7 +23,7 @@ class TestSendNewRegionEmails(WebappTestCase):
 
     @mock.patch('mkt.developers.cron._region_email')
     def test_not_called_with_exclusions(self, _region_email_mock):
-        self.app.webappexcludedregion.create(region=mkt.regions.GBR.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.GBR.id)
         send_new_region_emails([mkt.regions.GBR])
         eq_(list(_region_email_mock.call_args_list[0][0][0]), [])
 
@@ -46,7 +46,7 @@ class TestExcludeNewRegion(WebappTestCase):
 
     @mock.patch('mkt.developers.cron._region_exclude')
     def test_not_called_with_ordinary_exclusions(self, _region_exclude_mock):
-        self.app.webappexcludedregion.create(region=mkt.regions.GBR.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.GBR.id)
         exclude_new_region([mkt.regions.GBR])
         eq_(list(_region_exclude_mock.call_args_list[0][0][0]), [])
 
@@ -84,7 +84,7 @@ class TestIARCChangesCron(TestCase):
         """
         mkt.set_user(user_factory())
         app = app_factory()
-        IARCInfo.objects.create(webapp=app, submission_id=52,
+        IARCInfo.objects.create(addon=app, submission_id=52,
                                 security_code='FZ32CU8')
         app.set_descriptors([
             'has_classind_violence',
@@ -111,7 +111,7 @@ class TestIARCChangesCron(TestCase):
             action=mkt.LOG.CONTENT_RATING_CHANGED.id).count()
 
         # Check descriptors.
-        rd = RatingDescriptors.objects.get(webapp=app)
+        rd = RatingDescriptors.objects.get(addon=app)
         self.assertSetEqual(rd.to_keys(), [
             'has_esrb_strong_lang',
             'has_classind_lang',
@@ -120,7 +120,7 @@ class TestIARCChangesCron(TestCase):
         ])
 
         # Check interactives.
-        ri = RatingInteractives.objects.get(webapp=app)
+        ri = RatingInteractives.objects.get(addon=app)
         self.assertSetEqual(ri.to_keys(), [
             'has_shares_info', 'has_shares_location', 'has_digital_purchases',
             'has_users_interact'

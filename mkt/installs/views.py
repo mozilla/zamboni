@@ -39,7 +39,7 @@ def install(request):
             record(request, app)
         else:
             installed, created = Installed.objects.get_or_create(
-                webapp=app, user=request.user, install_type=type_)
+                addon=app, user=request.user, install_type=type_)
             record(request, app)
             if not created:
                 return Response(status=202)

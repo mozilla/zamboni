@@ -123,8 +123,7 @@ class TestRecommendationViewMocked(RestOAuth, ESTestCase):
             ok_(k in objects[0], 'Key %s not found in response' % k)
 
     def test_filter_by_device(self):
-        self.apps[0].webappdevicetype_set.create(
-            device_type=mkt.DEVICE_GAIA.id)
+        self.apps[0].addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         self.reindex(Webapp)
 
         res = self.client.get(self.url, {'dev': mkt.DEVICE_GAIA.api_name})
@@ -134,7 +133,7 @@ class TestRecommendationViewMocked(RestOAuth, ESTestCase):
         self.assertSetEqual([a['id'] for a in objects], [self.apps[0].pk])
 
     def test_filter_by_desktop(self):
-        self.apps[0].webappdevicetype_set.create(
+        self.apps[0].addondevicetype_set.create(
             device_type=mkt.DEVICE_DESKTOP.id)
         self.reindex(Webapp)
 
@@ -145,8 +144,7 @@ class TestRecommendationViewMocked(RestOAuth, ESTestCase):
         self.assertSetEqual([a['id'] for a in objects], [self.apps[0].pk])
 
     def test_no_filter_if_no_dev(self):
-        self.apps[0].webappdevicetype_set.create(
-            device_type=mkt.DEVICE_GAIA.id)
+        self.apps[0].addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         self.reindex(Webapp)
 
         res = self.client.get(self.url, {'dev': ''})
@@ -157,7 +155,7 @@ class TestRecommendationViewMocked(RestOAuth, ESTestCase):
                             [a.pk for a in self.apps])
 
     def test_no_installed_apps(self):
-        self.profile.installed_set.create(webapp=self.apps[0])
+        self.profile.installed_set.create(addon=self.apps[0])
 
         res = self.client.get(self.url)
         eq_(res.status_code, 200)

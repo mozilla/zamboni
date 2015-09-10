@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-09-06 21:39+0000\n"
-"Last-Translator: andrij.kuryk <andrij.kuryk@gmail.com>\n"
+"PO-Revision-Date: 2015-09-09 19:30+0000\n"
+"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -41,6 +41,8 @@ msgstr "Відмітити для повторного перегляду"
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
 msgstr ""
+"Зробіть коректний вибір. Значення %(value)s відсутнє серед доступних "
+"варіантів."
 
 #: mkt/api/fields.py:89
 msgid "The field must have a length of at least {num} characters."
@@ -106,7 +108,7 @@ msgstr ""
 #: mkt/constants/applications.py:6
 #: mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:45
 msgid "Desktop"
-msgstr ""
+msgstr "Стільниця"
 
 #: mkt/constants/applications.py:13 mkt/constants/platforms.py:8
 #: mkt/constants/platforms.py:32 mkt/constants/tests/test_platforms.py:16
@@ -1164,7 +1166,7 @@ msgstr "Опубліковано"
 
 #: mkt/constants/base.py:29
 msgid "Banned from Marketplace"
-msgstr ""
+msgstr "Забанений в Marketplace"
 
 #: mkt/constants/base.py:30
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
@@ -1267,7 +1269,7 @@ msgstr ""
 
 #: mkt/constants/base.py:235
 msgid "Moderated App Review"
-msgstr ""
+msgstr "Промодерований огляд застосунку"
 
 #: mkt/constants/base.py:236
 msgid "App Review Moderation Reverted"
@@ -1279,11 +1281,11 @@ msgstr ""
 
 #: mkt/constants/base.py:238
 msgid "App Abuse Report Read"
-msgstr ""
+msgstr "Читати скарги про зловживання застосунком"
 
 #: mkt/constants/base.py:239
 msgid "Website Abuse Report Read"
-msgstr ""
+msgstr "Читати скарги про зловживання сайтом"
 
 #: mkt/constants/base.py:273
 msgid "Level 1"
@@ -8471,7 +8473,7 @@ msgstr ""
 
 #: mkt/submit/forms.py:295
 msgid "Privacy Policy:"
-msgstr ""
+msgstr "Політика приватності:"
 
 #: mkt/submit/forms.py:297
 msgid ""
@@ -8792,7 +8794,7 @@ msgstr ""
 
 #: mkt/templates/mkt/footer.html:17
 msgid "Terms of Use"
-msgstr ""
+msgstr "Умови користування"
 
 #: mkt/templates/mkt/footer.html:19
 msgid "Report Trademark Abuse"

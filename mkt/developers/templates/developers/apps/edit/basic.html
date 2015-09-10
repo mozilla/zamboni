@@ -12,8 +12,8 @@
   </h2>
   <div class="item island">
     <table>
-      {# L10n: {0} is the webapp name #}
-      <caption>{{ _('Basic Information for {0}')|fe(webapp.name) }}</caption>
+      {# L10n: {0} is the addon name #}
+      <caption>{{ _('Basic Information for {0}')|fe(addon.name) }}</caption>
       <tbody>
         <tr>
           <th>
@@ -27,7 +27,7 @@
             </label>
           </th>
           <td>
-            {{ webapp|all_locales('name') }}
+            {{ addon|all_locales('name') }}
           </td>
         </tr>
         <tr id="developer-name">
@@ -58,8 +58,8 @@
               </div>
               {{ form.slug.errors }}
             {% else %}
-              {{ settings.SITE_URL }}/&hellip;/{{ webapp.app_slug }}
-              <a class="smaller" href="{{ webapp.get_url_path() }}">{{ _('View Listing') }}</a>
+              {{ settings.SITE_URL }}/&hellip;/{{ addon.app_slug }}
+              <a class="smaller" href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>
             {% endif %}
           </td>
         </tr>
@@ -69,18 +69,18 @@
                    _('The URL for accessing this app using the Marketplace API')) }}
           </th>
           <td>
-            <span>{{ settings.SITE_URL }}{{ webapp.get_api_url() }}</span>
+            <span>{{ settings.SITE_URL }}{{ addon.get_api_url() }}</span>
             <a class="smaller" href="https://firefox-marketplace-api.readthedocs.org" target="_blank">{{ _('View API documentation') }}</a>
           </td>
         </tr>
         <tr id="manifest-url">
           <th class="label">{{ _('Manifest URL') }}</th>
           <td>
-            {% if webapp.is_packaged %}
-              <a href="{{ webapp.get_manifest_url() }}" target="_blank">{{ webapp.get_manifest_url() }}</a>
+            {% if addon.is_packaged %}
+              <a href="{{ addon.get_manifest_url() }}" target="_blank">{{ addon.get_manifest_url() }}</a>
             {% else %}
               {% if editable %}
-                <input type="text" name="manifest_url" value="{{ webapp.manifest_url }}">
+                <input type="text" name="manifest_url" value="{{ addon.manifest_url }}">
                 {{ form.manifest_url.errors }}
                 <a class="button" data-url="{{ url('mkt.developers.apps.refresh_manifest', valid_slug) }}">{{ _('Refresh') }}</a>
                 <p class="note">
@@ -90,25 +90,25 @@
                   {% endtrans %}
                 </p>
               {% else %}
-                <a href="{{ webapp.manifest_url }}" target="_blank">
-                  {{ webapp.manifest_url }}</a>
+                <a href="{{ addon.manifest_url }}" target="_blank">
+                  {{ addon.manifest_url }}</a>
               {% endif %}
             {% endif %}
           </td>
         </tr>
-        {% if webapp.is_packaged %}
+        {% if addon.is_packaged %}
           <tr id="hosted-url">
             <th class="label">{{ _('Hosted URL') }}</th>
             <td>
               {% if editable %}
-                <input type="text" name="hosted_url" value="{{ webapp.hosted_url }}">
+                <input type="text" name="hosted_url" value="{{ addon.hosted_url }}">
                 {{ form.hosted_url.errors }}
                 <p class="note">
                   {{ _('If your app has a URL where it is hosted, you can set it for users that want to try your app before installing it.') }}
                 </p>
               {% else %}
-                <a href="{{ webapp.hosted_url }}" target="_blank">
-                  {{ webapp.hosted_url }}</a>
+                <a href="{{ addon.hosted_url }}" target="_blank">
+                  {{ addon.hosted_url }}</a>
               {% endif %}
             </td>
           </tr>
@@ -130,7 +130,7 @@
               {{ some_html_tip() }}
             {% else %}
               <div id="addon-description" class="prose">
-                {{ webapp|all_locales('description', nl2br=True, prettify_empty=True) }}
+                {{ addon|all_locales('description', nl2br=True, prettify_empty=True) }}
               </div>
             {% endif %}
           </td>
@@ -161,7 +161,7 @@
             {% endif %}
           </td>
         </tr>
-        {% if not webapp.is_packaged %}
+        {% if not addon.is_packaged %}
           <tr id="releasenotes">
             <th>
               <label data-for="releasenotes">
@@ -197,7 +197,7 @@
             {% if editable %}
               {{ select_cats(mkt.MAX_CATEGORIES, cat_form) }}
             {% else %}
-              {% set categories = webapp.categories|categories_names %}
+              {% set categories = addon.categories|categories_names %}
               {% call empty_unless(categories) %}
                 {{ categories|join(', ') }}
               {% endcall %}
@@ -209,7 +209,7 @@
     {% if editable %}
     <div class="listing-footer">
       <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
-      <a href="{{ webapp.get_dev_url('section', ['basic']) }}"
+      <a href="{{ addon.get_dev_url('section', ['basic']) }}"
          class="addon-edit-cancel">{{ _('Cancel') }}</a>
     </div>
     {% endif %}

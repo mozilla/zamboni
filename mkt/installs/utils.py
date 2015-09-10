@@ -12,7 +12,7 @@ def install_type(request, app):
 
 
 def record(request, app):
-    mkt.log(mkt.LOG.INSTALL_WEBAPP, app)
+    mkt.log(mkt.LOG.INSTALL_ADDON, app)
     domain = app.domain_from_url(app.origin, allow_none=True)
     record_action('install', request, {
         'app-domain': domain,

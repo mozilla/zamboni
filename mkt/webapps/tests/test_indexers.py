@@ -14,7 +14,7 @@ from mkt.site.utils import version_factory
 from mkt.translations.utils import to_language
 from mkt.users.models import UserProfile
 from mkt.webapps.indexers import WebappIndexer
-from mkt.webapps.models import WebappDeviceType, ContentRating, Webapp
+from mkt.webapps.models import AddonDeviceType, ContentRating, Webapp
 
 
 class TestWebappIndexer(TestCase):
@@ -87,7 +87,7 @@ class TestWebappIndexer(TestCase):
 
     def test_extract_device(self):
         device = DEVICE_TYPES.keys()[0]
-        WebappDeviceType.objects.create(webapp=self.app, device_type=device)
+        AddonDeviceType.objects.create(addon=self.app, device_type=device)
 
         obj, doc = self._get_doc()
         eq_(doc['device'], [device])
@@ -101,8 +101,8 @@ class TestWebappIndexer(TestCase):
             eq_(v, k in enabled)
 
     def test_extract_regions(self):
-        self.app.webappexcludedregion.create(region=mkt.regions.BRA.id)
-        self.app.webappexcludedregion.create(region=mkt.regions.GBR.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.BRA.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.GBR.id)
         obj, doc = self._get_doc()
         self.assertSetEqual(doc['region_exclusions'],
                             set([mkt.regions.BRA.id, mkt.regions.GBR.id]))
@@ -120,7 +120,7 @@ class TestWebappIndexer(TestCase):
         nomination_date = self.days_ago(3).replace(microsecond=0)
 
         version_factory(
-            webapp=self.app, version='43.0',
+            addon=self.app, version='43.0',
             has_editor_comment=True,
             has_info_request=True,
             created=created_date,
@@ -134,13 +134,13 @@ class TestWebappIndexer(TestCase):
         eq_(doc['latest_version']['nomination_date'], nomination_date)
 
     def test_extract_is_escalated(self):
-        EscalationQueue.objects.create(webapp=self.app)
+        EscalationQueue.objects.create(addon=self.app)
         obj, doc = self._get_doc()
         eq_(doc['is_escalated'], True)
         self.assertCloseToNow(doc['escalation_date'])
 
     def test_extract_is_rereviewed(self):
-        RereviewQueue.objects.create(webapp=self.app)
+        RereviewQueue.objects.create(addon=self.app)
         obj, doc = self._get_doc()
         eq_(doc['is_rereviewed'], True)
         self.assertCloseToNow(doc['rereview_date'])
@@ -152,13 +152,13 @@ class TestWebappIndexer(TestCase):
 
     def test_extract_content_ratings(self):
         ContentRating.objects.create(
-            webapp=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
+            addon=self.app, ratings_body=mkt.ratingsbodies.CLASSIND.id,
             rating=0)
         ContentRating.objects.create(
-            webapp=self.app, ratings_body=mkt.ratingsbodies.GENERIC.id,
+            addon=self.app, ratings_body=mkt.ratingsbodies.GENERIC.id,
             rating=0)
         ContentRating.objects.create(
-            webapp=self.app, ratings_body=mkt.ratingsbodies.PEGI.id,
+            addon=self.app, ratings_body=mkt.ratingsbodies.PEGI.id,
             rating=mkt.ratingsbodies.PEGI_12.id)
 
         obj, doc = self._get_doc()

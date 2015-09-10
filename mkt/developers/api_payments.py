@@ -26,10 +26,10 @@ from mkt.constants.payments import PAYMENT_STATUSES
 from mkt.constants.payments import PROVIDER_BANGO
 from mkt.developers.forms_payments import (BangoPaymentAccountForm,
                                            PaymentCheckForm)
-from mkt.developers.models import (WebappPaymentAccount, CantCancel,
+from mkt.developers.models import (AddonPaymentAccount, CantCancel,
                                    PaymentAccount)
 from mkt.developers.providers import get_provider
-from mkt.webapps.models import WebappUpsell
+from mkt.webapps.models import AddonUpsell
 
 
 log = commonware.log.getLogger('z.api.payments')
@@ -135,15 +135,15 @@ class UpsellSerializer(HyperlinkedModelSerializer):
     free = premium = HyperlinkedRelatedField(view_name='app-detail')
 
     class Meta:
-        model = WebappUpsell
+        model = AddonUpsell
         fields = ('free', 'premium', 'created', 'modified', 'url')
         view_name = 'app-upsell-detail'
 
     def validate(self, attrs):
-        if attrs['free'].premium_type not in mkt.WEBAPP_FREES:
+        if attrs['free'].premium_type not in mkt.ADDON_FREES:
             raise ValidationError('Upsell must be from a free app.')
 
-        if attrs['premium'].premium_type in mkt.WEBAPP_FREES:
+        if attrs['premium'].premium_type in mkt.ADDON_FREES:
             raise ValidationError('Upsell must be to a premium app.')
 
         return attrs
@@ -169,7 +169,7 @@ class UpsellPermission(BasePermission):
 class UpsellViewSet(CreateModelMixin, DestroyModelMixin, RetrieveModelMixin,
                     UpdateModelMixin, MarketplaceView, GenericViewSet):
     permission_classes = (UpsellPermission,)
-    queryset = WebappUpsell.objects.filter()
+    queryset = AddonUpsell.objects.filter()
     serializer_class = UpsellSerializer
 
     def pre_save(self, obj):
@@ -177,7 +177,7 @@ class UpsellViewSet(CreateModelMixin, DestroyModelMixin, RetrieveModelMixin,
             raise PermissionDenied('Not allowed to alter that object')
 
 
-class WebappPaymentAccountPermission(BasePermission):
+class AddonPaymentAccountPermission(BasePermission):
     """
     Permissions on the app payment account object, is determined by permissions
     on the app the account is being used for.
@@ -188,52 +188,52 @@ class WebappPaymentAccountPermission(BasePermission):
             if account.shared or account.user.pk == request.user.pk:
                 return True
             else:
-                log.info('WebappPaymentAccount access %(account)s denied '
+                log.info('AddonPaymentAccount access %(account)s denied '
                          'for %(user)s: wrong user, not shared.'.format(
                              {'account': account.pk, 'user': request.user.pk}))
         else:
-            log.info('WebappPaymentAccount access %(account)s denied '
+            log.info('AddonPaymentAccount access %(account)s denied '
                      'for %(user)s: no app permission.'.format(
                          {'account': account.pk, 'user': request.user.pk}))
         return False
 
     def has_object_permission(self, request, view, object):
-        return self.check(request, object.webapp, object.payment_account)
+        return self.check(request, object.addon, object.payment_account)
 
 
-class WebappPaymentAccountSerializer(HyperlinkedModelSerializer):
-    webapp = HyperlinkedRelatedField(view_name='app-detail')
+class AddonPaymentAccountSerializer(HyperlinkedModelSerializer):
+    addon = HyperlinkedRelatedField(view_name='app-detail')
     payment_account = HyperlinkedRelatedField(
         view_name='payment-account-detail')
 
     class Meta:
-        model = WebappPaymentAccount
-        fields = ('webapp', 'payment_account', 'created', 'modified', 'url')
+        model = AddonPaymentAccount
+        fields = ('addon', 'payment_account', 'created', 'modified', 'url')
         view_name = 'app-payment-account-detail'
 
     def validate(self, attrs):
-        if attrs['webapp'].premium_type in mkt.WEBAPP_FREES:
+        if attrs['addon'].premium_type in mkt.ADDON_FREES:
             raise ValidationError('App must be a premium app.')
 
         return attrs
 
 
-class WebappPaymentAccountViewSet(CreateModelMixin, RetrieveModelMixin,
-                                  UpdateModelMixin, MarketplaceView,
-                                  GenericViewSet):
-    permission_classes = (WebappPaymentAccountPermission,)
-    queryset = WebappPaymentAccount.objects.filter()
-    serializer_class = WebappPaymentAccountSerializer
+class AddonPaymentAccountViewSet(CreateModelMixin, RetrieveModelMixin,
+                                 UpdateModelMixin, MarketplaceView,
+                                 GenericViewSet):
+    permission_classes = (AddonPaymentAccountPermission,)
+    queryset = AddonPaymentAccount.objects.filter()
+    serializer_class = AddonPaymentAccountSerializer
 
     def pre_save(self, obj):
-        if not WebappPaymentAccountPermission().check(
+        if not AddonPaymentAccountPermission().check(
                 self.request,
-                obj.webapp, obj.payment_account):
+                obj.addon, obj.payment_account):
             raise PermissionDenied('Not allowed to alter that object.')
 
         if self.request.method != 'POST':
-            webapp = obj.__class__.objects.get(pk=obj.pk).webapp
-            if not obj.webapp == webapp:
+            addon = obj.__class__.objects.get(pk=obj.pk).addon
+            if not obj.addon == addon:
                 # This should be a 400 error.
                 raise PermissionDenied('Cannot change the add-on.')
 
@@ -241,7 +241,7 @@ class WebappPaymentAccountViewSet(CreateModelMixin, RetrieveModelMixin,
         """Ensure that the setup_bango method is called after creation."""
         if created:
             provider = get_provider()
-            uri = provider.product_create(obj.payment_account, obj.webapp)
+            uri = provider.product_create(obj.payment_account, obj.addon)
             obj.product_uri = uri
             obj.save()
 

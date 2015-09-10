@@ -26,7 +26,7 @@ from mkt.constants.payments import CONTRIB_NO_CHARGE
 from mkt.developers.models import AppLog
 from mkt.installs.utils import record as utils_record
 from mkt.installs.utils import install_type
-from mkt.prices.models import WebappPurchase
+from mkt.prices.models import AddonPurchase
 from mkt.receipts import forms
 from mkt.receipts.utils import (create_receipt, create_test_receipt, get_uuid,
                                 reissue_receipt)
@@ -43,26 +43,26 @@ app_view = app_view_factory(qs=Webapp.objects.valid)
 app_all_view = app_view_factory(qs=Webapp.objects.all)
 
 
-def _record(request, webapp):
+def _record(request, addon):
     logged = request.user.is_authenticated()
-    premium = webapp.is_premium()
+    premium = addon.is_premium()
 
     # Require login for premium.
     if not logged and premium:
         return http.HttpResponseRedirect(reverse('users.login'))
 
-    ctx = {'webapp': webapp.pk}
+    ctx = {'addon': addon.pk}
 
     # Don't generate receipts if we're allowing logged-out install.
     if logged:
-        is_dev = request.check_ownership(webapp, require_owner=False,
+        is_dev = request.check_ownership(addon, require_owner=False,
                                          ignore_disabled=True, admin=False)
         is_reviewer = acl.check_reviewer(request)
-        if (not webapp.is_public() and not (is_reviewer or is_dev)):
+        if (not addon.is_public() and not (is_reviewer or is_dev)):
             raise http.Http404
 
         if (premium and
-                not webapp.has_purchased(request.user) and
+                not addon.has_purchased(request.user) and
                 not is_reviewer and not is_dev):
             raise PermissionDenied
 
@@ -73,27 +73,27 @@ def _record(request, webapp):
                    else apps.INSTALL_TYPE_USER)
         # Log the install.
         installed, c = Installed.objects.get_or_create(
-            webapp=webapp, user=request.user, install_type=install)
+            addon=addon, user=request.user, install_type=install)
 
         # Get a suitable uuid for this receipt.
-        uuid = get_uuid(webapp, request.user)
+        uuid = get_uuid(addon, request.user)
 
         error = ''
-        receipt_cef.log(request, webapp, 'sign', 'Receipt requested')
+        receipt_cef.log(request, addon, 'sign', 'Receipt requested')
         try:
-            receipt = create_receipt(webapp, request.user, uuid)
+            receipt = create_receipt(addon, request.user, uuid)
         except SigningError:
             error = _('There was a problem installing the app.')
 
         ctx.update(receipt=receipt, error=error)
     else:
-        if not webapp.is_public():
+        if not addon.is_public():
             raise http.Http404
 
-    mkt.log(mkt.LOG.INSTALL_WEBAPP, webapp)
+    mkt.log(mkt.LOG.INSTALL_ADDON, addon)
     record_action('install', request, {
-        'app-domain': webapp.domain_from_url(webapp.origin, allow_none=True),
-        'app-id': webapp.pk,
+        'app-domain': addon.domain_from_url(addon.origin, allow_none=True),
+        'app-id': addon.pk,
         'anonymous': request.user.is_anonymous(),
     })
 
@@ -105,16 +105,16 @@ def _record(request, webapp):
 @app_all_view
 @require_POST
 @use_master
-def record_anon(request, webapp):
-    return _record(request, webapp)
+def record_anon(request, addon):
+    return _record(request, addon)
 
 
 @json_view
 @app_all_view
 @require_POST
 @use_master
-def record(request, webapp):
-    return _record(request, webapp)
+def record(request, addon):
+    return _record(request, addon)
 
 
 # Set the CORS headers on the response by calling get_headers.
@@ -130,7 +130,7 @@ def response(data):
 def verify(request, uuid):
     # Because this will be called at any point in the future,
     # use guid in the URL.
-    webapp = get_object_or_404(Webapp, guid=uuid)
+    addon = get_object_or_404(Webapp, guid=uuid)
     receipt = request.read()
     verify = Verify(receipt, request.META)
     output = verify.check_without_purchase()
@@ -145,8 +145,8 @@ def verify(request, uuid):
             user = None
 
         if user and (acl.action_allowed_user(user, 'Apps', 'Review') or
-                     webapp.has_author(user)):
-            mkt.log(mkt.LOG.RECEIPT_CHECKED, webapp, user=user)
+                     addon.has_author(user)):
+            mkt.log(mkt.LOG.RECEIPT_CHECKED, addon, user=user)
             return response(output)
 
     return response(verify.invalid())
@@ -155,29 +155,28 @@ def verify(request, uuid):
 @app_all_view
 @json_view
 @require_POST
-def issue(request, webapp):
+def issue(request, addon):
     user = request.user
     review = acl.action_allowed_user(user, 'Apps', 'Review') if user else None
-    developer = webapp.has_author(user)
+    developer = addon.has_author(user)
     if not (review or developer):
         raise PermissionDenied
 
     install, flavour = ((apps.INSTALL_TYPE_REVIEWER, 'reviewer') if review
                         else (apps.INSTALL_TYPE_DEVELOPER, 'developer'))
     installed, c = Installed.objects.safer_get_or_create(
-        webapp=webapp, user=request.user, install_type=install)
+        addon=addon, user=request.user, install_type=install)
 
     error = ''
-    receipt_cef.log(request, webapp, 'sign',
-                    'Receipt signing for %s' % flavour)
+    receipt_cef.log(request, addon, 'sign', 'Receipt signing for %s' % flavour)
     receipt = None
     try:
-        receipt = create_receipt(webapp, user, get_uuid(webapp, user),
+        receipt = create_receipt(addon, user, get_uuid(addon, user),
                                  flavour=flavour)
     except SigningError:
         error = _('There was a problem installing the app.')
 
-    return {'webapp': webapp.pk, 'receipt': receipt, 'error': error}
+    return {'addon': addon.pk, 'receipt': receipt, 'error': error}
 
 
 @json_view
@@ -185,9 +184,9 @@ def issue(request, webapp):
 def check(request, uuid):
     # Because this will be called at any point in the future,
     # use guid in the URL.
-    webapp = get_object_or_404(Webapp, guid=uuid)
+    addon = get_object_or_404(Webapp, guid=uuid)
     qs = (AppLog.objects.order_by('-created')
-                .filter(webapp=webapp,
+                .filter(addon=addon,
                         activity_log__action=mkt.LOG.RECEIPT_CHECKED.id))
     return {'status': qs.exists()}
 
@@ -261,8 +260,8 @@ def install(request):
             # the receipt will work into the future if the price changes.
             if obj.premium and not obj.premium.price.price:
                 log.info('Create purchase record: {0}'.format(obj.pk))
-                WebappPurchase.objects.get_or_create(
-                    webapp=obj, user=request.user, type=CONTRIB_NO_CHARGE)
+                AddonPurchase.objects.get_or_create(
+                    addon=obj, user=request.user, type=CONTRIB_NO_CHARGE)
             else:
                 log.info('App not purchased: app ID={a}; user={u}'
                          .format(a=obj.pk, u=request.user))
@@ -275,7 +274,7 @@ def install(request):
 def install_record(obj, request, install_type):
     # Generate or re-use an existing install record.
     installed, created = Installed.objects.get_or_create(
-        webapp=obj, user=request.user,
+        addon=obj, user=request.user,
         install_type=install_type)
 
     log.info('Installed record %s: %s' % (
@@ -284,8 +283,8 @@ def install_record(obj, request, install_type):
 
     log.info('Creating receipt: %s' % obj.pk)
     receipt_cef.log(request._request, obj, 'sign', 'Receipt signing')
-    uuid = get_uuid(installed.webapp, installed.user)
-    return create_receipt(installed.webapp, installed.user, uuid)
+    uuid = get_uuid(installed.addon, installed.user)
+    return create_receipt(installed.addon, installed.user, uuid)
 
 
 @cors_api_view(['POST'],

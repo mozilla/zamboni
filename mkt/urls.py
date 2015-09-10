@@ -35,9 +35,9 @@ urlpatterns = patterns(
     '',
     # Non-commonplace app pages
     ('^app/%s/' % mkt.APP_SLUG, include('mkt.detail.urls')),
-    url('^app/%s/manifest.webapp$' % mkt.WEBAPP_UUID, mini_manifest,
+    url('^app/%s/manifest.webapp$' % mkt.ADDON_UUID, mini_manifest,
         name='detail.manifest'),
-    url('^langpack/%s/manifest.webapp$' % mkt.WEBAPP_UUID,
+    url('^langpack/%s/manifest.webapp$' % mkt.ADDON_UUID,
         mini_langpack_manifest, name='langpack.manifest'),
     url('^extension/(?P<uuid>[0-9a-f]{32})/manifest.json$',
         mini_extension_manifest, name='extension.mini_manifest'),

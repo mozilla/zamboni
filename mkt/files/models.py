@@ -98,12 +98,12 @@ class File(OnChangeMixin, ModelBase):
         return f
 
     @property
-    def webapp(self):
+    def addon(self):
         from mkt.versions.models import Version
         from mkt.webapps.models import Webapp
 
         version = Version.with_deleted.get(pk=self.version_id)
-        return Webapp.with_deleted.get(pk=version.webapp_id)
+        return Webapp.with_deleted.get(pk=version.addon_id)
 
     def generate_hash(self, filename=None):
         """Generate a hash for a file."""
@@ -118,13 +118,13 @@ class File(OnChangeMixin, ModelBase):
         Files are in the format of: {app_slug}-{version}.{extension}
         """
         parts = []
-        webapp = self.version.webapp
+        addon = self.version.addon
         # slugify drops unicode so we may end up with an empty string.
         # Apache did not like serving unicode filenames (bug 626587).
-        extension = extension or '.zip' if webapp.is_packaged else '.webapp'
+        extension = extension or '.zip' if addon.is_packaged else '.webapp'
         # Apparently we have non-ascii slugs leaking into prod :(
         # FIXME.
-        parts.append(slugify(webapp.app_slug) or 'app')
+        parts.append(slugify(addon.app_slug) or 'app')
         parts.append(self.version.version)
 
         self.filename = '-'.join(parts) + extension
@@ -139,23 +139,23 @@ class File(OnChangeMixin, ModelBase):
 
     @property
     def approved_file_path(self):
-        return os.path.join(settings.WEBAPPS_PATH, str(self.version.webapp_id),
+        return os.path.join(settings.ADDONS_PATH, str(self.version.addon_id),
                             self.filename)
 
     @property
     def guarded_file_path(self):
-        return os.path.join(settings.GUARDED_WEBAPPS_PATH,
-                            str(self.version.webapp_id), self.filename)
+        return os.path.join(settings.GUARDED_ADDONS_PATH,
+                            str(self.version.addon_id), self.filename)
 
     @property
     def signed_file_path(self):
         return os.path.join(settings.SIGNED_APPS_PATH,
-                            str(self.version.webapp_id), self._signed())
+                            str(self.version.addon_id), self._signed())
 
     @property
     def signed_reviewer_file_path(self):
         return os.path.join(settings.SIGNED_APPS_REVIEWER_PATH,
-                            str(self.version.webapp_id), self._signed())
+                            str(self.version.addon_id), self._signed())
 
     def _signed(self):
         split = self.filename.rsplit('.', 1)
@@ -198,12 +198,12 @@ class File(OnChangeMixin, ModelBase):
 def update_status(sender, instance, **kw):
     if not kw.get('raw'):
         try:
-            instance.version.webapp.reload()
-            instance.version.webapp.update_status()
+            instance.version.addon.reload()
+            instance.version.addon.update_status()
             if 'delete' in kw:
-                instance.version.webapp.update_version(ignore=instance.version)
+                instance.version.addon.update_version(ignore=instance.version)
             else:
-                instance.version.webapp.update_version()
+                instance.version.addon.update_version()
         except models.ObjectDoesNotExist:
             pass
 
@@ -254,11 +254,11 @@ def check_file(old_attr, new_attr, instance, sender, **kw):
     old, new = old_attr.get('hash'), instance.hash
     if old != new:
         try:
-            webapp = instance.version.webapp.pk
+            addon = instance.version.addon.pk
         except models.ObjectDoesNotExist:
-            webapp = 'unknown'
-        log.info('Hash changed for file: %s, webapp: %s, from: %s to: %s' %
-                 (instance.pk, webapp, old, new))
+            addon = 'unknown'
+        log.info('Hash changed for file: %s, addon: %s, from: %s to: %s' %
+                 (instance.pk, addon, old, new))
 
 
 class FileUpload(ModelBase):
@@ -290,7 +290,7 @@ class FileUpload(ModelBase):
 
     def add_file(self, chunks, filename, size):
         filename = smart_str(filename)
-        loc = os.path.join(settings.WEBAPPS_PATH, 'temp', uuid.uuid4().hex)
+        loc = os.path.join(settings.ADDONS_PATH, 'temp', uuid.uuid4().hex)
         base, ext = os.path.splitext(smart_path(filename))
         if ext in EXTENSIONS:
             loc += ext

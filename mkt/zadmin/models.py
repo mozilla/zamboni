@@ -51,8 +51,8 @@ class EmailPreviewTopic(object):
     If you pass in an object (a Model instance) you will get a poor man's
     foreign key as your topic.
 
-    For example, EmailPreviewTopic(webapp) will link all preview emails to
-    the ID of that webapp object.
+    For example, EmailPreviewTopic(addon) will link all preview emails to
+    the ID of that addon object.
     """
 
     def __init__(self, object=None, suffix='', topic=None):

@@ -17,7 +17,7 @@ user_patterns = patterns(
 )
 
 
-# These views all start with app/webapp ID.
+# These views all start with app/addon ID.
 app_patterns = patterns(
     '',
     url(r'^$', views.app_summary,
@@ -63,8 +63,8 @@ urlpatterns = patterns(
         name='lookup.website_search'),
     url(r'^group_search$', views.group_search,
         name='lookup.group_search'),
-    (r'^app/(?P<webapp_id>[^/]+)/', include(app_patterns)),
-    (r'^website/(?P<webapp_id>[^/]+)/', include(website_patterns)),
+    (r'^app/(?P<addon_id>[^/]+)/', include(app_patterns)),
+    (r'^website/(?P<addon_id>[^/]+)/', include(website_patterns)),
     (r'^transaction/(?P<tx_uuid>[^/]+)/',
      include(transaction_patterns)),
     (r'^user/(?P<user_id>[^/]+)/', include(user_patterns)),

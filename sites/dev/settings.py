@@ -61,9 +61,9 @@ CELERY_ALWAYS_EAGER = False
 CELERYD_PREFETCH_MULTIPLIER = 1
 
 NETAPP_STORAGE = env('NETAPP_STORAGE_ROOT') + '/shared_storage'
-GUARDED_WEBAPPS_PATH = env('NETAPP_STORAGE_ROOT') + '/guarded-webapps'
+GUARDED_ADDONS_PATH = env('NETAPP_STORAGE_ROOT') + '/guarded-addons'
 UPLOADS_PATH = NETAPP_STORAGE + '/uploads'
-WEBAPP_ICONS_PATH = UPLOADS_PATH + '/webapp_icons'
+ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
 WEBSITE_ICONS_PATH = UPLOADS_PATH + '/website_icons'
 FEATURED_APP_BG_PATH = UPLOADS_PATH + '/featured_app_background'
 FEED_COLLECTION_BG_PATH = UPLOADS_PATH + '/feed_collection_background'
@@ -77,6 +77,9 @@ SIGNED_APPS_PATH = NETAPP_STORAGE + '/signed_apps'
 SIGNED_APPS_REVIEWER_PATH = NETAPP_STORAGE + '/signed_apps_reviewer'
 PREVIEW_THUMBNAIL_PATH = PREVIEWS_PATH + '/thumbs/%s/%d.png'
 PREVIEW_FULL_PATH = PREVIEWS_PATH + '/full/%s/%d.%s'
+EXTENSIONS_PATH = NETAPP_STORAGE + '/extensions'
+SIGNED_EXTENSIONS_PATH = NETAPP_STORAGE + '/signed-extensions'
+
 
 LOGGING['loggers'].update({
     'amqp': {'level': logging.WARNING},
@@ -91,7 +94,7 @@ LOGGING['loggers'].update({
 })
 
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
-WEBAPPS_PATH = env('NETAPP_STORAGE_ROOT') + '/files'
+ADDONS_PATH = env('NETAPP_STORAGE_ROOT') + '/files'
 
 SPIDERMONKEY = '/usr/bin/tracemonkey'
 csp = 'csp.middleware.CSPMiddleware'

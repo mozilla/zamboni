@@ -65,13 +65,13 @@ class TestNewWebappForm(mkt.site.tests.TestCase):
                                     'upload': self.file.uuid},
                                    request=self.request)
         assert form.is_valid()
-        eq_(form.get_paid(), mkt.WEBAPP_PREMIUM)
+        eq_(form.get_paid(), mkt.ADDON_PREMIUM)
 
     def test_free(self):
         form = forms.NewWebappForm({'free_platforms': ['free-firefoxos'],
                                     'upload': self.file.uuid})
         assert form.is_valid()
-        eq_(form.get_paid(), mkt.WEBAPP_FREE)
+        eq_(form.get_paid(), mkt.ADDON_FREE)
 
     def test_platform(self):
         mappings = (
@@ -110,7 +110,7 @@ class TestNewWebappForm(mkt.site.tests.TestCase):
         assert form.is_valid(), form.errors
         assert not form.is_packaged()
 
-    @mock.patch('mkt.submit.forms.parse_webapp',
+    @mock.patch('mkt.submit.forms.parse_addon',
                 lambda *args: {'version': None})
     def test_packaged_allowed_everywhere(self):
         for device in ('free-firefoxos',
@@ -136,7 +136,7 @@ class TestNewWebappVersionForm(mkt.site.tests.TestCase):
                                           is_packaged=True)
         assert not form.is_valid(), form.errors
 
-    @mock.patch('mkt.submit.forms.parse_webapp',
+    @mock.patch('mkt.submit.forms.parse_addon',
                 lambda *args: {"origin": "app://hy.fr"})
     @mock.patch('mkt.submit.forms.verify_app_domain')
     def test_verify_app_domain_called(self, _verify):
@@ -147,23 +147,23 @@ class TestNewWebappVersionForm(mkt.site.tests.TestCase):
         assert form.is_valid(), form.errors
         assert _verify.called
 
-    @mock.patch('mkt.submit.forms.parse_webapp',
+    @mock.patch('mkt.submit.forms.parse_addon',
                 lambda *args: {"origin": "app://hy.fr"})
     def test_verify_app_domain_exclude_same(self):
         app = mkt.site.tests.app_factory(app_domain='app://hy.fr')
         form = forms.NewWebappVersionForm(
             {'upload': self.file.uuid}, request=self.request, is_packaged=True,
-            webapp=app)
+            addon=app)
         assert form.is_valid(), form.errors
 
-    @mock.patch('mkt.submit.forms.parse_webapp',
+    @mock.patch('mkt.submit.forms.parse_addon',
                 lambda *args: {"origin": "app://hy.fr"})
     def test_verify_app_domain_exclude_different(self):
         app = mkt.site.tests.app_factory(app_domain='app://yo.lo')
         mkt.site.tests.app_factory(app_domain='app://hy.fr')
         form = forms.NewWebappVersionForm(
             {'upload': self.file.uuid}, request=self.request, is_packaged=True,
-            webapp=app)
+            addon=app)
         assert not form.is_valid(), form.errors
         assert ('An app already exists on this domain; '
                 'only one app per domain is allowed.' in form.errors['upload'])
@@ -297,7 +297,7 @@ class TestAppFeaturesForm(mkt.site.tests.TestCase):
 
     def _check_log(self, action):
         assert AppLog.objects.filter(
-            webapp=self.app, activity_log__action=action.id).exists(), (
+            addon=self.app, activity_log__action=action.id).exists(), (
                 "Didn't find `%s` action in logs." % action.short)
 
     def test_required(self):
@@ -332,7 +332,7 @@ class TestAppFeaturesForm(mkt.site.tests.TestCase):
         ok_(not self.features.has_sms)
         ok_(not self.features.has_contacts)
         action_id = mkt.LOG.REREVIEW_FEATURES_CHANGED.id
-        assert AppLog.objects.filter(webapp=self.app,
+        assert AppLog.objects.filter(addon=self.app,
                                      activity_log__action=action_id).exists()
         eq_(RereviewQueue.objects.count(), 1)
 
@@ -346,7 +346,7 @@ class TestAppFeaturesForm(mkt.site.tests.TestCase):
         eq_(RereviewQueue.objects.count(), 0)
         action_id = mkt.LOG.REREVIEW_FEATURES_CHANGED.id
         assert not AppLog.objects.filter(
-            webapp=self.app,
+            addon=self.app,
             activity_log__action=action_id).exists()
 
     def test_changes_mark_for_rereview_bypass(self):
@@ -359,5 +359,5 @@ class TestAppFeaturesForm(mkt.site.tests.TestCase):
         eq_(RereviewQueue.objects.count(), 0)
         action_id = mkt.LOG.REREVIEW_FEATURES_CHANGED.id
         assert not AppLog.objects.filter(
-            webapp=self.app,
+            addon=self.app,
             activity_log__action=action_id).exists()

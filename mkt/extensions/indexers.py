@@ -1,12 +1,13 @@
 from operator import attrgetter
 
+from mkt.constants.base import STATUS_PUBLIC
 from mkt.search.indexers import BaseIndexer
 from mkt.translations.models import attach_trans_dict
 
 
 class ExtensionIndexer(BaseIndexer):
-    translated_fields = ('name', )
-    fields_with_language_analyzers = ('name', )
+    translated_fields = ('description', 'name', )
+    fields_with_language_analyzers = ('description', 'name', )
 
     # "Hidden" fields are never returned to the client, they are for internal
     # use by ES only.
@@ -43,7 +44,19 @@ class ExtensionIndexer(BaseIndexer):
                     'id': {'type': 'long'},
                     'created': {'type': 'date', 'format': 'dateOptionalTime'},
                     'default_language': cls.string_not_indexed(),
+                    'description': {
+                        'type': 'string',
+                        'analyzer': 'default_icu',
+                        'position_offset_gap': 100,
+                    },
                     'is_disabled': {'type': 'boolean'},
+                    'latest_public_version': {
+                        'type': 'object',
+                        'properties': {
+                            'id': {'type': 'long'},
+                            'version': cls.string_not_indexed(),
+                        }
+                    },
                     'modified': {'type': 'date', 'format': 'dateOptionalTime'},
                     'name': {
                         'type': 'string',
@@ -60,7 +73,6 @@ class ExtensionIndexer(BaseIndexer):
                     'guid': cls.string_not_analyzed(),
                     'slug': {'type': 'string'},
                     'status': {'type': 'byte'},
-                    'version': cls.string_not_indexed(),
                 }
             }
         }
@@ -85,12 +97,19 @@ class ExtensionIndexer(BaseIndexer):
         attach_trans_dict(cls.get_model(), [obj])
 
         attrs = ('created', 'default_language', 'id', 'modified', 'slug',
-                 'status', 'version')
+                 'status')
         doc = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
         # is_disabled is here for compatibility with other filters, but never
         # set to True at the moment, and not present in the model.
         doc['is_disabled'] = False
+        if obj.status == STATUS_PUBLIC:
+            doc['latest_public_version'] = {
+                'id': obj.latest_public_version.pk,
+                'version': obj.latest_public_version.version
+            }
+        else:
+            doc['latest_public_version'] = None
         doc['name_sort'] = unicode(obj.name).lower()
         doc['guid'] = unicode(obj.uuid)
 

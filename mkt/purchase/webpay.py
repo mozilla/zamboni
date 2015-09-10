@@ -37,25 +37,25 @@ app_view = app_view_factory(qs=Webapp.objects.valid)
 @require_POST
 @json_view
 @can_be_purchased
-def prepare_pay(request, webapp):
-    if webapp.is_premium() and webapp.has_purchased(request.user):
-        log.info('Already purchased: %d' % webapp.pk)
+def prepare_pay(request, addon):
+    if addon.is_premium() and addon.has_purchased(request.user):
+        log.info('Already purchased: %d' % addon.pk)
         raise AlreadyPurchased
-    return _prepare_pay(request, webapp)
+    return _prepare_pay(request, addon)
 
 
-def _prepare_pay(request, webapp):
+def _prepare_pay(request, addon):
     app_pay_cef.log(request, 'Preparing JWT', 'preparing_jwt',
-                    'Preparing JWT for: %s' % (webapp.pk), severity=3)
+                    'Preparing JWT for: %s' % (addon.pk), severity=3)
 
     log.debug('Starting purchase of app: {0} by user: {1}'.format(
-        webapp.pk, request.user))
+        addon.pk, request.user))
 
     contribution = Contribution.objects.create(
-        webapp_id=webapp.pk,
-        amount=webapp.get_price(region=request.REGION.id),
+        addon_id=addon.pk,
+        amount=addon.get_price(region=request.REGION.id),
         paykey=None,
-        price_tier=webapp.premium.price,
+        price_tier=addon.premium.price,
         source=request.GET.get('src', ''),
         source_locale=request.LANG,
         type=mkt.CONTRIB_PENDING,
@@ -65,14 +65,14 @@ def _prepare_pay(request, webapp):
 
     log.debug('Storing contrib for uuid: {0}'.format(contribution.uuid))
 
-    return get_product_jwt(WebAppProduct(webapp), contribution)
+    return get_product_jwt(WebAppProduct(addon), contribution)
 
 
 @login_required
 @app_view
 @use_master
 @json_view
-def pay_status(request, webapp, contrib_uuid):
+def pay_status(request, addon, contrib_uuid):
     """
     Return JSON dict of {status: complete|incomplete}.
 
@@ -82,7 +82,7 @@ def pay_status(request, webapp, contrib_uuid):
     to generate a receipt.
     """
     qs = Contribution.objects.filter(uuid=contrib_uuid,
-                                     webapp__webapppurchase__user=request.user,
+                                     addon__addonpurchase__user=request.user,
                                      type=mkt.CONTRIB_PURCHASE)
     return {'status': 'complete' if qs.exists() else 'incomplete'}
 
@@ -140,16 +140,15 @@ def postback(request):
 
     if contrib.transaction_id is not None:
         if contrib.transaction_id == trans_id:
-            app_pay_cef.log(
-                request, 'Repeat postback', 'repeat_postback',
-                'Postback sent again for: %s' % (contrib.webapp.pk),
-                severity=4)
+            app_pay_cef.log(request, 'Repeat postback', 'repeat_postback',
+                            'Postback sent again for: %s' % (contrib.addon.pk),
+                            severity=4)
             return http.HttpResponse(trans_id)
         else:
             app_pay_cef.log(request, 'Repeat postback with new trans_id',
                             'repeat_postback_new_trans_id',
                             'Postback sent again for: %s, but with new '
-                            'trans_id: %s' % (contrib.webapp.pk, trans_id),
+                            'trans_id: %s' % (contrib.addon.pk, trans_id),
                             severity=7)
             raise LookupError(
                 'JWT (iss:{iss}, aud:{aud}) for trans_id {jwt_trans} is '
@@ -199,7 +198,7 @@ def postback(request):
     log.info(u'webpay postback: fulfilling purchase for contrib {c} with '
              u'transaction {t}'.format(c=contrib, t=trans_id))
     app_pay_cef.log(request, 'Purchase complete', 'purchase_complete',
-                    'Purchase complete for: %s' % (contrib.webapp.pk),
+                    'Purchase complete for: %s' % (contrib.addon.pk),
                     severity=3)
 
     contrib.update(transaction_id=trans_id,
@@ -232,7 +231,7 @@ def free_postback(request, contrib, trans_id, user_profile):
              u'contrib={c}; trans={t}; user={u}'.format(
                  c=contrib, t=trans_id, u=user_profile))
     app_pay_cef.log(request, 'Purchase complete', 'purchase_complete',
-                    'Purchase complete for: %s' % (contrib.webapp.pk),
+                    'Purchase complete for: %s' % (contrib.addon.pk),
                     severity=3)
     contrib.update(transaction_id=trans_id,
                    type=mkt.CONTRIB_PURCHASE,

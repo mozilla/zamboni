@@ -16,7 +16,7 @@ from nose.tools import eq_, raises
 import mkt
 from mkt.api.exceptions import AlreadyPurchased
 from mkt.inapp.models import InAppProduct
-from mkt.prices.models import WebappPurchase, Price
+from mkt.prices.models import AddonPurchase, Price
 from mkt.purchase.models import Contribution
 from mkt.users.models import UserProfile
 from utils import PurchaseTest
@@ -28,7 +28,7 @@ class TestWebAppPurchase(PurchaseTest):
         super(TestWebAppPurchase, self).setUp()
         self.create_flag(name='solitude-payments')
         self.prepare_pay = reverse('webpay.prepare_pay',
-                                   kwargs={'app_slug': self.webapp.app_slug})
+                                   kwargs={'app_slug': self.addon.app_slug})
 
     def _req(self, method, url):
         req = getattr(self.client, method)
@@ -45,27 +45,27 @@ class TestWebAppPurchase(PurchaseTest):
 
     def test_pay_status(self):
         uuid = '<returned from prepare-pay>'
-        contribution = Contribution.objects.create(webapp_id=self.webapp.id,
+        contribution = Contribution.objects.create(addon_id=self.addon.id,
                                                    amount=self.price.price,
                                                    uuid=uuid,
                                                    type=mkt.CONTRIB_PENDING,
                                                    user=self.user)
 
         data = self.get(reverse('webpay.pay_status',
-                                args=[self.webapp.app_slug, uuid]))
+                                args=[self.addon.app_slug, uuid]))
 
         eq_(data['status'], 'incomplete')
 
         contribution.update(type=mkt.CONTRIB_PURCHASE)
 
         data = self.get(reverse('webpay.pay_status',
-                                args=[self.webapp.app_slug, uuid]))
+                                args=[self.addon.app_slug, uuid]))
 
         eq_(data['status'], 'complete')
 
     def test_status_for_purchases_only(self):
         uuid = '<returned from prepare-pay>'
-        Contribution.objects.create(webapp_id=self.webapp.id,
+        Contribution.objects.create(addon_id=self.addon.id,
                                     amount=self.price.price,
                                     uuid=uuid,
                                     type=mkt.CONTRIB_PURCHASE,
@@ -73,26 +73,26 @@ class TestWebAppPurchase(PurchaseTest):
         self.client.logout()
         self.login('admin@mozilla.com')
         data = self.get(reverse('webpay.pay_status',
-                                args=[self.webapp.app_slug, uuid]))
+                                args=[self.addon.app_slug, uuid]))
         eq_(data['status'], 'incomplete')
 
     def test_pay_status_for_unknown_contrib(self):
         data = self.get(reverse('webpay.pay_status',
-                                args=[self.webapp.app_slug, '<garbage>']))
+                                args=[self.addon.app_slug, '<garbage>']))
         eq_(data['status'], 'incomplete')
 
     def test_strip_html(self):
-        self.webapp.description = 'Some <a href="http://soso.com">site</a>'
-        self.webapp.save()
+        self.addon.description = 'Some <a href="http://soso.com">site</a>'
+        self.addon.save()
         data = self.post(self.prepare_pay)
         data = jwt.decode(data['webpayJWT'].encode('ascii'), verify=False)
         req = data['request']
         eq_(req['description'], 'Some site')
 
     def test_status_for_already_purchased(self):
-        WebappPurchase.objects.create(webapp=self.webapp,
-                                      user=self.user,
-                                      type=mkt.CONTRIB_PURCHASE)
+        AddonPurchase.objects.create(addon=self.addon,
+                                     user=self.user,
+                                     type=mkt.CONTRIB_PURCHASE)
 
         with self.assertRaises(AlreadyPurchased):
             self.client.post(self.prepare_pay)
@@ -110,7 +110,7 @@ class PostbackTest(PurchaseTest):
         super(PostbackTest, self).setUp()
         self.client.logout()
         self.contrib = Contribution.objects.create(
-            webapp_id=self.webapp.id,
+            addon_id=self.addon.id,
             amount=self.price.price,
             uuid='<some uuid>',
             type=mkt.CONTRIB_PENDING,
@@ -251,8 +251,8 @@ class TestPostback(PostbackTest):
     def test_valid_in_app_product(self):
         inapp = InAppProduct.objects.create(
             logo_url='logo.png', name=u'Ivan Krsti\u0107',
-            price=self.price, webapp=self.webapp)
-        self.contrib.update(inapp_product=inapp, webapp=inapp.webapp,
+            price=self.price, webapp=self.addon)
+        self.contrib.update(inapp_product=inapp, addon=inapp.webapp,
                             user=self.user)
         jwt_dict = self.jwt_dict()
         self.decode.return_value = jwt_dict
@@ -272,7 +272,7 @@ class TestPostback(PostbackTest):
             name='Test Product',
             price=Price.objects.all()[0],
             simulate=json.dumps({'result': 'postback'}))
-        self.contrib.update(inapp_product=inapp, webapp=None,
+        self.contrib.update(inapp_product=inapp, addon=None,
                             user=None)
 
         # Because Webpay doesn't make a real Solitude transaction for
@@ -304,8 +304,8 @@ class TestPostback(PostbackTest):
         inapp = InAppProduct.objects.create(
             logo_url='logo.png', name=u'Free Inapp Product',
             price=Price.objects.get(price=0),
-            webapp=self.webapp)
-        self.contrib.update(inapp_product=inapp, webapp=inapp.webapp)
+            webapp=self.addon)
+        self.contrib.update(inapp_product=inapp, addon=inapp.webapp)
         jwt_dict = self.jwt_dict()
         jwt_dict['response']['transactionID'] = response_trans_id
         jwt_dict['response']['solitude_buyer_uuid'] = '<buyer:uuid>'

@@ -19,7 +19,7 @@ from mkt.site.fixtures import fixture
 from mkt.site.tests import app_factory, user_factory
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
-from mkt.webapps.models import WebappDeviceType, Webapp
+from mkt.webapps.models import AddonDeviceType, Webapp
 from mkt.websites.utils import website_factory
 
 
@@ -48,7 +48,7 @@ class TestReviewerScore(mkt.site.tests.TestCase):
         self.check_event(mkt.STATUS_PENDING,
                          mkt.REVIEWED_WEBAPP_HOSTED)
 
-        RereviewQueue.objects.create(webapp=self.app)
+        RereviewQueue.objects.create(addon=self.app)
         self.check_event(mkt.STATUS_PUBLIC,
                          mkt.REVIEWED_WEBAPP_REREVIEW, in_rereview=True)
         self.check_event(mkt.STATUS_UNLISTED,
@@ -105,25 +105,25 @@ class TestReviewerScore(mkt.site.tests.TestCase):
         eq_(score.note_key, mkt.REVIEWED_WEBAPP_TARAKO)
 
     def test_extra_platform_points(self):
-        WebappDeviceType.objects.create(webapp=self.app, device_type=1)
+        AddonDeviceType.objects.create(addon=self.app, device_type=1)
         self._give_points()
         score1 = mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_HOSTED]
         eq_(ReviewerScore.objects.order_by('-pk').first().score, score1)
 
-        WebappDeviceType.objects.create(webapp=self.app, device_type=2)
+        AddonDeviceType.objects.create(addon=self.app, device_type=2)
         self._give_points()
         score2 = (mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_HOSTED] +
                   mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_PLATFORM_EXTRA])
         eq_(ReviewerScore.objects.order_by('-pk').first().score, score2)
 
-        WebappDeviceType.objects.create(webapp=self.app, device_type=3)
+        AddonDeviceType.objects.create(addon=self.app, device_type=3)
         self._give_points()
         score3 = (mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_HOSTED] +
                   mkt.REVIEWED_SCORES[mkt.REVIEWED_WEBAPP_PLATFORM_EXTRA] * 2)
         eq_(ReviewerScore.objects.order_by('-pk').first().score, score3)
 
     def test_award_mark_abuse_points_app(self):
-        ReviewerScore.award_mark_abuse_points(self.user, webapp=self.app)
+        ReviewerScore.award_mark_abuse_points(self.user, addon=self.app)
         score = ReviewerScore.objects.all()[0]
         eq_(score.score, mkt.REVIEWED_SCORES.get(
             mkt.REVIEWED_APP_ABUSE_REPORT))
@@ -532,7 +532,7 @@ class TestRereviewQueue(mkt.site.tests.TestCase):
         RereviewQueue.flag(self.app, mkt.LOG.REREVIEW_PREMIUM_TYPE_UPGRADE)
         assert mock.called
         mock.reset()
-        RereviewQueue.objects.filter(webapp=self.app).delete()
+        RereviewQueue.objects.filter(addon=self.app).delete()
         assert mock.called
 
 
@@ -542,8 +542,8 @@ class TestEscalationQueue(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.search.indexers.BaseIndexer.index_ids')
     def test_signals(self, mock):
-        EscalationQueue.objects.create(webapp=self.app)
+        EscalationQueue.objects.create(addon=self.app)
         assert mock.called
         mock.reset()
-        EscalationQueue.objects.filter(webapp=self.app).delete()
+        EscalationQueue.objects.filter(addon=self.app).delete()
         assert mock.called

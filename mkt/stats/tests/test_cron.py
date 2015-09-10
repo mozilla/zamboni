@@ -11,7 +11,7 @@ from mkt.site.tests import user_factory
 from mkt.stats import tasks
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
-from mkt.webapps.models import WebappUser, Webapp
+from mkt.webapps.models import AddonUser, Webapp
 
 
 class TestMonolithStats(mkt.site.tests.TestCase):
@@ -35,12 +35,12 @@ class TestMonolithStats(mkt.site.tests.TestCase):
         app.update(created=today)
 
         package_type = 'packaged' if app.is_packaged else 'hosted'
-        premium_type = mkt.WEBAPP_PREMIUM_API[app.premium_type]
+        premium_type = mkt.ADDON_PREMIUM_API[app.premium_type]
 
         # Add a region exclusion.
         regions = dict(REGIONS_CHOICES_SLUG)
         excluded_region = regions['br']
-        app.webappexcludedregion.create(region=excluded_region.id)
+        app.addonexcludedregion.create(region=excluded_region.id)
 
         jobs = tasks._get_monolith_jobs(today)
 
@@ -73,26 +73,26 @@ class TestMonolithStats(mkt.site.tests.TestCase):
     def test_app_avail_counts(self):
         today = datetime.date(2013, 1, 25)
         app = Webapp.objects.create()
-        app.update(_current_version=Version.objects.create(webapp=app,
+        app.update(_current_version=Version.objects.create(addon=app,
                                                            reviewed=today),
                    status=mkt.STATUS_PUBLIC, created=today)
         # Create a couple more to test the counts.
         app2 = Webapp.objects.create()
-        app2.update(_current_version=Version.objects.create(webapp=app2,
+        app2.update(_current_version=Version.objects.create(addon=app2,
                                                             reviewed=today),
                     status=mkt.STATUS_PENDING, created=today)
         app3 = Webapp.objects.create(disabled_by_user=True)
-        app3.update(_current_version=Version.objects.create(webapp=app3,
+        app3.update(_current_version=Version.objects.create(addon=app3,
                                                             reviewed=today),
                     status=mkt.STATUS_PUBLIC, created=today)
 
         package_type = 'packaged' if app.is_packaged else 'hosted'
-        premium_type = mkt.WEBAPP_PREMIUM_API[app.premium_type]
+        premium_type = mkt.ADDON_PREMIUM_API[app.premium_type]
 
         # Add a region exclusion.
         regions = dict(REGIONS_CHOICES_SLUG)
         excluded_region = regions['br']
-        app.webappexcludedregion.create(region=excluded_region.id)
+        app.addonexcludedregion.create(region=excluded_region.id)
 
         jobs = tasks._get_monolith_jobs(today)
 
@@ -123,8 +123,8 @@ class TestMonolithStats(mkt.site.tests.TestCase):
                 'Got %d, expected %d.' % (r, p, count, expected_count))
 
     def test_app_reviews(self):
-        webapp = Webapp.objects.create()
-        Review.objects.create(webapp=webapp, user=user_factory(), rating=5)
+        addon = Webapp.objects.create()
+        Review.objects.create(addon=addon, user=user_factory(), rating=5)
         eq_(tasks._get_monolith_jobs()['apps_review_count_new'][0]['count'](),
             1)
 
@@ -145,8 +145,8 @@ class TestMonolithStats(mkt.site.tests.TestCase):
         p1 = user_factory(source=mkt.LOGIN_SOURCE_MMO_BROWSERID)
         p2 = user_factory(source=mkt.LOGIN_SOURCE_MMO_BROWSERID)
         a1 = mkt.site.tests.app_factory()
-        WebappUser.objects.create(webapp=a1, user=p1)
-        WebappUser.objects.create(webapp=a1, user=p2)
+        AddonUser.objects.create(addon=a1, user=p1)
+        AddonUser.objects.create(addon=a1, user=p2)
 
         eq_(tasks._get_monolith_jobs()
             ['mmo_developer_count_total'][0]['count'](), 2)

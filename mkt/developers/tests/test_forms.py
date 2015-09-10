@@ -31,7 +31,7 @@ class TestPreviewForm(mkt.site.tests.TestCase):
     fixtures = fixture('webapp_337141', 'user_999')
 
     def setUp(self):
-        self.webapp = Webapp.objects.get(pk=337141)
+        self.addon = Webapp.objects.get(pk=337141)
         self.dest = os.path.join(settings.TMP_PATH, 'preview')
         self.user = UserProfile.objects.get(pk=999)
         mkt.set_user(self.user)
@@ -45,7 +45,7 @@ class TestPreviewForm(mkt.site.tests.TestCase):
                                   'position': 1})
         shutil.copyfile(get_image_path(name), os.path.join(self.dest, name))
         assert form.is_valid(), form.errors
-        form.save(self.webapp)
+        form.save(self.addon)
         assert update_mock.called
 
     def test_preview_size(self):
@@ -55,19 +55,19 @@ class TestPreviewForm(mkt.site.tests.TestCase):
             get_image_path(name), os.path.join(self.dest, name),
             src_storage=local_storage, dst_storage=private_storage)
         assert form.is_valid(), form.errors
-        form.save(self.webapp)
+        form.save(self.addon)
         # Since the task is a post-request-task and we are outside the normal
         # request-response cycle, manually send the tasks.
         post_request_task._send_tasks()
-        eq_(self.webapp.previews.all()[0].sizes,
+        eq_(self.addon.previews.all()[0].sizes,
             {u'image': [250, 297], u'thumbnail': [100, 119]})
 
     def check_file_type(self, type_):
         form = forms.PreviewForm({'upload_hash': type_,
                                   'position': 1})
         assert form.is_valid(), form.errors
-        form.save(self.webapp)
-        return self.webapp.previews.all()[0].filetype
+        form.save(self.addon)
+        return self.addon.previews.all()[0].filetype
 
     @mock.patch('lib.video.tasks.resize_video')
     def test_preview_good_file_type(self, resize_video):
@@ -137,7 +137,7 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
     def test_initial_excluded_in_region(self):
         self.app.geodata.update(restricted=True)
         self.app.update(enable_new_regions=False)
-        self.app.webappexcludedregion.create(region=mkt.regions.BRA.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.BRA.id)
 
         # Everything except Brazil.
         regions = set(mkt.regions.ALL_REGION_IDS)
@@ -156,7 +156,7 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
         self.app.update(enable_new_regions=False)
         regions = [mkt.regions.BRA, mkt.regions.GBR, mkt.regions.RESTOFWORLD]
         for region in regions:
-            self.app.webappexcludedregion.create(region=region.id)
+            self.app.addonexcludedregion.create(region=region.id)
 
         regions = set(mkt.regions.ALL_REGION_IDS)
         regions.remove(mkt.regions.BRA.id)
@@ -222,7 +222,7 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
         eq_(self.app.get_region_ids(True), mkt.regions.REGION_IDS)
 
     def test_reinclude_region(self):
-        self.app.webappexcludedregion.create(region=mkt.regions.BRA.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.BRA.id)
 
         form = forms.RegionForm({'regions': mkt.regions.ALL_REGION_IDS,
                                  'enable_new_regions': True}, **self.kwargs)
@@ -231,7 +231,7 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
         eq_(self.app.get_region_ids(True), mkt.regions.ALL_REGION_IDS)
 
     def test_reinclude_restofworld(self):
-        self.app.webappexcludedregion.create(region=mkt.regions.RESTOFWORLD.id)
+        self.app.addonexcludedregion.create(region=mkt.regions.RESTOFWORLD.id)
 
         form = forms.RegionForm({'restricted': '1',
                                  'regions': mkt.regions.ALL_REGION_IDS},
@@ -241,7 +241,7 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
         eq_(self.app.get_region_ids(True), mkt.regions.ALL_REGION_IDS)
 
     def test_restofworld_valid_choice_paid(self):
-        self.app.update(premium_type=mkt.WEBAPP_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         form = forms.RegionForm(
             {'restricted': '1',
              'regions': [mkt.regions.RESTOFWORLD.id]}, **self.kwargs)
@@ -256,7 +256,7 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
 
         """
 
-        self.app.update(premium_type=mkt.WEBAPP_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         form = forms.RegionForm(
             {'restricted': '1',
              'regions': [mkt.regions.RESTOFWORLD.id]}, **self.kwargs)
@@ -319,7 +319,7 @@ class TestRegionForm(mkt.site.tests.WebappTestCase):
 
     def test_china_already_excluded_and_pending_or_rejected(self):
         cn = mkt.regions.CHN.id
-        self.app.webappexcludedregion.create(region=cn)
+        self.app.addonexcludedregion.create(region=cn)
 
         # If the app was already excluded in China, the checkbox should still
         # be checked if the app's been requested for approval in China now.
@@ -658,7 +658,7 @@ class TestAppVersionForm(mkt.site.tests.TestCase):
         self.app = app_factory(publish_type=mkt.PUBLISH_IMMEDIATE,
                                version_kw={'version': '1.0',
                                            'created': self.days_ago(5)})
-        version_factory(webapp=self.app, version='2.0',
+        version_factory(addon=self.app, version='2.0',
                         file_kw=dict(status=mkt.STATUS_PENDING))
         self.app.reload()
 
@@ -708,24 +708,24 @@ class TestPublishForm(mkt.site.tests.TestCase):
 
     def test_initial(self):
         app = Webapp(status=mkt.STATUS_PUBLIC)
-        eq_(self.form(None, webapp=app).fields['publish_type'].initial,
+        eq_(self.form(None, addon=app).fields['publish_type'].initial,
             mkt.PUBLISH_IMMEDIATE)
-        eq_(self.form(None, webapp=app).fields['limited'].initial, False)
+        eq_(self.form(None, addon=app).fields['limited'].initial, False)
 
         app.status = mkt.STATUS_UNLISTED
-        eq_(self.form(None, webapp=app).fields['publish_type'].initial,
+        eq_(self.form(None, addon=app).fields['publish_type'].initial,
             mkt.PUBLISH_HIDDEN)
-        eq_(self.form(None, webapp=app).fields['limited'].initial, False)
+        eq_(self.form(None, addon=app).fields['limited'].initial, False)
 
         app.status = mkt.STATUS_APPROVED
-        eq_(self.form(None, webapp=app).fields['publish_type'].initial,
+        eq_(self.form(None, addon=app).fields['publish_type'].initial,
             mkt.PUBLISH_HIDDEN)
-        eq_(self.form(None, webapp=app).fields['limited'].initial, True)
+        eq_(self.form(None, addon=app).fields['limited'].initial, True)
 
     def test_go_public(self):
         self.app.update(status=mkt.STATUS_APPROVED)
         form = self.form({'publish_type': mkt.PUBLISH_IMMEDIATE,
-                          'limited': False}, webapp=self.app)
+                          'limited': False}, addon=self.app)
         assert form.is_valid()
         form.save()
         self.app.reload()
@@ -734,7 +734,7 @@ class TestPublishForm(mkt.site.tests.TestCase):
     def test_go_unlisted(self):
         self.app.update(status=mkt.STATUS_PUBLIC)
         form = self.form({'publish_type': mkt.PUBLISH_HIDDEN,
-                          'limited': False}, webapp=self.app)
+                          'limited': False}, addon=self.app)
         assert form.is_valid()
         form.save()
         self.app.reload()
@@ -743,14 +743,14 @@ class TestPublishForm(mkt.site.tests.TestCase):
     def test_go_private(self):
         self.app.update(status=mkt.STATUS_PUBLIC)
         form = self.form({'publish_type': mkt.PUBLISH_HIDDEN,
-                          'limited': True}, webapp=self.app)
+                          'limited': True}, addon=self.app)
         assert form.is_valid()
         form.save()
         self.app.reload()
         eq_(self.app.status, mkt.STATUS_APPROVED)
 
     def test_invalid(self):
-        form = self.form({'publish_type': 999}, webapp=self.app)
+        form = self.form({'publish_type': 999}, addon=self.app)
         assert not form.is_valid()
 
 
@@ -765,31 +765,31 @@ class TestPublishFormPackaged(mkt.site.tests.TestCase):
         self.app = app_factory(status=mkt.STATUS_PUBLIC, is_packaged=True)
         self.ver1 = self.app.current_version
         self.ver1.update(created=self.days_ago(1))
-        self.ver2 = version_factory(webapp=self.app, version='2.0',
+        self.ver2 = version_factory(addon=self.app, version='2.0',
                                     file_kw=dict(status=mkt.STATUS_APPROVED))
         self.app.update(_latest_version=self.ver2)
         self.form = forms.PublishForm
 
     def test_initial(self):
         app = Webapp(status=mkt.STATUS_PUBLIC)
-        eq_(self.form(None, webapp=app).fields['publish_type'].initial,
+        eq_(self.form(None, addon=app).fields['publish_type'].initial,
             mkt.PUBLISH_IMMEDIATE)
-        eq_(self.form(None, webapp=app).fields['limited'].initial, False)
+        eq_(self.form(None, addon=app).fields['limited'].initial, False)
 
         app.status = mkt.STATUS_UNLISTED
-        eq_(self.form(None, webapp=app).fields['publish_type'].initial,
+        eq_(self.form(None, addon=app).fields['publish_type'].initial,
             mkt.PUBLISH_HIDDEN)
-        eq_(self.form(None, webapp=app).fields['limited'].initial, False)
+        eq_(self.form(None, addon=app).fields['limited'].initial, False)
 
         app.status = mkt.STATUS_APPROVED
-        eq_(self.form(None, webapp=app).fields['publish_type'].initial,
+        eq_(self.form(None, addon=app).fields['publish_type'].initial,
             mkt.PUBLISH_HIDDEN)
-        eq_(self.form(None, webapp=app).fields['limited'].initial, True)
+        eq_(self.form(None, addon=app).fields['limited'].initial, True)
 
     def test_go_public(self):
         self.app.update(status=mkt.STATUS_APPROVED)
         form = self.form({'publish_type': mkt.PUBLISH_IMMEDIATE,
-                          'limited': False}, webapp=self.app)
+                          'limited': False}, addon=self.app)
         assert form.is_valid()
         form.save()
         self.app.reload()
@@ -800,7 +800,7 @@ class TestPublishFormPackaged(mkt.site.tests.TestCase):
     def test_go_private(self):
         self.app.update(status=mkt.STATUS_PUBLIC)
         form = self.form({'publish_type': mkt.PUBLISH_HIDDEN,
-                          'limited': True}, webapp=self.app)
+                          'limited': True}, addon=self.app)
         assert form.is_valid()
         form.save()
         self.app.reload()
@@ -811,7 +811,7 @@ class TestPublishFormPackaged(mkt.site.tests.TestCase):
     def test_go_unlisted(self):
         self.app.update(status=mkt.STATUS_PUBLIC)
         form = self.form({'publish_type': mkt.PUBLISH_HIDDEN,
-                          'limited': False}, webapp=self.app)
+                          'limited': False}, addon=self.app)
         assert form.is_valid()
         form.save()
         self.app.reload()
@@ -820,7 +820,7 @@ class TestPublishFormPackaged(mkt.site.tests.TestCase):
         eq_(self.app.latest_version, self.ver2)
 
     def test_invalid(self):
-        form = self.form({'publish_type': 999}, webapp=self.app)
+        form = self.form({'publish_type': 999}, addon=self.app)
         assert not form.is_valid()
 
 
@@ -909,7 +909,7 @@ class TestIARCGetAppInfoForm(mkt.site.tests.WebappTestCase):
         assert form.is_valid(), form.errors
         form.save()
 
-        iarc_info = IARCInfo.objects.get(webapp=self.app)
+        iarc_info = IARCInfo.objects.get(addon=self.app)
         eq_(iarc_info.submission_id, 1)
         eq_(iarc_info.security_code, 'a')
 
@@ -952,7 +952,7 @@ class TestIARCGetAppInfoForm(mkt.site.tests.WebappTestCase):
         eq_(iarc_info.security_code, 'b')
 
     def test_iarc_unexclude(self):
-        geodata, created = Geodata.objects.get_or_create(webapp=self.app)
+        geodata, created = Geodata.objects.get_or_create(addon=self.app)
         geodata.update(region_br_iarc_exclude=True,
                        region_de_iarc_exclude=True)
 
@@ -960,7 +960,7 @@ class TestIARCGetAppInfoForm(mkt.site.tests.WebappTestCase):
         ok_(form.is_valid())
         form.save()
 
-        geodata = Geodata.objects.get(webapp=self.app)
+        geodata = Geodata.objects.get(addon=self.app)
         assert not geodata.region_br_iarc_exclude
         assert not geodata.region_de_iarc_exclude
 

@@ -18,12 +18,12 @@ from mkt.constants import (BANGO_COUNTRIES, BANGO_OUTPAYMENT_CURRENCIES,
                            FREE_PLATFORMS, PAID_PLATFORMS)
 from mkt.constants.payments import (PAYMENT_METHOD_ALL, PAYMENT_METHOD_CARD,
                                     PAYMENT_METHOD_OPERATOR)
-from mkt.developers.models import WebappPaymentAccount, PaymentAccount
-from mkt.prices.models import WebappPremium, Price
+from mkt.developers.models import AddonPaymentAccount, PaymentAccount
+from mkt.prices.models import AddonPremium, Price
 from mkt.reviewers.models import RereviewQueue
-from mkt.site.forms import WebappChoiceField
+from mkt.site.forms import AddonChoiceField
 from mkt.submit.forms import DeviceTypeForm
-from mkt.webapps.models import WebappUpsell, Webapp
+from mkt.webapps.models import AddonUpsell, Webapp
 
 
 log = commonware.log.getLogger('z.devhub')
@@ -45,7 +45,7 @@ def _restore_app_status(app, save=True):
 
 class PremiumForm(DeviceTypeForm, happyforms.Form):
     """
-    The premium details for an webapp, which is unfortunately
+    The premium details for an addon, which is unfortunately
     distributed across a few models.
     """
 
@@ -59,18 +59,18 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
-        self.webapp = kw.pop('webapp')
+        self.addon = kw.pop('addon')
         self.user = kw.pop('user')
 
         kw['initial'] = {
-            'allow_inapp': self.webapp.premium_type in mkt.WEBAPP_INAPPS
+            'allow_inapp': self.addon.premium_type in mkt.ADDON_INAPPS
         }
 
-        if self.webapp.premium_type == mkt.WEBAPP_FREE_INAPP:
+        if self.addon.premium_type == mkt.ADDON_FREE_INAPP:
             kw['initial']['price'] = 'free'
-        elif self.webapp.premium and self.webapp.premium.price:
+        elif self.addon.premium and self.addon.premium.price:
             # If the app has a premium object, set the initial price.
-            kw['initial']['price'] = self.webapp.premium.price.pk
+            kw['initial']['price'] = self.addon.premium.price.pk
 
         super(PremiumForm, self).__init__(*args, **kw)
 
@@ -85,7 +85,7 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         # Get the list of supported devices and put them in the data.
         self.device_data = {}
         supported_devices = [mkt.REVERSE_DEVICE_LOOKUP[dev.id] for dev in
-                             self.webapp.device_types]
+                             self.addon.device_types]
         self.initial.setdefault('free_platforms', [])
         self.initial.setdefault('paid_platforms', [])
 
@@ -153,21 +153,21 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
             return None
 
     def _make_premium(self):
-        if self.webapp.premium:
-            return self.webapp.premium
+        if self.addon.premium:
+            return self.addon.premium
 
-        log.info('New WebappPremium object for webapp %s' % self.webapp.pk)
-        self.webapp._premium = WebappPremium(webapp=self.webapp,
-                                             price_id=self._initial_price_id())
-        return self.webapp._premium
+        log.info('New AddonPremium object for addon %s' % self.addon.pk)
+        self.addon._premium = AddonPremium(addon=self.addon,
+                                           price_id=self._initial_price_id())
+        return self.addon._premium
 
     def is_paid(self):
-        is_paid = (self.webapp.premium_type in mkt.WEBAPP_PREMIUMS or
+        is_paid = (self.addon.premium_type in mkt.ADDON_PREMIUMS or
                    self.is_free_inapp())
         return is_paid
 
     def is_free_inapp(self):
-        return self.webapp.premium_type == mkt.WEBAPP_FREE_INAPP
+        return self.addon.premium_type == mkt.ADDON_FREE_INAPP
 
     def is_toggling(self):
         value = self.request.POST.get('toggle-paid')
@@ -199,8 +199,8 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
     def clean_price(self):
         price_value = self.cleaned_data.get('price')
         premium_type = self.cleaned_data.get('premium_type')
-        if ((premium_type in mkt.WEBAPP_PREMIUMS or
-                premium_type == mkt.WEBAPP_FREE_INAPP) and
+        if ((premium_type in mkt.ADDON_PREMIUMS or
+                premium_type == mkt.ADDON_FREE_INAPP) and
                 not price_value and not self.is_toggling()):
             raise ValidationError(Field.default_error_messages['required'])
 
@@ -224,49 +224,49 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
     def save(self):
         toggle = self.is_toggling()
-        upsell = self.webapp.upsold
+        upsell = self.addon.upsold
 
         # is_paid is true for both premium apps and free apps with
         # in-app payments.
         is_paid = self.is_paid()
 
-        if toggle == 'paid' and self.webapp.premium_type == mkt.WEBAPP_FREE:
+        if toggle == 'paid' and self.addon.premium_type == mkt.ADDON_FREE:
             # Toggle free apps to paid by giving them a premium object.
             premium = self._make_premium()
             premium.price_id = self._initial_price_id()
             premium.save()
 
-            self.webapp.premium_type = mkt.WEBAPP_PREMIUM
-            self.webapp.status = mkt.STATUS_NULL
+            self.addon.premium_type = mkt.ADDON_PREMIUM
+            self.addon.status = mkt.STATUS_NULL
 
             is_paid = True
 
         elif toggle == 'free' and is_paid:
             # If the app is paid and we're making it free, remove it as an
             # upsell (if an upsell exists).
-            upsell = self.webapp.upsold
+            upsell = self.addon.upsold
             if upsell:
                 log.debug('[1@%s] Removing upsell; switching to free' %
-                          self.webapp.pk)
+                          self.addon.pk)
                 upsell.delete()
 
-            log.debug('[1@%s] Removing app payment account' % self.webapp.pk)
-            WebappPaymentAccount.objects.filter(webapp=self.webapp).delete()
+            log.debug('[1@%s] Removing app payment account' % self.addon.pk)
+            AddonPaymentAccount.objects.filter(addon=self.addon).delete()
 
             log.debug('[1@%s] Setting app premium_type to FREE' %
-                      self.webapp.pk)
-            self.webapp.premium_type = mkt.WEBAPP_FREE
+                      self.addon.pk)
+            self.addon.premium_type = mkt.ADDON_FREE
 
-            # Remove webapppremium
+            # Remove addonpremium
             try:
-                log.debug('[1@%s] Removing webapp premium' % self.webapp.pk)
-                self.webapp.webapppremium.delete()
-            except WebappPremium.DoesNotExist:
+                log.debug('[1@%s] Removing addon premium' % self.addon.pk)
+                self.addon.addonpremium.delete()
+            except AddonPremium.DoesNotExist:
                 pass
 
-            if (self.webapp.has_incomplete_status() and
-                    self.webapp.is_fully_complete()):
-                _restore_app_status(self.webapp, save=False)
+            if (self.addon.has_incomplete_status() and
+                    self.addon.is_fully_complete()):
+                _restore_app_status(self.addon, save=False)
 
             is_paid = False
 
@@ -277,37 +277,36 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
             # If price is free then we want to make this an app that's
             # free with in-app payments.
             if price == 'free':
-                self.webapp.premium_type = mkt.WEBAPP_FREE_INAPP
+                self.addon.premium_type = mkt.ADDON_FREE_INAPP
                 log.debug('[1@%s] Changing to free with in_app'
-                          % self.webapp.pk)
+                          % self.addon.pk)
 
                 # Remove upsell
-                upsell = self.webapp.upsold
+                upsell = self.addon.upsold
                 if upsell:
                     log.debug('[1@%s] Removing upsell; switching to free '
-                              'with in_app' % self.webapp.pk)
+                              'with in_app' % self.addon.pk)
                     upsell.delete()
 
-                # Remove webapppremium
+                # Remove addonpremium
                 try:
-                    log.debug('[1@%s] Removing webapp premium' %
-                              self.webapp.pk)
-                    self.webapp.webapppremium.delete()
-                except WebappPremium.DoesNotExist:
+                    log.debug('[1@%s] Removing addon premium' % self.addon.pk)
+                    self.addon.addonpremium.delete()
+                except AddonPremium.DoesNotExist:
                     pass
             else:
                 # The dev is submitting updates for payment data about a paid
                 # app. This might also happen if he/she is associating a new
                 # paid app with an existing bank account.
                 premium = self._make_premium()
-                self.webapp.premium_type = (
-                    mkt.WEBAPP_PREMIUM_INAPP if
+                self.addon.premium_type = (
+                    mkt.ADDON_PREMIUM_INAPP if
                     self.cleaned_data.get('allow_inapp') == 'True' else
-                    mkt.WEBAPP_PREMIUM)
+                    mkt.ADDON_PREMIUM)
 
                 if price and price != 'free':
                     log.debug('[1@%s] Updating app price (%s)' %
-                              (self.webapp.pk, self.cleaned_data['price']))
+                              (self.addon.pk, self.cleaned_data['price']))
                     premium.price = self.cleaned_data['price']
 
                 premium.save()
@@ -315,35 +314,35 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
         if not toggle:
             # Save the device compatibility information when we're not
             # toggling.
-            super(PremiumForm, self).save(self.webapp, is_paid)
+            super(PremiumForm, self).save(self.addon, is_paid)
 
-        log.info('Saving app payment changes for webapp %s.' % self.webapp.pk)
-        self.webapp.save()
+        log.info('Saving app payment changes for addon %s.' % self.addon.pk)
+        self.addon.save()
 
 
 class UpsellForm(happyforms.Form):
-    upsell_of = WebappChoiceField(
+    upsell_of = AddonChoiceField(
         queryset=Webapp.objects.none(), required=False,
         label=_lazy(u'This is a paid upgrade of'),
         empty_label=_lazy(u'Not an upgrade'))
 
     def __init__(self, *args, **kw):
-        self.webapp = kw.pop('webapp')
+        self.addon = kw.pop('addon')
         self.user = kw.pop('user')
 
         kw.setdefault('initial', {})
-        if self.webapp.upsold:
-            kw['initial']['upsell_of'] = self.webapp.upsold.free
+        if self.addon.upsold:
+            kw['initial']['upsell_of'] = self.addon.upsold.free
 
         super(UpsellForm, self).__init__(*args, **kw)
 
         self.fields['upsell_of'].queryset = (
-            self.user.webapps.exclude(pk=self.webapp.pk,
-                                      status=mkt.STATUS_DELETED)
-            .filter(premium_type__in=mkt.WEBAPP_FREES))
+            self.user.addons.exclude(pk=self.addon.pk,
+                                     status=mkt.STATUS_DELETED)
+            .filter(premium_type__in=mkt.ADDON_FREES))
 
     def save(self):
-        current_upsell = self.webapp.upsold
+        current_upsell = self.addon.upsold
         new_upsell_app = self.cleaned_data.get('upsell_of')
 
         if new_upsell_app:
@@ -352,8 +351,8 @@ class UpsellForm(happyforms.Form):
             if not current_upsell:
                 # If the upsell is new or we just deleted the old upsell,
                 # create a new upsell.
-                log.debug('[1@%s] Creating app upsell' % self.webapp.pk)
-                current_upsell = WebappUpsell(premium=self.webapp)
+                log.debug('[1@%s] Creating app upsell' % self.addon.pk)
+                current_upsell = AddonUpsell(premium=self.addon)
 
             # Set the upsell object to point to the app that we're upselling.
             current_upsell.free = new_upsell_app
@@ -361,7 +360,7 @@ class UpsellForm(happyforms.Form):
 
         elif current_upsell:
             # We're deleting the upsell.
-            log.debug('[1@%s] Deleting the app upsell' % self.webapp.pk)
+            log.debug('[1@%s] Deleting the app upsell' % self.addon.pk)
             current_upsell.delete()
 
 
@@ -456,17 +455,17 @@ class AccountListForm(happyforms.Form):
         label=_lazy(u'Payment Account'), required=False)
 
     def __init__(self, *args, **kwargs):
-        self.webapp = kwargs.pop('webapp')
+        self.addon = kwargs.pop('addon')
         self.provider = kwargs.pop('provider')
         self.user = kwargs.pop('user')
 
         super(AccountListForm, self).__init__(*args, **kwargs)
 
         self.is_owner = None
-        if self.webapp:
-            self.is_owner = self.webapp.authors.filter(
+        if self.addon:
+            self.is_owner = self.addon.authors.filter(
                 pk=self.user.pk,
-                webappuser__role=mkt.AUTHOR_ROLE_OWNER).exists()
+                addonuser__role=mkt.AUTHOR_ROLE_OWNER).exists()
 
         self.fields['accounts'].queryset = self.agreed_payment_accounts
 
@@ -475,8 +474,8 @@ class AccountListForm(happyforms.Form):
 
         self.current_payment_account = None
         try:
-            current_acct = WebappPaymentAccount.objects.get(
-                webapp=self.webapp,
+            current_acct = AddonPaymentAccount.objects.get(
+                addon=self.addon,
                 payment_account__provider=self.provider.provider)
             payment_account = PaymentAccount.objects.get(
                 uri=current_acct.account_uri)
@@ -490,8 +489,7 @@ class AccountListForm(happyforms.Form):
             else:
                 self.current_payment_account = payment_account
 
-        except (WebappPaymentAccount.DoesNotExist,
-                PaymentAccount.DoesNotExist):
+        except (AddonPaymentAccount.DoesNotExist, PaymentAccount.DoesNotExist):
             pass
 
     @property
@@ -521,8 +519,7 @@ class AccountListForm(happyforms.Form):
         # Therefore to tell the difference between the non-submission and the
         # empty string we need to check the raw data.
         accounts_submitted = 'accounts' in self.data
-        if (WebappPaymentAccount.objects.filter(
-                webapp=self.webapp).exists() and
+        if (AddonPaymentAccount.objects.filter(addon=self.addon).exists() and
                 accounts_submitted and not accounts):
 
             raise forms.ValidationError(
@@ -538,30 +535,29 @@ class AccountListForm(happyforms.Form):
         if self.cleaned_data.get('accounts'):
             try:
                 log.info('[1@%s] Attempting to delete app payment account'
-                         % self.webapp.pk)
-                WebappPaymentAccount.objects.get(
-                    webapp=self.webapp,
+                         % self.addon.pk)
+                AddonPaymentAccount.objects.get(
+                    addon=self.addon,
                     payment_account__provider=self.provider.provider
                 ).delete()
-            except WebappPaymentAccount.DoesNotExist:
+            except AddonPaymentAccount.DoesNotExist:
                 log.info('[1@%s] Deleting failed, this is usually fine'
-                         % self.webapp.pk)
+                         % self.addon.pk)
 
-            log.info('[1@%s] Creating new app payment account' %
-                     self.webapp.pk)
+            log.info('[1@%s] Creating new app payment account' % self.addon.pk)
 
             account = self.cleaned_data['accounts']
 
-            uri = self.provider.product_create(account, self.webapp)
-            WebappPaymentAccount.objects.create(
-                webapp=self.webapp, account_uri=account.uri,
+            uri = self.provider.product_create(account, self.addon)
+            AddonPaymentAccount.objects.create(
+                addon=self.addon, account_uri=account.uri,
                 payment_account=account, product_uri=uri)
 
             # If the app is marked as paid and the information is complete
             # and the app is currently marked as incomplete, put it into the
             # re-review queue.
-            if (self.webapp.status == mkt.STATUS_NULL and
-                    self.webapp.highest_status
+            if (self.addon.status == mkt.STATUS_NULL and
+                    self.addon.highest_status
                     in mkt.WEBAPPS_APPROVED_STATUSES):
                 # FIXME: This might cause noise in the future if bank accounts
                 # get manually closed by Bango and we mark apps as STATUS_NULL
@@ -569,13 +565,13 @@ class AccountListForm(happyforms.Form):
                 # re-review.
 
                 log.info(u'[Webapp:%s] (Re-review) Public app, premium type '
-                         u'upgraded.' % self.webapp)
+                         u'upgraded.' % self.addon)
                 RereviewQueue.flag(
-                    self.webapp, mkt.LOG.REREVIEW_PREMIUM_TYPE_UPGRADE)
+                    self.addon, mkt.LOG.REREVIEW_PREMIUM_TYPE_UPGRADE)
 
-            if (self.webapp.has_incomplete_status() and
-                    self.webapp.is_fully_complete()):
-                _restore_app_status(self.webapp)
+            if (self.addon.has_incomplete_status() and
+                    self.addon.is_fully_complete()):
+                _restore_app_status(self.addon)
 
 
 class AccountListBaseFormSet(BaseFormSet):
@@ -637,7 +633,7 @@ class ReferenceAccountForm(happyforms.Form):
 class PaymentCheckForm(happyforms.Form):
     app = SluggableModelChoiceField(
         queryset=Webapp.objects.filter(
-            premium_type__in=mkt.WEBAPP_HAS_PAYMENTS),
+            premium_type__in=mkt.ADDON_HAS_PAYMENTS),
         sluggable_to_field_name='app_slug')
 
     def clean_app(self):

@@ -320,8 +320,8 @@ class SlugOrPrimaryKeyRelatedFieldTests(TestCase):
     def test_parse_as_pk(self):
         into = {}
         field = SlugOrPrimaryKeyRelatedField(queryset=Webapp.objects.all())
-        field.field_from_native({'webapp': self.app.pk}, None, 'webapp', into)
-        eq_(into, {'webapp': self.app})
+        field.field_from_native({'addon': self.app.pk}, None, 'addon', into)
+        eq_(into, {'addon': self.app})
 
     def test_parse_as_pks_many(self):
         app2 = app_factory()

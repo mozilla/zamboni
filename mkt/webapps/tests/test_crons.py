@@ -35,14 +35,14 @@ class TestLastUpdated(mkt.site.tests.TestCase):
          .update(datestatuschanged=None))
         Webapp.objects.update(last_updated=None)
 
-        cron.webapp_last_updated()
-        for webapp in Webapp.objects.filter(status=mkt.STATUS_PUBLIC):
-            eq_(webapp.last_updated, webapp.created)
+        cron.addon_last_updated()
+        for addon in Webapp.objects.filter(status=mkt.STATUS_PUBLIC):
+            eq_(addon.last_updated, addon.created)
 
         # Make sure it's stable.
-        cron.webapp_last_updated()
-        for webapp in Webapp.objects.filter(status=mkt.STATUS_PUBLIC):
-            eq_(webapp.last_updated, webapp.created)
+        cron.addon_last_updated()
+        for addon in Webapp.objects.filter(status=mkt.STATUS_PUBLIC):
+            eq_(addon.last_updated, addon.created)
 
 
 class TestHideDisabledFiles(mkt.site.tests.TestCase):
@@ -51,24 +51,24 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
     msg = 'Moving disabled file: %s => %s'
 
     def setUp(self):
-        self.webapp = Webapp.objects.get(pk=337141)
-        self.version = self.webapp.latest_version
+        self.addon = Webapp.objects.get(pk=337141)
+        self.version = self.addon.latest_version
         self.f1 = self.version.all_files[0]
 
     @mock.patch('mkt.files.models.os')
     def test_leave_nondisabled_files(self, os_mock):
         stati = [(mkt.STATUS_PUBLIC, mkt.STATUS_PUBLIC)]
-        for webapp_status, file_status in stati:
-            self.webapp.update(status=webapp_status)
+        for addon_status, file_status in stati:
+            self.addon.update(status=addon_status)
             File.objects.update(status=file_status)
             cron.hide_disabled_files()
-            assert not os_mock.path.exists.called, (webapp_status, file_status)
+            assert not os_mock.path.exists.called, (addon_status, file_status)
 
     @mock.patch('mkt.files.models.File.mv')
     @mock.patch('mkt.files.models.public_storage')
-    def test_move_user_disabled_webapp(self, m_storage, mv_mock):
+    def test_move_user_disabled_addon(self, m_storage, mv_mock):
         # Use Webapp.objects.update so the signal handler isn't called.
-        Webapp.objects.filter(id=self.webapp.id).update(
+        Webapp.objects.filter(id=self.addon.id).update(
             status=mkt.STATUS_PUBLIC, disabled_by_user=True)
         File.objects.update(status=mkt.STATUS_PUBLIC)
         cron.hide_disabled_files()
@@ -83,8 +83,8 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.files.models.File.mv')
     @mock.patch('mkt.files.models.public_storage')
-    def test_move_admin_disabled_webapp(self, m_storage, mv_mock):
-        Webapp.objects.filter(id=self.webapp.id).update(
+    def test_move_admin_disabled_addon(self, m_storage, mv_mock):
+        Webapp.objects.filter(id=self.addon.id).update(
             status=mkt.STATUS_DISABLED)
         File.objects.update(status=mkt.STATUS_PUBLIC)
         cron.hide_disabled_files()
@@ -99,7 +99,7 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
     @mock.patch('mkt.files.models.File.mv')
     @mock.patch('mkt.files.models.private_storage')
     def test_move_disabled_file(self, m_storage, mv_mock):
-        Webapp.objects.filter(id=self.webapp.id).update(
+        Webapp.objects.filter(id=self.addon.id).update(
             status=mkt.STATUS_REJECTED)
         File.objects.filter(id=self.f1.id).update(status=mkt.STATUS_DISABLED)
         cron.hide_disabled_files()
@@ -117,7 +117,7 @@ class TestHideDisabledFiles(mkt.site.tests.TestCase):
         self.version.delete()
         mv_mock.reset_mock()
         # Create a new version/file just like the one we deleted.
-        version = Version.objects.create(webapp=self.webapp)
+        version = Version.objects.create(addon=self.addon)
         File.objects.create(version=version, filename='f2')
         cron.hide_disabled_files()
         # Mock shouldn't have been called.

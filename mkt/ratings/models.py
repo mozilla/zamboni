@@ -46,7 +46,7 @@ class ReviewQuerySet(models.query.QuerySet):
 
 
 class Review(ModelBase):
-    webapp = models.ForeignKey('webapps.Webapp', related_name='_reviews')
+    addon = models.ForeignKey('webapps.Webapp', related_name='_reviews')
     version = models.ForeignKey('versions.Version', related_name='reviews',
                                 null=True)
     user = models.ForeignKey('users.UserProfile', related_name='_reviews_all')
@@ -65,7 +65,7 @@ class Review(ModelBase):
     deleted = models.BooleanField(default=False)
 
     # Denormalized fields for easy lookup queries.
-    # TODO: index on webapp, user, latest
+    # TODO: index on addon, user, latest
     is_latest = models.BooleanField(
         default=True, editable=False,
         help_text="Is this the user's latest review for the add-on?")
@@ -81,12 +81,12 @@ class Review(ModelBase):
         ordering = ('-created',)
         unique_together = ('version', 'user', 'reply_to')
         index_together = (
-            ('webapp', 'reply_to', 'is_latest', 'created'),
-            ('webapp', 'reply_to', 'lang'),
+            ('addon', 'reply_to', 'is_latest', 'created'),
+            ('addon', 'reply_to', 'lang'),
         )
 
     def get_url_path(self):
-        return '/app/%s/ratings/%s' % (self.webapp.app_slug, self.id)
+        return '/app/%s/ratings/%s' % (self.addon.app_slug, self.id)
 
     def delete(self):
         self.update(deleted=True)
@@ -119,12 +119,12 @@ class Review(ModelBase):
         from . import tasks
 
         if update_denorm:
-            pair = self.webapp_id, self.user_id
+            pair = self.addon_id, self.user_id
             # Do this immediately so is_latest is correct. Use default
             # to avoid slave lag.
             tasks.update_denorm(pair, using='default')
         # Review counts have changed, so run the task and trigger a reindex.
-        tasks.webapp_review_aggregates.delay(self.webapp_id, using='default')
+        tasks.addon_review_aggregates.delay(self.addon_id, using='default')
 
     @staticmethod
     def transformer(reviews):

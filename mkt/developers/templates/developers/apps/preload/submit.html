@@ -1,13 +1,13 @@
 {% extends 'developers/base_impala.html' %}
 
 {% set title = _('Status') %}
-{% block title %}{{ hub_page_title(title, webapp) }}{% endblock %}
+{% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% block content %}
   <header>
-    {{ hub_breadcrumbs(webapp, items=[
-      (webapp.get_dev_url('versions'), title),
-      (webapp.get_dev_url('preload_home'), _('Preloaded')),
+    {{ hub_breadcrumbs(addon, items=[
+      (addon.get_dev_url('versions'), title),
+      (addon.get_dev_url('preload_home'), _('Preloaded')),
       (None, _('Submit') )])
     }}
     <h1>{{ title }}</h1>

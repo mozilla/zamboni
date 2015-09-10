@@ -14,7 +14,7 @@ from mkt.access import acl
 from mkt.constants import comm
 from mkt.site.models import ModelBase
 from mkt.translations.fields import save_signal
-from mkt.webapps.models import WebappUser
+from mkt.webapps.models import AddonUser
 
 
 class CommunicationPermissionModel(ModelBase):
@@ -34,9 +34,9 @@ def check_acls(user, obj, acl_type):
     """Check ACLs."""
     if acl_type == 'moz_contact':
         try:
-            return user.email in obj.webapp.get_mozilla_contacts()
+            return user.email in obj.addon.get_mozilla_contacts()
         except AttributeError:
-            return user.email in obj.thread.webapp.get_mozilla_contacts()
+            return user.email in obj.thread.addon.get_mozilla_contacts()
     if acl_type == 'admin':
         return acl.action_allowed_user(user, 'Admin', '%')
     elif acl_type == 'reviewer':
@@ -79,7 +79,7 @@ def user_has_perm_app(user, app):
     """
     return (
         check_acls(user, None, 'reviewer') or
-        user.webapps.filter(pk=app.id).exists() or
+        user.addons.filter(pk=app.id).exists() or
         check_acls(user, None, 'senior_reviewer') or
         check_acls(user, None, 'admin') or
         user.email in app.get_mozilla_contacts()
@@ -105,8 +105,8 @@ def user_has_perm_thread(thread, profile):
         return True
 
     # User is a developer of the add-on and has the permission to read.
-    user_is_author = WebappUser.objects.filter(webapp_id=thread._webapp_id,
-                                               user=profile)
+    user_is_author = AddonUser.objects.filter(addon_id=thread._addon_id,
+                                              user=profile)
     if thread.read_permission_developer and user_is_author.exists():
         return True
 
@@ -128,7 +128,7 @@ def user_has_perm_note(note, profile):
         return True
 
     # User is a developer of the add-on and has the permission to read.
-    user_is_author = profile.webapps.filter(pk=note.thread._webapp_id)
+    user_is_author = profile.addons.filter(pk=note.thread._addon_id)
     if note.read_permission_developer and user_is_author.exists():
         return True
 
@@ -136,19 +136,19 @@ def user_has_perm_note(note, profile):
 
 
 class CommunicationThread(CommunicationPermissionModel):
-    _webapp = models.ForeignKey('webapps.Webapp', related_name='threads',
-                                db_column='webapp_id')
+    _addon = models.ForeignKey('webapps.Webapp', related_name='threads',
+                               db_column='addon_id')
     _version = models.ForeignKey('versions.Version', related_name='threads',
                                  db_column='version_id', null=True)
 
     class Meta:
         db_table = 'comm_threads'
-        unique_together = ('_webapp', '_version')
+        unique_together = ('_addon', '_version')
 
     @property
-    def webapp(self):
+    def addon(self):
         from mkt.webapps.models import Webapp
-        return Webapp.with_deleted.get(pk=self._webapp_id)
+        return Webapp.with_deleted.get(pk=self._addon_id)
 
     @property
     def version(self):

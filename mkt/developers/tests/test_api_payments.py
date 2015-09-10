@@ -12,16 +12,16 @@ from slumber.exceptions import HttpClientError, HttpServerError
 
 import mkt
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.developers.api_payments import (WebappPaymentAccountSerializer,
+from mkt.developers.api_payments import (AddonPaymentAccountSerializer,
                                          PaymentAppViewSet)
-from mkt.developers.models import (WebappPaymentAccount, PaymentAccount,
+from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.developers.tests.test_providers import Patcher
-from mkt.prices.models import WebappPremium, Price
+from mkt.prices.models import AddonPremium, Price
 from mkt.site.fixtures import fixture
 from mkt.site.tests import TestCase
 from mkt.site.utils import app_factory
-from mkt.webapps.models import WebappUpsell, WebappUser, Webapp
+from mkt.webapps.models import AddonUpsell, AddonUser, Webapp
 
 
 package_data = {
@@ -63,19 +63,19 @@ class UpsellCase(TestCase):
     def setUp(self):
         self.free = Webapp.objects.get(pk=337141)
         self.free_url = self.url(self.free)
-        self.premium = app_factory(premium_type=mkt.WEBAPP_PREMIUM)
+        self.premium = app_factory(premium_type=mkt.ADDON_PREMIUM)
         self.premium_url = self.url(self.premium)
         self.upsell_list = reverse('app-upsell-list')
 
     def create_upsell(self):
-        self.upsell = WebappUpsell.objects.create(free=self.free,
-                                                  premium=self.premium)
+        self.upsell = AddonUpsell.objects.create(free=self.free,
+                                                 premium=self.premium)
         self.upsell_url = reverse('app-upsell-detail',
                                   kwargs={'pk': self.upsell.pk})
 
     def create_allowed(self):
-        WebappUser.objects.create(webapp=self.free, user=self.profile)
-        WebappUser.objects.create(webapp=self.premium, user=self.profile)
+        AddonUser.objects.create(addon=self.free, user=self.profile)
+        AddonUser.objects.create(addon=self.premium, user=self.profile)
 
 
 class TestUpsell(RestOAuth, UpsellCase):
@@ -123,7 +123,7 @@ class TestUpsell(RestOAuth, UpsellCase):
         # Trying to patch to a new object you do not have access to.
         self.create_upsell()
         self.create_allowed()
-        another = app_factory(premium_type=mkt.WEBAPP_PREMIUM)
+        another = app_factory(premium_type=mkt.ADDON_PREMIUM)
         res = self.client.patch(self.upsell_url, data=json.dumps(
             {'free': self.free_url, 'premium': self.url(another)}))
         eq_(res.status_code, 403)
@@ -131,10 +131,10 @@ class TestUpsell(RestOAuth, UpsellCase):
     def test_patch_old_not_allowed(self):
         # Trying to patch an old object you do not have access to.
         self.create_upsell()
-        WebappUser.objects.create(webapp=self.free, user=self.profile)
+        AddonUser.objects.create(addon=self.free, user=self.profile)
         # We did not give you access to patch away from self.premium.
-        another = app_factory(premium_type=mkt.WEBAPP_PREMIUM)
-        WebappUser.objects.create(webapp=another, user=self.profile)
+        another = app_factory(premium_type=mkt.ADDON_PREMIUM)
+        AddonUser.objects.create(addon=another, user=self.profile)
         res = self.client.patch(self.upsell_url, data=json.dumps(
             {'free': self.free_url, 'premium': self.url(another)}))
         eq_(res.status_code, 403)
@@ -142,8 +142,8 @@ class TestUpsell(RestOAuth, UpsellCase):
     def test_patch(self):
         self.create_upsell()
         self.create_allowed()
-        another = app_factory(premium_type=mkt.WEBAPP_PREMIUM)
-        WebappUser.objects.create(webapp=another, user=self.profile)
+        another = app_factory(premium_type=mkt.ADDON_PREMIUM)
+        AddonUser.objects.create(addon=another, user=self.profile)
         res = self.client.patch(self.upsell_url, data=json.dumps(
             {'free': self.free_url, 'premium': self.url(another)}))
         eq_(res.status_code, 200)
@@ -153,7 +153,7 @@ class AccountCase(Patcher, TestCase):
 
     def setUp(self):
         self.app = Webapp.objects.get(pk=337141)
-        self.app.update(premium_type=mkt.WEBAPP_PREMIUM)
+        self.app.update(premium_type=mkt.ADDON_PREMIUM)
         self.seller = SolitudeSeller.objects.create(user_id=2519)
         self.account = PaymentAccount.objects.create(
             user_id=2519, solitude_seller=self.seller,
@@ -171,17 +171,17 @@ class AccountCase(Patcher, TestCase):
             'resource_uri': 'foo', 'bango_id': 'bar'}
 
     def create(self):
-        self.payment = WebappPaymentAccount.objects.create(
-            webapp=self.app, payment_account=self.account)
+        self.payment = AddonPaymentAccount.objects.create(
+            addon=self.app, payment_account=self.account)
         self.app_payment_detail = reverse('app-payment-account-detail',
                                           kwargs={'pk': self.payment.pk})
 
     def create_price(self):
         price = Price.objects.create(price='1')
-        WebappPremium.objects.create(webapp=self.app, price=price)
+        AddonPremium.objects.create(addon=self.app, price=price)
 
     def create_user(self):
-        WebappUser.objects.create(webapp=self.app, user=self.profile)
+        AddonUser.objects.create(addon=self.app, user=self.profile)
 
     def other(self, shared=False):
         self.seller2 = SolitudeSeller.objects.create(user_id=31337, uuid='foo')
@@ -194,7 +194,7 @@ class AccountCase(Patcher, TestCase):
 
     def data(self, overrides=None):
         res = {
-            'webapp': self.app.get_api_url(pk=True),
+            'addon': self.app.get_api_url(pk=True),
             'payment_account': self.payment_url,
             'provider': 'bango',
         }
@@ -210,15 +210,15 @@ class TestSerializer(AccountCase):
         # Just a smoke test that we can serialize this correctly.
         self.create()
         request = Request(RequestFactory().get('/'))
-        res = WebappPaymentAccountSerializer(self.payment,
-                                             context={'request': request}).data
+        res = AddonPaymentAccountSerializer(self.payment,
+                                            context={'request': request}).data
         eq_(res['url'], self.app_payment_detail)
 
     def test_free(self):
         # Just a smoke test that we can serialize this correctly.
         self.create()
-        self.app.update(premium_type=mkt.WEBAPP_FREE)
-        res = WebappPaymentAccountSerializer(self.payment)
+        self.app.update(premium_type=mkt.ADDON_FREE)
+        res = AddonPaymentAccountSerializer(self.payment)
         ok_(not res.is_valid())
 
 
@@ -335,7 +335,7 @@ class TestPaymentAccount(AccountCase, RestOAuth):
 
 @override_settings(DEFAULT_PAYMENT_PROVIDER='bango',
                    PAYMENT_PROVIDERS=['bango'])
-class TestWebappPaymentAccount(AccountCase, RestOAuth):
+class TestAddonPaymentAccount(AccountCase, RestOAuth):
     fixtures = fixture('webapp_337141', 'user_999', 'user_2519')
 
     def test_empty(self):
@@ -355,18 +355,18 @@ class TestWebappPaymentAccount(AccountCase, RestOAuth):
                                data=json.dumps(self.data()))
         eq_(res.status_code, 201, res.content)
 
-        account = WebappPaymentAccount.objects.get()
+        account = AddonPaymentAccount.objects.get()
         eq_(account.payment_account, self.account)
 
-    def test_cant_change_webapp(self):
-        app = app_factory(premium_type=mkt.WEBAPP_PREMIUM)
-        WebappUser.objects.create(webapp=app, user=self.profile)
+    def test_cant_change_addon(self):
+        app = app_factory(premium_type=mkt.ADDON_PREMIUM)
+        AddonUser.objects.create(addon=app, user=self.profile)
         self.create()
         self.create_price()
         self.create_user()
 
         data = self.data({'payment_account': self.payment_url,
-                          'webapp': app.get_api_url(pk=True)})
+                          'addon': app.get_api_url(pk=True)})
         res = self.client.patch(self.app_payment_detail, data=json.dumps(data))
         # Ideally we should make this a 400.
         eq_(res.status_code, 403, res.content)
@@ -414,7 +414,7 @@ class TestPaymentStatus(AccountCase, RestOAuth):
         client = Mock()
         client.api.bango.status.post.return_value = {'status': 1}
         get_client.return_value = client
-        WebappUser.objects.create(webapp_id=337141, user_id=self.user.pk)
+        AddonUser.objects.create(addon_id=337141, user_id=self.user.pk)
         res = self.client.post(self.list_url, data={})
         eq_(res.json['bango']['status'], 'passed')
         eq_(res.status_code, 200)
@@ -443,7 +443,7 @@ class TestPaymentDebug(AccountCase, RestOAuth):
         client.api.bango.debug.get.return_value = {'bango':
                                                    {'environment': 'dev'}}
         get_client.return_value = client
-        self.app.update(premium_type=mkt.WEBAPP_FREE_INAPP)
+        self.app.update(premium_type=mkt.ADDON_FREE_INAPP)
         self.grant_permission(self.profile, 'Transaction:Debug')
         res = self.client.get(self.list_url)
         eq_(res.status_code, 200)

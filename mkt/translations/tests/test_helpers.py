@@ -82,8 +82,8 @@ def test_l10n_menu():
     menu = helpers.l10n_menu({}, remove_locale_url='/some/url/')
     assert 'data-rm-locale="/some/url/"' in menu, menu
 
-    # Use the remove_locale_url taken from the webapp in the context.
-    menu = helpers.l10n_menu({'webapp': Webapp()},
+    # Use the remove_locale_url taken from the addon in the context.
+    menu = helpers.l10n_menu({'addon': Webapp()},
                              remove_locale_url='some/url/')
     assert 'data-rm-locale="/developers/app/None/rmlocale"' in menu, menu
 
@@ -91,14 +91,14 @@ def test_l10n_menu():
 @patch.object(settings, 'AMO_LANGUAGES', ('de', 'en-US', 'es', 'fr', 'pt-BR'))
 class TestAllLocales(TestCase):
     def test_all_locales_none(self):
-        webapp = None
+        addon = None
         field_name = 'description'
-        eq_(helpers.all_locales(webapp, field_name), None)
+        eq_(helpers.all_locales(addon, field_name), None)
 
-        webapp = Mock()
+        addon = Mock()
         field_name = 'description'
-        del webapp.description
-        eq_(helpers.all_locales(webapp, field_name), None)
+        del addon.description
+        eq_(helpers.all_locales(addon, field_name), None)
 
     def test_all_locales(self):
         obj = TranslatedModel()

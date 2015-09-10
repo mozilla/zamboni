@@ -267,7 +267,7 @@ class Bango(Provider):
         return res
 
     def get_portal_url(self, app_slug=None):
-        url = 'mkt.developers.apps.payments.bango_portal_from_webapp'
+        url = 'mkt.developers.apps.payments.bango_portal_from_addon'
         return reverse(url, args=[app_slug]) if app_slug else ''
 
 

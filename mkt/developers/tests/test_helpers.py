@@ -16,9 +16,9 @@ from mkt.users.models import UserProfile
 def test_hub_page_title():
     translation.activate('en-US')
     request = Mock()
-    webapp = Mock()
-    webapp.name = 'name'
-    ctx = {'request': request, 'webapp': webapp}
+    addon = Mock()
+    addon.name = 'name'
+    ctx = {'request': request, 'addon': addon}
 
     title = 'Oh hai!'
     s1 = render('{{ hub_page_title("%s") }}' % title, ctx)
@@ -29,8 +29,8 @@ def test_hub_page_title():
     s2 = render('{{ page_title("Developers") }}', ctx)
     eq_(s1, s2)
 
-    s1 = render('{{ hub_page_title("%s", webapp) }}' % title, ctx)
-    s2 = render('{{ page_title("%s | %s") }}' % (title, webapp.name), ctx)
+    s1 = render('{{ hub_page_title("%s", addon) }}' % title, ctx)
+    s2 = render('{{ page_title("%s | %s") }}' % (title, addon.name), ctx)
     eq_(s1, s2)
 
 

@@ -16,15 +16,15 @@ log = logging.getLogger('z.task')
 @task(rate_limit='50/m')
 def update_denorm(*pairs, **kw):
     """
-    Takes a bunch of (webapp, user) pairs and sets the denormalized fields for
+    Takes a bunch of (addon, user) pairs and sets the denormalized fields for
     all reviews matching that pair.
     """
     log.info('[%s@%s] Updating review denorms.' %
              (len(pairs), update_denorm.rate_limit))
     using = kw.get('using')
-    for webapp, user in pairs:
+    for addon, user in pairs:
         reviews = list(Review.objects.valid().using(using)
-                       .filter(webapp=webapp, user=user).order_by('created'))
+                       .filter(addon=addon, user=user).order_by('created'))
         if not reviews:
             continue
 
@@ -38,28 +38,28 @@ def update_denorm(*pairs, **kw):
 
 
 @post_request_task
-def webapp_review_aggregates(*webapps, **kw):
+def addon_review_aggregates(*addons, **kw):
     log.info('[%s@%s] Updating total reviews and average ratings.' %
-             (len(webapps), webapp_review_aggregates.rate_limit))
+             (len(addons), addon_review_aggregates.rate_limit))
     using = kw.get('using')
-    webapp_objs = list(Webapp.objects.filter(pk__in=webapps))
-    stats = dict((x['webapp'], (x['rating__avg'], x['webapp__count'])) for x in
+    addon_objs = list(Webapp.objects.filter(pk__in=addons))
+    stats = dict((x[0], x[1:]) for x in
                  Review.objects.valid().using(using)
-                 .filter(webapp__in=webapps, is_latest=True)
-                 .values('webapp')
-                 .annotate(Avg('rating'), Count('webapp')))
-    for webapp in webapp_objs:
-        rating, reviews = stats.get(webapp.id, [0, 0])
-        webapp.update(total_reviews=reviews, average_rating=rating)
+                 .filter(addon__in=addons, is_latest=True)
+                 .values_list('addon')
+                 .annotate(Avg('rating'), Count('addon')))
+    for addon in addon_objs:
+        rating, reviews = stats.get(addon.id, [0, 0])
+        addon.update(total_reviews=reviews, average_rating=rating)
 
     # Delay bayesian calculations to avoid slave lag.
-    webapp_bayesian_rating.apply_async(args=webapps, countdown=5)
+    addon_bayesian_rating.apply_async(args=addons, countdown=5)
 
 
 @task
-def webapp_bayesian_rating(*webapps, **kw):
+def addon_bayesian_rating(*addons, **kw):
     log.info('[%s@%s] Updating bayesian ratings.' %
-             (len(webapps), webapp_bayesian_rating.rate_limit))
+             (len(addons), addon_bayesian_rating.rate_limit))
 
     avg = Webapp.objects.aggregate(rating=Avg('average_rating'),
                                    reviews=Avg('total_reviews'))
@@ -67,13 +67,13 @@ def webapp_bayesian_rating(*webapps, **kw):
     if avg['rating'] is None:
         return
     mc = avg['reviews'] * avg['rating']
-    for webapp in Webapp.objects.filter(id__in=webapps):
-        if webapp.average_rating is None:
-            # Ignoring webapps with no average rating.
+    for addon in Webapp.objects.filter(id__in=addons):
+        if addon.average_rating is None:
+            # Ignoring addons with no average rating.
             continue
 
-        q = Webapp.objects.filter(id=webapp.id)
-        if webapp.total_reviews:
+        q = Webapp.objects.filter(id=addon.id)
+        if addon.total_reviews:
             num = mc + F('total_reviews') * F('average_rating')
             denom = avg['reviews'] + F('total_reviews')
             q.update(bayesian_rating=num / denom)

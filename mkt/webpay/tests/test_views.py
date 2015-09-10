@@ -52,7 +52,7 @@ class TestPrepareWebApp(PurchaseTest, RestOAuth):
         if extra_headers is None:
             extra_headers = {}
         return client.post(self.list_url,
-                           data=json.dumps({'app': self.webapp.pk}),
+                           data=json.dumps({'app': self.addon.pk}),
                            **extra_headers)
 
     def test_allowed(self):
@@ -137,7 +137,7 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
         eq_(res.status_code, 400, res.content)
 
     def test_non_public_parent_app_fails(self):
-        self.webapp.update(status=mkt.STATUS_PENDING)
+        self.addon.update(status=mkt.STATUS_PENDING)
         res = self._post()
         eq_(res.status_code, 400, res.content)
 
@@ -147,7 +147,7 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
         eq_(res.status_code, 400, res.content)
 
     def test_simulated_app_with_non_public_parent_succeeds(self):
-        self.webapp.update(status=mkt.STATUS_PENDING)
+        self.addon.update(status=mkt.STATUS_PENDING)
         self.inapp.update(simulate=json.dumps({'result': 'postback'}))
         res = self._post()
         eq_(res.status_code, 201, res.content)
@@ -162,7 +162,7 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
         res = self._post(extra_headers=extra_headers)
         eq_(res.status_code, 201, res.content)
         contribution = Contribution.objects.get()
-        eq_(contribution.webapp, self.inapp.webapp)
+        eq_(contribution.addon, self.inapp.webapp)
         eq_(contribution.inapp_product, self.inapp)
         eq_(res.json['contribStatusURL'],
             reverse('webpay-status', kwargs={'uuid': contribution.uuid}))
@@ -180,7 +180,7 @@ class TestPrepareInApp(InAppPurchaseTest, RestOAuth):
         eq_(res.status_code, 201, res.content)
 
         contribution = Contribution.objects.get()
-        eq_(contribution.webapp, None)
+        eq_(contribution.addon, None)
         eq_(contribution.inapp_product, self.inapp)
         eq_(res.json['contribStatusURL'],
             reverse('webpay-status', kwargs={'uuid': contribution.uuid}))
@@ -207,11 +207,11 @@ class TestStatus(BaseAPI):
         return InAppProduct.objects.create(**params)
 
     def get_contribution(self, user=None, inapp=None, **kw):
-        if 'webapp' not in kw:
-            kw['webapp'] = self.webapp
-        webapp = kw.pop('webapp')
+        if 'addon' not in kw:
+            kw['addon'] = self.webapp
+        addon = kw.pop('addon')
         return Contribution.objects.create(
-            webapp=webapp,
+            addon=addon,
             inapp_product=inapp,
             type=CONTRIB_PURCHASE,
             user=user or self.user,
@@ -230,9 +230,9 @@ class TestStatus(BaseAPI):
 
     def validate_inapp_receipt(self, receipt, contribution):
         eq_(receipt['typ'], 'purchase-receipt')
-        eq_(receipt['product']['url'], contribution.webapp.origin)
+        eq_(receipt['product']['url'], contribution.addon.origin)
         storedata = parse_qs(receipt['product']['storedata'])
-        eq_(storedata['id'][0], str(contribution.webapp.pk))
+        eq_(storedata['id'][0], str(contribution.addon.pk))
         eq_(storedata['contrib'][0], str(contribution.pk))
         eq_(storedata['inapp_id'][0], str(contribution.inapp_product.guid))
         assert 'user' in receipt, (
@@ -262,7 +262,7 @@ class TestStatus(BaseAPI):
     def test_completed_inapp_simulation(self):
         inapp = self.get_inapp_product(
             webapp=None, simulate=json.dumps({'result': 'postback'}))
-        contribution = self.get_contribution(inapp=inapp, webapp=None)
+        contribution = self.get_contribution(inapp=inapp, addon=None)
 
         data = self.get_status(self.get_contribution_url(contribution))
         eq_(data['status'], 'complete')
@@ -407,7 +407,7 @@ class TestNotification(RestOAuth):
     def setUp(self):
         super(TestNotification, self).setUp()
         self.grant_permission(self.profile, 'Transaction:NotifyFailure')
-        self.contribution = Contribution.objects.create(webapp_id=337141,
+        self.contribution = Contribution.objects.create(addon_id=337141,
                                                         uuid='sample:uuid')
         self.get_url = reverse('webpay-failurenotification',
                                kwargs={'pk': self.contribution.pk})

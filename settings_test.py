@@ -44,7 +44,8 @@ UPLOADS_PATH = _polite_tmpdir()
 TMP_PATH = _polite_tmpdir()
 REVIEWER_ATTACHMENTS_PATH = _polite_tmpdir()
 DUMPED_APPS_PATH = _polite_tmpdir()
-
+EXTENSIONS_PATH = _polite_tmpdir()
+SIGNED_EXTENSIONS_PATH = _polite_tmpdir()
 
 ALLOW_SELF_REVIEWS = True
 BROWSERID_AUDIENCES = [SITE_URL]
