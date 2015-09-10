@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-07-12 14:01+0000\n"
-"Last-Translator: Vanja <tumbas93@gmail.com>\n"
+"PO-Revision-Date: 2015-09-10 13:53+0000\n"
+"Last-Translator: Aleksandra Uzelac <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
-msgstr ""
+msgstr "Извештаји злоупотребе који захтевају пажњу: %s"
 
 #: mkt/abuse/forms.py:78 mkt/abuse/forms.py:92 mkt/ratings/forms.py:67
 msgid "Skip for now"
@@ -27,11 +27,11 @@ msgstr "Прескочи за сад"
 
 #: mkt/abuse/forms.py:79 mkt/abuse/forms.py:93
 msgid "Mark all reports Read"
-msgstr ""
+msgstr "Означи све извештаје као Прочитано"
 
 #: mkt/abuse/forms.py:80
 msgid "Flag for re-review"
-msgstr ""
+msgstr "Означи за поновни преглед"
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1267,7 +1267,7 @@ msgstr "Рецензија уређене апликације"
 
 #: mkt/constants/base.py:236
 msgid "App Review Moderation Reverted"
-msgstr ""
+msgstr "Модерација прегледа апликације опозвано"
 
 #: mkt/constants/base.py:237
 msgid "Tarako App Review"
@@ -1275,11 +1275,11 @@ msgstr "Рецензија Tarako апликација"
 
 #: mkt/constants/base.py:238
 msgid "App Abuse Report Read"
-msgstr ""
+msgstr "Извештај злоупотребе апликације прочитан"
 
 #: mkt/constants/base.py:239
 msgid "Website Abuse Report Read"
-msgstr ""
+msgstr "Извештај злоупотребе веб сајта прочитан"
 
 #: mkt/constants/base.py:273
 msgid "Level 1"
@@ -1307,15 +1307,15 @@ msgstr "Ниво 6"
 
 #: mkt/constants/base.py:279
 msgid "Level 7"
-msgstr ""
+msgstr "Ниво 7"
 
 #: mkt/constants/base.py:280
 msgid "Level 8"
-msgstr ""
+msgstr "Ниво 8"
 
 #: mkt/constants/base.py:281
 msgid "Level 9"
-msgstr ""
+msgstr "Ниво 9"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
@@ -1433,7 +1433,7 @@ msgstr "Банован"
 
 #: mkt/constants/comm.py:49
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Коментар рецензента"
 
 #: mkt/constants/comm.py:50 mkt/reviewers/forms.py:193 mkt/site/log.py:198
 msgid "Escalated"
@@ -1505,7 +1505,7 @@ msgstr "Поновни преглед због оцена садржаја за 
 
 #: mkt/constants/comm.py:68
 msgid "Manual re-review requested"
-msgstr ""
+msgstr "Ручни поновни преглед захтеван"
 
 #: mkt/constants/comm.py:69
 msgid "Escalation due to VIP App"
@@ -1537,7 +1537,7 @@ msgstr "Јавни коментар рецезента"
 
 #: mkt/constants/comm.py:76 mkt/site/log.py:547
 msgid "Abuse reports investigation"
-msgstr ""
+msgstr "Истрага извештаја злоупотребе"
 
 #: mkt/constants/features.py:20
 msgid "App Management API"
@@ -2189,15 +2189,15 @@ msgstr "Остатак света"
 
 #: mkt/constants/regions.py:89
 msgid "Bonaire, Sint Eustatius and Saba"
-msgstr ""
+msgstr "Бонер, Свети Еустахије и Саба"
 
 #: mkt/constants/regions.py:100
 msgid "Bolivia, Plurinational State of"
-msgstr ""
+msgstr "Боливија, Вишенационална Држава"
 
 #: mkt/constants/regions.py:115
 msgid "Congo, Democratic Republic of the"
-msgstr ""
+msgstr "Конго, Демократска Република"
 
 #: mkt/constants/regions.py:120
 msgid "Cabo Verde"
