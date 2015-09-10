@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-09-02 13:14+0000\n"
+"PO-Revision-Date: 2015-09-10 07:21+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1441199662.0\n"
+"X-POOTLE-MTIME: 1441869708.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -7144,7 +7144,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:111
 msgid "Are you sure you wish to delete this user?"
-msgstr "Jste si jisti, že si přejete smazat tohoto uživatele?"
+msgstr "Opravdu si přejete smazat tohoto uživatele?"
 
 #: mkt/lookup/templates/lookup/user_summary.html:121
 msgid "This user has already been deleted."
