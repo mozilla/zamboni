@@ -129,6 +129,11 @@ class PermissionsSerializer(serializers.Serializer):
             'website_submitter': allowed('Websites', 'Submit'),
             'stats': allowed('Stats', 'View'),
             'revenue_stats': allowed('RevenueStats', 'View'),
+            'content_tools_login': allowed('ContentTools', 'Login'),
+            'content_tools_addon_submit': allowed('ContentTools',
+                                                  'AddonSubmit'),
+            'content_tools_addon_review': allowed('ContentTools',
+                                                  'AddonReview'),
         }
         return permissions
 

@@ -88,7 +88,8 @@ class TestPermission(RestOAuth):
         self.assertSetEqual(
             ['admin', 'developer', 'localizer', 'lookup', 'curator',
              'reviewer', 'webpay', 'website_submitter', 'stats',
-             'revenue_stats'],
+             'revenue_stats', 'content_tools_login',
+             'content_tools_addon_submit', 'content_tools_addon_review'],
             res.json['permissions'].keys()
         )
         ok_(not all(res.json['permissions'].values()))
@@ -453,7 +454,10 @@ class TestLoginHandler(TestCase):
              'webpay': False,
              'website_submitter': False,
              'stats': False,
-             'revenue_stats': False})
+             'revenue_stats': False,
+             'content_tools_login': False,
+             'content_tools_addon_submit': False,
+             'content_tools_addon_review': False})
         eq_(data['apps']['installed'], [])
         eq_(data['apps']['purchased'], [])
         eq_(data['apps']['developed'], [])
@@ -564,7 +568,10 @@ class TestFxaLoginHandler(TestCase):
              'webpay': False,
              'website_submitter': False,
              'stats': False,
-             'revenue_stats': False})
+             'revenue_stats': False,
+             'content_tools_login': False,
+             'content_tools_addon_submit': False,
+             'content_tools_addon_review': False})
         eq_(data['apps']['installed'], [])
         eq_(data['apps']['purchased'], [])
         eq_(data['apps']['developed'], [])
