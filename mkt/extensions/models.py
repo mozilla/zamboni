@@ -160,6 +160,28 @@ class Extension(ModelBase):
     def __unicode__(self):
         return u'%s: %s' % (self.pk, self.name)
 
+    def update_manifest_fields_from_latest_public_version(self):
+        """Update all fields for which the manifest is the source of truth
+        with the manifest from the latest public add-on."""
+        try:
+            version = self.latest_public_version
+        except ExtensionVersion.DoesNotExist:
+            return
+        if not version.manifest:
+            return
+        fields = ['default_language', 'description', 'name', ]
+        # We need to re-parse the manifest contents because some fields
+        # like default_language are transformed before being stored.
+        try:
+            parsed_data = ExtensionParser(
+                None, manifest_contents=version.manifest).parse()
+        except ValidationError:
+            # This should not happen, the manifest should be valid, but there
+            # is not much we can do from this method.
+            return
+        data = {k: parsed_data[k] for k in fields if k in parsed_data}
+        return self.update(**data)
+
     def update_status_according_to_versions(self):
         """Update `status`, `latest_version` and `latest_public_version`
         properties depending on the `status` on the ExtensionVersion
@@ -381,11 +403,13 @@ def delete_search_index(sender, instance, **kw):
     instance.get_indexer().unindex(instance.id)
 
 
-# Update status on Extension when an ExtensionVersion changes.
 @receiver([models.signals.post_delete, models.signals.post_save],
           sender=ExtensionVersion, dispatch_uid='extension_version_change')
-def update_extension_status(sender, instance, **kw):
+def update_extension_status_and_manifest_fields(sender, instance, **kw):
+    """Update extension status as well as fields for which the manifest is the
+    source of truth when an ExtensionVersion is changed or deleted."""
     instance.extension.update_status_according_to_versions()
+    instance.extension.update_manifest_fields_from_latest_public_version()
 
 
 # Save translations before saving Extensions instances with translated fields.

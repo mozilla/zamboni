@@ -248,7 +248,7 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.status, STATUS_PENDING)
         eq_(extension.latest_version, new_version)
 
-    def extension_pending_version_deleted(self):
+    def test_extension_pending_version_deleted(self):
         extension = Extension.objects.create()
         new_version = ExtensionVersion.objects.create(
             extension=extension, status=STATUS_PENDING, version='0.1')
@@ -304,7 +304,7 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.latest_version, new_pending_version)
         eq_(extension.latest_public_version, new_public_version)
 
-    def extension_public_version_deleted(self):
+    def test_extension_public_version_deleted(self):
         extension = Extension.objects.create()
         new_public_version = ExtensionVersion.objects.create(
             extension=extension, status=STATUS_PUBLIC, version='0.1')
@@ -319,10 +319,10 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.status, STATUS_NULL)
         eq_(extension.reload().status, STATUS_NULL)
 
-    def extension_public_version_deleted_fallback_to_other(self):
+    def test_extension_public_version_deleted_fallback_to_other(self):
         extension = Extension.objects.create()
         ExtensionVersion.objects.create(
-            extension=extension, status=STATUS_NULL, version='0.1')
+            extension=extension, status=STATUS_NULL, version='0.0')
         first_public_version = ExtensionVersion.objects.create(
             extension=extension, status=STATUS_PUBLIC, version='0.1')
         second_public_version = ExtensionVersion.objects.create(
@@ -341,7 +341,7 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.latest_version, new_pending_version)
         eq_(extension.latest_public_version, first_public_version)
 
-    def extension_public_pending_version_deleted_no_change(self):
+    def test_extension_public_pending_version_deleted_no_change(self):
         extension = Extension.objects.create()
         ExtensionVersion.objects.create(
             extension=extension, status=STATUS_NULL, version='0.1')
@@ -360,6 +360,61 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.status, STATUS_PUBLIC)
         eq_(extension.latest_version, new_public_version)
         eq_(extension.latest_public_version, new_public_version)
+
+    def test_update_fields_from_manifest_when_version_is_made_public(self):
+        new_manifest = {
+            'name': u'New Nâme',
+            'description': u'New Descriptîon',
+            'version': '0.1',
+        }
+        extension = Extension.objects.create(
+            name=u'Old Nâme', description=u'Old Descriptîon')
+        version = ExtensionVersion.objects.create(
+            extension=extension, manifest=new_manifest, status=STATUS_PENDING,
+            version='0.1')
+        version.update(status=STATUS_PUBLIC)
+        eq_(extension.description, new_manifest['description'])
+        eq_(extension.name, new_manifest['name'])
+
+    def test_update_fields_from_manifest_when_public_version_is_deleted(self):
+        old_manifest = {
+            'name': u'Old Nâme',
+            'description': u'Old Descriptîon',
+            'version': '0.1',
+        }
+        new_manifest = {
+            'name': u'Deleted Nâme',
+            'description': u'Deleted Descriptîon',
+            'version': '0.2',
+        }
+        extension = Extension.objects.create(
+            name=u'Deleted Nâme', description=u'Deleted Descriptîon')
+        ExtensionVersion.objects.create(
+            extension=extension, manifest=old_manifest, status=STATUS_PUBLIC,
+            version='0.1')
+        version = ExtensionVersion.objects.create(
+            extension=extension, manifest=new_manifest, status=STATUS_PUBLIC,
+            version='0.2')
+        eq_(extension.description, new_manifest['description'])
+        eq_(extension.name, new_manifest['name'])
+        version.delete()
+        eq_(extension.description, old_manifest['description'])
+        eq_(extension.name, old_manifest['name'])
+
+    def test_dont_update_fields_from_manifest_when_not_necessary(self):
+        new_manifest = {
+            'name': u'New Nâme',
+            'description': u'New Descriptîon',
+            'version': '0.1',
+        }
+        extension = Extension.objects.create(
+            name=u'Old Nâme', description=u'Old Descriptîon')
+        ExtensionVersion.objects.create(
+            extension=extension, manifest=new_manifest, status=STATUS_PENDING,
+            version='0.1')
+        extension.reload()
+        eq_(extension.description, u'Old Descriptîon')
+        eq_(extension.name, u'Old Nâme')
 
 
 class TestExtensionVersionMethodsAndProperties(TestCase):
