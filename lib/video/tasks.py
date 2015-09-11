@@ -41,7 +41,7 @@ def resize_video(src, pk, user_pk=None, **kw):
     log.info('Video resize complete.')
 
     # Updated modified stamp on the addon.
-    instance.update(modified=datetime.datetime.now())
+    instance.addon.update(modified=datetime.datetime.now())
 
 
 def _resize_error(src, instance, user):

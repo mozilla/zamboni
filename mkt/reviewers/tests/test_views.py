@@ -432,17 +432,23 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
     def setUp(self):
         super(TestAppQueue, self).setUp()
+        yesterday = self.days_ago(1)
+        long_ago = self.days_ago(2)
         self.apps = [app_factory(name='XXX',
                                  status=mkt.STATUS_PENDING,
-                                 version_kw={'nomination': self.days_ago(2)},
+                                 version_kw={'nomination': long_ago},
                                  file_kw={'status': mkt.STATUS_PENDING}),
                      app_factory(name='YYY',
                                  status=mkt.STATUS_PENDING,
-                                 version_kw={'nomination': self.days_ago(1)},
+                                 version_kw={'nomination': yesterday},
                                  file_kw={'status': mkt.STATUS_PENDING}),
                      app_factory(name='ZZZ')]
         self.apps[0].update(created=self.days_ago(12))
         self.apps[1].update(created=self.days_ago(11))
+
+        # Quick sanity check.
+        eq_(self.apps[0].latest_version.nomination, long_ago)
+        eq_(self.apps[1].latest_version.nomination, yesterday)
 
         RereviewQueue.objects.create(addon=self.apps[2])
 

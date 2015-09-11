@@ -45,3 +45,26 @@ class TestSpamTest(mkt.site.tests.TestCase):
         Review.objects.all()[0].delete()
         eq_(Review.objects.count(), 1)
         eq_(Review.with_deleted.count(), 2)
+
+
+class TestReviewModel(mkt.site.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.app = Webapp.objects.get(pk=337141)
+        self.user = UserProfile.objects.get(pk=31337)
+        self.review = Review.objects.create(
+            addon=self.app, user=self.user, title="review 1", rating=3)
+
+    def test_delete(self):
+        self.review.delete()
+        eq_(self.review.deleted, True)
+        eq_(list(Review.objects.all()), [])
+
+    def test_undelete(self):
+        self.review.delete()
+        self.review.undelete()
+        eq_(self.review.deleted, False)
+        eq_(list(Review.objects.all()), [self.review])
+        self.review.update(title='lol')  # Try a dumb .update() just in case.
+        eq_(self.review.title, 'lol')

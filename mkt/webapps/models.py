@@ -576,6 +576,16 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
         return True
 
+    def undelete(self):
+        # We need to bypass the regular save(), which doesn't like the fact
+        # that our base manager filters out deleted objects. We still want
+        # signals to happen though, so re-save() once the instance is no longer
+        # in deleted state.
+        cls = self.__class__
+        cls.with_deleted.filter(pk=self.pk).update(status=self.highest_status)
+        self.reload()
+        self.save()
+
     @use_master
     def clean_slug(self):
         if self.status == mkt.STATUS_DELETED:

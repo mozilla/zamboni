@@ -561,7 +561,7 @@ def app_factory(status=mkt.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
         # If a nomination date was set on the version, then it might have been
         # erased at post_save by addons.models.watch_status() or
         # mkt.webapps.models.watch_status().
-        version.save()
+        version.update(nomination=version_kw['nomination'])
 
     if rated or complete:
         make_rated(app)

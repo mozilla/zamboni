@@ -108,7 +108,7 @@ def test_log_action_class():
 class TestDevAgreement(mkt.site.tests.TestCase):
 
     def setUp(self):
-        self.user = UserProfile()
+        self.user = UserProfile.objects.create()
         self.days = lambda x: self.days_ago(x).date()
 
     def test_none(self):

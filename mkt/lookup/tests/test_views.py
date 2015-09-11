@@ -788,10 +788,20 @@ class TestAppSearch(ESTestCase, SearchTestMixin):
 
     def test_statuses(self):
         for status, api_status in mkt.STATUS_CHOICES_API_v2.items():
+            if status == mkt.STATUS_DELETED:
+                # Deleted status is too special to recover from, so it needs
+                # its own test.
+                continue
             self.app.update(status=status)
             self.refresh('webapp')
             data = self.search(q='something')
             eq_(data['objects'][0]['status'], api_status)
+
+    def test_deleted(self):
+        self.app.update(status=mkt.STATUS_DELETED)
+        self.refresh('webapp')
+        data = self.search(q='something')
+        eq_(data['objects'][0]['status'], 'deleted')
 
     def test_disabled(self):
         """We override the status for disabled apps to be 'disabled'."""
