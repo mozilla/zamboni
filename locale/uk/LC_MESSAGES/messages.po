@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-09-12 12:23+0000\n"
-"Last-Translator: andrij.kuryk <andrij.kuryk@gmail.com>\n"
+"PO-Revision-Date: 2015-09-12 13:03+0000\n"
+"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -8485,14 +8485,13 @@ msgid ""
 "privacy policy, <a href=\"{url}\" target=\"_blank\">learn more on how to "
 "write one.</a>"
 msgstr ""
-"Політики приватності пояснює як обробляти дані, отримані завдяки роботі "
-"Вашого застосунку. Наприклад: які дані Ви отримуєте? Як Ви їх "
-"використовуєте? З ким ділитися ними? Чи отримуєте Ви особисту інформацію? Чи"
-" робите Ви щось, щоб зробити їх анонімними? Який вибір у користувачів для "
-"контролювати даних, які Ви та інші отримуєте? Введіть Вашу політику "
-"конфіденційності або текст, що вище. Якщо ви не маєте політики "
-"конфіденційності, <a href=\"{url}\" target=\"_blank\">дізнатися більше про "
-"те як написати.</a>"
+"Політика приватності пояснює як ви обробляєте дані, отримані через ваш "
+"застосунок. Наприклад: які дані ви отримуєте? Як ви їх використовуєте? З ким"
+" ділитесь ними? Чи отримуєте ви особисту інформацію? Чи робите ви щось, щоб "
+"зробити її анонімною? Який вибір мають користувачі для контролю того , які "
+"дані отримуєте ви та інші? Введіть посилання на вашу політику приватності "
+"або текст вище. Якщо ви не маєте політики приватності, <a href=\"{url}\" "
+"target=\"_blank\">дізнайтеся більше про те як її написати.</a>"
 
 #: mkt/submit/forms.py:308
 msgid "Homepage:"
@@ -8509,6 +8508,7 @@ msgstr "Сайт:"
 #: mkt/submit/forms.py:315
 msgid "If your app has a support website or forum, enter its address here."
 msgstr ""
+"Якщо Ваш застосунок має сайт підтримки або форум, введіть його адресу."
 
 #: mkt/submit/forms.py:319
 msgid "Email:"
@@ -8593,7 +8593,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/done.html:3
 msgid "Finished!"
-msgstr ""
+msgstr "Завершено!"
 
 #: mkt/submit/templates/submit/done.html:14
 msgid "Success! What happens now?"
@@ -8750,17 +8750,17 @@ msgstr "Привіт"
 #: mkt/tags/utils.py:29
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Неприпустима мітка: {0}"
+msgstr[1] "Неприпустимі мітки: {0}"
+msgstr[2] "Неприпустимі мітки: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/tags/utils.py:38
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "\"{0}\" зарезервована мітка і не може використовуватися."
+msgstr[1] "\"{0}\" зарезервовані мітки і не можуть використовуватися."
+msgstr[2] "\"{0}\" зарезервовані мітки і не можуть використовуватися."
 
 #: mkt/tags/utils.py:46
 msgid "You have {0} too many tags."
@@ -8844,6 +8844,8 @@ msgid ""
 "You have unsaved changes in the <b>{0}</b> locale. Would you like to save "
 "your changes before switching locales?"
 msgstr ""
+"Ви маєте незбережені зміни в <b>{0}</b> локалі. Бажаєте зберегти зміни перед"
+" зміною локалей?"
 
 #: mkt/translations/templates/translations/trans-menu.html:49
 msgid "Discard Changes"
