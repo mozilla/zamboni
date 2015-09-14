@@ -158,6 +158,7 @@ INSTALLED_APPS = (
     'mkt.prices',
     'mkt.ratings',
     'mkt.receipts',
+    'mkt.regions',
     'mkt.reviewers',
     'mkt.search',
     'mkt.stats',
