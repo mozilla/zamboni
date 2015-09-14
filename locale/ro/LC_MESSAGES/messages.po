@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-09-14 23:29+0000\n"
+"PO-Revision-Date: 2015-09-14 23:39+0000\n"
 "Last-Translator: CristianSilaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <dev-l10n-web@lists.mozilla.org>\n"
 "Language: ro\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1442273377.0\n"
+"X-POOTLE-MTIME: 1442273987.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -1250,11 +1250,11 @@ msgstr "Recenzie aplicație Tarako"
 
 #: mkt/constants/base.py:238
 msgid "App Abuse Report Read"
-msgstr "Raport de abuz aplicație citit"
+msgstr "Raport de abuz citit în ceea ce privește aplicația"
 
 #: mkt/constants/base.py:239
 msgid "Website Abuse Report Read"
-msgstr "Raport de abuz pentru site-ul web citit"
+msgstr "Raport de abuz citit în ceea ce privește site-ul web"
 
 #: mkt/constants/base.py:273
 msgid "Level 1"
@@ -1282,15 +1282,15 @@ msgstr "Nivelul 6"
 
 #: mkt/constants/base.py:279
 msgid "Level 7"
-msgstr ""
+msgstr "Nivelul 7"
 
 #: mkt/constants/base.py:280
 msgid "Level 8"
-msgstr ""
+msgstr "Nivelul 8"
 
 #: mkt/constants/base.py:281
 msgid "Level 9"
-msgstr ""
+msgstr "Nivelul 9"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
@@ -2898,6 +2898,8 @@ msgstr "Exemplu OAuth"
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X/Linux using your OAuth credentials:</p>"
 msgstr ""
+"<p>Exemplu folosind o librărie Python pentru linia de comandă sau Mac OS "
+"X/Linux folosind acreditările OAuth:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
@@ -5158,58 +5160,61 @@ msgstr "Aplicații Web Mozilla (Portugheză braziliană)"
 #: mkt/extensions/utils.py:32
 msgid "The file \"manifest.json\" was not found at the root of the zip archive."
 msgstr ""
+"Fișierul „manifest.json” nu a fost găsit la rădăcina (root) arhivei zip."
 
 #: mkt/extensions/utils.py:36
 msgid "Addons need to be packaged into a valid zip archive."
-msgstr ""
+msgstr "Suplimentele trebuie să fie împachetate într-o arhivă zip validă."
 
 #: mkt/extensions/utils.py:52
 msgid "Could not decode the addon manifest file. Check your manifest file for special non-utf-8 characters."
 msgstr ""
+"Nu se poate decoda fișierul manifest al suplimentului. Verifică fișierul "
+"manifest pentru caractere non-utf-8 speciale."
 
 #: mkt/extensions/utils.py:60
 msgid "The addon manifest is not valid JSON."
-msgstr ""
+msgstr "Manifestul suplimentului nu este un JSON valid."
 
 #: mkt/extensions/utils.py:72
 msgid "The \"%s\" field is missing or empty in the add-on manifest."
-msgstr ""
+msgstr "Câmpul „%s” lipsește sau este gol în manifestul suplimentului."
 
 #: mkt/extensions/views.py:53
 msgid "Missing file in request."
-msgstr ""
+msgstr "Fișier lipsă în cerere."
 
 #: mkt/extensions/views.py:72
 msgid "The file sent has an unsupported content-type"
-msgstr ""
+msgstr "Fișierul trimis are un content-type nesuportat"
 
 #: mkt/extensions/views.py:77
 msgid "The file sent is not a valid ZIP file."
-msgstr ""
+msgstr "Fișierul trimis nu este un fișier ZIP valid."
 
 #: mkt/extensions/views.py:80
 msgid "The archive does not contain a 'manifest.json' file."
-msgstr ""
+msgstr "Arhiva nu conține un fișier 'manifest.json'."
 
 #: mkt/extensions/views.py:85
 msgid "'manifest.json' in the archive is not a valid JSON file."
-msgstr ""
+msgstr "'manifest.json' din arhivă nu este un fișier JSON valid."
 
 #: mkt/extensions/views.py:112
 msgid "No upload identifier specified."
-msgstr ""
+msgstr "Nu există identificator pentru încărcare specificat."
 
 #: mkt/extensions/views.py:116
 msgid "You need to be authenticated to perform this action."
-msgstr ""
+msgstr "Trebuie să fii autentificat pentru a efectua această acțiune."
 
 #: mkt/extensions/views.py:121
 msgid "No such upload."
-msgstr ""
+msgstr "Nu există o astfel de încărcare."
 
 #: mkt/extensions/views.py:124
 msgid "The specified upload has not passed validation."
-msgstr ""
+msgstr "Încărcarea specificată nu a trecut de validare."
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
@@ -7992,7 +7997,7 @@ msgstr[2] "Toate tagurile trebuie să fie cel puțin {0} de caractere."
 
 #: mkt/templates/mkt/account-links.html:7
 msgid "Edit Account Settings"
-msgstr "Editare setări cont"
+msgstr "Editează setările contului"
 
 #: mkt/templates/mkt/account-links.html:11
 msgid "Return to the Marketplace"
