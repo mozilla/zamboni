@@ -54,6 +54,7 @@ class ExtensionIndexer(BaseIndexer):
                         'type': 'object',
                         'properties': {
                             'id': {'type': 'long'},
+                            'size': {'type': 'long'},
                             'version': cls.string_not_indexed(),
                         }
                     },
@@ -106,6 +107,7 @@ class ExtensionIndexer(BaseIndexer):
         if obj.status == STATUS_PUBLIC:
             doc['latest_public_version'] = {
                 'id': obj.latest_public_version.pk,
+                'size': obj.latest_public_version.size,
                 'version': obj.latest_public_version.version
             }
         else:

@@ -16,7 +16,7 @@ class TestExtensionIndexer(TestCase):
         extension = Extension.objects.create(
             name=u'Test Êxtension', slug=u'test-ëxtension')
         version = ExtensionVersion.objects.create(
-            extension=extension, status=status, version='0.1')
+            extension=extension, size=42, status=status, version='0.1')
         return extension, version
 
     def test_model(self):
@@ -59,7 +59,7 @@ class TestExtensionIndexer(TestCase):
         eq_(doc['slug'], extension.slug)
         eq_(doc['status'], extension.status)
         eq_(doc['latest_public_version'],
-            {'id': version.pk, 'version': '0.1', })
+            {'id': version.pk, 'size': 42, 'version': '0.1', })
 
     def test_extract_with_translations(self):
         extension, version = self._extension_factory()

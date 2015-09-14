@@ -500,12 +500,16 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
 
     @mock.patch('mkt.extensions.models.sign_app')
     @mock.patch('mkt.extensions.models.private_storage')
+    @mock.patch('mkt.extensions.models.public_storage')
     @mock.patch.object(ExtensionVersion, 'remove_signed_file')
     def test_sign_and_move_file(self, remove_signed_file_mock,
-                                private_storage_mock, sign_app_mock):
+                                public_storage_mock, private_storage_mock,
+                                sign_app_mock):
         extension = Extension(uuid='ab345678123456781234567812345678')
         version = ExtensionVersion(extension=extension, pk=123)
-        version.sign_and_move_file()
+        public_storage_mock.size.return_value = 665
+        size = version.sign_and_move_file()
+        eq_(size, 665)
         expected_args = (
             private_storage_mock.open.return_value,
             version.signed_file_path,
@@ -547,59 +551,75 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
             version.sign_and_move_file()
         eq_(remove_signed_file_mock.call_count, 1)
 
+    @mock.patch('mkt.extensions.models.private_storage')
     @mock.patch('mkt.extensions.models.public_storage')
-    def test_remove_signed_file(self, mocked_public_storage):
+    def test_remove_signed_file(self, mocked_public_storage,
+                                mocked_private_storage):
         extension = Extension(pk=42, slug='mocked_ext')
         version = ExtensionVersion(extension=extension, pk=123)
         mocked_public_storage.exists.return_value = True
-        version.remove_signed_file()
+        mocked_private_storage.size.return_value = 668
+        size = version.remove_signed_file()
+        eq_(size, 668)
         eq_(mocked_public_storage.exists.call_args[0][0],
             version.signed_file_path)
         eq_(mocked_public_storage.delete.call_args[0][0],
             version.signed_file_path)
 
+    @mock.patch('mkt.extensions.models.private_storage')
     @mock.patch('mkt.extensions.models.public_storage')
-    def test_remove_signed_file_not_exists(self, public_storage_mock):
+    def test_remove_signed_file_not_exists(self, public_storage_mock,
+                                           mocked_private_storage):
         extension = Extension(pk=42, slug='mocked_ext')
         version = ExtensionVersion(extension=extension, pk=123)
         public_storage_mock.exists.return_value = False
-        version.remove_signed_file()
+        mocked_private_storage.size.return_value = 669
+        size = version.remove_signed_file()
+        eq_(size, 669)
         eq_(public_storage_mock.exists.call_args[0][0],
             version.signed_file_path)
         eq_(public_storage_mock.delete.call_count, 0)
 
     @mock.patch.object(ExtensionVersion, 'sign_and_move_file')
     def test_publish(self, mocked_sign_and_move_file):
+        mocked_sign_and_move_file.return_value = 666
         extension = Extension.objects.create(slug='mocked_ext')
         version = ExtensionVersion.objects.create(
-            extension=extension, status=STATUS_PENDING)
+            extension=extension, size=0, status=STATUS_PENDING)
         eq_(version.status, STATUS_PENDING)
         eq_(extension.status, STATUS_PENDING)  # Set automatically.
         version.publish()
         eq_(mocked_sign_and_move_file.call_count, 1)
+        eq_(version.size, 666)
         eq_(version.status, STATUS_PUBLIC)
         eq_(extension.status, STATUS_PUBLIC)
 
         # Also reload to make sure the changes hit the database.
-        eq_(version.reload().status, STATUS_PUBLIC)
+        version.reload()
+        eq_(version.status, STATUS_PUBLIC)
+        eq_(version.size, 666)
         eq_(extension.reload().status, STATUS_PUBLIC)
 
     @mock.patch.object(ExtensionVersion, 'remove_signed_file')
     def test_reject(self, mocked_remove_signed_file):
+        mocked_remove_signed_file.return_value = 667
         extension = Extension.objects.create(slug='mocked_ext')
         version = ExtensionVersion.objects.create(
-            extension=extension, status=STATUS_PENDING)
+            extension=extension, size=42, status=STATUS_PENDING)
         eq_(version.status, STATUS_PENDING)
         eq_(extension.status, STATUS_PENDING)  # Set automatically.
         version.reject()
         eq_(mocked_remove_signed_file.call_count, 1)
+        eq_(version.size, 667)
         eq_(version.status, STATUS_REJECTED)
         # At the moment Extension are not rejected, merely set back to
         # incomplete since they no longer have a pending or public version.
         eq_(extension.status, STATUS_NULL)
 
         # Also reload to make sure the changes hit the database.
-        eq_(version.reload().status, STATUS_REJECTED)
+        version.reload()
+        eq_(version.size, 667)
+        eq_(version.status, STATUS_REJECTED)
         eq_(extension.reload().status, STATUS_NULL)
 
 
