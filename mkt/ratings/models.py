@@ -92,7 +92,13 @@ class Review(ModelBase):
         self.update(deleted=True)
 
     def undelete(self):
-        self.update(deleted=False)
+        # We need to bypass the regular save(), which doesn't like the fact
+        # that our base manager filters out deleted objects.
+        self.__class__.with_deleted.filter(pk=self.pk).update(deleted=False)
+        # We still want signals to happen though, so get a clean instance and
+        # re-save() with a non-deleted instance.
+        self.reload()
+        self.save()
 
     @classmethod
     def get_replies(cls, reviews):

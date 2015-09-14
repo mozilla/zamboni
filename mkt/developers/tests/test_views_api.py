@@ -87,9 +87,12 @@ class TestContentRating(TestCase):
         eq_(rating['rating'], '0')
 
     def test_get_content_ratings_since(self):
+        old_date = self.days_ago(100)
         cr = ContentRating.objects.create(addon=self.app, ratings_body=0,
                                           rating=0)
-        cr.update(modified=self.days_ago(100))
+        # Pass _signal=False to avoid django auto-now on modified.
+        cr.update(modified=old_date, _signal=False)
+        eq_(cr.modified, old_date)
 
         res = self.client.get(urlparams(
             reverse('content-ratings-list', args=[self.app.app_slug]),

@@ -187,6 +187,15 @@ class TestWebapp(WebappTestCase):
         eq_(Webapp.objects.count(), 0)
         eq_(Webapp.with_deleted.count(), 1)
 
+    def test_undelete(self):
+        app = self.get_app()
+        app.update(status=mkt.STATUS_PUBLIC)
+        app.delete()
+        eq_(app.status, mkt.STATUS_DELETED)
+        app.undelete()
+        app.reload()
+        eq_(app.status, mkt.STATUS_PUBLIC)
+
     def test_get_price(self):
         app = self.get_app()
         self.make_premium(app)
@@ -862,7 +871,7 @@ class TestWebappLight(mkt.site.tests.TestCase):
         eq_(w.get_promo(), p)
 
     def test_mark_done_pending(self):
-        w = Webapp()
+        w = Webapp.objects.create()
         eq_(w.status, mkt.STATUS_NULL)
         w.mark_done()
         eq_(w.status, mkt.WEBAPPS_UNREVIEWED_STATUS)

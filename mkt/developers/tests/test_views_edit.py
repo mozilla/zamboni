@@ -28,7 +28,7 @@ from mkt.site.helpers import absolutify
 from mkt.site.storage_utils import public_storage
 from mkt.site.tests import formset, initial
 from mkt.site.tests.test_utils_ import get_image_path
-from mkt.site.utils import app_factory
+from mkt.site.utils import app_factory, version_factory
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
@@ -1527,8 +1527,9 @@ class TestEditVersion(TestEdit):
         # We should still have the feature.
         ok_(version.features.has_openmobileacl)
 
+    @mock.patch.object(Webapp, 'get_cached_manifest')
     @mock.patch('mkt.webapps.tasks.index_webapps.delay')
-    def test_new_features(self, index_webapps):
+    def test_new_features(self, index_webapps, get_cached_manifest):
         assert not RereviewQueue.objects.filter(addon=self.webapp).exists()
         index_webapps.reset_mock()
         old_modified = self.webapp.modified
@@ -1569,8 +1570,8 @@ class TestEditVersion(TestEdit):
         ok_(not version.features.has_audio)
 
     def test_correct_version_features(self):
-        new_version = self.webapp.latest_version.update(id=self.version_pk + 1)
-        self.webapp.update(_latest_version=new_version)
+        version_factory(addon=self.webapp)
+        self.webapp.reload()
         self.test_new_features()
 
     def test_publish_checkbox_presence(self):

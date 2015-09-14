@@ -6,15 +6,17 @@ import mock
 from nose.tools import eq_
 
 import mkt
-from mkt.site.tests import app_factory, TestCase
+from mkt.site.fixtures import fixture
+from mkt.site.tests import TestCase
 from mkt.webapps import decorators as dec
 from mkt.webapps.models import Webapp
 
 
 class TestWebappDecorators(TestCase):
+    fixtures = fixture('webapp_337141')
 
     def setUp(self):
-        self.app = Webapp.objects.create(app_slug='x')
+        self.app = Webapp.objects.get(pk=337141)
         self.func = mock.Mock()
         self.func.return_value = mock.sentinel.OK
         self.func.__name__ = 'mock_function'
@@ -61,9 +63,7 @@ class TestWebappDecorators(TestCase):
         eq_(addon, app)
 
     def test_app(self):
-        app = app_factory(name='xxxx')
-        app.update(app_slug=str(app.id))
-        res = self.view(self.request, app_slug=str(app.id))
+        res = self.view(self.request, app_slug=self.app.app_slug)
         eq_(res, mock.sentinel.OK)
 
 

@@ -115,7 +115,7 @@ class TestModelBase(TestCase):
         eq_(a, b)
 
     def test_deleted_updated(self):
-        addon = self.testapp
-        addon.delete()
-        addon.update(public_stats=False)
-        assert not addon.public_stats, 'addon.public_stats should be False'
+        self.testapp.delete()
+        self.testapp.undelete()
+        self.testapp.update(public_stats=False)
+        assert not self.testapp.public_stats, '`public_stats` should be False'

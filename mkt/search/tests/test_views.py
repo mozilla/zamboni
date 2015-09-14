@@ -1075,14 +1075,21 @@ class TestSuggestionsView(ESTestCase):
     def test_not_finds_invalid_statuses(self):
         for status in [mkt.STATUS_PENDING, mkt.STATUS_APPROVED,
                        mkt.STATUS_UNLISTED, mkt.STATUS_DISABLED,
-                       mkt.STATUS_DELETED, mkt.STATUS_REJECTED,
-                       mkt.STATUS_BLOCKED]:
+                       mkt.STATUS_REJECTED, mkt.STATUS_BLOCKED]:
             self.app2.update(status=status)
             self.refresh('webapp')
             res = self.client.get(self.url, data={'q': 'second',
                                                   'lang': 'en-US'})
             eq_(res.status_code, 200)
             eq_(json.loads(res.content)[1], [])
+
+    def test_not_finds_deleted(self):
+        self.app2.delete()
+        self.refresh('webapp')
+        res = self.client.get(self.url, data={'q': 'second',
+                                              'lang': 'en-US'})
+        eq_(res.status_code, 200)
+        eq_(json.loads(res.content)[1], [])
 
 
 class TestNonPublicSearchView(RestOAuth, ESTestCase):
@@ -1135,14 +1142,23 @@ class TestNonPublicSearchView(RestOAuth, ESTestCase):
             eq_(objs[0]['name'], self.app2.name)
 
     def test_not_finds_invalid_statuses(self):
-        for status in [mkt.STATUS_DISABLED, mkt.STATUS_DELETED,
-                       mkt.STATUS_REJECTED, mkt.STATUS_BLOCKED]:
+        for status in [mkt.STATUS_DISABLED, mkt.STATUS_REJECTED,
+                       mkt.STATUS_BLOCKED]:
             self.app2.update(status=status)
             self.refresh('webapp')
             res = self.client.get(self.url, data={'q': 'second',
                                                   'lang': 'en-US'})
             eq_(res.status_code, 200)
             eq_(len(res.json['objects']), 0)
+
+    def test_not_finds_deleted(self):
+        self.app2.delete()
+        self.refresh('webapp')
+        res = self.client.get(self.url, data={
+            'q': 'second', 'lang': 'en-US', 'region': 'us'
+        })
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 0)
 
     def test_not_finds_excluded_region(self):
         self.app2.addonexcludedregion.create(region=mkt.regions.USA.id)
@@ -1211,8 +1227,7 @@ class TestNoRegionSearchView(RestOAuth, ESTestCase):
     def test_not_finds_invalid_statuses(self):
         for status in [mkt.STATUS_PENDING, mkt.STATUS_APPROVED,
                        mkt.STATUS_UNLISTED, mkt.STATUS_DISABLED,
-                       mkt.STATUS_DELETED, mkt.STATUS_REJECTED,
-                       mkt.STATUS_BLOCKED]:
+                       mkt.STATUS_REJECTED, mkt.STATUS_BLOCKED]:
             self.app2.update(status=status)
             self.refresh('webapp')
             res = self.client.get(self.url, data={
@@ -1220,6 +1235,15 @@ class TestNoRegionSearchView(RestOAuth, ESTestCase):
             })
             eq_(res.status_code, 200)
             eq_(len(res.json['objects']), 0)
+
+    def test_not_finds_deleted(self):
+        self.app2.delete()
+        self.refresh('webapp')
+        res = self.client.get(self.url, data={
+            'q': 'second', 'lang': 'en-US', 'region': 'us'
+        })
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 0)
 
 
 class TestRocketbarView(ESTestCase):

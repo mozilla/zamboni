@@ -42,7 +42,7 @@ class TestLangPackBasic(TestCase):
                 'name': 'Mozilla'
             }
         }
-        langpack = LangPack(
+        langpack = LangPack.objects.create(
             pk='12345678123456781234567812345678',
             fxos_version='2.2',
             version='0.3',

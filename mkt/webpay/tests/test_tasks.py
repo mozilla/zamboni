@@ -48,7 +48,9 @@ class TestFetchProductIcon(TestCase):
         old = now - timedelta(days=settings.PRODUCT_ICON_EXPIRY + 1)
         prod = ProductIcon.objects.create(ext_url=url, size=64,
                                           ext_size=ext_size)
-        prod.update(modified=old)
+        # Pass _signal=False to avoid django auto-now on modified.
+        prod.update(modified=old, _signal=False)
+        eq_(prod.modified, old)
         (fake_req.expects('get').returns_fake().expects('iter_content')
                                                .returns(self.open_img())
                                                .expects('raise_for_status'))

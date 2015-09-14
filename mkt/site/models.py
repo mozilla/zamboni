@@ -174,6 +174,9 @@ class OnChangeMixin(object):
 
     def __init__(self, *args, **kw):
         super(OnChangeMixin, self).__init__(*args, **kw)
+        self.reset_attrs()
+
+    def reset_attrs(self):
         self._initial_attr = dict(self.__dict__)
 
     @classmethod
@@ -223,6 +226,8 @@ class OnChangeMixin(object):
         result = super(OnChangeMixin, self).save(*args, **kw)
         if signal and self.__class__ in _on_change_callbacks:
             self._send_changes(self._initial_attr, dict(self.__dict__))
+        # Now that we saved and triggered the callbacks, reset the attrs.
+        self.reset_attrs()
         return result
 
     def update(self, **kw):
@@ -272,31 +277,30 @@ class ModelBase(models.Model):
                 pass
         return self
 
-    def update(self, **kw):
+    def update(self, **kwargs):
         """
         Shortcut for doing an UPDATE on this object.
 
-        If _signal=False is in ``kw`` the post_save signal won't be sent.
+        By default it uses django's .save(update_fields=[]) feature, but if you
+        pass _signal=False, it uses <manager>.update(**kwargs) instead in order
+        to avoid sending pre_save and post_save signals.
+
+        Gotchas:
+        - Like django regular .save() method, it does not work if the default
+          manager queryset hides some rows (often the case on models where soft
+          deletion is implemented). You need to unhide the instance from the
+          default manager before using this method.
+        - When using _signal=False, updating translated fields won't work,
+          since translated fields require pre_save signal to work.
         """
-        signal = kw.pop('_signal', True)
-        cls = self.__class__
-        for k, v in kw.items():
-            setattr(self, k, v)
+        signal = kwargs.pop('_signal', True)
+        for key, value in kwargs.items():
+            setattr(self, key, value)
         if signal:
-            # Detect any attribute changes during pre_save and add those to the
-            # update kwargs.
-            attrs = dict(self.__dict__)
-            models.signals.pre_save.send(sender=cls, instance=self)
-            for k, v in self.__dict__.items():
-                if attrs[k] != v:
-                    kw[k] = v
-                    setattr(self, k, v)
-        # We want this to not fail mysteriously for soft deleted objects.
-        objects = getattr(cls, 'with_deleted', cls.objects)
-        objects.filter(pk=self.pk).update(**kw)
-        if signal:
-            models.signals.post_save.send(sender=cls, instance=self,
-                                          created=False)
+            return self.save(update_fields=kwargs.keys())
+        else:
+            cls = self.__class__
+            cls.objects.filter(pk=self.pk).update(**kwargs)
 
 
 def manual_order(qs, pks, pk_name='id'):
