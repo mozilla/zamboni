@@ -2,7 +2,6 @@ import hashlib
 
 from django.core.exceptions import ImproperlyConfigured, PermissionDenied
 from django.db.transaction import non_atomic_requests
-from django.forms import ValidationError
 from django.http import Http404, JsonResponse
 from django.shortcuts import get_object_or_404
 
@@ -70,11 +69,9 @@ class CreateExtensionMixin(object):
         else:
             # We are creating a new Extension
             params = {'user': request.user}
-        try:
-            obj = self.model.from_upload(upload, **params)
-        except ValidationError as e:
-            raise exceptions.ParseError(unicode(e))
 
+        # self.model.from_upload() will raise ParseError if appropriate.
+        obj = self.model.from_upload(upload, **params)
         log.info('%s created: %s' % (self.model, self.model.pk))
 
         # TODO: change create_comm_note to just take a version.
@@ -103,7 +100,7 @@ class ValidationViewSet(SubmitValidationViewSet):
         if not file_obj:
             raise exceptions.ParseError(_('Missing file in request.'))
 
-        # Will raise exceptions if appropriate.
+        # Will raise ParseError exceptions if appropriate.
         ExtensionValidator(file_obj).validate()
 
         user = request.user if request.user.is_authenticated() else None

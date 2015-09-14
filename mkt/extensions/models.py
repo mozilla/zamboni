@@ -6,11 +6,11 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models, IntegrityError, transaction
 from django.dispatch import receiver
-from django.forms import ValidationError
 
 import commonware.log
 from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
+from rest_framework.exceptions import ParseError
 from tower import ugettext as _
 from uuidfield.fields import UUIDField
 
@@ -19,7 +19,7 @@ from mkt.constants.base import (MKT_STATUS_FILE_CHOICES, STATUS_DISABLED,
                                 STATUS_NULL, STATUS_PENDING, STATUS_PUBLIC,
                                 STATUS_REJECTED)
 from mkt.extensions.indexers import ExtensionIndexer
-from mkt.extensions.utils import ExtensionParser
+from mkt.extensions.validation import ExtensionValidator
 from mkt.files.models import cleanup_file, nfd_str
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.site.helpers import absolutify
@@ -27,6 +27,7 @@ from mkt.site.models import ManagerBase, ModelBase
 from mkt.site.storage_utils import (copy_stored_file, private_storage,
                                     public_storage)
 from mkt.site.utils import cached_property, smart_path
+from mkt.translations.utils import to_language
 from mkt.webapps.models import clean_slug
 
 
@@ -59,15 +60,18 @@ class Extension(ModelBase):
     # Fields for which the manifest is the source of truth - can't be
     # overridden by the API.
     default_language = models.CharField(default=settings.LANGUAGE_CODE,
-                                        max_length=10)
-    description = TranslatedField(default=None)
-    name = TranslatedField(default=None)
+                                        editable=False, max_length=10)
+    description = TranslatedField(default=None, editable=False)
+    name = TranslatedField(default=None, editable=False)
 
     # Fields that can be modified using the API.
     authors = models.ManyToManyField('users.UserProfile')
     slug = models.CharField(max_length=35, unique=True)
 
     objects = ExtensionManager()
+
+    manifest_is_source_of_truth_fields = (
+        'description', 'default_language', 'name')
 
     @cached_property(writable=True)
     def latest_public_version(self):
@@ -81,14 +85,44 @@ class Extension(ModelBase):
         return clean_slug(self, slug_field='slug')
 
     @classmethod
+    def extract_and_validate_upload(cls, upload):
+        """Validate and extract manifest from a FileUpload instance.
+
+        Can raise ParseError."""
+        with private_storage.open(upload.path) as file_obj:
+            # The file will already have been uploaded at this point, so force
+            # the content type to make the ExtensionValidator happy. We just
+            # need to validate the contents.
+            file_obj.content_type = 'application/zip'
+            manifest_contents = ExtensionValidator(file_obj).validate()
+        return manifest_contents
+
+    @classmethod
+    def extract_manifest_fields(cls, manifest_data, fields=None):
+        """Extract the specified `fields` from `manifest_data`, applying
+        transformations if necessary. If `fields` is absent, then use
+        `cls.manifest_is_source_of_truth_fields`."""
+        if fields is None:
+            fields = cls.manifest_is_source_of_truth_fields
+        data = {k: manifest_data[k] for k in fields if k in manifest_data}
+        if 'default_language' in fields:
+            # Manifest contains locales (e.g. "en_US"), not languages
+            # (e.g. "en-US"). The field is also called differently as a result
+            # (default_locale vs default_language), so we need to transform
+            # both the key and the value before adding it to data.
+            default_locale = manifest_data.get('default_locale')
+            if default_locale:
+                data['default_language'] = to_language(default_locale)
+        return data
+
+    @classmethod
     def from_upload(cls, upload, user=None):
         """Handle creating/editing the Extension instance and saving it to db,
         as well as file operations, from a FileUpload instance. Can throw
-        a ValidationError or SigningError, so should always be called within a
+        a ParseError or SigningError, so should always be called within a
         try/except."""
-        parsed_data = ExtensionParser(upload).parse()
-        accepted_fields = ('default_language', 'description', 'name')
-        data = {k: parsed_data[k] for k in accepted_fields if k in parsed_data}
+        manifest_contents = cls.extract_and_validate_upload(upload)
+        data = cls.extract_manifest_fields(manifest_contents)
 
         # Build a new instance.
         instance = cls.objects.create(**data)
@@ -99,7 +133,7 @@ class Extension(ModelBase):
         # replicated on the Extension instance.
         instance.authors.add(user)
         ExtensionVersion.from_upload(
-            upload, parent=instance, parsed_data=parsed_data)
+            upload, parent=instance, manifest_contents=manifest_contents)
         return instance
 
     @classmethod
@@ -169,17 +203,9 @@ class Extension(ModelBase):
             return
         if not version.manifest:
             return
-        fields = ['default_language', 'description', 'name', ]
-        # We need to re-parse the manifest contents because some fields
-        # like default_language are transformed before being stored.
-        try:
-            parsed_data = ExtensionParser(
-                None, manifest_contents=version.manifest).parse()
-        except ValidationError:
-            # This should not happen, the manifest should be valid, but there
-            # is not much we can do from this method.
-            return
-        data = {k: parsed_data[k] for k in fields if k in parsed_data}
+        # We need to re-extract the fields from manifest contents because some
+        # fields like default_language are transformed before being stored.
+        data = self.extract_manifest_fields(version.manifest)
         return self.update(**data)
 
     def update_status_according_to_versions(self):
@@ -248,40 +274,44 @@ class ExtensionVersion(ModelBase):
         return os.path.join(prefix, nfd_str(self.filename))
 
     @classmethod
-    def get_fallback(cls):
-        # Class method needed by the translations app.
-        return cls._meta.get_field('default_language')
-
-    @classmethod
-    def from_upload(cls, upload, parent=None, parsed_data=None):
+    def from_upload(cls, upload, parent=None, manifest_contents=None):
         """Handle creating/editing the ExtensionVersion instance and saving it
         to db, as well as file operations, from a FileUpload instance.
 
         `parent` parameter must be passed so that we can attach the instance to
-        an Extension. `data` can be passed to avoid parsing the `upload` twice
-        if that was already done.
+        an Extension. `manifest_contents` can be passed to avoid parsing twice
+        if that was already done by the caller.
 
-        Can throw a ValidationError or SigningError, so should always be called
+        Can throw a ParseError, so should always be called
         within a try/except."""
-        # FIXME: do we keep Extension name&description as non-editable ? If so,
-        # when uploading a new version, it should update them on the Extension
-        # instance.
         if parent is None:
             raise ValueError('ExtensionVersion.from_upload() needs a parent.')
 
-        if parsed_data is None:
-            parsed_data = ExtensionParser(upload).parse()
-        accepted_fields = ('default_language', 'manifest', 'version')
-        data = {k: parsed_data[k] for k in accepted_fields if k in parsed_data}
+        if manifest_contents is None:
+            manifest_contents = Extension.extract_and_validate_upload(upload)
+
+        fields = ('default_language', 'version')
+        data = Extension.extract_manifest_fields(manifest_contents, fields)
+        data['manifest'] = manifest_contents
         data['extension'] = parent
+
+        # Check if the version number is higher than the latest version.
+        try:
+            version = parent.latest_version.version
+            if not cls.is_version_number_higher(data['version'], version):
+                raise ParseError(
+                    _(u'Version number must be higher than the latest version '
+                      u'uploaded for this Add-on, which is "%s".' % version))
+        except cls.DoesNotExist:
+            pass
 
         # Build a new instance.
         try:
             with transaction.atomic():
                 instance = cls.objects.create(**data)
         except IntegrityError:
-            raise ValidationError(
-                _('An extension with this version number already exists.'))
+            raise ParseError(
+                _(u'An extension with this version number already exists.'))
 
         # Now that the instance has been saved, we can generate a file path
         # and move the file.
@@ -293,6 +323,11 @@ class ExtensionVersion(ModelBase):
         instance.set_older_pending_versions_as_obsolete()
         instance.update(size=size, status=STATUS_PENDING)
         return instance
+
+    @classmethod
+    def get_fallback(cls):
+        # Class method needed by the translations app.
+        return cls._meta.get_field('default_language')
 
     def handle_file_operations(self, upload):
         """Copy the file attached to a FileUpload to the Extension instance.
@@ -314,6 +349,13 @@ class ExtensionVersion(ModelBase):
             src_storage=private_storage, dst_storage=private_storage)
 
         return private_storage.size(self.file_path)
+
+    @classmethod
+    def is_version_number_higher(cls, version1, version2):
+        """Return True if `version1` is higher than `version2`."""
+        v1 = [int(v) for v in version1.split('.')]
+        v2 = [int(v) for v in version2.split('.')]
+        return v1 > v2
 
     def publish(self):
         """Publish this extension version to public."""
@@ -389,7 +431,7 @@ class ExtensionVersion(ModelBase):
         return os.path.join(prefix, nfd_str(self.filename))
 
     def __unicode__(self):
-        return u'%s' % (self.pk,)
+        return u'%s %s' % (self.extension.slug, self.version)
 
     @property
     def unsigned_download_url(self):
