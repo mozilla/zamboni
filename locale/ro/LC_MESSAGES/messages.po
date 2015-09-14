@@ -4,16 +4,17 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-26 09:24-0700\n"
-"PO-Revision-Date: 2015-08-15 16:25+0000\n"
-"Last-Translator: Jobava <jobaval10n@gmail.com>\n"
+"PO-Revision-Date: 2015-09-14 23:29+0000\n"
+"Last-Translator: CristianSilaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <dev-l10n-web@lists.mozilla.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2);;\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2);;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1439655954.0\n"
+"X-POOTLE-MTIME: 1442273377.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -1253,7 +1254,7 @@ msgstr "Raport de abuz aplicație citit"
 
 #: mkt/constants/base.py:239
 msgid "Website Abuse Report Read"
-msgstr "Raport de abuz sait citit"
+msgstr "Raport de abuz pentru site-ul web citit"
 
 #: mkt/constants/base.py:273
 msgid "Level 1"
@@ -2277,7 +2278,7 @@ msgstr "Înainte de a schimba limba locală implicită trebuie să ai un nume ș
 
 #: mkt/developers/forms.py:739 mkt/submit/templates/submit/details.html:125
 msgid "You must provide either a website, an email, or both."
-msgstr "Trebuie să introduci fie un sait web, o adresă de e-mail, fie ambele."
+msgstr "Trebuie să introduci fie un site web, un e-mail, fie ambele."
 
 #: mkt/developers/forms.py:764
 msgid "Your comments"
@@ -2380,7 +2381,7 @@ msgstr "Către"
 
 #: mkt/developers/forms.py:1149
 msgid "Web site"
-msgstr "Sait web"
+msgstr "Site web"
 
 #: mkt/developers/forms.py:1150
 msgid "Command line"
@@ -2844,9 +2845,13 @@ msgid ""
 "marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
-"<p> Marketplace API poate fi utilizat în două moduri: prin tradiționalul OAuth, folosit de saituri web, sau prin unealta de linie de comandă. Diferențele sunt discutate la <a href=\"https://firefox-"
-"marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Documentația Marketplace</a>. Orice testare trebuie realizată pe <a href=\"https://marketplace-dev.allizom.org"
-"\">serverul de dezvoltare</a> și nu pe serverul de producție. </p>"
+"<p> Marketplace API poate fi utilizat în două moduri: prin tradiționalul "
+"OAuth, folosit de site-uri web, sau prin unealta pentru linie de comandă. "
+"Diferențele sunt discutate la <a href=\"https://firefox-marketplace-"
+"api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Documentația "
+"Marketplace</a>. Orice testare trebuie realizată pe <a href=\"https"
+"://marketplace-dev.allizom.org\">serverul de dezvoltare</a> și nu pe serverul "
+"de producție. </p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
@@ -2989,7 +2994,9 @@ msgstr "Setări"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:92 mkt/zadmin/templates/admin/base.html:49 templates/base.html:98
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Unele funcții sunt dezactivate temporar în timp ce realizăm întreținerea pe sait. Vom reveni în scurt timp la capacitate maximă."
+msgstr ""
+"Unele funcții sunt dezactivate temporar în timp ce realizăm întreținerea pe "
+"site-ul web. Vom reveni în scurt timp la capacitate maximă."
 
 #: mkt/developers/templates/developers/skeleton_impala.html:98 templates/base.html:104
 msgid "The Terms of Service have changed since you last agreed to them. Please read and agree to the <a href=\"%(url)s\">new terms</a>."
@@ -3245,7 +3252,9 @@ msgstr "Această aplicație a fost <b>interzisă pe Marketplace</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
-msgstr "Aplicația a fost interzisă de un administrator de sait. Dacă aveți întrebări, vă rugăm <a href=\"%(support_url)s\"> să ne contactați</a>."
+msgstr ""
+"Aplicația a fost interzisă de un administrator de site. Dacă ai întrebări, "
+"te rugăm <a href=\"%(support_url)s\"> să ne contactezi</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
@@ -3253,7 +3262,9 @@ msgstr "Aplicația a fost <b>blocată de Mozilla</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:59
 msgid "Your app was blocked by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
-msgstr "Aplicația a fost blocată de un administrator de sait. Dacă aveți întrebări, vă rugăm <a href=\"%(support_url)s\"> să ne contactați</a>."
+msgstr ""
+"Aplicația a fost blocată de un administrator de site. Dacă ai întrebări, te "
+"rugăm <a href=\"%(support_url)s\"> să ne contactezi</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
@@ -3470,7 +3481,9 @@ msgstr "Șterge aplicația"
 
 #: mkt/developers/templates/developers/apps/status.html:427
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
-msgstr "Ștergerea aplicației o va șterge permanent de pe sait. <strong>Acțiunea este ireversibilă.</strong>"
+msgstr ""
+"Ștergerea aplicației o va șterge definitiv de pe site. <strong>Nu există "
+"nicio cale de întoarcere.</strong>"
 
 #: mkt/developers/templates/developers/apps/status.html:440
 msgid "Blocklist App"
@@ -3763,7 +3776,10 @@ msgstr "Pagină Web"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:37
 msgid "If your app has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added."
-msgstr "Dacă aplicația are o altă pagină web, scrieți adresa aici. Dacă saitul este localizat în alte limbi, puteți adăuga mai multe adrese specifice pentru fiecare traducere."
+msgstr ""
+"Dacă aplicația are o altă pagină web, introdu adresa sa aici. Dacă site-ul "
+"web este localizat în alte limbi, poți adăuga mai multe adrese specifice "
+"pentru fiecare traducere."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:55 mkt/reviewers/templates/reviewers/includes/details.html:55 mkt/reviewers/templates/reviewers/includes/mobile_details.html:120
 #: mkt/templates/mkt/footer.html:15
@@ -3818,11 +3834,14 @@ msgstr "Adresa de e-mail folosită pentru a fi contactați de utilizatori cu pro
 
 #: mkt/developers/templates/developers/apps/edit/support.html:41 mkt/reviewers/templates/reviewers/includes/details.html:103 mkt/reviewers/templates/reviewers/includes/mobile_details.html:92
 msgid "Website"
-msgstr "Sait web"
+msgstr "Site web"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:43
 msgid "If your app has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
-msgstr "Dacă aplicația are un sait de suport sau forum, introduceți adresa aici. Dacă saitul este localizat în alte limbi, se pot adăuga traduceri diferite pentru acest câmp."
+msgstr ""
+"Dacă aplicația are un site web de suport sau forum, introdu adresa sa aici. "
+"Dacă site-ul este localizat în alte limbi, se pot adăuga traduceri diferite "
+"pentru acest câmp."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -4384,11 +4403,16 @@ msgstr "Activare"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
-msgstr "Funcția este în dezvoltare. Pentru mai multe informații puteți vedea <a target=\"_blank\" href=\"%(doc_link)s\">documentația</a>."
+msgstr ""
+"Această funcție este sub dezvoltare intensă. Te rugăm să consulți <a "
+"target=\"_blank\" href=\"%(doc_link)s\">documentația</a> pentru mai multe "
+"informații."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
-msgstr "Dacă întâmpinați o problemă, vă rugăm să <a target=\"_blank\" href=\"%(bug_link)s\">raportați un defect</a>."
+msgstr ""
+"Dacă întâmpini o problemă, te rugăm să <a target=\"_blank\" href=\"%"
+"(bug_link)s\">raportezi un defect</a>."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:48
 msgid "Icon"
@@ -4526,11 +4550,15 @@ msgstr "Promovați ca o actualizare la versiunea gratuită"
 
 #: mkt/developers/templates/developers/payments/premium.html:302
 msgid "If you have a free app, you can link and promote your premium app next to the free version here."
-msgstr "Dacă aveți o aplicație gratuită, puteți să o legați și să o promovați împreună cu o aplicație premium, care va apărea lângă versiunea gratuită."
+msgstr ""
+"Dacă ai o aplicație gratuită, poți să legi și să promovezi aplicația ta "
+"premium alături de versiunea gratuită aici."
 
 #: mkt/developers/templates/developers/payments/premium.html:310
 msgid "Linking this app will promote your premium app next to the free version."
-msgstr "Legarea acestei aplicații va promova aplicația premium alături de versiunea gratuită."
+msgstr ""
+"Legarea acestei aplicații va promova aplicația ta premium alături de "
+"versiunea gratuită."
 
 #: mkt/developers/templates/developers/payments/premium.html:317
 msgid "No free apps"
@@ -4855,7 +4883,9 @@ msgstr "Evenimente și întâlniri"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:271
 msgid "I'm okay with Mozilla handling this information as explained in the <a href=\"%(privacy_link)s\">Privacy Policy</a>."
-msgstr "Sunt de acord ca Mozilla să gestioneze această informație așa cum este explicat în <a href=\"%(privacy_link)s\">Politica de confidențialitate</a>."
+msgstr ""
+"Sunt de acord ca Mozilla să prelucreze aceste informații așa cum este "
+"explicat în <a href=\"%(privacy_link)s\">politica de confidențialitate</a>."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:279
 msgid "Sign me up!"
@@ -5033,7 +5063,9 @@ msgstr "Insigne, bannere și iconițe"
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:17
 msgid "\"Get it in the Firefox Marketplace\" are badges that you can use on your web site and promotional materials to point to your products on the Firefox Marketplace."
 msgstr ""
-"„Obține pe Firefox Marketplace” sunt insigne pe care le puteți obține de pe saitul nostru, împreună cu materiale promoționale care pot indica spre produsele dumneavoastră de pe Firefox Marketplace."
+"„Disponibil în Firefox Marketplace” sunt insigne pe care le poți obține de "
+"pe site-ul nostru web, împreună cu materiale promoționale care pot indica "
+"spre produsele tale de pe Firefox Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
@@ -5435,7 +5467,7 @@ msgstr "Cererea de rambursare pentru această tranzacție a eșuat."
 
 #: mkt/lookup/views.py:354
 msgid "Website saved."
-msgstr "Sait web salvat."
+msgstr "Site web salvat."
 
 #: mkt/lookup/templates/lookup/app_activity.html:10 mkt/lookup/templates/lookup/helpers/app_header.html:22 mkt/lookup/templates/lookup/helpers/user_header.html:18
 msgid "Activity"
@@ -5732,7 +5764,9 @@ msgstr "Șterge utilizator"
 
 #: mkt/lookup/templates/lookup/user_summary.html:101
 msgid "Deleting this user will <strong>permanently</strong> delete this user's account."
-msgstr "Ștergerea utilizatorului va șterge <strong>definitiv</strong> acest cont de utilizator."
+msgstr ""
+"Ștergerea acestui utilizator va șterge <strong>definitiv</strong> acest cont "
+"de utilizator."
 
 #: mkt/lookup/templates/lookup/user_summary.html:111
 msgid "Are you sure you wish to delete this user?"
@@ -5812,11 +5846,11 @@ msgstr "Cont șters"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:3
 msgid "Website Summary for"
-msgstr "Sumar sait pentru"
+msgstr "Sumar site web pentru"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:5
 msgid "Edit Website"
-msgstr "Editare sait"
+msgstr "Editează site-ul web"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
@@ -5842,7 +5876,7 @@ msgstr "Căutare cont"
 
 #: mkt/lookup/templates/lookup/includes/website_search.html:5
 msgid "Website Lookup"
-msgstr "Căutare sait"
+msgstr "Căutare site web"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
@@ -6112,7 +6146,7 @@ msgstr "Recenzii moderate"
 
 #: mkt/reviewers/helpers.py:48
 msgid "Website Abuse Reports"
-msgstr "Sait pentru rapoarte de abuz"
+msgstr "Rapoarte de abuz pentru site-uri web"
 
 #: mkt/reviewers/helpers.py:49
 msgid "Reviewing"
@@ -6167,7 +6201,7 @@ msgstr "Rapoarte de abuz ({0})"
 #: mkt/reviewers/helpers.py:137
 msgctxt "abusewebsites"
 msgid "Website Abuse Reports ({0})"
-msgstr "Sait pentru rapoarte de abuz ({0})"
+msgstr "Rapoarte de abuz pentru site-uri web ({0})"
 
 #: mkt/reviewers/helpers.py:154
 msgid "Reviews"
@@ -6553,7 +6587,7 @@ msgstr "Categorie de plăți:"
 
 #: mkt/reviewers/templates/reviewers/queue.html:103
 msgid "Helpful Links:"
-msgstr "Legături de ajutor:"
+msgstr "Linkuri utile:"
 
 #: mkt/reviewers/templates/reviewers/queue.html:104
 msgid "Reviewers' Guide"
@@ -7595,7 +7629,9 @@ msgstr "Ne pare rău, nu am putut găsi ceea ce căutați."
 
 #: mkt/site/templates/site/404.html:11
 msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
-msgstr "Pagina sau fișierul cerut nu a fost găsită pe sait. E posibil să fi apăsat pe o legătură expirată sau să fi scris o adresă greșită."
+msgstr ""
+"Pagina sau fișierul cerut nu a fost găsit(ă) pe site-ul nostru. E posibil să "
+"fi dat clic pe un link expirat sau să fi tastat adresa în mod greșit."
 
 #: mkt/site/templates/site/404.html:16
 msgid "If you typed in the address, please double check the spelling."
@@ -7688,9 +7724,14 @@ msgid ""
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
-"O politică de confidențialitate explică cum se folosește data obținută prin aplicație. De exemplu, ce fel de date primiți? Cum le folosiți? Cui altcineva mai trimiteți datele? Primiți informații "
-"personale? Utilizați măsuri de anonimizare a datelor? Ce opțiuni le oferiți utilizatorilor pentru a-și controla datele pe care le primiți sau care sunt trimise altcuiva? Introduceți un link sau "
-"scrieți textul mai sus. Dacă nu aveți o politică de confidențialitate, <a href=\"{url}\" target=\"_blank\">aflați cum să scrieți una.</a>"
+"O politică de confidențialitate explică modul în care se prelucrează datele "
+"primite prin intermediul aplicației. De exemplu, ce fel de date primești? "
+"Cum le folosești? Cui altcineva mai trimiți datele? Primești informații "
+"personale? Iei măsuri de anonimizare a datelor? Ce opțiuni le oferi "
+"utilizatorilor pentru a-și controla datele pe care le primești tu sau alții? "
+"Introdu un link sau scrie textul mai sus. Dacă nu ai o politică de "
+"confidențialitate, <a href=\"{url}\" target=\"_blank\">află cum să scrii "
+"una.</a>"
 
 #: mkt/submit/forms.py:308
 msgid "Homepage:"
@@ -7702,11 +7743,12 @@ msgstr "Dacă aplicația are o altă pagină principală, scrieți adresa aici."
 
 #: mkt/submit/forms.py:313
 msgid "Website:"
-msgstr "Sait web:"
+msgstr "Site web:"
 
 #: mkt/submit/forms.py:315
 msgid "If your app has a support website or forum, enter its address here."
-msgstr "Dacă aplicația are un sait de suport sau forum, introduceți adresa aici."
+msgstr ""
+"Dacă aplicația are un site web de suport sau forum, introdu adresa sa aici."
 
 #: mkt/submit/forms.py:319
 msgid "Email:"
@@ -7965,8 +8007,10 @@ msgid ""
 "Except where otherwise <a href=\"%(legal_url)s\">noted</a>, content on this site is licensed under the <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</a> or any later "
 "version."
 msgstr ""
-"Cu excepția cazurilor <a href=\"%(legal_url)s\">altfel</a> specificate, conținutul de pe acest sait este licențiat sub <a href=\"%(cc_url)s\">Creative Commons Attribution Share-Alike License v3.0</"
-"a> sau orice versiune ulterioară."
+"Cu excepția cazurilor când <a href=\"%(legal_url)s\">se specifică altfel</a> "
+"conținutul de pe acest site este licențiat sub licența <a href=\"%"
+"(cc_url)s\">Creative Commons Attribution Share-Alike v3.0</a> sau orice "
+"versiune ulterioară."
 
 #: mkt/templates/mkt/footer.html:17
 msgid "Terms of Use"
