@@ -195,6 +195,7 @@ class ExtensionVersion(ModelBase):
                                         max_length=10)
     manifest = JSONField()
     version = models.CharField(max_length=23, default='')
+    size = models.PositiveIntegerField(default=0, editable=False)  # In bytes.
     status = models.PositiveSmallIntegerField(
         choices=MKT_STATUS_FILE_CHOICES.items(), db_index=True,
         default=STATUS_NULL)
@@ -262,17 +263,19 @@ class ExtensionVersion(ModelBase):
 
         # Now that the instance has been saved, we can generate a file path
         # and move the file.
-        instance.handle_file_operations(upload)
+        size = instance.handle_file_operations(upload)
 
         # Now that the file is there, all that's left is making older pending
         # versions obsolete and setting this one as pending. That should also
-        # set the status # on the parent.
+        # set the status on the parent.
         instance.set_older_pending_versions_as_obsolete()
-        instance.update(status=STATUS_PENDING)
+        instance.update(size=size, status=STATUS_PENDING)
         return instance
 
     def handle_file_operations(self, upload):
-        """Copy the file attached to a FileUpload to the Extension instance."""
+        """Copy the file attached to a FileUpload to the Extension instance.
+
+        Return the file size."""
         upload.path = smart_path(nfd_str(upload.path))
 
         if private_storage.exists(self.file_path):
@@ -288,19 +291,26 @@ class ExtensionVersion(ModelBase):
             upload.path, self.file_path,
             src_storage=private_storage, dst_storage=private_storage)
 
+        return private_storage.size(self.file_path)
+
     def publish(self):
         """Publish this extension version to public."""
-        self.sign_and_move_file()
-        self.update(status=STATUS_PUBLIC)
+        size = self.sign_and_move_file()
+        self.update(size=size, status=STATUS_PUBLIC)
 
     def reject(self):
         """Reject this extension version."""
-        self.update(status=STATUS_REJECTED)
-        self.remove_signed_file()
+        size = self.remove_signed_file()
+        self.update(size=size, status=STATUS_REJECTED)
 
     def remove_signed_file(self):
+        """Remove signed file if it exists.
+
+        Return the size of the unsigned file, to be used by the caller to
+        update the size property on the current instance."""
         if public_storage.exists(self.signed_file_path):
             public_storage.delete(self.signed_file_path)
+        return private_storage.size(self.file_path)
 
     def set_older_pending_versions_as_obsolete(self):
         """Set all pending versions older than this one attached to the same
@@ -321,7 +331,9 @@ class ExtensionVersion(ModelBase):
     def sign_and_move_file(self):
         """Sign and move extension file from the unsigned path (`file_path`) on
         private storage to the signed path (`signed_file_path`) on public
-        storage."""
+        storage.
+
+        Return the file size."""
         if not self.extension.uuid:
             raise SigningError('Need uuid to be set to sign')
         if not self.pk:
@@ -346,6 +358,7 @@ class ExtensionVersion(ModelBase):
                 log.info('[ExtensionVersion:%s] Signing failed' % self.pk)
                 self.remove_signed_file()  # Clean up.
                 raise
+        return public_storage.size(self.signed_file_path)
 
     @property
     def signed_file_path(self):

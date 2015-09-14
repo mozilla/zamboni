@@ -16,8 +16,8 @@ class ExtensionVersionSerializer(ModelSerializer):
 
     class Meta:
         model = ExtensionVersion
-        fields = ['id', 'download_url', 'unsigned_download_url', 'status',
-                  'version']
+        fields = ['id', 'download_url', 'unsigned_download_url', 'size',
+                  'status', 'version']
 
 
 class ExtensionSerializer(ModelSerializer):
@@ -56,6 +56,7 @@ class ESExtensionSerializer(BaseESSerializer, ExtensionSerializer):
         obj.latest_public_version = ExtensionVersion(
             extension=obj,
             pk=data['latest_public_version']['id'],
+            size=data['latest_public_version'].get('size', 0),
             status=STATUS_PUBLIC,
             version=data['latest_public_version']['version'],)
 
