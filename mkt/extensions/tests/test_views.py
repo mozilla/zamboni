@@ -159,6 +159,7 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
         eq_(data['description'], {'en-US': u'A Dummÿ Extension'})
         eq_(data['slug'], u'my-lîttle-extension')
         eq_(data['status'], 'pending')
+        eq_(data['latest_version']['size'], 319)
         eq_(data['latest_version']['version'], '0.1')
         eq_(Extension.objects.count(), 1)
         eq_(ExtensionVersion.objects.count(), 1)
@@ -217,7 +218,8 @@ class TestExtensionViewSetGet(UploadTest, RestOAuth):
         self.extension = Extension.objects.create(
             name=u'Mŷ Extension', description=u'Mÿ Extension Description')
         self.version = ExtensionVersion.objects.create(
-            extension=self.extension, status=STATUS_PENDING, version='0.42')
+            extension=self.extension, size=4242, status=STATUS_PENDING,
+            version='0.42')
         self.extension.authors.add(self.user)
         self.extension2 = Extension.objects.create(name=u'NOT Mŷ Extension')
         self.version2 = ExtensionVersion.objects.create(
@@ -271,6 +273,7 @@ class TestExtensionViewSetGet(UploadTest, RestOAuth):
         eq_(data['description'], {'en-US': self.extension.description})
         eq_(data['latest_version']['download_url'],
             self.version.download_url)
+        eq_(data['latest_version']['size'], self.version.size)
         eq_(data['latest_version']['unsigned_download_url'],
             self.version.unsigned_download_url)
         eq_(data['latest_version']['version'], self.version.version)
@@ -297,6 +300,7 @@ class TestExtensionViewSetGet(UploadTest, RestOAuth):
         eq_(data['description'], {'en-US': self.extension.description})
         eq_(data['latest_version']['download_url'],
             self.version.download_url)
+        eq_(data['latest_version']['size'], self.version.size)
         eq_(data['latest_version']['unsigned_download_url'],
             self.version.unsigned_download_url)
         eq_(data['latest_version']['version'], self.version.version)
@@ -313,7 +317,8 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
         self.extension = Extension.objects.create(
             name=u'Mŷ Extension', description=u'Mÿ Extension Description')
         self.version = ExtensionVersion.objects.create(
-            extension=self.extension, status=STATUS_PUBLIC, version='1.0.0')
+            extension=self.extension, size=333, status=STATUS_PUBLIC,
+            version='1.0.0')
         self.url = reverse('api-v2:extension-search')
         super(TestExtensionSearchView, self).setUp()
         self.refresh('extension')
@@ -338,6 +343,7 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
         eq_(data['description'], {'en-US': self.extension.description})
         eq_(data['latest_public_version']['download_url'],
             self.version.download_url)
+        eq_(data['latest_public_version']['size'], self.version.size)
         eq_(data['latest_public_version']['unsigned_download_url'],
             self.version.unsigned_download_url)
         eq_(data['latest_public_version']['version'], self.version.version)
@@ -375,12 +381,13 @@ class TestReviewersExtensionViewSetGet(UploadTest, RestOAuth):
         self.extension = Extension.objects.create(
             name=u'Än Extension', description=u'Än Extension Description')
         self.version = ExtensionVersion.objects.create(
-            extension=self.extension, status=STATUS_PENDING,
+            extension=self.extension, size=999, status=STATUS_PENDING,
             version='48.1516.2342')
         another_extension = Extension.objects.create(
             name=u'Anothër Extension', description=u'Anothër Description')
         ExtensionVersion.objects.create(
-            extension=another_extension, status=STATUS_PUBLIC, version='0.1')
+            extension=another_extension, size=888, status=STATUS_PUBLIC,
+            version='0.1')
         self.url = reverse('api-v2:extension-queue-detail',
                            kwargs={'pk': self.extension.pk})
 
@@ -410,6 +417,7 @@ class TestReviewersExtensionViewSetGet(UploadTest, RestOAuth):
         expected_data_version = {
             'id': self.version.pk,
             'download_url': self.version.download_url,
+            'size': 999,
             'status': 'pending',
             'unsigned_download_url': self.version.unsigned_download_url,
             'version': self.version.version
@@ -445,6 +453,7 @@ class TestReviewersExtensionViewSetGet(UploadTest, RestOAuth):
         expected_data_version = {
             'id': self.version.pk,
             'download_url': self.version.download_url,
+            'size': 999,
             'status': 'pending',
             'unsigned_download_url': self.version.unsigned_download_url,
             'version': self.version.version
@@ -649,6 +658,7 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
                                     json.dumps({'validation_id': upload.pk}))
         eq_(response.status_code, 201)
         data = response.json
+        eq_(data['size'], 319)  # extension.zip size in bytes.
         eq_(data['status'], 'pending')
         eq_(data['version'], '0.1')
         eq_(Extension.objects.count(), 1)
@@ -661,22 +671,26 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
     @mock.patch('mkt.extensions.models.ExtensionVersion.sign_and_move_file')
     def test_publish(self, sign_and_move_file_mock):
         self.grant_permission(self.user, 'Extensions:Review')
+        sign_and_move_file_mock.return_value = 665
         response = self.client.post(self.publish_url)
         eq_(response.status_code, 202)
         eq_(sign_and_move_file_mock.call_count, 1)
         self.extension.reload()
         self.version.reload()
         eq_(self.extension.status, STATUS_PUBLIC)
+        eq_(self.version.size, 665)
         eq_(self.version.status, STATUS_PUBLIC)
 
     @mock.patch('mkt.extensions.models.ExtensionVersion.remove_signed_file')
     def test_reject(self, remove_signed_file_mock):
         self.grant_permission(self.user, 'Extensions:Review')
+        remove_signed_file_mock.return_value = 666
         response = self.client.post(self.reject_url)
         eq_(response.status_code, 202)
         eq_(remove_signed_file_mock.call_count, 1)
         self.extension.reload()
         self.version.reload()
+        eq_(self.version.size, 666)
         eq_(self.version.status, STATUS_REJECTED)
         # Now that the Extension has no pending or public version left, it's
         # back to incomplete.

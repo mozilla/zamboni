@@ -16,10 +16,12 @@ log = logging.getLogger('extensions.utils')
 
 
 class ExtensionParser(object):
-    def __init__(self, fileorpath):
+    def __init__(self, fileorpath, manifest_contents=None):
         self.fileorpath = fileorpath
+        if manifest_contents is not None:
+            self.manifest_contents = manifest_contents
 
-    @cached_property
+    @cached_property(writable=True)
     def manifest_contents(self):
         fp = get_file(self.fileorpath)
         if zipfile.is_zipfile(fp):

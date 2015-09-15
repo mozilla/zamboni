@@ -160,6 +160,28 @@ class Extension(ModelBase):
     def __unicode__(self):
         return u'%s: %s' % (self.pk, self.name)
 
+    def update_manifest_fields_from_latest_public_version(self):
+        """Update all fields for which the manifest is the source of truth
+        with the manifest from the latest public add-on."""
+        try:
+            version = self.latest_public_version
+        except ExtensionVersion.DoesNotExist:
+            return
+        if not version.manifest:
+            return
+        fields = ['default_language', 'description', 'name', ]
+        # We need to re-parse the manifest contents because some fields
+        # like default_language are transformed before being stored.
+        try:
+            parsed_data = ExtensionParser(
+                None, manifest_contents=version.manifest).parse()
+        except ValidationError:
+            # This should not happen, the manifest should be valid, but there
+            # is not much we can do from this method.
+            return
+        data = {k: parsed_data[k] for k in fields if k in parsed_data}
+        return self.update(**data)
+
     def update_status_according_to_versions(self):
         """Update `status`, `latest_version` and `latest_public_version`
         properties depending on the `status` on the ExtensionVersion
@@ -195,6 +217,7 @@ class ExtensionVersion(ModelBase):
                                         max_length=10)
     manifest = JSONField()
     version = models.CharField(max_length=23, default='')
+    size = models.PositiveIntegerField(default=0, editable=False)  # In bytes.
     status = models.PositiveSmallIntegerField(
         choices=MKT_STATUS_FILE_CHOICES.items(), db_index=True,
         default=STATUS_NULL)
@@ -262,17 +285,19 @@ class ExtensionVersion(ModelBase):
 
         # Now that the instance has been saved, we can generate a file path
         # and move the file.
-        instance.handle_file_operations(upload)
+        size = instance.handle_file_operations(upload)
 
         # Now that the file is there, all that's left is making older pending
         # versions obsolete and setting this one as pending. That should also
-        # set the status # on the parent.
+        # set the status on the parent.
         instance.set_older_pending_versions_as_obsolete()
-        instance.update(status=STATUS_PENDING)
+        instance.update(size=size, status=STATUS_PENDING)
         return instance
 
     def handle_file_operations(self, upload):
-        """Copy the file attached to a FileUpload to the Extension instance."""
+        """Copy the file attached to a FileUpload to the Extension instance.
+
+        Return the file size."""
         upload.path = smart_path(nfd_str(upload.path))
 
         if private_storage.exists(self.file_path):
@@ -288,19 +313,26 @@ class ExtensionVersion(ModelBase):
             upload.path, self.file_path,
             src_storage=private_storage, dst_storage=private_storage)
 
+        return private_storage.size(self.file_path)
+
     def publish(self):
         """Publish this extension version to public."""
-        self.sign_and_move_file()
-        self.update(status=STATUS_PUBLIC)
+        size = self.sign_and_move_file()
+        self.update(size=size, status=STATUS_PUBLIC)
 
     def reject(self):
         """Reject this extension version."""
-        self.update(status=STATUS_REJECTED)
-        self.remove_signed_file()
+        size = self.remove_signed_file()
+        self.update(size=size, status=STATUS_REJECTED)
 
     def remove_signed_file(self):
+        """Remove signed file if it exists.
+
+        Return the size of the unsigned file, to be used by the caller to
+        update the size property on the current instance."""
         if public_storage.exists(self.signed_file_path):
             public_storage.delete(self.signed_file_path)
+        return private_storage.size(self.file_path)
 
     def set_older_pending_versions_as_obsolete(self):
         """Set all pending versions older than this one attached to the same
@@ -321,7 +353,9 @@ class ExtensionVersion(ModelBase):
     def sign_and_move_file(self):
         """Sign and move extension file from the unsigned path (`file_path`) on
         private storage to the signed path (`signed_file_path`) on public
-        storage."""
+        storage.
+
+        Return the file size."""
         if not self.extension.uuid:
             raise SigningError('Need uuid to be set to sign')
         if not self.pk:
@@ -346,6 +380,7 @@ class ExtensionVersion(ModelBase):
                 log.info('[ExtensionVersion:%s] Signing failed' % self.pk)
                 self.remove_signed_file()  # Clean up.
                 raise
+        return public_storage.size(self.signed_file_path)
 
     @property
     def signed_file_path(self):
@@ -381,11 +416,13 @@ def delete_search_index(sender, instance, **kw):
     instance.get_indexer().unindex(instance.id)
 
 
-# Update status on Extension when an ExtensionVersion changes.
 @receiver([models.signals.post_delete, models.signals.post_save],
           sender=ExtensionVersion, dispatch_uid='extension_version_change')
-def update_extension_status(sender, instance, **kw):
+def update_extension_status_and_manifest_fields(sender, instance, **kw):
+    """Update extension status as well as fields for which the manifest is the
+    source of truth when an ExtensionVersion is changed or deleted."""
     instance.extension.update_status_according_to_versions()
+    instance.extension.update_manifest_fields_from_latest_public_version()
 
 
 # Save translations before saving Extensions instances with translated fields.

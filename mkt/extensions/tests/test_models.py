@@ -248,7 +248,7 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.status, STATUS_PENDING)
         eq_(extension.latest_version, new_version)
 
-    def extension_pending_version_deleted(self):
+    def test_extension_pending_version_deleted(self):
         extension = Extension.objects.create()
         new_version = ExtensionVersion.objects.create(
             extension=extension, status=STATUS_PENDING, version='0.1')
@@ -304,7 +304,7 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.latest_version, new_pending_version)
         eq_(extension.latest_public_version, new_public_version)
 
-    def extension_public_version_deleted(self):
+    def test_extension_public_version_deleted(self):
         extension = Extension.objects.create()
         new_public_version = ExtensionVersion.objects.create(
             extension=extension, status=STATUS_PUBLIC, version='0.1')
@@ -319,10 +319,10 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.status, STATUS_NULL)
         eq_(extension.reload().status, STATUS_NULL)
 
-    def extension_public_version_deleted_fallback_to_other(self):
+    def test_extension_public_version_deleted_fallback_to_other(self):
         extension = Extension.objects.create()
         ExtensionVersion.objects.create(
-            extension=extension, status=STATUS_NULL, version='0.1')
+            extension=extension, status=STATUS_NULL, version='0.0')
         first_public_version = ExtensionVersion.objects.create(
             extension=extension, status=STATUS_PUBLIC, version='0.1')
         second_public_version = ExtensionVersion.objects.create(
@@ -341,7 +341,7 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.latest_version, new_pending_version)
         eq_(extension.latest_public_version, first_public_version)
 
-    def extension_public_pending_version_deleted_no_change(self):
+    def test_extension_public_pending_version_deleted_no_change(self):
         extension = Extension.objects.create()
         ExtensionVersion.objects.create(
             extension=extension, status=STATUS_NULL, version='0.1')
@@ -360,6 +360,61 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.status, STATUS_PUBLIC)
         eq_(extension.latest_version, new_public_version)
         eq_(extension.latest_public_version, new_public_version)
+
+    def test_update_fields_from_manifest_when_version_is_made_public(self):
+        new_manifest = {
+            'name': u'New Nâme',
+            'description': u'New Descriptîon',
+            'version': '0.1',
+        }
+        extension = Extension.objects.create(
+            name=u'Old Nâme', description=u'Old Descriptîon')
+        version = ExtensionVersion.objects.create(
+            extension=extension, manifest=new_manifest, status=STATUS_PENDING,
+            version='0.1')
+        version.update(status=STATUS_PUBLIC)
+        eq_(extension.description, new_manifest['description'])
+        eq_(extension.name, new_manifest['name'])
+
+    def test_update_fields_from_manifest_when_public_version_is_deleted(self):
+        old_manifest = {
+            'name': u'Old Nâme',
+            'description': u'Old Descriptîon',
+            'version': '0.1',
+        }
+        new_manifest = {
+            'name': u'Deleted Nâme',
+            'description': u'Deleted Descriptîon',
+            'version': '0.2',
+        }
+        extension = Extension.objects.create(
+            name=u'Deleted Nâme', description=u'Deleted Descriptîon')
+        ExtensionVersion.objects.create(
+            extension=extension, manifest=old_manifest, status=STATUS_PUBLIC,
+            version='0.1')
+        version = ExtensionVersion.objects.create(
+            extension=extension, manifest=new_manifest, status=STATUS_PUBLIC,
+            version='0.2')
+        eq_(extension.description, new_manifest['description'])
+        eq_(extension.name, new_manifest['name'])
+        version.delete()
+        eq_(extension.description, old_manifest['description'])
+        eq_(extension.name, old_manifest['name'])
+
+    def test_dont_update_fields_from_manifest_when_not_necessary(self):
+        new_manifest = {
+            'name': u'New Nâme',
+            'description': u'New Descriptîon',
+            'version': '0.1',
+        }
+        extension = Extension.objects.create(
+            name=u'Old Nâme', description=u'Old Descriptîon')
+        ExtensionVersion.objects.create(
+            extension=extension, manifest=new_manifest, status=STATUS_PENDING,
+            version='0.1')
+        extension.reload()
+        eq_(extension.description, u'Old Descriptîon')
+        eq_(extension.name, u'Old Nâme')
 
 
 class TestExtensionVersionMethodsAndProperties(TestCase):
@@ -445,12 +500,16 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
 
     @mock.patch('mkt.extensions.models.sign_app')
     @mock.patch('mkt.extensions.models.private_storage')
+    @mock.patch('mkt.extensions.models.public_storage')
     @mock.patch.object(ExtensionVersion, 'remove_signed_file')
     def test_sign_and_move_file(self, remove_signed_file_mock,
-                                private_storage_mock, sign_app_mock):
+                                public_storage_mock, private_storage_mock,
+                                sign_app_mock):
         extension = Extension(uuid='ab345678123456781234567812345678')
         version = ExtensionVersion(extension=extension, pk=123)
-        version.sign_and_move_file()
+        public_storage_mock.size.return_value = 665
+        size = version.sign_and_move_file()
+        eq_(size, 665)
         expected_args = (
             private_storage_mock.open.return_value,
             version.signed_file_path,
@@ -492,59 +551,75 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
             version.sign_and_move_file()
         eq_(remove_signed_file_mock.call_count, 1)
 
+    @mock.patch('mkt.extensions.models.private_storage')
     @mock.patch('mkt.extensions.models.public_storage')
-    def test_remove_signed_file(self, mocked_public_storage):
+    def test_remove_signed_file(self, mocked_public_storage,
+                                mocked_private_storage):
         extension = Extension(pk=42, slug='mocked_ext')
         version = ExtensionVersion(extension=extension, pk=123)
         mocked_public_storage.exists.return_value = True
-        version.remove_signed_file()
+        mocked_private_storage.size.return_value = 668
+        size = version.remove_signed_file()
+        eq_(size, 668)
         eq_(mocked_public_storage.exists.call_args[0][0],
             version.signed_file_path)
         eq_(mocked_public_storage.delete.call_args[0][0],
             version.signed_file_path)
 
+    @mock.patch('mkt.extensions.models.private_storage')
     @mock.patch('mkt.extensions.models.public_storage')
-    def test_remove_signed_file_not_exists(self, public_storage_mock):
+    def test_remove_signed_file_not_exists(self, public_storage_mock,
+                                           mocked_private_storage):
         extension = Extension(pk=42, slug='mocked_ext')
         version = ExtensionVersion(extension=extension, pk=123)
         public_storage_mock.exists.return_value = False
-        version.remove_signed_file()
+        mocked_private_storage.size.return_value = 669
+        size = version.remove_signed_file()
+        eq_(size, 669)
         eq_(public_storage_mock.exists.call_args[0][0],
             version.signed_file_path)
         eq_(public_storage_mock.delete.call_count, 0)
 
     @mock.patch.object(ExtensionVersion, 'sign_and_move_file')
     def test_publish(self, mocked_sign_and_move_file):
+        mocked_sign_and_move_file.return_value = 666
         extension = Extension.objects.create(slug='mocked_ext')
         version = ExtensionVersion.objects.create(
-            extension=extension, status=STATUS_PENDING)
+            extension=extension, size=0, status=STATUS_PENDING)
         eq_(version.status, STATUS_PENDING)
         eq_(extension.status, STATUS_PENDING)  # Set automatically.
         version.publish()
         eq_(mocked_sign_and_move_file.call_count, 1)
+        eq_(version.size, 666)
         eq_(version.status, STATUS_PUBLIC)
         eq_(extension.status, STATUS_PUBLIC)
 
         # Also reload to make sure the changes hit the database.
-        eq_(version.reload().status, STATUS_PUBLIC)
+        version.reload()
+        eq_(version.status, STATUS_PUBLIC)
+        eq_(version.size, 666)
         eq_(extension.reload().status, STATUS_PUBLIC)
 
     @mock.patch.object(ExtensionVersion, 'remove_signed_file')
     def test_reject(self, mocked_remove_signed_file):
+        mocked_remove_signed_file.return_value = 667
         extension = Extension.objects.create(slug='mocked_ext')
         version = ExtensionVersion.objects.create(
-            extension=extension, status=STATUS_PENDING)
+            extension=extension, size=42, status=STATUS_PENDING)
         eq_(version.status, STATUS_PENDING)
         eq_(extension.status, STATUS_PENDING)  # Set automatically.
         version.reject()
         eq_(mocked_remove_signed_file.call_count, 1)
+        eq_(version.size, 667)
         eq_(version.status, STATUS_REJECTED)
         # At the moment Extension are not rejected, merely set back to
         # incomplete since they no longer have a pending or public version.
         eq_(extension.status, STATUS_NULL)
 
         # Also reload to make sure the changes hit the database.
-        eq_(version.reload().status, STATUS_REJECTED)
+        version.reload()
+        eq_(version.size, 667)
+        eq_(version.status, STATUS_REJECTED)
         eq_(extension.reload().status, STATUS_NULL)
 
 
