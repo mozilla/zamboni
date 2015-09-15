@@ -172,34 +172,41 @@ class SafeUnzip(object):
                an error, otherwise it will return False.
         """
         try:
-            zip = zipfile.ZipFile(self.source, self.mode)
+            self.zip = zipfile.ZipFile(self.source, self.mode)
         except (zipfile.BadZipfile, IOError):
             if fatal:
                 log.info('Error extracting', exc_info=True)
                 raise
             return False
 
-        _info = zip.infolist()
+        self.info = self.zip.infolist()
+        sum_size = 0
 
-        for info in _info:
+        for info in self.info:
             if '..' in info.filename or info.filename.startswith('/'):
-                log.error('Extraction error, invalid file name (%s) in '
-                          'archive: %s' % (info.filename, self.source))
+                log.error(u'Extraction error, invalid file name (%s) in '
+                          u'archive: %s' % (info.filename, self.source))
                 # L10n: {0} is the name of the invalid file.
                 raise forms.ValidationError(
-                    _('Invalid file name in archive: {0}').format(
+                    _(u'Invalid file name in archive: {0}').format(
                         info.filename))
 
             if info.file_size > settings.FILE_UNZIP_SIZE_LIMIT:
-                log.error('Extraction error, file too big (%s) for file (%s): '
-                          '%s' % (self.source, info.filename, info.file_size))
+                log.error(u'Extraction error, file too big (%s) in archive '
+                          u'%s' % (info.filename, self.source))
                 # L10n: {0} is the name of the invalid file.
                 raise forms.ValidationError(
-                    _('File exceeding size limit in archive: {0}').format(
+                    _(u'File exceeding size limit in archive: {0}').format(
                         info.filename))
 
-        self.info = _info
-        self.zip = zip
+            sum_size += info.file_size
+
+        if sum_size > settings.FILE_UNZIP_SIZE_LIMIT:
+            log.error('Extraction error, total size of files too big (%s)'
+                      ' in archive: %s' % (sum_size, self.source, ))
+            raise forms.ValidationError(_(
+                'Total size of files exeeding limit in archive: {0}').format(
+                info.filename))
         return True
 
     def is_signed(self):
@@ -236,7 +243,8 @@ class SafeUnzip(object):
             self.extract_info_to_dest(info, dest)
 
     def close(self):
-        self.zip.close()
+        if hasattr(self, 'zip'):
+            self.zip.close()
 
 
 def extract_zip(source):

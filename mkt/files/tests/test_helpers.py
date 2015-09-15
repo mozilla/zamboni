@@ -289,7 +289,13 @@ class TestSafeUnzipFile(TestCase, MktPaths):
     # TODO(andym): get full coverage for existing SafeUnzip methods, most
     # is covered in the file viewer tests.
     @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 5)
-    def test_unzip_limit(self):
+    def test_unzip_individual_file_size_limit(self):
+        zip = SafeUnzip(self.packaged_app_path('full-tpa.zip'))
+        self.assertRaises(forms.ValidationError, zip.is_valid)
+
+    @patch.object(settings, 'FILE_UNZIP_SIZE_LIMIT', 100 * 1024)
+    def test_unzip_total_file_size_limit(self):
+        # There are no files over 100 kb in that zip, but the total is over.
         zip = SafeUnzip(self.packaged_app_path('full-tpa.zip'))
         self.assertRaises(forms.ValidationError, zip.is_valid)
 

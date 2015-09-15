@@ -4,6 +4,7 @@ import json
 import os
 
 from django.core.urlresolvers import reverse
+from django.test.utils import override_settings
 
 from mock import patch
 from nose.tools import eq_, ok_
@@ -111,16 +112,15 @@ class TestPackagedValidation(MktPaths, ValidationHandler):
 
         res = client.post(self.list_url,
                           data=json.dumps({'upload': self.data}))
+        eq_(res.status_code, 202)
         data = json.loads(res.content)
         self.get_url = reverse('app-validation-detail',
                                kwargs={'pk': data['id']})
         eq_(tasks_mock.validator.delay.call_args[0][0], data['id'])
-        return res
+        return res, data
 
     def test_good(self):
-        res = self.create()
-        eq_(res.status_code, 202)
-        content = json.loads(res.content)
+        res, content = self.create()
         eq_(content['processed'], False)
         obj = FileUpload.objects.get(uuid=content['id'])
         eq_(obj.user, self.user)
@@ -134,6 +134,14 @@ class TestPackagedValidation(MktPaths, ValidationHandler):
         eq_(json.loads(res.content)['upload'][0],
             'Packaged app too large for submission. '
             'Packages must be smaller than 2 bytes.')
+
+    @override_settings(FILE_UNZIP_SIZE_LIMIT=42)
+    def test_file_in_zip_file_too_big(self):
+        res = self.client.post(self.list_url,
+                               data=json.dumps({'upload': self.data}))
+        eq_(res.status_code, 400)
+        eq_(json.loads(res.content)['upload'][0],
+            u'File exceeding size limit in archive: manifest.webapp')
 
     def form_errors(self, data, errors):
         res = self.client.post(self.list_url,
