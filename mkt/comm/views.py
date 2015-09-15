@@ -152,6 +152,17 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
         return CommunicationNote.objects.with_perms(
             self.request.user, self.comm_thread)
 
+    def _has_create_perms(self, request, thread, profile, note_type):
+        # Permissions check on the note type.
+        if note_type == comm.DEVELOPER_COMMENT:
+            # Developer comment only for developers.
+            return thread.check_obj_author(profile)
+        elif note_type == comm.REVIEWER_COMMENT:
+            # Reviewer comment only for reviewers.
+            return acl.check_reviewer(request)
+        else:
+            return True
+
     def create(self, request, *args, **kwargs):
         thread = get_object_or_404(CommunicationThread, id=kwargs['thread_id'])
 
@@ -161,16 +172,10 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
             return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
         note_type = form.cleaned_data['note_type']
 
-        if (note_type == comm.DEVELOPER_COMMENT and not
-            request.user.addonuser_set.filter(
-                addon=thread.addon).exists()):
-            # Developer comment only for developers.
-            return Response('Only developers can make developer comments',
-                            status=status.HTTP_403_FORBIDDEN)
-        elif (note_type == comm.REVIEWER_COMMENT and not
-              acl.check_reviewer(request)):
-            # Reviewer comment only for reviewers.
-            return Response('Only reviewers can make reviewer comments',
+        if not self._has_create_perms(request, thread, request.user,
+                                      note_type):
+            return Response('Only developers can make developer comments. '
+                            'Only reviewers can make reviewer comments.',
                             status=status.HTTP_403_FORBIDDEN)
 
         # Create notes.
@@ -305,6 +310,33 @@ class CommAppListView(SilentListModelMixin, CommViewSet):
 
         self.queryset = CommunicationThread.objects.filter(
             _addon=form.cleaned_data['app']).order_by('_version__version')
+
+        return SilentListModelMixin.list(self, request)
+
+
+class CommExtensionListView(SilentListModelMixin, CommViewSet):
+    model = CommunicationThread
+    serializer_class = ThreadSimpleSerializer
+    authentication_classes = (RestOAuthAuthentication,
+                              RestSharedSecretAuthentication)
+    permission_classes = (ThreadPermission,)  # On self.queryset.
+    cors_allowed_methods = ['get']
+
+    def list(self, request, app_slug):
+        """Return list of threads for the extension."""
+        form = forms.ExtensionSlugForm({'extension': app_slug})
+        if not form.is_valid():
+            # 404 if add-on with given slug/id not found.
+            return Response('Add-on does not exist or no slug given',
+                            status=status.HTTP_404_NOT_FOUND)
+        elif not user_has_perm_app(request.user,
+                                   form.cleaned_data['extension']):
+            # 403 if user does not have auth to access add-on's comm.
+            return Response('You do not have permissions for this add-on',
+                            status=status.HTTP_403_FORBIDDEN)
+
+        self.queryset = CommunicationThread.objects.filter(
+            _extension=form.cleaned_data['extension'])
 
         return SilentListModelMixin.list(self, request)
 

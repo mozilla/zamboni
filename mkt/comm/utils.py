@@ -4,22 +4,24 @@ from django.conf import settings
 
 from mkt.comm import utils_mail
 from mkt.constants import comm
+from mkt.extensions.models import Extension
 from mkt.users.models import UserProfile
 from mkt.site.storage_utils import private_storage
+from mkt.webapps.models import Webapp
 
 
 log = logging.getLogger('z.comm')
 
 
-def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
+def create_comm_note(obj, version, author, body, note_type=comm.NO_ACTION,
                      perms=None, attachments=None):
     """
-    Creates a note on an app version's thread.
+    Creates a note on an obj version's thread.
     Creates a thread if a thread doesn't already exist.
     CC's app's Mozilla contacts to auto-join thread.
 
-    app -- app object.
-    version -- app version.
+    obj -- app or extension.
+    version -- obj version.
     author -- UserProfile for the note's author.
     body -- string/text for note comment.
     note_type -- integer for note_type (mkt constant), defaults to 0/NO_ACTION
@@ -36,9 +38,17 @@ def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
     create_perms = dict(('read_permission_%s' % key, has_perm)
                         for key, has_perm in perms.iteritems())
 
+    # Differentiate between app and extension.
+    # grep: comm-content-type.
+    version_param = {}
+    if obj.__class__ == Webapp:
+        version_param['_version'] = version
+    elif obj.__class__ == Extension:
+        version_param['_extension_version'] = version
+
     # Create thread + note.
-    thread, created_thread = app.threads.safer_get_or_create(
-        _version=version, defaults=create_perms)
+    thread, created_thread = obj.threads.safer_get_or_create(
+        defaults=create_perms, **version_param)
     note = thread.notes.create(
         note_type=note_type, body=body, author=author, **create_perms)
 
@@ -53,23 +63,27 @@ def create_comm_note(app, version, author, body, note_type=comm.NO_ACTION,
 def post_create_comm_note(note):
     """Stuff to do after creating note, also used in comm api's post_save."""
     thread = note.thread
-    app = thread.addon
+    obj = thread.obj
 
     # Add developer to thread.
-    for developer in app.authors.all():
+    for developer in obj.authors.all():
         thread.join_thread(developer)
 
-    # Add Mozilla contact to thread.
-    nonuser_mozilla_contacts = []
-    for email in app.get_mozilla_contacts():
-        try:
-            moz_contact = UserProfile.objects.get(email=email)
-            thread.join_thread(moz_contact)
-        except UserProfile.DoesNotExist:
-            nonuser_mozilla_contacts.append((None, email))
-    utils_mail.email_recipients(nonuser_mozilla_contacts, note, extra_context={
-        'nonuser_mozilla_contact': True
-    })
+    try:
+        # Add Mozilla contact to thread.
+        nonuser_mozilla_contacts = []
+        for email in obj.get_mozilla_contacts():
+            try:
+                moz_contact = UserProfile.objects.get(email=email)
+                thread.join_thread(moz_contact)
+            except UserProfile.DoesNotExist:
+                nonuser_mozilla_contacts.append((None, email))
+        utils_mail.email_recipients(
+            nonuser_mozilla_contacts, note,
+            extra_context={'nonuser_mozilla_contact': True})
+    except AttributeError:
+        # Only apps have Mozilla contacts.
+        pass
 
     # Add note author to thread.
     author = note.author

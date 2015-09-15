@@ -1,7 +1,7 @@
 {% extends 'comm/emails/base.html' -%}
 
 {% block content %}
-A message about your app, {{ app.name }}:
+A message about your app, {{ obj.name }}:
 
 {% include 'comm/emails/includes/details.html' %}
 {% endblock %}

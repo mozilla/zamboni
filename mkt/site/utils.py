@@ -575,6 +575,16 @@ def app_factory(status=mkt.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
     return app
 
 
+def extension_factory(status=mkt.STATUS_PUBLIC, **kw):
+    from mkt.extensions.models import Extension
+    name = u'Extension %s' % unicode(uuid.uuid4()).replace('-', '')
+
+    extension = Extension.objects.create(
+        name=name, slug=name.replace(' ', '-').lower()[:30], **kw)
+    extension.versions.create(status=status, version='0.1')
+    return extension
+
+
 def file_factory(**kw):
     from mkt.files.models import File
     v = kw['version']

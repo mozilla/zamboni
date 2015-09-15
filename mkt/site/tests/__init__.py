@@ -42,7 +42,8 @@ from mkt.search.indexers import BaseIndexer
 from mkt.site.fixtures import fixture
 from mkt.site.storage_utils import (copy_stored_file, local_storage,
                                     private_storage)
-from mkt.site.utils import app_factory, website_factory  # NOQA
+from mkt.site.utils import (app_factory, extension_factory,  # NOQA
+                            website_factory)  # NOQA
 from mkt.translations.hold import clean_translations
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile

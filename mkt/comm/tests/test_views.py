@@ -19,7 +19,7 @@ from mkt.comm.views import (EmailCreationPermission, post_email,
                             ThreadPermission)
 from mkt.site.fixtures import fixture
 from mkt.site.tests import req_factory_factory, user_factory
-from mkt.site.utils import app_factory, version_factory
+from mkt.site.utils import app_factory, extension_factory, version_factory
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 
@@ -441,6 +441,100 @@ class TestNote(NoteSetupMixin):
         self.assertCORS(res, 'get', 'post', 'patch')
 
 
+class TestNoteExtension(RestOAuth, CommTestMixin, AttachmentManagementMixin):
+    fixtures = fixture('user_2519', 'user_support_staff')
+
+    """Test note stuff works with Firefox OS add-ons as well."""
+    def setUp(self):
+        # Keep self.addon name to work with _thread_factory().
+        super(TestNoteExtension, self).setUp()
+
+        self.addon = extension_factory()
+        self.version = self.addon.latest_version
+        self.thread = self._thread_factory(
+            perms=['developer'], version=self.addon.latest_version)
+        self.thread_url = reverse(
+            'comm-thread-detail', kwargs={'pk': self.thread.id})
+        self.list_url = reverse(
+            'comm-note-list', kwargs={'thread_id': self.thread.id})
+
+        self.profile = UserProfile.objects.get(pk=2519)
+        self.profile.extension_set.add(self.addon)
+
+    @override_settings(REVIEWER_ATTACHMENTS_PATH=TESTS_DIR)
+    def test_response(self):
+        note = self._note_factory(self.thread)
+        attach = note.attachments.create(filepath='test_views.py',
+                                         description='desc')
+
+        res = self.client.get(reverse(
+            'comm-note-detail',
+            kwargs={'thread_id': self.thread.id, 'pk': note.id}))
+        eq_(res.status_code, 200)
+        eq_(res.json['body'], 'something')
+
+        # Attachments.
+        eq_(len(res.json['attachments']), 1)
+        eq_(res.json['attachments'][0]['url'],
+            settings.SITE_URL +
+            reverse('comm-attachment-detail', args=[note.id, attach.id]))
+        eq_(res.json['attachments'][0]['display_name'], 'desc')
+        ok_(not res.json['attachments'][0]['is_image'])
+
+    def test_create(self):
+        res = self.client.post(self.list_url, data=json.dumps({
+            'note_type': comm.NO_ACTION, 'body': 'something'
+        }))
+        eq_(res.status_code, 201)
+        eq_(res.json['body'], 'something')
+
+    def test_create_dev_comment(self):
+        res = self.client.post(self.list_url, data=json.dumps({
+            'note_type': comm.DEVELOPER_COMMENT,
+            'body': 'something'
+        }))
+        eq_(res.status_code, 201)
+
+        self.profile.extension_set.remove(self.addon)
+        res = self.client.post(self.list_url, data=json.dumps({
+            'note_type': comm.DEVELOPER_COMMENT,
+            'body': 'something'
+        }))
+        eq_(res.status_code, 403)
+
+    def test_create_rev_comment(self):
+        res = self.client.post(self.list_url, data=json.dumps({
+            'note_type': comm.REVIEWER_COMMENT,
+            'body': 'something'
+        }))
+        eq_(res.status_code, 403)
+
+        self.grant_permission(self.profile, 'Apps:Review')
+        res = self.client.post(self.list_url, data=json.dumps({
+            'note_type': comm.DEVELOPER_COMMENT,
+            'body': 'something'
+        }))
+        eq_(res.status_code, 201)
+
+    def test_create_allowed_note_types(self):
+        res = self.client.post(self.list_url, data=({
+            'note_type': comm.RESUBMISSION,
+            'body': 'something'
+        }))
+        eq_(res.status_code, 400)
+
+    def test_create_no_perm(self):
+        self.thread.update(read_permission_developer=False)
+        res = self.client.post(self.list_url, data=json.dumps({
+            'note_type': '0', 'body': 'something'
+        }))
+        eq_(res.status_code, 403)
+
+    def test_cors_allowed(self):
+        res = self.client.get(self.list_url)
+        self.assertCORS(res, 'get', 'post', 'patch')
+
+
 class TestAttachments(NoteSetupMixin):
 
     def setUp(self):
@@ -661,6 +755,44 @@ class TestCommAppListView(RestOAuth, CommTestMixin):
 
     def test_404(self):
         res = self.client.get(reverse('api-v2:comm-app-list',
+                              args=['THISAPPISINANUTHACASTLE']))
+        eq_(res.status_code, 404)
+
+
+class TestCommExtensionListView(RestOAuth, CommTestMixin):
+    fixtures = fixture('user_2519',)
+
+    def setUp(self):
+        super(TestCommExtensionListView, self).setUp()
+        # Keep the self.addon name so it can work with CommTestMixin.
+        self.addon = extension_factory()
+        self.profile = UserProfile.objects.get(id=2519)
+        self.profile.extension_set.add(self.addon)
+
+    def test_list(self):
+        thread = self._thread_factory(
+            _extension_version=self.addon.latest_version)
+
+        res = self.client.get(reverse('api-v2:comm-extension-list',
+                                      args=[self.addon.slug]))
+
+        eq_(res.status_code, 200)
+        eq_(res.json['objects'][0], {
+            'id': thread.id,
+            'version': {
+                'id': thread.version.id,
+                'version': thread.version.version
+            }
+        })
+
+    def test_403(self):
+        self.profile.extension_set.remove(self.addon.id)
+        res = self.client.get(reverse('api-v2:comm-extension-list',
+                              args=[self.addon.slug]))
+        eq_(res.status_code, 403)
+
+    def test_404(self):
+        res = self.client.get(reverse('api-v2:comm-extension-list',
                               args=['THISAPPISINANUTHACASTLE']))
         eq_(res.status_code, 404)
 
