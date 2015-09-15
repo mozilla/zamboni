@@ -118,7 +118,7 @@ tower==0.4.1
 urllib3==1.10.3
 
 ## Not on pypi.
--e git+https://github.com/mozilla/app-validator.git@fd2ccf8643f27fe935203cb1071662077b2c1101#egg=app-validator
+-e git+https://github.com/mozilla/app-validator.git@7d45c525ae912db833a2423062bc3559b7cece13#egg=app-validator
 -e git+https://github.com/mozilla/happyforms.git@729612c2a824a7e8283d416d2084bf506c671e24#egg=happyforms
 
 ## Temporary fork.
