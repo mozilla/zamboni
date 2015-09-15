@@ -89,7 +89,6 @@ LOGGING['loggers'].update({
     'z.elasticsearch': {'level': logging.DEBUG},
     'z.pool': {'level': logging.ERROR},
     'z.task': {'level': logging.DEBUG},
-    'z.redis': {'level': logging.DEBUG},
     'z.users': {'level': logging.DEBUG},
 })
 
@@ -152,8 +151,6 @@ SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 MEDIA_URL = STATIC_URL + 'media/'
 
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
-
-CACHE_MACHINE_ENABLED = True
 
 SYSLOG_TAG = "http_app_mkt_{0}".format(ENV)
 SYSLOG_TAG2 = "http_app_mkt_{0}_timer".format(ENV)
