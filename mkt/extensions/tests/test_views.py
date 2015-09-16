@@ -10,6 +10,7 @@ from django.test.utils import override_settings
 from nose.tools import eq_, ok_
 
 from mkt.api.tests.test_oauth import RestOAuth
+from mkt.constants import comm
 from mkt.constants.apps import MANIFEST_CONTENT_TYPE
 from mkt.constants.base import (STATUS_NULL, STATUS_PENDING, STATUS_PUBLIC,
                                 STATUS_REJECTED)
@@ -166,6 +167,8 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
         extension = Extension.objects.get(pk=data['id'])
         eq_(extension.status, STATUS_PENDING)
         eq_(list(extension.authors.all()), [self.user])
+
+        eq_(extension.threads.get().notes.get().note_type, comm.SUBMISSION)
 
     def test_create_upload_has_no_user(self):
         upload = self.get_upload(
@@ -681,6 +684,8 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
         eq_(self.version.size, 665)
         eq_(self.version.status, STATUS_PUBLIC)
 
+        eq_(self.version.threads.get().notes.get().note_type, comm.APPROVAL)
+
     @mock.patch('mkt.extensions.models.ExtensionVersion.remove_signed_file')
     def test_reject(self, remove_signed_file_mock):
         self.grant_permission(self.user, 'Extensions:Review')
@@ -695,6 +700,8 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
         # Now that the Extension has no pending or public version left, it's
         # back to incomplete.
         eq_(self.extension.status, STATUS_NULL)
+
+        eq_(self.version.threads.get().notes.get().note_type, comm.REJECTION)
 
 
 class TestExtensionNonAPIViews(TestCase):
