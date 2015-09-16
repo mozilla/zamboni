@@ -1,6 +1,7 @@
 from datetime import datetime
 from os import path
 
+from django.core.exceptions import ValidationError
 from django.core.urlresolvers import NoReverseMatch
 from django.test.utils import override_settings
 
@@ -14,7 +15,7 @@ from mkt.comm.models import (CommAttachment, CommunicationNote,
 from mkt.comm.tests.test_views import CommTestMixin
 from mkt.constants import comm as const
 from mkt.site.fixtures import fixture
-from mkt.site.tests import TestCase, user_factory
+from mkt.site.tests import TestCase, extension_factory, user_factory
 from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
 
@@ -111,8 +112,8 @@ class TestCommunicationThread(PermissionTestMixin, TestCase):
         self.obj = self.thread
 
     def test_addon_deleted(self):
-        self.thread.addon.update(status=mkt.STATUS_DELETED)
-        eq_(self.thread.addon, self.addon)
+        self.thread.obj.update(status=mkt.STATUS_DELETED)
+        eq_(self.thread.obj, self.addon)
 
     def test_version_deleted(self):
         self.version.update(deleted=True)
@@ -135,6 +136,46 @@ class TestCommunicationThread(PermissionTestMixin, TestCase):
         ok_(not user_has_perm_app(self.user, self.addon))
         self.addon.addonuser_set.create(user=self.user)
         ok_(user_has_perm_app(self.user, self.addon))
+
+    def test_clean(self):
+        with self.assertRaises(ValidationError):
+            # Need app.
+            CommunicationThread.objects.create().clean()
+
+        with self.assertRaises(ValidationError):
+            # Need version.
+            CommunicationThread.objects.create(_addon=self.addon).clean()
+
+
+class TestCommunicationThreadExtension(TestCase):
+    fixtures = fixture('user_999',)
+
+    def setUp(self):
+        self.extension = extension_factory()
+        self.version = self.extension.latest_version
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+
+        self.thread = CommunicationThread.objects.create(
+            _extension=self.extension, _extension_version=self.version)
+        self.author = user_factory(email='lol')
+        self.note = CommunicationNote.objects.create(
+            thread=self.thread, author=self.author, note_type=0, body='xyz')
+
+    def test_fields(self):
+        ok_(not self.thread._addon)
+        ok_(not self.thread._version)
+
+    def test_obj(self):
+        eq_(self.thread.obj, self.extension)
+
+    def test_version(self):
+        eq_(self.thread.version, self.version)
+
+    def test_clean(self):
+        with self.assertRaises(ValidationError):
+            # Need extension version.
+            CommunicationThread.objects.create(
+                _extension=self.extension).clean()
 
 
 class TestThreadTokenModel(TestCase):

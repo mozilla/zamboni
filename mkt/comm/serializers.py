@@ -125,7 +125,6 @@ class ThreadSerializer(ModelSerializer):
 
 
 class CommVersionSerializer(ModelSerializer):
-
     class Meta:
         model = Version
         fields = ('id', 'deleted', 'version')
@@ -141,7 +140,6 @@ class ThreadSerializerV2(ThreadSerializer):
 
 
 class CommVersionSimpleSerializer(ModelSerializer):
-
     class Meta(CommVersionSerializer.Meta):
         fields = ('id', 'version')
 

@@ -18,6 +18,7 @@ from mkt.access import acl
 from mkt.access.models import Group
 from mkt.comm.models import CommunicationThreadToken, user_has_perm_thread
 from mkt.constants import comm
+from mkt.extensions.models import Extension
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail_jinja
 from mkt.translations.utils import to_language
@@ -126,26 +127,35 @@ def get_mail_context(note):
     """
     Get context data for comm emails, specifically for review action emails.
     """
-    app = note.thread.addon
+    obj = note.thread.obj
 
-    if app.name and app.name.locale != app.default_locale:
+    # grep: comm-content-type.
+    if obj.name and obj.__class__ == Webapp:
         # We need to display the name in some language that is relevant to the
         # recipient(s) instead of using the reviewer's. addon.default_locale
         # should work.
-        lang = to_language(app.default_locale)
+        lang = to_language(obj.default_locale)
         with translation.override(lang):
-            app = Webapp.with_deleted.get(id=app.id)
-    elif not app.name:
-        # For deleted apps.
-        app.name = app.app_slug
+            obj = Webapp.with_deleted.get(id=obj.id)
+    elif not obj.name:
+        # For deleted objects.
+        obj.name = obj.app_slug if hasattr(obj, 'app_slug') else obj.slug
+
+    # grep: comm-content-type.
+    review_url = ''
+    if obj.__class__ == Webapp:
+        review_url = absolutify(reverse('reviewers.apps.review',
+                                        args=[obj.app_slug]))
+    elif obj.__class__ == Extension:
+        review_url = absolutify(reverse('commonplace.content.addon_review',
+                                        args=[obj.slug]))
 
     return {
         'mkt': mkt,
-        'app': app,
         'comm': comm,
         'note': note,
-        'review_url': absolutify(reverse('reviewers.apps.review',
-                                 args=[app.app_slug])),
+        'obj': obj,
+        'review_url': review_url,
         'settings': settings
     }
 
@@ -250,7 +260,9 @@ def save_from_email_reply(reply_text):
         note_type = comm.NO_ACTION
         if (tok.user.addonuser_set.filter(addon=tok.thread.addon).exists()):
             note_type = comm.DEVELOPER_COMMENT
-        elif acl.action_allowed_user(tok.user, 'Apps', 'Review'):
+        elif (acl.action_allowed_user(tok.user, 'Apps', 'Review') or
+              acl.action_allowed_user(tok.user, 'Firefox OS Add-ons',
+                                      'Review')):
             note_type = comm.REVIEWER_COMMENT
 
         t, note = create_comm_note(tok.thread.addon, tok.thread.version,

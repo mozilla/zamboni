@@ -9,12 +9,18 @@ from tower import ugettext as _, ugettext_lazy as _lazy
 from mkt.api.forms import SluggableModelChoiceField
 from mkt.comm.models import CommunicationThread
 from mkt.constants import comm
+from mkt.extensions.models import Extension
 from mkt.webapps.models import Webapp
 
 
 class AppSlugForm(happyforms.Form):
     app = SluggableModelChoiceField(queryset=Webapp.with_deleted.all(),
                                     sluggable_to_field_name='app_slug')
+
+
+class ExtensionSlugForm(happyforms.Form):
+    extension = SluggableModelChoiceField(queryset=Extension.objects.all(),
+                                          sluggable_to_field_name='slug')
 
 
 class CreateCommNoteForm(happyforms.Form):

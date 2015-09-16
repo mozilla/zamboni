@@ -1,8 +1,8 @@
 {%- if note.note_type == comm.ADDITIONAL_REVIEW_PASSED -%}
-{{ app.name }} has passed the low-memory device review. It will now
+{{ obj.name }} has passed the low-memory device review. It will now
 be shown to low-memory devices.
 {% else %}
-{{ app.name }} has not passed the low-memory device review. It will
+{{ obj.name }} has not passed the low-memory device review. It will
 not be shown to low-memory devices.
 {% endif %}
 

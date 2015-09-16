@@ -3,6 +3,7 @@ import os
 from datetime import datetime
 
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.safestring import mark_safe
@@ -12,9 +13,10 @@ from uuidfield.fields import UUIDField
 
 from mkt.access import acl
 from mkt.constants import comm
+from mkt.extensions.models import Extension
 from mkt.site.models import ModelBase
 from mkt.translations.fields import save_signal
-from mkt.webapps.models import AddonUser
+from mkt.webapps.models import AddonUser, Webapp
 
 
 class CommunicationPermissionModel(ModelBase):
@@ -36,8 +38,11 @@ def check_acls(user, obj, acl_type):
         try:
             return user.email in obj.addon.get_mozilla_contacts()
         except AttributeError:
-            return user.email in obj.thread.addon.get_mozilla_contacts()
-    if acl_type == 'admin':
+            try:
+                return user.email in obj.thread.addon.get_mozilla_contacts()
+            except AttributeError:
+                return False
+    elif acl_type == 'admin':
         return acl.action_allowed_user(user, 'Admin', '%')
     elif acl_type == 'reviewer':
         return acl.action_allowed_user(user, 'Apps', 'Review')
@@ -72,17 +77,27 @@ def check_acls_comm_obj(obj, profile):
     return False
 
 
-def user_has_perm_app(user, app):
+def user_has_perm_app(user, obj):
     """
+    It's named `app` for historical reasons, but it `obj` can be either a
+    Webapp or Extension.
+
     Check if user has any app-level ACLs.
     (Mozilla contact, admin, review, senior reviewer, developer).
     """
+    # grep: comm-content-type.
+    has_perm = False
+    if obj.__class__ == Webapp:
+        has_perm = (user.addons.filter(pk=obj.id).exists() or
+                    user.email in obj.get_mozilla_contacts())
+    elif obj.__class__ == Extension:
+        has_perm = user.extension_set.filter(pk=obj.id).exists()
+
     return (
+        has_perm or
         check_acls(user, None, 'reviewer') or
-        user.addons.filter(pk=app.id).exists() or
         check_acls(user, None, 'senior_reviewer') or
-        check_acls(user, None, 'admin') or
-        user.email in app.get_mozilla_contacts()
+        check_acls(user, None, 'admin')
     )
 
 
@@ -104,16 +119,14 @@ def user_has_perm_thread(thread, profile):
     if user_post.exists() or user_cc.exists():
         return True
 
-    # User is a developer of the add-on and has the permission to read.
-    user_is_author = AddonUser.objects.filter(addon_id=thread._addon_id,
-                                              user=profile)
-    if thread.read_permission_developer and user_is_author.exists():
+    if thread.read_permission_developer and thread.check_obj_author(profile):
+        # Developers have permissions to their own threads.
         return True
 
     return check_acls_comm_obj(thread, profile)
 
 
-def user_has_perm_note(note, profile):
+def user_has_perm_note(note, profile, request=None):
     """
     Check if the user has read/write permissions on the given note.
 
@@ -124,8 +137,16 @@ def user_has_perm_note(note, profile):
     of the user.
     """
     if note.author and note.author.id == profile.id:
-        # Let the dude access his own note.
+        # Let the person access their own note.
         return True
+
+    if note.note_type == comm.DEVELOPER_COMMENT:
+        # Developer comment only for developers.
+        return note.thread.check_obj_author(profile)
+
+    if request and note.note_type == comm.REVIEWER_COMMENT:
+        # Reviewer comment only for reviewers.
+        return acl.check_reviewer(request)
 
     # User is a developer of the add-on and has the permission to read.
     user_is_author = profile.addons.filter(pk=note.thread._addon_id)
@@ -136,26 +157,83 @@ def user_has_perm_note(note, profile):
 
 
 class CommunicationThread(CommunicationPermissionModel):
+    """
+    Works for both apps (which are incorrectly named add-ons for historical
+    reasons), and Firefox OS add-ons (which are named extensions). Got it?
+    """
     _addon = models.ForeignKey('webapps.Webapp', related_name='threads',
-                               db_column='addon_id')
+                               db_column='addon_id', null=True)
     _version = models.ForeignKey('versions.Version', related_name='threads',
                                  db_column='version_id', null=True)
 
+    _extension = models.ForeignKey(
+        'extensions.Extension', related_name='threads',
+        db_column='_extension_id', null=True)
+    _extension_version = models.ForeignKey(
+        'extensions.ExtensionVersion', related_name='threads',
+        db_column='extension_version_id', null=True)
+
     class Meta:
         db_table = 'comm_threads'
-        unique_together = ('_addon', '_version')
+        unique_together = (
+            ('_addon', '_version'),
+            ('_extension', '_extension_version'),
+        )
+
+    def clean(self):
+        """Check at least has one of each foreign key."""
+        if not self._addon and not self._extension:
+            raise ValidationError(
+                'One of _addon or _extension required')
+
+        if not self._version and not self._extension_version:
+            raise ValidationError(
+                'One of _version or _extension_version required')
+
+    @property
+    def obj(self):
+        """
+        Returns either the add-on or extension depending on the type of the
+        thread.
+        """
+        # grep: comm-content-type.
+        if self._addon_id:
+            from mkt.webapps.models import Webapp
+            return Webapp.with_deleted.get(pk=self._addon_id)
+        elif self._extension_id:
+            return self._extension
 
     @property
     def addon(self):
-        from mkt.webapps.models import Webapp
-        return Webapp.with_deleted.get(pk=self._addon_id)
+        """
+        TODO: get rid of all references to thread.addon.
+        """
+        return self.obj
 
     @property
     def version(self):
-        from mkt.versions.models import Version
+        """
+        Returns either the add-on or extension depending on the type of the
+        thread.
+        """
+        # grep: comm-content-type.
         if self._version_id:
+            from mkt.versions.models import Version
             return Version.with_deleted.get(pk=self._version_id)
-        return None
+        elif self._extension_version_id:
+            return self._extension_version
+
+    def check_obj_author(self, profile):
+        """
+        Check if profile is an author or developer of the obj this thread
+        refers to, commonly used for permissions.
+        """
+        # grep: comm-content-type.
+        if self.obj.__class__ == Webapp:
+            return AddonUser.objects.filter(addon_id=self.obj.id,
+                                            user=profile).exists()
+        elif self.obj.__class__ == Extension:
+            return profile.extension_set.filter(id=self.obj.id).exists()
 
     def join_thread(self, user):
         return self.thread_cc.get_or_create(user=user)
