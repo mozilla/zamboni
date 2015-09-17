@@ -39,7 +39,7 @@ class ExtensionSerializer(ModelSerializer):
 
     class Meta:
         model = Extension
-        fields = ['id', 'description', 'latest_version',
+        fields = ['id', 'description', 'last_updated', 'latest_version',
                   'latest_public_version', 'mini_manifest_url', 'name', 'slug',
                   'status', ]
 
@@ -64,7 +64,8 @@ class ESExtensionSerializer(BaseESSerializer, ExtensionSerializer):
         # Set basic attributes we'll need on the fake instance using the data
         # from ES.
         self._attach_fields(
-            obj, data, ('default_language', 'slug', 'status', 'version'))
+            obj, data, ('default_language', 'last_updated', 'slug', 'status',
+                        'version'))
 
         obj.uuid = data['guid']
 

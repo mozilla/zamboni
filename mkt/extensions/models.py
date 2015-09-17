@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 import os.path
+from datetime import datetime
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -52,10 +53,11 @@ class ExtensionVersionManager(ManagerBase):
 
 class Extension(ModelBase):
     # Automatically handled fields.
-    uuid = UUIDField(auto=True)
+    last_updated = models.DateTimeField(db_index=True, null=True)
     status = models.PositiveSmallIntegerField(
         choices=STATUS_CHOICES.items(), db_index=True,
         default=STATUS_NULL)
+    uuid = UUIDField(auto=True)
 
     # Fields for which the manifest is the source of truth - can't be
     # overridden by the API.
@@ -243,6 +245,7 @@ class ExtensionVersion(ModelBase):
     default_language = models.CharField(default=settings.LANGUAGE_CODE,
                                         max_length=10)
     manifest = JSONField()
+    reviewed = models.DateTimeField(null=True)
     version = models.CharField(max_length=23, default='')
     size = models.PositiveIntegerField(default=0, editable=False)  # In bytes.
     status = models.PositiveSmallIntegerField(
@@ -341,7 +344,8 @@ class ExtensionVersion(ModelBase):
             # to re-upload the same version. This should have been caught
             # before, so just raise an exception.
             raise RuntimeError(
-                'Trying to upload a file to a destination that already exists')
+                'Trying to upload a file to a destination that already exists:'
+                ' %s' % self.file_path)
 
         # Copy file from fileupload. This uses private_storage for now as the
         # unreviewed, unsigned filename is private.
@@ -359,9 +363,13 @@ class ExtensionVersion(ModelBase):
         return v1 > v2
 
     def publish(self):
-        """Publish this extension version to public."""
+        """Publicize this extension version.
+
+        Update last_updated and reviewed fields at the same time."""
+        now = datetime.utcnow()
         size = self.sign_and_move_file()
-        self.update(size=size, status=STATUS_PUBLIC)
+        self.extension.update(last_updated=now)
+        self.update(size=size, status=STATUS_PUBLIC, reviewed=now)
 
     def reject(self):
         """Reject this extension version."""

@@ -2,6 +2,7 @@
 import json
 import mock
 import os.path
+from datetime import datetime
 
 from django.conf import settings
 from django.test.utils import override_settings
@@ -37,6 +38,11 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
     def setUp(self):
         super(TestExtensionUpload, self).setUp()
         self.user = UserProfile.objects.get(pk=2519)
+
+    def tearDown(self):
+        super(TestExtensionUpload, self).tearDown()
+        # Explicitely delete the Extensions to clean up leftover files.
+        Extension.objects.all().delete()
 
     def test_auto_create_slug(self):
         extension = Extension.objects.create()
@@ -592,7 +598,12 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
         eq_(public_storage_mock.delete.call_count, 0)
 
     @mock.patch.object(ExtensionVersion, 'sign_and_move_file')
-    def test_publish(self, mocked_sign_and_move_file):
+    @mock.patch('mkt.extensions.models.datetime')
+    def test_publish(self, datetime_mock, mocked_sign_and_move_file):
+        datetime_mock.utcnow.return_value = (
+            # Microseconds are not saved by MySQL, so set it to 0 to make sure
+            # our comparisons still work once the model is saved to the db.
+            datetime.utcnow().replace(microsecond=0))
         mocked_sign_and_move_file.return_value = 666
         extension = Extension.objects.create(slug='mocked_ext')
         version = ExtensionVersion.objects.create(
@@ -606,10 +617,12 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
         eq_(extension.status, STATUS_PUBLIC)
 
         # Also reload to make sure the changes hit the database.
+        extension.reload()
         version.reload()
         eq_(version.status, STATUS_PUBLIC)
         eq_(version.size, 666)
-        eq_(extension.reload().status, STATUS_PUBLIC)
+        eq_(extension.last_updated, datetime_mock.utcnow.return_value)
+        eq_(extension.status, STATUS_PUBLIC)
 
     @mock.patch.object(ExtensionVersion, 'remove_signed_file')
     def test_reject(self, mocked_remove_signed_file):

@@ -1249,7 +1249,7 @@ class TestReviewTransaction(AttachmentManagementMixin,
         with private_storage.open(
                 self.version.files.all()[0].file_path, 'w') as f:
             f.write('.')
-        public_storage.delete(self.version.files.all()[0].file_path)
+        public_storage.delete(self.version.files.all()[0].signed_file_path)
         self.app.update(status=mkt.STATUS_PENDING, is_packaged=True,
                         _current_version=None, _signal=False)
         eq_(self.get_app().status, mkt.STATUS_PENDING)

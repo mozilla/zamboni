@@ -2,6 +2,7 @@
 import hashlib
 import json
 import mock
+from datetime import datetime
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -18,7 +19,7 @@ from mkt.extensions.models import Extension, ExtensionVersion
 from mkt.files.models import FileUpload
 from mkt.files.tests.test_models import UploadTest
 from mkt.site.fixtures import fixture
-from mkt.site.storage_utils import private_storage, public_storage
+from mkt.site.storage_utils import private_storage
 from mkt.site.tests import ESTestCase, MktPaths, TestCase
 from mkt.users.models import UserProfile
 
@@ -148,6 +149,11 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
         self.list_url = reverse('api-v2:extension-list')
         self.user = UserProfile.objects.get(pk=2519)
 
+    def tearDown(self):
+        super(TestExtensionViewSetPost, self).tearDown()
+        # Explicitely delete the Extensions to clean up leftover files.
+        Extension.objects.all().delete()
+
     def test_create_logged_in(self):
         upload = self.get_upload(
             abspath=self.packaged_app_path('extension.zip'), user=self.user)
@@ -156,12 +162,13 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
                                     json.dumps({'validation_id': upload.pk}))
         eq_(response.status_code, 201)
         data = response.json
-        eq_(data['name'], {'en-US': u'My Lîttle Extension'})
         eq_(data['description'], {'en-US': u'A Dummÿ Extension'})
-        eq_(data['slug'], u'my-lîttle-extension')
-        eq_(data['status'], 'pending')
+        eq_(data['name'], {'en-US': u'My Lîttle Extension'})
+        eq_(data['last_updated'], None)  # The extension is not public yet.
         eq_(data['latest_version']['size'], 319)
         eq_(data['latest_version']['version'], '0.1')
+        eq_(data['slug'], u'my-lîttle-extension')
+        eq_(data['status'], 'pending')
         eq_(Extension.objects.count(), 1)
         eq_(ExtensionVersion.objects.count(), 1)
         extension = Extension.objects.get(pk=data['id'])
@@ -250,7 +257,7 @@ class TestExtensionViewSetDelete(RestOAuth):
         eq_(Extension.objects.count(), 2)
 
 
-class TestExtensionViewSetGet(UploadTest, RestOAuth):
+class TestExtensionViewSetGet(RestOAuth):
     fixtures = fixture('user_2519', 'user_999')
 
     def setUp(self):
@@ -294,6 +301,7 @@ class TestExtensionViewSetGet(UploadTest, RestOAuth):
         data = response.json['objects'][0]
         eq_(data['id'], self.extension.id)
         eq_(data['description'], {'en-US': self.extension.description})
+        eq_(data['last_updated'], None)  # The extension is not public yet.
         eq_(data['latest_version']['download_url'],
             self.version.download_url)
         eq_(data['latest_version']['unsigned_download_url'],
@@ -309,11 +317,13 @@ class TestExtensionViewSetGet(UploadTest, RestOAuth):
         eq_(response.status_code, 403)
 
         self.version.update(status=STATUS_PUBLIC)
+        self.extension.update(last_updated=datetime.now())
         response = self.anon.get(self.url)
         eq_(response.status_code, 200)
         data = response.json
         eq_(data['id'], self.extension.id)
         eq_(data['description'], {'en-US': self.extension.description})
+        self.assertCloseToNow(data['last_updated'])
         eq_(data['latest_version']['download_url'],
             self.version.download_url)
         eq_(data['latest_version']['size'], self.version.size)
@@ -341,6 +351,7 @@ class TestExtensionViewSetGet(UploadTest, RestOAuth):
         data = response.json
         eq_(data['id'], self.extension.id)
         eq_(data['description'], {'en-US': self.extension.description})
+        eq_(data['last_updated'], None)  # The extension is not public yet.
         eq_(data['latest_version']['download_url'],
             self.version.download_url)
         eq_(data['latest_version']['size'], self.version.size)
@@ -357,8 +368,10 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
     fixtures = fixture('user_2519')
 
     def setUp(self):
+        self.last_updated_date = datetime.now()
         self.extension = Extension.objects.create(
-            name=u'Mŷ Extension', description=u'Mÿ Extension Description')
+            name=u'Mŷ Extension', description=u'Mÿ Extension Description',
+            last_updated=self.last_updated_date)
         self.version = ExtensionVersion.objects.create(
             extension=self.extension, size=333, status=STATUS_PUBLIC,
             version='1.0.0')
@@ -384,6 +397,7 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
         data = response.json['objects'][0]
         eq_(data['id'], self.extension.id)
         eq_(data['description'], {'en-US': self.extension.description})
+        self.assertCloseToNow(data['last_updated'], now=self.last_updated_date)
         eq_(data['latest_public_version']['download_url'],
             self.version.download_url)
         eq_(data['latest_public_version']['size'], self.version.size)
@@ -414,7 +428,7 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
         eq_(len(response.json['objects']), 0)
 
 
-class TestReviewersExtensionViewSetGet(UploadTest, RestOAuth):
+class TestReviewersExtensionViewSetGet(RestOAuth):
     fixtures = fixture('user_2519')
 
     def setUp(self):
@@ -467,6 +481,7 @@ class TestReviewersExtensionViewSetGet(UploadTest, RestOAuth):
         }
         eq_(data['id'], self.extension.id)
         eq_(data['description'], {'en-US': self.extension.description})
+        eq_(data['last_updated'], None)  # The extension is not public yet.
         eq_(data['latest_public_version'], None)
         eq_(data['latest_version'], expected_data_version)
         eq_(data['mini_manifest_url'], self.extension.mini_manifest_url)
@@ -503,6 +518,7 @@ class TestReviewersExtensionViewSetGet(UploadTest, RestOAuth):
         }
         eq_(data['id'], self.extension.id)
         eq_(data['description'], {'en-US': self.extension.description})
+        eq_(data['last_updated'], None)  # The extension is not public yet.
         eq_(data['latest_public_version'], None)
         eq_(data['latest_version'], expected_data_version)
         eq_(data['mini_manifest_url'], self.extension.mini_manifest_url)
@@ -516,7 +532,7 @@ class TestReviewersExtensionViewSetGet(UploadTest, RestOAuth):
         self.test_detail_logged_in_with_rights()
 
 
-class TestExtensionVersionViewSetGet(UploadTest, RestOAuth):
+class TestExtensionVersionViewSetGet(RestOAuth):
     fixtures = fixture('user_2519')
 
     def setUp(self):
@@ -655,6 +671,11 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
             'extension_pk': self.extension.pk, 'pk': self.version.pk})
         self.reject_url = reverse('api-v2:extension-version-reject', kwargs={
             'extension_pk': self.extension.pk, 'pk': self.version.pk})
+
+    def tearDown(self):
+        super(TestExtensionVersionViewSetPost, self).tearDown()
+        # Explicitely delete the Extensions to clean up leftover files.
+        Extension.objects.all().delete()
 
     def test_has_cors(self):
         self.assertCORS(self.anon.options(self.publish_url), 'post')
@@ -875,8 +896,6 @@ class TestExtensionNonAPIViews(TestCase):
             status=STATUS_PUBLIC, version='0.1')
         self.user = UserProfile.objects.get(pk=2519)
         self.extension.authors.add(self.user)
-        with public_storage.open(self.version.signed_file_path, 'w') as f:
-            f.write('fake signed zip file\n')
 
     def _expected_etag(self):
         expected_etag = hashlib.sha256()

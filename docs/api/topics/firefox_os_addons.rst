@@ -45,6 +45,7 @@ Detail
             "status": "public",
             "version": "0.1"
           },
+          "last_updated": "2015-09-04T16:16:39",
           "latest_public_version": {
             "id": 1,
             "download_url": "https://example.com/downloads/extension/ce6b52d231154a27a1c54b2648c10379/1/extension-0.1.zip",
@@ -67,6 +68,7 @@ Detail
 
     :resjson int id: The add-on id.
     :resjson string|object|null description: The add-on description.
+    :resjson string|null last_updated: The latest date a version was published at for this add-on. 
     :resjson object latest_version: The latest :ref:`add-on version <addon-version-detail>` available for this extension.
     :resjson object latest_public_version: The latest *public* :ref:`add-on version <addon-version-detail>` available for this extension.
     :resjson string mini_manifest_url: The (absolute) URL to the `mini-manifest <https://developer.mozilla.org/docs/Mozilla/Marketplace/Options/Packaged_apps#Publishing_on_Firefox_Marketplace>`_ for that add-on. That URL may be a 404 if the add-on is not public yet.
