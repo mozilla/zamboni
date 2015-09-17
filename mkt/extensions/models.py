@@ -137,6 +137,7 @@ class Extension(ModelBase):
         mini_manifest = {
             'name': version.manifest['name'],
             'package_path': version.download_url,
+            'size': version.size,
             'version': version.manifest['version']
         }
         if 'author' in version.manifest:

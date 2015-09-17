@@ -486,7 +486,7 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
             status=STATUS_PENDING, version='0.44.0')
         version = ExtensionVersion.objects.create(
             extension=extension, manifest=manifest,
-            status=STATUS_PUBLIC, version='0.45.0')
+            status=STATUS_PUBLIC, size=421, version='0.45.0')
         expected_mini_manifest = {
             'description': 'Blah',
             'developer': {
@@ -494,6 +494,7 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
             },
             'name': u'Ëxtension',
             'package_path': version.download_url,
+            'size': 421,
             'version': '0.45',
         }
         eq_(extension.mini_manifest, expected_mini_manifest)
