@@ -1,4 +1,7 @@
 from functools import partial
+from os import path
+
+from django.conf import settings
 
 from rest_framework import fields, serializers
 
@@ -158,3 +161,20 @@ class GroupsSerializer(serializers.ModelSerializer):
         model = Group
         fields = ('id', 'name', 'restricted')
         read_only_fields = ('id', 'name', 'restricted')
+
+
+class TOSSerializer(serializers.Serializer):
+    has_signed = fields.SerializerMethodField('get_has_signed')
+    url = fields.SerializerMethodField('get_url')
+
+    def get_has_signed(self, obj):
+        return (self.context['request'].user.read_dev_agreement is not None)
+
+    def get_url(self, obj):
+        accept_lang = self.context['request'].META['ACCEPT_LANGUAGE']
+        if path.exists(path.join(settings.MEDIA_ROOT, 'docs', 'terms',
+                       '%s.html' % accept_lang)):
+            lang = accept_lang
+        else:
+            lang = 'en-US'
+        return path.join(settings.MEDIA_URL, 'docs', 'terms', '%s.html' % lang)
