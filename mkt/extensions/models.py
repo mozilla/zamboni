@@ -312,7 +312,7 @@ class ExtensionVersion(ModelBase):
                 instance = cls.objects.create(**data)
         except IntegrityError:
             raise ParseError(
-                _(u'An extension with this version number already exists.'))
+                _(u'An Add-on with this version number already exists.'))
 
         # Now that the instance has been saved, we can generate a file path
         # and move the file.
