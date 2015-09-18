@@ -1,9 +1,12 @@
+from datetime import datetime
+
 import mock
-from nose.tools import eq_
+from nose.tools import eq_, ok_
 
 import mkt
 import mkt.site.tests
-from mkt.account.serializers import AccountSerializer, AccountInfoSerializer
+from mkt.account.serializers import (AccountSerializer, AccountInfoSerializer,
+                                     TOSSerializer)
 from mkt.users.models import UserProfile
 
 
@@ -77,3 +80,25 @@ class TestAccountInfoSerializer(mkt.site.tests.TestCase):
     def test_verified(self):
         self.account.is_verified = True
         eq_(self.serializer().data['verified'], True)
+
+
+class TestTOSSerializer(mkt.site.tests.TestCase):
+    def setUp(self):
+        self.account = UserProfile()
+
+    def serializer(self, lang='pt-BR'):
+        context = {
+            'request': mkt.site.tests.req_factory_factory('')
+        }
+        context['request'].META['ACCEPT_LANGUAGE'] = lang
+        context['request'].user = self.account
+        return TOSSerializer(instance=self.account, context=context)
+
+    def test_has_signed(self):
+        eq_(self.serializer().data['has_signed'], False)
+        self.account.read_dev_agreement = datetime.now()
+        eq_(self.serializer().data['has_signed'], True)
+
+    def test_tos_url(self):
+        ok_('pt-BR' in self.serializer(lang='pt-BR').data['url'])
+        ok_('en-US' in self.serializer(lang='foo-LANG').data['url'])

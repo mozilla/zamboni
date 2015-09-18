@@ -37,7 +37,7 @@ from mkt.account.serializers import (AccountSerializer, FeedbackSerializer,
                                      FxALoginSerializer, GroupsSerializer,
                                      LoginSerializer,
                                      NewsletterSerializer,
-                                     PermissionsSerializer)
+                                     PermissionsSerializer, TOSSerializer)
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
@@ -290,6 +290,10 @@ class FxALoginView(CORSMixin, CreateAPIViewWithoutModel):
         permissions = PermissionsSerializer(context={'request': request},
                                             instance=True)
         data.update(permissions.data)
+
+        data.update({
+            'tos': TOSSerializer(context={'request': request}, instance=True)
+        })
 
         # Add ids of installed/purchased/developed apps.
         data['apps'] = user_relevant_apps(profile)
