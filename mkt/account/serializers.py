@@ -9,6 +9,7 @@ import mkt
 from mkt.access import acl
 from mkt.access.models import Group
 from mkt.api.serializers import PotatoCaptchaSerializer
+from mkt.site.middleware import lang_from_accept_header
 from mkt.users.models import UserProfile
 
 
@@ -171,10 +172,12 @@ class TOSSerializer(serializers.Serializer):
         return (self.context['request'].user.read_dev_agreement is not None)
 
     def get_url(self, obj):
-        accept_lang = self.context['request'].META['ACCEPT_LANGUAGE']
-        if path.exists(path.join(settings.MEDIA_ROOT, 'docs', 'terms',
-                       '%s.html' % accept_lang)):
-            lang = accept_lang
+        header = self.context['request'].META.get('HTTP_ACCEPT_LANGUAGE', '')
+        language = lang_from_accept_header(header)
+
+        if language and path.exists(path.join(settings.MEDIA_ROOT, 'docs',
+                                              'terms', '%s.html' % language)):
+            tos = language
         else:
-            lang = 'en-US'
-        return path.join(settings.MEDIA_URL, 'docs', 'terms', '%s.html' % lang)
+            tos = 'en-US'
+        return path.join(settings.MEDIA_URL, 'docs', 'terms', '%s.html' % tos)

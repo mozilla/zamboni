@@ -90,9 +90,14 @@ class TestTOSSerializer(mkt.site.tests.TestCase):
         context = {
             'request': mkt.site.tests.req_factory_factory('')
         }
-        context['request'].META['ACCEPT_LANGUAGE'] = lang
+        if lang:
+            context['request'].META['HTTP_ACCEPT_LANGUAGE'] = lang
         context['request'].user = self.account
         return TOSSerializer(instance=self.account, context=context)
+
+    def _tos_url(self, lang, expected):
+        url = self.serializer(lang=lang).data['url']
+        ok_(expected in url, url)
 
     def test_has_signed(self):
         eq_(self.serializer().data['has_signed'], False)
@@ -100,5 +105,6 @@ class TestTOSSerializer(mkt.site.tests.TestCase):
         eq_(self.serializer().data['has_signed'], True)
 
     def test_tos_url(self):
-        ok_('pt-BR' in self.serializer(lang='pt-BR').data['url'])
-        ok_('en-US' in self.serializer(lang='foo-LANG').data['url'])
+        self._tos_url('pt-BR', 'pt-BR')
+        self._tos_url('foo-LANG', 'en-US')
+        self._tos_url(None, 'en-US')
