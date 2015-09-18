@@ -40,12 +40,13 @@ class TestExtensionValidator(TestCase):
     def test_full(self):
         extension = self._extension({
             'name': 'My Extension',
-            'description': 'This is a valid description'
+            'description': 'This is a valid description',
+            'version': '0.1.2.3',
         })
         try:
             ExtensionValidator(extension).validate()
-        except ParseError:
-            assert False, u'Valid extension failed validation.'
+        except ParseError as e:
+            assert False, u'Got unexpected validation error: %s' % unicode(e)
 
     def test_calls(self):
         """
@@ -58,6 +59,7 @@ class TestExtensionValidator(TestCase):
             'validate_file',
             'validate_json',
             'validate_name',
+            'validate_version',
         ]
         mocks = {method: mock.DEFAULT for method in validation_methods}
         with mock.patch.multiple(ExtensionValidator, **mocks):
@@ -105,3 +107,44 @@ class TestExtensionValidator(TestCase):
     def test_description_too_long(self):
         with self.assertRaises(ParseError):
             self.validator.validate_name({'name': 'X' * 200})
+
+    def test_version_valid(self):
+        VERSION = u'0.42.42.42'
+        try:
+            self.validator.validate_version({'version': VERSION})
+        except:
+            assert False, u'A valid version "%s" fails validation' % VERSION
+
+    def test_version_absent(self):
+        with self.assertRaises(ParseError):
+            self.validator.validate_version({})
+
+    def test_version_not_string(self):
+        with self.assertRaises(ParseError):
+            self.validator.validate_version({'version': 42})
+        with self.assertRaises(ParseError):
+            self.validator.validate_version({'version': 0.42})
+
+    def test_version_too_many_dots(self):
+        with self.assertRaises(ParseError):
+            self.validator.validate_version({'version': '0.42.42.42.42'})
+
+    def test_version_contains_leading_zero(self):
+        with self.assertRaises(ParseError):
+            self.validator.validate_version({'version': '0.42.042.42'})
+
+    def test_version_contains_hexadecimal_number(self):
+        with self.assertRaises(ParseError):
+            self.validator.validate_version({'version': '0.42.0x0.42'})
+
+    def test_version_contains_a_non_number(self):
+        with self.assertRaises(ParseError):
+            self.validator.validate_version({'version': '0.42.x42.42'})
+
+    def test_version_contains_a_negative_number(self):
+        with self.assertRaises(ParseError):
+            self.validator.validate_version({'version': '0.42.-42.42'})
+
+    def test_version_contains_a_number_too_large(self):
+        with self.assertRaises(ParseError):
+            self.validator.validate_version({'version': '0.42.65536.42'})
