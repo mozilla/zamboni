@@ -287,7 +287,7 @@ class FxALoginView(CORSMixin, CreateAPIViewWithoutModel):
         # Serializers give up if they aren't passed an instance, so we
         # do that here despite PermissionsSerializer not needing one
         # really.
-        context = context={'request': request}
+        context ={'request': request}
         permissions = PermissionsSerializer(context=context, instance=True)
         data.update(permissions.data)
         data['tos'] = TOSSerializer(context=context, instance=True).data
