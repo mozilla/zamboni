@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-26 09:24-0700\n"
+"POT-Creation-Date: 2015-09-21 09:48-0700\n"
 "PO-Revision-Date: 2015-08-27 10:53+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -30,8 +30,7 @@ msgstr "Obrázky musí být v PNG či JPG."
 msgid "Videos must be in WebM."
 msgstr "Videa musí být ve formátu WebM."
 
-#: media/js/common/upload-image.js:129
-#: media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Vyskytl se problém při kontaktování serveru."
 
@@ -65,8 +64,7 @@ msgstr "Probíhá nahrávání {0}"
 msgid "Error with {0}"
 msgstr "Chyba s {0}"
 
-#: media/js/common/upload-packaged-app.js:169
-#: media/js/devreg/devhub.js:208
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Kontrola vaší aplikace skončila s {0} chybou."
@@ -80,9 +78,7 @@ msgstr[0] "&hellip;a {0} další"
 msgstr[1] "&hellip;a {0} další"
 msgstr[2] "&hellip;a {0} další"
 
-#: media/js/common/upload-packaged-app.js:199
-#: media/js/common/upload-packaged-app.js:325
-#: media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
 msgstr "Zobrazit podrobný report"
 
@@ -217,24 +213,16 @@ msgid "Disabled"
 msgstr "Zakázáno"
 
 #: media/js/devreg/init.js:35
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"Tato funkce je dočasně zakázána, protože provádíme údržbu webu. Zkuste to "
-"prosím o chvíli později."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Tato funkce je dočasně zakázána, protože provádíme údržbu webu. Zkuste to prosím o chvíli později."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "Odebrat lokalizaci"
 
 #: media/js/devreg/login.js:126
-msgid ""
-"Persona login failed. Maybe you don't have an account under that email "
-"address?"
-msgstr ""
-"Přihlášení pomocí Persona selhalo. Možná pod touto e-mailovou adresou nemáte "
-"účet?"
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgstr "Přihlášení pomocí Persona selhalo. Možná pod touto e-mailovou adresou nemáte účet?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
@@ -248,11 +236,27 @@ msgstr "Stav úspěšně změněn na \"{0}\""
 msgid "Could not change status to \"{0}\""
 msgstr "Nelze změnit stav na \"{0}\""
 
-#: media/js/devreg/lookup-tool.js:112
+#: media/js/devreg/lookup-tool.js:70
+msgid "Group membership \"{0}\" added"
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:84
+msgid "Could not add group \"{0}\""
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:108
+msgid "Group membership \"{0}\" removed"
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:114
+msgid "Could not remove group \"{0}\""
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:183
 msgid "Show All Results"
 msgstr "Zobrazit všechny výsledky"
 
-#: media/js/devreg/lookup-tool.js:115
+#: media/js/devreg/lookup-tool.js:186
 msgid "Over {0} results found, consider refining your search."
 msgstr "Nalezeno více než {0} výsledků, zvažte přeformulování svého dotazu."
 
@@ -339,40 +343,22 @@ msgstr "Rozpoznáno: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following apps. Applications without a payment account will no longer be "
-"available for sale."
-msgid_plural ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following app. Applications without a payment account will no longer be "
-"available for sale."
-msgstr[0] ""
-"Smazání účtu plateb \"{0}\" odebere účet od následující aplikace. Aplikace bez "
-"účtu nebudou k dispozici pro prodej."
-msgstr[1] ""
-"Smazání účtu plateb \"{0}\" odebere účet od následujících aplikací. Aplikace "
-"bez účtu nebudou k dispozici pro prodej."
-msgstr[2] ""
-"Smazání účtu plateb \"{0}\" odebere účet od následujících aplikací. Aplikace "
-"bez účtu nebudou k dispozici pro prodej."
+msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
+msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
+msgstr[0] "Smazání účtu plateb \"{0}\" odebere účet od následující aplikace. Aplikace bez účtu nebudou k dispozici pro prodej."
+msgstr[1] "Smazání účtu plateb \"{0}\" odebere účet od následujících aplikací. Aplikace bez účtu nebudou k dispozici pro prodej."
+msgstr[2] "Smazání účtu plateb \"{0}\" odebere účet od následujících aplikací. Aplikace bez účtu nebudou k dispozici pro prodej."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
 msgstr "Účet plateb pro aplikaci {appName}:"
 
-#: media/js/devreg/payments-manage.js:112
-#: media/js/devreg/payments-manage.js:175
-#: media/js/devreg/validator.js:191
-#: media/js/devreg/validator.js:437
-#: media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85
-#: media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Chyba"
 
-#: media/js/devreg/payments-manage.js:113
-#: media/js/devreg/payments-manage.js:176
+#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
 msgstr "Vyskytl se problém při kontaktování platebního serveru."
 
@@ -412,13 +398,11 @@ msgstr[2] "Zbývá {0} znaků."
 msgid "All tests passed successfully."
 msgstr "Všechny testy prošly úspěšně."
 
-#: media/js/devreg/validator.js:74
-#: media/js/devreg/validator.js:356
+#: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
 msgid "These tests were not run."
 msgstr "Testy nebyly spuštěny."
 
-#: media/js/devreg/validator.js:117
-#: media/js/devreg/validator.js:130
+#: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
 msgid "Tests"
 msgstr "Testy"
 
@@ -568,13 +552,11 @@ msgstr "Zdarma"
 msgid "Any"
 msgstr "Libovolné"
 
-#: media/js/devreg/reviewers/reviewers.js:246
-#: media/js/devreg/reviewers/reviewers.js:297
+#: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
 msgstr "Schválená aplikace: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:249
-#: media/js/devreg/reviewers/reviewers.js:300
+#: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
 msgstr "Zamítnutá aplikace: {app}"
 
@@ -595,12 +577,8 @@ msgid "Error failing app: {app}"
 msgstr "Chyba aplikace: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
-msgid ""
-"Sorry! We had an error fetching the review history. Please try logging in "
-"again.<p>"
-msgstr ""
-"Omlouváme se! Při získávání historie kontrol nastala chyba. Zkuste se prosím "
-"přihlásit znovu.<p>"
+msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
+msgstr "Omlouváme se! Při získávání historie kontrol nastala chyba. Zkuste se prosím přihlásit znovu.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12 08:25-0700\n"
+"POT-Creation-Date: 2015-09-21 09:48-0700\n"
 "PO-Revision-Date: 2015-05-09 13:01+0000\n"
 "Last-Translator: Kroszki <kroszki@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -233,11 +233,27 @@ msgstr "Az állapot sikeresen módosítva a következőre: „{0}”"
 msgid "Could not change status to \"{0}\""
 msgstr "Nem sikerült az állapot módosítása a következőre: „{0}”"
 
-#: media/js/devreg/lookup-tool.js:112
+#: media/js/devreg/lookup-tool.js:70
+msgid "Group membership \"{0}\" added"
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:84
+msgid "Could not add group \"{0}\""
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:108
+msgid "Group membership \"{0}\" removed"
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:114
+msgid "Could not remove group \"{0}\""
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:183
 msgid "Show All Results"
 msgstr "Minden találat megjelenítése"
 
-#: media/js/devreg/lookup-tool.js:115
+#: media/js/devreg/lookup-tool.js:186
 msgid "Over {0} results found, consider refining your search."
 msgstr "Több mint {0} találat, finomítsa keresését."
 

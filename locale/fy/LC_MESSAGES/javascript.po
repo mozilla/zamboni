@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12 08:25-0700\n"
+"POT-Creation-Date: 2015-09-21 09:48-0700\n"
 "PO-Revision-Date: 2015-07-29 12:20+0000\n"
 "Last-Translator: Wim <fryskefirefox@gmail.com>\n"
 "Language-Team: FRISIAN <LL@li.org>\n"
@@ -231,11 +231,27 @@ msgstr "Steat mei sukses wizige yn “{0}”"
 msgid "Could not change status to \"{0}\""
 msgstr "Kin steat net wizigje yn “{0}”"
 
-#: media/js/devreg/lookup-tool.js:112
+#: media/js/devreg/lookup-tool.js:70
+msgid "Group membership \"{0}\" added"
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:84
+msgid "Could not add group \"{0}\""
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:108
+msgid "Group membership \"{0}\" removed"
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:114
+msgid "Could not remove group \"{0}\""
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:183
 msgid "Show All Results"
 msgstr "Alle resultaten werjaan"
 
-#: media/js/devreg/lookup-tool.js:115
+#: media/js/devreg/lookup-tool.js:186
 msgid "Over {0} results found, consider refining your search."
 msgstr "Mear as {0} resultaten fûn, oerwaagje jo sykopdracht te ferfynjen."
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-12 08:25-0700\n"
+"POT-Creation-Date: 2015-09-21 09:48-0700\n"
 "PO-Revision-Date: 2014-10-08 05:48+0400\n"
 "Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -242,11 +242,27 @@ msgstr "стутус {addon} изменён на {0}."
 msgid "Could not change status to \"{0}\""
 msgstr "стутус {addon} изменён на {0}."
 
-#: media/js/devreg/lookup-tool.js:112
+#: media/js/devreg/lookup-tool.js:70
+msgid "Group membership \"{0}\" added"
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:84
+msgid "Could not add group \"{0}\""
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:108
+msgid "Group membership \"{0}\" removed"
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:114
+msgid "Could not remove group \"{0}\""
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:183
 msgid "Show All Results"
 msgstr "Показать все результаты"
 
-#: media/js/devreg/lookup-tool.js:115
+#: media/js/devreg/lookup-tool.js:186
 msgid "Over {0} results found, consider refining your search."
 msgstr "Найдено более {0} результатов, попробуйте уточнить параметры поиска."
 

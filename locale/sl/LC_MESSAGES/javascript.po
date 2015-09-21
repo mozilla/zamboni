@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-26 09:24-0700\n"
+"POT-Creation-Date: 2015-09-21 09:48-0700\n"
 "PO-Revision-Date: 2015-07-08 10:48:44.140912\n"
 "Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -244,11 +244,27 @@ msgstr "Stanje uspešno spremenjeno v \"{0}\""
 msgid "Could not change status to \"{0}\""
 msgstr "Stanja ni bilo mogoče spremeniti v \"{0}\""
 
-#: media/js/devreg/lookup-tool.js:112
+#: media/js/devreg/lookup-tool.js:70
+msgid "Group membership \"{0}\" added"
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:84
+msgid "Could not add group \"{0}\""
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:108
+msgid "Group membership \"{0}\" removed"
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:114
+msgid "Could not remove group \"{0}\""
+msgstr ""
+
+#: media/js/devreg/lookup-tool.js:183
 msgid "Show All Results"
 msgstr "Pokaži vse rezultate"
 
-#: media/js/devreg/lookup-tool.js:115
+#: media/js/devreg/lookup-tool.js:186
 msgid "Over {0} results found, consider refining your search."
 msgstr "Najdenih več kot {0} rezultatov, poskusite strniti iskalni pojem."
 
