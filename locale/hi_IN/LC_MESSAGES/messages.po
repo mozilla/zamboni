@@ -2160,7 +2160,7 @@ msgstr "अंतर्वस्तु मूल्यांकन वयस्�
 
 #: mkt/developers/forms.py:64
 msgid "You cannot select {region}."
-msgstr "आप चुन नहीं सकते {क्षेत्र}."
+msgstr "आप चुन नहीं सकते {region}."
 
 #: mkt/developers/forms.py:122
 msgid "All team members must have read and agreed to the developer agreement."
@@ -2633,7 +2633,7 @@ msgstr "एवं"
 
 #: mkt/developers/tasks.py:556
 msgid "{region} region added to the Firefox Marketplace"
-msgstr "{क्षेत्र} क्षेत्र फ़ायरफ़ॉक्स बाज़ार में जोड़ दिया गया है"
+msgstr "{region} क्षेत्र फ़ायरफ़ॉक्स बाज़ार में जोड़ दिया गया है"
 
 #: mkt/developers/tasks.py:560
 msgid "New regions added to the Firefox Marketplace"
