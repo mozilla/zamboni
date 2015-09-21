@@ -455,7 +455,7 @@ class GroupsViewSet(CORSMixin, ListModelMixin, DestroyModelMixin,
         return Response(status=status.HTTP_201_CREATED)
 
 
-class TOSView(APIView):
+class TOSView(CORSMixin, APIView):
     allowed_methods = ['post']
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication]
