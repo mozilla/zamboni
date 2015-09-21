@@ -161,6 +161,8 @@ urlpatterns = decorate(use_master, patterns(
     url('^ajax/app/%s/' % mkt.APP_SLUG, include(ajax_patterns)),
 
     url('^terms$', views.terms, name='mkt.developers.apps.terms'),
+    url('^terms/standalone$', views.terms_standalone,
+        name='mkt.developers.apps.terms_standalone'),
     url('^api$', views.api, name='mkt.developers.apps.api'),
 
     # Set the developer Message of the Day.

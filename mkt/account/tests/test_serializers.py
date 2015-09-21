@@ -1,7 +1,7 @@
 from datetime import datetime
 
 import mock
-from nose.tools import eq_, ok_
+from nose.tools import eq_
 
 import mkt
 import mkt.site.tests
@@ -86,25 +86,14 @@ class TestTOSSerializer(mkt.site.tests.TestCase):
     def setUp(self):
         self.account = UserProfile()
 
-    def serializer(self, lang='pt-BR'):
+    def serializer(self):
         context = {
             'request': mkt.site.tests.req_factory_factory('')
         }
-        if lang:
-            context['request'].META['HTTP_ACCEPT_LANGUAGE'] = lang
         context['request'].user = self.account
         return TOSSerializer(instance=self.account, context=context)
-
-    def _tos_url(self, lang, expected):
-        url = self.serializer(lang=lang).data['url']
-        ok_(expected in url, url)
 
     def test_has_signed(self):
         eq_(self.serializer().data['has_signed'], False)
         self.account.read_dev_agreement = datetime.now()
         eq_(self.serializer().data['has_signed'], True)
-
-    def test_tos_url(self):
-        self._tos_url('pt-BR', 'pt-BR')
-        self._tos_url('foo-LANG', 'en-US')
-        self._tos_url(None, 'en-US')

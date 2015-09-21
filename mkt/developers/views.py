@@ -1009,6 +1009,10 @@ def terms(request):
                    'agreement_form': form})
 
 
+def terms_standalone(request):
+    return render(request, 'developers/terms_standalone.html')
+
+
 @login_required
 def api(request):
     roles = request.user.groups.filter(name='Admins').exists()
