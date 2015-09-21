@@ -232,3 +232,20 @@ carrier/region pairs.
         [
             '*'
         ]
+
+
+Sign Developer Agreement
+========================
+
+.. http:post:: /api/v2/account/devtos/
+
+    Sign the developer agreement for the authenticating user.
+
+    .. note:: Authentication is required.
+
+    **Response**
+
+    :status 201: successfully signed.
+    :status 400: user has already signed terms of service.
+    :status 403: authentication required.
+    :status 405: invalid HTTP method; only POST is allowed on this endpoint.
