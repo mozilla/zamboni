@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-08-26 17:40+0000\n"
+"PO-Revision-Date: 2015-09-21 19:19+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1440610826.0\n"
+"X-POOTLE-MTIME: 1442863198.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -5118,10 +5119,12 @@ msgstr "Webnałoženja Mozilla (brazilska portugalšćina)"
 #: mkt/extensions/models.py:304
 msgid "Version number must be higher than the latest version uploaded for this Add-on, which is \"%s\"."
 msgstr ""
+"Wersijowe čisło dyrbi wyše być hač najnowša wersija, kotraž je so za tutón "
+"přidatk nahrała, kotraž je \"%s\"."
 
 #: mkt/extensions/models.py:315
 msgid "An Add-on with this version number already exists."
-msgstr ""
+msgstr "Přidatk z tutym wersijowym čisłom hižo eksistuje."
 
 #: mkt/extensions/validation.py:22
 msgid "The file sent has an unsupported content-type"
@@ -5129,7 +5132,7 @@ msgstr "Pósłana dataja ma njepodpěrany wobsahowy typ"
 
 #: mkt/extensions/validation.py:24
 msgid "The `description` property cannot be longer than 132 characters."
-msgstr ""
+msgstr "Kajkosć 'description' njesmě dlěša hač 132 znamješkow być."
 
 #: mkt/extensions/validation.py:27
 msgid "'manifest.json' in the archive is not a valid JSON file."
@@ -5137,7 +5140,7 @@ msgstr "'manifest.json' w archiwje płaćiwa JSON-dataja njeje."
 
 #: mkt/extensions/validation.py:30
 msgid "'manifest.json' in the archive is not encoded in UTF-8."
-msgstr ""
+msgstr "\"manifest.json\" w archiwje w UTF-8 skodowany njeje."
 
 #: mkt/extensions/validation.py:32
 msgid "The file sent is not a valid ZIP file."
@@ -5145,19 +5148,19 @@ msgstr "Pósłana dataja płaćiwa ZIP-dataja njeje."
 
 #: mkt/extensions/validation.py:33
 msgid "There is no `name` property in the manifest."
-msgstr ""
+msgstr "W manifesće kajkosć \"name\" njeje."
 
 #: mkt/extensions/validation.py:34
 msgid "The `name` property must be a string."
-msgstr ""
+msgstr "Kajkosć \"name\" dyrbi znamješkowy rjećazk być."
 
 #: mkt/extensions/validation.py:35
 msgid "The `name` property cannot be longer than 45 characters."
-msgstr ""
+msgstr "Kajkosć \"name\" njesmě dlěša hač 45 znamješkow być."
 
 #: mkt/extensions/validation.py:38
 msgid "The `name` property must be at least 1 character long."
-msgstr ""
+msgstr "Kajkosć \"name\" dyrbi znajmjeńša 1 znamješko dlěša być."
 
 #: mkt/extensions/validation.py:41
 msgid "The archive does not contain a 'manifest.json' file."
@@ -5165,19 +5168,22 @@ msgstr "Archiw dataju 'manifest.json' njewobsahuje."
 
 #: mkt/extensions/validation.py:44
 msgid "There is no `version` property in the manifest."
-msgstr ""
+msgstr "Kajkosć \"version\" w manifesće njeje."
 
 #: mkt/extensions/validation.py:46
 msgid "The `version` property must be a string."
-msgstr ""
+msgstr "Kajkosć \"version\" dyrbi znamješkowy rjećazk być."
 
 #: mkt/extensions/validation.py:47
 msgid "The `version` property must be a string containing one to four dot-separated integers each between 0 and 65535."
 msgstr ""
+"Kajkosć \"version\" dyrbi znamješkowy rjećazk być, kotryž jednu cyłu ličbu do "
+"štyrjoch cyłych ličbow mjez 0 a 65535 wobsahuje, kotrež su přez dypk "
+"dźělene."
 
 #: mkt/extensions/views.py:52
 msgid "No validation_id specified."
-msgstr ""
+msgstr "Żadyn validation_id podaty."
 
 #: mkt/extensions/views.py:56
 msgid "You need to be authenticated to perform this action."
@@ -5274,7 +5280,7 @@ msgstr "Dataja překročuje wulkostny limit w archiwje: {0}"
 
 #: mkt/files/utils.py:207
 msgid "Total size of files exeeding limit in archive: {0}"
-msgstr ""
+msgstr "Cyłkowna wulkosć datajow w archiwje limit překročuje: {0}"
 
 #: mkt/files/utils.py:238
 msgid "Invalid archive."
@@ -5612,31 +5618,31 @@ msgstr "Nastroj pohladanja <small>Torhošća</small>"
 
 #: mkt/lookup/templates/lookup/group_summary.html:11
 msgid "Group Lookup results for"
-msgstr ""
+msgstr "Wuslědki skupinskeho pytanja za"
 
 #: mkt/lookup/templates/lookup/group_summary.html:13
 msgid "Group Summary"
-msgstr ""
+msgstr "Skupinske zjeće"
 
 #: mkt/lookup/templates/lookup/group_summary.html:18
 msgid "Group Details"
-msgstr ""
+msgstr "Skupinske podrobnosće"
 
 #: mkt/lookup/templates/lookup/group_summary.html:22
 msgid "Rules"
-msgstr ""
+msgstr "Prawidła"
 
 #: mkt/lookup/templates/lookup/group_summary.html:24
 msgid "Notes"
-msgstr ""
+msgstr "Pokiwy"
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
-msgstr ""
+msgstr "Wobmjezowany (žane API-změny móžno)"
 
 #: mkt/lookup/templates/lookup/group_summary.html:30
 msgid "Group Members"
-msgstr ""
+msgstr "Skupinscy čłonojo"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
@@ -5738,7 +5744,7 @@ msgstr "Skupiny"
 
 #: mkt/lookup/templates/lookup/user_summary.html:33
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: mkt/lookup/templates/lookup/user_summary.html:58
 msgid "Marketplace Credit"
@@ -5882,7 +5888,7 @@ msgstr "Pytać"
 
 #: mkt/lookup/templates/lookup/includes/group_search.html:4
 msgid "Group Lookup"
-msgstr ""
+msgstr "Skupinske pytanje"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
@@ -6124,7 +6130,7 @@ msgstr "Přepisowanje gratoweho typa:"
 
 #: mkt/reviewers/forms.py:126
 msgid "Nominate this app to be featured."
-msgstr ""
+msgstr "Tute nałoženje za \"předstajeny\" nominować."
 
 #: mkt/reviewers/forms.py:133
 msgid "Choose a canned response..."
