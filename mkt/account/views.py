@@ -3,6 +3,7 @@ import hmac
 import json
 import uuid
 import urlparse
+from datetime import datetime
 
 from django import http
 from django.conf import settings
@@ -25,6 +26,7 @@ from rest_framework.mixins import DestroyModelMixin, ListModelMixin
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.throttling import UserRateThrottle
+from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 
 import mkt
@@ -450,4 +452,18 @@ class GroupsViewSet(CORSMixin, ListModelMixin, DestroyModelMixin,
         except IntegrityError, e:
             raise ParseError('User is already in that group? %s' % e)
 
+        return Response(status=status.HTTP_201_CREATED)
+
+
+class TOSView(APIView):
+    allowed_methods = ['post']
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    cors_allowed_methods = ['post']
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request):
+        if request.user.read_dev_agreement is not None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        request.user.update(read_dev_agreement=datetime.now())
         return Response(status=status.HTTP_201_CREATED)
