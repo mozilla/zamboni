@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-07-15 20:31+0000\n"
+"PO-Revision-Date: 2015-09-21 18:59+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1436992266.0\n"
+"X-POOTLE-MTIME: 1442861994.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -233,19 +233,19 @@ msgstr "Status konnte nicht auf „{0}“ geändert werden"
 
 #: media/js/devreg/lookup-tool.js:70
 msgid "Group membership \"{0}\" added"
-msgstr ""
+msgstr "Gruppenmitgliedschaft „{0}“ hinzugefügt"
 
 #: media/js/devreg/lookup-tool.js:84
 msgid "Could not add group \"{0}\""
-msgstr ""
+msgstr "Konnte Gruppe „{0}“ nicht hinzufügen"
 
 #: media/js/devreg/lookup-tool.js:108
 msgid "Group membership \"{0}\" removed"
-msgstr ""
+msgstr "Gruppenmitgliedschaft „{0}“ entfernt"
 
 #: media/js/devreg/lookup-tool.js:114
 msgid "Could not remove group \"{0}\""
-msgstr ""
+msgstr "Konnte Gruppe „{0}“ nicht entfernen"
 
 #: media/js/devreg/lookup-tool.js:183
 msgid "Show All Results"
