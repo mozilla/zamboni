@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ media('css/devreg/reset.styl.css') }}">
+    <link rel="stylesheet" href="{{ media('css/devreg/base.styl.css') }}">
+    <link rel="stylesheet" href="{{ media('css/devreg/typography.styl.css') }}">
+    <style type="text/css">
+      body {
+        line-height: 1.3;
+        min-width: 0;
+        padding: 2em;
+      }
+      ol {
+        list-style: outside none decimal;
+      }
+      ul {
+        list-style: outside none disc;
+      }
+      li {
+        margin-bottom: 0.5em;
+      }
+      p {
+        margin: 0px 0px 1em;
+      }
+    </style>
+  </head>
+  <body id="page" class="primary">
+    {{ get_doc_template('dev-agreement') }}
+  </body>
+</html>
