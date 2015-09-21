@@ -7,6 +7,7 @@ from mkt.constants.base import STATUS_PENDING, STATUS_PUBLIC
 from mkt.site.tests import ESTestCase, TestCase
 from mkt.extensions.indexers import ExtensionIndexer
 from mkt.extensions.models import Extension, ExtensionVersion
+from mkt.search.utils import get_boost
 
 
 class TestExtensionIndexer(TestCase):
@@ -101,6 +102,43 @@ class TestExtensionIndexer(TestCase):
         eq_(doc['name_l10n_french'], [name['fr']])
         eq_(doc['name_l10n_english'], [name['en-US']])
         eq_(doc['name_sort'], name['en-US'].lower())
+
+    def test_popularity(self):
+        extension, version = self._extension_factory()
+        # No installs.
+        doc = self._get_doc(extension)
+        # Boost is multiplied by 4 if it's public.
+        eq_(doc['boost'], 1.0 * 4)
+        eq_(doc['popularity'], 0)
+
+        # Add some popularity.
+        extension.popularity.create(region=0, value=50.0)
+        # Test an adolescent region.
+        extension.popularity.create(region=2, value=10.0)
+        # Test a mature region.
+        extension.popularity.create(region=7, value=10.0)
+
+        doc = self._get_doc(extension)
+        eq_(doc['boost'], get_boost(extension))
+        eq_(doc['popularity'], 50)
+        eq_(doc['popularity_7'], 10)
+        # Adolescent regions popularity value is not stored.
+        ok_('popularity_2' not in doc)
+
+    def test_trending(self):
+        extension, version = self._extension_factory()
+        extension.trending.create(region=0, value=10.0)
+        # Test an adolescent region.
+        extension.trending.create(region=2, value=50.0)
+        # Test a mature region.
+        extension.trending.create(region=7, value=50.0)
+
+        doc = self._get_doc(extension)
+        eq_(doc['trending'], 10.0)
+        eq_(doc['trending_7'], 50.0)
+
+        # Adolescent regions trending value is not stored.
+        ok_('trending_2' not in doc)
 
 
 class TestExtensionIndexerExcludedFields(ESTestCase):
