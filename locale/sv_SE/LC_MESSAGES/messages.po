@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: Marketplace 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-09-21 19:19+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2015-09-21 21:54+0000\n"
+"Last-Translator: az@kth.se <az@kth.se>\n"
 "Language-Team: Den svenska L10n-gruppen <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -6117,10 +6117,12 @@ msgid ""
 "Version number must be higher than the latest version uploaded for this Add-"
 "on, which is \"%s\"."
 msgstr ""
+"Versionsnummer måste vara högre än den senaste versionen som laddades upp "
+"för detta tillägg, som är \"%s\"."
 
 #: mkt/extensions/models.py:315
 msgid "An Add-on with this version number already exists."
-msgstr ""
+msgstr "Ett tillägg med detta versionsnummer finns redan."
 
 #: mkt/extensions/validation.py:22
 msgid "The file sent has an unsupported content-type"
@@ -6128,7 +6130,7 @@ msgstr "Filen som skickas har en innehållstyp som inte stöds"
 
 #: mkt/extensions/validation.py:24
 msgid "The `description` property cannot be longer than 132 characters."
-msgstr ""
+msgstr "Egenskapen `beskrivning` kan inte vara längre än 132 tecken."
 
 #: mkt/extensions/validation.py:27
 msgid "'manifest.json' in the archive is not a valid JSON file."
@@ -6136,7 +6138,7 @@ msgstr "'manifest.json' i arkivet är inte en giltig JSON-fil."
 
 #: mkt/extensions/validation.py:30
 msgid "'manifest.json' in the archive is not encoded in UTF-8."
-msgstr ""
+msgstr "'manifest.json' i arkivet är inte kodad i UTF-8."
 
 #: mkt/extensions/validation.py:32
 msgid "The file sent is not a valid ZIP file."
@@ -6144,19 +6146,19 @@ msgstr "Filen som skickades är inte en giltig ZIP-fil."
 
 #: mkt/extensions/validation.py:33
 msgid "There is no `name` property in the manifest."
-msgstr ""
+msgstr "Egenskapen `namn` finns inte i manifesten."
 
 #: mkt/extensions/validation.py:34
 msgid "The `name` property must be a string."
-msgstr ""
+msgstr "Egenskapen `namn` måste vara en sträng."
 
 #: mkt/extensions/validation.py:35
 msgid "The `name` property cannot be longer than 45 characters."
-msgstr ""
+msgstr "Egenskapen `namn` kan inte vara längre än 45 tecken."
 
 #: mkt/extensions/validation.py:38
 msgid "The `name` property must be at least 1 character long."
-msgstr ""
+msgstr "Egenskapen `namn` måste minst vara 1 tecken lång."
 
 #: mkt/extensions/validation.py:41
 msgid "The archive does not contain a 'manifest.json' file."
@@ -6164,21 +6166,23 @@ msgstr "Arkivet innehåller inte filen 'manifest.json'."
 
 #: mkt/extensions/validation.py:44
 msgid "There is no `version` property in the manifest."
-msgstr ""
+msgstr "Egenskapen `version` finns inte i manifesten."
 
 #: mkt/extensions/validation.py:46
 msgid "The `version` property must be a string."
-msgstr ""
+msgstr "Egenskapen `version` måste vara en sträng."
 
 #: mkt/extensions/validation.py:47
 msgid ""
 "The `version` property must be a string containing one to four dot-separated"
 " integers each between 0 and 65535."
 msgstr ""
+"Egenskapen `version` måste vara en sträng som innehåller en till fyra "
+"punktavgränsade heltal vardera mellan 0 och 65535."
 
 #: mkt/extensions/views.py:52
 msgid "No validation_id specified."
-msgstr ""
+msgstr "Ingen validation_id har angetts."
 
 #: mkt/extensions/views.py:56
 msgid "You need to be authenticated to perform this action."
@@ -6294,7 +6298,7 @@ msgstr "Fil överskrider storleksgränsen i arkiv: {0}"
 
 #: mkt/files/utils.py:207
 msgid "Total size of files exeeding limit in archive: {0}"
-msgstr ""
+msgstr "Total storlek av filer som överskrider gräns i arkivet: {0}"
 
 #: mkt/files/utils.py:238
 msgid "Invalid archive."
@@ -6680,11 +6684,11 @@ msgstr "<small>Marketplace</small> sökverktyg"
 
 #: mkt/lookup/templates/lookup/group_summary.html:11
 msgid "Group Lookup results for"
-msgstr ""
+msgstr "Resultat för sökt grupp"
 
 #: mkt/lookup/templates/lookup/group_summary.html:13
 msgid "Group Summary"
-msgstr ""
+msgstr "Gruppsammanfattning"
 
 #: mkt/lookup/templates/lookup/group_summary.html:18
 msgid "Group Details"
@@ -6696,11 +6700,11 @@ msgstr "Regler"
 
 #: mkt/lookup/templates/lookup/group_summary.html:24
 msgid "Notes"
-msgstr ""
+msgstr "Anteckningar"
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
-msgstr ""
+msgstr "Begränsad (inga API förändringar möjliga)"
 
 #: mkt/lookup/templates/lookup/group_summary.html:30
 msgid "Group Members"
@@ -6987,7 +6991,7 @@ msgstr "Sök"
 
 #: mkt/lookup/templates/lookup/includes/group_search.html:4
 msgid "Group Lookup"
-msgstr ""
+msgstr "Sök grupp"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
@@ -7242,7 +7246,7 @@ msgstr "Åsidosätt enhetstyp:"
 
 #: mkt/reviewers/forms.py:126
 msgid "Nominate this app to be featured."
-msgstr ""
+msgstr "Nominera den här appen att vara utvald."
 
 #: mkt/reviewers/forms.py:133
 msgid "Choose a canned response..."
