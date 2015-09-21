@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-08-26 16:53-0400\n"
+"PO-Revision-Date: 2015-09-21 13:12-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -5103,11 +5103,11 @@ msgstr "Mozilla Web apps (ブラジル、ポルトガル語)"
 
 #: mkt/extensions/models.py:304
 msgid "Version number must be higher than the latest version uploaded for this Add-on, which is \"%s\"."
-msgstr ""
+msgstr "バージョン番号は、このアドオンのためにアップロードされた最新版、つまり「%s」よりも高くなければなりません。"
 
 #: mkt/extensions/models.py:315
 msgid "An Add-on with this version number already exists."
-msgstr ""
+msgstr "このバージョン番号のアドオンが既に存在します。"
 
 #: mkt/extensions/validation.py:22
 msgid "The file sent has an unsupported content-type"
@@ -5115,7 +5115,7 @@ msgstr "送信されたファイルは未対応のコンテンツタイプです
 
 #: mkt/extensions/validation.py:24
 msgid "The `description` property cannot be longer than 132 characters."
-msgstr ""
+msgstr "「description」プロパティは最長でも 132 文字までとなっています。"
 
 #: mkt/extensions/validation.py:27
 msgid "'manifest.json' in the archive is not a valid JSON file."
@@ -5123,7 +5123,7 @@ msgstr "アーカイブ内の「manifest.json」が有効な JSON 形式では�
 
 #: mkt/extensions/validation.py:30
 msgid "'manifest.json' in the archive is not encoded in UTF-8."
-msgstr ""
+msgstr "アーカイブ内の「manifest.json」が UTF-8 でエンコードされていません。"
 
 #: mkt/extensions/validation.py:32
 msgid "The file sent is not a valid ZIP file."
@@ -5131,19 +5131,19 @@ msgstr "送信されたファイルは有効な ZIP ファイルではありま�
 
 #: mkt/extensions/validation.py:33
 msgid "There is no `name` property in the manifest."
-msgstr ""
+msgstr "マニフェストに「name」プロパティが含まれていません。"
 
 #: mkt/extensions/validation.py:34
 msgid "The `name` property must be a string."
-msgstr ""
+msgstr "「name」プロパティは文字列でなければなりません。"
 
 #: mkt/extensions/validation.py:35
 msgid "The `name` property cannot be longer than 45 characters."
-msgstr ""
+msgstr "「name」プロパティは最長でも 45 文字までとなっています。"
 
 #: mkt/extensions/validation.py:38
 msgid "The `name` property must be at least 1 character long."
-msgstr ""
+msgstr "「name」プロパティには最低でも 1 文字必要です。"
 
 #: mkt/extensions/validation.py:41
 msgid "The archive does not contain a 'manifest.json' file."
@@ -5151,19 +5151,19 @@ msgstr "アーカイブに「manifest.json」ファイルが含まれていま�
 
 #: mkt/extensions/validation.py:44
 msgid "There is no `version` property in the manifest."
-msgstr ""
+msgstr "マニフェストに「version」プロパティが含まれていません。"
 
 #: mkt/extensions/validation.py:46
 msgid "The `version` property must be a string."
-msgstr ""
+msgstr "「version」プロパティは文字列でなければなりません。"
 
 #: mkt/extensions/validation.py:47
 msgid "The `version` property must be a string containing one to four dot-separated integers each between 0 and 65535."
-msgstr ""
+msgstr "「version」プロパティは、1 つから 4 つまでのドット区切り整数で、それぞれ 0 から 65535 までとした文字列でなければなりません。"
 
 #: mkt/extensions/views.py:52
 msgid "No validation_id specified."
-msgstr ""
+msgstr "validation_id が指定されていません。"
 
 #: mkt/extensions/views.py:56
 msgid "You need to be authenticated to perform this action."
@@ -5260,7 +5260,7 @@ msgstr "アーカイブ内のファイルがサイズ制限を超えています
 
 #: mkt/files/utils.py:207
 msgid "Total size of files exeeding limit in archive: {0}"
-msgstr ""
+msgstr "アーカイブ内のファイル合計サイズが制限を超えています: {0}"
 
 #: mkt/files/utils.py:238
 msgid "Invalid archive."
@@ -5599,31 +5599,31 @@ msgstr "<small>Marketplace</small> 検索ツール"
 
 #: mkt/lookup/templates/lookup/group_summary.html:11
 msgid "Group Lookup results for"
-msgstr ""
+msgstr "グループ検索結果:"
 
 #: mkt/lookup/templates/lookup/group_summary.html:13
 msgid "Group Summary"
-msgstr ""
+msgstr "グループの概要"
 
 #: mkt/lookup/templates/lookup/group_summary.html:18
 msgid "Group Details"
-msgstr ""
+msgstr "グループの詳細"
 
 #: mkt/lookup/templates/lookup/group_summary.html:22
 msgid "Rules"
-msgstr ""
+msgstr "規則"
 
 #: mkt/lookup/templates/lookup/group_summary.html:24
 msgid "Notes"
-msgstr ""
+msgstr "注記"
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
-msgstr ""
+msgstr "制限あり (API 変更不可)"
 
 #: mkt/lookup/templates/lookup/group_summary.html:30
 msgid "Group Members"
-msgstr ""
+msgstr "グループメンバー"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
@@ -5723,7 +5723,7 @@ msgstr "グループ"
 
 #: mkt/lookup/templates/lookup/user_summary.html:33
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: mkt/lookup/templates/lookup/user_summary.html:58
 msgid "Marketplace Credit"
@@ -5867,7 +5867,7 @@ msgstr "検索"
 
 #: mkt/lookup/templates/lookup/includes/group_search.html:4
 msgid "Group Lookup"
-msgstr ""
+msgstr "グループ検索"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
@@ -6109,7 +6109,7 @@ msgstr "端末種類の上書き:"
 
 #: mkt/reviewers/forms.py:126
 msgid "Nominate this app to be featured."
-msgstr ""
+msgstr "このアプリをおすすめのアプリに推薦します。"
 
 #: mkt/reviewers/forms.py:133
 msgid "Choose a canned response..."

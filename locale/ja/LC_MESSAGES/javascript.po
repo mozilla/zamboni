@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-07-01 15:40-0400\n"
+"PO-Revision-Date: 2015-09-21 12:59-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -220,27 +220,27 @@ msgstr "Persona のログインに失敗しました。サーバエラーが発�
 
 #: media/js/devreg/lookup-tool.js:39
 msgid "Status successfully changed to \"{0}\""
-msgstr "ステータスが「{0}」へ変更されました。"
+msgstr "ステータスが「{0}」へ変更されました"
 
 #: media/js/devreg/lookup-tool.js:44
 msgid "Could not change status to \"{0}\""
-msgstr "ステータスを「{0}」へ変更できませんでした。"
+msgstr "ステータスを「{0}」へ変更できませんでした"
 
 #: media/js/devreg/lookup-tool.js:70
 msgid "Group membership \"{0}\" added"
-msgstr ""
+msgstr "グループメンバー「{0}」が追加されました"
 
 #: media/js/devreg/lookup-tool.js:84
 msgid "Could not add group \"{0}\""
-msgstr ""
+msgstr "グループ「{0}」を追加できませんでした"
 
 #: media/js/devreg/lookup-tool.js:108
 msgid "Group membership \"{0}\" removed"
-msgstr ""
+msgstr "グループメンバー「{0}」が削除されました"
 
 #: media/js/devreg/lookup-tool.js:114
 msgid "Could not remove group \"{0}\""
-msgstr ""
+msgstr "グループ「{0}」を削除できませんでした"
 
 #: media/js/devreg/lookup-tool.js:183
 msgid "Show All Results"
