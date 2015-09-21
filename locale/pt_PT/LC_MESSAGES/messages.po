@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-08-26 22:29+0000\n"
+"PO-Revision-Date: 2015-09-21 22:52+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1440628148.0\n"
+"X-POOTLE-MTIME: 1442875933.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -5141,10 +5141,12 @@ msgstr "Aplicações Web da Mozilla (em Português Brasileiro)"
 #: mkt/extensions/models.py:304
 msgid "Version number must be higher than the latest version uploaded for this Add-on, which is \"%s\"."
 msgstr ""
+"O número da versão deve ser maior do que a última versão carregada para este "
+"extra, que é \"%s\"."
 
 #: mkt/extensions/models.py:315
 msgid "An Add-on with this version number already exists."
-msgstr ""
+msgstr "Um extra com este número de versão já existe."
 
 #: mkt/extensions/validation.py:22
 msgid "The file sent has an unsupported content-type"
@@ -5152,7 +5154,7 @@ msgstr "O ficheiro enviado tinha um tipo de conteúdo não suportado"
 
 #: mkt/extensions/validation.py:24
 msgid "The `description` property cannot be longer than 132 characters."
-msgstr ""
+msgstr "A propriedade `descrição` não pode ser maior do que 132 carateres."
 
 #: mkt/extensions/validation.py:27
 msgid "'manifest.json' in the archive is not a valid JSON file."
@@ -5160,7 +5162,7 @@ msgstr "'manifest.json' no arquivo não é um ficheiro JSON válido."
 
 #: mkt/extensions/validation.py:30
 msgid "'manifest.json' in the archive is not encoded in UTF-8."
-msgstr ""
+msgstr "O 'manifest.json' no arquivo não está codificado em UTF-8."
 
 #: mkt/extensions/validation.py:32
 msgid "The file sent is not a valid ZIP file."
@@ -5168,19 +5170,19 @@ msgstr "O ficheiro enviado não é um ficheiro ZIP válido."
 
 #: mkt/extensions/validation.py:33
 msgid "There is no `name` property in the manifest."
-msgstr ""
+msgstr "Não existe uma propriedade `nome` no manifesto."
 
 #: mkt/extensions/validation.py:34
 msgid "The `name` property must be a string."
-msgstr ""
+msgstr "A propriedade `nome` deve ser um texto."
 
 #: mkt/extensions/validation.py:35
 msgid "The `name` property cannot be longer than 45 characters."
-msgstr ""
+msgstr "A propriedade `nome` não pode ser maior do que 45 carateres."
 
 #: mkt/extensions/validation.py:38
 msgid "The `name` property must be at least 1 character long."
-msgstr ""
+msgstr "A propriedade `nome` deve ter pelo menos 1 caratere."
 
 #: mkt/extensions/validation.py:41
 msgid "The archive does not contain a 'manifest.json' file."
@@ -5188,19 +5190,21 @@ msgstr "O arquivo não contem um ficheiro 'manifest.json'."
 
 #: mkt/extensions/validation.py:44
 msgid "There is no `version` property in the manifest."
-msgstr ""
+msgstr "Não existe uma propriedade `versão` no manifesto."
 
 #: mkt/extensions/validation.py:46
 msgid "The `version` property must be a string."
-msgstr ""
+msgstr "A propriedade `versão` deve ser um texto."
 
 #: mkt/extensions/validation.py:47
 msgid "The `version` property must be a string containing one to four dot-separated integers each between 0 and 65535."
 msgstr ""
+"A propriedade `versão` deve ser um texto contendo de um a quatro carateres "
+"de inteiros separados por pontos, cada um entre 0 e 65535."
 
 #: mkt/extensions/views.py:52
 msgid "No validation_id specified."
-msgstr ""
+msgstr "Não foi especificado um validation_id."
 
 #: mkt/extensions/views.py:56
 msgid "You need to be authenticated to perform this action."
@@ -5297,7 +5301,7 @@ msgstr "Ficheiro que excede o limite de tamanho no arquivo: {0}"
 
 #: mkt/files/utils.py:207
 msgid "Total size of files exeeding limit in archive: {0}"
-msgstr ""
+msgstr "O tamanho total dos ficheiros excede o limite no arquivo: {0}"
 
 #: mkt/files/utils.py:238
 msgid "Invalid archive."
@@ -5636,31 +5640,31 @@ msgstr "Ferramenta de pesquisa do <small>Marketplace</small>"
 
 #: mkt/lookup/templates/lookup/group_summary.html:11
 msgid "Group Lookup results for"
-msgstr ""
+msgstr "Resultados da pesquisa do grupo para"
 
 #: mkt/lookup/templates/lookup/group_summary.html:13
 msgid "Group Summary"
-msgstr ""
+msgstr "Resumo do grupo"
 
 #: mkt/lookup/templates/lookup/group_summary.html:18
 msgid "Group Details"
-msgstr ""
+msgstr "Detalhes do grupo"
 
 #: mkt/lookup/templates/lookup/group_summary.html:22
 msgid "Rules"
-msgstr ""
+msgstr "Regras"
 
 #: mkt/lookup/templates/lookup/group_summary.html:24
 msgid "Notes"
-msgstr ""
+msgstr "Notas"
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
-msgstr ""
+msgstr "Restrito (não são possíveis alterações de API)"
 
 #: mkt/lookup/templates/lookup/group_summary.html:30
 msgid "Group Members"
-msgstr ""
+msgstr "Membros do grupo"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
@@ -5761,7 +5765,7 @@ msgstr "Grupos"
 
 #: mkt/lookup/templates/lookup/user_summary.html:33
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: mkt/lookup/templates/lookup/user_summary.html:58
 msgid "Marketplace Credit"
@@ -5905,7 +5909,7 @@ msgstr "Pesquisar"
 
 #: mkt/lookup/templates/lookup/includes/group_search.html:4
 msgid "Group Lookup"
-msgstr ""
+msgstr "Pesquisa de grupo"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
@@ -6147,7 +6151,7 @@ msgstr "Sobreposição de tipo de dispositivo:"
 
 #: mkt/reviewers/forms.py:126
 msgid "Nominate this app to be featured."
-msgstr ""
+msgstr "Nomear esta aplicação para ser destacada."
 
 #: mkt/reviewers/forms.py:133
 msgid "Choose a canned response..."
