@@ -1,7 +1,7 @@
 {% extends 'comm/emails/base.html' -%}
 
 {% block content %}
-{{ app.name }} has been banned by an admin or senior reviewer.
+{{ obj.name }} has been banned by an admin or senior reviewer.
 
 {% include 'comm/emails/includes/details.html' %}
 {% include 'comm/emails/includes/questions.html' %}

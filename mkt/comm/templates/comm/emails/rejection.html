@@ -1,10 +1,10 @@
 {% extends 'comm/emails/base.html' %}
 
 {% block content %}
-After reviewing your submission for {{ app.name }}, we have determined that it does not currently meet our requirements for approval.
+After reviewing your submission for {{ obj.name }}, we have determined that it does not currently meet our requirements for approval.
 
 {% include 'comm/emails/includes/details.html' %}
 {% include 'comm/emails/includes/questions.html' %}
 
-Once the concerns above have been addressed, you may resubmit your app from the My Submissions page at {{ app.get_dev_url('versions')|absolutify }}.
+Once the concerns above have been addressed, you may resubmit your app from the My Submissions page at {{ obj.get_dev_url('versions')|absolutify }}.
 {% endblock %}

@@ -37,7 +37,7 @@ from mkt.account.serializers import (AccountSerializer, FeedbackSerializer,
                                      FxALoginSerializer, GroupsSerializer,
                                      LoginSerializer,
                                      NewsletterSerializer,
-                                     PermissionsSerializer)
+                                     PermissionsSerializer, TOSSerializer)
 from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
@@ -284,12 +284,17 @@ class FxALoginView(CORSMixin, CreateAPIViewWithoutModel):
                 'source': 'firefox-accounts',
             }
         }
+
+        context = {'request': request}
+
         # Serializers give up if they aren't passed an instance, so we
         # do that here despite PermissionsSerializer not needing one
         # really.
-        permissions = PermissionsSerializer(context={'request': request},
-                                            instance=True)
+        permissions = PermissionsSerializer(context=context, instance=True)
         data.update(permissions.data)
+
+        # Has the user signed the developer agreement?
+        data['tos'] = TOSSerializer(context=context, instance=True).data
 
         # Add ids of installed/purchased/developed apps.
         data['apps'] = user_relevant_apps(profile)

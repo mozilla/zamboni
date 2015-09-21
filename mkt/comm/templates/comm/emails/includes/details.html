@@ -4,6 +4,8 @@
     "{{ note.body }}"
 {% endif %}
 
-App: {{ app.name }}
-URL: {{ app.get_url_path()|absolutify }}
+App: {{ obj.name }}
+{% if obj.get_url_path %}
+URL: {{ obj.get_url_path()|absolutify }}
+{% endif %}
 

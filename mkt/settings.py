@@ -509,9 +509,9 @@ ALLOW_SELF_REVIEWS = True
 AMO_LANGUAGES = (
     'af', 'ar', 'bg', 'bn-BD', 'bn-IN', 'ca', 'cs', 'cy', 'da', 'de', 'dsb',
     'ee', 'el', 'en-GB', 'en-US', 'es', 'eu', 'ff', 'fr', 'fy', 'ga-IE',
-    'ha', 'hsb', 'hu', 'id', 'ig', 'it', 'ja', 'ko', 'nb-NO', 'nl', 'pl',
-    'pt-BR', 'ro', 'ru', 'sk', 'sl', 'sq', 'sr', 'sr-Latn', 'sv-SE', 'sw',
-    'tr', 'uk', 'wo', 'xh', 'yo', 'zh-CN', 'zh-TW', 'zu',
+    'ha', 'hi-IN', 'hsb', 'hu', 'id', 'ig', 'it', 'ja', 'ko', 'nb-NO', 'nl',
+    'pl', 'pt-BR', 'ro', 'ru', 'sk', 'sl', 'sq', 'sr', 'sr-Latn', 'sv-SE',
+    'sw', 'tr', 'uk', 'wo', 'xh', 'yo', 'zh-CN', 'zh-TW', 'zu',
 )
 
 

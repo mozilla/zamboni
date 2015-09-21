@@ -10,7 +10,7 @@ DOMAIN = env('DOMAIN')
 SITE_URL = 'https://{0}'.format(DOMAIN)
 CRONJOB_LOCK_PREFIX = DOMAIN
 
-BROWSERID_AUDIENCES = [SITE_URL, 'localhost', 'localhost:8675']
+BROWSERID_AUDIENCES = [SITE_URL]
 
 STATIC_URL = env('STATIC_URL')
 
@@ -20,6 +20,7 @@ ADMINS = ()
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 DEBUG = False
+TEMPLATE_DEBUG = DEBUG
 DEBUG_PROPAGATE_EXCEPTIONS = False
 EMAIL_HOST = env('EMAIL_HOST')
 
@@ -58,6 +59,8 @@ SECRET_KEY = env('SECRET_KEY')
 BROKER_URL = env('BROKER_URL')
 
 CELERY_ALWAYS_EAGER = False
+CELERY_IGNORE_RESULT = True
+CELERY_DISABLE_RATE_LIMITS = True
 CELERYD_PREFETCH_MULTIPLIER = 1
 
 NETAPP_STORAGE = env('NETAPP_STORAGE_ROOT') + '/shared_storage'
@@ -82,14 +85,8 @@ SIGNED_EXTENSIONS_PATH = NETAPP_STORAGE + '/signed-extensions'
 
 
 LOGGING['loggers'].update({
-    'amqp': {'level': logging.WARNING},
-    'raven': {'level': logging.WARNING},
-    'requests': {'level': logging.WARNING},
-    'z.addons': {'level': logging.DEBUG},
-    'z.elasticsearch': {'level': logging.DEBUG},
-    'z.pool': {'level': logging.ERROR},
     'z.task': {'level': logging.DEBUG},
-    'z.users': {'level': logging.DEBUG},
+    'z.pool': {'level': logging.ERROR},
 })
 
 TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
@@ -111,12 +108,20 @@ STATSD_PREFIX = 'mkt-{0}'.format(ENV)
 
 CEF_PRODUCT = STATSD_PREFIX
 
+ES_TIMEOUT = 60
+
 EXPOSE_VALIDATOR_TRACEBACKS = False
 
 NEW_FEATURES = True
 
 CELERYD_TASK_SOFT_TIME_LIMIT = env.int('CELERYD_TASK_SOFT_TIME_LIMIT',
                                        default=540)
+CLEANCSS_BIN = 'cleancss'
+LESS_BIN = 'lessc'
+STYLUS_BIN = 'stylus'
+UGLIFY_BIN = 'uglifyjs'
+
+LESS_PREPROCESS = True
 
 XSENDFILE = True
 
@@ -161,7 +166,7 @@ STATSD_PREFIX = 'marketplace-{0}'.format(ENV)
 WEBAPPS_RECEIPT_KEY = env('WEBAPPS_RECEIPT_KEY')
 WEBAPPS_RECEIPT_URL = env('WEBAPPS_RECEIPT_URL')
 
-WEBAPPS_UNIQUE_BY_DOMAIN = env.bool('WEBAPPS_UNIQUE_BY_DOMAIN', default=False)
+WEBAPPS_UNIQUE_BY_DOMAIN = env.bool('WEBAPPS_UNIQUE_BY_DOMAIN', default=True)
 
 SENTRY_DSN = env('SENTRY_DSN')
 
@@ -190,7 +195,7 @@ LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
 # Bug 748403
 SIGNING_SERVER = env('SIGNING_SERVER')
 SIGNING_SERVER_ACTIVE = True
-SIGNING_VALID_ISSUERS = ['marketplace-dev-cdn.allizom.org']
+SIGNING_VALID_ISSUERS = ['marketplace-cdn.allizom.org']
 
 # Bug 793876
 SIGNED_APPS_KEY = env('SIGNED_APPS_KEY')
@@ -204,7 +209,7 @@ GOOGLE_ANALYTICS_DOMAIN = 'marketplace.firefox.com'
 # See mkt/settings.py for more info.
 APP_PURCHASE_KEY = DOMAIN
 APP_PURCHASE_AUD = DOMAIN
-APP_PURCHASE_TYP = 'mozilla-dev/payments/pay/v1'
+APP_PURCHASE_TYP = 'mozilla-stage/payments/pay/v1'
 APP_PURCHASE_SECRET = env('APP_PURCHASE_SECRET')
 
 MONOLITH_PASSWORD = env('MONOLITH_PASSWORD')
@@ -212,7 +217,7 @@ MONOLITH_SERVER = env('MONOLITH_SERVER')
 MONOLITH_INDEX = 'mkt{0}-time_*'.format(ENV)
 
 # This is mainly for Marionette tests.
-WEBAPP_MANIFEST_NAME = env('WEBAPP_MANIFEST_NAME', default='Marketplace Dev')
+WEBAPP_MANIFEST_NAME = env('WEBAPP_MANIFEST_NAME', default='Marketplace Stage')
 
 ENABLE_API_ERROR_SERVICE = env.bool('ENABLE_API_ERROR_SERVICE', default=True)
 
@@ -244,12 +249,9 @@ IARC_STOREFRONT_ID = env('IARC_STOREFRONT_ID', default=4)
 IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'  # noqa
 IARC_ALLOW_CERT_REUSE = True
 
-# We'll use zippy, the reference implementation on -dev.
-PAYMENT_PROVIDERS = env.list('PAYMENT_PROVIDERS', default=['reference'])
+PAYMENT_PROVIDERS = env.list('PAYMENT_PROVIDERS', default=['bango'])
 
-# Since Bango won't actually work on -dev anyway, may as well make it the
-# reference implementation anyway.
-DEFAULT_PAYMENT_PROVIDER = env('DEFAULT_PAYMENT_PROVIDER', default='reference')
+DEFAULT_PAYMENT_PROVIDER = env('DEFAULT_PAYMENT_PROVIDER', default='bango')
 
 PRE_GENERATE_APKS = True
 PRE_GENERATE_APK_URL = env('PRE_GENERATE_APK_URL')
@@ -259,6 +261,8 @@ FXA_OAUTH_URL = env('FXA_OAUTH_URL')
 FXA_CLIENT_ID = env('FXA_CLIENT_ID')
 FXA_CLIENT_SECRET = env('FXA_CLIENT_SECRET')
 FXA_SECRETS[FXA_CLIENT_ID] = FXA_CLIENT_SECRET
+
+QA_APP_ID = 500427
 
 RECOMMENDATIONS_API_URL = env('RECOMMENDATIONS_API_URL')
 RECOMMENDATIONS_ENABLED = True

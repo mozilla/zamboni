@@ -2,7 +2,6 @@ import hashlib
 
 from django.core.exceptions import ImproperlyConfigured, PermissionDenied
 from django.db.transaction import non_atomic_requests
-from django.forms import ValidationError
 from django.http import Http404, JsonResponse
 from django.shortcuts import get_object_or_404
 
@@ -26,6 +25,8 @@ from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.permissions import (AllowAppOwner, AllowReadOnlyIfPublic,
                                  AnyOf, ByHttpMethod, GroupPermission)
 from mkt.api.paginator import ESPaginator
+from mkt.comm.utils import create_comm_note
+from mkt.constants import comm
 from mkt.constants.apps import MANIFEST_CONTENT_TYPE
 from mkt.extensions.indexers import ExtensionIndexer
 from mkt.extensions.models import Extension, ExtensionVersion
@@ -68,12 +69,21 @@ class CreateExtensionMixin(object):
         else:
             # We are creating a new Extension
             params = {'user': request.user}
-        try:
-            obj = self.model.from_upload(upload, **params)
-        except ValidationError as e:
-            raise exceptions.ParseError(unicode(e))
+
+        # self.model.from_upload() will raise ParseError if appropriate.
+        obj = self.model.from_upload(upload, **params)
         log.info('%s created: %s' % (self.model, self.model.pk))
+
+        # TODO: change create_comm_note to just take a version.
+        if 'extension_pk' in self.kwargs:
+            create_comm_note(obj.extension, obj, request.user, '',
+                             note_type=comm.SUBMISSION)
+        else:
+            create_comm_note(obj, obj.latest_version, request.user, '',
+                             note_type=comm.SUBMISSION)
+
         serializer = self.get_serializer(obj)
+
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -90,7 +100,7 @@ class ValidationViewSet(SubmitValidationViewSet):
         if not file_obj:
             raise exceptions.ParseError(_('Missing file in request.'))
 
-        # Will raise exceptions if appropriate.
+        # Will raise ParseError exceptions if appropriate.
         ExtensionValidator(file_obj).validate()
 
         user = request.user if request.user.is_authenticated() else None
@@ -230,6 +240,8 @@ class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
     def publish(self, request, *args, **kwargs):
         obj = self.get_object()
         obj.publish()
+        create_comm_note(obj.extension, obj, request.user, '',
+                         note_type=comm.APPROVAL)
         return Response(status=status.HTTP_202_ACCEPTED)
 
     @detail_route(
@@ -239,6 +251,8 @@ class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
     def reject(self, request, *args, **kwargs):
         obj = self.get_object()
         obj.reject()
+        create_comm_note(obj.extension, obj, request.user, '',
+                         note_type=comm.REJECTION)
         return Response(status=status.HTTP_202_ACCEPTED)
 
 

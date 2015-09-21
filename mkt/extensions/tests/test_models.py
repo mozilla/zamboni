@@ -2,11 +2,12 @@
 import json
 import mock
 import os.path
-from nose.tools import eq_, ok_
 
 from django.conf import settings
-from django.forms import ValidationError
 from django.test.utils import override_settings
+
+from nose.tools import eq_, ok_
+from rest_framework.exceptions import ParseError
 
 from lib.crypto.packaged import SigningError
 from mkt.constants.base import (STATUS_DISABLED, STATUS_NULL, STATUS_PENDING,
@@ -76,19 +77,19 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         ok_(private_storage.exists(version.file_path))
         eq_(version.manifest, self.expected_manifest)
 
-    @mock.patch('mkt.extensions.utils.ExtensionParser.manifest_contents')
-    def test_upload_no_version(self, manifest_mock):
-        manifest_mock.__get__ = mock.Mock(return_value={'name': 'lol'})
+    @mock.patch('mkt.extensions.models.ExtensionValidator.validate_json')
+    def test_upload_no_version(self, validate_mock):
+        validate_mock.return_value = {'name': 'lol'}
         upload = self.upload('extension')
-        with self.assertRaises(ValidationError):
-            Extension.from_upload(upload)
+        with self.assertRaises(ParseError):
+            Extension.from_upload(upload, user=self.user)
 
-    @mock.patch('mkt.extensions.utils.ExtensionParser.manifest_contents')
-    def test_upload_no_name(self, manifest_mock):
-        manifest_mock.__get__ = mock.Mock(return_value={'version': '0.1'})
+    @mock.patch('mkt.extensions.models.ExtensionValidator.validate_json')
+    def test_upload_no_name(self, validate_mock):
+        validate_mock.return_value = {'version': '0.1'}
         upload = self.upload('extension')
-        with self.assertRaises(ValidationError):
-            Extension.from_upload(upload)
+        with self.assertRaises(ParseError):
+            Extension.from_upload(upload, user=self.user)
 
     def test_upload_new_version(self):
         extension = Extension.objects.create()
@@ -151,9 +152,18 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
     def test_upload_new_version_existing_version(self):
         extension = Extension.objects.create()
         ExtensionVersion.objects.create(extension=extension, version='0.1')
+        ExtensionVersion.objects.create(extension=extension, version='0.2.0')
         upload = self.upload('extension')  # Also uses version "0.1".
-        with self.assertRaises(ValueError):
-            ExtensionVersion.from_upload(upload)
+        with self.assertRaises(ParseError):
+            ExtensionVersion.from_upload(upload, parent=extension)
+
+    def test_upload_new_version_existing_version_number_is_higher(self):
+        extension = Extension.objects.create()
+        ExtensionVersion.objects.create(extension=extension, version='0.2')
+        upload = self.upload('extension')
+        with self.assertRaises(ParseError):
+            # Try to upload version 0.1 it should fail since 0.2 is the latest.
+            ExtensionVersion.from_upload(upload, parent=extension)
 
     def test_upload_new_version_no_parent(self):
         upload = self.upload('extension')
@@ -486,7 +496,7 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
             status=STATUS_PENDING, version='0.44.0')
         version = ExtensionVersion.objects.create(
             extension=extension, manifest=manifest,
-            status=STATUS_PUBLIC, version='0.45.0')
+            status=STATUS_PUBLIC, size=421, version='0.45.0')
         expected_mini_manifest = {
             'description': 'Blah',
             'developer': {
@@ -494,6 +504,7 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
             },
             'name': u'Ëxtension',
             'package_path': version.download_url,
+            'size': 421,
             'version': '0.45',
         }
         eq_(extension.mini_manifest, expected_mini_manifest)
