@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-08-26 18:24+0000\n"
+"PO-Revision-Date: 2015-09-21 18:20+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1440613455.0\n"
+"X-POOTLE-MTIME: 1442859618.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -5123,10 +5123,12 @@ msgstr "Mozilla Web apps (Braziliaans Portugees)"
 #: mkt/extensions/models.py:304
 msgid "Version number must be higher than the latest version uploaded for this Add-on, which is \"%s\"."
 msgstr ""
+"Versienummer moet hoger zijn dan de laatste versie die voor deze add-on is "
+"geüpload, die ‘%s’ is."
 
 #: mkt/extensions/models.py:315
 msgid "An Add-on with this version number already exists."
-msgstr ""
+msgstr "Er bestaat al een add-on met dit versienummer."
 
 #: mkt/extensions/validation.py:22
 msgid "The file sent has an unsupported content-type"
@@ -5134,7 +5136,7 @@ msgstr "Het verzonden bestand heeft een niet-ondersteund inhoudstype"
 
 #: mkt/extensions/validation.py:24
 msgid "The `description` property cannot be longer than 132 characters."
-msgstr ""
+msgstr "De eigenschap ‘description’ kan niet langer zijn dan 132 tekens."
 
 #: mkt/extensions/validation.py:27
 msgid "'manifest.json' in the archive is not a valid JSON file."
@@ -5142,7 +5144,7 @@ msgstr "‘manifest.json’ in het archief is geen geldig JSON-bestand."
 
 #: mkt/extensions/validation.py:30
 msgid "'manifest.json' in the archive is not encoded in UTF-8."
-msgstr ""
+msgstr "‘manifest.json’ in het archief is niet in UTF-8 gecodeerd."
 
 #: mkt/extensions/validation.py:32
 msgid "The file sent is not a valid ZIP file."
@@ -5150,19 +5152,19 @@ msgstr "Het verzonden bestand is geen geldig ZIP-bestand."
 
 #: mkt/extensions/validation.py:33
 msgid "There is no `name` property in the manifest."
-msgstr ""
+msgstr "Er is geen eigenschap ‘name’ in het manifest."
 
 #: mkt/extensions/validation.py:34
 msgid "The `name` property must be a string."
-msgstr ""
+msgstr "De eigenschap ‘name’ moet een tekenreeks zijn."
 
 #: mkt/extensions/validation.py:35
 msgid "The `name` property cannot be longer than 45 characters."
-msgstr ""
+msgstr "De eigenschap ‘name’ kan niet langer zijn dan 45 tekens."
 
 #: mkt/extensions/validation.py:38
 msgid "The `name` property must be at least 1 character long."
-msgstr ""
+msgstr "De eigenschap ‘name’ moet minstens 1 teken lang zijn."
 
 #: mkt/extensions/validation.py:41
 msgid "The archive does not contain a 'manifest.json' file."
@@ -5170,19 +5172,21 @@ msgstr "Het archiefbestand bevat geen ‘manifest.json’-bestand."
 
 #: mkt/extensions/validation.py:44
 msgid "There is no `version` property in the manifest."
-msgstr ""
+msgstr "Er is geen eigenschap ‘version’ in het manifest."
 
 #: mkt/extensions/validation.py:46
 msgid "The `version` property must be a string."
-msgstr ""
+msgstr "De eigenschap ‘version’ moet een tekenreeks zijn."
 
 #: mkt/extensions/validation.py:47
 msgid "The `version` property must be a string containing one to four dot-separated integers each between 0 and 65535."
 msgstr ""
+"De eigenschap ‘version’ moet een tekenreeks zijn die één tot vier door een "
+"punt gescheiden integers bevat, elk tussen 0 en 65535."
 
 #: mkt/extensions/views.py:52
 msgid "No validation_id specified."
-msgstr ""
+msgstr "Geen validation_id opgegeven."
 
 #: mkt/extensions/views.py:56
 msgid "You need to be authenticated to perform this action."
@@ -5279,7 +5283,7 @@ msgstr "Te groot bestand in archief: {0}"
 
 #: mkt/files/utils.py:207
 msgid "Total size of files exeeding limit in archive: {0}"
-msgstr ""
+msgstr "Totale grootte van bestanden die limiet in archief overschrijden: {0}"
 
 #: mkt/files/utils.py:238
 msgid "Invalid archive."
@@ -5617,31 +5621,31 @@ msgstr "<small>Marketplace</small>-zoekhulpmiddel"
 
 #: mkt/lookup/templates/lookup/group_summary.html:11
 msgid "Group Lookup results for"
-msgstr ""
+msgstr "Groepsopzoekresultaten voor"
 
 #: mkt/lookup/templates/lookup/group_summary.html:13
 msgid "Group Summary"
-msgstr ""
+msgstr "Groepssamenvatting"
 
 #: mkt/lookup/templates/lookup/group_summary.html:18
 msgid "Group Details"
-msgstr ""
+msgstr "Groepsdetails"
 
 #: mkt/lookup/templates/lookup/group_summary.html:22
 msgid "Rules"
-msgstr ""
+msgstr "Regels"
 
 #: mkt/lookup/templates/lookup/group_summary.html:24
 msgid "Notes"
-msgstr ""
+msgstr "Opmerkingen"
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
-msgstr ""
+msgstr "Beperkt (geen API-wijzigingen mogelijk)"
 
 #: mkt/lookup/templates/lookup/group_summary.html:30
 msgid "Group Members"
-msgstr ""
+msgstr "Groepsleden"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
@@ -5744,7 +5748,7 @@ msgstr "Groepen"
 
 #: mkt/lookup/templates/lookup/user_summary.html:33
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: mkt/lookup/templates/lookup/user_summary.html:58
 msgid "Marketplace Credit"
@@ -5888,7 +5892,7 @@ msgstr "Zoeken"
 
 #: mkt/lookup/templates/lookup/includes/group_search.html:4
 msgid "Group Lookup"
-msgstr ""
+msgstr "Groep opzoeken"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
@@ -6130,7 +6134,7 @@ msgstr "Negeren van apparaattype:"
 
 #: mkt/reviewers/forms.py:126
 msgid "Nominate this app to be featured."
-msgstr ""
+msgstr "Nomineer deze app om te worden aanbevolen."
 
 #: mkt/reviewers/forms.py:133
 msgid "Choose a canned response..."
