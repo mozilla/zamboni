@@ -10,7 +10,8 @@ from rest_framework import exceptions
 from rest_framework import status
 from rest_framework.decorators import detail_route
 from rest_framework.generics import ListAPIView
-from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
+from rest_framework.mixins import (DestroyModelMixin, ListModelMixin,
+                                   RetrieveModelMixin)
 from rest_framework.parsers import FileUploadParser
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -115,8 +116,8 @@ class ValidationViewSet(SubmitValidationViewSet):
 
 
 class ExtensionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
-                       SlugOrIdMixin, ListModelMixin, RetrieveModelMixin,
-                       GenericViewSet):
+                       DestroyModelMixin, ListModelMixin, RetrieveModelMixin,
+                       SlugOrIdMixin, GenericViewSet):
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
@@ -180,8 +181,8 @@ class ReviewersExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
 
 
 class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
-                              ListModelMixin, RetrieveModelMixin,
-                              GenericViewSet):
+                              DestroyModelMixin, ListModelMixin,
+                              RetrieveModelMixin, GenericViewSet):
     authentication_classes = ExtensionViewSet.authentication_classes
     cors_allowed_methods = ('get', 'patch', 'put', 'post', 'delete')
     model = ExtensionVersion
