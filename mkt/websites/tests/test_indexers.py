@@ -3,7 +3,7 @@ from nose.tools import eq_, ok_
 
 from mkt.constants.applications import DEVICE_DESKTOP, DEVICE_GAIA
 from mkt.constants.regions import URY, USA
-from mkt.search.utils import get_boost
+from mkt.search.utils import BOOST_MULTIPLIER_FOR_PUBLIC_CONTENT, get_boost
 from mkt.site.tests import ESTestCase, TestCase
 from mkt.tags.models import Tag
 from mkt.websites.indexers import WebsiteIndexer
@@ -111,8 +111,9 @@ class TestWebsiteIndexer(TestCase):
         self.obj = website_factory()
         # No installs.
         doc = self._get_doc()
-        # Boost is multiplied by 4 if it's public.
-        eq_(doc['boost'], 1.0 * 4)
+        # Boost is multiplied by BOOST_MULTIPLIER_FOR_PUBLIC_CONTENT if it's
+        # public.
+        eq_(doc['boost'], 1.0 * BOOST_MULTIPLIER_FOR_PUBLIC_CONTENT)
         eq_(doc['popularity'], 0)
 
         # Add some popularity.

@@ -7,7 +7,7 @@ from mkt.constants.base import STATUS_PENDING, STATUS_PUBLIC
 from mkt.site.tests import ESTestCase, TestCase
 from mkt.extensions.indexers import ExtensionIndexer
 from mkt.extensions.models import Extension, ExtensionVersion
-from mkt.search.utils import get_boost
+from mkt.search.utils import BOOST_MULTIPLIER_FOR_PUBLIC_CONTENT, get_boost
 
 
 class TestExtensionIndexer(TestCase):
@@ -107,8 +107,9 @@ class TestExtensionIndexer(TestCase):
         extension, version = self._extension_factory()
         # No installs.
         doc = self._get_doc(extension)
-        # Boost is multiplied by 4 if it's public.
-        eq_(doc['boost'], 1.0 * 4)
+        # Boost is multiplied by BOOST_MULTIPLIER_FOR_PUBLIC_CONTENT if it's
+        # public.
+        eq_(doc['boost'], 1.0 * BOOST_MULTIPLIER_FOR_PUBLIC_CONTENT)
         eq_(doc['popularity'], 0)
 
         # Add some popularity.
