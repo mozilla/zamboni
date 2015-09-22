@@ -84,6 +84,12 @@ class ExtensionIndexer(BaseIndexer):
             }
         }
 
+        # Attach boost field, because we are going to need search by relevancy.
+        cls.attach_boost_mapping(mapping)
+
+        # Attach popularity and trending.
+        cls.attach_trending_and_popularity_mappings(mapping)
+
         # Add extra mapping for translated fields, containing the "raw"
         # translations.
         cls.attach_translation_mappings(mapping, cls.translated_fields)
@@ -123,6 +129,9 @@ class ExtensionIndexer(BaseIndexer):
         # Find the first reviewed date (used in sort).
         doc['reviewed'] = obj.versions.public().aggregate(
             Min('reviewed')).get('reviewed__min')
+
+        # Add boost, popularity, trending values.
+        doc.update(cls.extract_popularity_trending_boost(obj))
 
         # Handle localized fields. This adds both the field used for search and
         # the one with all translations for the API.

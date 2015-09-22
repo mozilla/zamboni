@@ -5,6 +5,7 @@ import os.path
 from datetime import datetime
 
 from django.conf import settings
+from django.db import IntegrityError
 from django.test.utils import override_settings
 
 from nose.tools import eq_, ok_
@@ -13,6 +14,7 @@ from rest_framework.exceptions import ParseError
 from lib.crypto.packaged import SigningError
 from mkt.constants.base import (STATUS_NULL, STATUS_OBSOLETE, STATUS_PENDING,
                                 STATUS_PUBLIC, STATUS_REJECTED)
+from mkt.constants.regions import RESTOFWORLD, USA
 from mkt.extensions.models import Extension, ExtensionVersion
 from mkt.files.tests.test_models import UploadCreationMixin, UploadTest
 from mkt.site.storage_utils import private_storage
@@ -645,6 +647,19 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
         eq_(version.size, 667)
         eq_(version.status, STATUS_REJECTED)
         eq_(extension.reload().status, STATUS_NULL)
+
+
+class TestExtensionPopularity(TestCase):
+    def test_unique(self):
+        extension = Extension.objects.create()
+        extension2 = Extension.objects.create()
+
+        extension.popularity.create(region=RESTOFWORLD.id)
+        extension.popularity.create(region=USA.id)
+
+        extension2.popularity.create(region=RESTOFWORLD.id)
+        with self.assertRaises(IntegrityError):
+            extension.popularity.create(region=RESTOFWORLD.id)
 
 
 class TestExtensionManager(TestCase):

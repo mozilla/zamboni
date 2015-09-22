@@ -147,6 +147,16 @@ class Extension(ModelBase):
     def get_indexer(self):
         return ExtensionIndexer
 
+    def is_dummy_content_for_qa(self):
+        """
+        Returns whether this extension is a dummy extension used for testing
+        only or not.
+
+        Used by mkt.search.utils.extract_popularity_trending_boost() - the
+        method needs to exist, but we are not using it yet.
+        """
+        return False
+
     def is_public(self):
         return self.status == STATUS_PUBLIC
 
@@ -451,6 +461,26 @@ class ExtensionVersion(ModelBase):
         }
         return absolutify(
             reverse('extension.download_unsigned', kwargs=kwargs))
+
+
+class ExtensionPopularity(ModelBase):
+    extension = models.ForeignKey(Extension, related_name='popularity')
+    value = models.FloatField(default=0.0)
+    # When region=0, we count across all regions.
+    region = models.PositiveIntegerField(null=False, default=0, db_index=True)
+
+    class Meta:
+        unique_together = ('extension', 'region')
+
+
+class WebsiteTrending(ModelBase):
+    extension = models.ForeignKey(Extension, related_name='trending')
+    value = models.FloatField(default=0.0)
+    # When region=0, it's trending using install counts across all regions.
+    region = models.PositiveIntegerField(null=False, default=0, db_index=True)
+
+    class Meta:
+        unique_together = ('extension', 'region')
 
 
 # Update ElasticSearch index on save.
