@@ -116,6 +116,18 @@ Search
     :status 200: successfully completed.
 
 
+Delete
+------
+
+.. _addon-delete:
+
+.. http:delete:: /api/v2/extensions/extension/(int:id)|(string:slug)/
+
+    .. note:: Requires authentication. Only works on your own Add-ons.
+
+    Delete an add-on. This action is irreversible.
+
+
 Add-on Versions
 ===============
 
@@ -175,6 +187,19 @@ List
     :status 200: successfully completed.
     :status 403: not allowed.
     :status 404: add-on not found.
+
+Delete
+------
+
+.. _addon-version-delete:
+
+.. http:delete:: /api/v2/extensions/extension/(int:id)|(string:slug)/versions/(int:version_id)/
+
+    .. note::
+        Requires authentication. Only works on versions attached to your
+        your own add-ons.
+
+    Delete an add-on version. This action is irreversible.
 
 .. _addon_statuses:
 
@@ -335,6 +360,9 @@ Publishing
     :status 202: successfully published.
     :status 403: not allowed to access this object.
     :status 404: add-on not found in the review queue.
+
+Rejecting
+---------
 
 .. http:post:: /api/v2/extensions/extension/(int:id)|(string:slug)/versions/(int:id)/reject/
 

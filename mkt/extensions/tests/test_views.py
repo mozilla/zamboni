@@ -210,6 +210,46 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
         ok_(u'manifest.json' in response.json['detail'])
 
 
+class TestExtensionViewSetDelete(RestOAuth):
+    fixtures = fixture('user_2519', 'user_999')
+
+    def setUp(self):
+        super(TestExtensionViewSetDelete, self).setUp()
+        self.extension = Extension.objects.create()
+        self.other_extension = Extension.objects.create()
+        self.user = UserProfile.objects.get(pk=2519)
+        self.other_user = UserProfile.objects.get(pk=999)
+        self.detail_url = reverse(
+            'api-v2:extension-detail', kwargs={'pk': self.extension.slug})
+
+    def test_delete_logged_in_has_rights(self):
+        eq_(Extension.objects.count(), 2)
+        self.extension.authors.add(self.user)
+        response = self.client.delete(self.detail_url)
+        eq_(response.status_code, 204)
+        eq_(Extension.objects.count(), 1)
+        ok_(not Extension.objects.filter(pk=self.extension.pk).exists())
+        ok_(Extension.objects.filter(pk=self.other_extension.pk).exists())
+
+    def test_delete_logged_in_no_rights(self):
+        self.extension.authors.add(self.other_user)
+        response = self.client.delete(self.detail_url)
+        eq_(response.status_code, 403)
+        eq_(Extension.objects.count(), 2)
+
+    def test_delete_anonymous_no_rights(self):
+        response = self.anon.delete(self.detail_url)
+        eq_(response.status_code, 403)
+        eq_(Extension.objects.count(), 2)
+
+    def test_delete__404(self):
+        self.detail_url = reverse(
+            'api-v2:extension-detail', kwargs={'pk': self.extension.pk + 666})
+        response = self.client.delete(self.detail_url)
+        eq_(response.status_code, 404)
+        eq_(Extension.objects.count(), 2)
+
+
 class TestExtensionViewSetGet(UploadTest, RestOAuth):
     fixtures = fixture('user_2519', 'user_999')
 
@@ -711,6 +751,113 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
         eq_(self.extension.status, STATUS_NULL)
 
         eq_(self.version.threads.get().notes.get().note_type, comm.REJECTION)
+
+
+class TestExtensionVersionViewSetDelete(RestOAuth):
+    fixtures = fixture('user_2519', 'user_999')
+
+    def setUp(self):
+        super(TestExtensionVersionViewSetDelete, self).setUp()
+        self.extension = Extension.objects.create(name=u'Än Extension')
+        self.public_version = ExtensionVersion.objects.create(
+            extension=self.extension, status=STATUS_PUBLIC,
+            version='0.42')
+        self.pending_version = ExtensionVersion.objects.create(
+            extension=self.extension, status=STATUS_PENDING,
+            version='0.43')
+        self.other_extension = Extension.objects.create()
+        self.other_version = ExtensionVersion.objects.create(
+            extension=self.other_extension)
+        self.user = UserProfile.objects.get(pk=2519)
+        self.other_user = UserProfile.objects.get(pk=999)
+        self.detail_url_public = reverse(
+            'api-v2:extension-version-detail', kwargs={
+                'extension_pk': self.extension.pk,
+                'pk': self.public_version.pk})
+
+    def test_delete_latest_public_version_logged_in_has_rights(self):
+        eq_(ExtensionVersion.objects.count(), 3)
+        self.extension.authors.add(self.user)
+        response = self.client.delete(self.detail_url_public)
+        eq_(response.status_code, 204)
+        eq_(Extension.objects.count(), 2)
+        eq_(ExtensionVersion.objects.count(), 2)
+        ok_(not ExtensionVersion.objects.filter(
+            pk=self.public_version.pk).exists())
+        ok_(ExtensionVersion.objects.filter(
+            pk=self.pending_version.pk).exists())
+        ok_(ExtensionVersion.objects.filter(
+            pk=self.other_version.pk).exists())
+        self.extension.reload()
+        eq_(self.extension.status, STATUS_PENDING)
+
+    def test_delete_latest_pending_version_logged_in_has_rights(self):
+        self.detail_url_pending = reverse(
+            'api-v2:extension-version-detail', kwargs={
+                'extension_pk': self.extension.pk,
+                'pk': self.pending_version.pk})
+
+        eq_(ExtensionVersion.objects.count(), 3)
+        self.extension.authors.add(self.user)
+        response = self.client.delete(self.detail_url_pending)
+        eq_(response.status_code, 204)
+        eq_(Extension.objects.count(), 2)
+        eq_(ExtensionVersion.objects.count(), 2)
+        ok_(ExtensionVersion.objects.filter(
+            pk=self.public_version.pk).exists())
+        ok_(not ExtensionVersion.objects.filter(
+            pk=self.pending_version.pk).exists())
+        ok_(ExtensionVersion.objects.filter(
+            pk=self.other_version.pk).exists())
+        self.extension.reload()
+        eq_(self.extension.status, STATUS_PUBLIC)
+
+    def test_delete_both_versions_logged_in_has_rights(self):
+        self.detail_url_pending = reverse(
+            'api-v2:extension-version-detail', kwargs={
+                'extension_pk': self.extension.pk,
+                'pk': self.pending_version.pk})
+
+        eq_(ExtensionVersion.objects.count(), 3)
+        self.extension.authors.add(self.user)
+        response = self.client.delete(self.detail_url_pending)
+        eq_(response.status_code, 204)
+        response = self.client.delete(self.detail_url_public)
+        eq_(response.status_code, 204)
+        eq_(Extension.objects.count(), 2)
+        eq_(ExtensionVersion.objects.count(), 1)
+        ok_(not ExtensionVersion.objects.filter(
+            pk=self.public_version.pk).exists())
+        ok_(not ExtensionVersion.objects.filter(
+            pk=self.pending_version.pk).exists())
+        ok_(ExtensionVersion.objects.filter(
+            pk=self.other_version.pk).exists())
+        self.extension.reload()
+        eq_(self.extension.status, STATUS_NULL)
+
+    def test_delete_logged_in_no_rights(self):
+        self.extension.authors.add(self.other_user)
+        response = self.client.delete(self.detail_url_public)
+        eq_(response.status_code, 403)
+        eq_(Extension.objects.count(), 2)
+        eq_(ExtensionVersion.objects.count(), 3)
+
+    def test_delete_anonymous_no_rights(self):
+        response = self.anon.delete(self.detail_url_public)
+        eq_(response.status_code, 403)
+        eq_(Extension.objects.count(), 2)
+        eq_(ExtensionVersion.objects.count(), 3)
+
+    def test_delete__404(self):
+        self.extension.authors.add(self.user)
+        self.detail_url_public = reverse(
+            'api-v2:extension-version-detail', kwargs={
+                'extension_pk': self.extension.pk,
+                'pk': self.public_version.pk + 555})
+        response = self.client.delete(self.detail_url_public)
+        eq_(response.status_code, 404)
+        eq_(Extension.objects.count(), 2)
+        eq_(ExtensionVersion.objects.count(), 3)
 
 
 class TestExtensionNonAPIViews(TestCase):
