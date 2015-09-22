@@ -12,8 +12,8 @@ from nose.tools import eq_, ok_
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import comm
 from mkt.constants.apps import MANIFEST_CONTENT_TYPE
-from mkt.constants.base import (STATUS_NULL, STATUS_PENDING, STATUS_PUBLIC,
-                                STATUS_REJECTED)
+from mkt.constants.base import (STATUS_NULL, STATUS_OBSOLETE, STATUS_PENDING,
+                                STATUS_PUBLIC, STATUS_REJECTED)
 from mkt.extensions.models import Extension, ExtensionVersion
 from mkt.files.models import FileUpload
 from mkt.files.tests.test_models import UploadTest
@@ -578,7 +578,7 @@ class TestExtensionVersionViewSetGet(UploadTest, RestOAuth):
         eq_(data['unsigned_download_url'], self.version.unsigned_download_url)
         eq_(data['version'], self.version.version)
 
-    def test_get_owner(self):
+    def test_detail_owner(self):
         self.extension.authors.add(self.user)
         response = self.client.get(self.url)
         eq_(response.status_code, 200)
@@ -588,6 +588,15 @@ class TestExtensionVersionViewSetGet(UploadTest, RestOAuth):
         eq_(data['status'], 'pending')
         eq_(data['unsigned_download_url'], self.version.unsigned_download_url)
         eq_(data['version'], self.version.version)
+
+    def test_detail_owner_obsolete(self):
+        self.version.update(status=STATUS_OBSOLETE)
+        self.extension.authors.add(self.user)
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        data = response.json
+        eq_(data['id'], self.version.pk)
+        eq_(data['status'], 'obsolete')
 
 
 class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):

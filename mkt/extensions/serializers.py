@@ -2,7 +2,8 @@ from rest_framework.fields import CharField
 from rest_framework.serializers import ModelSerializer
 
 from mkt.api.fields import ReverseChoiceField, TranslationSerializerField
-from mkt.constants.base import STATUS_CHOICES_API_v2, STATUS_PUBLIC
+from mkt.constants.base import (STATUS_CHOICES_API_v2,
+                                STATUS_FILE_CHOICES_API_v2, STATUS_PUBLIC)
 from mkt.extensions.models import Extension, ExtensionVersion
 from mkt.search.serializers import BaseESSerializer
 
@@ -12,7 +13,7 @@ class ExtensionVersionSerializer(ModelSerializer):
     unsigned_download_url = CharField(
         source='unsigned_download_url', read_only=True)
     status = ReverseChoiceField(
-        choices_dict=STATUS_CHOICES_API_v2, read_only=True)
+        choices_dict=STATUS_FILE_CHOICES_API_v2, read_only=True)
 
     class Meta:
         model = ExtensionVersion

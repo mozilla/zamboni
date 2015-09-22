@@ -74,7 +74,7 @@ Detail
     :resjson string slug: The add-on slug (unique string identifier that can be used
         instead of the id to retrieve an add-on).
     :resjson string status: The add-on current status.
-        Can be "incomplete", "pending", or "public".
+        Can be *incomplete*, *pending*, or *public*.
 
     :param int id: The add-on id
     :param string slug: The add-on slug
@@ -146,7 +146,7 @@ Detail
         }
 
     :resjson string download_url: The (absolute) URL to the latest signed package for that add-on. That URL may be a 404 if the add-on is not public.
-    :resjson string status: The add-on version current status. Can be "pending", "public" or "rejected".
+    :resjson string status: The add-on version current status. Can be *pending*, *obsolete*, *public* or *rejected*.
     :resjson string unsigned_download_url: The (absolute) URL to the latest *unsigned* package for that add-on. Only the add-on author or users with Extensions:Review permission may access it.
     :resjson string version: The version number for this add-on version.
 
@@ -175,6 +175,21 @@ List
     :status 200: successfully completed.
     :status 403: not allowed.
     :status 404: add-on not found.
+
+.. _addon_statuses:
+
+Add-on Statuses
+===============
+
+* There are 3 possible values for the ``status`` property of an add-on: *public*, *pending* or *incomplete*.
+* There are 4 possible values for the ``status`` property on an add-on version: *public*, *obsolete*, *pending*, *rejected*.
+
+Add-on ``status`` directly depend on the ``status`` of its versions:
+
+* Add-ons with at least one *public* version are *public*.
+* Add-ons with no *public* version and at least one *pending* version are *pending*.
+* Add-ons with no *public* or *pending* version are *incomplete*.
+
 
 Add-on and Add-on Version Submission
 ====================================
@@ -260,6 +275,7 @@ Add-on Version Creation
 
 .. _addon-version-post-label:
 
+
 .. http:post:: /api/v2/extensions/extension/(int:id)|(string:slug)/versions/
 
     .. note::
@@ -284,9 +300,10 @@ Any add-on with at least one *pending* version is shown in the review queue,
 even if the add-on itself is currently public.
 
 Add-ons are not directly published or rejected, Add-ons Versions are. Usually
-the add-on ``latest_version`` is the version that needs to be reviewed. The
-Add-on ``status``, which determines its visibility, is inherited from the
-highest ``status`` the Versions that are attached to it have.
+the add-on ``latest_version`` is the version that needs to be reviewed.
+
+Once a version is published, rejected or deleted, the parent Add-on ``status``
+:ref:`can change as described above<addon_statuses>`.
 
 List
 ----
@@ -309,8 +326,7 @@ Publishing
 .. http:post:: /api/v2/extensions/extension/(int:id)|(string:slug)/versions/(int:id)/publish/
 
     Publish an add-on version. Its file will be signed, its status updated to
-    *public*. The corresponding add-on will inherit that status and will
-    become available through :ref:`search <addon-search-label>`.
+    *public*.
 
     :param int id: The add-on id
     :param string slug: The add-on slug
@@ -322,13 +338,8 @@ Publishing
 
 .. http:post:: /api/v2/extensions/extension/(int:id)|(string:slug)/versions/(int:id)/reject/
 
-    Reject an add-on version. Its status will be updated to "rejected". The
+    Reject an add-on version. Its status will be updated to *rejected*. The
     developer will have to submit it a new version with the issues fixed.
-
-    If the add-on had one ore more other versions that are *public* versions,
-    it will stay *public*. If it had no other *public* versions but had one or
-    more *pending* versions, it will stay *pending*. Otherwise, it will become
-    *incomplete*.
 
     :param int id: The add-on id
     :param string slug: The add-on slug

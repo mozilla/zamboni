@@ -10,7 +10,7 @@ from nose.tools import eq_, ok_
 from rest_framework.exceptions import ParseError
 
 from lib.crypto.packaged import SigningError
-from mkt.constants.base import (STATUS_DISABLED, STATUS_NULL, STATUS_PENDING,
+from mkt.constants.base import (STATUS_NULL, STATUS_OBSOLETE, STATUS_PENDING,
                                 STATUS_PUBLIC, STATUS_REJECTED)
 from mkt.extensions.models import Extension, ExtensionVersion
 from mkt.files.tests.test_models import UploadCreationMixin, UploadTest
@@ -133,8 +133,8 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         eq_(version.status, STATUS_PENDING)
         old_version.reload()
         older_version.reload()
-        eq_(old_version.status, STATUS_DISABLED)
-        eq_(older_version.status, STATUS_DISABLED)
+        eq_(old_version.status, STATUS_OBSOLETE)
+        eq_(older_version.status, STATUS_OBSOLETE)
 
     def test_upload_new_version_other_extension_are_not_affected(self):
         other_extension = Extension.objects.create()
