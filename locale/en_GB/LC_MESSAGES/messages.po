@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-08-27 15:54\n"
+"PO-Revision-Date: 2015-09-21 22:10+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -6102,10 +6102,12 @@ msgid ""
 "Version number must be higher than the latest version uploaded for this Add-"
 "on, which is \"%s\"."
 msgstr ""
+"Version number must be higher than the latest version uploaded for this Add-"
+"on, which is \"%s\"."
 
 #: mkt/extensions/models.py:315
 msgid "An Add-on with this version number already exists."
-msgstr ""
+msgstr "An Add-on with this version number already exists."
 
 #: mkt/extensions/validation.py:22
 msgid "The file sent has an unsupported content-type"
@@ -6113,7 +6115,7 @@ msgstr "The file sent has an unsupported content-type"
 
 #: mkt/extensions/validation.py:24
 msgid "The `description` property cannot be longer than 132 characters."
-msgstr ""
+msgstr "The `description` property cannot be longer than 132 characters."
 
 #: mkt/extensions/validation.py:27
 msgid "'manifest.json' in the archive is not a valid JSON file."
@@ -6121,7 +6123,7 @@ msgstr "'manifest.json' in the archive is not a valid JSON file."
 
 #: mkt/extensions/validation.py:30
 msgid "'manifest.json' in the archive is not encoded in UTF-8."
-msgstr ""
+msgstr "'manifest.json' in the archive is not encoded in UTF-8."
 
 #: mkt/extensions/validation.py:32
 msgid "The file sent is not a valid ZIP file."
@@ -6129,19 +6131,19 @@ msgstr "The file sent is not a valid ZIP file."
 
 #: mkt/extensions/validation.py:33
 msgid "There is no `name` property in the manifest."
-msgstr ""
+msgstr "There is no `name` property in the manifest."
 
 #: mkt/extensions/validation.py:34
 msgid "The `name` property must be a string."
-msgstr ""
+msgstr "The `name` property must be a string."
 
 #: mkt/extensions/validation.py:35
 msgid "The `name` property cannot be longer than 45 characters."
-msgstr ""
+msgstr "The `name` property cannot be longer than 45 characters."
 
 #: mkt/extensions/validation.py:38
 msgid "The `name` property must be at least 1 character long."
-msgstr ""
+msgstr "The `name` property must be at least 1 character long."
 
 #: mkt/extensions/validation.py:41
 msgid "The archive does not contain a 'manifest.json' file."
@@ -6149,21 +6151,23 @@ msgstr "The archive does not contain a 'manifest.json' file."
 
 #: mkt/extensions/validation.py:44
 msgid "There is no `version` property in the manifest."
-msgstr ""
+msgstr "There is no `version` property in the manifest."
 
 #: mkt/extensions/validation.py:46
 msgid "The `version` property must be a string."
-msgstr ""
+msgstr "The `version` property must be a string."
 
 #: mkt/extensions/validation.py:47
 msgid ""
 "The `version` property must be a string containing one to four dot-separated"
 " integers each between 0 and 65535."
 msgstr ""
+"The `version` property must be a string containing one to four dot-separated"
+" integers each between 0 and 65535."
 
 #: mkt/extensions/views.py:52
 msgid "No validation_id specified."
-msgstr ""
+msgstr "No validation_id specified."
 
 #: mkt/extensions/views.py:56
 msgid "You need to be authenticated to perform this action."
@@ -6280,7 +6284,7 @@ msgstr "File exceeding size limit in archive: {0}"
 
 #: mkt/files/utils.py:207
 msgid "Total size of files exeeding limit in archive: {0}"
-msgstr ""
+msgstr "Total size of files exceeding limit in archive: {0}"
 
 #: mkt/files/utils.py:238
 msgid "Invalid archive."
@@ -6665,31 +6669,31 @@ msgstr "<small>Marketplace</small> Lookup Tool"
 
 #: mkt/lookup/templates/lookup/group_summary.html:11
 msgid "Group Lookup results for"
-msgstr ""
+msgstr "Group Lookup results for"
 
 #: mkt/lookup/templates/lookup/group_summary.html:13
 msgid "Group Summary"
-msgstr ""
+msgstr "Group Summary"
 
 #: mkt/lookup/templates/lookup/group_summary.html:18
 msgid "Group Details"
-msgstr ""
+msgstr "Group Details"
 
 #: mkt/lookup/templates/lookup/group_summary.html:22
 msgid "Rules"
-msgstr ""
+msgstr "Rules"
 
 #: mkt/lookup/templates/lookup/group_summary.html:24
 msgid "Notes"
-msgstr ""
+msgstr "Notes"
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
-msgstr ""
+msgstr "Restricted (no API changes possible)"
 
 #: mkt/lookup/templates/lookup/group_summary.html:30
 msgid "Group Members"
-msgstr ""
+msgstr "Group Members"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
@@ -6805,7 +6809,7 @@ msgstr "Groups"
 
 #: mkt/lookup/templates/lookup/user_summary.html:33
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: mkt/lookup/templates/lookup/user_summary.html:58
 msgid "Marketplace Credit"
@@ -6972,7 +6976,7 @@ msgstr "Search"
 
 #: mkt/lookup/templates/lookup/includes/group_search.html:4
 msgid "Group Lookup"
-msgstr ""
+msgstr "Group Lookup"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
@@ -7227,7 +7231,7 @@ msgstr "Device Type Override:"
 
 #: mkt/reviewers/forms.py:126
 msgid "Nominate this app to be featured."
-msgstr ""
+msgstr "Nominate this app to be featured."
 
 #: mkt/reviewers/forms.py:133
 msgid "Choose a canned response..."
