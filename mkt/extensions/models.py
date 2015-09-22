@@ -37,10 +37,11 @@ log = commonware.log.getLogger('z.extensions')
 
 class ExtensionManager(ManagerBase):
     def pending(self):
-        return self.filter(versions__status=STATUS_PENDING).order_by('id')
+        return self.filter(
+            disabled=False, versions__status=STATUS_PENDING)
 
     def public(self):
-        return self.filter(status=STATUS_PUBLIC).order_by('id')
+        return self.filter(disabled=False, status=STATUS_PUBLIC)
 
 
 class ExtensionVersionManager(ManagerBase):
@@ -53,10 +54,9 @@ class ExtensionVersionManager(ManagerBase):
 
 class Extension(ModelBase):
     # Automatically handled fields.
-    last_updated = models.DateTimeField(db_index=True, null=True)
+    last_updated = models.DateTimeField(blank=True, db_index=True, null=True)
     status = models.PositiveSmallIntegerField(
-        choices=STATUS_CHOICES.items(), db_index=True,
-        default=STATUS_NULL)
+        choices=STATUS_CHOICES.items(), default=STATUS_NULL)
     uuid = UUIDField(auto=True)
 
     # Fields for which the manifest is the source of truth - can't be
@@ -68,12 +68,17 @@ class Extension(ModelBase):
 
     # Fields that can be modified using the API.
     authors = models.ManyToManyField('users.UserProfile')
+    disabled = models.BooleanField(default=False)
     slug = models.CharField(max_length=35, unique=True)
 
     objects = ExtensionManager()
 
     manifest_is_source_of_truth_fields = (
         'description', 'default_language', 'name')
+
+    class Meta:
+        ordering = ('id', )
+        index_together = (('disabled', 'status'),)
 
     @cached_property(writable=True)
     def latest_public_version(self):
@@ -158,7 +163,7 @@ class Extension(ModelBase):
         return False
 
     def is_public(self):
-        return self.status == STATUS_PUBLIC
+        return not self.disabled and self.status == STATUS_PUBLIC
 
     @property
     def mini_manifest(self):

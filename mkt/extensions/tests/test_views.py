@@ -162,11 +162,13 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
                                     json.dumps({'validation_id': upload.pk}))
         eq_(response.status_code, 201)
         data = response.json
+
         eq_(data['description'], {'en-US': u'A Dummÿ Extension'})
-        eq_(data['name'], {'en-US': u'My Lîttle Extension'})
+        eq_(data['disabled'], False)
         eq_(data['last_updated'], None)  # The extension is not public yet.
         eq_(data['latest_version']['size'], 319)
         eq_(data['latest_version']['version'], '0.1')
+        eq_(data['name'], {'en-US': u'My Lîttle Extension'})
         eq_(data['slug'], u'my-lîttle-extension')
         eq_(data['status'], 'pending')
         eq_(Extension.objects.count(), 1)
@@ -301,6 +303,7 @@ class TestExtensionViewSetGet(RestOAuth):
         data = response.json['objects'][0]
         eq_(data['id'], self.extension.id)
         eq_(data['description'], {'en-US': self.extension.description})
+        eq_(data['disabled'], False)
         eq_(data['last_updated'], None)  # The extension is not public yet.
         eq_(data['latest_version']['download_url'],
             self.version.download_url)
@@ -323,6 +326,7 @@ class TestExtensionViewSetGet(RestOAuth):
         data = response.json
         eq_(data['id'], self.extension.id)
         eq_(data['description'], {'en-US': self.extension.description})
+        eq_(data['disabled'], False)
         self.assertCloseToNow(data['last_updated'])
         eq_(data['latest_version']['download_url'],
             self.version.download_url)
@@ -334,6 +338,12 @@ class TestExtensionViewSetGet(RestOAuth):
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'public')
+
+    def test_detail_anonymous_disabled(self):
+        self.version.update(status=STATUS_PUBLIC)
+        self.extension.update(disabled=True)
+        response = self.anon.get(self.url)
+        eq_(response.status_code, 403)
 
     def test_detail_with_slug(self):
         self.url = reverse('api-v2:extension-detail',
@@ -351,6 +361,7 @@ class TestExtensionViewSetGet(RestOAuth):
         data = response.json
         eq_(data['id'], self.extension.id)
         eq_(data['description'], {'en-US': self.extension.description})
+        eq_(data['disabled'], False)
         eq_(data['last_updated'], None)  # The extension is not public yet.
         eq_(data['latest_version']['download_url'],
             self.version.download_url)
@@ -362,6 +373,54 @@ class TestExtensionViewSetGet(RestOAuth):
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'pending')
+
+        # Even works if disabled.
+        self.extension.update(disabled=True)
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        data = response.json
+        eq_(data['id'], self.extension.id)
+        eq_(data['disabled'], True)
+
+
+class TestExtensionViewSetPatchPut(RestOAuth):
+    fixtures = fixture('user_2519', 'user_999')
+
+    def setUp(self):
+        super(TestExtensionViewSetPatchPut, self).setUp()
+        self.user = UserProfile.objects.get(pk=2519)
+        self.user2 = UserProfile.objects.get(pk=999)
+        self.extension = Extension.objects.create(
+            name=u'Mŷ Extension', description=u'Mÿ Extension Description',
+            slug=u'mŷ-extension')
+        self.version = ExtensionVersion.objects.create(
+            extension=self.extension, size=4343, status=STATUS_PUBLIC,
+            version='0.43')
+        self.url = reverse('api-v2:extension-detail',
+                           kwargs={'pk': self.extension.pk})
+
+    def test_put(self):
+        self.extension.authors.add(self.user)
+        response = self.client.put(self.url, json.dumps({'slug': 'lol'}))
+        eq_(response.status_code, 405)
+
+    def test_patch_without_rights(self):
+        response = self.anon.patch(self.url, json.dumps({'slug': 'lol'}))
+        eq_(response.status_code, 403)
+        response = self.client.patch(self.url, json.dumps({'slug': 'lol'}))
+        eq_(response.status_code, 403)
+        eq_(self.extension.reload().slug, u'mŷ-extension')
+
+    def test_patch_with_rights(self):
+        self.extension.authors.add(self.user)
+        response = self.client.patch(self.url, json.dumps({
+            'slug': u'lolé', 'disabled': True}))
+        eq_(response.status_code, 200)
+        eq_(response.json['slug'], u'lolé')
+        eq_(response.json['disabled'], True)
+        self.extension.reload()
+        eq_(self.extension.disabled, True)
+        eq_(self.extension.slug, u'lolé')
 
 
 class TestExtensionSearchView(RestOAuth, ESTestCase):
@@ -397,6 +456,7 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
         data = response.json['objects'][0]
         eq_(data['id'], self.extension.id)
         eq_(data['description'], {'en-US': self.extension.description})
+        eq_(data['disabled'], False)
         self.assertCloseToNow(data['last_updated'], now=self.last_updated_date)
         eq_(data['latest_public_version']['download_url'],
             self.version.download_url)
@@ -421,6 +481,14 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
 
     def test_not_public(self):
         self.extension.update(status=STATUS_PENDING)
+        self.refresh('extension')
+        with self.assertNumQueries(0):
+            response = self.anon.get(self.url)
+        eq_(response.status_code, 200)
+        eq_(len(response.json['objects']), 0)
+
+    def test_disabled(self):
+        self.extension.update(disabled=True)
         self.refresh('extension')
         with self.assertNumQueries(0):
             response = self.anon.get(self.url)
@@ -466,6 +534,14 @@ class TestReviewersExtensionViewSetGet(RestOAuth):
         eq_(response.status_code, 200)
         eq_(len(response.json['objects']), 1)
 
+    def test_list_logged_in_with_rights_disabled(self):
+        self.grant_permission(self.user, 'Extensions:Review')
+        # Disabled extensions do not show up in the review queue.
+        self.extension.update(disabled=True)
+        response = self.client.get(self.list_url)
+        eq_(response.status_code, 200)
+        eq_(len(response.json['objects']), 0)
+
     def test_list_logged_in_with_rights(self):
         self.grant_permission(self.user, 'Extensions:Review')
         response = self.client.get(self.list_url)
@@ -481,6 +557,7 @@ class TestReviewersExtensionViewSetGet(RestOAuth):
         }
         eq_(data['id'], self.extension.id)
         eq_(data['description'], {'en-US': self.extension.description})
+        eq_(data['disabled'], False)
         eq_(data['last_updated'], None)  # The extension is not public yet.
         eq_(data['latest_public_version'], None)
         eq_(data['latest_version'], expected_data_version)
@@ -518,6 +595,7 @@ class TestReviewersExtensionViewSetGet(RestOAuth):
         }
         eq_(data['id'], self.extension.id)
         eq_(data['description'], {'en-US': self.extension.description})
+        eq_(data['disabled'], False)
         eq_(data['last_updated'], None)  # The extension is not public yet.
         eq_(data['latest_public_version'], None)
         eq_(data['latest_version'], expected_data_version)
@@ -581,6 +659,12 @@ class TestExtensionVersionViewSetGet(RestOAuth):
         eq_(data['unsigned_download_url'], self.version.unsigned_download_url)
         eq_(data['version'], self.version.version)
 
+    def test_detail_anonymous_disabled(self):
+        self.version.update(status=STATUS_PUBLIC)
+        self.extension.update(disabled=True)
+        response = self.anon.get(self.url)
+        eq_(response.status_code, 403)
+
     def test_detail_logged_in_no_rights(self):
         response = self.client.get(self.url)
         eq_(response.status_code, 403)
@@ -633,6 +717,21 @@ class TestExtensionVersionViewSetGet(RestOAuth):
         eq_(data['status'], 'pending')
         eq_(data['unsigned_download_url'], self.version.unsigned_download_url)
         eq_(data['version'], self.version.version)
+
+    def test_list_owner_disabled(self):
+        self.extension.authors.add(self.user)
+        self.extension.update(disabled=True)
+        response = self.client.get(self.list_url)
+        eq_(response.status_code, 200)
+        eq_(len(response.json['objects']), 1)
+
+    def test_detail_owner_disabled(self):
+        self.extension.authors.add(self.user)
+        self.extension.update(disabled=True)
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        data = response.json
+        eq_(data['id'], self.version.pk)
 
     def test_detail_owner(self):
         self.extension.authors.add(self.user)
@@ -741,6 +840,24 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
         eq_(self.extension.status, STATUS_PENDING)
         eq_(self.extension.latest_version, new_version)
 
+    def test_post_logged_in_with_rights_disabled(self):
+        self.extension.authors.add(self.user)
+        self.extension.update(disabled=True)
+        upload = self.get_upload(
+            abspath=self.packaged_app_path('extension.zip'), user=self.user)
+        eq_(upload.valid, True)
+        response = self.client.post(self.list_url,
+                                    json.dumps({'validation_id': upload.pk}))
+        eq_(response.status_code, 403)
+
+    @mock.patch('mkt.extensions.models.ExtensionVersion.sign_and_move_file')
+    def test_publish_disabled(self, sign_and_move_file_mock):
+        self.grant_permission(self.user, 'Extensions:Review')
+        self.extension.update(disabled=True)
+        response = self.client.post(self.publish_url)
+        eq_(response.status_code, 403)
+        ok_(not sign_and_move_file_mock.called)
+
     @mock.patch('mkt.extensions.models.ExtensionVersion.sign_and_move_file')
     def test_publish(self, sign_and_move_file_mock):
         self.grant_permission(self.user, 'Extensions:Review')
@@ -755,6 +872,14 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
         eq_(self.version.status, STATUS_PUBLIC)
 
         eq_(self.version.threads.get().notes.get().note_type, comm.APPROVAL)
+
+    @mock.patch('mkt.extensions.models.ExtensionVersion.remove_signed_file')
+    def test_reject_disabled(self, remove_signed_file_mock):
+        self.grant_permission(self.user, 'Extensions:Review')
+        self.extension.update(disabled=True)
+        response = self.client.post(self.reject_url)
+        eq_(response.status_code, 403)
+        ok_(not remove_signed_file_mock.called)
 
     @mock.patch('mkt.extensions.models.ExtensionVersion.remove_signed_file')
     def test_reject(self, remove_signed_file_mock):

@@ -56,12 +56,24 @@ class TestExtensionIndexer(TestCase):
         eq_(doc['status'], extension.status)
         eq_(doc['latest_public_version'], None)
 
+    def test_extract_disabled(self):
+        extension, version = self._extension_factory(STATUS_PUBLIC)
+        extension.update(disabled=True)
+        doc = self._get_doc(extension)
+        eq_(doc['id'], extension.id)
+        eq_(doc['is_disabled'], True)
+        eq_(doc['status'], STATUS_PUBLIC)
+        eq_(doc['latest_public_version'],
+            {'id': version.pk, 'size': 42, 'version': '0.1', })
+
     def test_extract_public(self):
         extension, version = self._extension_factory(STATUS_PUBLIC)
         doc = self._get_doc(extension)
         eq_(doc['id'], extension.id)
         eq_(doc['created'], extension.created)
         eq_(doc['default_language'], extension.default_language)
+        eq_(doc['guid'], extension.uuid)
+        eq_(doc['is_disabled'], extension.disabled)
         eq_(doc['last_updated'], extension.last_updated)
         eq_(doc['modified'], extension.modified)
         eq_(doc['name'], [unicode(extension.name)])
