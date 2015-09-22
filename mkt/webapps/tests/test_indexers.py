@@ -2,6 +2,7 @@
 from django.test.utils import override_settings
 
 import json
+import mock
 from nose.tools import eq_, ok_
 
 import mkt
@@ -207,6 +208,7 @@ class TestWebappIndexer(TestCase):
         obj, doc = self._get_doc()
         eq_(doc['installs_allowed_from'], ['http://a.com', 'http://b.com'])
 
+    @mock.patch('mkt.search.indexers.MATURE_REGION_IDS', [42])
     def test_installs_to_popularity(self):
         # No installs.
         obj, doc = self._get_doc()
@@ -220,12 +222,12 @@ class TestWebappIndexer(TestCase):
         # Test an adolescent region.
         self.app.popularity.create(region=2, value=10.0)
         # Test a mature region.
-        self.app.popularity.create(region=7, value=10.0)
+        self.app.popularity.create(region=42, value=10.0)
 
         obj, doc = self._get_doc()
         eq_(doc['boost'], get_boost(self.app))
         eq_(doc['popularity'], 50)
-        eq_(doc['popularity_7'], 10)
+        eq_(doc['popularity_42'], 10)
         # Adolescent regions popularity value is not stored.
         ok_('popularity_2' not in doc)
 
@@ -239,16 +241,17 @@ class TestWebappIndexer(TestCase):
         eq_(doc['trending'], 0)
         eq_(doc['trending_7'], 0)
 
+    @mock.patch('mkt.search.indexers.MATURE_REGION_IDS', [42])
     def test_trending(self):
         self.app.trending.create(region=0, value=10.0)
         # Test an adolescent region.
         self.app.trending.create(region=2, value=50.0)
         # Test a mature region.
-        self.app.trending.create(region=7, value=50.0)
+        self.app.trending.create(region=42, value=50.0)
 
         obj, doc = self._get_doc()
         eq_(doc['trending'], 10.0)
-        eq_(doc['trending_7'], 50.0)
+        eq_(doc['trending_42'], 50.0)
         # Adolescent regions trending value is not stored.
         ok_('trending_2' not in doc)
 
