@@ -6,6 +6,7 @@ STATUS_NULL = 0
 STATUS_PENDING = 2
 STATUS_PUBLIC = 4
 STATUS_DISABLED = 5
+STATUS_OBSOLETE = STATUS_DISABLED
 STATUS_DELETED = 11
 STATUS_REJECTED = 12
 STATUS_APPROVED = 13
@@ -38,10 +39,10 @@ STATUS_CHOICES = {
 
 
 # Marketplace file status terms.
-MKT_STATUS_FILE_CHOICES = STATUS_CHOICES.copy()
-MKT_STATUS_FILE_CHOICES[STATUS_DISABLED] = _(u'Obsolete')
-MKT_STATUS_FILE_CHOICES[STATUS_APPROVED] = _(u'Approved')
-MKT_STATUS_FILE_CHOICES[STATUS_PUBLIC] = _(u'Published')
+STATUS_FILE_CHOICES = STATUS_CHOICES.copy()
+STATUS_FILE_CHOICES[STATUS_OBSOLETE] = _(u'Obsolete')
+STATUS_FILE_CHOICES[STATUS_APPROVED] = _(u'Approved')
+STATUS_FILE_CHOICES[STATUS_PUBLIC] = _(u'Published')
 
 # We need to expose nice values that aren't localisable.
 STATUS_CHOICES_API = {
@@ -90,6 +91,18 @@ STATUS_CHOICES_API_LOOKUP_v2 = {
     'private': STATUS_APPROVED,
     'blocked': STATUS_BLOCKED,
     'unlisted': STATUS_UNLISTED,
+}
+
+STATUS_FILE_CHOICES_API_v2 = {
+    STATUS_NULL: 'incomplete',
+    STATUS_PENDING: 'pending',
+    STATUS_PUBLIC: 'public',
+    STATUS_OBSOLETE: 'obsolete',
+    STATUS_DELETED: 'deleted',
+    STATUS_REJECTED: 'rejected',
+    STATUS_APPROVED: 'approved',
+    STATUS_BLOCKED: 'blocked',
+    STATUS_UNLISTED: 'unlisted',
 }
 
 # Publishing types.

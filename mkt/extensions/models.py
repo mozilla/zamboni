@@ -15,9 +15,9 @@ from tower import ugettext as _
 from uuidfield.fields import UUIDField
 
 from lib.crypto.packaged import sign_app, SigningError
-from mkt.constants.base import (MKT_STATUS_FILE_CHOICES, STATUS_DISABLED,
-                                STATUS_NULL, STATUS_PENDING, STATUS_PUBLIC,
-                                STATUS_REJECTED)
+from mkt.constants.base import (STATUS_CHOICES, STATUS_FILE_CHOICES,
+                                STATUS_NULL, STATUS_OBSOLETE, STATUS_PENDING,
+                                STATUS_PUBLIC, STATUS_REJECTED)
 from mkt.extensions.indexers import ExtensionIndexer
 from mkt.extensions.validation import ExtensionValidator
 from mkt.files.models import cleanup_file, nfd_str
@@ -54,7 +54,7 @@ class Extension(ModelBase):
     # Automatically handled fields.
     uuid = UUIDField(auto=True)
     status = models.PositiveSmallIntegerField(
-        choices=MKT_STATUS_FILE_CHOICES.items(), db_index=True,
+        choices=STATUS_CHOICES.items(), db_index=True,
         default=STATUS_NULL)
 
     # Fields for which the manifest is the source of truth - can't be
@@ -246,7 +246,7 @@ class ExtensionVersion(ModelBase):
     version = models.CharField(max_length=23, default='')
     size = models.PositiveIntegerField(default=0, editable=False)  # In bytes.
     status = models.PositiveSmallIntegerField(
-        choices=MKT_STATUS_FILE_CHOICES.items(), db_index=True,
+        choices=STATUS_FILE_CHOICES.items(), db_index=True,
         default=STATUS_NULL)
 
     objects = ExtensionVersionManager()
@@ -379,7 +379,7 @@ class ExtensionVersion(ModelBase):
 
     def set_older_pending_versions_as_obsolete(self):
         """Set all pending versions older than this one attached to the same
-        Extension as DISABLED (obsolete).
+        Extension as STATUS_OBSOLETE.
 
         To be on the safe side this method does not trigger signals and needs
         to be called when creating a new pending version, before actually
@@ -391,7 +391,7 @@ class ExtensionVersion(ModelBase):
 
         # Call <queryset>.update() directly, bypassing signals etc, that should
         # not be needed since it should be followed by a self.save().
-        qs.update(status=STATUS_DISABLED)
+        qs.update(status=STATUS_OBSOLETE)
 
     def sign_and_move_file(self):
         """Sign and move extension file from the unsigned path (`file_path`) on

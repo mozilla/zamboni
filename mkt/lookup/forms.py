@@ -25,9 +25,9 @@ for status in mkt.STATUS_CHOICES:
                            mkt.STATUS_CHOICES[status]))
 
 FILE_STATUS_CHOICES = []
-for status in mkt.MKT_STATUS_FILE_CHOICES:
+for status in mkt.STATUS_FILE_CHOICES:
     FILE_STATUS_CHOICES.append((mkt.STATUS_CHOICES_API[status],
-                                mkt.MKT_STATUS_FILE_CHOICES[status]))
+                                mkt.STATUS_FILE_CHOICES[status]))
 
 
 class NoAutoCompleteChoiceField(forms.ChoiceField):
