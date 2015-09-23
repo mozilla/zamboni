@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-08-27 21:26+0000\n"
+"PO-Revision-Date: 2015-09-21 20:58+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1440710797.0\n"
+"X-POOTLE-MTIME: 1442869134.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -5080,11 +5080,11 @@ msgstr "Mozilla 网络应用（巴西葡萄牙语）"
 
 #: mkt/extensions/models.py:304
 msgid "Version number must be higher than the latest version uploaded for this Add-on, which is \"%s\"."
-msgstr ""
+msgstr "版本号必须比已上传的此附加组件的最新版本号（“%s”）更大。"
 
 #: mkt/extensions/models.py:315
 msgid "An Add-on with this version number already exists."
-msgstr ""
+msgstr "使用此版本号的附加组件已存在。"
 
 #: mkt/extensions/validation.py:22
 msgid "The file sent has an unsupported content-type"
@@ -5092,7 +5092,7 @@ msgstr "发送的文件存在不支持的 content-type"
 
 #: mkt/extensions/validation.py:24
 msgid "The `description` property cannot be longer than 132 characters."
-msgstr ""
+msgstr "“description”属性不能超过 132 个字符。"
 
 #: mkt/extensions/validation.py:27
 msgid "'manifest.json' in the archive is not a valid JSON file."
@@ -5100,7 +5100,7 @@ msgstr "压缩文件中的“manifest.json”不是一个有效的 JSON 文件�
 
 #: mkt/extensions/validation.py:30
 msgid "'manifest.json' in the archive is not encoded in UTF-8."
-msgstr ""
+msgstr "压缩包内的“manifest.json”并未采用 UTF-8 编码。"
 
 #: mkt/extensions/validation.py:32
 msgid "The file sent is not a valid ZIP file."
@@ -5108,19 +5108,19 @@ msgstr "发送的文件不是有效的 ZIP 文件。"
 
 #: mkt/extensions/validation.py:33
 msgid "There is no `name` property in the manifest."
-msgstr ""
+msgstr "清单文件中缺少“name”属性。"
 
 #: mkt/extensions/validation.py:34
 msgid "The `name` property must be a string."
-msgstr ""
+msgstr "“name”属性必须是一个字符串。"
 
 #: mkt/extensions/validation.py:35
 msgid "The `name` property cannot be longer than 45 characters."
-msgstr ""
+msgstr "“name”属性不能超过 45 个字符。"
 
 #: mkt/extensions/validation.py:38
 msgid "The `name` property must be at least 1 character long."
-msgstr ""
+msgstr "“name”属性至少要有一个字符。"
 
 #: mkt/extensions/validation.py:41
 msgid "The archive does not contain a 'manifest.json' file."
@@ -5128,19 +5128,19 @@ msgstr "压缩文件中未包含“manifest.json”文件。"
 
 #: mkt/extensions/validation.py:44
 msgid "There is no `version` property in the manifest."
-msgstr ""
+msgstr "清单文件中缺少“version”属性。"
 
 #: mkt/extensions/validation.py:46
 msgid "The `version` property must be a string."
-msgstr ""
+msgstr "“version”属性必须是一个字符串。"
 
 #: mkt/extensions/validation.py:47
 msgid "The `version` property must be a string containing one to four dot-separated integers each between 0 and 65535."
-msgstr ""
+msgstr "“version”属性必须是一个包含一至四个点分隔，每个部分在 0 至 65535 之间的字符串。"
 
 #: mkt/extensions/views.py:52
 msgid "No validation_id specified."
-msgstr ""
+msgstr "未指定 validation_id。"
 
 #: mkt/extensions/views.py:56
 msgid "You need to be authenticated to perform this action."
@@ -5237,7 +5237,7 @@ msgstr "超过体积限制的文件存在于压缩包：{0}"
 
 #: mkt/files/utils.py:207
 msgid "Total size of files exeeding limit in archive: {0}"
-msgstr ""
+msgstr "压缩包内的文件总大小超过限制：{0}"
 
 #: mkt/files/utils.py:238
 msgid "Invalid archive."
@@ -5575,31 +5575,31 @@ msgstr "<small>应用市场</small> 查找工具"
 
 #: mkt/lookup/templates/lookup/group_summary.html:11
 msgid "Group Lookup results for"
-msgstr ""
+msgstr "群组查询结果："
 
 #: mkt/lookup/templates/lookup/group_summary.html:13
 msgid "Group Summary"
-msgstr ""
+msgstr "群组概要"
 
 #: mkt/lookup/templates/lookup/group_summary.html:18
 msgid "Group Details"
-msgstr ""
+msgstr "群组详细信息"
 
 #: mkt/lookup/templates/lookup/group_summary.html:22
 msgid "Rules"
-msgstr ""
+msgstr "规则"
 
 #: mkt/lookup/templates/lookup/group_summary.html:24
 msgid "Notes"
-msgstr ""
+msgstr "附注"
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
-msgstr ""
+msgstr "受限（不能进行 API 变更）"
 
 #: mkt/lookup/templates/lookup/group_summary.html:30
 msgid "Group Members"
-msgstr ""
+msgstr "群组成员"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
@@ -5699,7 +5699,7 @@ msgstr "分组"
 
 #: mkt/lookup/templates/lookup/user_summary.html:33
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: mkt/lookup/templates/lookup/user_summary.html:58
 msgid "Marketplace Credit"
@@ -5843,7 +5843,7 @@ msgstr "搜索"
 
 #: mkt/lookup/templates/lookup/includes/group_search.html:4
 msgid "Group Lookup"
-msgstr ""
+msgstr "群组查询"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
@@ -6085,7 +6085,7 @@ msgstr "排除的设备类型："
 
 #: mkt/reviewers/forms.py:126
 msgid "Nominate this app to be featured."
-msgstr ""
+msgstr "提名此应用成为精选。"
 
 #: mkt/reviewers/forms.py:133
 msgid "Choose a canned response..."
