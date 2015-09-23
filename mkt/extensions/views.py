@@ -37,7 +37,8 @@ from mkt.extensions.serializers import (ESExtensionSerializer,
                                         ExtensionVersionSerializer)
 from mkt.extensions.validation import ExtensionValidator
 from mkt.files.models import FileUpload
-from mkt.search.filters import PublicContentFilter
+from mkt.search.filters import (PublicContentFilter, SearchQueryFilter,
+                                SortingFilter)
 from mkt.site.decorators import allow_cross_site_request, use_master
 from mkt.site.utils import get_file_response
 from mkt.submit.views import ValidationViewSet as SubmitValidationViewSet
@@ -155,7 +156,7 @@ class ExtensionSearchView(CORSMixin, MarketplaceView, ListAPIView):
     authentication_classes = [RestSharedSecretAuthentication,
                               RestOAuthAuthentication]
     permission_classes = [AllowAny]
-    filter_backends = [PublicContentFilter]  # No search query for now.
+    filter_backends = [PublicContentFilter, SearchQueryFilter, SortingFilter]
     serializer_class = ESExtensionSerializer
     paginator_class = ESPaginator
 
