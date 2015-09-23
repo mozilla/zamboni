@@ -38,6 +38,7 @@ Detail
         {
           "id": 1,
           "description": null,
+          "disabled": false,
           "latest_version": {
             "id": 1,
             "download_url": "https://example.com/downloads/extension/ce6b52d231154a27a1c54b2648c10379/1/extension-0.1.zip",
@@ -68,6 +69,8 @@ Detail
 
     :resjson int id: The add-on id.
     :resjson string|object|null description: The add-on description.
+    :resjson boolean disabled: Boolean indicating whether the developer has disabled
+        their add-on or not.
     :resjson string|null last_updated: The latest date a version was published at for this add-on. 
     :resjson object latest_version: The latest :ref:`add-on version <addon-version-detail>` available for this extension.
     :resjson object latest_public_version: The latest *public* :ref:`add-on version <addon-version-detail>` available for this extension.
@@ -100,6 +103,26 @@ List
     :status 200: successfully completed.
     :status 403: not authenticated.
 
+Update
+------
+
+.. http:patch:: /api/v2/extensions/extension/(int:id)|(string:slug)/
+
+    .. note:: Requires authentication and ownership of the Add-on.
+
+    Update some properties of an add-on.
+
+    :param int id: The add-on id
+    :param string slug: The add-on slug
+
+    :reqjson boolean disabled: Boolean indicating whether the developer has disabled
+        their add-on or not.
+    :reqjson string slug: The add-on slug (unique string identifier that can be used
+        instead of the id to retrieve an add-on).
+
+    :status 200: successfully completed.
+    :status 403: not allowed to access this object.
+    :status 404: not found.
 
 Search
 ------
@@ -217,6 +240,11 @@ Add-on ``status`` directly depend on the ``status`` of its versions:
 * Add-ons with no *public* version and at least one *pending* version are *pending*.
 * Add-ons with no *public* or *pending* version are *incomplete*.
 
+In addition, Add-ons also have a ``disabled`` property that can be set to ``true``
+by the developer to disable the add-on. Disabled add-ons are hidden from the public
+and reviewers, but retain their original status so they can be re-enabled by just
+switching ``disabled`` back to ``false``.
+
 
 Add-on and Add-on Version Submission
 ====================================
@@ -306,8 +334,8 @@ Add-on Version Creation
 .. http:post:: /api/v2/extensions/extension/(int:id)|(string:slug)/versions/
 
     .. note::
-        Requires authentication, ownership of the add-on and a successful
-        validation result.
+        Requires authentication, ownership of the add-on (which must not be in
+        ``disabled`` state) and a successful validation result.
 
     Create an add-on version.
 
@@ -318,13 +346,18 @@ Add-on Version Creation
     :param string slug: The add-on slug
 
     :status 201: successfully created.
+    :status 400: some errors were found in your add-on.
+    :status 403: not allowed.
+    :status 404: add-on not found.
+
 
 
 Add-ons Review Queue
 ====================
 
-Any add-on with at least one *pending* version is shown in the review queue,
-even if the add-on itself is currently public.
+Any add-on that is not disabled by its developer, and has at least one
+*pending* version is shown in the review queue, even if the add-on itself is
+currently public.
 
 Add-ons are not directly published or rejected, Add-ons Versions are. Usually
 the add-on ``latest_version`` is the version that needs to be reviewed.
@@ -360,7 +393,7 @@ Publishing
     :param int version_id: The add-on version id
 
     :status 202: successfully published.
-    :status 403: not allowed to access this object.
+    :status 403: not allowed to access this object or disabled add-on.
     :status 404: add-on not found in the review queue.
 
 Rejecting
@@ -376,6 +409,6 @@ Rejecting
     :param int version_id: The add-on version id
 
     :status 202: successfully published.
-    :status 403: not allowed to access this object.
+    :status 403: not allowed to access this object or disabled add-on.
     :status 404: add-on not found in the review queue.
 

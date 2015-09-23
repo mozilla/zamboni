@@ -22,14 +22,15 @@ class ExtensionVersionSerializer(ModelSerializer):
 
 
 class ExtensionSerializer(ModelSerializer):
-    description = TranslationSerializerField()
+    description = TranslationSerializerField(read_only=True)
     latest_public_version = ExtensionVersionSerializer(
-        source='latest_public_version')
+        source='latest_public_version', read_only=True)
     latest_version = ExtensionVersionSerializer(
-        source='latest_version')
+        source='latest_version', read_only=True)
     mini_manifest_url = CharField(source='mini_manifest_url', read_only=True)
-    name = TranslationSerializerField()
-    status = ReverseChoiceField(choices_dict=STATUS_CHOICES_API_v2)
+    name = TranslationSerializerField(read_only=True)
+    status = ReverseChoiceField(
+        choices_dict=STATUS_CHOICES_API_v2, read_only=True)
 
     # FIXME: latest_version potentially expose private data.
     # Nothing extremely major, but maybe we care. Not a fan of moving it to
@@ -39,9 +40,9 @@ class ExtensionSerializer(ModelSerializer):
 
     class Meta:
         model = Extension
-        fields = ['id', 'description', 'last_updated', 'latest_version',
-                  'latest_public_version', 'mini_manifest_url', 'name', 'slug',
-                  'status', ]
+        fields = ['id', 'description', 'disabled', 'last_updated',
+                  'latest_version', 'latest_public_version',
+                  'mini_manifest_url', 'name', 'slug', 'status', ]
 
 
 class ESExtensionSerializer(BaseESSerializer, ExtensionSerializer):
@@ -67,6 +68,7 @@ class ESExtensionSerializer(BaseESSerializer, ExtensionSerializer):
             obj, data, ('default_language', 'last_updated', 'slug', 'status',
                         'version'))
 
+        obj.disabled = data['is_disabled']
         obj.uuid = data['guid']
 
         # Attach translations for all translated attributes.

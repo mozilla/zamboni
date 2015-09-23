@@ -11,9 +11,9 @@ from rest_framework import status
 from rest_framework.decorators import detail_route
 from rest_framework.generics import ListAPIView
 from rest_framework.mixins import (DestroyModelMixin, ListModelMixin,
-                                   RetrieveModelMixin)
+                                   RetrieveModelMixin, UpdateModelMixin)
 from rest_framework.parsers import FileUploadParser
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, SAFE_METHODS
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from tower import ugettext as _
@@ -117,7 +117,7 @@ class ValidationViewSet(SubmitValidationViewSet):
 
 class ExtensionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
                        DestroyModelMixin, ListModelMixin, RetrieveModelMixin,
-                       SlugOrIdMixin, GenericViewSet):
+                       SlugOrIdMixin, UpdateModelMixin, GenericViewSet):
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
@@ -137,6 +137,13 @@ class ExtensionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
                     'Anonymous listing not allowed.')
             qs = qs.filter(authors=self.request.user)
         return qs
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.get('partial', False)
+        if not partial:
+            # PUT are not supported, only PATCH is.
+            raise exceptions.MethodNotAllowed(request.method)
+        return super(ExtensionViewSet, self).update(request, *args, **kwargs)
 
 
 class ExtensionSearchView(CORSMixin, MarketplaceView, ListAPIView):
@@ -198,6 +205,12 @@ class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
         super(ExtensionVersionViewSet, self).check_permissions(request)
 
         extension = self.get_extension_object()
+        # You can't modify or create versions on disabled extensions, even if
+        # you are the owner.
+        if extension.disabled and self.request.method not in SAFE_METHODS:
+            raise PermissionDenied(
+                _(u'Modifying or submitting versions is forbidden for disabled'
+                  u' Add-ons.'))
         super(ExtensionVersionViewSet, self).check_object_permissions(
             request, extension)
 

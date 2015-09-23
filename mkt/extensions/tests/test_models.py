@@ -465,6 +465,20 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
             os.path.join(settings.SIGNED_EXTENSIONS_PATH,
                          str(extension.pk), version.filename))
 
+    def test_is_public(self):
+        extension = Extension(disabled=False, status=STATUS_PUBLIC)
+        eq_(extension.is_public(), True)
+
+        for status in (STATUS_NULL, STATUS_PENDING):
+            extension.status = status
+            eq_(extension.is_public(), False)
+
+    def test_is_public_disabled(self):
+        extension = Extension(disabled=True)
+        for status in (STATUS_NULL, STATUS_PENDING, STATUS_PUBLIC):
+            extension.status = status
+            eq_(extension.is_public(), False)
+
     @override_settings(SITE_URL='https://marketpace.example.com/')
     def test_mini_manifest_url(self):
         extension = Extension(pk=43, uuid='12345678123456781234567812abcdef')
@@ -667,6 +681,7 @@ class TestExtensionManager(TestCase):
         extension1 = Extension.objects.create(status=STATUS_PUBLIC)
         extension2 = Extension.objects.create(status=STATUS_PUBLIC)
         Extension.objects.create(status=STATUS_NULL)
+        Extension.objects.create(status=STATUS_PUBLIC, disabled=True)
         eq_(list(Extension.objects.public()), [extension1, extension2])
 
     def test_pending(self):
@@ -680,6 +695,9 @@ class TestExtensionManager(TestCase):
             extension=extension2, status=STATUS_PUBLIC, version='2.2')
         Extension.objects.create(status=STATUS_PUBLIC)
         Extension.objects.create(status=STATUS_NULL)
+        disabled_extension = Extension.objects.create(disabled=True)
+        ExtensionVersion.objects.create(
+            extension=disabled_extension, status=STATUS_PENDING, version='3.1')
 
         eq_(list(Extension.objects.pending()), [extension1, extension2])
 

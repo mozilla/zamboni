@@ -114,9 +114,7 @@ class ExtensionIndexer(BaseIndexer):
         doc = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
         doc['guid'] = unicode(obj.uuid)
-        # is_disabled is here for compatibility with other search filters, but
-        # never set to True at the moment, and not present in the model.
-        doc['is_disabled'] = False
+        doc['is_disabled'] = obj.disabled
         if obj.status == STATUS_PUBLIC:
             doc['latest_public_version'] = {
                 'id': obj.latest_public_version.pk,
