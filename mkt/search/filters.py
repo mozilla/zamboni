@@ -202,13 +202,17 @@ class ReviewerWebsiteSearchFormFilter(SearchFormFilter):
 class PublicContentFilter(BaseFilterBackend):
     """
     A django-rest-framework filter backend that filters only public items --
-    those with PUBLIC status and not disabled.
+    those not deleted, with PUBLIC status and not disabled.
 
     """
     def filter_queryset(self, request, queryset, view):
+        # Note: only Extensions have is_deleted, for Webapps the status is
+        # changed when deleted. That's why a must_not is used, it will be true
+        # even if the field does not exist.
         return queryset.filter(
             Bool(must=[F('term', status=mkt.STATUS_PUBLIC),
-                       F('term', is_disabled=False)]))
+                       F('term', is_disabled=False)],
+                 must_not=[F('term', is_deleted=True)]))
 
 
 class ValidAppsFilter(BaseFilterBackend):

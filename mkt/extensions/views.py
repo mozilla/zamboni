@@ -126,7 +126,7 @@ class ExtensionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
     model = Extension
     permission_classes = [AnyOf(AllowAppOwner, AllowExtensionReviewerReadOnly,
                                 AllowReadOnlyIfPublic)]
-    queryset = Extension.objects.all()
+    queryset = Extension.objects.without_deleted()
     serializer_class = ExtensionSerializer
 
     def filter_queryset(self, qs):
@@ -184,7 +184,7 @@ class ReviewersExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         'post': GroupPermission('Extensions', 'Review'),
         'get': GroupPermission('Extensions', 'Review'),
     }),)
-    queryset = Extension.objects.pending()
+    queryset = Extension.objects.without_deleted().pending()
     serializer_class = ExtensionSerializer
 
 
@@ -197,7 +197,7 @@ class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
     # Note: In this viewset, permissions are checked against the parent
     # extension.
     permission_classes = ExtensionViewSet.permission_classes
-    queryset = ExtensionVersion.objects.all()
+    queryset = ExtensionVersion.objects.without_deleted()
     serializer_class = ExtensionVersionSerializer
 
     def check_permissions(self, request):
@@ -212,6 +212,8 @@ class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
             raise PermissionDenied(
                 _(u'Modifying or submitting versions is forbidden for disabled'
                   u' Add-ons.'))
+        # Check object permissions (the original implementation, since we
+        # provide a different one) on the parent extension.
         super(ExtensionVersionViewSet, self).check_object_permissions(
             request, extension)
 
@@ -220,33 +222,27 @@ class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
         super(ExtensionVersionViewSet, self).check_object_permissions(
             request, obj.extension)
 
-    def filter_extension_queryset(self, qs, filter_prefix=''):
-        """Filter queryset passed in argument to find the parent Extension
-        by slug or pk."""
-        extension_pk = self.kwargs.get('extension_pk')
-        if not extension_pk:
+    def get_extension_object(self):
+        """Return the parent Extension object using the GET parameter passed
+        to the view."""
+        if hasattr(self, 'extension_object'):
+            return self.extension_object
+        identifier = self.kwargs.get('extension_pk')
+        if not identifier:
             raise ImproperlyConfigured(
                 'extension_pk should be passed to ExtensionVersionViewSet.')
-        if extension_pk.isdigit():
-            filters = {'%spk' % filter_prefix: extension_pk}
-        else:
-            filters = {'%sslug' % filter_prefix: extension_pk}
-        return qs.filter(**filters)
-
-    def get_extension_object(self):
-        """Return the parent Extension object directly."""
         try:
-            extension = self.filter_extension_queryset(
-                ExtensionViewSet.queryset).get()
+            self.extension_object = (
+                Extension.objects.without_deleted().by_identifier(identifier))
         except Extension.DoesNotExist:
             raise Http404
-        return extension
+        return self.extension_object
 
     def get_queryset(self):
         """Return the ExtensionVersion queryset, filtered to only consider the
         children of the parent Extension."""
         qs = super(ExtensionVersionViewSet, self).get_queryset()
-        return self.filter_extension_queryset(qs, filter_prefix='extension__')
+        return qs.filter(extension=self.get_extension_object())
 
     @detail_route(
         methods=['post'],
@@ -282,8 +278,9 @@ def _download(request, extension, version, path, public=True):
 
 
 def download_signed(request, uuid, **kwargs):
-    extension = get_object_or_404(Extension.objects.public(), uuid=uuid)
-    version = extension.versions.get(pk=kwargs['version_id'])
+    extension = get_object_or_404(
+        Extension.objects.without_deleted().public(), uuid=uuid)
+    version = extension.versions.without_deleted().get(pk=kwargs['version_id'])
 
     log.info('Downloading add-on: %s version %s from %s' % (
              extension.pk, version.pk, version.signed_file_path))
@@ -292,7 +289,7 @@ def download_signed(request, uuid, **kwargs):
 
 def download_unsigned(request, uuid, **kwargs):
     extension = get_object_or_404(Extension, uuid=uuid)
-    version = extension.versions.get(pk=kwargs['version_id'])
+    version = extension.versions.without_deleted().get(pk=kwargs['version_id'])
 
     def is_author():
         return extension.authors.filter(pk=request.user.pk).exists()
