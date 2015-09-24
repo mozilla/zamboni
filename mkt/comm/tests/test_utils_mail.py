@@ -73,6 +73,17 @@ class TestSendMailComm(TestCase, CommTestMixin):
         self._check_template(email.call_args, 'approval')
 
     @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
+    def test_rejection(self, email):
+        self._create(comm.REJECTION)
+        eq_(email.call_count, 2)
+
+        recipients = self._recipients(email)
+        assert self.developer.email in recipients
+        assert self.mozilla_contact.email in recipients
+
+        self._check_template(email.call_args, 'rejection')
+
+    @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
     def test_escalation(self, email):
         self._create(comm.ESCALATION)
         eq_(email.call_count, 2)
@@ -214,6 +225,16 @@ class TestSendMailCommExtensions(TestCase, CommTestMixin):
         assert self.developer.email in recipients
 
         self._check_template(email.call_args, 'approval')
+
+    @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
+    def test_rejection(self, email):
+        self._create(comm.REJECTION)
+        eq_(email.call_count, 1)
+
+        recipients = self._recipients(email)
+        assert self.developer.email in recipients
+
+        self._check_template(email.call_args, 'rejection')
 
     @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
     def test_reviewer_comment(self, email):

@@ -6,5 +6,10 @@ After reviewing your submission for {{ obj.name }}, we have determined that it d
 {% include 'comm/emails/includes/details.html' %}
 {% include 'comm/emails/includes/questions.html' %}
 
-Once the concerns above have been addressed, you may resubmit your app from the My Submissions page at {{ obj.get_dev_url('versions')|absolutify }}.
+{% if is_app %}
+Once the concerns above have been addressed, you may resubmit your app from the My Submissions page at {{ manage_url }}.
+{% elif is_extension %}
+Once the concerns above have been addressed, you may resubmit your Firefox OS add-on from at {{ manage_url }}.
+{% endif %}
 {% endblock %}
+
