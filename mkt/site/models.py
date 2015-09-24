@@ -91,7 +91,10 @@ class ManagerBase(models.Manager):
     use_for_related_fields = True
 
     def get_queryset(self):
-        return self._with_translations(TransformQuerySet(self.model))
+        # Clone from the original get_queryset() implementation in order to
+        # avoid breaking features like <manager>.from_queryset().
+        qs = super(ManagerBase, self).get_queryset()
+        return self._with_translations(qs._clone(klass=TransformQuerySet))
 
     def _with_translations(self, qs):
         from mkt.translations import transformer

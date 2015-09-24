@@ -2,9 +2,8 @@ import itertools
 
 from django.conf import settings
 from django.db import models
+from django.db.models.sql.compiler import SQLCompiler
 from django.utils import translation as translation_utils
-
-from mkt.webapps import query
 
 
 def order_by_translation(qs, fieldname):
@@ -57,7 +56,7 @@ def order_by_translation(qs, fieldname):
                     order_by=[prefix + name])
 
 
-class TranslationQuery(query.IndexQuery):
+class TranslationQuery(models.sql.query.Query):
     """
     Overrides sql.Query to hit our special compiler that knows how to JOIN
     translations.
@@ -75,7 +74,7 @@ class TranslationQuery(query.IndexQuery):
         return SQLCompiler(self, c.connection, c.using)
 
 
-class SQLCompiler(query.IndexCompiler):
+class SQLCompiler(SQLCompiler):
     """Overrides get_from_clause to LEFT JOIN translations with a locale."""
 
     def get_from_clause(self):

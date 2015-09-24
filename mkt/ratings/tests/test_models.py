@@ -56,6 +56,10 @@ class TestReviewModel(mkt.site.tests.TestCase):
         self.review = Review.objects.create(
             addon=self.app, user=self.user, title="review 1", rating=3)
 
+    def test_basic(self):
+        review = Review.objects.get()
+        eq_(review.title, self.review.title)
+
     def test_delete(self):
         self.review.delete()
         eq_(self.review.deleted, True)
