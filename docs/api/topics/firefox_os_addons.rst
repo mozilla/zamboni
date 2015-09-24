@@ -131,9 +131,17 @@ Search
 
 .. http:get:: /api/v2/extensions/search/
 
-    .. note:: Search query is ignored for now.
+    Search through *public* add-ons.
 
-    A list of *public* add-ons.
+    The default sort order when the sort parameter is absent depends on whether
+    a search query is present of not:
+    * If a query is passed, order by relevance.
+    * If no query is passed, order by popularity descending.
+
+    :param string q: The search query.
+    :param string sort: The field(s) to sort by. One or more of 'popularity',
+        'created', 'name', 'reviewed'. In every case except 'name', sorting is
+        done in descending order.
 
     :resjson object meta: :ref:`meta-response-label`.
     :resjson array objects: An array of :ref:`add-ons <addon-detail>`.

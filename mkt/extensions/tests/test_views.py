@@ -429,11 +429,12 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
     def setUp(self):
         self.last_updated_date = datetime.now()
         self.extension = Extension.objects.create(
-            name=u'Mŷ Extension', description=u'Mÿ Extension Description',
+            name=u'Mâgnificent Extension',
+            description=u'Mâgnificent Extension Description',
             last_updated=self.last_updated_date)
         self.version = ExtensionVersion.objects.create(
-            extension=self.extension, size=333, status=STATUS_PUBLIC,
-            version='1.0.0')
+            extension=self.extension, reviewed=self.days_ago(7),
+            size=333, status=STATUS_PUBLIC, version='1.0.0')
         self.url = reverse('api-v2:extension-search')
         super(TestExtensionSearchView, self).setUp()
         self.refresh('extension')
@@ -472,12 +473,60 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
     def test_list(self):
         self.extension2 = Extension.objects.create(name=u'Mŷ Second Extension')
         self.version2 = ExtensionVersion.objects.create(
-            extension=self.extension2, status=STATUS_PUBLIC, version='a.b.c')
+            extension=self.extension2, status=STATUS_PUBLIC, version='1.2.3')
         self.refresh('extension')
         with self.assertNumQueries(0):
             response = self.anon.get(self.url)
         eq_(response.status_code, 200)
         eq_(len(response.json['objects']), 2)
+
+    def test_query(self):
+        self.extension2 = Extension.objects.create(name=u'Superb Extensiôn')
+        self.version2 = ExtensionVersion.objects.create(
+            extension=self.extension2, status=STATUS_PUBLIC, version='4.5.6')
+        self.refresh('extension')
+        with self.assertNumQueries(0):
+            res = self.anon.get(self.url, data={'q': 'superb'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 1)
+        eq_(objs[0]['id'], self.extension2.pk)
+
+    def test_query_sort_reviewed(self):
+        self.extension2 = Extension.objects.create(name=u'Superb Extensiôn')
+        self.version2 = ExtensionVersion.objects.create(
+            extension=self.extension2, reviewed=self.days_ago(0),
+            status=STATUS_PUBLIC, version='4.5.6')
+        self.refresh('extension')
+        with self.assertNumQueries(0):
+            res = self.anon.get(
+                self.url, data={'q': 'extension', 'sort': 'reviewed'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 2)
+        eq_(objs[0]['id'], self.extension2.pk)
+        eq_(objs[1]['id'], self.extension.pk)
+
+    def test_query_sort_relevance(self):
+        self.extension2 = Extension.objects.create(
+            name=u'Superb Extensiôn', slug='superb-lol')
+        self.version2 = ExtensionVersion.objects.create(
+            extension=self.extension2, reviewed=self.days_ago(0),
+            status=STATUS_PUBLIC, version='4.5.6')
+        self.refresh('extension')
+        with self.assertNumQueries(0):
+            res = self.anon.get(self.url, data={'q': 'extension'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 2)
+        eq_(objs[0]['id'], self.extension.pk)
+        eq_(objs[1]['id'], self.extension2.pk)
+
+    def test_query_no_results(self):
+        with self.assertNumQueries(0):
+            res = self.anon.get(self.url, data={'q': 'something'})
+        eq_(res.status_code, 200)
+        eq_(res.json['objects'], [])
 
     def test_not_public(self):
         self.extension.update(status=STATUS_PENDING)
