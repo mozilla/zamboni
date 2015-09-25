@@ -142,17 +142,24 @@ def get_mail_context(note):
         obj.name = obj.app_slug if hasattr(obj, 'app_slug') else obj.slug
 
     # grep: comm-content-type.
+    manage_url = ''
     review_url = ''
     if obj.__class__ == Webapp:
+        manage_url = absolutify(obj.get_dev_url('versions'))
         review_url = absolutify(reverse('reviewers.apps.review',
                                         args=[obj.app_slug]))
     elif obj.__class__ == Extension:
+        manage_url = absolutify(reverse('commonplace.content.addon_manage',
+                                        args=[obj.slug]))
         review_url = absolutify(reverse('commonplace.content.addon_review',
                                         args=[obj.slug]))
 
     return {
         'mkt': mkt,
         'comm': comm,
+        'is_app': obj.__class__ == Webapp,
+        'is_extension': obj.__class__ == Extension,
+        'manage_url': manage_url,
         'note': note,
         'obj': obj,
         'review_url': review_url,

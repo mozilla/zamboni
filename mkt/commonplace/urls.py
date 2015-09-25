@@ -80,9 +80,12 @@ urlpatterns = patterns(
         name='commonplace.operatordashboard'),
 
     # Content Tools:
-    url('^content/addon/%s/review$' % mkt.APP_SLUG, views.commonplace,
+    url('^content/addon/review/%s$' % mkt.APP_SLUG, views.commonplace,
         {'repo': 'marketplace-content-tools'},
         name='commonplace.content.addon_review'),
+    url('^content/addon/dashboard/%s$' % mkt.APP_SLUG, views.commonplace,
+        {'repo': 'marketplace-content-tools'},
+        name='commonplace.content.addon_manage'),
     url('^content/.*$', views.commonplace,
         {'repo': 'marketplace-content-tools'},
         name='commonplace.content'),
