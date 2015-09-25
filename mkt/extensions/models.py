@@ -120,6 +120,11 @@ class Extension(ModelBase):
             default_locale = manifest_data.get('default_locale')
             if default_locale:
                 data['default_language'] = to_language(default_locale)
+        # Strip leading / trailing whitespace chars from name and description.
+        if 'name' in data:
+            data['name'] = data['name'].strip()
+        if 'description' in data:
+            data['description'] = data['description'].strip()
         return data
 
     @classmethod
