@@ -173,7 +173,7 @@ class Version(ModelBase):
 
     @property
     def status(self):
-        status_choices = mkt.MKT_STATUS_FILE_CHOICES
+        status_choices = mkt.STATUS_FILE_CHOICES
 
         if self.deleted:
             return [status_choices[mkt.STATUS_DELETED]]

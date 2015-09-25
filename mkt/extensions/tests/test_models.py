@@ -2,16 +2,19 @@
 import json
 import mock
 import os.path
+from datetime import datetime
 
 from django.conf import settings
+from django.db import IntegrityError
 from django.test.utils import override_settings
 
 from nose.tools import eq_, ok_
 from rest_framework.exceptions import ParseError
 
 from lib.crypto.packaged import SigningError
-from mkt.constants.base import (STATUS_DISABLED, STATUS_NULL, STATUS_PENDING,
+from mkt.constants.base import (STATUS_NULL, STATUS_OBSOLETE, STATUS_PENDING,
                                 STATUS_PUBLIC, STATUS_REJECTED)
+from mkt.constants.regions import RESTOFWORLD, USA
 from mkt.extensions.models import Extension, ExtensionVersion
 from mkt.files.tests.test_models import UploadCreationMixin, UploadTest
 from mkt.site.storage_utils import private_storage
@@ -37,6 +40,11 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
     def setUp(self):
         super(TestExtensionUpload, self).setUp()
         self.user = UserProfile.objects.get(pk=2519)
+
+    def tearDown(self):
+        super(TestExtensionUpload, self).tearDown()
+        # Explicitely delete the Extensions to clean up leftover files.
+        Extension.objects.all().delete()
 
     def test_auto_create_slug(self):
         extension = Extension.objects.create()
@@ -133,8 +141,8 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         eq_(version.status, STATUS_PENDING)
         old_version.reload()
         older_version.reload()
-        eq_(old_version.status, STATUS_DISABLED)
-        eq_(older_version.status, STATUS_DISABLED)
+        eq_(old_version.status, STATUS_OBSOLETE)
+        eq_(older_version.status, STATUS_OBSOLETE)
 
     def test_upload_new_version_other_extension_are_not_affected(self):
         other_extension = Extension.objects.create()
@@ -457,6 +465,20 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
             os.path.join(settings.SIGNED_EXTENSIONS_PATH,
                          str(extension.pk), version.filename))
 
+    def test_is_public(self):
+        extension = Extension(disabled=False, status=STATUS_PUBLIC)
+        eq_(extension.is_public(), True)
+
+        for status in (STATUS_NULL, STATUS_PENDING):
+            extension.status = status
+            eq_(extension.is_public(), False)
+
+    def test_is_public_disabled(self):
+        extension = Extension(disabled=True)
+        for status in (STATUS_NULL, STATUS_PENDING, STATUS_PUBLIC):
+            extension.status = status
+            eq_(extension.is_public(), False)
+
     @override_settings(SITE_URL='https://marketpace.example.com/')
     def test_mini_manifest_url(self):
         extension = Extension(pk=43, uuid='12345678123456781234567812abcdef')
@@ -592,7 +614,12 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
         eq_(public_storage_mock.delete.call_count, 0)
 
     @mock.patch.object(ExtensionVersion, 'sign_and_move_file')
-    def test_publish(self, mocked_sign_and_move_file):
+    @mock.patch('mkt.extensions.models.datetime')
+    def test_publish(self, datetime_mock, mocked_sign_and_move_file):
+        datetime_mock.utcnow.return_value = (
+            # Microseconds are not saved by MySQL, so set it to 0 to make sure
+            # our comparisons still work once the model is saved to the db.
+            datetime.utcnow().replace(microsecond=0))
         mocked_sign_and_move_file.return_value = 666
         extension = Extension.objects.create(slug='mocked_ext')
         version = ExtensionVersion.objects.create(
@@ -606,10 +633,12 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
         eq_(extension.status, STATUS_PUBLIC)
 
         # Also reload to make sure the changes hit the database.
+        extension.reload()
         version.reload()
         eq_(version.status, STATUS_PUBLIC)
         eq_(version.size, 666)
-        eq_(extension.reload().status, STATUS_PUBLIC)
+        eq_(extension.last_updated, datetime_mock.utcnow.return_value)
+        eq_(extension.status, STATUS_PUBLIC)
 
     @mock.patch.object(ExtensionVersion, 'remove_signed_file')
     def test_reject(self, mocked_remove_signed_file):
@@ -634,11 +663,25 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
         eq_(extension.reload().status, STATUS_NULL)
 
 
+class TestExtensionPopularity(TestCase):
+    def test_unique(self):
+        extension = Extension.objects.create()
+        extension2 = Extension.objects.create()
+
+        extension.popularity.create(region=RESTOFWORLD.id)
+        extension.popularity.create(region=USA.id)
+
+        extension2.popularity.create(region=RESTOFWORLD.id)
+        with self.assertRaises(IntegrityError):
+            extension.popularity.create(region=RESTOFWORLD.id)
+
+
 class TestExtensionManager(TestCase):
     def test_public(self):
         extension1 = Extension.objects.create(status=STATUS_PUBLIC)
         extension2 = Extension.objects.create(status=STATUS_PUBLIC)
         Extension.objects.create(status=STATUS_NULL)
+        Extension.objects.create(status=STATUS_PUBLIC, disabled=True)
         eq_(list(Extension.objects.public()), [extension1, extension2])
 
     def test_pending(self):
@@ -652,6 +695,9 @@ class TestExtensionManager(TestCase):
             extension=extension2, status=STATUS_PUBLIC, version='2.2')
         Extension.objects.create(status=STATUS_PUBLIC)
         Extension.objects.create(status=STATUS_NULL)
+        disabled_extension = Extension.objects.create(disabled=True)
+        ExtensionVersion.objects.create(
+            extension=disabled_extension, status=STATUS_PENDING, version='3.1')
 
         eq_(list(Extension.objects.pending()), [extension1, extension2])
 

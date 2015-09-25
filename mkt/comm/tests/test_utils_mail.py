@@ -16,7 +16,7 @@ from mkt.comm.utils_mail import CommEmailParser, save_from_email_reply
 from mkt.constants import comm
 from mkt.site.fixtures import fixture
 from mkt.site.tests import TestCase, user_factory
-from mkt.site.utils import app_factory
+from mkt.site.utils import app_factory, extension_factory
 from mkt.users.models import UserProfile
 
 
@@ -71,6 +71,17 @@ class TestSendMailComm(TestCase, CommTestMixin):
         assert self.mozilla_contact.email in recipients
 
         self._check_template(email.call_args, 'approval')
+
+    @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
+    def test_rejection(self, email):
+        self._create(comm.REJECTION)
+        eq_(email.call_count, 2)
+
+        recipients = self._recipients(email)
+        assert self.developer.email in recipients
+        assert self.mozilla_contact.email in recipients
+
+        self._check_template(email.call_args, 'rejection')
 
     @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
     def test_escalation(self, email):
@@ -181,6 +192,84 @@ class TestSendMailComm(TestCase, CommTestMixin):
         ok_(reply_to.endswith('marketplace.firefox.com'))
 
 
+class TestSendMailCommExtensions(TestCase, CommTestMixin):
+
+    def setUp(self):
+        self.developer = user_factory()
+        self.reviewer = user_factory()
+
+        self.extension = extension_factory()
+        self.developer.extension_set.add(self.extension)
+
+    def _create(self, note_type, author=None):
+        author = author or self.reviewer
+        return create_comm_note(
+            self.extension, self.extension.latest_version, author,
+            'Test Comment', note_type=note_type)
+
+    def _recipients(self, email_mock):
+        recipients = []
+        for call in email_mock.call_args_list:
+            recipients += call[1]['recipient_list']
+        return recipients
+
+    def _check_template(self, call, template):
+        eq_(call[0][1], 'comm/emails/%s.html' % template)
+
+    @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
+    def test_approval(self, email):
+        self._create(comm.APPROVAL)
+        eq_(email.call_count, 1)
+
+        recipients = self._recipients(email)
+        assert self.developer.email in recipients
+
+        self._check_template(email.call_args, 'approval')
+
+    @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
+    def test_rejection(self, email):
+        self._create(comm.REJECTION)
+        eq_(email.call_count, 1)
+
+        recipients = self._recipients(email)
+        assert self.developer.email in recipients
+
+        self._check_template(email.call_args, 'rejection')
+
+    @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
+    def test_reviewer_comment(self, email):
+        another_reviewer = user_factory()
+        self._create(comm.REVIEWER_COMMENT, author=self.reviewer)
+        self._create(comm.REVIEWER_COMMENT, author=another_reviewer)
+        eq_(email.call_count, 1)
+
+        recipients = self._recipients(email)
+        assert self.reviewer.email in recipients
+        assert self.developer.email not in recipients
+
+        self._check_template(email.call_args, 'generic')
+
+    @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
+    def test_developer_comment(self, email):
+        self._create(comm.REVIEWER_COMMENT)
+        self._create(comm.DEVELOPER_COMMENT, author=self.developer)
+        eq_(email.call_count, 2)
+
+        recipients = self._recipients(email)
+        assert self.reviewer.email in recipients
+        assert settings.MKT_REVIEWS_EMAIL in recipients
+        assert self.developer.email not in recipients
+
+        self._check_template(email.call_args, 'generic')
+
+    @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
+    def test_reply_to(self, email):
+        note, thread = self._create(comm.APPROVAL)
+        reply_to = email.call_args_list[0][1]['headers']['Reply-To']
+        ok_(reply_to.startswith('commreply+'))
+        ok_(reply_to.endswith('marketplace.firefox.com'))
+
+
 class TestEmailReplySaving(TestCase):
     fixtures = fixture('user_999')
 
@@ -203,6 +292,56 @@ class TestEmailReplySaving(TestCase):
 
     def test_developer_comment(self):
         self.profile.addonuser_set.create(addon=self.app)
+        note = save_from_email_reply(self.email_base64)
+        eq_(note.note_type, comm.DEVELOPER_COMMENT)
+
+    def test_reviewer_comment(self):
+        self.grant_permission(self.profile, 'Apps:Review')
+        note = save_from_email_reply(self.email_base64)
+        eq_(note.note_type, comm.REVIEWER_COMMENT)
+
+    def test_with_max_count_token(self):
+        # Test with an invalid token.
+        self.token.update(use_count=comm.MAX_TOKEN_USE_COUNT + 1)
+        assert not save_from_email_reply(self.email_base64)
+
+    def test_with_unpermitted_token(self):
+        """Test when the token's user does not have a permission on thread."""
+        self.profile.groupuser_set.filter(
+            group__rules__contains='Apps:Review').delete()
+        assert not save_from_email_reply(self.email_base64)
+
+    def test_non_existent_token(self):
+        self.token.update(uuid='youtube?v=wn4RP57Y7bw')
+        assert not save_from_email_reply(self.email_base64)
+
+    def test_with_invalid_msg(self):
+        assert not save_from_email_reply('youtube?v=WwJjts9FzxE')
+
+
+class TestEmailReplySavingExtensions(TestCase):
+    fixtures = fixture('user_999')
+
+    def setUp(self):
+        self.extension = extension_factory()
+        self.profile = UserProfile.objects.get(pk=999)
+        t = CommunicationThread.objects.create(
+            _extension=self.extension,
+            _extension_version=self.extension.latest_version,
+            read_permission_reviewer=True)
+
+        self.token = CommunicationThreadToken.objects.create(
+            thread=t, user=self.profile)
+        self.token.update(uuid='5a0b8a83d501412589cc5d562334b46b')
+        self.email_base64 = open(sample_email).read()
+        self.grant_permission(self.profile, 'Apps:Review')
+
+    def test_successful_save(self):
+        note = save_from_email_reply(self.email_base64)
+        eq_(note.body, 'test note 5\n')
+
+    def test_developer_comment(self):
+        self.profile.extension_set.add(self.extension)
         note = save_from_email_reply(self.email_base64)
         eq_(note.note_type, comm.DEVELOPER_COMMENT)
 

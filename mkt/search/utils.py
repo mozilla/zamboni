@@ -8,6 +8,9 @@ from statsd import statsd
 from mkt.constants.base import VALID_STATUSES
 
 
+BOOST_MULTIPLIER_FOR_PUBLIC_CONTENT = 4.0
+
+
 class Search(dslSearch):
 
     def execute(self):
@@ -70,6 +73,6 @@ def get_boost(obj):
 
     # We give a little extra boost to approved apps.
     if obj.status in VALID_STATUSES:
-        boost *= 4
+        boost *= BOOST_MULTIPLIER_FOR_PUBLIC_CONTENT
 
     return boost

@@ -1,5 +1,7 @@
 from operator import attrgetter
 
+from django.db.models import Min
+
 from mkt.constants.base import STATUS_PUBLIC
 from mkt.search.indexers import BaseIndexer
 from mkt.translations.models import attach_trans_dict
@@ -50,6 +52,8 @@ class ExtensionIndexer(BaseIndexer):
                         'position_offset_gap': 100,
                     },
                     'is_disabled': {'type': 'boolean'},
+                    'last_updated': {'format': 'dateOptionalTime',
+                                     'type': 'date'},
                     'latest_public_version': {
                         'type': 'object',
                         'properties': {
@@ -71,12 +75,20 @@ class ExtensionIndexer(BaseIndexer):
                     },
                     # Name for sorting.
                     'name_sort': cls.string_not_analyzed(doc_values=True),
+                    'reviewed': {'format': 'dateOptionalTime', 'type': 'date',
+                                 'doc_values': True},
                     'guid': cls.string_not_analyzed(),
                     'slug': {'type': 'string'},
                     'status': {'type': 'byte'},
                 }
             }
         }
+
+        # Attach boost field, because we are going to need search by relevancy.
+        cls.attach_boost_mapping(mapping)
+
+        # Attach popularity and trending.
+        cls.attach_trending_and_popularity_mappings(mapping)
 
         # Add extra mapping for translated fields, containing the "raw"
         # translations.
@@ -97,13 +109,12 @@ class ExtensionIndexer(BaseIndexer):
         # Attach translations for searching and indexing.
         attach_trans_dict(cls.get_model(), [obj])
 
-        attrs = ('created', 'default_language', 'id', 'modified', 'slug',
-                 'status')
+        attrs = ('created', 'default_language', 'id', 'last_updated',
+                 'modified', 'slug', 'status')
         doc = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
-        # is_disabled is here for compatibility with other filters, but never
-        # set to True at the moment, and not present in the model.
-        doc['is_disabled'] = False
+        doc['guid'] = unicode(obj.uuid)
+        doc['is_disabled'] = obj.disabled
         if obj.status == STATUS_PUBLIC:
             doc['latest_public_version'] = {
                 'id': obj.latest_public_version.pk,
@@ -113,7 +124,12 @@ class ExtensionIndexer(BaseIndexer):
         else:
             doc['latest_public_version'] = None
         doc['name_sort'] = unicode(obj.name).lower()
-        doc['guid'] = unicode(obj.uuid)
+        # Find the first reviewed date (used in sort).
+        doc['reviewed'] = obj.versions.public().aggregate(
+            Min('reviewed')).get('reviewed__min')
+
+        # Add boost, popularity, trending values.
+        doc.update(cls.extract_popularity_trending_boost(obj))
 
         # Handle localized fields. This adds both the field used for search and
         # the one with all translations for the API.

@@ -34,7 +34,7 @@ def send_mail_comm(note):
     Given a note (its actions and permissions), recipients are determined and
     emails are sent to appropriate people.
     """
-    log.info(u'Sending emails for %s' % note.thread.addon)
+    log.info(u'Sending emails for %s' % note.thread.obj)
 
     if note.note_type in comm.EMAIL_SENIOR_REVIEWERS_AND_DEV:
         # Email senior reviewers (such as for escalations).
@@ -52,7 +52,7 @@ def send_mail_comm(note):
         # Also send mail to the fallback emailing list.
         if note.note_type == comm.DEVELOPER_COMMENT:
             subject = '%s: %s' % (unicode(comm.NOTE_TYPES[note.note_type]),
-                                  note.thread.addon.name)
+                                  note.thread.obj.name)
             mail_template = comm.COMM_MAIL_MAP.get(note.note_type, 'generic')
             send_mail_jinja(subject, 'comm/emails/%s.html' % mail_template,
                             get_mail_context(note),
@@ -102,7 +102,7 @@ def email_recipients(recipients, note, template=None, extra_context=None):
     template -- override which template we use.
     """
     subject = '%s: %s' % (unicode(comm.NOTE_TYPES[note.note_type]),
-                          note.thread.addon.name)
+                          note.thread.obj.name)
 
     for email, tok in tokenize_recipients(recipients, note.thread):
         headers = {}
@@ -142,17 +142,24 @@ def get_mail_context(note):
         obj.name = obj.app_slug if hasattr(obj, 'app_slug') else obj.slug
 
     # grep: comm-content-type.
+    manage_url = ''
     review_url = ''
     if obj.__class__ == Webapp:
+        manage_url = absolutify(obj.get_dev_url('versions'))
         review_url = absolutify(reverse('reviewers.apps.review',
                                         args=[obj.app_slug]))
     elif obj.__class__ == Extension:
+        manage_url = absolutify(reverse('commonplace.content.addon_manage',
+                                        args=[obj.slug]))
         review_url = absolutify(reverse('commonplace.content.addon_review',
                                         args=[obj.slug]))
 
     return {
         'mkt': mkt,
         'comm': comm,
+        'is_app': obj.__class__ == Webapp,
+        'is_extension': obj.__class__ == Extension,
+        'manage_url': manage_url,
         'note': note,
         'obj': obj,
         'review_url': review_url,
@@ -255,17 +262,24 @@ def save_from_email_reply(reply_text):
         log.error('An email was skipped with non-existing uuid %s.' % uuid)
         return False
 
-    if user_has_perm_thread(tok.thread, tok.user) and tok.is_valid():
+    thread = tok.thread
+    if user_has_perm_thread(thread, tok.user) and tok.is_valid():
         # Deduce an appropriate note type.
         note_type = comm.NO_ACTION
-        if (tok.user.addonuser_set.filter(addon=tok.thread.addon).exists()):
+
+        # grep: comm-content-type.
+        if (thread.obj.__class__ == Webapp and
+                tok.user.addonuser_set.filter(addon=thread.obj).exists()):
+            note_type = comm.DEVELOPER_COMMENT
+        elif (thread.obj.__class__ == Extension and
+                tok.user.extension_set.filter(id=thread.obj.id).exists()):
             note_type = comm.DEVELOPER_COMMENT
         elif (acl.action_allowed_user(tok.user, 'Apps', 'Review') or
               acl.action_allowed_user(tok.user, 'Firefox OS Add-ons',
                                       'Review')):
             note_type = comm.REVIEWER_COMMENT
 
-        t, note = create_comm_note(tok.thread.addon, tok.thread.version,
+        t, note = create_comm_note(tok.thread.obj, tok.thread.version,
                                    tok.user, parser.get_body(),
                                    note_type=note_type)
         log.info('A new note has been created (from %s using tokenid %s).'
@@ -298,7 +312,7 @@ def get_reply_token(thread, user_id):
 
 
 def get_developers(note):
-    return list(note.thread.addon.authors.values_list('id', 'email'))
+    return list(note.thread.obj.authors.values_list('id', 'email'))
 
 
 def get_senior_reviewers():

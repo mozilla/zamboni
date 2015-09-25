@@ -75,7 +75,7 @@
                 {% set file_status = addon.current_version.all_files[0].status %}
                 <p>
                   {# L10n: {0} is an app version string. {1} is a file status like 'approved'. #}
-                  {{ _('Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>')|fe(addon.current_version.version, mkt.MKT_STATUS_FILE_CHOICES[file_status]) }}.
+                  {{ _('Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>')|fe(addon.current_version.version, mkt.STATUS_FILE_CHOICES[file_status]) }}.
                 </p>
               {% endif %}
               {% if addon.current_version and addon.latest_version != addon.current_version %}
@@ -83,7 +83,7 @@
                 {# L10n: {0} is an app version string. {1} is a file status like 'approved'. #}
                 <p>
                   {# L10n: {0} is an app version string. {1} is a file status like 'approved'. #}
-                  {{ _('Version <b>{0}</b> of your app is <b>{1}</b>')|fe(addon.latest_version.version, mkt.MKT_STATUS_FILE_CHOICES[file_status]) }}.
+                  {{ _('Version <b>{0}</b> of your app is <b>{1}</b>')|fe(addon.latest_version.version, mkt.STATUS_FILE_CHOICES[file_status]) }}.
                 </p>
                 {% if file_status == mkt.STATUS_PENDING %}{{ queue_position(addon, 'p') }}{% endif %}
               {% endif %}

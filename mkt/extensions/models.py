@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import json
 import os.path
+from datetime import datetime
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -15,9 +16,9 @@ from tower import ugettext as _
 from uuidfield.fields import UUIDField
 
 from lib.crypto.packaged import sign_app, SigningError
-from mkt.constants.base import (MKT_STATUS_FILE_CHOICES, STATUS_DISABLED,
-                                STATUS_NULL, STATUS_PENDING, STATUS_PUBLIC,
-                                STATUS_REJECTED)
+from mkt.constants.base import (STATUS_CHOICES, STATUS_FILE_CHOICES,
+                                STATUS_NULL, STATUS_OBSOLETE, STATUS_PENDING,
+                                STATUS_PUBLIC, STATUS_REJECTED)
 from mkt.extensions.indexers import ExtensionIndexer
 from mkt.extensions.validation import ExtensionValidator
 from mkt.files.models import cleanup_file, nfd_str
@@ -36,10 +37,11 @@ log = commonware.log.getLogger('z.extensions')
 
 class ExtensionManager(ManagerBase):
     def pending(self):
-        return self.filter(versions__status=STATUS_PENDING).order_by('id')
+        return self.filter(
+            disabled=False, versions__status=STATUS_PENDING)
 
     def public(self):
-        return self.filter(status=STATUS_PUBLIC).order_by('id')
+        return self.filter(disabled=False, status=STATUS_PUBLIC)
 
 
 class ExtensionVersionManager(ManagerBase):
@@ -52,10 +54,10 @@ class ExtensionVersionManager(ManagerBase):
 
 class Extension(ModelBase):
     # Automatically handled fields.
-    uuid = UUIDField(auto=True)
+    last_updated = models.DateTimeField(blank=True, db_index=True, null=True)
     status = models.PositiveSmallIntegerField(
-        choices=MKT_STATUS_FILE_CHOICES.items(), db_index=True,
-        default=STATUS_NULL)
+        choices=STATUS_CHOICES.items(), default=STATUS_NULL)
+    uuid = UUIDField(auto=True)
 
     # Fields for which the manifest is the source of truth - can't be
     # overridden by the API.
@@ -66,12 +68,17 @@ class Extension(ModelBase):
 
     # Fields that can be modified using the API.
     authors = models.ManyToManyField('users.UserProfile')
+    disabled = models.BooleanField(default=False)
     slug = models.CharField(max_length=35, unique=True)
 
     objects = ExtensionManager()
 
     manifest_is_source_of_truth_fields = (
         'description', 'default_language', 'name')
+
+    class Meta:
+        ordering = ('id', )
+        index_together = (('disabled', 'status'),)
 
     @cached_property(writable=True)
     def latest_public_version(self):
@@ -145,8 +152,18 @@ class Extension(ModelBase):
     def get_indexer(self):
         return ExtensionIndexer
 
+    def is_dummy_content_for_qa(self):
+        """
+        Returns whether this extension is a dummy extension used for testing
+        only or not.
+
+        Used by mkt.search.utils.extract_popularity_trending_boost() - the
+        method needs to exist, but we are not using it yet.
+        """
+        return False
+
     def is_public(self):
-        return self.status == STATUS_PUBLIC
+        return not self.disabled and self.status == STATUS_PUBLIC
 
     @property
     def mini_manifest(self):
@@ -243,10 +260,11 @@ class ExtensionVersion(ModelBase):
     default_language = models.CharField(default=settings.LANGUAGE_CODE,
                                         max_length=10)
     manifest = JSONField()
+    reviewed = models.DateTimeField(null=True)
     version = models.CharField(max_length=23, default='')
     size = models.PositiveIntegerField(default=0, editable=False)  # In bytes.
     status = models.PositiveSmallIntegerField(
-        choices=MKT_STATUS_FILE_CHOICES.items(), db_index=True,
+        choices=STATUS_FILE_CHOICES.items(), db_index=True,
         default=STATUS_NULL)
 
     objects = ExtensionVersionManager()
@@ -341,7 +359,8 @@ class ExtensionVersion(ModelBase):
             # to re-upload the same version. This should have been caught
             # before, so just raise an exception.
             raise RuntimeError(
-                'Trying to upload a file to a destination that already exists')
+                'Trying to upload a file to a destination that already exists:'
+                ' %s' % self.file_path)
 
         # Copy file from fileupload. This uses private_storage for now as the
         # unreviewed, unsigned filename is private.
@@ -359,9 +378,13 @@ class ExtensionVersion(ModelBase):
         return v1 > v2
 
     def publish(self):
-        """Publish this extension version to public."""
+        """Publicize this extension version.
+
+        Update last_updated and reviewed fields at the same time."""
+        now = datetime.utcnow()
         size = self.sign_and_move_file()
-        self.update(size=size, status=STATUS_PUBLIC)
+        self.extension.update(last_updated=now)
+        self.update(size=size, status=STATUS_PUBLIC, reviewed=now)
 
     def reject(self):
         """Reject this extension version."""
@@ -379,7 +402,7 @@ class ExtensionVersion(ModelBase):
 
     def set_older_pending_versions_as_obsolete(self):
         """Set all pending versions older than this one attached to the same
-        Extension as DISABLED (obsolete).
+        Extension as STATUS_OBSOLETE.
 
         To be on the safe side this method does not trigger signals and needs
         to be called when creating a new pending version, before actually
@@ -391,7 +414,7 @@ class ExtensionVersion(ModelBase):
 
         # Call <queryset>.update() directly, bypassing signals etc, that should
         # not be needed since it should be followed by a self.save().
-        qs.update(status=STATUS_DISABLED)
+        qs.update(status=STATUS_OBSOLETE)
 
     def sign_and_move_file(self):
         """Sign and move extension file from the unsigned path (`file_path`) on
@@ -443,6 +466,26 @@ class ExtensionVersion(ModelBase):
         }
         return absolutify(
             reverse('extension.download_unsigned', kwargs=kwargs))
+
+
+class ExtensionPopularity(ModelBase):
+    extension = models.ForeignKey(Extension, related_name='popularity')
+    value = models.FloatField(default=0.0)
+    # When region=0, we count across all regions.
+    region = models.PositiveIntegerField(null=False, default=0, db_index=True)
+
+    class Meta:
+        unique_together = ('extension', 'region')
+
+
+class WebsiteTrending(ModelBase):
+    extension = models.ForeignKey(Extension, related_name='trending')
+    value = models.FloatField(default=0.0)
+    # When region=0, it's trending using install counts across all regions.
+    region = models.PositiveIntegerField(null=False, default=0, db_index=True)
+
+    class Meta:
+        unique_together = ('extension', 'region')
 
 
 # Update ElasticSearch index on save.

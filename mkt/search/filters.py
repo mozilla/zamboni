@@ -50,8 +50,8 @@ class SearchQueryFilter(BaseFilterBackend):
         # Apply rules to search on few base fields. Some might not be present
         # in every document type / indexes.
         for k, v in rules:
-            for field in ('name', 'short_name', 'title', 'app_slug', 'author',
-                          'url_tokenized'):
+            for field in ('app_slug', 'author', 'name', 'short_name', 'slug',
+                          'title', 'url_tokenized'):
                 should.append(k(**{field: v}))
 
         # Exact matches need to be queried against a non-analyzed field. Let's

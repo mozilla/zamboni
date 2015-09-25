@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+import mock
 from nose.tools import eq_, ok_
 
 from mkt.constants.applications import DEVICE_DESKTOP, DEVICE_GAIA
 from mkt.constants.regions import URY, USA
-from mkt.search.utils import get_boost
+from mkt.search.utils import BOOST_MULTIPLIER_FOR_PUBLIC_CONTENT, get_boost
 from mkt.site.tests import ESTestCase, TestCase
 from mkt.tags.models import Tag
 from mkt.websites.indexers import WebsiteIndexer
@@ -107,12 +108,14 @@ class TestWebsiteIndexer(TestCase):
         eq_(doc['name_l10n_english'], [name['en-US']])
         eq_(doc['name_sort'], name['en-US'].lower())
 
+    @mock.patch('mkt.search.indexers.MATURE_REGION_IDS', [42])
     def test_installs_to_popularity(self):
         self.obj = website_factory()
         # No installs.
         doc = self._get_doc()
-        # Boost is multiplied by 4 if it's public.
-        eq_(doc['boost'], 1.0 * 4)
+        # Boost is multiplied by BOOST_MULTIPLIER_FOR_PUBLIC_CONTENT if it's
+        # public.
+        eq_(doc['boost'], 1.0 * BOOST_MULTIPLIER_FOR_PUBLIC_CONTENT)
         eq_(doc['popularity'], 0)
 
         # Add some popularity.
@@ -120,26 +123,27 @@ class TestWebsiteIndexer(TestCase):
         # Test an adolescent region.
         self.obj.popularity.create(region=2, value=10.0)
         # Test a mature region.
-        self.obj.popularity.create(region=7, value=10.0)
+        self.obj.popularity.create(region=42, value=10.0)
 
         doc = self._get_doc()
         eq_(doc['boost'], get_boost(self.obj))
         eq_(doc['popularity'], 50)
-        eq_(doc['popularity_7'], 10)
+        eq_(doc['popularity_42'], 10)
         # Adolescent regions popularity value is not stored.
         ok_('popularity_2' not in doc)
 
+    @mock.patch('mkt.search.indexers.MATURE_REGION_IDS', [42])
     def test_trending(self):
         self.obj = website_factory()
         self.obj.trending.create(region=0, value=10.0)
         # Test an adolescent region.
         self.obj.trending.create(region=2, value=50.0)
         # Test a mature region.
-        self.obj.trending.create(region=7, value=50.0)
+        self.obj.trending.create(region=42, value=50.0)
 
         doc = self._get_doc()
         eq_(doc['trending'], 10.0)
-        eq_(doc['trending_7'], 50.0)
+        eq_(doc['trending_42'], 50.0)
 
         # Adolescent regions trending value is not stored.
         ok_('trending_2' not in doc)
