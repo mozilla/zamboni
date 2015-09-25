@@ -255,7 +255,8 @@ class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
     def publish(self, request, *args, **kwargs):
         obj = self.get_object()
         obj.publish()
-        create_comm_note(obj.extension, obj, request.user, '',
+        create_comm_note(obj.extension, obj, request.user,
+                         request.DATA.get('message', ''),
                          note_type=comm.APPROVAL)
         return Response(status=status.HTTP_202_ACCEPTED)
 
@@ -266,7 +267,8 @@ class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
     def reject(self, request, *args, **kwargs):
         obj = self.get_object()
         obj.reject()
-        create_comm_note(obj.extension, obj, request.user, '',
+        create_comm_note(obj.extension, obj, request.user,
+                         request.DATA.get('message', ''),
                          note_type=comm.REJECTION)
         return Response(status=status.HTTP_202_ACCEPTED)
 
