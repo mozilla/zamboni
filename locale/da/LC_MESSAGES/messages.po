@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Marketplace\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-03-14 16:22+0100\n"
+"PO-Revision-Date: 2015-09-26 20:26+0200\n"
 "Last-Translator: Jørgen Rasmussen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.8.5\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -1280,19 +1280,19 @@ msgstr "Niveau 6"
 
 #: mkt/constants/base.py:279
 msgid "Level 7"
-msgstr ""
+msgstr "Niveau 7"
 
 #: mkt/constants/base.py:280
 msgid "Level 8"
-msgstr ""
+msgstr "Niveau 8"
 
 #: mkt/constants/base.py:281
 msgid "Level 9"
-msgstr ""
+msgstr "Niveau 9"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
-msgstr ""
+msgstr "Bøger og tegneserier"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
@@ -1308,11 +1308,11 @@ msgstr "Underholdning"
 
 #: mkt/constants/categories.py:9
 msgid "Food & Drink"
-msgstr ""
+msgstr "Mad og drikke"
 
 #: mkt/constants/categories.py:10
 msgid "Kids"
-msgstr ""
+msgstr "Børn"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:46
 msgid "Games"
@@ -1320,15 +1320,15 @@ msgstr "Spil"
 
 #: mkt/constants/categories.py:12
 msgid "Health & Fitness"
-msgstr "Sundhed & fitness"
+msgstr "Sundhed og fitness"
 
 #: mkt/constants/categories.py:13
 msgid "Humor"
-msgstr ""
+msgstr "Humor"
 
 #: mkt/constants/categories.py:14
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: mkt/constants/categories.py:15 mkt/constants/categories.py:47
 msgid "Lifestyle"
@@ -1336,7 +1336,7 @@ msgstr "Livsstil"
 
 #: mkt/constants/categories.py:16
 msgid "Maps & Navigation"
-msgstr "Kort & navigation"
+msgstr "Kort og navigation"
 
 #: mkt/constants/categories.py:17
 msgid "Music"
@@ -1344,15 +1344,15 @@ msgstr "Musik"
 
 #: mkt/constants/categories.py:18
 msgid "News"
-msgstr ""
+msgstr "Nyheder"
 
 #: mkt/constants/categories.py:19
 msgid "Personalization"
-msgstr ""
+msgstr "Brugertilpasning"
 
 #: mkt/constants/categories.py:20
 msgid "Photo & Video"
-msgstr "Fotos & video"
+msgstr "Fotos og video"
 
 #: mkt/constants/categories.py:21
 msgid "Productivity"
@@ -1364,7 +1364,7 @@ msgstr "Opslagsværker"
 
 #: mkt/constants/categories.py:23
 msgid "Science & Tech"
-msgstr ""
+msgstr "Videnskab og tech"
 
 #: mkt/constants/categories.py:24
 msgid "Shopping"
@@ -1388,7 +1388,7 @@ msgstr "Værktøjer"
 
 #: mkt/constants/categories.py:29
 msgid "Weather"
-msgstr ""
+msgstr "Vejr"
 
 #: mkt/constants/categories.py:45 mkt/ecosystem/templates/ecosystem/macros.html:134 mkt/site/context_processors.py:48
 msgid "Tools"
@@ -5420,8 +5420,7 @@ msgstr ""
 msgid "Activity"
 msgstr ""
 
-#: mkt/lookup/templates/lookup/app_activity.html:18 mkt/lookup/templates/lookup/app_activity.html:38 mkt/lookup/templates/lookup/user_activity.html:23
-#: mkt/lookup/templates/lookup/user_activity.html:43
+#: mkt/lookup/templates/lookup/app_activity.html:18 mkt/lookup/templates/lookup/app_activity.html:38 mkt/lookup/templates/lookup/user_activity.html:23 mkt/lookup/templates/lookup/user_activity.html:43
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr ""
 
@@ -5588,7 +5587,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/group_summary.html:24
 msgid "Notes"
-msgstr ""
+msgstr "Bemærkninger"
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
@@ -5696,7 +5695,7 @@ msgstr "Grupper"
 
 #: mkt/lookup/templates/lookup/user_summary.html:33
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: mkt/lookup/templates/lookup/user_summary.html:58
 msgid "Marketplace Credit"
@@ -5765,11 +5764,11 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/website_edit.html:34 mkt/lookup/templates/lookup/website_summary.html:16 mkt/websites/forms.py:38
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: mkt/lookup/templates/lookup/website_edit.html:48 mkt/lookup/templates/lookup/website_summary.html:28 mkt/websites/forms.py:40
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: mkt/lookup/templates/lookup/website_edit.html:55 mkt/lookup/templates/lookup/website_summary.html:32
 msgid "Mobile URL"
@@ -5793,7 +5792,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/website_summary.html:56
 msgid "disabled"
-msgstr ""
+msgstr "deaktiveret"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:2
 msgid "App Lookup results for"
@@ -5825,7 +5824,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:5
 msgid "Edit Website"
-msgstr ""
+msgstr "Rediger websted"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
@@ -6031,7 +6030,7 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:34 mkt/search/forms.py:44
 msgid "Any Device"
-msgstr ""
+msgstr "Alle enheder"
 
 #: mkt/reviewers/forms.py:40 mkt/reviewers/forms.py:65
 msgid "View entries between"
@@ -6039,7 +6038,7 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:44
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Filtrer efter type/handling"
 
 #: mkt/reviewers/forms.py:67
 msgid "containing"
@@ -6062,15 +6061,15 @@ msgstr "app, anmelder eller kommentar"
 
 #: mkt/reviewers/forms.py:104
 msgid "Device Type:"
-msgstr ""
+msgstr "Enhedstype:"
 
 #: mkt/reviewers/forms.py:105
 msgid "Device:"
-msgstr ""
+msgstr "Enhed:"
 
 #: mkt/reviewers/forms.py:106
 msgid "Firefox Version:"
-msgstr ""
+msgstr "Firefox-version:"
 
 #: mkt/reviewers/forms.py:118
 msgid "Comments:"
@@ -6102,7 +6101,7 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:205 mkt/reviewers/helpers.py:45 mkt/search/forms.py:104
 msgid "Device"
-msgstr ""
+msgstr "Enhed"
 
 #: mkt/reviewers/helpers.py:38 mkt/reviewers/helpers.py:68 mkt/site/context_processors.py:70
 msgid "Reviewer Tools"
@@ -6666,7 +6665,7 @@ msgstr "ID"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:46 mkt/reviewers/templates/reviewers/includes/mobile_details.html:111
 msgid "Device Types"
-msgstr ""
+msgstr "Enhedstyper"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:58 mkt/reviewers/templates/reviewers/includes/mobile_details.html:123
 msgid "View Privacy Policy"
@@ -6756,11 +6755,11 @@ msgstr "mere…"
 
 #: mkt/reviewers/templates/reviewers/includes/paginator_history.html:3
 msgid "Older versions"
-msgstr ""
+msgstr "Ældre versioner"
 
 #: mkt/reviewers/templates/reviewers/includes/paginator_history.html:6
 msgid "Newer versions"
-msgstr ""
+msgstr "Nyere versioner"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "Process"
@@ -6873,8 +6872,8 @@ msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(las
 msgstr "Side <a href=\"%(current_pg_url)s\">%(current_pg)s</a> af <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 #. First and second arguments are the result range (e.g., 1-20);
-#.              third argument is the number of total results (e.g., 1,000).
-#.                third argument is the number of total results (e.g., 1,000).
+#. third argument is the number of total results (e.g., 1,000).
+#. third argument is the number of total results (e.g., 1,000).
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:38 mkt/site/templates/site/impala_paginator.html:35
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Viser <b>%(begin)s</b>&ndash;<b>%(end)s</b> af <b>%(count)s</b>"
@@ -7661,7 +7660,7 @@ msgstr ""
 
 #: mkt/submit/forms.py:51
 msgid "Please select a device."
-msgstr ""
+msgstr "Vælg en enhed."
 
 #: mkt/submit/forms.py:129
 msgid "Agree and Continue"
@@ -7712,7 +7711,7 @@ msgstr ""
 
 #: mkt/submit/forms.py:313
 msgid "Website:"
-msgstr ""
+msgstr "Websted:"
 
 #: mkt/submit/forms.py:315
 msgid "If your app has a support website or forum, enter its address here."
@@ -7720,11 +7719,13 @@ msgstr ""
 
 #: mkt/submit/forms.py:319
 msgid "Email:"
-msgstr ""
+msgstr "Mailadresse:"
 
 #: mkt/submit/forms.py:321
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
 msgstr ""
+"Denne mailadresse vil blive vist offentligt på Marketplace, og brugt af slutbrugere til at kontakte dig med supportproblemer. Denne mailadresse vil blive vist offentligt på din apps side med "
+"detaljer."
 
 #: mkt/submit/forms.py:327
 msgid "Does your app require Flash support?"
@@ -7904,7 +7905,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/terms.html:24
 msgid "To begin, please read and accept our <strong>Developer Agreement</strong>:"
-msgstr ""
+msgstr "Allerførst, læs og accepter vores <strong>udvikleraftale</strong>:"
 
 #: mkt/submit/templates/submit/terms.html:47
 msgid "Mozilla may email me with relevant App Developer news and surveys"
@@ -7925,8 +7926,8 @@ msgstr[1] "Ugyldige mærkater: {0}"
 #: mkt/tags/utils.py:38
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "\"{0}\" er et reserveret mærkat og kan ikke bruges."
+msgstr[1] "\"{0}\" er reserverede mærkater og kan ikke bruges."
 
 #: mkt/tags/utils.py:46
 msgid "You have {0} too many tags."
@@ -7936,13 +7937,13 @@ msgstr[1] ""
 
 #: mkt/tags/utils.py:52
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr ""
+msgstr "Alle mærkater skal indeholde %s tegn eller færre efter ugyldige tegn er fjernet."
 
 #: mkt/tags/utils.py:56
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Alle mærkater skal indeholde mindst (0) tegn."
+msgstr[1] "Alle mærkater skal indeholde mindst (0) tegn."
 
 #: mkt/templates/mkt/account-links.html:7
 msgid "Edit Account Settings"
@@ -8105,7 +8106,7 @@ msgstr "Der findes ingen bruger med den mailadresse."
 
 #: mkt/users/views.py:48
 msgid "A user with that email address does not exist, or the user has not yet accepted the developer agreement."
-msgstr ""
+msgstr "En bruger med den mailadresse findes ikke eller brugeren har endnu ikke accepteret udvikleraftalen."
 
 #: mkt/users/views.py:87
 msgid "Native FxA authentication failure."
@@ -8193,7 +8194,7 @@ msgstr "Lavet"
 
 #: mkt/websites/forms.py:89
 msgid "Invalid device(s) selected."
-msgstr ""
+msgstr "Ugyldig enhed valgt."
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"

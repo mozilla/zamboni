@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-03-14 16:28+0100\n"
+"PO-Revision-Date: 2015-09-26 19:57+0200\n"
 "Last-Translator: Jørgen Rasmussen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
@@ -11,15 +11,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.8.5\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Filtypen du uploadede blev ikke genkendt."
 
 #: media/js/common/upload-base.js:83
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Du annullerede upload."
 
 #: media/js/common/upload-image.js:98
 msgid "Images must be either PNG or JPG."
@@ -27,9 +27,10 @@ msgstr "Billeder skal enten være PNG eller JPG."
 
 #: media/js/common/upload-image.js:102
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "Videoer skal være i WebM-format."
 
-#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Der opstod et problem med at kontakte serveren."
 
@@ -75,7 +76,8 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
 msgstr[1] ""
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199
+#: media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
 msgstr ""
 
@@ -188,7 +190,7 @@ msgstr ""
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr "Denne video kræver en browser der undestøtter open video"
+msgstr "Denne video kræver en browser, der undestøtter open video"
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
@@ -208,7 +210,7 @@ msgstr "Deaktiveret"
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Denne funktion er midlertidig ude af drift mens vi udfører vedligeholdelse af webstedet. Prøv igen lidt senere."
+msgstr "Denne funktion er midlertidig ude af drift, mens vi udfører vedligeholdelse af webstedet. Prøv igen lidt senere."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
@@ -224,35 +226,35 @@ msgstr "Log ind med Persona mislykkedes. Der opstod en serverfejl."
 
 #: media/js/devreg/lookup-tool.js:39
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "Status ændret til \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:44
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "Kunne ikke ændre status til \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:70
 msgid "Group membership \"{0}\" added"
-msgstr ""
+msgstr "Gruppemedlemsskab \"{0}\" tilføjet "
 
 #: media/js/devreg/lookup-tool.js:84
 msgid "Could not add group \"{0}\""
-msgstr ""
+msgstr "Kunne ikke tilføje gruppe \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:108
 msgid "Group membership \"{0}\" removed"
-msgstr ""
+msgstr "Gruppemedlemsskab \"{0}\" fjernet"
 
 #: media/js/devreg/lookup-tool.js:114
 msgid "Could not remove group \"{0}\""
-msgstr ""
+msgstr "Kunne ikke fjerne gruppe \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:183
 msgid "Show All Results"
-msgstr ""
+msgstr "Vis alle resultater"
 
 #: media/js/devreg/lookup-tool.js:186
 msgid "Over {0} results found, consider refining your search."
-msgstr ""
+msgstr "Mere end {0} resultater fundet.Overvej at forfine din søgning."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
@@ -346,12 +348,16 @@ msgstr[1] ""
 msgid "{appName} payment accounts:"
 msgstr ""
 
-#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:112
+#: media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Fejl"
 
-#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
+#: media/js/devreg/payments-manage.js:113
+#: media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
 msgstr "Der var et problem med at kontakte betalingsserveren."
 
@@ -542,11 +548,13 @@ msgstr "Gratis"
 msgid "Any"
 msgstr "Alle"
 
-#: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
+#: media/js/devreg/reviewers/reviewers.js:246
+#: media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
 msgstr ""
 
-#: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
+#: media/js/devreg/reviewers/reviewers.js:249
+#: media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
 msgstr ""
 
@@ -573,4 +581,4 @@ msgstr ""
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
-msgstr ""
+msgstr "Af {0} den {1}"
