@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-08-02 08:23\n"
-"Last-Translator: marko.andrejic93 <marko.andrejic93@gmail.com>\n"
+"PO-Revision-Date: 2015-09-26 12:10+0000\n"
+"Last-Translator: Vanja Tumbas <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -143,7 +143,7 @@ msgstr "Серверска грешка током инсталације апл
 
 #: media/js/devreg/apps.js:106
 msgid "Install failed. Please try again later."
-msgstr "Инсталација је неуспешна. Молимо Вас покушајте касније."
+msgstr "Инсталација је неуспешна. Покушајте касније."
 
 #: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
@@ -181,7 +181,7 @@ msgstr "Не можемо да освежимо манифест. Покушај
 
 #: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
-msgstr "Дошло је до грешке приликом отпремања Ваше датотеке."
+msgstr "Дошло је до грешке приликом отпремања датотеке."
 
 #: media/js/devreg/devhub.js:945
 msgid "Learn more"
@@ -270,7 +270,7 @@ msgstr "Прикажи све резултате"
 
 #: media/js/devreg/lookup-tool.js:186
 msgid "Over {0} results found, consider refining your search."
-msgstr "Преко {0} резултата је нађено, покушајте да дефинишете Вашу претрагу."
+msgstr "Преко {0} резултата је нађено, покушајте да дефинишете претрагу."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
@@ -616,8 +616,8 @@ msgid ""
 "Sorry! We had an error fetching the review history. Please try logging in "
 "again.<p>"
 msgstr ""
-"Извињавамо се! Имали смо грешку при преузимању историје прегледа. Молимо Вас"
-" покушајте поново да се пријавите.<p>"
+"Извињавамо се! Имали смо грешку при преузимању историје прегледа. Покушајте "
+"поново да се пријавите.<p>"
 
 #. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on
 #. Feburary 18th 2014 12:12 pm").
