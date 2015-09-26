@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-09-26 12:50+0000\n"
+"PO-Revision-Date: 2015-09-26 13:07+0000\n"
 "Last-Translator: Vanja Tumbas <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -2201,7 +2201,7 @@ msgstr "Конго, Демократска Република"
 
 #: mkt/constants/regions.py:120
 msgid "Cabo Verde"
-msgstr ""
+msgstr "Зеленортска Острва"
 
 #: mkt/constants/regions.py:153
 msgid "Guinea-Conakry"
@@ -2209,19 +2209,19 @@ msgstr "Гвинеја-Конакри"
 
 #: mkt/constants/regions.py:166
 msgid "Heard Island and McDonald Islands"
-msgstr ""
+msgstr "Херд и Макдоналд острва"
 
 #: mkt/constants/regions.py:192
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "Лаошка Народна Демократска Република"
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
-msgstr ""
+msgstr "Либија"
 
 #: mkt/constants/regions.py:197
 msgid "Liechtenstein"
-msgstr ""
+msgstr "Лихтенштајн"
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
@@ -6816,7 +6816,7 @@ msgstr "Групе"
 
 #: mkt/lookup/templates/lookup/user_summary.html:33
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: mkt/lookup/templates/lookup/user_summary.html:58
 msgid "Marketplace Credit"
@@ -7071,7 +7071,7 @@ msgstr "Продавац"
 
 #: mkt/purchase/templates/purchase/receipt.html:61
 msgid "For the Firefox Marketplace Terms of Service please visit:"
-msgstr "За Firefox Marketplace услове коришћења молимо посетите:"
+msgstr "За Firefox Marketplace услове коришћења посетите:"
 
 #: mkt/purchase/templates/purchase/receipt.html:66
 msgid "For support please visit:"
@@ -8288,8 +8288,7 @@ msgstr "Претрага је недоступна"
 
 #: mkt/search/templates/search/down.html:10
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
-"Претрага је тренутно недоступна. Молимо покушајте поново за неколико минута."
+msgstr "Претрага је тренутно недоступна. Покушајте поново за неколико минута."
 
 #: mkt/site/context_processors.py:57
 msgid "Account Settings"
@@ -8887,7 +8886,7 @@ msgstr ""
 
 #: mkt/site/templates/site/404.html:16
 msgid "If you typed in the address, please double check the spelling."
-msgstr "Ако сте укуцали адресу, молимо Вас да проверите правопис."
+msgstr "Ако сте укуцали адресу, проверите правопис."
 
 #: mkt/site/templates/site/404.html:19
 msgid ""
@@ -8948,7 +8947,7 @@ msgstr "Слажем се и настави"
 
 #: mkt/submit/forms.py:156 mkt/submit/forms.py:230
 msgid "There was an error with your upload. Please try again."
-msgstr "Дошло је до грешке током отпремања. Молимо Вас, покушајте поново."
+msgstr "Дошло је до грешке током отпремања. Покушајте поново."
 
 #: mkt/submit/forms.py:191
 msgid "Version %s already exists."
@@ -9029,12 +9028,12 @@ msgid ""
 "listed publicly on your app details page."
 msgstr ""
 "Ова адреса е-поште ће бити јавно листирана на Marketplace-у и користиће је "
-"последњи корисници да Вас контактирају са подршком за проблеме. Ова адреса "
-"е-поште ће бити јавно листирана на Вашој страници детаља апликације."
+"крајњи корисници да вас контактирају са подршком за проблеме. Ова адреса "
+"е-поште ће бити јавно листирана на вашој страници детаља апликације."
 
 #: mkt/submit/forms.py:327
 msgid "Does your app require Flash support?"
-msgstr "Да ли Ваша апликација захтева Flash подршку?"
+msgstr "Да ли апликација захтева Flash подршку?"
 
 #: mkt/submit/forms.py:333
 msgid "Your comments for reviewers:"
@@ -9081,8 +9080,8 @@ msgid ""
 "Please review your listing information below. We've pre-filled as much as we"
 " can from your manifest."
 msgstr ""
-"Молимо Вас прегледајте Ваше листинг информације испод. Ми смо унапред "
-"попунили колико год смо могли из Вашег манифеста."
+"Прегледајте листинг информације испод. Ми смо унапред попунили колико год "
+"смо могли из манифеста."
 
 #: mkt/submit/templates/submit/details.html:50
 msgid "Open details page"
@@ -9126,11 +9125,11 @@ msgid ""
 "listing pages and in search. Until then, feel free to tweak your app's "
 "details and settings."
 msgstr ""
-"Сачували смо Вашу апликацију и спремнa је! Ваша апликација тренутно чека "
-"преглед и једном када буде прегледана, мораћете ручно да омогућите Вашу "
-"апликацију из <a href=\"%(url)s\">Управљај статусном страницом</a> да би се "
-"приказала на листинг страницама и у претрази. До тада, слободно радите на "
-"детаљима и подешавањима Ваше апликације."
+"Сачували смо апликацију и спремнa је! Ваша апликација тренутно чека преглед "
+"и једном када буде прегледана, мораћете ручно да омогућите апликацију из <a "
+"href=\"%(url)s\">Управљај статусном страницом</a> да би се приказала на "
+"листинг страницама и у претрази. До тада, слободно радите на детаљима и "
+"подешавањима апликације."
 
 #: mkt/submit/templates/submit/done.html:29
 msgid ""
@@ -9138,9 +9137,9 @@ msgid ""
 "you've added a payment account and price, your app will be submitted for "
 "review."
 msgstr ""
-"Пре него што Ваша апликација буде пуштена, морате пружити информације о "
-"плаћању. Једном када додате рачун за плаћање и цену, Ваша апликација ће бити"
-" поднета за преглед."
+"Пре него што апликација буде пуштена, морате пружити информације о плаћању. "
+"Једном када додате рачун за плаћање и цену, апликација ће бити поднета за "
+"преглед."
 
 #: mkt/submit/templates/submit/done.html:35
 msgid ""
@@ -9148,9 +9147,9 @@ msgid ""
 "review, and will show up on listing pages and in search once it is reviewed."
 " Until then, feel free to tweak your app's details and settings."
 msgstr ""
-"Сачували смо Вашу апликацију и сада је спремна! Ваша апликација тренутно "
-"чека преглед и да појавиће се на листинг страницама и у претрази након што "
-"се прегледа. До тада, будите слободни да подесите детаље и поставке екипе "
+"Сачували смо апликацију и сада је спремна! Ваша апликација тренутно чека "
+"преглед и да појавиће се на листинг страницама и у претрази након што се "
+"прегледа. До тада, будите слободни да подесите детаље и поставке екипе "
 "апликације."
 
 #: mkt/submit/templates/submit/done.html:51
@@ -9203,30 +9202,29 @@ msgstr "У било ком тренутку, Ви можете"
 
 #: mkt/submit/templates/submit/next_steps.html:48
 msgid "Revise your app details on <a href=\"%(url)s\">Edit Listing</a>"
-msgstr "Измените детаље Ваше апликације на <a href=\"%(url)s\">Измени Листе</a>"
+msgstr "Измените детаље апликације на <a href=\"%(url)s\">Измени Листе</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:53
 msgid ""
 "View a list of all of your submissions on <a href=\"%(url)s\">My "
 "Submissions</a>"
-msgstr ""
-"Погледајте листу свих Ваших пријава на <a href=\"%(url)s\">Моје Пријаве</a>"
+msgstr "Погледајте листу свих пријава на <a href=\"%(url)s\">Моје Пријаве</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:60
 msgid ""
 "Request that your app be shown on low-memory devices on <a "
 "href=\"%(status_url)s\">Status &amp; Versions</a>"
 msgstr ""
-"Захтевајте да се Ваша апликација приказује на уређајима који имају мало "
-"меморије на <a href=\"%(status_url)s\">Статус &amp; Верзије</a>"
+"Захтевајте да се апликација приказује на уређајима који имају мало меморије "
+"на <a href=\"%(status_url)s\">Статус &amp; Верзије</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:64
 msgid ""
 "Request that your app be shown on low-memory devices on <a "
 "href=\"%(status_url)s\">Status</a>"
 msgstr ""
-"Захтевајте да се Ваша апликација приказује на уређајима који имају мало "
-"меморије на <a href=\"%(status_url)s\">Статус</a>"
+"Захтевајте да се апликација приказује на уређајима који имају мало меморије "
+"на <a href=\"%(status_url)s\">Статус</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:74
 msgid ""
@@ -9234,10 +9232,9 @@ msgid ""
 "<a href=\"%(url)s\">Manage Status</a>. It would then show up on listing "
 "pages and in search for others to enjoy."
 msgstr ""
-"Након што је Ваша апликација прегледана, Ви ћете морати ручно да објавите "
-"Вашу апликацију преко <a href=\"%(url)s\">Управљања статусима</a>. Након "
-"тога ће се појавити на листи апликација и у претрази да би други уживали у "
-"њој."
+"Након што је апликација прегледана, Ви ћете морати ручно да објавите "
+"апликацију преко <a href=\"%(url)s\">Управљања статусима</a>. Након тога ће "
+"се појавити на листи апликација и у претрази да би други уживали у њој."
 
 #: mkt/submit/templates/submit/next_steps.html:81
 msgid ""
@@ -9252,8 +9249,8 @@ msgid ""
 "Once your app is reviewed, it will show up on listing pages and in search "
 "for others to enjoy."
 msgstr ""
-"Након што је Ваша апликација прегледана, појавиће се на листи апликација и у"
-" претрази да би други уживали у њој."
+"Након што је апликација прегледана, појавиће се на листи апликација и у "
+"претрази да би други уживали у њој."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step
 #. of the submission process (e.g. 'Payments' or 'Content Ratings').
@@ -9263,7 +9260,7 @@ msgstr "<strong>Шта је следеће:</strong> Подесите %(next_ste
 
 #: mkt/submit/templates/submit/next_steps.html:105
 msgid "<strong>What's next:</strong> Publish Your App"
-msgstr "<strong>Шта је следеће:</strong> Објавите Вашу апликацију"
+msgstr "<strong>Шта је следеће:</strong> Објавите апликацију"
 
 #: mkt/submit/templates/submit/terms.html:14
 msgid "Marketplace Developer Program"
@@ -9285,8 +9282,8 @@ msgstr ""
 msgid ""
 "To begin, please read and accept our <strong>Developer Agreement</strong>:"
 msgstr ""
-"Да бисте започели, молимо Вас да прочитате и прихватите наш <strong>уговор "
-"за програмере</strong>:"
+"Да бисте започели, прочитајте и прихватите наш <strong>уговор за "
+"програмере</strong>:"
 
 #: mkt/submit/templates/submit/terms.html:47
 msgid "Mozilla may email me with relevant App Developer news and surveys"
@@ -9524,7 +9521,7 @@ msgstr ""
 
 #: mkt/users/views.py:111
 msgid "Please use the verified email for this account."
-msgstr "Молимо Вас користите верификовану е-пошту за овај налог."
+msgstr "Користите верификовану е-пошту за овај налог."
 
 # Column name in a table.
 #: mkt/webapps/models.py:199
@@ -9592,7 +9589,7 @@ msgstr "{region} датум номинације"
 
 #: mkt/webapps/tasks.py:145
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
-msgstr "Грешка са Вашом апликацијом \"{app}\" на Firefox Marketplace-у"
+msgstr "Грешка са апликацијом \"{app}\" на Firefox Marketplace-у"
 
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:2
 msgid "Sort by:"
