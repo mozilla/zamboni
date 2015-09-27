@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-08-02 10:41+0000\n"
-"Last-Translator: Anonymous Pootle User\n"
+"PO-Revision-Date: 2015-09-27 11:27+0000\n"
+"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1438512086.0\n"
+"X-POOTLE-MTIME: 1443353266.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -234,19 +234,19 @@ msgstr "Impossibile modificare lo stato in \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:70
 msgid "Group membership \"{0}\" added"
-msgstr ""
+msgstr "Iscrizione al gruppo “{0}” effettuata"
 
 #: media/js/devreg/lookup-tool.js:84
 msgid "Could not add group \"{0}\""
-msgstr ""
+msgstr "Impossibile aggiungere il gruppo “{0}”"
 
 #: media/js/devreg/lookup-tool.js:108
 msgid "Group membership \"{0}\" removed"
-msgstr ""
+msgstr "Iscrizione al gruppo “{0}” annullata"
 
 #: media/js/devreg/lookup-tool.js:114
 msgid "Could not remove group \"{0}\""
-msgstr ""
+msgstr "Impossibile rimuovere il gruppo “{0}”"
 
 #: media/js/devreg/lookup-tool.js:183
 msgid "Show All Results"

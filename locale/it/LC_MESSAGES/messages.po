@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-08-30 07:52+0000\n"
-"Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
+"PO-Revision-Date: 2015-09-27 11:32+0000\n"
+"Last-Translator: Sara <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1440921138.0\n"
+"X-POOTLE-MTIME: 1443353563.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -5139,10 +5139,14 @@ msgstr "App web di Mozilla (portoghese brasiliano)"
 #: mkt/extensions/models.py:304
 msgid "Version number must be higher than the latest version uploaded for this Add-on, which is \"%s\"."
 msgstr ""
+"La versione attuale del componente aggiuntivo è %s. La nuova versione "
+"caricata deve riportare un numero superiore."
 
 #: mkt/extensions/models.py:315
 msgid "An Add-on with this version number already exists."
 msgstr ""
+"Esiste già una versione del componente aggiuntivo con questo numero di "
+"versione."
 
 #: mkt/extensions/validation.py:22
 msgid "The file sent has an unsupported content-type"
@@ -5151,6 +5155,7 @@ msgstr "Il content-type del file inviato non è supportato"
 #: mkt/extensions/validation.py:24
 msgid "The `description` property cannot be longer than 132 characters."
 msgstr ""
+"Il valore della proprietà `description` non può superare i 132 caratteri."
 
 #: mkt/extensions/validation.py:27
 msgid "'manifest.json' in the archive is not a valid JSON file."
@@ -5159,6 +5164,8 @@ msgstr "Il formato JSON del file ‘manifest.json’ contenuto nell’archivio n
 #: mkt/extensions/validation.py:30
 msgid "'manifest.json' in the archive is not encoded in UTF-8."
 msgstr ""
+"il file 'manifest.json' dell’archivio non utilizza la codifica caratteri "
+"UTF-8."
 
 #: mkt/extensions/validation.py:32
 msgid "The file sent is not a valid ZIP file."
@@ -5166,19 +5173,19 @@ msgstr "Il file inviato non è un archivio ZIP valido."
 
 #: mkt/extensions/validation.py:33
 msgid "There is no `name` property in the manifest."
-msgstr ""
+msgstr "Nel file manifesto non è specificata la proprietà `name`."
 
 #: mkt/extensions/validation.py:34
 msgid "The `name` property must be a string."
-msgstr ""
+msgstr "La proprietà `name` deve essere di tipo stringa."
 
 #: mkt/extensions/validation.py:35
 msgid "The `name` property cannot be longer than 45 characters."
-msgstr ""
+msgstr "Il valore della proprietà `name` non può superare i 45 caratteri."
 
 #: mkt/extensions/validation.py:38
 msgid "The `name` property must be at least 1 character long."
-msgstr ""
+msgstr "Il valore della proprietà `name` deve contenere almeno un carattere."
 
 #: mkt/extensions/validation.py:41
 msgid "The archive does not contain a 'manifest.json' file."
@@ -5186,19 +5193,21 @@ msgstr "L’archivio non contiene un file ‘manifest.json’."
 
 #: mkt/extensions/validation.py:44
 msgid "There is no `version` property in the manifest."
-msgstr ""
+msgstr "Nel file manifesto non è specificata una proprietà `version`."
 
 #: mkt/extensions/validation.py:46
 msgid "The `version` property must be a string."
-msgstr ""
+msgstr "La proprietà `version` deve essere di tipo stringa."
 
 #: mkt/extensions/validation.py:47
 msgid "The `version` property must be a string containing one to four dot-separated integers each between 0 and 65535."
 msgstr ""
+"La proprietà `version` deve essere di tipo stringa e contenere una sequenza "
+"da uno a quattro interi (da 0 a 65535) separati da un punto."
 
 #: mkt/extensions/views.py:52
 msgid "No validation_id specified."
-msgstr ""
+msgstr "Id validazione non specificato."
 
 #: mkt/extensions/views.py:56
 msgid "You need to be authenticated to perform this action."
@@ -5296,6 +5305,8 @@ msgstr "File che supera la dimensione massima consentita nell’archivio: {0}"
 #: mkt/files/utils.py:207
 msgid "Total size of files exeeding limit in archive: {0}"
 msgstr ""
+"Dimensione totale dei file che superano il limite consentito dell’archivio: "
+"{0}"
 
 #: mkt/files/utils.py:238
 msgid "Invalid archive."
@@ -5633,31 +5644,31 @@ msgstr "Strumento di ricerca del <small>Marketplace</small>"
 
 #: mkt/lookup/templates/lookup/group_summary.html:11
 msgid "Group Lookup results for"
-msgstr ""
+msgstr "Ricerca nel gruppo per"
 
 #: mkt/lookup/templates/lookup/group_summary.html:13
 msgid "Group Summary"
-msgstr ""
+msgstr "Informazioni generali sul gruppo"
 
 #: mkt/lookup/templates/lookup/group_summary.html:18
 msgid "Group Details"
-msgstr ""
+msgstr "Ulteriori informazioni sul gruppo"
 
 #: mkt/lookup/templates/lookup/group_summary.html:22
 msgid "Rules"
-msgstr ""
+msgstr "Regolamento"
 
 #: mkt/lookup/templates/lookup/group_summary.html:24
 msgid "Notes"
-msgstr ""
+msgstr "Note"
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
-msgstr ""
+msgstr "Limitato (modifica API non consentita)"
 
 #: mkt/lookup/templates/lookup/group_summary.html:30
 msgid "Group Members"
-msgstr ""
+msgstr "Membri del gruppo"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
@@ -5760,7 +5771,7 @@ msgstr "Gruppi"
 
 #: mkt/lookup/templates/lookup/user_summary.html:33
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: mkt/lookup/templates/lookup/user_summary.html:58
 msgid "Marketplace Credit"
@@ -5904,7 +5915,7 @@ msgstr "Cerca"
 
 #: mkt/lookup/templates/lookup/includes/group_search.html:4
 msgid "Group Lookup"
-msgstr ""
+msgstr "Ricerca nel gruppo"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
@@ -6146,7 +6157,7 @@ msgstr "Tipi di dispositivo forzati:"
 
 #: mkt/reviewers/forms.py:126
 msgid "Nominate this app to be featured."
-msgstr ""
+msgstr "Proponi quest’app per la categoria Consigliati."
 
 #: mkt/reviewers/forms.py:133
 msgid "Choose a canned response..."
