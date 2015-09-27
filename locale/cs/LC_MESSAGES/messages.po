@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-09-10 07:21+0000\n"
+"PO-Revision-Date: 2015-09-25 17:58+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1441869708.0\n"
+"X-POOTLE-MTIME: 1443203906.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -5119,10 +5119,12 @@ msgstr "Mozilla Web apps (brazilská portugalština)"
 #: mkt/extensions/models.py:304
 msgid "Version number must be higher than the latest version uploaded for this Add-on, which is \"%s\"."
 msgstr ""
+"Číslo verze musí být větší, než číslo poslední nahrané verze doplňku, což je "
+"\"%s\"."
 
 #: mkt/extensions/models.py:315
 msgid "An Add-on with this version number already exists."
-msgstr ""
+msgstr "Doplněk s tímto číslem verze již existuje."
 
 #: mkt/extensions/validation.py:22
 msgid "The file sent has an unsupported content-type"
@@ -5130,7 +5132,7 @@ msgstr "Odeslaný soubor má nepodporovaný content-type"
 
 #: mkt/extensions/validation.py:24
 msgid "The `description` property cannot be longer than 132 characters."
-msgstr ""
+msgstr "Hodnota `description` nesmí být delší než 132 znaků."
 
 #: mkt/extensions/validation.py:27
 msgid "'manifest.json' in the archive is not a valid JSON file."
@@ -5138,7 +5140,7 @@ msgstr "Soubor 'manifest.json' v archivu není validní JSON soubor."
 
 #: mkt/extensions/validation.py:30
 msgid "'manifest.json' in the archive is not encoded in UTF-8."
-msgstr ""
+msgstr "Soubor 'manifest.json' v archivu není zakódován pomocí UTF-8."
 
 #: mkt/extensions/validation.py:32
 msgid "The file sent is not a valid ZIP file."
@@ -5146,19 +5148,19 @@ msgstr "Odeslaný soubor není validní ZIP archiv."
 
 #: mkt/extensions/validation.py:33
 msgid "There is no `name` property in the manifest."
-msgstr ""
+msgstr "V manifestu chybí hodnota `name`."
 
 #: mkt/extensions/validation.py:34
 msgid "The `name` property must be a string."
-msgstr ""
+msgstr "Hodnota `name` musí být textový řetězec."
 
 #: mkt/extensions/validation.py:35
 msgid "The `name` property cannot be longer than 45 characters."
-msgstr ""
+msgstr "Hodnota `name` nesmí být delší než 45 znaků."
 
 #: mkt/extensions/validation.py:38
 msgid "The `name` property must be at least 1 character long."
-msgstr ""
+msgstr "Hodnota `name` musí být alespoň jeden znak dlouhá."
 
 #: mkt/extensions/validation.py:41
 msgid "The archive does not contain a 'manifest.json' file."
@@ -5166,19 +5168,21 @@ msgstr "Archiv neobsahuje soubor 'manifest.json'."
 
 #: mkt/extensions/validation.py:44
 msgid "There is no `version` property in the manifest."
-msgstr ""
+msgstr "V manifestu chybí hodnota `version`."
 
 #: mkt/extensions/validation.py:46
 msgid "The `version` property must be a string."
-msgstr ""
+msgstr "Hodnota `version` musí být textový řetězec."
 
 #: mkt/extensions/validation.py:47
 msgid "The `version` property must be a string containing one to four dot-separated integers each between 0 and 65535."
 msgstr ""
+"Hodnota `version` musí být textový řetězec obsahující jedno až čtyři čísla "
+"mezi 0 a 65535 oddělená tečkou."
 
 #: mkt/extensions/views.py:52
 msgid "No validation_id specified."
-msgstr ""
+msgstr "`validation_id` nebylo specifikováno."
 
 #: mkt/extensions/views.py:56
 msgid "You need to be authenticated to perform this action."
@@ -5275,7 +5279,7 @@ msgstr "Překročena velikost souboru v archivu: {0}"
 
 #: mkt/files/utils.py:207
 msgid "Total size of files exeeding limit in archive: {0}"
-msgstr ""
+msgstr "Celkový velikost souborů převyšujících v archivu: {0}"
 
 #: mkt/files/utils.py:238
 msgid "Invalid archive."
@@ -5615,31 +5619,31 @@ msgstr "Nástroje redaktora <small>Marketplace</small>"
 
 #: mkt/lookup/templates/lookup/group_summary.html:11
 msgid "Group Lookup results for"
-msgstr ""
+msgstr "Výsledky vyhledávání skupiny pro"
 
 #: mkt/lookup/templates/lookup/group_summary.html:13
 msgid "Group Summary"
-msgstr ""
+msgstr "Souhrn skupiny"
 
 #: mkt/lookup/templates/lookup/group_summary.html:18
 msgid "Group Details"
-msgstr ""
+msgstr "Detaily skupiny"
 
 #: mkt/lookup/templates/lookup/group_summary.html:22
 msgid "Rules"
-msgstr ""
+msgstr "Pravidla"
 
 #: mkt/lookup/templates/lookup/group_summary.html:24
 msgid "Notes"
-msgstr ""
+msgstr "Poznámky"
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
-msgstr ""
+msgstr "Omezený (žádné změny API)"
 
 #: mkt/lookup/templates/lookup/group_summary.html:30
 msgid "Group Members"
-msgstr ""
+msgstr "Členové skupiny"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
@@ -5739,7 +5743,7 @@ msgstr "Skupiny"
 
 #: mkt/lookup/templates/lookup/user_summary.html:33
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: mkt/lookup/templates/lookup/user_summary.html:58
 msgid "Marketplace Credit"
@@ -5883,7 +5887,7 @@ msgstr "Hledat"
 
 #: mkt/lookup/templates/lookup/includes/group_search.html:4
 msgid "Group Lookup"
-msgstr ""
+msgstr "Vyhledávání skupiny"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
@@ -6125,7 +6129,7 @@ msgstr "Přenastavení typu zařízení:"
 
 #: mkt/reviewers/forms.py:126
 msgid "Nominate this app to be featured."
-msgstr ""
+msgstr "Nominovat aplikaci na doporučenou."
 
 #: mkt/reviewers/forms.py:133
 msgid "Choose a canned response..."
