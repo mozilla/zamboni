@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-09-10 13:59+0000\n"
-"Last-Translator: Aleksandra Uzelac <auzelac91@gmail.com>\n"
+"PO-Revision-Date: 2015-09-26 13:07+0000\n"
+"Last-Translator: Vanja Tumbas <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -2201,7 +2201,7 @@ msgstr "Конго, Демократска Република"
 
 #: mkt/constants/regions.py:120
 msgid "Cabo Verde"
-msgstr ""
+msgstr "Зеленортска Острва"
 
 #: mkt/constants/regions.py:153
 msgid "Guinea-Conakry"
@@ -2209,19 +2209,19 @@ msgstr "Гвинеја-Конакри"
 
 #: mkt/constants/regions.py:166
 msgid "Heard Island and McDonald Islands"
-msgstr ""
+msgstr "Херд и Макдоналд острва"
 
 #: mkt/constants/regions.py:192
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "Лаошка Народна Демократска Република"
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
-msgstr ""
+msgstr "Либија"
 
 #: mkt/constants/regions.py:197
 msgid "Liechtenstein"
-msgstr ""
+msgstr "Лихтенштајн"
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
@@ -2419,7 +2419,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:538
 msgid "Provide a detailed description of your app"
-msgstr "Доставите детаљан опис Ваше апликације"
+msgstr "Доставите детаљан опис апликације"
 
 #: mkt/developers/forms.py:539
 msgid "This description will appear on the details page."
@@ -2439,11 +2439,11 @@ msgstr ""
 
 #: mkt/developers/forms.py:599 mkt/submit/forms.py:374
 msgid "This slug is already in use. Please choose another."
-msgstr "Назив url адресе је у употреби. Молимо Вас изаберите други."
+msgstr "Назив url адресе је у употреби. Иаберите други."
 
 #: mkt/developers/forms.py:602 mkt/submit/forms.py:378
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr "Назив url адресе не може бити \"%s\". Молимо Вас изаберите други."
+msgstr "Назив url адресе не може бити \"%s\". Изаберите други."
 
 #: mkt/developers/forms.py:630
 msgid "Manifest URL changed from {before_url} to {after_url}"
@@ -2451,7 +2451,7 @@ msgstr "URL манифеста се променио са {before_url} на {aft
 
 #: mkt/developers/forms.py:667
 msgid "Please specify your app's Privacy Policy"
-msgstr "Молимо укажите на полису приватности Ваше апликације"
+msgstr "Молимо укажите на полису приватности апликације"
 
 #: mkt/developers/forms.py:688
 msgid ""
@@ -2459,7 +2459,7 @@ msgid ""
 "that locale. You are missing %s."
 msgstr ""
 "Пре замене подразумеваног локала морате имати име и опис у том локалу. "
-"Недостаје Вам %s."
+"Недостаје %s."
 
 #: mkt/developers/forms.py:747 mkt/submit/templates/submit/details.html:125
 msgid "You must provide either a website, an email, or both."
@@ -2495,7 +2495,7 @@ msgstr "<b>Само мој тим</b>: Видљиво само члановим�
 
 #: mkt/developers/forms.py:867
 msgid "Choose the regions your app will be listed in:"
-msgstr "Изаберите регије у којима ће на листи бити Ваша апликација:"
+msgstr "Изаберите регије у којима ће на листи бити апликација:"
 
 #: mkt/developers/forms.py:869 mkt/developers/forms.py:970
 msgid "You must select at least one region."
@@ -2600,7 +2600,7 @@ msgid ""
 "Make this the Active version of my app as soon as it has been reviewed and "
 "approved."
 msgstr ""
-"Направите да ова верзија Ваше апликације буде активна чим је прегледана и "
+"Направите да ова верзија апликације буде активна чим је прегледана и "
 "одобрена."
 
 #: mkt/developers/forms.py:1206
@@ -2609,14 +2609,13 @@ msgid ""
 "device. I agree to the terms and conditions outlined above. I understand "
 "that this document is not a commitment to pre-load my app."
 msgstr ""
-"Молим Вас да узмете у обзир моју апликацију као кандидата да буде унапред "
-"учитана на Firefox OS уређајима. Слажем се са горе наведеним условима "
-"коришћења. Разумем да овај документ није обавеза да се моја апликација "
-"унапред учита."
+"Узмите у обзир моју апликацију као кандидата да буде унапред учитана на "
+"Firefox OS уређајима. Слажем се са горе наведеним условима коришћења. "
+"Разумем да овај документ није обавеза да се моја апликација унапред учита."
 
 #: mkt/developers/forms.py:1213
 msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
-msgstr "Доставите Ваш план за тестирање (.pdf, .xls мање од 2.5MB)"
+msgstr "Доставите план за тестирање (.pdf, .xls мање од 2.5MB)"
 
 #: mkt/developers/forms.py:1229
 msgid "Test plan required."
@@ -2632,15 +2631,15 @@ msgstr "Неисправан тип датотеке {0}. Само су {1} да
 
 #: mkt/developers/forms.py:1266
 msgid "Please enter a valid submission ID."
-msgstr "Молимо унесите валидан ID за подношење."
+msgstr "Унесите валидан ID за подношење."
 
 #: mkt/developers/forms.py:1282
 msgid ""
 "This IARC certificate is already being used for another app. Please create a"
 " new IARC Ratings Certificate."
 msgstr ""
-"Овај IARC сертификат је већ употребљен за другу апликацију. Молимо Вас "
-"направите нови IARC Ratings сертификат."
+"Овај IARC сертификат је већ употребљен за другу апликацију. Направите нови "
+"IARC Ratings сертификат."
 
 #: mkt/developers/forms.py:1317 mkt/developers/forms.py:1329
 msgid "Invalid submission ID or security code."
@@ -2918,7 +2917,7 @@ msgstr "Слике не могу бити покретне."
 
 #: mkt/developers/utils.py:92
 msgid "Please use files smaller than %s."
-msgstr "Молимо Вас користите датотеке мање од %s."
+msgstr "Користите датотеке мање од %s."
 
 #: mkt/developers/utils.py:103
 msgid "Icon could not be opened."
@@ -2978,7 +2977,7 @@ msgid ""
 "Congratulations, your app submission is now complete and will be reviewed "
 "shortly!"
 msgstr ""
-"Честитамо, Ваше подношење апликације је завршено и убрзо ће бити прегледана!"
+"Честитамо, ваше подношење апликације је завршено и убрзо ће бити прегледана!"
 
 #: mkt/developers/views.py:318
 msgid "Content ratings successfully saved."
@@ -3014,7 +3013,7 @@ msgstr ""
 
 #: mkt/developers/views.py:955
 msgid "There was an error uploading your preview."
-msgstr "Дошло је до грешке приликом отпремања Вашег прегледа."
+msgstr "Дошло је до грешке приликом отпремања прегледа."
 
 #: mkt/developers/views.py:1006
 msgid "Terms of service accepted."
@@ -3178,7 +3177,7 @@ msgid ""
 "app can be reviewed or published."
 msgstr ""
 "Морате да подесите <a href=\"%(next_url)s\">%(next_step_name)s</a> пре него "
-"што Ваша апликација може бити прегледана или објављена."
+"што апликација може бити прегледана или објављена."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step
 #. of the submission process (e.g. 'Payments' or 'Content Ratings').
@@ -3247,7 +3246,7 @@ msgstr "Дозвољени приступ"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:10
 msgid "%(app_name)s would like access to your Marketplace account."
-msgstr "%(app_name)s би желео да приступи Вашем Marketplace налогу."
+msgstr "%(app_name)s би желео да приступи Marketplace налогу."
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
@@ -3308,7 +3307,7 @@ msgstr ""
 #: mkt/developers/templates/developers/skeleton_impala.html:125
 #: templates/base.html:131
 msgid "Please sign in"
-msgstr "Молимо пријавите се"
+msgstr "Пријавите се"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:127
 #: templates/base.html:133
@@ -3404,7 +3403,7 @@ msgstr "Тестирај валидност апликације"
 #: mkt/developers/templates/developers/validate_app.html:17
 #: mkt/submit/templates/submit/manifest.html:50
 msgid "Submit your app manifest URL"
-msgstr "Поднесите URL манифеста Ваше апликације"
+msgstr "Поднесите URL манифеста апликације"
 
 #: mkt/developers/templates/developers/validate_app.html:27
 #: mkt/submit/templates/submit/manifest.html:59
@@ -3444,11 +3443,11 @@ msgid ""
 "would like to run a copy of your own, the source code is available <a "
 "href=\"%(repo)s\">on Github</a>."
 msgstr ""
-"Валидатор је алат који Вам може помоћи при тестирању Ваше апликације ради "
-"откривања грешака, најбољим праксама и усклађености са Marketplace "
-"смерницама пре него што пошаљете Вашу апликацију на преглед. Ако сте "
-"заинтерсовани како то функционише или би сте хтели да покренете Вашу копију,"
-" изворни код је доступан <a href=\"%(repo)s\">на Github-у</a>."
+"Валидатор је алат који може помоћи при тестирању апликације ради откривања "
+"грешака, најбољим праксама и усклађености са Marketplace смерницама пре него"
+" што пошаљете апликацију на преглед. Ако сте заинтерсовани како то "
+"функционише или би сте хтели да покренете копију, изворни код је доступан <a"
+" href=\"%(repo)s\">на Github-у</a>."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: mkt/developers/templates/developers/validation.html:5
@@ -3687,12 +3686,12 @@ msgstr "Апликацију је <b>одбио</b> Firefox Marketplace реце
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:78
 msgid "Version <b>{0}</b> of your app is <b>{1}</b> and <b>Active</b>"
-msgstr "Верзија <b>{0}</b> Ваше апликације је <b>{1}</b> и <b>активна</b>"
+msgstr "Верзија <b>{0}</b> апликације је <b>{1}</b> и <b>активна</b>"
 
 #. {0} is an app version string. {1} is a file status like 'approved'.
 #: mkt/developers/templates/developers/apps/status.html:86
 msgid "Version <b>{0}</b> of your app is <b>{1}</b>"
-msgstr "Верзија <b>{0}</b> Ваше апликације је <b>{1}</b>"
+msgstr "Верзија <b>{0}</b> апликације је <b>{1}</b>"
 
 #: mkt/developers/templates/developers/apps/status.html:93
 msgid "This app is <b>pending review</b> by a Firefox Marketplace reviewer."
@@ -3760,8 +3759,7 @@ msgstr ""
 msgid ""
 "Once you have addressed these concerns, you may resubmit your app below."
 msgstr ""
-"Једном када решите ове проблеме, можете поново послати Вашу апликацију "
-"испод."
+"Једном када решите ове проблеме, можете поново послати апликацију испод."
 
 #: mkt/developers/templates/developers/apps/status.html:177
 msgid "Resubmit App"
@@ -3852,16 +3850,16 @@ msgstr "Ваша апликација чека рецензију."
 msgid ""
 "Our review on {review_date} found that your app supports low-memory devices."
 msgstr ""
-"Наша рецензија датума {review_date} је установила да Ваша апликација "
-"подржава уређаје који имају мало меорије."
+"Наша рецензија датума {review_date} је установила да апликација подржава "
+"уређаје који имају мало меорије."
 
 #: mkt/developers/templates/developers/apps/status.html:308
 msgid ""
 "Our review on {review_date} found that your app does not support low-memory "
 "devices."
 msgstr ""
-"Наша рецензија датума {review_date} је установила да Ваша апликација не "
-"подржава уређаје који имају мало меорије."
+"Наша рецензија датума {review_date} је установила да апликација не подржава "
+"уређаје који имају мало меорије."
 
 #: mkt/developers/templates/developers/apps/status.html:311
 msgid "You requested a review on {request_date}."
@@ -3886,8 +3884,8 @@ msgid ""
 "If your app works on low-memory devices then you can request a review to be "
 "shown on low-memory devices."
 msgstr ""
-"Ако Ваша апликација ради на уређајима који имају мало меморије можете "
-"захтевати реценизију да би апликација била приказана на тим уређајима."
+"Ако апликација ради на уређајима који имају мало меморије можете захтевати "
+"реценизију да би апликација била приказана на тим уређајима."
 
 #: mkt/developers/templates/developers/apps/status.html:329
 #: mkt/developers/templates/developers/payments/includes/region_form.html:20
@@ -3925,7 +3923,7 @@ msgstr "Нова верзија тест плана је доступна"
 
 #: mkt/developers/templates/developers/apps/status.html:373
 msgid "View your most recently submitted test plan"
-msgstr "Видите Ваш недавно поднет тест план"
+msgstr "Видите недавно поднет тест план"
 
 #: mkt/developers/templates/developers/apps/status.html:377
 msgid "<a href=\"%(lnk_url)s\">Update your test plan</a>"
@@ -3962,7 +3960,7 @@ msgid ""
 "Delisting your app will prevent it from appearing anywhere in the "
 "Marketplace."
 msgstr ""
-"Уклањање Ваше апликације са листе ће спречити њено појављивање било где на "
+"Уклањање апликације са листе ће спречити њено појављивање било где на "
 "Marketplace-у."
 
 #: mkt/developers/templates/developers/apps/status.html:422
@@ -3977,8 +3975,8 @@ msgid ""
 "Deleting your app will permanently delete it from the site. <strong>There is"
 " no going back.</strong>"
 msgstr ""
-"Уклањање Ваше апликације са листе ће је трајно избрисати са сајта. "
-"<strong>Након тога нема повратка.</strong>"
+"Уклањање апликације са листе ће је трајно избрисати са сајта. <strong>Након "
+"тога нема повратка.</strong>"
 
 #: mkt/developers/templates/developers/apps/status.html:440
 msgid "Blocklist App"
@@ -3994,8 +3992,8 @@ msgstr ""
 "Блокирањем неке апликације ће унапредити корисника на специјалну верзију "
 "која ће учинити апликацију недоступном на њиховим Firefox OS уређајима. Ово "
 "ће такође уклонити апликацију са јавних страница све док нова верзија не "
-"буде пријављена и одобрена. Ове промене се не могу поништити. Молимо Вас да "
-"наставите са опрезом."
+"буде пријављена и одобрена. Ове промене се не могу поништити. Наставите са "
+"опрезом."
 
 #: mkt/developers/templates/developers/apps/status.html:455
 msgid "Blocklist"
@@ -4003,7 +4001,7 @@ msgstr "Листа блокираних апликација"
 
 #: mkt/developers/templates/developers/apps/status.html:476
 msgid "Are you sure you wish to delist your app?"
-msgstr "Да ли сте сигурни да желите да избришете са листе Вашу апликацију?"
+msgstr "Да ли сте сигурни да желите да избришете са листе апликацију?"
 
 #. This 'or' goes between two choices in a dialog.
 # This is a separator between the graphical [contribute] button and the
@@ -4094,7 +4092,7 @@ msgstr "Избриши верзију"
 #: mkt/developers/templates/developers/apps/status.html:512
 msgid "Are you sure you want to stop showing your app on low-memory devices?"
 msgstr ""
-"Да ли сте сигурни да желите да престанете да приказујете Вашу апликацију на "
+"Да ли сте сигурни да желите да престанете да приказујете апликацију на "
 "уређајима који имају мало меморије?"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:25
@@ -4245,8 +4243,8 @@ msgid ""
 "Select a unique URL for your detail page. By default we use your app name to"
 " create this URL."
 msgstr ""
-"Изаберите јединствену URL адресу за Вашу страницу. Подразумевамо коришћење "
-"имена Ваше апликације ради прављења ове URL адресе."
+"Изаберите јединствену URL адресу за страницу. Подразумевамо коришћење имена "
+"апликације ради прављења ове URL адресе."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:62
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:94
@@ -4342,8 +4340,8 @@ msgid ""
 "fit your app's functionality for the most exposure."
 msgstr ""
 "Категорије су примарни начин који корисници користе за претрагу апликација. "
-"Изаберите било коју која одговара функционалности Ваше апликације у највећем"
-" случају."
+"Изаберите било коју која одговара функционалности апликације у највећем "
+"случају."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:5
 msgid "App Details"
@@ -4361,8 +4359,8 @@ msgid ""
 "Information about your app is displayed in this locale unless you override "
 "it with a locale-specific translation."
 msgstr ""
-"Информације о Вашој апликацији се приказују у овом локалитету, осим ако их "
-"не замените са локално-специфичним преводом."
+"Информације о апликацији се приказују у овом локалитету, осим ако их не "
+"замените са локално-специфичним преводом."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:35
 msgid "Homepage"
@@ -4374,9 +4372,9 @@ msgid ""
 " localized into other languages multiple translations of this field can be "
 "added."
 msgstr ""
-"Ако Ваша апликација има још једну почетну страницу, укуцајте њену адресу "
-"овде. Ако је веб сајт преведен на други језик, вишеструки преводи ове "
-"области се могу додати."
+"Ако апликација има још једну почетну страницу, укуцајте њену адресу овде. "
+"Ако је веб сајт преведен на други језик, вишеструки преводи ове области се "
+"могу додати."
 
 #: mkt/developers/templates/developers/apps/edit/details.html:55
 #: mkt/reviewers/templates/reviewers/includes/details.html:55
@@ -4416,7 +4414,7 @@ msgstr "подразумевано"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:31
 msgid "Edit language in your app manifest file"
-msgstr "Измените језик у манифест датотеци Ваше апликације"
+msgstr "Измените језик у манифест датотеци апликације"
 
 #: mkt/developers/templates/developers/apps/edit/media.html:3
 msgid "Media"
@@ -4437,9 +4435,9 @@ msgid ""
 "you have different addresses for each language multiple translations of this"
 " field can be added."
 msgstr ""
-"Адреса е-поште која се користи да би Вас крајњи корисници контактирли у "
-"случају подршке. Ако имате различите адресе за сваки језик, могуће је додати"
-" више превода поља."
+"Адреса е-поште која се користи да би крајњи корисници контактирли у случају "
+"подршке. Ако имате различите адресе за сваки језик, могуће је додати више "
+"превода поља."
 
 #: mkt/developers/templates/developers/apps/edit/support.html:41
 #: mkt/reviewers/templates/reviewers/includes/details.html:103
@@ -4453,9 +4451,9 @@ msgid ""
 "website is localized into other languages, multiple translations of this "
 "field can be added."
 msgstr ""
-"Ако Ваша апликација има веб сајт за подршку или форум, укуцајте његову "
-"адресу овде. Ако је Ваш веб сајт преведен на друге језике, вишеструки "
-"преводи овог поља могу бити додати."
+"Ако апликација има веб сајт за подршку или форум, укуцајте његову адресу "
+"овде. Ако је веб сајт преведен на друге језике, вишеструки преводи овог поља"
+" могу бити додати."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -4475,8 +4473,8 @@ msgid ""
 "If your app uses Flash, it will be hidden from the Marketplace on devices "
 "without Flash support."
 msgstr ""
-"Ако Ваша апликација користи Flash, биће сакривена са Marketplace-а на "
-"уређајима без подршке Flash-а."
+"Ако апликација користи Flash, биће сакривена са Marketplace-а на уређајима "
+"без подршке Flash-а."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
@@ -4530,13 +4528,13 @@ msgid ""
 "displayed nearly everywhere your app is. Uploaded images must be one of the "
 "following image types: .png, .jpg"
 msgstr ""
-"Отпремите неку иконицу за Вашу апликацију или изаберите једну од наших. "
-"Иконица ће бити приказана готово свуда где је и Ваша апликација. Отпремљена "
-"слика мора бити једна од типова слика: .png, .jpg"
+"Отпремите неку иконицу за апликацију или изаберите једну од наших. Иконица "
+"ће бити приказана готово свуда где је и апликација. Отпремљена слика мора "
+"бити једна од типова слика: .png, .jpg"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:23
 msgid "Select an icon for your app:"
-msgstr "Изаберите иконицу за Вашу апликацију:"
+msgstr "Изаберите иконицу за апликацију:"
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:34
@@ -4583,8 +4581,7 @@ msgstr "Видео или снимци екрана"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:103
 msgid "Please provide at least one screenshot or video of your app:"
-msgstr ""
-"Молимо обезбедити барем један снимак екрана или видео за Вашу апликацију:"
+msgstr "Молимо обезбедити барем један снимак екрана или видео за апликацију:"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:139
 #: mkt/submit/templates/submit/details.html:169
@@ -4826,7 +4823,7 @@ msgstr "Тестирање завршено?"
 #: mkt/developers/templates/developers/apps/preload/home.html:31
 #: mkt/developers/templates/developers/apps/preload/submit.html:39
 msgid "Submit your app for preload"
-msgstr "Пошаљите Вашу апликацију за напредно учитавање"
+msgstr "Пошаљите апликацију за напредно учитавање"
 
 #: mkt/developers/templates/developers/apps/preload/home_help.html:1
 msgid ""
@@ -4856,11 +4853,11 @@ msgid ""
 "about the contents of your app. Upon completion, the window will close and "
 "your app will then have an age rating."
 msgstr ""
-"Да би Ваша апликација била приказана на Marketplace-у, морате прво да "
-"добијете International Age Rating Coalition (IARC) сертификат. Притиском на "
-"дугме испод, отворићете нови прозор у којем можете попунити кратак да-не "
-"упитник о садржају Ваше апликације. Након што завршите, прозор ће се "
-"затворити и Ваша апликација ће онда имати старосни рејтинг."
+"Да би апликација била приказана на Marketplace-у, морате прво да добијете "
+"International Age Rating Coalition (IARC) сертификат. Притиском на дугме "
+"испод, отворићете нови прозор у којем можете попунити кратак да-не упитник о"
+" садржају апликације. Након што завршите, прозор ће се затворити и "
+"апликација ће онда имати старосни рејтинг."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
 msgid ""
@@ -4902,8 +4899,8 @@ msgid ""
 "above and already have an IARC security code, you can manually enter it "
 "here."
 msgstr ""
-"Ако је Ваша апликација већ оцењена преко IARC Global Ratings алатке изнад и "
-"ако сте већ добили IARC сигурносни код, можете га ручно унети овде."
+"Ако је апликација већ оцењена преко IARC Global Ratings алатке изнад и ако "
+"сте већ добили IARC сигурносни код, можете га ручно унети овде."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:90
 msgid "Submission ID"
@@ -4926,8 +4923,8 @@ msgid ""
 "The security code can be found on the certificate sent to you. It is a mix "
 "of letters and numbers like &quot;AB12CD3&quot;."
 msgstr ""
-"Сигурносни код може бити нађен на сертификату који Вам је послат. То је "
-"мешавина слова и бројева као &quot;AB12CD3&quot;."
+"Сигурносни код може бити нађен на сертификату који је послат. То је мешавина"
+" слова и бројева као &quot;AB12CD3&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14
 #: mkt/lookup/templates/lookup/helpers/app_header.html:15
@@ -5012,9 +5009,9 @@ msgid ""
 "Check the boxes of the features that your app requires to function properly."
 " Your app will be hidden from users whose devices don't support it."
 msgstr ""
-"Проверите функције које Ваша апликација захтева како би правилно "
-"функционисала. Ваша апликација ће бити сакривена од корисника чији је "
-"уређаји не подржавају."
+"Проверите функције које апликација захтева како би правилно функционисала. "
+"Ваша апликација ће бити сакривена од корисника чији је уређаји не "
+"подржавају."
 
 #: mkt/developers/templates/developers/includes/macros.html:125
 msgid "View all"
@@ -5044,9 +5041,9 @@ msgid ""
 "href=\"{guide}\">in-app payment guide</a> explains how to configure your app"
 " for payments with the parameters below."
 msgstr ""
-"The Firefox Marketplace Вам омогућава да Ваша апликација има плаћање у "
-"оквиру ње. <a href=\"{guide}\">Водич за плаћања у оквиру апликације</a> "
-"објашњава како да подесите Вашу апликацију за плаћања са параметрима испод."
+"The Firefox Marketplace омогућава да апликација има плаћање у оквиру ње. <a "
+"href=\"{guide}\">Водич за плаћања у оквиру апликације</a> објашњава како да "
+"подесите апликацију за плаћања са параметрима испод."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:31
 #: mkt/developers/templates/developers/payments/in-app-keys.html:29
@@ -5111,9 +5108,9 @@ msgid ""
 "simplifies the process by allowing you to create and manage your products in"
 " the Firefox Marketplace Developer Hub."
 msgstr ""
-"Производи унутар апликације Вам омогућавају да примате уплате у Вашој "
-"апликацији и поједностављује процес тако што Вам омогућава да направите и "
-"управљате производима на Firefox Marketplace Developer Hub-у."
+"Производи унутар апликације омогућавају да примате уплате у апликацији и "
+"поједностављује процес тако што омогућава да направите и управљате "
+"производима на Firefox Marketplace Developer Hub-у."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:34
 msgid "Configure In-App Products"
@@ -5129,9 +5126,9 @@ msgid ""
 "arbitrary price point. You are responsible for the definition and management"
 " of products."
 msgstr ""
-"Кључеви унутар апликације омогућавају Вам да примате уплате унутар Ваше "
-"апликације по било којој произвољној цени. Ви сте одговорни за дефинисање и "
-"управљање производима."
+"Кључеви унутар апликације омогућавају да примате уплате унутар апликације по"
+" било којој произвољној цени. Ви сте одговорни за дефинисање и управљање "
+"производима."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:53
 msgid ""
@@ -5153,7 +5150,7 @@ msgid ""
 "target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more "
 "information."
 msgstr ""
-"Ова могућност се и даље развија. Молимо погледајте <a target=\"_blank\" "
+"Ова могућност се и даље развија. Погледајте <a target=\"_blank\" "
 "href=\"%(doc_link)s\">документацију</a> за више информација."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:35
@@ -5190,7 +5187,7 @@ msgstr "Промени на бесплатно"
 
 #: mkt/developers/templates/developers/payments/premium.html:87
 msgid "Paid mode requires that your app only supports:"
-msgstr "Мод за плаћање захтева да Ваша апликација подржава само:"
+msgstr "Мод за плаћање захтева да апликација подржава само:"
 
 #: mkt/developers/templates/developers/payments/premium.html:88
 #: mkt/developers/templates/developers/payments/premium.html:90
@@ -5204,7 +5201,7 @@ msgstr "Промени на плаћено"
 
 #: mkt/developers/templates/developers/payments/premium.html:100
 msgid "Changing to Paid will put your app back into review."
-msgstr "Променом на Плаћено ће ставити Вашу апликацију назад у разматрање."
+msgstr "Променом на Плаћено ће ставити апликацију назад у разматрање."
 
 #: mkt/developers/templates/developers/payments/premium.html:108
 msgid ""
@@ -5235,8 +5232,7 @@ msgstr "Државе"
 
 #: mkt/developers/templates/developers/payments/premium.html:159
 msgid "Add, manage or view transactions for your payment accounts"
-msgstr ""
-"Додајте, управљајте или погледајте трансакције за Ваш рачун за плаћање"
+msgstr "Додајте, управљајте или погледајте трансакције за рачун за плаћање"
 
 #: mkt/developers/templates/developers/payments/premium.html:169
 msgid "Prices and Countries"
@@ -5254,12 +5250,12 @@ msgstr "Цена"
 #: mkt/developers/templates/developers/payments/premium.html:185
 msgid "Does your app use Mozilla's in-app payments platform?"
 msgstr ""
-"Да ли Ваша апликација користи Mozilla-ину платформу за плаћање у оквиру "
+"Да ли апликација користи Mozilla-ину платформу за плаћање у оквиру "
 "апликације?"
 
 #: mkt/developers/templates/developers/payments/premium.html:195
 msgid "A server error occurred. Please try again later."
-msgstr "Десила се грешка на серверу. Молимо покуштајте поново касније."
+msgstr "Десила се грешка на серверу. Покуштајте поново касније."
 
 #: mkt/developers/templates/developers/payments/premium.html:201
 msgid "Not applicable"
@@ -5300,15 +5296,14 @@ msgstr "Начин плаћања"
 #: mkt/developers/templates/developers/payments/premium.html:244
 msgid "Add a payment account to enable your app for sale in more regions"
 msgstr ""
-"Додајте налог за плаћање да бисте могли продавати Вашу апликацију у више "
-"региона"
+"Додајте налог за плаћање да бисте могли продавати апликацију у више региона"
 
 #: mkt/developers/templates/developers/payments/premium.html:248
 msgid ""
 "As \"Rest of World\" is selected your app will be available for purchase in "
 "all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
 msgstr ""
-"Ако је \"Остатак света\" изабран у Вашој апликацији она ће бити доступна за "
+"Ако је \"Остатак света\" изабран у апликацији она ће бити доступна за "
 "куповину у свим \"<a href=\"#regions-other\">Осталим регионима</a>\"."
 
 #: mkt/developers/templates/developers/payments/premium.html:256
@@ -5320,7 +5315,7 @@ msgid ""
 "To exclude your app from appearing in a region, you may uncheck that region "
 "before saving."
 msgstr ""
-"Ако желите да се Ваша апликација не појављује у одређеном региону, можете "
+"Ако желите да се апликација не појављује у одређеном региону, можете "
 "поништити одабир пре снимања."
 
 #: mkt/developers/templates/developers/payments/premium.html:278
@@ -5336,14 +5331,14 @@ msgid ""
 "If you have a free app, you can link and promote your premium app next to "
 "the free version here."
 msgstr ""
-"Ако имате бесплатну апликацију, можете повезати и промовисати Вашу премијум "
+"Ако имате бесплатну апликацију, можете повезати и промовисати премијум "
 "апликацију одмах поред бесплатне верзије овде."
 
 #: mkt/developers/templates/developers/payments/premium.html:310
 msgid ""
 "Linking this app will promote your premium app next to the free version."
 msgstr ""
-"Повезивање ове апликације ће промовисати Вашу премијум апликацију одмах до "
+"Повезивање ове апликације ће промовисати премијум апликацију одмах до "
 "бесплатне верзије."
 
 #: mkt/developers/templates/developers/payments/premium.html:317
@@ -5417,8 +5412,8 @@ msgid ""
 "Please see the <a target=\"_blank\" href=\"%(url)s\">documentation on "
 "Payment Accounts</a>."
 msgstr ""
-"Молимо погледајте <a target=\"_blank\" href=\"%(url)s\">документацију о "
-"налозима за плаћање</a>."
+"Погледајте <a target=\"_blank\" href=\"%(url)s\">документацију о налозима за"
+" плаћање</a>."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:25
 msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
@@ -5458,7 +5453,7 @@ msgstr "Процесирам захтев..."
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:137
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:39
 msgid "Please wait while we contact the payment server."
-msgstr "Молимо сачекајте док контактирамо сервер за плаћање."
+msgstr "Сачекајте док контактирамо сервер за плаћање."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
 msgid "Add Reference Account"
@@ -5490,8 +5485,8 @@ msgid ""
 "You must <a href=\"{status_page}\">request a review</a> to have your app "
 "shown on low-memory devices."
 msgstr ""
-"Морате <a href=\"{status_page}\">затражити рецензију</a> да би Ваша "
-"апликација била приказана на уређајима који имају мало меморије."
+"Морате <a href=\"{status_page}\">затражити рецензију</a> да би апликација "
+"била приказана на уређајима који имају мало меморије."
 
 #: mkt/developers/templates/developers/payments/includes/region_form_list.html:18
 msgid "low-memory devices"
@@ -5508,8 +5503,8 @@ msgid ""
 "review the changes before saving."
 msgstr ""
 "Ваша апликација неће више бити сврстана у одређеним регионима јер ти региони"
-" не подржавају опцију плаћања. Пребацили смо Ваше одабире региона. Молимо "
-"Вас да прегледате промене пре него што их сачувате."
+" не подржавају опцију плаћања. Пребацили смо одабире региона. Прегледајте "
+"промене пре него што их сачувате."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:5
 msgid ""
@@ -5535,7 +5530,7 @@ msgstr "Одабери све"
 
 #: mkt/ecosystem/views.py:53
 msgid "Thank you for subscribing!"
-msgstr "Хвала Вам на претплати!"
+msgstr "Хвала вам на претплати!"
 
 #: mkt/ecosystem/views.py:59
 msgid ""
@@ -5603,7 +5598,7 @@ msgstr "Објави"
 #: mkt/ecosystem/templates/ecosystem/landing.html:57
 #: mkt/ecosystem/templates/ecosystem/macros.html:175
 msgid "Deploying Your App"
-msgstr "Распоређивање Ваше апликације"
+msgstr "Распоређивање апликације"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:58
 #: mkt/ecosystem/templates/ecosystem/landing.html:59
@@ -5639,8 +5634,8 @@ msgid ""
 "All the tools, docs and references you'll need for development and testing "
 "of your app"
 msgstr ""
-"Сви алати, документа и референце које Вам требају за развој и тестирање Ваше"
-" апликације"
+"Сви алати, документа и референце које требају за развој и тестирање "
+"апликације"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:50
 msgid ""
@@ -5656,7 +5651,7 @@ msgstr "Да ли имате апликацију спремну за пушта
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:76
 msgid "Submit your app to the Marketplace"
-msgstr "Поднесите Вашу апликацију на Marketplace"
+msgstr "Поднесите апликацију на Marketplace"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:115
 msgid "Join the community"
@@ -5731,12 +5726,12 @@ msgstr ""
 msgid ""
 "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
 msgstr ""
-"Firefox Marketplace је сада отворен и прихвата апликације. Поднесите Вашу "
+"Firefox Marketplace је сада отворен и прихвата апликације. Поднесите "
 "апликацију на:"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:198
 msgid "Test your app with a committed group of early adopters."
-msgstr "Тестирајте Вашу апликацију са посвећеном групом нових програмера."
+msgstr "Тестирајте апликацију са посвећеном групом нових програмера."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:203
 msgid "Build an early fan base and gain popularity."
@@ -5744,7 +5739,7 @@ msgstr "Направите пробну фан базу и стекните по
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:206
 msgid "Target tech savvy consumers with your app."
-msgstr "Циљајте технички потковане потрошаче Вашом апликацијом."
+msgstr "Циљајте технички потковане потрошаче апликацијом."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:232
 msgid "Firefox Apps &amp; Hacks"
@@ -5891,8 +5886,8 @@ msgid ""
 "Partner with Mozilla to distribute your apps through an open marketplace to "
 "over 450 million users"
 msgstr ""
-"Постаните партнер са Mozilla-ом да дистрибуирате Ваше апликације путен "
-"отвореног тржита за преко 450 милиона корисника"
+"Постаните партнер са Mozilla-ом да дистрибуирате апликације путен отвореног "
+"тржита за преко 450 милиона корисника"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:20
 msgid ""
@@ -5907,7 +5902,7 @@ msgid ""
 "With a powerful web platform, an open marketplace, and partners like you, we"
 " are ready to welcome the next 2 billion users online"
 msgstr ""
-"Са моћном веб платформом, отвореним тржиштем и партнером као што се Ви, "
+"Са моћном веб платформом, отвореним тржиштем и партнером као што се ви, "
 "спремни смо да дочекамо следећих 2 милијарде корисника на вези"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:45
@@ -5998,9 +5993,9 @@ msgid ""
 "web site and promotional materials to point to your products on the Firefox "
 "Marketplace."
 msgstr ""
-"\"Get it in the Firefox Marketplace\" су значке које можете користити на "
-"Вашем веб сајту и промотивним материјалима да укажете на Ваше производе на "
-"Firefox Marketplace-у."
+"\"Get it in the Firefox Marketplace\" су значке које можете користити на веб"
+" сајту и промотивним материјалима да укажете на производе на Firefox "
+"Marketplace-у."
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
@@ -6049,8 +6044,8 @@ msgid ""
 "To view and download the Firefox Marketplace logo, please visit the <a "
 "href=\"%(style_guide_url)s\">Mozilla style guide</a>."
 msgstr ""
-"Да погледате и преузмете Firefox Marketplace логотип, молимо Вас посетите <a"
-" href=\"%(style_guide_url)s\">Mozilla style guide</a>."
+"Да погледате и преузмете Firefox Marketplace логотип, посетите <a "
+"href=\"%(style_guide_url)s\">Mozilla style guide</a>."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:14
 msgid "Frequently Asked Questions"
@@ -6090,9 +6085,9 @@ msgid ""
 "issues you can visit StackOverflow to resolve all your questions related to "
 "the development of Web apps."
 msgstr ""
-"Док ми радимо на томе да направимо сет канала да Вам помогнемо са Вашим "
-"проблемима можете посетити StackOverflow да решите сва Ваша питања везана за"
-" развој веб апликација."
+"Док ми радимо на томе да направимо сет канала да помогнемо са вашим "
+"проблемима можете посетити StackOverflow да решите сва питања везана за "
+"развој веб апликација."
 
 #: mkt/ecosystem/templates/ecosystem/support.html:58
 #: mkt/ecosystem/templates/ecosystem/support.html:60
@@ -6233,8 +6228,8 @@ msgid ""
 "This file is not viewable online. Please download the file to view the "
 "contents."
 msgstr ""
-"Датотека се не може прегледати на онлајн. Молимо преузмите датотеку да бисте"
-" прегледали њен садржај."
+"Датотека се не може прегледати на онлајн. Преузмите датотеку да бисте "
+"прегледали њен садржај."
 
 #: mkt/files/helpers.py:240
 msgid "This file is a directory."
@@ -6273,8 +6268,8 @@ msgid ""
 "The \"langpack\" role is invalid for Web Apps. Please submit this app as a "
 "language pack instead."
 msgstr ""
-"Улога \"langpack\" је неважећа у веб апликацијама. Молимо Вас поднесите "
-"језички пакет уместо тога."
+"Улога \"langpack\" је неважећа у веб апликацијама. Поднесите језички пакет "
+"уместо тога."
 
 #: mkt/files/utils.py:123
 msgid "Your specified app locales are not in the correct format."
@@ -6342,7 +6337,7 @@ msgstr "Крени"
 
 #: mkt/files/templates/fileviewer/viewer.html:33
 msgid "App being processed, please wait."
-msgstr "Апликација се обрађује, молимо Вас сачекајте."
+msgstr "Апликација се обрађује, молимо сачекајте."
 
 #: mkt/files/templates/fileviewer/viewer.html:37
 msgid "Fetching validation results..."
@@ -6821,7 +6816,7 @@ msgstr "Групе"
 
 #: mkt/lookup/templates/lookup/user_summary.html:33
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: mkt/lookup/templates/lookup/user_summary.html:58
 msgid "Marketplace Credit"
@@ -7076,7 +7071,7 @@ msgstr "Продавац"
 
 #: mkt/purchase/templates/purchase/receipt.html:61
 msgid "For the Firefox Marketplace Terms of Service please visit:"
-msgstr "За Firefox Marketplace услове коришћења молимо посетите:"
+msgstr "За Firefox Marketplace услове коришћења посетите:"
 
 #: mkt/purchase/templates/purchase/receipt.html:66
 msgid "For support please visit:"
@@ -8293,8 +8288,7 @@ msgstr "Претрага је недоступна"
 
 #: mkt/search/templates/search/down.html:10
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
-"Претрага је тренутно недоступна. Молимо покушајте поново за неколико минута."
+msgstr "Претрага је тренутно недоступна. Покушајте поново за неколико минута."
 
 #: mkt/site/context_processors.py:57
 msgid "Account Settings"
@@ -8892,7 +8886,7 @@ msgstr ""
 
 #: mkt/site/templates/site/404.html:16
 msgid "If you typed in the address, please double check the spelling."
-msgstr "Ако сте укуцали адресу, молимо Вас да проверите правопис."
+msgstr "Ако сте укуцали адресу, проверите правопис."
 
 #: mkt/site/templates/site/404.html:19
 msgid ""
@@ -8953,7 +8947,7 @@ msgstr "Слажем се и настави"
 
 #: mkt/submit/forms.py:156 mkt/submit/forms.py:230
 msgid "There was an error with your upload. Please try again."
-msgstr "Дошло је до грешке током отпремања. Молимо Вас, покушајте поново."
+msgstr "Дошло је до грешке током отпремања. Покушајте поново."
 
 #: mkt/submit/forms.py:191
 msgid "Version %s already exists."
@@ -9034,12 +9028,12 @@ msgid ""
 "listed publicly on your app details page."
 msgstr ""
 "Ова адреса е-поште ће бити јавно листирана на Marketplace-у и користиће је "
-"последњи корисници да Вас контактирају са подршком за проблеме. Ова адреса "
-"е-поште ће бити јавно листирана на Вашој страници детаља апликације."
+"крајњи корисници да вас контактирају са подршком за проблеме. Ова адреса "
+"е-поште ће бити јавно листирана на вашој страници детаља апликације."
 
 #: mkt/submit/forms.py:327
 msgid "Does your app require Flash support?"
-msgstr "Да ли Ваша апликација захтева Flash подршку?"
+msgstr "Да ли апликација захтева Flash подршку?"
 
 #: mkt/submit/forms.py:333
 msgid "Your comments for reviewers:"
@@ -9086,8 +9080,8 @@ msgid ""
 "Please review your listing information below. We've pre-filled as much as we"
 " can from your manifest."
 msgstr ""
-"Молимо Вас прегледајте Ваше листинг информације испод. Ми смо унапред "
-"попунили колико год смо могли из Вашег манифеста."
+"Прегледајте листинг информације испод. Ми смо унапред попунили колико год "
+"смо могли из манифеста."
 
 #: mkt/submit/templates/submit/details.html:50
 msgid "Open details page"
@@ -9131,11 +9125,11 @@ msgid ""
 "listing pages and in search. Until then, feel free to tweak your app's "
 "details and settings."
 msgstr ""
-"Сачували смо Вашу апликацију и спремнa је! Ваша апликација тренутно чека "
-"преглед и једном када буде прегледана, мораћете ручно да омогућите Вашу "
-"апликацију из <a href=\"%(url)s\">Управљај статусном страницом</a> да би се "
-"приказала на листинг страницама и у претрази. До тада, слободно радите на "
-"детаљима и подешавањима Ваше апликације."
+"Сачували смо апликацију и спремнa је! Ваша апликација тренутно чека преглед "
+"и једном када буде прегледана, мораћете ручно да омогућите апликацију из <a "
+"href=\"%(url)s\">Управљај статусном страницом</a> да би се приказала на "
+"листинг страницама и у претрази. До тада, слободно радите на детаљима и "
+"подешавањима апликације."
 
 #: mkt/submit/templates/submit/done.html:29
 msgid ""
@@ -9143,9 +9137,9 @@ msgid ""
 "you've added a payment account and price, your app will be submitted for "
 "review."
 msgstr ""
-"Пре него што Ваша апликација буде пуштена, морате пружити информације о "
-"плаћању. Једном када додате рачун за плаћање и цену, Ваша апликација ће бити"
-" поднета за преглед."
+"Пре него што апликација буде пуштена, морате пружити информације о плаћању. "
+"Једном када додате рачун за плаћање и цену, апликација ће бити поднета за "
+"преглед."
 
 #: mkt/submit/templates/submit/done.html:35
 msgid ""
@@ -9153,9 +9147,9 @@ msgid ""
 "review, and will show up on listing pages and in search once it is reviewed."
 " Until then, feel free to tweak your app's details and settings."
 msgstr ""
-"Сачували смо Вашу апликацију и сада је спремна! Ваша апликација тренутно "
-"чека преглед и да појавиће се на листинг страницама и у претрази након што "
-"се прегледа. До тада, будите слободни да подесите детаље и поставке екипе "
+"Сачували смо апликацију и сада је спремна! Ваша апликација тренутно чека "
+"преглед и да појавиће се на листинг страницама и у претрази након што се "
+"прегледа. До тада, будите слободни да подесите детаље и поставке екипе "
 "апликације."
 
 #: mkt/submit/templates/submit/done.html:51
@@ -9208,30 +9202,29 @@ msgstr "У било ком тренутку, Ви можете"
 
 #: mkt/submit/templates/submit/next_steps.html:48
 msgid "Revise your app details on <a href=\"%(url)s\">Edit Listing</a>"
-msgstr "Измените детаље Ваше апликације на <a href=\"%(url)s\">Измени Листе</a>"
+msgstr "Измените детаље апликације на <a href=\"%(url)s\">Измени Листе</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:53
 msgid ""
 "View a list of all of your submissions on <a href=\"%(url)s\">My "
 "Submissions</a>"
-msgstr ""
-"Погледајте листу свих Ваших пријава на <a href=\"%(url)s\">Моје Пријаве</a>"
+msgstr "Погледајте листу свих пријава на <a href=\"%(url)s\">Моје Пријаве</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:60
 msgid ""
 "Request that your app be shown on low-memory devices on <a "
 "href=\"%(status_url)s\">Status &amp; Versions</a>"
 msgstr ""
-"Захтевајте да се Ваша апликација приказује на уређајима који имају мало "
-"меморије на <a href=\"%(status_url)s\">Статус &amp; Верзије</a>"
+"Захтевајте да се апликација приказује на уређајима који имају мало меморије "
+"на <a href=\"%(status_url)s\">Статус &amp; Верзије</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:64
 msgid ""
 "Request that your app be shown on low-memory devices on <a "
 "href=\"%(status_url)s\">Status</a>"
 msgstr ""
-"Захтевајте да се Ваша апликација приказује на уређајима који имају мало "
-"меморије на <a href=\"%(status_url)s\">Статус</a>"
+"Захтевајте да се апликација приказује на уређајима који имају мало меморије "
+"на <a href=\"%(status_url)s\">Статус</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:74
 msgid ""
@@ -9239,10 +9232,9 @@ msgid ""
 "<a href=\"%(url)s\">Manage Status</a>. It would then show up on listing "
 "pages and in search for others to enjoy."
 msgstr ""
-"Након што је Ваша апликација прегледана, Ви ћете морати ручно да објавите "
-"Вашу апликацију преко <a href=\"%(url)s\">Управљања статусима</a>. Након "
-"тога ће се појавити на листи апликација и у претрази да би други уживали у "
-"њој."
+"Након што је апликација прегледана, Ви ћете морати ручно да објавите "
+"апликацију преко <a href=\"%(url)s\">Управљања статусима</a>. Након тога ће "
+"се појавити на листи апликација и у претрази да би други уживали у њој."
 
 #: mkt/submit/templates/submit/next_steps.html:81
 msgid ""
@@ -9257,8 +9249,8 @@ msgid ""
 "Once your app is reviewed, it will show up on listing pages and in search "
 "for others to enjoy."
 msgstr ""
-"Након што је Ваша апликација прегледана, појавиће се на листи апликација и у"
-" претрази да би други уживали у њој."
+"Након што је апликација прегледана, појавиће се на листи апликација и у "
+"претрази да би други уживали у њој."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step
 #. of the submission process (e.g. 'Payments' or 'Content Ratings').
@@ -9268,7 +9260,7 @@ msgstr "<strong>Шта је следеће:</strong> Подесите %(next_ste
 
 #: mkt/submit/templates/submit/next_steps.html:105
 msgid "<strong>What's next:</strong> Publish Your App"
-msgstr "<strong>Шта је следеће:</strong> Објавите Вашу апликацију"
+msgstr "<strong>Шта је следеће:</strong> Објавите апликацију"
 
 #: mkt/submit/templates/submit/terms.html:14
 msgid "Marketplace Developer Program"
@@ -9290,8 +9282,8 @@ msgstr ""
 msgid ""
 "To begin, please read and accept our <strong>Developer Agreement</strong>:"
 msgstr ""
-"Да бисте започели, молимо Вас да прочитате и прихватите наш <strong>уговор "
-"за програмере</strong>:"
+"Да бисте започели, прочитајте и прихватите наш <strong>уговор за "
+"програмере</strong>:"
 
 #: mkt/submit/templates/submit/terms.html:47
 msgid "Mozilla may email me with relevant App Developer news and surveys"
@@ -9529,7 +9521,7 @@ msgstr ""
 
 #: mkt/users/views.py:111
 msgid "Please use the verified email for this account."
-msgstr "Молимо Вас користите верификовану е-пошту за овај налог."
+msgstr "Користите верификовану е-пошту за овај налог."
 
 # Column name in a table.
 #: mkt/webapps/models.py:199
@@ -9597,7 +9589,7 @@ msgstr "{region} датум номинације"
 
 #: mkt/webapps/tasks.py:145
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
-msgstr "Грешка са Вашом апликацијом \"{app}\" на Firefox Marketplace-у"
+msgstr "Грешка са апликацијом \"{app}\" на Firefox Marketplace-у"
 
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:2
 msgid "Sort by:"
