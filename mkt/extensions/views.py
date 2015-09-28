@@ -280,18 +280,49 @@ def _download(request, extension, version, path, public=True):
 
 
 def download_signed(request, uuid, **kwargs):
+    """Download the signed archive for a given public extension/version."""
     extension = get_object_or_404(
         Extension.objects.without_deleted().public(), uuid=uuid)
-    version = extension.versions.without_deleted().get(pk=kwargs['version_id'])
+    version = get_object_or_404(
+        extension.versions.without_deleted().public(), pk=kwargs['version_id'])
 
-    log.info('Downloading add-on: %s version %s from %s' % (
+    log.info('Downloading public add-on: %s version %s from %s' % (
              extension.pk, version.pk, version.signed_file_path))
     return _download(request, extension, version, version.signed_file_path)
 
 
+def download_signed_reviewer(request, uuid, **kwargs):
+    """Download an archive for a given extension/version, signed on-the-fly
+    with reviewers certificate.
+
+    Only reviewers can access this."""
+    extension = get_object_or_404(
+        Extension.objects.without_deleted(), uuid=uuid)
+    version = get_object_or_404(
+        extension.versions.without_deleted(), pk=kwargs['version_id'])
+
+    def is_reviewer():
+        return action_allowed(request, 'Extensions', 'Review')
+
+    if request.user.is_authenticated() and is_reviewer():
+        version.reviewer_sign_if_necessary()
+        log.info(
+            'Downloading reviewers signed add-on: %s version %s from %s' % (
+                extension.pk, version.pk, version.reviewer_signed_file_path))
+        return _download(request, extension, version,
+                         version.reviewer_signed_file_path, public=False)
+    else:
+        raise PermissionDenied
+
+
 def download_unsigned(request, uuid, **kwargs):
-    extension = get_object_or_404(Extension, uuid=uuid)
-    version = extension.versions.without_deleted().get(pk=kwargs['version_id'])
+    """Download the unsigned archive for a given extension/version.
+
+    Only reviewers and developers can do this."""
+    extension = get_object_or_404(
+        Extension.objects.without_deleted(), uuid=uuid)
+    version = get_object_or_404(
+        extension.versions.without_deleted(), pk=kwargs['version_id'])
 
     def is_author():
         return extension.authors.filter(pk=request.user.pk).exists()
@@ -310,7 +341,8 @@ def download_unsigned(request, uuid, **kwargs):
 
 @allow_cross_site_request
 def mini_manifest(request, uuid, **kwargs):
-    extension = get_object_or_404(Extension, uuid=uuid)
+    extension = get_object_or_404(
+        Extension.objects.without_deleted(), uuid=uuid)
 
     if extension.is_public():
         # Let ETag/Last-Modified be handled by the generic middleware for now.
@@ -319,3 +351,22 @@ def mini_manifest(request, uuid, **kwargs):
                             content_type=MANIFEST_CONTENT_TYPE)
     else:
         raise Http404
+
+
+@allow_cross_site_request
+def mini_manifest_reviewer(request, uuid, **kwargs):
+    extension = get_object_or_404(
+        Extension.objects.without_deleted(), uuid=uuid)
+    version = get_object_or_404(
+        extension.versions.without_deleted(), pk=kwargs['version_id'])
+
+    def is_reviewer():
+        return action_allowed(request, 'Extensions', 'Review')
+
+    if request.user.is_authenticated() and is_reviewer():
+        manifest = version.reviewer_mini_manifest
+        # Let ETag/Last-Modified be handled by the generic middleware for now.
+        # If that turns out to be a problem, we'll set them manually.
+        return JsonResponse(manifest, content_type=MANIFEST_CONTENT_TYPE)
+    else:
+        raise PermissionDenied

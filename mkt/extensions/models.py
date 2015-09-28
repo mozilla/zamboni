@@ -184,11 +184,15 @@ class Extension(ModelBase):
 
     @classmethod
     def get_fallback(cls):
-        # Class method needed by the translations app.
+        """Class method returning the field holding the default language to use
+        in translations for this instance.
+
+        *Needs* to be called get_fallback() and *needs* to be a classmethod,
+        that's what the translations app requires."""
         return cls._meta.get_field('default_language')
 
     @classmethod
-    def get_indexer(self):
+    def get_indexer(cls):
         return ExtensionIndexer
 
     def is_dummy_content_for_qa(self):
@@ -369,6 +373,8 @@ class ExtensionVersion(ModelBase):
 
     @property
     def file_path(self):
+        """Path to the unsigned archive for this version, on
+        private storage."""
         prefix = os.path.join(settings.EXTENSIONS_PATH, str(self.extension.pk))
         return os.path.join(prefix, nfd_str(self.filename))
 
@@ -414,7 +420,7 @@ class ExtensionVersion(ModelBase):
 
         # Now that the instance has been saved, we can generate a file path
         # and move the file.
-        size = instance.handle_file_operations(upload)
+        size = instance.handle_file_upload_operations(upload)
 
         # Now that the file is there, all that's left is making older pending
         # versions obsolete and setting this one as pending. That should also
@@ -425,10 +431,14 @@ class ExtensionVersion(ModelBase):
 
     @classmethod
     def get_fallback(cls):
-        # Class method needed by the translations app.
+        """Class method returning the field holding the default language to use
+        in translations for this instance.
+
+        *Needs* to be called get_fallback() and *needs* to be a classmethod,
+        that's what the translations app requires."""
         return cls._meta.get_field('default_language')
 
-    def handle_file_operations(self, upload):
+    def handle_file_upload_operations(self, upload):
         """Copy the file attached to a FileUpload to the Extension instance.
 
         Return the file size."""
@@ -462,23 +472,105 @@ class ExtensionVersion(ModelBase):
 
         Update last_updated and reviewed fields at the same time."""
         now = datetime.utcnow()
-        size = self.sign_and_move_file()
+        size = self.sign_file()
         self.extension.update(last_updated=now)
         self.update(size=size, status=STATUS_PUBLIC, reviewed=now)
 
     def reject(self):
         """Reject this extension version."""
-        size = self.remove_signed_file()
+        size = self.remove_public_signed_file()
         self.update(size=size, status=STATUS_REJECTED)
 
-    def remove_signed_file(self):
-        """Remove signed file if it exists.
+    def remove_public_signed_file(self):
+        """Remove the public signed file if it exists.
 
         Return the size of the unsigned file, to be used by the caller to
         update the size property on the current instance."""
         if public_storage.exists(self.signed_file_path):
             public_storage.delete(self.signed_file_path)
         return private_storage.size(self.file_path)
+
+    @property
+    def reviewer_download_url(self):
+        kwargs = {
+            'filename': self.filename,
+            'uuid': self.extension.uuid,
+            'version_id': self.pk,
+        }
+        return absolutify(
+            reverse('extension.download_signed_reviewer', kwargs=kwargs))
+
+    @property
+    def reviewer_mini_manifest(self):
+        """Reviewer-specific mini-manifest used for install/update of this
+        particular version by reviewers on FxOS devices, in dict form.
+        """
+        mini_manifest = {
+            'name': self.manifest['name'],
+            'package_path': self.reviewer_download_url,
+            # Size is not included, we don't store the reviewer file size,
+            # we don't even know if it has been generated yet at this point.
+            'version': self.manifest['version']
+        }
+        if 'author' in self.manifest:
+            mini_manifest['developer'] = {
+                'name': self.manifest['author']
+            }
+        if 'description' in self.manifest:
+            mini_manifest['description'] = self.manifest['description']
+        return mini_manifest
+
+    @property
+    def reviewer_mini_manifest_url(self):
+        return absolutify(reverse('extension.mini_manifest_reviewer', kwargs={
+            'uuid': self.extension.uuid, 'version_id': self.pk}))
+
+    def reviewer_sign_file(self):
+        """Sign the original file (`file_path`) with reviewer certs, then move
+        the signed file to the reviewers-specific signed path
+        (`reviewer_signed_file_path`) on private storage."""
+        if not self.extension.uuid:
+            raise SigningError('Need uuid to be set to sign')
+        if not self.pk:
+            raise SigningError('Need version pk to be set to sign')
+        ids = json.dumps({
+            # Reviewers get a unique 'id' so the reviewer installed add-on
+            # won't conflict with the public add-on, and also so even multiple
+            # versions of the same add-on can be installed side by side with
+            # other versions.
+            'id': 'reviewer-{guid}-{version_id}'.format(
+                guid=self.extension.uuid, version_id=self.pk),
+            'version': self.pk
+        })
+        with statsd.timer('extensions.sign_reviewer'):
+            try:
+                # This will read the file from self.file_path, generate a
+                # reviewer signature and write the signed file to
+                # self.reviewer_signed_file_path.
+                sign_app(private_storage.open(self.file_path),
+                         self.reviewer_signed_file_path, ids, reviewer=True)
+            except SigningError:
+                log.info(
+                    '[ExtensionVersion:%s] Reviewer Signing failed' % self.pk)
+                if private_storage.exists(self.reviewer_signed_file_path):
+                    private_storage.delete(self.reviewer_signed_file_path)
+                raise
+
+    @property
+    def reviewer_signed_file_path(self):
+        """Path to the reviewer-specific signed archive for this version,
+        on private storage.
+
+        May not exist if the version has not been signed for review yet."""
+        prefix = os.path.join(
+            settings.EXTENSIONS_PATH, str(self.extension.pk), 'reviewers')
+        return os.path.join(prefix, nfd_str(self.filename))
+
+    def reviewer_sign_if_necessary(self):
+        """Simple wrapper around reviewer_sign_file() that generates the
+        reviewer-specific signed package if necessary."""
+        if not private_storage.exists(self.reviewer_signed_file_path):
+            self.reviewer_sign_file()
 
     def set_older_pending_versions_as_obsolete(self):
         """Set all pending versions older than this one attached to the same
@@ -496,12 +588,12 @@ class ExtensionVersion(ModelBase):
         # not be needed since it should be followed by a self.save().
         qs.update(status=STATUS_OBSOLETE)
 
-    def sign_and_move_file(self):
-        """Sign and move extension file from the unsigned path (`file_path`) on
-        private storage to the signed path (`signed_file_path`) on public
-        storage.
+    def sign_file(self):
+        """Sign the original file (`file_path`), then move signed extension
+        file to the signed path (`signed_file_path`) on public storage. The
+        original file remains on private storage.
 
-        Return the file size."""
+        Return the signed file size."""
         if not self.extension.uuid:
             raise SigningError('Need uuid to be set to sign')
         if not self.pk:
@@ -524,12 +616,15 @@ class ExtensionVersion(ModelBase):
                          self.signed_file_path, ids)
             except SigningError:
                 log.info('[ExtensionVersion:%s] Signing failed' % self.pk)
-                self.remove_signed_file()  # Clean up.
+                self.remove_public_signed_file()  # Clean up.
                 raise
         return public_storage.size(self.signed_file_path)
 
     @property
     def signed_file_path(self):
+        """Path to the signed archive for this version, on public storage.
+
+        May not exist if the version has not been reviewed yet."""
         prefix = os.path.join(settings.SIGNED_EXTENSIONS_PATH,
                               str(self.extension.pk))
         return os.path.join(prefix, nfd_str(self.filename))

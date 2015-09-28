@@ -12,13 +12,16 @@ class ExtensionVersionSerializer(ModelSerializer):
     download_url = CharField(source='download_url', read_only=True)
     unsigned_download_url = CharField(
         source='unsigned_download_url', read_only=True)
+    reviewer_mini_manifest_url = CharField(
+        source='reviewer_mini_manifest_url', read_only=True)
     status = ReverseChoiceField(
         choices_dict=STATUS_FILE_CHOICES_API_v2, read_only=True)
 
     class Meta:
         model = ExtensionVersion
-        fields = ['id', 'download_url', 'unsigned_download_url', 'size',
-                  'status', 'version']
+        fields = ['id', 'created', 'download_url',
+                  'reviewer_mini_manifest_url', 'unsigned_download_url',
+                  'size', 'status', 'version']
 
 
 class ExtensionSerializer(ModelSerializer):
@@ -57,7 +60,8 @@ class ESExtensionSerializer(BaseESSerializer, ExtensionSerializer):
         # Create a fake ExtensionVersion for latest_public_version.
         obj.latest_public_version = ExtensionVersion(
             extension=obj,
-            pk=data['latest_public_version']['id'],
+            id=data['latest_public_version']['id'],
+            created=data['latest_public_version']['created'],
             size=data['latest_public_version'].get('size', 0),
             status=STATUS_PUBLIC,
             version=data['latest_public_version']['version'],)

@@ -184,13 +184,17 @@ Detail
 
         {
           "id": 1,
-          "download_url": "https://marketplace.firefox.com/downloads/extension/ce6b52d231154a27a1c54b2648c10379/1/extension-0.1.zip",
-          "unsigned_download_url": "https://marketplace.firefox.com/downloads/extension/unsigned/ce6b52d231154a27a1c54b2648c10379/1/extension-0.1.zip",
+          "created": "2015-09-28T10:02:23",
+          "download_url": "https://marketplace.firefox.com/downloads/extension/ce6b52d231154a27a1c54b2648c10379/42/extension-0.1.zip",
+          "reviewer_mini_manifest_url": "https://marketplace.firefox.com/extension/reviewers/ce6b52d231154a27a1c54b2648c10379/42/manifest.json",
+          "unsigned_download_url": "https://marketplace.firefox.com/downloads/extension/unsigned/ce6b52d231154a27a1c54b2648c10379/42/extension-0.1.zip",
           "status": "public",
           "version": "0.1"
         }
 
+    :resjson string created: The creation date for this version.
     :resjson string download_url: The (absolute) URL to the latest signed package for that add-on. That URL may be a 404 if the add-on is not public.
+    :resjson string reviewer_mini_manifest_url: The (absolute) URL to the reviewer-specific mini_manifest URL (allowing reviewers to install a non-public version) for this version. Only users with Extensions:Review permission may access it.
     :resjson string status: The add-on version current status. Can be *pending*, *obsolete*, *public* or *rejected*.
     :resjson string unsigned_download_url: The (absolute) URL to the latest *unsigned* package for that add-on. Only the add-on author or users with Extensions:Review permission may access it.
     :resjson string version: The version number for this add-on version.

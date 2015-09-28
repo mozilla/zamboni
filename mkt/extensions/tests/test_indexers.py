@@ -64,7 +64,9 @@ class TestExtensionIndexer(TestCase):
         eq_(doc['is_disabled'], True)
         eq_(doc['status'], STATUS_PUBLIC)
         eq_(doc['latest_public_version'],
-            {'id': version.pk, 'size': 42, 'version': '0.1', })
+            {'id': version.pk,
+             'created': version.created.replace(microsecond=0),
+             'size': 42, 'version': '0.1', })
 
     def test_extract_public(self):
         extension, version = self._extension_factory(STATUS_PUBLIC)
@@ -83,7 +85,9 @@ class TestExtensionIndexer(TestCase):
         eq_(doc['slug'], extension.slug)
         eq_(doc['status'], extension.status)
         eq_(doc['latest_public_version'],
-            {'id': version.pk, 'size': 42, 'version': '0.1', })
+            {'id': version.pk,
+             'created': version.created.replace(microsecond=0),
+             'size': 42, 'version': '0.1', })
 
     def test_reviewed_multiple_versions(self):
         extension, first_public_version = self._extension_factory(
