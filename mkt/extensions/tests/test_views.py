@@ -158,8 +158,10 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
         upload = self.get_upload(
             abspath=self.packaged_app_path('extension.zip'), user=self.user)
         eq_(upload.valid, True)
-        response = self.client.post(self.list_url,
-                                    json.dumps({'validation_id': upload.pk}))
+        response = self.client.post(self.list_url, json.dumps({
+            'message': u'add-on has arrivedÄ',
+            'validation_id': upload.pk
+        }))
         eq_(response.status_code, 201)
         data = response.json
 
@@ -177,7 +179,9 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
         eq_(extension.status, STATUS_PENDING)
         eq_(list(extension.authors.all()), [self.user])
 
-        eq_(extension.threads.get().notes.get().note_type, comm.SUBMISSION)
+        note = extension.threads.get().notes.get()
+        eq_(note.body, u'add-on has arrivedÄ')
+        eq_(note.note_type, comm.SUBMISSION)
 
     def test_create_upload_has_no_user(self):
         upload = self.get_upload(
@@ -1034,8 +1038,10 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
         upload = self.get_upload(
             abspath=self.packaged_app_path('extension.zip'), user=self.user)
         eq_(upload.valid, True)
-        response = self.client.post(self.list_url,
-                                    json.dumps({'validation_id': upload.pk}))
+        response = self.client.post(self.list_url, json.dumps({
+            'message': u'add-on has arrivedÄ',
+            'validation_id': upload.pk
+        }))
         eq_(response.status_code, 201)
         data = response.json
         eq_(data['size'], 319)  # extension.zip size in bytes.
@@ -1047,6 +1053,10 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
         new_version = ExtensionVersion.objects.get(pk=data['id'])
         eq_(self.extension.status, STATUS_PENDING)
         eq_(self.extension.latest_version, new_version)
+
+        note = self.extension.threads.get().notes.get()
+        eq_(note.body, u'add-on has arrivedÄ')
+        eq_(note.note_type, comm.SUBMISSION)
 
     def test_post_logged_in_with_rights_disabled(self):
         self.extension.authors.add(self.user)

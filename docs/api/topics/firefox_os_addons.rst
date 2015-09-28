@@ -333,6 +333,8 @@ Add-on Creation
 
     :reqjson string validation_id: the id of the
         :ref:`validation result <addon_validation>` for your add-on.
+    :reqjson string message (optional): Notes for reviewers about the
+                                        submission.
 
     :status 201: successfully created.
     :status 400: some errors were found in your add-on.
@@ -353,6 +355,8 @@ Add-on Version Creation
 
     :reqjson string validation_id: the id of the
         :ref:`validation result <addon_validation>` for your add-on version.
+    :reqjson string message (optional): Notes for reviewers about the
+                                        submission.
 
     :param int id: The add-on id
     :param string slug: The add-on slug
