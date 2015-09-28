@@ -37,7 +37,7 @@ class ExtensionValidator(object):
             u'characters.'),
         'NAME_TOO_SHORT': _(
             u'The `name` property must be at least 1 character'
-            u' long.'),
+            u' long and can not consist of only whitespace characters.'),
         'NO_MANIFEST': _(
             u"The archive does not contain a 'manifest.json' "
             u"file."),
@@ -114,6 +114,9 @@ class ExtensionValidator(object):
         Ensure that the name property of the manifest exists and is a string
         between 1 and 45 characters long.
 
+        In addition, even though it's allowed in the spec, we consider the name
+        invalid (too short) if it contains only whitespace characters.
+
         https://developer.chrome.com/extensions/manifest/name
         """
         try:
@@ -122,7 +125,7 @@ class ExtensionValidator(object):
             raise ParseError(self.errors['NAME_MISSING'])
         if not isinstance(name, basestring):
             raise ParseError(self.errors['NAME_NOT_STRING'])
-        if len(name) < 1:
+        if len(name.strip()) < 1:
             raise ParseError(self.errors['NAME_TOO_SHORT'])
         if len(name) > 45:
             raise ParseError(self.errors['NAME_TOO_LONG'])

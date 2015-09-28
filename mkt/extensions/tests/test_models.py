@@ -381,8 +381,8 @@ class TestExtensionStatusChanges(TestCase):
 
     def test_update_fields_from_manifest_when_version_is_made_public(self):
         new_manifest = {
-            'name': u'New Nâme',
-            'description': u'New Descriptîon',
+            'name': u'\n New Nâme ',
+            'description': u'New Descriptîon \t ',
             'version': '0.1',
         }
         extension = Extension.objects.create(
@@ -391,8 +391,9 @@ class TestExtensionStatusChanges(TestCase):
             extension=extension, manifest=new_manifest, status=STATUS_PENDING,
             version='0.1')
         version.update(status=STATUS_PUBLIC)
-        eq_(extension.description, new_manifest['description'])
-        eq_(extension.name, new_manifest['name'])
+        # Leading and trailing whitespace are stripped.
+        eq_(extension.description, u'New Descriptîon')
+        eq_(extension.name, u'New Nâme')
 
     def test_update_fields_from_manifest_when_public_version_is_deleted(self):
         old_manifest = {
