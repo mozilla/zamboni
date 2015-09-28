@@ -51,6 +51,7 @@ class ExtensionIndexer(BaseIndexer):
                         'analyzer': 'default_icu',
                         'position_offset_gap': 100,
                     },
+                    'is_deleted': {'type': 'boolean'},
                     'is_disabled': {'type': 'boolean'},
                     'last_updated': {'format': 'dateOptionalTime',
                                      'type': 'date'},
@@ -114,6 +115,7 @@ class ExtensionIndexer(BaseIndexer):
         doc = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
         doc['guid'] = unicode(obj.uuid)
+        doc['is_deleted'] = obj.deleted
         doc['is_disabled'] = obj.disabled
         if obj.status == STATUS_PUBLIC:
             doc['latest_public_version'] = {

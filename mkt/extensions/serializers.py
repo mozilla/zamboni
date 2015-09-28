@@ -68,6 +68,7 @@ class ESExtensionSerializer(BaseESSerializer, ExtensionSerializer):
             obj, data, ('default_language', 'last_updated', 'slug', 'status',
                         'version'))
 
+        obj.deleted = data['is_deleted']
         obj.disabled = data['is_disabled']
         obj.uuid = data['guid']
 

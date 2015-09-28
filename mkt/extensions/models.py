@@ -35,29 +35,43 @@ from mkt.webapps.models import clean_slug
 log = commonware.log.getLogger('z.extensions')
 
 
-class ExtensionManager(ManagerBase):
+class ExtensionQuerySet(models.QuerySet):
+    def by_identifier(self, identifier):
+        """Return a single Extension from an identifier, slug or pk."""
+        # Slugs can't contain only digits.
+        if unicode(identifier).isdigit():
+            return self.get(pk=int(identifier))
+        else:
+            return self.get(slug=identifier)
+
     def pending(self):
-        return self.filter(
-            disabled=False, versions__status=STATUS_PENDING)
+        return self.filter(disabled=False, versions__status=STATUS_PENDING)
 
     def public(self):
         return self.filter(disabled=False, status=STATUS_PUBLIC)
 
+    def without_deleted(self):
+        return self.filter(deleted=False)
 
-class ExtensionVersionManager(ManagerBase):
+
+class ExtensionVersionQuerySet(models.QuerySet):
     def pending(self):
-        return self.filter(status=STATUS_PENDING).order_by('id')
+        return self.filter(status=STATUS_PENDING)
 
     def public(self):
-        return self.filter(status=STATUS_PUBLIC).order_by('id')
+        return self.filter(status=STATUS_PUBLIC)
+
+    def without_deleted(self):
+        return self.filter(deleted=False)
 
 
 class Extension(ModelBase):
     # Automatically handled fields.
-    last_updated = models.DateTimeField(blank=True, db_index=True, null=True)
+    deleted = models.BooleanField(default=False, editable=False)
+    last_updated = models.DateTimeField(blank=True, null=True, editable=False)
     status = models.PositiveSmallIntegerField(
-        choices=STATUS_CHOICES.items(), default=STATUS_NULL)
-    uuid = UUIDField(auto=True)
+        choices=STATUS_CHOICES.items(), default=STATUS_NULL, editable=False)
+    uuid = UUIDField(auto=True, editable=False)
 
     # Fields for which the manifest is the source of truth - can't be
     # overridden by the API.
@@ -69,27 +83,47 @@ class Extension(ModelBase):
     # Fields that can be modified using the API.
     authors = models.ManyToManyField('users.UserProfile')
     disabled = models.BooleanField(default=False)
-    slug = models.CharField(max_length=35, unique=True)
+    slug = models.CharField(max_length=35, null=True, unique=True)
 
-    objects = ExtensionManager()
+    objects = ManagerBase.from_queryset(ExtensionQuerySet)()
 
     manifest_is_source_of_truth_fields = (
         'description', 'default_language', 'name')
 
     class Meta:
         ordering = ('id', )
-        index_together = (('disabled', 'status'),)
+        index_together = (('deleted', 'disabled', 'status'),)
 
     @cached_property(writable=True)
     def latest_public_version(self):
-        return self.versions.public().latest('pk')
+        return self.versions.without_deleted().public().latest('pk')
 
     @cached_property(writable=True)
     def latest_version(self):
-        return self.versions.latest('pk')
+        return self.versions.without_deleted().latest('pk')
 
     def clean_slug(self):
         return clean_slug(self, slug_field='slug')
+
+    def delete(self, *args, **kwargs):
+        """Delete this instance.
+
+        By default, a soft-delete is performed, only hiding the instance from
+        the custom manager methods without actually removing it from the
+        database. pre_delete and post_delete signals are *not* sent in that
+        case. The slug will be set to None during the process.
+
+        Can be overridden by passing `hard_delete=True` keyword argument, in
+        which case it behaves like a regular delete() call instead."""
+        hard_delete = kwargs.pop('hard_delete', False)
+        if hard_delete:
+            # Real, hard delete.
+            return super(Extension, self).delete(*args, **kwargs)
+        # Soft delete.
+        # Since we have a unique constraint with slug, set it to None when
+        # deleting. Undelete should re-generate it - it might differ from the
+        # original slug, but that's why you should be careful when deleting...
+        self.update(deleted=True, slug=None)
 
     @classmethod
     def extract_and_validate_upload(cls, upload):
@@ -168,7 +202,8 @@ class Extension(ModelBase):
         return False
 
     def is_public(self):
-        return not self.disabled and self.status == STATUS_PUBLIC
+        return (not self.deleted and not self.disabled and
+                self.status == STATUS_PUBLIC)
 
     @property
     def mini_manifest(self):
@@ -210,12 +245,26 @@ class Extension(ModelBase):
                                   kwargs={'uuid': self.uuid}))
 
     def save(self, *args, **kwargs):
-        if not self.slug:
+        if not self.deleted:
+            # Always clean slug before saving, to avoid clashes.
             self.clean_slug()
         return super(Extension, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return u'%s: %s' % (self.pk, self.name)
+
+    def undelete(self):
+        """Undelete this instance, making it available to all manager methods
+        again and restoring its version number.
+
+        Return False if it was not marked as deleted, True otherwise.
+        Will re-generate a slug, that might differ from the original one if it
+        was taken in the meantime."""
+        if not self.deleted:
+            return False
+        self.clean_slug()
+        self.update(deleted=False, slug=self.slug)
+        return True
 
     def update_manifest_fields_from_latest_public_version(self):
         """Update all fields for which the manifest is the source of truth
@@ -238,9 +287,10 @@ class Extension(ModelBase):
         # If there is a public version available, the extension should be
         # public. If not, and if there is a pending version available, it
         # should be pending. Otherwise it should just be incomplete.
-        if self.versions.filter(status=STATUS_PUBLIC).exists():
+        versions = self.versions.without_deleted()
+        if versions.filter(status=STATUS_PUBLIC).exists():
             self.update(status=STATUS_PUBLIC)
-        elif self.versions.filter(status=STATUS_PENDING).exists():
+        elif versions.filter(status=STATUS_PENDING).exists():
             self.update(status=STATUS_PENDING)
         else:
             self.update(status=STATUS_NULL)
@@ -260,22 +310,47 @@ class Extension(ModelBase):
 
 
 class ExtensionVersion(ModelBase):
-    extension = models.ForeignKey(Extension, related_name='versions')
-
+    # None of these fields should be directly editable by developers, they are
+    # all set automatically from actions or extracted from the manifest.
+    extension = models.ForeignKey(Extension, editable=False,
+                                  related_name='versions')
     default_language = models.CharField(default=settings.LANGUAGE_CODE,
-                                        max_length=10)
-    manifest = JSONField()
-    reviewed = models.DateTimeField(null=True)
-    version = models.CharField(max_length=23, default='')
+                                        editable=False, max_length=10)
+    deleted = models.BooleanField(default=False, editable=False)
+    manifest = JSONField(editable=False)
+    reviewed = models.DateTimeField(editable=False, null=True)
+    version = models.CharField(max_length=23, default=None, editable=False,
+                               null=True)
     size = models.PositiveIntegerField(default=0, editable=False)  # In bytes.
     status = models.PositiveSmallIntegerField(
-        choices=STATUS_FILE_CHOICES.items(), db_index=True,
-        default=STATUS_NULL)
+        choices=STATUS_FILE_CHOICES.items(), default=STATUS_NULL,
+        editable=False)
 
-    objects = ExtensionVersionManager()
+    objects = ManagerBase.from_queryset(ExtensionVersionQuerySet)()
 
     class Meta:
+        ordering = ('id', )
+        index_together = (('extension', 'deleted', 'status'),)
         unique_together = (('extension', 'version'),)
+
+    def delete(self, *args, **kwargs):
+        """Delete this instance.
+
+        By default, a soft-delete is performed, only hiding the instance from
+        the custom manager methods without actually removing it from the
+        database. pre_delete and post_delete signals are *not* sent in that
+        case. The version property will be set to None during the process.
+
+        Can be overridden by passing `hard_delete=True` keyword argument, in
+        which case it behaves like a regular delete() call instead."""
+        hard_delete = kwargs.pop('hard_delete', False)
+        if hard_delete:
+            # Real, hard delete.
+            return super(ExtensionVersion, self).delete(*args, **kwargs)
+        # Soft delete.
+        # Since we have a unique constraint with version, set it to None when
+        # deleting. Undelete should extract it again from the manifest.
+        self.update(deleted=True, version=None)
 
     @property
     def download_url(self):
@@ -414,7 +489,7 @@ class ExtensionVersion(ModelBase):
         changing its status to PENDING. That way we avoid having extra versions
         laying around when we automatically update the status on the parent
         Extension."""
-        qs = self.__class__.objects.pending().filter(
+        qs = self.__class__.objects.without_deleted().pending().filter(
             extension=self.extension, pk__lt=self.pk)
 
         # Call <queryset>.update() directly, bypassing signals etc, that should
@@ -458,6 +533,19 @@ class ExtensionVersion(ModelBase):
         prefix = os.path.join(settings.SIGNED_EXTENSIONS_PATH,
                               str(self.extension.pk))
         return os.path.join(prefix, nfd_str(self.filename))
+
+    def undelete(self):
+        """Undelete this instance, making it available to all manager methods
+        again and restoring its version number.
+
+        Return False if it was not marked as deleted, True otherwise.
+        May raise IntegrityError if another instance has been uploaded with the
+        same version number in the meantime."""
+        if not self.deleted:
+            return False
+        data = Extension.extract_manifest_fields(self.manifest, ('version',))
+        self.update(deleted=False, **data)
+        return True
 
     def __unicode__(self):
         return u'%s %s' % (self.extension.slug, self.version)
