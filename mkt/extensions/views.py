@@ -78,10 +78,12 @@ class CreateExtensionMixin(object):
 
         # TODO: change create_comm_note to just take a version.
         if 'extension_pk' in self.kwargs:
-            create_comm_note(obj.extension, obj, request.user, '',
+            create_comm_note(obj.extension, obj, request.user,
+                             request.DATA.get('message', ''),
                              note_type=comm.SUBMISSION)
         else:
-            create_comm_note(obj, obj.latest_version, request.user, '',
+            create_comm_note(obj, obj.latest_version, request.user,
+                             request.DATA.get('message', ''),
                              note_type=comm.SUBMISSION)
 
         serializer = self.get_serializer(obj)
