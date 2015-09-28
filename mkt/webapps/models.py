@@ -58,7 +58,7 @@ from mkt.translations.models import attach_trans_dict
 from mkt.translations.utils import find_language, to_language
 from mkt.users.models import UserForeignKey, UserProfile
 from mkt.versions.models import Version
-from mkt.webapps import query, signals
+from mkt.webapps import signals
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.utils import (dehydrate_content_rating, get_locale_properties,
                                get_cached_minifest, get_supported_locales)
@@ -340,7 +340,6 @@ class WebappManager(ManagerBase):
 
     def get_queryset(self):
         qs = super(WebappManager, self).get_queryset()
-        qs = qs._clone(klass=query.IndexQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(status=mkt.STATUS_DELETED)
         return qs.transform(Webapp.transformer)

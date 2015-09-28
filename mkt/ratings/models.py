@@ -9,7 +9,7 @@ from celery import task
 
 from tower import ugettext_lazy as _
 
-from mkt.site.models import ManagerBase, ModelBase
+from mkt.site.models import ManagerBase, ModelBase, TransformQuerySet
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.users.models import UserProfile
 
@@ -35,7 +35,7 @@ class ReviewManager(ManagerBase):
         return self.filter(reply_to__isnull=True)
 
 
-class ReviewQuerySet(models.query.QuerySet):
+class ReviewQuerySet(TransformQuerySet):
     """
     A queryset modified for soft deletion.
     """

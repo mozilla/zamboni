@@ -80,6 +80,10 @@ class TestExtensionValidator(TestCase):
         with self.assertRaises(ParseError):
             self.validator.validate_name({'name': ''})
 
+    def test_name_only_whitespace(self):
+        with self.assertRaises(ParseError):
+            self.validator.validate_name({'name': '\n \t'})
+
     def test_name_too_long(self):
         with self.assertRaises(ParseError):
             self.validator.validate_name({'name': 'X' * 100})
