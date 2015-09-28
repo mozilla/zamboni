@@ -20,7 +20,6 @@ from mkt.site.storage_utils import private_storage, public_storage
 from mkt.site.utils import cached_property, sorted_groupby
 from mkt.translations.fields import PurifiedField, save_signal
 from mkt.versions.tasks import update_supported_locales_single
-from mkt.webapps import query
 
 
 log = commonware.log.getLogger('z.versions')
@@ -34,7 +33,6 @@ class VersionManager(ManagerBase):
 
     def get_queryset(self):
         qs = super(VersionManager, self).get_queryset()
-        qs = qs._clone(klass=query.IndexQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(deleted=True)
         return qs.transform(Version.transformer)
