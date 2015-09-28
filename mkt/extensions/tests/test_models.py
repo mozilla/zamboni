@@ -739,6 +739,15 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
             'https://marketpace.example.com/downloads/extension/unsigned/'
             'abcdef78123456781234567812345678/2432615184/extension-0.41.0.zip')
 
+    @override_settings(SITE_URL='https://marketpace.example.com/')
+    def test_reviewer_download_url(self):
+        extension = Extension(pk=42, uuid='abcdef78123456781234567812345678')
+        version = ExtensionVersion(
+            pk=4815162342, extension=extension, version='0.42.0')
+        eq_(version.reviewer_download_url,
+            'https://marketpace.example.com/downloads/extension/reviewers/'
+            'abcdef78123456781234567812345678/4815162342/extension-0.42.0.zip')
+
     def test_file_paths(self):
         extension = Extension(pk=42)
         version = ExtensionVersion(extension=extension, version='0.42.0')
@@ -749,6 +758,9 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
         eq_(version.signed_file_path,
             os.path.join(settings.SIGNED_EXTENSIONS_PATH,
                          str(extension.pk), version.filename))
+        eq_(version.reviewer_signed_file_path,
+            os.path.join(settings.EXTENSIONS_PATH,
+                         str(extension.pk), 'reviewers', version.filename))
 
     def test_is_public(self):
         extension = Extension(disabled=False, status=STATUS_PUBLIC)
@@ -772,20 +784,18 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
             '12345678123456781234567812abcdef/manifest.json')
 
     def test_mini_manifest_no_version(self):
-        extension = Extension()
+        extension = Extension(pk=42)
         eq_(extension.mini_manifest, {})
 
     def test_mini_manifest_no_public_version(self):
         manifest = {
-            'author': 'Me',
-            'description': 'Blah',
-            'manifest_version': 2,
-            'name': u'Ëxtension',
-            'version': '0.44',
+            'you_should_not_see': 'this_manifest'
         }
-        extension = Extension(pk=44, uuid='abcdefabcdefabcdefabcdefabcdef44')
-        ExtensionVersion(
-            pk=1234, extension=extension, manifest=manifest, version='0.44.0')
+        extension = Extension.objects.create(
+            uuid='abcdefabcdefabcdefabcdefabcdef44')
+        ExtensionVersion.objects.create(
+            extension=extension, manifest=manifest, status=STATUS_PENDING,
+            version='0.44.0')
         eq_(extension.mini_manifest, {})
 
     def test_mini_manifest(self):
@@ -794,7 +804,7 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
             'description': 'Blah',
             'manifest_version': 2,
             'name': u'Ëxtension',
-            'version': '0.45',
+            'version': '0.45.0',
         }
         extension = Extension.objects.create(
             status=STATUS_PUBLIC, uuid='abcdefabcdefabcdefabcdefabcdef45')
@@ -812,21 +822,53 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
             'name': u'Ëxtension',
             'package_path': version.download_url,
             'size': 421,
-            'version': '0.45',
+            'version': '0.45.0',
         }
         eq_(extension.mini_manifest, expected_mini_manifest)
+
+    @override_settings(SITE_URL='https://marketpace.example.com/')
+    def test_reviewer_mini_manifest_url(self):
+        extension = Extension(pk=43, uuid='12345678123456781234567812abcdef')
+        version = ExtensionVersion(extension=extension, pk=4343)
+        eq_(version.reviewer_mini_manifest_url,
+            'https://marketpace.example.com/extension/reviewers/'
+            '12345678123456781234567812abcdef/4343/manifest.json')
+
+    def test_reviewer_mini_manifest(self):
+        manifest = {
+            'author': 'Me',
+            'description': 'Blah',
+            'manifest_version': 2,
+            'name': u'Ëxtension',
+            'version': '0.55.0',
+        }
+        extension = Extension.objects.create(
+            status=STATUS_PENDING, uuid='abcdefabcdefabcdefabcdefabcdef45')
+        version = ExtensionVersion.objects.create(
+            extension=extension, manifest=manifest,
+            status=STATUS_PENDING, version='0.54.0')
+        expected_mini_manifest = {
+            'description': 'Blah',
+            'developer': {
+                'name': 'Me'
+            },
+            'name': u'Ëxtension',
+            'package_path': version.reviewer_download_url,
+            'version': '0.55.0',
+        }
+        eq_(version.reviewer_mini_manifest, expected_mini_manifest)
 
     @mock.patch('mkt.extensions.models.sign_app')
     @mock.patch('mkt.extensions.models.private_storage')
     @mock.patch('mkt.extensions.models.public_storage')
-    @mock.patch.object(ExtensionVersion, 'remove_signed_file')
-    def test_sign_and_move_file(self, remove_signed_file_mock,
-                                public_storage_mock, private_storage_mock,
-                                sign_app_mock):
+    @mock.patch.object(ExtensionVersion, 'remove_public_signed_file')
+    def test_sign_file(self, remove_public_signed_file_mock,
+                       public_storage_mock, private_storage_mock,
+                       sign_app_mock):
         extension = Extension(uuid='ab345678123456781234567812345678')
         version = ExtensionVersion(extension=extension, pk=123)
         public_storage_mock.size.return_value = 665
-        size = version.sign_and_move_file()
+        size = version.sign_file()
         eq_(size, 665)
         expected_args = (
             private_storage_mock.open.return_value,
@@ -837,47 +879,119 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
             })
         )
         eq_(sign_app_mock.call_args[0], expected_args)
-        eq_(remove_signed_file_mock.call_count, 0)
+        eq_(remove_public_signed_file_mock.call_count, 0)
 
     @mock.patch('mkt.extensions.models.sign_app')
     @mock.patch('mkt.extensions.models.private_storage')
-    def test_sign_and_move_file_no_uuid(self, private_storage_mock,
-                                        sign_app_mock):
+    def test_sign_file_no_uuid(self, private_storage_mock,
+                               sign_app_mock):
         extension = Extension(uuid='')
         version = ExtensionVersion(extension=extension)
         with self.assertRaises(SigningError):
-            version.sign_and_move_file()
+            version.sign_file()
 
     @mock.patch('mkt.extensions.models.sign_app')
     @mock.patch('mkt.extensions.models.private_storage')
-    def test_sign_and_move_file_no_version_pk(self, private_storage_mock,
-                                              sign_app_mock):
+    def test_sign_file_no_version_pk(self, private_storage_mock,
+                                     sign_app_mock):
         extension = Extension(uuid='12345678123456781234567812345678')
         version = ExtensionVersion(extension=extension)
         with self.assertRaises(SigningError):
-            version.sign_and_move_file()
+            version.sign_file()
 
     @mock.patch('mkt.extensions.models.sign_app')
     @mock.patch('mkt.extensions.models.private_storage')
-    @mock.patch.object(ExtensionVersion, 'remove_signed_file')
-    def test_sign_and_move_file_error(self, remove_signed_file_mock,
-                                      private_storage_mock, sign_app_mock):
+    @mock.patch.object(ExtensionVersion, 'remove_public_signed_file')
+    def test_sign_file_error(self, remove_public_signed_file_mock,
+                             private_storage_mock, sign_app_mock):
         extension = Extension(uuid='12345678123456781234567812345678')
         version = ExtensionVersion(extension=extension, pk=123)
         sign_app_mock.side_effect = SigningError
         with self.assertRaises(SigningError):
-            version.sign_and_move_file()
-        eq_(remove_signed_file_mock.call_count, 1)
+            version.sign_file()
+        eq_(remove_public_signed_file_mock.call_count, 1)
+
+    @mock.patch('mkt.extensions.models.private_storage')
+    @mock.patch('mkt.extensions.models.ExtensionVersion.reviewer_sign_file')
+    def test_reviewer_sign_if_necessary(self, reviewer_sign_file_mock,
+                                        mocked_private_storage):
+        mocked_private_storage.exists.return_value = False
+        extension = Extension(pk=40)
+        version = ExtensionVersion(extension=extension, pk=404040)
+
+        version.reviewer_sign_if_necessary()
+        eq_(reviewer_sign_file_mock.call_count, 1)
+
+    @mock.patch('mkt.extensions.models.private_storage')
+    @mock.patch('mkt.extensions.models.ExtensionVersion.reviewer_sign_file')
+    def test_reviewer_sign_if_necessary_exists(self, reviewer_sign_file_mock,
+                                               mocked_private_storage):
+        mocked_private_storage.exists.return_value = True
+        extension = Extension(pk=40)
+        version = ExtensionVersion(extension=extension, pk=404040)
+
+        version.reviewer_sign_if_necessary()
+        eq_(reviewer_sign_file_mock.call_count, 0)
+
+    @mock.patch('mkt.extensions.models.sign_app')
+    @mock.patch('mkt.extensions.models.private_storage')
+    @mock.patch('mkt.extensions.models.public_storage')
+    def test_reviewer_sign_file(self, public_storage_mock,
+                                private_storage_mock, sign_app_mock):
+        extension = Extension(uuid='ab345678123456781234567812345678')
+        version = ExtensionVersion(extension=extension, pk=123)
+        version.reviewer_sign_file()
+        expected_args = (
+            private_storage_mock.open.return_value,
+            version.reviewer_signed_file_path,
+            json.dumps({
+                'id': 'reviewer-ab345678123456781234567812345678-123',
+                'version': 123,
+            }),
+        )
+        expected_kwargs = {'reviewer': True}
+        eq_(sign_app_mock.call_args[0], expected_args)
+        eq_(sign_app_mock.call_args[1], expected_kwargs)
+        eq_(private_storage_mock.delete.call_count, 0)
+
+    @mock.patch('mkt.extensions.models.sign_app')
+    @mock.patch('mkt.extensions.models.private_storage')
+    def test_reviewer_sign_file_no_uuid(self, private_storage_mock,
+                                        sign_app_mock):
+        extension = Extension(uuid='')
+        version = ExtensionVersion(extension=extension)
+        with self.assertRaises(SigningError):
+            version.reviewer_sign_file()
+
+    @mock.patch('mkt.extensions.models.sign_app')
+    @mock.patch('mkt.extensions.models.private_storage')
+    def test_reviewer_sign_file_no_version_pk(self, private_storage_mock,
+                                              sign_app_mock):
+        extension = Extension(uuid='12345678123456781234567812345678')
+        version = ExtensionVersion(extension=extension)
+        with self.assertRaises(SigningError):
+            version.reviewer_sign_file()
+
+    @mock.patch('mkt.extensions.models.sign_app')
+    @mock.patch('mkt.extensions.models.private_storage')
+    def test_reviewer_sign_file_error(self, private_storage_mock,
+                                      sign_app_mock):
+        extension = Extension(uuid='12345678123456781234567812345678')
+        version = ExtensionVersion(extension=extension, pk=123)
+        sign_app_mock.side_effect = SigningError
+        with self.assertRaises(SigningError):
+            version.reviewer_sign_file()
+        eq_(private_storage_mock.delete.call_count, 1)
 
     @mock.patch('mkt.extensions.models.private_storage')
     @mock.patch('mkt.extensions.models.public_storage')
-    def test_remove_signed_file(self, mocked_public_storage,
-                                mocked_private_storage):
+    def test_remove_public_signed_file(self, mocked_public_storage,
+                                       mocked_private_storage):
         extension = Extension(pk=42, slug='mocked_ext')
         version = ExtensionVersion(extension=extension, pk=123)
         mocked_public_storage.exists.return_value = True
         mocked_private_storage.size.return_value = 668
-        size = version.remove_signed_file()
+        size = version.remove_public_signed_file()
         eq_(size, 668)
         eq_(mocked_public_storage.exists.call_args[0][0],
             version.signed_file_path)
@@ -886,33 +1000,33 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
 
     @mock.patch('mkt.extensions.models.private_storage')
     @mock.patch('mkt.extensions.models.public_storage')
-    def test_remove_signed_file_not_exists(self, public_storage_mock,
-                                           mocked_private_storage):
+    def test_remove_public_signed_file_not_exists(self, public_storage_mock,
+                                                  mocked_private_storage):
         extension = Extension(pk=42, slug='mocked_ext')
         version = ExtensionVersion(extension=extension, pk=123)
         public_storage_mock.exists.return_value = False
         mocked_private_storage.size.return_value = 669
-        size = version.remove_signed_file()
+        size = version.remove_public_signed_file()
         eq_(size, 669)
         eq_(public_storage_mock.exists.call_args[0][0],
             version.signed_file_path)
         eq_(public_storage_mock.delete.call_count, 0)
 
-    @mock.patch.object(ExtensionVersion, 'sign_and_move_file')
+    @mock.patch.object(ExtensionVersion, 'sign_file')
     @mock.patch('mkt.extensions.models.datetime')
-    def test_publish(self, datetime_mock, mocked_sign_and_move_file):
+    def test_publish(self, datetime_mock, mocked_sign_file):
         datetime_mock.utcnow.return_value = (
             # Microseconds are not saved by MySQL, so set it to 0 to make sure
             # our comparisons still work once the model is saved to the db.
             datetime.utcnow().replace(microsecond=0))
-        mocked_sign_and_move_file.return_value = 666
+        mocked_sign_file.return_value = 666
         extension = Extension.objects.create(slug='mocked_ext')
         version = ExtensionVersion.objects.create(
             extension=extension, size=0, status=STATUS_PENDING)
         eq_(version.status, STATUS_PENDING)
         eq_(extension.status, STATUS_PENDING)  # Set automatically.
         version.publish()
-        eq_(mocked_sign_and_move_file.call_count, 1)
+        eq_(mocked_sign_file.call_count, 1)
         eq_(version.size, 666)
         eq_(version.status, STATUS_PUBLIC)
         eq_(extension.status, STATUS_PUBLIC)
@@ -925,16 +1039,16 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
         eq_(extension.last_updated, datetime_mock.utcnow.return_value)
         eq_(extension.status, STATUS_PUBLIC)
 
-    @mock.patch.object(ExtensionVersion, 'remove_signed_file')
-    def test_reject(self, mocked_remove_signed_file):
-        mocked_remove_signed_file.return_value = 667
+    @mock.patch.object(ExtensionVersion, 'remove_public_signed_file')
+    def test_reject(self, remove_public_signed_file_mock):
+        remove_public_signed_file_mock.return_value = 667
         extension = Extension.objects.create(slug='mocked_ext')
         version = ExtensionVersion.objects.create(
             extension=extension, size=42, status=STATUS_PENDING)
         eq_(version.status, STATUS_PENDING)
         eq_(extension.status, STATUS_PENDING)  # Set automatically.
         version.reject()
-        eq_(mocked_remove_signed_file.call_count, 1)
+        eq_(remove_public_signed_file_mock.call_count, 1)
         eq_(version.size, 667)
         eq_(version.status, STATUS_REJECTED)
         # At the moment Extension are not rejected, merely set back to

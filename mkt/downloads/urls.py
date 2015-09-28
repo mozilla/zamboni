@@ -22,4 +22,8 @@ urlpatterns = patterns(
         r'(?P<filename>[^/<>"\']+)$',
         extensions_views.download_unsigned,
         name='extension.download_unsigned'),
+    url(r'^extension/reviewers/(?P<uuid>[0-9a-f]{32})/(?P<version_id>\d+)/'
+        r'(?P<filename>[^/<>"\']+)$',
+        extensions_views.download_signed_reviewer,
+        name='extension.download_signed_reviewer'),
 )
