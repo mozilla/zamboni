@@ -71,7 +71,7 @@ Detail
     :resjson string|object|null description: The add-on description.
     :resjson boolean disabled: Boolean indicating whether the developer has disabled
         their add-on or not.
-    :resjson string|null last_updated: The latest date a version was published at for this add-on. 
+    :resjson string|null last_updated: The latest date a version was published at for this add-on.
     :resjson object latest_version: The latest :ref:`add-on version <addon-version-detail>` available for this extension.
     :resjson object latest_public_version: The latest *public* :ref:`add-on version <addon-version-detail>` available for this extension.
     :resjson string mini_manifest_url: The (absolute) URL to the `mini-manifest <https://developer.mozilla.org/docs/Mozilla/Marketplace/Options/Packaged_apps#Publishing_on_Firefox_Marketplace>`_ for that add-on. That URL may be a 404 if the add-on is not public yet.
@@ -399,6 +399,7 @@ Publishing
     :param int id: The add-on id
     :param string slug: The add-on slug
     :param int version_id: The add-on version id
+    :param string message (optional): Reviewer notes about publishing
 
     :status 202: successfully published.
     :status 403: not allowed to access this object or disabled add-on.
@@ -415,6 +416,7 @@ Rejecting
     :param int id: The add-on id
     :param string slug: The add-on slug
     :param int version_id: The add-on version id
+    :param string message (optional): Reviewer notes about rejecting
 
     :status 202: successfully published.
     :status 403: not allowed to access this object or disabled add-on.

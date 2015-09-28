@@ -911,7 +911,9 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
     def test_publish(self, sign_and_move_file_mock):
         self.grant_permission(self.user, 'Extensions:Review')
         sign_and_move_file_mock.return_value = 665
-        response = self.client.post(self.publish_url)
+        response = self.client.post(self.publish_url, data=json.dumps({
+            'message': u'Nice extension'
+        }))
         eq_(response.status_code, 202)
         eq_(sign_and_move_file_mock.call_count, 1)
         self.extension.reload()
@@ -920,7 +922,9 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
         eq_(self.version.size, 665)
         eq_(self.version.status, STATUS_PUBLIC)
 
-        eq_(self.version.threads.get().notes.get().note_type, comm.APPROVAL)
+        note = self.version.threads.get().notes.get()
+        eq_(note.note_type, comm.APPROVAL)
+        eq_(note.body, 'Nice extension')
 
     @mock.patch('mkt.extensions.models.ExtensionVersion.remove_signed_file')
     def test_reject_disabled(self, remove_signed_file_mock):
@@ -934,7 +938,9 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
     def test_reject(self, remove_signed_file_mock):
         self.grant_permission(self.user, 'Extensions:Review')
         remove_signed_file_mock.return_value = 666
-        response = self.client.post(self.reject_url)
+        response = self.client.post(self.reject_url, data=json.dumps({
+            'message': u'Bad extension'
+        }))
         eq_(response.status_code, 202)
         eq_(remove_signed_file_mock.call_count, 1)
         self.extension.reload()
@@ -945,7 +951,9 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
         # back to incomplete.
         eq_(self.extension.status, STATUS_NULL)
 
-        eq_(self.version.threads.get().notes.get().note_type, comm.REJECTION)
+        note = self.version.threads.get().notes.get()
+        eq_(note.note_type, comm.REJECTION)
+        eq_(note.body, 'Bad extension')
 
 
 class TestExtensionVersionViewSetDelete(RestOAuth):
