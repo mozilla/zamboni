@@ -4,8 +4,8 @@ from mkt.webapps.models import ContentRating
 
 
 class ContentRatingSerializer(ModelSerializer):
-    body = SerializerMethodField('get_body')
-    rating = SerializerMethodField('get_rating')
+    body = SerializerMethodField()
+    rating = SerializerMethodField()
 
     def get_body(self, obj):
         return obj.get_body().label

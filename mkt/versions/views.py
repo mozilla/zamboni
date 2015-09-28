@@ -1,5 +1,5 @@
 from rest_framework import mixins, viewsets
-from rest_framework.decorators import action
+from rest_framework.decorators import detail_route
 from rest_framework.exceptions import MethodNotAllowed, ParseError
 
 import mkt
@@ -32,14 +32,17 @@ class VersionStatusViewSet(mixins.UpdateModelMixin, viewsets.GenericViewSet):
         self.kwargs[self.lookup_field] = obj.pk
         return obj
 
+    def perform_update(self, serializer):
+        serializer.save()
+        self.app = serializer.instance.version.addon
+
     def update(self, request, *args, **kwargs):
         # PUT is disallowed, only PATCH is accepted for this endpoint.
         if request.method == 'PUT':
             raise MethodNotAllowed('PUT')
         res = super(VersionStatusViewSet, self).update(
             request, *args, **kwargs)
-        app = self.object.version.addon
-        res.data['app_status'] = mkt.STATUS_CHOICES_API[app.status]
+        res.data['app_status'] = mkt.STATUS_CHOICES_API[self.app.status]
         return res
 
 
@@ -63,10 +66,10 @@ class VersionViewSet(CORSMixin, mixins.RetrieveModelMixin,
         obj = self.get_object()
 
         # Update features if they are provided.
-        if 'features' in request.DATA:
+        if 'features' in request.data:
 
             # Raise an exception if any invalid features are passed.
-            invalid = [f for f in request.DATA['features'] if f.upper() not in
+            invalid = [f for f in request.data['features'] if f.upper() not in
                        APP_FEATURES.keys()]
             if any(invalid):
                 raise ParseError('Invalid feature(s): %s' % ', '.join(invalid))
@@ -76,15 +79,16 @@ class VersionViewSet(CORSMixin, mixins.RetrieveModelMixin,
             data = {}
             for key, name in APP_FEATURES.items():
                 field_name = 'has_' + key.lower()
-                data[field_name] = key.lower() in request.DATA['features']
+                data[field_name] = key.lower() in request.data['features']
             obj.features.update(**data)
 
-            del request.DATA['features']
+            del request.data['features']
 
         return super(VersionViewSet, self).update(request, *args, **kwargs)
 
-    @action(methods=['PATCH'],
-            cors_allowed_methods=VersionStatusViewSet.cors_allowed_methods)
+    @detail_route(
+        methods=['PATCH'],
+        cors_allowed_methods=VersionStatusViewSet.cors_allowed_methods)
     def status(self, request, *args, **kwargs):
         self.queryset = Version.with_deleted.all()
         kwargs['version'] = self.get_object()

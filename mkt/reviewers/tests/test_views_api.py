@@ -605,7 +605,7 @@ class TestCreateAdditionalReview(RestOAuth):
         response = self.post({'queue': QUEUE_TARAKO, 'app': 123})
         eq_(response.status_code, 400)
         eq_(response.json,
-            {'app': ["Invalid pk '123' - object does not exist."]})
+            {'app': ['Invalid pk "123" - object does not exist.']})
 
 
 class TestCannedResponseAPI(RestOAuth):

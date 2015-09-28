@@ -1,6 +1,7 @@
 import json
 
 from django.core.urlresolvers import reverse
+from django.db import transaction
 
 import responses
 from nose.tools import eq_, ok_
@@ -78,9 +79,10 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         eq_(len(response.json['objects']), 2)
 
     def test_wrong_category(self):
-        res = self.anon.get(self.url, data={'cat': self.category + 'xq'})
-        eq_(res.status_code, 400)
-        eq_(res['Content-Type'], 'application/json')
+        with transaction.atomic():
+            res = self.anon.get(self.url, data={'cat': self.category + 'xq'})
+            eq_(res.status_code, 400)
+            eq_(res['Content-Type'], 'application/json; charset=utf-8')
 
     def test_right_category_but_not_present(self):
         self.category = 'travel'
@@ -243,9 +245,11 @@ class TestReviewerSearch(RestOAuth, ESTestCase):
         super(TestReviewerSearch, self).tearDown()
 
     def test_access(self):
-        eq_(self.anon.get(self.url).status_code, 403)
+        with transaction.atomic():
+            eq_(self.anon.get(self.url).status_code, 403)
         self.remove_permission(self.user, 'Apps:Review')
-        eq_(self.client.get(self.url).status_code, 403)
+        with transaction.atomic():
+            eq_(self.client.get(self.url).status_code, 403)
 
     def test_verbs(self):
         self._allowed_verbs(self.url, ['get'])

@@ -204,7 +204,9 @@ class GlobalStats(CORSMixin, APIView):
         # Perform form validation.
         form = StatsForm(request.GET)
         if not form.is_valid():
-            raise ParseError(dict(form.errors.items()))
+            exc = ParseError()
+            exc.detail = {'detail': dict(form.errors.items())}
+            raise exc
 
         qs = form.cleaned_data
 
@@ -242,7 +244,9 @@ class AppStats(CORSMixin, SlugOrIdMixin, ListAPIView):
         # Perform form validation.
         form = StatsForm(request.GET)
         if not form.is_valid():
-            raise ParseError(dict(form.errors.items()))
+            exc = ParseError()
+            exc.detail = {'detail': dict(form.errors.items())}
+            raise exc
 
         qs = form.cleaned_data
 
@@ -394,7 +398,7 @@ class TransactionAPI(CORSMixin, APIView):
         data = {
             'id': transaction_id,
             'app_id': contrib.addon_id,
-            'amount_USD': contrib.price_tier.price,
+            'amount_USD': unicode(contrib.price_tier.price),
             'type': mkt.CONTRIB_TYPES[contrib.type],
         }
 

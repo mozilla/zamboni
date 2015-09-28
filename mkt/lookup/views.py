@@ -481,12 +481,18 @@ class AppLookupSearchView(SearchView):
     paginate_by = lkp.SEARCH_LIMIT
     max_paginate_by = lkp.MAX_RESULTS
 
-    def get_paginate_by(self, *args, **kwargs):
-        if self.request.GET.get(self.paginate_by_param) == 'max':
-            return self.max_paginate_by
-        else:
-            return super(AppLookupSearchView, self).get_paginate_by(*args,
-                                                                    **kwargs)
+    def paginate_queryset(self, queryset):
+        self.paginator.default_limit = self.paginate_by
+        orig_get_limit = self.paginator.get_limit
+
+        def get_limit(request):
+            if (request.query_params.get(
+                    self.paginator.limit_query_param) == 'max'):
+                return self.max_paginate_by
+            else:
+                return orig_get_limit(request)
+        self.paginator.get_limit = get_limit
+        return super(AppLookupSearchView, self).paginate_queryset(queryset)
 
 
 class WebsiteLookupSearchView(WebsiteSearchView):
@@ -496,12 +502,18 @@ class WebsiteLookupSearchView(WebsiteSearchView):
     paginate_by = lkp.SEARCH_LIMIT
     max_paginate_by = lkp.MAX_RESULTS
 
-    def get_paginate_by(self, *args, **kwargs):
-        if self.request.GET.get(self.paginate_by_param) == 'max':
-            return self.max_paginate_by
-        else:
-            return super(WebsiteLookupSearchView,
-                         self).get_paginate_by(*args, **kwargs)
+    def paginate_queryset(self, queryset):
+        self.paginator.default_limit = self.paginate_by
+        orig_get_limit = self.paginator.get_limit
+
+        def get_limit(request):
+            if (request.query_params.get(
+                    self.paginator.limit_query_param) == 'max'):
+                return self.max_paginate_by
+            else:
+                return orig_get_limit(request)
+        self.paginator.get_limit = get_limit
+        return super(WebsiteLookupSearchView, self).paginate_queryset(queryset)
 
 
 def _app_summary(user_id):

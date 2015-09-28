@@ -51,7 +51,7 @@ class PreparePayWebAppView(CORSMixin, MarketplaceView, GenericAPIView):
     serializer_class = ContributionSerializer
 
     def post(self, request, *args, **kwargs):
-        form = PrepareWebAppForm(request.DATA)
+        form = PrepareWebAppForm(request.data)
         if not form.is_valid():
             return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -109,7 +109,7 @@ class PreparePayInAppView(CORSMixin, MarketplaceView, GenericAPIView):
     serializer_class = ContributionSerializer
 
     def post(self, request, *args, **kwargs):
-        form = PrepareInAppForm(request.DATA)
+        form = PrepareInAppForm(request.data)
         if not form.is_valid():
             app_pay_cef.log(
                 request._request,
@@ -202,7 +202,7 @@ class FailureNotificationView(MarketplaceView, GenericAPIView):
     queryset = Contribution.objects.filter(uuid__isnull=False)
 
     def patch(self, request, *args, **kwargs):
-        form = FailureForm(request.DATA)
+        form = FailureForm(request.data)
         if not form.is_valid():
             return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -234,8 +234,9 @@ class ProductIconViewSet(CORSMixin, MarketplaceView, ListModelMixin,
     filter_fields = ('ext_url', 'ext_size', 'size')
 
     def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.DATA)
+        serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
+            serializer.save()
             log.info('Resizing product icon %s @ %s to %s for webpay' % (
                 serializer.data['ext_url'],
                 serializer.data['ext_size'],

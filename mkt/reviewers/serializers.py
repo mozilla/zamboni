@@ -22,7 +22,7 @@ SEARCH_FIELDS = [u'device_types', u'id', u'is_escalated', u'is_packaged',
 
 
 class ReviewersESAppSerializer(ESAppSerializer):
-    latest_version = serializers.SerializerMethodField('get_latest_version')
+    latest_version = serializers.SerializerMethodField()
     is_escalated = serializers.BooleanField()
 
     class Meta(ESAppSerializer.Meta):
@@ -41,7 +41,7 @@ class ReviewersESAppSerializer(ESAppSerializer):
 class AdditionalReviewSerializer(serializers.ModelSerializer):
     """Developer facing AdditionalReview serializer."""
 
-    app = serializers.PrimaryKeyRelatedField()
+    app = serializers.PrimaryKeyRelatedField(queryset=Webapp.objects)
     comment = serializers.CharField(max_length=255, read_only=True)
 
     class Meta:
@@ -57,23 +57,23 @@ class AdditionalReviewSerializer(serializers.ModelSerializer):
                                         .filter(app_id=app_id)
                                         .exists())
 
-    def validate_queue(self, attrs, source):
-        if attrs[source] != QUEUE_TARAKO:
+    def validate_queue(self, queue):
+        if queue != QUEUE_TARAKO:
             raise serializers.ValidationError('is not a valid choice')
-        return attrs
+        return queue
 
-    def validate_app(self, attrs, source):
-        queue = attrs.get('queue')
-        app = attrs.get('app')
+    def validate_app(self, app):
+        queue = self.initial_data.get('queue')
         if queue and app and self.pending_review_exists(queue, app):
             raise serializers.ValidationError('has a pending review')
-        return attrs
+        return app
 
 
 class ReviewerAdditionalReviewSerializer(AdditionalReviewSerializer):
     """Reviewer facing AdditionalReview serializer."""
 
     comment = serializers.CharField(max_length=255, required=False)
+    passed = serializers.BooleanField(required=True)
 
     class Meta:
         model = AdditionalReview
@@ -83,7 +83,7 @@ class ReviewerAdditionalReviewSerializer(AdditionalReviewSerializer):
             set(['passed', 'reviewer']))
 
     def validate(self, attrs):
-        if self.object.passed is not None:
+        if self.instance and self.instance.passed is not None:
             raise serializers.ValidationError('has already been reviewed')
         elif attrs.get('passed') not in (True, False):
             raise serializers.ValidationError('passed must be a boolean value')
@@ -100,13 +100,12 @@ class CannedResponseSerializer(serializers.ModelSerializer):
 
 
 class ReviewerScoreSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = ReviewerScore
         fields = ['id', 'note', 'user', 'score']
 
-    def validate_note(self, attrs, source):
-        # If note is absent but DRF tries to validate it (because we're dealing
-        # with a PUT or POST), then add a blank one.
-        if source not in attrs:
-            attrs[source] = ''
+    def validate(self, attrs):
+        if 'note' not in attrs and not self.partial:
+            attrs['note'] = ''
         return attrs

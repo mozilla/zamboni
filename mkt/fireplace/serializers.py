@@ -16,10 +16,13 @@ class BaseFireplaceAppSerializer(object):
 
     # We don't care about the integer value of the file size in fireplace, we
     # just want to display it to the user in a human-readable way.
-    def transform_file_size(self, obj, value):
-        if value:
-            return filesizeformat(value)
-        return None
+    def to_representation(self, obj):
+        data = super(BaseFireplaceAppSerializer, self).to_representation(obj)
+        if obj.file_size:
+            data['file_size'] = filesizeformat(obj.file_size)
+        else:
+            data['file_size'] = None
+        return data
 
 
 class FireplaceAppSerializer(BaseFireplaceAppSerializer, SimpleAppSerializer):
@@ -60,7 +63,7 @@ class FeedFireplaceESAppSerializer(BaseFireplaceAppSerializer,
 
 
 class BaseFireplaceWebsiteSerializer(serializers.Serializer):
-    slug = serializers.SerializerMethodField('get_slug')
+    slug = serializers.SerializerMethodField()
 
     def get_slug(self, obj):
         # Fake slug to help fireplace. Because of the {} characters this slug

@@ -1,15 +1,15 @@
-import urlparse
+from collections import OrderedDict
 
-from django.core.paginator import EmptyPage, Page, PageNotAnInteger, Paginator
-from django.utils.http import urlencode
+from django.core.paginator import (EmptyPage, Page, PageNotAnInteger,
+                                   Paginator)
 
-from rest_framework import pagination, serializers
+from elasticsearch_dsl.search import Search
+from rest_framework import pagination, response
 
 
 class ESPaginator(Paginator):
     """
-    A better paginator for search results
-
+    A better paginator for search results, used by Django views.
     The normal Paginator does a .count() query and then a slice. Since ES
     results contain the total number of results, we can take an optimistic
     slice and then adjust the count.
@@ -60,61 +60,55 @@ class ESPaginator(Paginator):
         return page
 
 
-class MetaSerializer(serializers.Serializer):
+class CustomPagination(pagination.LimitOffsetPagination):
     """
-    Serializer for the 'meta' dict holding pagination info that allows to stay
-    backwards-compatible with the way tastypie does pagination (using offsets
-    instead of page numbers), while still using a "standard" Paginator class.
+    Paginator for DRF API views.
     """
-    next = serializers.SerializerMethodField('get_next')
-    previous = serializers.SerializerMethodField('get_previous')
-    total_count = serializers.SerializerMethodField('get_total_count')
-    offset = serializers.SerializerMethodField('get_offset')
-    limit = serializers.SerializerMethodField('get_limit')
+    count_override = 0
 
-    def replace_query_params(self, url, request_data, params):
-        (scheme, netloc, path, query, fragment) = urlparse.urlsplit(url)
-        # We ignore urlsplit's `query` here as it is already urlencoded and we
-        # want to avoid double encoding query string parameters, so we use
-        # `request_data` which comes from `request.GET` instead..
-        request_data.update(params)
-        query = urlencode(request_data)
-        return urlparse.urlunsplit((scheme, netloc, path, query, fragment))
+    def __init__(self, default_limit=None):
+        pagination.LimitOffsetPagination.__init__(self)
+        if default_limit is not None:
+            self.default_limit = default_limit
 
-    def get_offset_link_for_page(self, page, number):
-        request = self.context.get('request')
-        url = request and request.get_full_path() or ''
-        number = number - 1  # Pages are 1-based, but offsets are 0-based.
-        per_page = page.paginator.per_page
-        params = {'offset': number * per_page, 'limit': per_page}
-        request_data = request and request.GET.dict() or {}
-        return self.replace_query_params(url, request_data, params)
+    def get_paginated_response(self, data):
+        return response.Response(OrderedDict([
+            ('meta', OrderedDict([
+                ('next', self.get_next_link()),
+                ('previous', self.get_previous_link()),
+                ('total_count', self.count),
+                ('offset', self.get_offset(self.request)),
+                ('limit', self.get_limit(self.request))])),
+            ('objects', data)]))
 
-    def get_next(self, page):
-        if not page.has_next():
+    def paginate_queryset(self, queryset, request, view=None):
+        self.limit = self.get_limit(request)
+        if self.limit is None:
             return None
-        return self.get_offset_link_for_page(page, page.next_page_number())
 
-    def get_previous(self, page):
-        if not page.has_previous():
-            return None
-        return self.get_offset_link_for_page(page, page.previous_page_number())
-
-    def get_total_count(self, page):
-        return page.paginator.count
-
-    def get_offset(self, page):
-        index = page.start_index()
-        if index > 0:
-            # start_index() is 1-based, and we want a 0-based offset, so we
-            # need to remove 1, unless it's already 0.
-            return index - 1
-        return index
-
-    def get_limit(self, page):
-        return page.paginator.per_page
+        self.offset = self.get_offset(request)
+        self.count = self.count_override or pagination._get_count(queryset)
+        self.request = request
+        if self.count > self.limit and self.template is not None:
+            self.display_page_controls = True
+        page = queryset[self.offset:self.offset + self.limit]
+        if isinstance(page, Search):
+            page = page.execute()
+        return list(page)
 
 
-class CustomPaginationSerializer(pagination.BasePaginationSerializer):
-    meta = MetaSerializer(source='*')  # Takes the page object as the source
-    results_field = 'objects'
+class PageNumberPagination(pagination.PageNumberPagination):
+
+    def django_paginator_class(self, queryset, page_size):
+        if isinstance(queryset, Search):
+            return ESPaginator(queryset, page_size)
+        else:
+            return Paginator(queryset, page_size)
+
+    def get_paginated_response(self, data):
+        return response.Response(OrderedDict([
+            ('meta', OrderedDict([
+                ('count', self.page.paginator.count),
+                ('next', self.get_next_link()),
+                ('previous', self.get_previous_link())])),
+            ('objects', data)]))

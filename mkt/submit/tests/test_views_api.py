@@ -403,7 +403,7 @@ class TestPreviewHandler(RestOAuth, MktPaths):
         res = self.client.post(self.list_url, data=json.dumps(self.good))
         eq_(res.status_code, 404)
         data = json.loads(res.content)
-        eq_(data['detail'], 'Not found')
+        eq_(data['detail'], 'Not found.')
 
     def test_not_mine(self):
         self.app.authors.clear()

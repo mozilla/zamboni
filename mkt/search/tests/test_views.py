@@ -4,6 +4,7 @@ from urlparse import urlparse
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.db import transaction
 from django.http import QueryDict
 from django.test.client import RequestFactory
 
@@ -181,14 +182,16 @@ class TestSearchView(RestOAuth, ESTestCase):
         eq_(res.json['objects'], [])
 
     def test_wrong_category(self):
-        res = self.anon.get(self.url,
-                            data={'cat': self.category + 'xq'})
-        eq_(res.status_code, 400)
-        eq_(res['Content-Type'], 'application/json')
+        with transaction.atomic():
+            res = self.anon.get(self.url,
+                                data={'cat': self.category + 'xq'})
+            eq_(res.status_code, 400)
+            eq_(res['Content-Type'], 'application/json; charset=utf-8')
 
     def test_wrong_sort(self):
-        res = self.anon.get(self.url, data={'sort': 'awesomeness'})
-        eq_(res.status_code, 400)
+        with transaction.atomic():
+            res = self.anon.get(self.url, data={'sort': 'awesomeness'})
+            eq_(res.status_code, 400)
 
     def test_sort(self):
         # Make sure elasticsearch is actually accepting the params.
@@ -734,10 +737,11 @@ class TestSearchView(RestOAuth, ESTestCase):
         eq_(len(res.json['objects']), 0)
 
     def test_installs_allowed_from_invalid(self):
-        res = self.anon.get(
-            self.url, data={'installs_allowed_from': 'http://a.com'})
-        eq_(res.status_code, 400)
-        ok_('installs_allowed_from' in res.json['detail'])
+        with transaction.atomic():
+            res = self.anon.get(
+                self.url, data={'installs_allowed_from': 'http://a.com'})
+            eq_(res.status_code, 400)
+            ok_('installs_allowed_from' in res.json['detail'])
 
     def test_status_value_packaged(self):
         # When packaged and not a reviewer we exclude latest version status.
@@ -799,8 +803,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         eq_(data['meta']['limit'], 2)
         prev = urlparse(data['meta']['previous'])
         eq_(next.path, self.url)
-        eq_(QueryDict(prev.query).dict(), {'limit': '2', 'offset': '0',
-                                           'sort': 'created'})
+        eq_(QueryDict(prev.query).dict(), {'limit': '2', 'sort': 'created'})
         eq_(data['meta']['offset'], 2)
         eq_(data['meta']['next'], None)
 
@@ -1116,13 +1119,15 @@ class TestNonPublicSearchView(RestOAuth, ESTestCase):
         unindex_webapps([self.app1.id, self.app2.id])
 
     def test_anonymous(self):
-        res = self.anon.get(self.url, data={'q': 'second'})
-        eq_(res.status_code, 403)
+        with transaction.atomic():
+            res = self.anon.get(self.url, data={'q': 'second'})
+            eq_(res.status_code, 403)
 
     def test_no_permission(self):
-        GroupUser.objects.filter(user=self.profile).delete()
-        res = self.client.get(self.url, data={'q': 'second'})
-        eq_(res.status_code, 403)
+        with transaction.atomic():
+            GroupUser.objects.filter(user=self.profile).delete()
+            res = self.client.get(self.url, data={'q': 'second'})
+            eq_(res.status_code, 403)
 
     def test_with_permission(self):
         res = self.client.get(self.url, data={'q': 'second', 'lang': 'en-US'})
@@ -1196,13 +1201,16 @@ class TestNoRegionSearchView(RestOAuth, ESTestCase):
         unindex_webapps([self.app1.id, self.app2.id])
 
     def test_anonymous(self):
-        res = self.anon.get(self.url, data={'q': 'second'})
-        eq_(res.status_code, 403)
+        with transaction.atomic():
+            res = self.anon.get(self.url, data={'q': 'second'})
+            eq_(res.status_code, 403)
 
     def test_no_permission(self):
-        GroupUser.objects.filter(user=self.profile).delete()
-        res = self.client.get(self.url, data={'q': 'second', 'region': 'us'})
-        eq_(res.status_code, 403)
+        with transaction.atomic():
+            GroupUser.objects.filter(user=self.profile).delete()
+            res = self.client.get(self.url,
+                                  data={'q': 'second', 'region': 'us'})
+            eq_(res.status_code, 403)
 
     def test_with_permission(self):
         res = self.client.get(self.url, data={
@@ -1364,7 +1372,6 @@ class TestRocketbarView(ESTestCase):
         eq_(parsed[0]['manifest_url'], self.app2.get_manifest_url())
         eq_(parsed[0]['name'], unicode(self.app2.name))
         eq_(parsed[0]['slug'], self.app2.app_slug)
-
         assert 'icon' not in parsed[0], '`icon` field has been deprecated.'
 
         for size in (128, 64, 48, 32):

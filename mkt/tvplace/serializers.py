@@ -4,7 +4,7 @@ from mkt.websites.serializers import ESWebsiteSerializer, WebsiteSerializer
 
 
 class TVAppSerializer(SimpleAppSerializer):
-    tv_featured = serializers.SerializerMethodField('get_tv_featured')
+    tv_featured = serializers.SerializerMethodField()
 
     class Meta(SimpleAppSerializer.Meta):
         fields = ['author', 'categories',
@@ -38,7 +38,7 @@ class TVESAppSerializer(SimpleESAppSerializer):
 
 
 class TVWebsiteSerializer(WebsiteSerializer):
-    tv_featured = serializers.SerializerMethodField('get_tv_featured')
+    tv_featured = serializers.SerializerMethodField()
 
     class Meta(WebsiteSerializer.Meta):
         fields = ['categories', 'description', 'icons', 'id',

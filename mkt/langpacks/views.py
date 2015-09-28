@@ -28,6 +28,7 @@ log = commonware.log.getLogger('z.api')
 
 class LangPackViewSet(CORSMixin, MarketplaceView, viewsets.ModelViewSet):
     model = LangPack
+    queryset = LangPack.objects.all()
     cors_allowed_methods = ('get', 'post', 'put', 'patch', 'delete')
     permission_classes = [AnyOf(AllowReadOnlyIfPublic,
                                 GroupPermission('LangPacks', '%'))]

@@ -68,11 +68,11 @@ def user_relevant_apps(user):
 
 
 class MineMixin(object):
-    def get_object(self, queryset=None):
+    def get_object(self):
         pk = self.kwargs.get('pk')
         if pk == 'mine':
             self.kwargs['pk'] = self.request.user.pk
-        return super(MineMixin, self).get_object(queryset)
+        return super(MineMixin, self).get_object()
 
 
 class InstalledViewSet(CORSMixin, MarketplaceView, ListModelMixin,
@@ -92,7 +92,7 @@ class InstalledViewSet(CORSMixin, MarketplaceView, ListModelMixin,
     def remove_app(self, request, **kwargs):
         self.cors_allowed_methods = ['post']
         try:
-            to_remove = Webapp.objects.get(pk=request.DATA['app'])
+            to_remove = Webapp.objects.get(pk=request.data['app'])
         except (KeyError, MultiValueDictKeyError):
             raise ParseError(detail='`app` was not provided.')
         except Webapp.DoesNotExist:
@@ -126,7 +126,7 @@ class CreateAPIViewWithoutModel(MarketplaceView, CreateAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.DATA)
+        serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
             data = self.create_action(request, serializer)
             return self.response_success(request, serializer, data=data)
@@ -138,6 +138,7 @@ class AccountView(MineMixin, CORSMixin, RetrieveUpdateAPIView):
                               RestSharedSecretAuthentication]
     cors_allowed_methods = ['get', 'patch', 'put']
     model = UserProfile
+    queryset = UserProfile.objects.all()
     permission_classes = (AllowOwner,)
     serializer_class = AccountSerializer
 
@@ -400,6 +401,7 @@ class PermissionsView(CORSMixin, MineMixin, RetrieveAPIView):
     cors_allowed_methods = ['get']
     permission_classes = (AllowSelf,)
     model = UserProfile
+    queryset = UserProfile.objects.all()
     serializer_class = PermissionsSerializer
 
 
@@ -425,8 +427,8 @@ class GroupsViewSet(CORSMixin, ListModelMixin, DestroyModelMixin,
 
     def get_group(self):
         try:
-            group = (self.request.DATA.get('group') or
-                     self.request.QUERY_PARAMS.get('group'))
+            group = (self.request.data.get('group') or
+                     self.request.query_params.get('group'))
             return Group.objects.get(pk=group)
         except Group.DoesNotExist:
             raise ParseError('Group does not exist.')
@@ -440,7 +442,7 @@ class GroupsViewSet(CORSMixin, ListModelMixin, DestroyModelMixin,
             raise ParseError('User isn\'t in that group? %s' % e)
         return obj
 
-    def pre_delete(self, instance):
+    def perform_destroy(self, instance):
         if instance.group.restricted:
             raise ParseError('Restricted groups can\'t be unset via the API.')
 

@@ -1,5 +1,7 @@
 import json
 
+from django.db import transaction
+
 from mkt.site.tests import TestCase
 
 
@@ -19,7 +21,8 @@ class BaseAPI(TestCase):
             if verb in allowed:
                 continue
             try:
-                res = getattr(self.client, verb)(url)
+                with transaction.atomic():
+                    res = getattr(self.client, verb)(url)
             except AttributeError:
                 # Not all clients have patch.
                 if verb != 'patch':

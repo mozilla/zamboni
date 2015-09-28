@@ -7,7 +7,8 @@ from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    ListModelMixin, RetrieveModelMixin,
                                    UpdateModelMixin)
 from rest_framework.permissions import BasePermission, IsAuthenticated
-from rest_framework.relations import HyperlinkedRelatedField
+from rest_framework.relations import (HyperlinkedIdentityField,
+                                      HyperlinkedRelatedField)
 from rest_framework.response import Response
 from rest_framework.serializers import (HyperlinkedModelSerializer,
                                         Serializer,
@@ -29,7 +30,7 @@ from mkt.developers.forms_payments import (BangoPaymentAccountForm,
 from mkt.developers.models import (AddonPaymentAccount, CantCancel,
                                    PaymentAccount)
 from mkt.developers.providers import get_provider
-from mkt.webapps.models import AddonUpsell
+from mkt.webapps.models import AddonUpsell, Webapp
 
 
 log = commonware.log.getLogger('z.api.payments')
@@ -59,7 +60,7 @@ class PaymentAccountSerializer(Serializer):
     serializing a PaymentAccount instance. Use only for read operations.
     """
 
-    def to_native(self, obj):
+    def to_representation(self, obj):
         data = obj.get_provider().account_retrieve(obj)
         data['resource_uri'] = reverse('payment-account-detail',
                                        kwargs={'pk': obj.pk})
@@ -90,7 +91,7 @@ class PaymentAccountViewSet(ListModelMixin, RetrieveModelMixin,
 
     def create(self, request, *args, **kwargs):
         provider = get_provider()
-        form = provider.forms['account'](request.DATA)
+        form = provider.forms['account'](request.data)
         if form.is_valid():
             try:
                 provider = get_provider()
@@ -112,7 +113,7 @@ class PaymentAccountViewSet(ListModelMixin, RetrieveModelMixin,
 
     def update(self, request, *args, **kwargs):
         self.object = self.get_object()
-        form = BangoPaymentAccountForm(request.DATA, account=True)
+        form = BangoPaymentAccountForm(request.data, account=True)
         if form.is_valid():
             self.object.get_provider().account_update(self.object,
                                                       form.cleaned_data)
@@ -132,7 +133,11 @@ class PaymentAccountViewSet(ListModelMixin, RetrieveModelMixin,
 
 
 class UpsellSerializer(HyperlinkedModelSerializer):
-    free = premium = HyperlinkedRelatedField(view_name='app-detail')
+    free = HyperlinkedRelatedField(view_name='app-detail',
+                                   queryset=Webapp.objects)
+    premium = HyperlinkedRelatedField(view_name='app-detail',
+                                      queryset=Webapp.objects)
+    url = HyperlinkedIdentityField(view_name='app-upsell-detail')
 
     class Meta:
         model = AddonUpsell
@@ -140,10 +145,12 @@ class UpsellSerializer(HyperlinkedModelSerializer):
         view_name = 'app-upsell-detail'
 
     def validate(self, attrs):
-        if attrs['free'].premium_type not in mkt.ADDON_FREES:
+        if ('free' not in attrs or
+                attrs['free'].premium_type not in mkt.ADDON_FREES):
             raise ValidationError('Upsell must be from a free app.')
 
-        if attrs['premium'].premium_type in mkt.ADDON_FREES:
+        if ('premium' not in attrs or
+                attrs['premium'].premium_type in mkt.ADDON_FREES):
             raise ValidationError('Upsell must be to a premium app.')
 
         return attrs
@@ -172,9 +179,15 @@ class UpsellViewSet(CreateModelMixin, DestroyModelMixin, RetrieveModelMixin,
     queryset = AddonUpsell.objects.filter()
     serializer_class = UpsellSerializer
 
-    def pre_save(self, obj):
-        if not UpsellPermission().check(self.request, obj.free, obj.premium):
+    def perform_create(self, serializer):
+        if not UpsellPermission().check(self.request,
+                                        serializer.validated_data['free'],
+                                        serializer.validated_data['premium']):
             raise PermissionDenied('Not allowed to alter that object')
+        serializer.save()
+
+    def perform_update(self, serializer):
+        self.perform_create(serializer)
 
 
 class AddonPaymentAccountPermission(BasePermission):
@@ -202,9 +215,12 @@ class AddonPaymentAccountPermission(BasePermission):
 
 
 class AddonPaymentAccountSerializer(HyperlinkedModelSerializer):
-    addon = HyperlinkedRelatedField(view_name='app-detail')
+    addon = HyperlinkedRelatedField(view_name='app-detail',
+                                    queryset=Webapp.objects)
     payment_account = HyperlinkedRelatedField(
-        view_name='payment-account-detail')
+        view_name='payment-account-detail',
+        queryset=PaymentAccount.objects)
+    url = HyperlinkedIdentityField(view_name='app-payment-account-detail')
 
     class Meta:
         model = AddonPaymentAccount
@@ -222,28 +238,34 @@ class AddonPaymentAccountViewSet(CreateModelMixin, RetrieveModelMixin,
                                  UpdateModelMixin, MarketplaceView,
                                  GenericViewSet):
     permission_classes = (AddonPaymentAccountPermission,)
-    queryset = AddonPaymentAccount.objects.filter()
+    queryset = AddonPaymentAccount.objects.all()
     serializer_class = AddonPaymentAccountSerializer
 
-    def pre_save(self, obj):
+    def perform_create(self, serializer, created=True):
         if not AddonPaymentAccountPermission().check(
                 self.request,
-                obj.addon, obj.payment_account):
+                serializer.validated_data['addon'],
+                serializer.validated_data['payment_account']):
             raise PermissionDenied('Not allowed to alter that object.')
 
         if self.request.method != 'POST':
-            addon = obj.__class__.objects.get(pk=obj.pk).addon
-            if not obj.addon == addon:
+            if not self.queryset.filter(
+                    addon=serializer.validated_data['addon'],
+                    payment_account=serializer.validated_data[
+                        'payment_account']).exists():
                 # This should be a 400 error.
                 raise PermissionDenied('Cannot change the add-on.')
 
-    def post_save(self, obj, created=False):
-        """Ensure that the setup_bango method is called after creation."""
+        obj = serializer.save()
+
         if created:
             provider = get_provider()
             uri = provider.product_create(obj.payment_account, obj.addon)
             obj.product_uri = uri
-            obj.save()
+        obj.save()
+
+    def perform_update(self, obj):
+        self.perform_create(obj, created=False)
 
 
 class PaymentCheckViewSet(PaymentAppViewSet):

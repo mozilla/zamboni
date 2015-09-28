@@ -43,6 +43,9 @@ class AbuseResourceTests(object):
 
     def _call(self, anonymous=False, data=None):
         post_data = self.default_data.copy()
+        if anonymous:
+            post_data['tuber'] = ''
+            post_data['sprout'] = 'potato'
         if data:
             post_data.update(data)
 

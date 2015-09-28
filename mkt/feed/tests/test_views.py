@@ -441,7 +441,9 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
         self.feedapp_data.update(**self.pullquote_data)
         res, data = self.create(self.client, **self.feedapp_data)
         eq_(res.status_code, 400)
-        ok_('__all__' in data)
+        eq_(data, {u'non_field_errors':
+                   [u'Pullquote text required if rating or '
+                    'attribution is defined.']})
 
     def test_create_with_pullquote_bad_rating_fractional(self):
         self.feed_permission()
@@ -468,7 +470,7 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
         ok_('pullquote_rating' in data)
 
     @mock.patch('mkt.feed.views.pngcrush_image.delay')
-    @mock.patch('mkt.feed.fields.requests.get')
+    @mock.patch('mkt.feed.views.requests.get')
     def test_create_with_background_image(self, download_mock, crush_mock):
         res_mock = mock.Mock()
         res_mock.status_code = 200
@@ -485,7 +487,7 @@ class TestFeedAppViewSetCreate(BaseTestFeedAppViewSet):
         ok_(data['background_image'].endswith(feedapp.image_hash))
         eq_(crush_mock.call_args_list[0][0][0], feedapp.image_path())
 
-    @mock.patch('mkt.feed.fields.requests.get')
+    @mock.patch('mkt.feed.views.requests.get')
     def test_background_image_404(self, download_mock):
         res_mock = mock.Mock()
         res_mock.status_code = 404
@@ -773,15 +775,14 @@ class BaseTestFeedCollection(object):
     def test_create_duplicate_slug(self):
         self.feed_permission()
         obj_data = self.data()
-
         res1, data1 = self.create(self.client, **obj_data)
         eq_(res1.status_code, 201,
             getattr(res1, 'json', 'unexpected status code'))
         eq_(obj_data['slug'], data1['slug'])
 
         res2, data2 = self.create(self.client, **obj_data)
-        eq_(res2.status_code, 400)
-        ok_('slug' in data2)
+        eq_(res2.status_code, 201)
+        eq_(obj_data['slug'] + '-1', data2['slug'])
 
     def test_update_anonymous(self):
         res, data = self.update(self.anon)
@@ -910,7 +911,7 @@ class TestFeedCollectionViewSet(BaseTestGroupedApps, BaseTestFeedCollection,
             apps, [app['id'] for app in data['apps']])
 
     @mock.patch('mkt.feed.views.pngcrush_image.delay')
-    @mock.patch('mkt.feed.fields.requests.get')
+    @mock.patch('mkt.feed.views.requests.get')
     def test_background_image(self, download_mock, crush_mock):
         """Tests with mocking the pngcrush."""
         res_mock = mock.Mock()
@@ -930,7 +931,7 @@ class TestFeedCollectionViewSet(BaseTestGroupedApps, BaseTestFeedCollection,
         eq_(crush_mock.call_args_list[0][0][0], coll.image_path())
         eq_(crush_mock.call_args_list[0][1]['set_modified_on'][0], coll)
 
-    @mock.patch('mkt.feed.fields.requests.get')
+    @mock.patch('mkt.feed.views.requests.get')
     def test_background_image_404(self, download_mock):
         res_mock = mock.Mock()
         res_mock.status_code = 404
@@ -1006,7 +1007,7 @@ class TestFeedShelfViewSet(BaseTestGroupedApps, BaseTestFeedCollection,
         self.assertGroupedAppsEqual(obj_data['apps'], data)
 
     @mock.patch('mkt.feed.views.pngcrush_image.delay')
-    @mock.patch('mkt.feed.fields.requests.get')
+    @mock.patch('mkt.feed.views.requests.get')
     def test_create_with_multiple_images(self, download_mock, crush_mock):
         res_mock = mock.Mock()
         res_mock.status_code = 200
@@ -1447,11 +1448,11 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         res2, data2 = self._get()
         ok_(data1['websites'] != data2['websites'])
 
-    @mock.patch('mkt.feed.views.FeedView.get_paginate_by')
-    def test_limit_honored(self, mock_paginate_by):
+    @mock.patch('mkt.api.paginator.CustomPagination.get_limit')
+    def test_limit_honored(self, get_limit):
         PAGINATE_BY = 3
         TOTAL = PAGINATE_BY + 1
-        mock_paginate_by.return_value = PAGINATE_BY
+        get_limit.return_value = PAGINATE_BY
 
         self.feed_factory(num_items=TOTAL)
         res, data = self._get(limit=PAGINATE_BY, offset=0)
@@ -1462,16 +1463,16 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         ok_(data['meta']['next'])
         eq_(len(data['objects']), PAGINATE_BY)
 
-    @mock.patch('mkt.feed.views.FeedView.get_paginate_by')
-    def test_offset_honored(self, mock_paginate_by):
+    @mock.patch('mkt.api.paginator.CustomPagination.get_limit')
+    def test_offset_honored(self, get_limit):
         PAGINATE_BY = 3
         TOTAL = PAGINATE_BY * 2 + 1  # Three pages.
-        mock_paginate_by.return_value = TOTAL
+        get_limit.return_value = TOTAL
 
         self.feed_factory(num_items=TOTAL)
 
         res_all, data_all = self._get()
-        mock_paginate_by.return_value = PAGINATE_BY
+        get_limit.return_value = PAGINATE_BY
         res, data = self._get(offset=PAGINATE_BY)
 
         eq_(data['meta']['total_count'], TOTAL)
@@ -1482,20 +1483,19 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         ok_(data['meta']['next'])
         eq_(data_all['objects'][PAGINATE_BY], data['objects'][0])
 
-    @mock.patch('mkt.feed.views.FeedView.get_paginate_by')
-    def test_page_honored(self, mock_paginate_by):
+    @mock.patch('mkt.api.paginator.PageNumberPagination.get_page_size')
+    def test_page_honored(self, get_page_size):
         PAGINATE_BY = 3
         TOTAL = PAGINATE_BY + 1
-        mock_paginate_by.return_value = TOTAL
+        get_page_size.return_value = TOTAL
         self.feed_factory(num_items=TOTAL)
 
         res_all, data_all = self._get()
-        mock_paginate_by.return_value = PAGINATE_BY
+        get_page_size.return_value = PAGINATE_BY
         res, data = self._get(page=2)
 
         ok_(data['meta']['previous'])
         ok_(not data['meta']['next'])
-        eq_(data['meta']['offset'], PAGINATE_BY)
         eq_(data_all['objects'][-1], data['objects'][0])
 
     def test_region_filter(self):

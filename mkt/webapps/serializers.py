@@ -9,7 +9,6 @@ from rest_framework import response, serializers
 from tower import ungettext as ngettext
 
 import mkt
-from drf_compound_fields.fields import ListField
 from mkt.api.fields import (ESTranslationSerializerField, LargeTextField,
                             ReverseChoiceField, SemiSerializerMethodField,
                             TranslationSerializerField)
@@ -47,8 +46,8 @@ class AppFeaturesSerializer(serializers.ModelSerializer):
     class Meta:
         model = AppFeatures
 
-    def to_native(self, obj):
-        ret = super(AppFeaturesSerializer, self).to_native(obj)
+    def to_representation(self, obj):
+        ret = super(AppFeaturesSerializer, self).to_representation(obj)
         ret['required'] = obj.to_list()
         return ret
 
@@ -60,48 +59,57 @@ class RegionSerializer(serializers.Serializer):
     adolescent = serializers.BooleanField()
 
 
-class AppSerializer(serializers.ModelSerializer):
+class BaseAppSerializer(serializers.ModelSerializer):
+    # REST Framework 3.x doesn't allow meta.fields to omit fields declared in
+    # the class body, but it does allow omitting ones in superclasses. All the
+    # serializers are subsets of the full field collection, hence this
+    # superclass.
     app_type = serializers.ChoiceField(
         choices=mkt.ADDON_WEBAPP_TYPES_LOOKUP.items(), read_only=True)
     author = serializers.CharField(source='developer_name', read_only=True)
-    categories = ListField(serializers.ChoiceField(choices=CATEGORY_CHOICES),
-                           required=True)
-    content_ratings = serializers.SerializerMethodField('get_content_ratings')
-    created = serializers.DateField(read_only=True)
+    categories = serializers.ListField(
+        child=serializers.ChoiceField(choices=CATEGORY_CHOICES,
+                                      read_only=False),
+        read_only=False,
+        required=True)
+    content_ratings = serializers.SerializerMethodField()
+    created = serializers.DateTimeField(read_only=True,
+                                        format=None)
     current_version = serializers.CharField(source='current_version.version',
                                             read_only=True)
     default_locale = serializers.CharField(read_only=True)
-    device_types = SemiSerializerMethodField('get_device_types')
+    device_types = SemiSerializerMethodField()
     description = TranslationSerializerField(required=False)
     homepage = TranslationSerializerField(required=False)
-    feature_compatibility = serializers.SerializerMethodField(
-        'get_feature_compatibility')
-    file_size = serializers.IntegerField(source='file_size', read_only=True)
-    icons = serializers.SerializerMethodField('get_icons')
+    feature_compatibility = serializers.SerializerMethodField()
+    file_size = serializers.IntegerField(read_only=True)
+    icons = serializers.SerializerMethodField()
     id = serializers.IntegerField(source='pk', required=False)
-    is_disabled = serializers.BooleanField(read_only=True, default=False)
-    is_homescreen = serializers.SerializerMethodField('get_is_homescreen')
+    is_disabled = serializers.BooleanField(read_only=True)
+    is_homescreen = serializers.SerializerMethodField()
     is_offline = serializers.BooleanField(read_only=True)
     is_packaged = serializers.BooleanField(read_only=True)
-    last_updated = serializers.DateField(read_only=True)
+    last_updated = serializers.DateTimeField(read_only=True,
+                                             format=None)
     manifest_url = serializers.CharField(source='get_manifest_url',
                                          read_only=True)
-    modified = serializers.DateField(read_only=True)
+    modified = serializers.DateTimeField(read_only=True,
+                                         format=None)
     name = TranslationSerializerField(required=False)
     package_path = serializers.CharField(source='get_package_path',
                                          read_only=True)
-    payment_account = serializers.SerializerMethodField('get_payment_account')
-    payment_required = serializers.SerializerMethodField(
-        'get_payment_required')
+    payment_account = serializers.SerializerMethodField()
+    payment_required = serializers.SerializerMethodField()
     premium_type = ReverseChoiceField(
         choices_dict=mkt.ADDON_PREMIUM_API, required=False)
     previews = PreviewSerializer(many=True, required=False,
                                  source='all_previews')
-    price = SemiSerializerMethodField('get_price')
-    price_locale = serializers.SerializerMethodField('get_price_locale')
+    price = SemiSerializerMethodField(source='*', required=False)
+    price_locale = serializers.SerializerMethodField()
     privacy_policy = LargeTextField(view_name='app-privacy-policy-detail',
+                                    queryset=Webapp.objects,
                                     required=False)
-    promo_imgs = serializers.SerializerMethodField('get_promo_imgs')
+    promo_imgs = serializers.SerializerMethodField()
     public_stats = serializers.BooleanField(read_only=True)
     ratings = serializers.SerializerMethodField('get_ratings_aggregates')
     regions = RegionSerializer(read_only=True, source='get_regions', many=True)
@@ -113,15 +121,17 @@ class AppSerializer(serializers.ModelSerializer):
     status = serializers.IntegerField(read_only=True)
     support_email = TranslationSerializerField(required=False)
     support_url = TranslationSerializerField(required=False)
-    supported_locales = serializers.SerializerMethodField(
-        'get_supported_locales')
-    tags = serializers.SerializerMethodField('get_tags')
-    upsell = serializers.SerializerMethodField('get_upsell')
+    supported_locales = serializers.SerializerMethodField()
+    tags = serializers.SerializerMethodField()
+    upsell = serializers.SerializerMethodField()
     upsold = serializers.HyperlinkedRelatedField(
         view_name='app-detail', source='upsold.free',
         required=False, queryset=Webapp.objects.all())
     user = serializers.SerializerMethodField('get_user_info')
-    versions = serializers.SerializerMethodField('get_versions')
+    versions = serializers.SerializerMethodField()
+
+
+class AppSerializer(BaseAppSerializer):
 
     class Meta:
         model = Webapp
@@ -209,7 +219,9 @@ class AppSerializer(serializers.ModelSerializer):
 
     def get_price(self, app):
         if app.has_premium():
-            return app.get_price(region=self._get_region_id())
+            price = app.get_price(region=self._get_region_id())
+            if price is not None:
+                return unicode(price)
         return None
 
     def get_price_locale(self, app):
@@ -277,10 +289,8 @@ class AppSerializer(serializers.ModelSerializer):
         return dict((v.version, reverse('version-detail', kwargs={'pk': v.pk}))
                     for v in app.versions.all().no_transforms())
 
-    def validate_categories(self, attrs, source):
-        if not attrs.get('categories'):
-            raise serializers.ValidationError('This field is required.')
-        set_categories = set(attrs[source])
+    def validate_categories(self, categories):
+        set_categories = set(categories)
         total = len(set_categories)
         max_cat = mkt.MAX_CATEGORIES
 
@@ -291,11 +301,11 @@ class AppSerializer(serializers.ModelSerializer):
                 'You can have only {0} categories.',
                 max_cat).format(max_cat))
 
-        return attrs
+        return categories
 
-    def get_device_types(self, app):
+    def get_device_types(self, device_types):
         with no_translation():
-            return [n.api_name for n in app.device_types]
+            return [n.api_name for n in device_types]
 
     def save_device_types(self, obj, new_types):
         new_types = [mkt.DEVICE_LOOKUP[d].id for d in new_types]
@@ -328,6 +338,14 @@ class AppSerializer(serializers.ModelSerializer):
             current_upsell.delete()
 
     def save_price(self, obj, price):
+        valid_prices = Price.objects.exclude(
+            price='0.00').values_list('price', flat=True)
+        if not (price and Decimal(price) in valid_prices):
+            raise serializers.ValidationError(
+                {'price':
+                 ['Premium app specified without a valid price. Price can be'
+                  ' one of %s.' % (', '.join('"%s"' % str(p)
+                                             for p in valid_prices),)]})
         premium = obj.premium
         if not premium:
             premium = AddonPremium()
@@ -335,31 +353,17 @@ class AppSerializer(serializers.ModelSerializer):
         premium.price = Price.objects.active().get(price=price)
         premium.save()
 
-    def validate_device_types(self, attrs, source):
-        if attrs.get('device_types') is None:
-            raise serializers.ValidationError('This field is required.')
-        for v in attrs['device_types']:
+    def validate_device_types(self, device_types):
+        for v in device_types:
             if v not in mkt.DEVICE_LOOKUP.keys():
                 raise serializers.ValidationError(
                     str(v) + ' is not one of the available choices.')
-        return attrs
+        return device_types
 
-    def validate_price(self, attrs, source):
-        if attrs.get('premium_type', None) not in (mkt.ADDON_FREE,
-                                                   mkt.ADDON_FREE_INAPP):
-            valid_prices = Price.objects.exclude(
-                price='0.00').values_list('price', flat=True)
-            price = attrs.get('price')
-            if not (price and Decimal(price) in valid_prices):
-                raise serializers.ValidationError(
-                    'Premium app specified without a valid price. Price can be'
-                    ' one of %s.' % (', '.join('"%s"' % str(p)
-                                               for p in valid_prices),))
-        return attrs
+    def validate_price(self, price):
+            return {'price': price}
 
-    def restore_object(self, attrs, instance=None):
-        # restore_object creates or updates a model instance, during
-        # input validation.
+    def update(self, instance, attrs):
         extras = []
         # Upsell bits are handled here because we need to remove it
         # from the attrs dict before deserializing.
@@ -367,34 +371,40 @@ class AppSerializer(serializers.ModelSerializer):
         if upsold is not None:
             extras.append((self.save_upsold, upsold))
         price = attrs.pop('price', None)
-        if price is not None:
+        if attrs.get('premium_type') not in (mkt.ADDON_FREE,
+                                             mkt.ADDON_FREE_INAPP):
             extras.append((self.save_price, price))
-        device_types = attrs['device_types']
-        if device_types:
+        device_types = attrs.pop('device_types', None)
+        if device_types is not None:
             extras.append((self.save_device_types, device_types))
-            del attrs['device_types']
-        instance = super(AppSerializer, self).restore_object(
-            attrs, instance=instance)
+        if instance:
+            instance = super(AppSerializer, self).update(instance, attrs)
+        else:
+            instance = super(AppSerializer, self).create(attrs)
         for f, v in extras:
             f(instance, v)
         return instance
 
+    def create(self, data):
+        return self.update(None, data)
+
 
 class ESAppSerializer(BaseESSerializer, AppSerializer):
     # Fields specific to search.
-    absolute_url = serializers.SerializerMethodField('get_absolute_url')
-    reviewed = serializers.DateField()
+    absolute_url = serializers.SerializerMethodField()
+    reviewed = serializers.DateTimeField(format=None,
+                                         read_only=True)
 
     # Override previews, because we don't need the full PreviewSerializer.
     previews = SimplePreviewSerializer(many=True, source='all_previews')
 
     # Override those, because we want a different source. Also, related fields
     # will call self.queryset early if they are not read_only, so force that.
-    file_size = serializers.SerializerMethodField('get_file_size')
+    file_size = serializers.SerializerMethodField()
     is_disabled = serializers.BooleanField(source='_is_disabled',
-                                           default=False)
-    manifest_url = serializers.CharField(source='manifest_url')
-    package_path = serializers.SerializerMethodField('get_package_path')
+                                           read_only=True)
+    manifest_url = serializers.CharField()
+    package_path = serializers.SerializerMethodField()
 
     # Feed collection.
     group = ESTranslationSerializerField(required=False)
@@ -484,6 +494,9 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
 
         return obj
 
+    def create(self, data):
+        return self.fake_object(data)
+
     def get_content_ratings(self, obj):
         body = (mkt.regions.REGION_TO_RATINGS_BODY().get(
             self._get_region_slug(), 'generic'))
@@ -555,7 +568,7 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
 
 
 class BaseESAppFeedSerializer(ESAppSerializer):
-    icons = serializers.SerializerMethodField('get_icons')
+    icons = serializers.SerializerMethodField()
 
     def get_icons(self, obj):
         """
@@ -600,9 +613,11 @@ class SimpleAppSerializer(AppSerializer):
                                        source='all_previews')
 
     class Meta(AppSerializer.Meta):
-        exclude = ['absolute_url', 'app_type', 'created', 'default_locale',
-                   'package_path', 'payment_account', 'supported_locales',
-                   'upsold', 'tags']
+        fields = list(
+            set(AppSerializer.Meta.fields) - set(
+                ['absolute_url', 'app_type', 'created', 'default_locale',
+                 'package_path', 'payment_account', 'supported_locales',
+                 'upsold', 'tags']))
 
 
 class SimpleESAppSerializer(ESAppSerializer):
@@ -611,7 +626,7 @@ class SimpleESAppSerializer(ESAppSerializer):
 
 
 class SuggestionsESAppSerializer(ESAppSerializer):
-    icon = serializers.SerializerMethodField('get_icon')
+    icon = serializers.SerializerMethodField()
 
     class Meta(ESAppSerializer.Meta):
         fields = ['name', 'description', 'absolute_url', 'icon']
@@ -626,11 +641,12 @@ class RocketbarESAppSerializer(serializers.Serializer):
 
     @property
     def data(self):
-        if self._data is None:
-            self._data = [self.to_native(o['payload']) for o in self.object]
+        if getattr(self, '_data', None) is None:
+            self._data = [self.to_representation(o['payload'])
+                          for o in self.instance]
         return self._data
 
-    def to_native(self, obj):
+    def to_representation(self, obj):
         # fake_app is a fake instance because we need to access a couple
         # properties and methods on Webapp. It should never hit the database.
         self.fake_app = Webapp(
@@ -641,7 +657,8 @@ class RocketbarESAppSerializer(serializers.Serializer):
         ESTranslationSerializerField.attach_translations(
             self.fake_app, obj, 'name')
         return {
-            'name': self.fields['name'].field_to_native(self.fake_app, 'name'),
+            'name': self.fields['name'].to_representation(
+                self.fields['name'].get_attribute(self.fake_app)),
             'icon': self.fake_app.get_icon_url(64),
             'slug': obj['slug'],
             'manifest_url': obj['manifest_url'],
@@ -653,8 +670,8 @@ class RocketbarESAppSerializerV2(AppSerializer, RocketbarESAppSerializer):
     Replaced `icon` key with `icons` for various pixel sizes: 128, 64, 48, 32.
     """
 
-    def to_native(self, obj):
-        data = super(RocketbarESAppSerializerV2, self).to_native(obj)
+    def to_representation(self, obj):
+        data = super(RocketbarESAppSerializerV2, self).to_representation(obj)
         del data['icon']
         data['icons'] = self.get_icons(self.fake_app)
         return data

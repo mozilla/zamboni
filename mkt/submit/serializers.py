@@ -31,33 +31,26 @@ class AppStatusSerializer(serializers.ModelSerializer):
         model = Webapp
         fields = ('status', 'disabled_by_user')
 
-    def validate_status(self, attrs, source):
-        if not self.object:
-            raise serializers.ValidationError(u'Error getting app.')
-
-        if source not in attrs:
-            return attrs
-
+    def validate_status(self, status):
         # Admins can change any status, skip validation for them.
         # It's dangerous, but with great powers comes great responsability.
         if ('request' in self.context and self.context['request'].user and
                 acl.action_allowed(self.context['request'], 'Admin', '%')):
-            return attrs
+            return status
 
         # An incomplete app's status can not be changed.
-        if not self.object.is_fully_complete():
+        if not self.instance.is_fully_complete():
             raise serializers.ValidationError(
-                self.object.completion_error_msgs())
+                self.instance.completion_error_msgs())
 
         # Only some specific changes are possible depending on the app current
         # status.
-        if (self.object.status not in self.allowed_statuses or
-                attrs[source] not in
-                self.allowed_statuses[self.object.status]):
+        if (self.instance.status not in self.allowed_statuses or
+                status not in self.allowed_statuses[self.instance.status]):
             raise serializers.ValidationError(
                 'App status can not be changed to the one you specified.')
 
-        return attrs
+        return status
 
 
 class FileUploadSerializer(serializers.ModelSerializer):
@@ -68,15 +61,18 @@ class FileUploadSerializer(serializers.ModelSerializer):
         model = FileUpload
         fields = ('id', 'processed', 'valid', 'validation')
 
-    def transform_validation(self, obj, value):
-        return json.loads(value) if value else value
+    def to_representation(self, obj):
+        data = super(FileUploadSerializer, self).to_representation(obj)
+        if obj.validation:
+            data['validation'] = json.loads(obj.validation)
+        return data
 
 
 class PreviewSerializer(serializers.ModelSerializer):
     filetype = serializers.CharField()
     id = serializers.IntegerField(source='pk')
     image_url = serializers.CharField(read_only=True)
-    resource_uri = serializers.SerializerMethodField('get_resource_uri')
+    resource_uri = serializers.SerializerMethodField()
     thumbnail_url = serializers.CharField(read_only=True)
 
     class Meta:
@@ -99,8 +95,8 @@ class FeedPreviewESSerializer(PreviewSerializer):
     Preview serializer for feed where we want to know the image orientation to
     scale feed app tiles appropriately.
     """
-    id = serializers.IntegerField(source='id')
-    thumbnail_size = serializers.Field(source='thumbnail_size')
+    id = serializers.IntegerField()
+    thumbnail_size = serializers.ReadOnlyField()
 
     class Meta(PreviewSerializer.Meta):
         fields = ['id', 'thumbnail_size', 'thumbnail_url']

@@ -1101,7 +1101,7 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
             }, status=http_status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
 
         app = self.get_object()
-        data = request.DATA[0]
+        data = request.data[0]
         if settings.DEBUG:
             log.debug(u'%s' % data)
 
@@ -1195,16 +1195,17 @@ class ContentRatingsPingbackV2(CORSMixin, UpdateModelMixin, GenericAPIView):
     def get_object(self, queryset=None):
         request = self.request
         try:
-            self.kwargs[self.lookup_field] = request.DATA['StoreRequestID']
+            self.kwargs[self.lookup_field] = request.data['StoreRequestID']
         except KeyError:
             raise ParseError('Need a StoreRequestID')
-        return super(ContentRatingsPingbackV2, self).get_object().app
+        self.object = super(ContentRatingsPingbackV2, self).get_object().app
+        return self.object
 
     def finalize_response(self, request, response, *args, **kwargs):
         """Alter response to conform to IARC spec (which is not REST)."""
         if is_success(response.status_code):
-            # Override data, because IARC wants a specific response and does
             # not care about our serialized data.
+            # Override data, because IARC wants a specific response and does
             response.data = iarc_app_data(self.object)
             # FIXME: not sure what StatusCode value to use when everything is
             # OK. The spec says it's not nullable and only gives 2 possible

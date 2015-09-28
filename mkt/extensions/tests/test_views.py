@@ -8,6 +8,7 @@ from datetime import datetime
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import reverse
+from django.db import transaction
 from django.test.utils import override_settings
 
 from nose.tools import eq_, ok_
@@ -659,17 +660,17 @@ class TestExtensionViewSetPatchPut(RestOAuth):
         eq_(self.extension.slug, u'lolé')
 
     def test_patch_with_rights_with_slug(self):
-        # Changes to the slug are ignored if you used the slug in the URL.
+        # Changes to the slug are made even if you used the slug in the URL.
         self.url = reverse('api-v2:extension-detail',
                            kwargs={'pk': self.extension.slug})
         self.extension.authors.add(self.user)
         response = self.client.patch(self.url, json.dumps({'slug': u'làlé'}))
         eq_(response.status_code, 200)
-        eq_(response.json['slug'], u'mŷ-extension')
+        eq_(response.json['slug'], u'làlé')
         eq_(response.json['disabled'], False)
         self.extension.reload()
         eq_(self.extension.disabled, False)
-        eq_(self.extension.slug, u'mŷ-extension')
+        eq_(self.extension.slug, u'làlé')
 
     def test_patch_slug_not_available(self):
         Extension.objects.create(slug=u'sorrŷ-already-taken')
@@ -899,7 +900,8 @@ class TestReviewerExtensionSearchView(RestOAuth, ESTestCase):
         self._allowed_verbs(self.url, ['get'])
 
     def test_has_cors(self):
-        self.assertCORS(self.anon.get(self.url), 'get')
+        with transaction.atomic():
+            self.assertCORS(self.anon.get(self.url), 'get')
 
     def test_basic(self):
         response = self.client.get(self.url)
@@ -907,13 +909,15 @@ class TestReviewerExtensionSearchView(RestOAuth, ESTestCase):
         eq_(len(response.json['objects']), 1)
 
     def test_anon(self):
-        response = self.anon.get(self.url)
-        eq_(response.status_code, 403)
+        with transaction.atomic():
+            response = self.anon.get(self.url)
+            eq_(response.status_code, 403)
 
     def test_user_no_perm(self):
-        self.user.groups.all().delete()
-        response = self.client.get(self.url)
-        eq_(response.status_code, 403)
+        with transaction.atomic():
+            self.user.groups.all().delete()
+            response = self.client.get(self.url)
+            eq_(response.status_code, 403)
 
     def test_list(self):
         self.extension2 = Extension.objects.create(name=u'Mŷ Second Extension')

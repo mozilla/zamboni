@@ -11,21 +11,18 @@ from mkt.users.models import UserProfile
 
 class AccountSerializer(serializers.ModelSerializer):
 
+    display_name = serializers.CharField(required=True)
+
     class Meta:
         model = UserProfile
         fields = ['display_name', 'enable_recommendations']
 
-    def validate_display_name(self, attrs, source):
-        """Validate that display_name is not empty"""
-        value = attrs.get(source)
-        if value is None or not value.strip():
-            raise serializers.ValidationError("This field is required")
-        return attrs
-
-    def transform_display_name(self, obj, value):
+    def to_representation(self, instance):
         """Return obj.name instead of display_name to handle users without
         a valid display_name."""
-        return obj.name
+        data = super(AccountSerializer, self).to_representation(instance)
+        data["display_name"] = instance.name
+        return data
 
 
 class AccountInfoSerializer(serializers.ModelSerializer):
@@ -38,40 +35,36 @@ class AccountInfoSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields = ['source', 'verified']
 
-    def transform_source(self, obj, value):
+    def to_representation(self, obj):
         """Return the sources slug instead of the id."""
+        data = super(AccountInfoSerializer, self).to_representation(obj)
         if obj.pk is None:
-            return mkt.LOGIN_SOURCE_LOOKUP[mkt.LOGIN_SOURCE_UNKNOWN]
+            source = mkt.LOGIN_SOURCE_LOOKUP[mkt.LOGIN_SOURCE_UNKNOWN]
         elif obj.source in self.ALLOWED_SOURCES:
-            return mkt.LOGIN_SOURCE_LOOKUP[value]
+            source = mkt.LOGIN_SOURCE_LOOKUP[obj.source]
         else:
-            return mkt.LOGIN_SOURCE_LOOKUP[mkt.LOGIN_SOURCE_BROWSERID]
+            source = mkt.LOGIN_SOURCE_LOOKUP[mkt.LOGIN_SOURCE_BROWSERID]
+
+        data["source"] = source
+        return data
 
 
 class FeedbackSerializer(PotatoCaptchaSerializer):
-    feedback = fields.CharField()
-    platform = fields.CharField(required=False)
+    feedback = fields.CharField(allow_blank=False)
     chromeless = fields.CharField(required=False)
     from_url = fields.CharField(required=False)
-    user = fields.Field()
+    user = fields.ReadOnlyField(required=False)
+    platform = fields.CharField(required=False, allow_null=True)
 
     def validate(self, attrs):
         attrs = super(FeedbackSerializer, self).validate(attrs)
-
         if not attrs.get('platform'):
             attrs['platform'] = self.request.GET.get('dev', '')
         if self.request.user.is_authenticated():
-            attrs['user'] = self.request.user
+            attrs['user'] = unicode(self.request.user)
         else:
             attrs['user'] = None
 
-        return attrs
-
-    def validate_feedback(self, attrs, source):
-
-        # ensure feedback is not submitted with only white spaces
-        if not attrs[source].strip():
-            raise serializers.ValidationError('Feedback can\'t be blank')
         return attrs
 
 
@@ -101,15 +94,18 @@ class NewsletterSerializer(serializers.Serializer):
         choices=NEWSLETTER_CHOICES_API.items())
     lang = fields.CharField()
 
-    def transform_newsletter(self, obj, value):
-        # Transform from the string the API receives to the one we need to pass
-        # to basket.
+    def to_representation(self, obj):
+        """Transform from the string the API receives to the one we need to
+        pass to basket."""
+        data = super(NewsletterSerializer, self).to_representation(obj)
         default = self.fields['newsletter'].default
-        return self.NEWSLETTER_CHOICES_API.get(value, default)
+        data['newsletter'] = self.NEWSLETTER_CHOICES_API.get(obj['newsletter'],
+                                                             default)
+        return data
 
 
 class PermissionsSerializer(serializers.Serializer):
-    permissions = fields.SerializerMethodField('get_permissions')
+    permissions = fields.SerializerMethodField()
 
     def get_permissions(self, obj):
         request = self.context['request']
@@ -158,7 +154,7 @@ class GroupsSerializer(serializers.ModelSerializer):
 
 
 class TOSSerializer(serializers.Serializer):
-    has_signed = fields.SerializerMethodField('get_has_signed')
+    has_signed = fields.SerializerMethodField()
 
     def get_has_signed(self, obj):
         return (self.context['request'].user.read_dev_agreement is not None)

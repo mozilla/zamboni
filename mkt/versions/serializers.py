@@ -30,12 +30,13 @@ class VersionSerializer(serializers.ModelSerializer):
             'addon': 'app'
         }
 
-    def to_native(self, obj):
-        native = super(VersionSerializer, self).to_native(obj)
+    def to_representation(self, obj):
+        native = super(VersionSerializer, self).to_representation(obj)
 
         # Add non-field data to the response.
         native.update({
-            'features': AppFeaturesSerializer().to_native(obj.features),
+            'features':
+            AppFeaturesSerializer().to_representation(obj.features),
             'is_current_version': obj.addon.current_version == obj,
             'releasenotes': (unicode(obj.releasenotes) if obj.releasenotes else
                              None),

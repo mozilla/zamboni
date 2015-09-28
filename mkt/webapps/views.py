@@ -4,7 +4,7 @@ from django.http import Http404
 
 import commonware
 from rest_framework import exceptions, response, serializers, status, viewsets
-from rest_framework.decorators import action
+from rest_framework.decorators import detail_route
 from rest_framework.response import Response
 
 from lib.metrics import record_action
@@ -46,11 +46,12 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     def get_base_queryset(self):
         return Webapp.objects.all()
 
-    def get_object(self, queryset=None):
+    def get_object(self):
         try:
             app = super(AppViewSet, self).get_object()
         except Http404:
-            app = super(AppViewSet, self).get_object(self.get_base_queryset())
+            self.get_queryset = self.get_base_queryset
+            app = super(AppViewSet, self).get_object()
             # Owners and reviewers can see apps regardless of region.
             owner_or_reviewer = AnyOf(AllowAppOwner, AllowReviewerReadOnly)
             if owner_or_reviewer.has_object_permission(self.request, self,
@@ -66,11 +67,11 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         return app
 
     def create(self, request, *args, **kwargs):
-        uuid = request.DATA.get('upload', '')
+        uuid = request.data.get('upload', '')
         if uuid:
             is_packaged = True
         else:
-            uuid = request.DATA.get('manifest', '')
+            uuid = request.data.get('manifest', '')
             is_packaged = False
         if not uuid:
             raise exceptions.ParseError(
@@ -93,15 +94,15 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         # Create app, user and fetch the icon.
         try:
             obj = Webapp.from_upload(upload, is_packaged=is_packaged)
-        except serializers.ValidationError as e:
+        except (serializers.ValidationError,
+                django_forms.ValidationError) as e:
             raise exceptions.ParseError(unicode(e))
         AddonUser(addon=obj, user=request.user).save()
         tasks.fetch_icon.delay(obj.pk, obj.latest_version.all_files[0].pk)
         record_action('app-submitted', request, {'app-id': obj.pk})
-
         log.info('App created: %s' % obj.pk)
         data = AppSerializer(
-            context=self.get_serializer_context()).to_native(obj)
+            context=self.get_serializer_context(), instance=obj).data
 
         return response.Response(
             data, status=201,
@@ -124,16 +125,16 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         self.object_list = self.filter_queryset(self.get_queryset().filter(
             authors=request.user))
         page = self.paginate_queryset(self.object_list)
-        serializer = self.get_pagination_serializer(page)
-        return response.Response(serializer.data)
+        serializer = self.get_serializer(page, many=True)
+        return self.get_paginated_response(serializer.data)
 
     def partial_update(self, request, *args, **kwargs):
         raise exceptions.MethodNotAllowed('PATCH')
 
-    @action()
+    @detail_route(methods=['POST'])
     def content_ratings(self, request, *args, **kwargs):
         app = self.get_object()
-        form = IARCGetAppInfoForm(data=request.DATA, app=app)
+        form = IARCGetAppInfoForm(data=request.data, app=app)
 
         if form.is_valid():
             try:
@@ -144,18 +145,19 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
 
         return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    @action(methods=['POST'],
-            cors_allowed_methods=PreviewViewSet.cors_allowed_methods)
+    @detail_route(
+        methods=['POST'],
+        cors_allowed_methods=PreviewViewSet.cors_allowed_methods)
     def preview(self, request, *args, **kwargs):
         kwargs['app'] = self.get_object()
         view = PreviewViewSet.as_view({'post': '_create'})
         return view(request, *args, **kwargs)
 
-    @action(methods=['PUT'], cors_allowed_methods=['put'])
+    @detail_route(methods=['PUT'], cors_allowed_methods=['put'])
     def icon(self, request, *args, **kwargs):
         app = self.get_object()
 
-        data_form = IconJSONForm(request.DATA)
+        data_form = IconJSONForm(request.data)
         if not data_form.is_valid():
             return Response(data_form.errors,
                             status=status.HTTP_400_BAD_REQUEST)

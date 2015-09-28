@@ -26,7 +26,7 @@ class PotatoCaptchaSerializer(serializers.Serializer):
     """
 
     # This field's value should always be blank (spammers are dumb).
-    tuber = serializers.CharField(required=False)
+    tuber = serializers.CharField(allow_blank=True)
 
     # This field's value should always be 'potato' (set by JS).
     sprout = serializers.CharField()
@@ -70,6 +70,8 @@ class PotatoCaptchaSerializer(serializers.Serializer):
             # pollute self.data
             self.fields.pop('tuber')
             self.fields.pop('sprout')
+            del attrs['tuber']
+            del attrs['sprout']
         return attrs
 
 
@@ -84,8 +86,8 @@ class RegionSerializer(CarrierSerializer):
 
 
 class CategorySerializer(serializers.Serializer):
-    def to_native(self, obj):
-        return {'slug': obj[0], 'name': unicode(obj[1])}
+    def to_representation(self, (slug, name)):
+        return {'slug': slug, 'name': unicode(name)}
 
 
 class URLSerializerMixin(serializers.ModelSerializer):
@@ -100,7 +102,7 @@ class URLSerializerMixin(serializers.ModelSerializer):
        passed as a keyword argument.
     2) By overriding the get_url method.
     """
-    url = serializers.SerializerMethodField('get_url')
+    url = serializers.SerializerMethodField()
 
     def get_url(self, obj):
         if 'request' in self.context and hasattr(self.Meta, 'url_basename'):

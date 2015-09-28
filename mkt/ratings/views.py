@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.http import Http404
 
 import commonware.log
-from rest_framework.decorators import action
+from rest_framework.decorators import detail_route
 from rest_framework.exceptions import (MethodNotAllowed, NotAuthenticated,
                                        PermissionDenied)
 from rest_framework.mixins import CreateModelMixin
@@ -51,12 +51,13 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
                               RestAnonymousAuthentication]
     serializer_class = RatingSerializer
 
-    def paginator_class(self, *args, **kwargs):
-        paginator = super(RatingViewSet, self).paginator_class(*args, **kwargs)
+    def pagination_class(self, *args, **kwargs):
+        paginator = super(RatingViewSet, self).pagination_class(*args,
+                                                                **kwargs)
         if hasattr(self, 'app'):
             # If an app is passed, we want the paginator count to match the
             # number of reviews on the app, without doing an extra query.
-            paginator._count = self.app.total_reviews
+            paginator.count_override = self.app.total_reviews
         return paginator
 
     # FIXME: Add throttling ? Original tastypie version didn't have it...
@@ -126,17 +127,20 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
                   (obj.pk, self.request.user.id))
         return super(RatingViewSet, self).destroy(request, *args, **kwargs)
 
-    def post_save(self, obj, created=False):
-        app = obj.addon
-        if created:
-            mkt.log(mkt.LOG.ADD_REVIEW, app, obj)
-            log.debug('[Review:%s] Created by user %s ' %
-                      (obj.pk, self.request.user.id))
-            record_action('new-review', self.request, {'app-id': app.id})
-        else:
-            mkt.log(mkt.LOG.EDIT_REVIEW, app, obj)
-            log.debug('[Review:%s] Edited by %s' %
-                      (obj.pk, self.request.user.id))
+    def perform_create(self, serializer):
+        serializer.save()
+        app = serializer.instance.addon
+        mkt.log(mkt.LOG.ADD_REVIEW, app, serializer.instance)
+        log.debug('[Review:%s] Created by user %s ' %
+                  (serializer.instance.pk, self.request.user.id))
+        record_action('new-review', self.request, {'app-id': app.id})
+
+    def perform_update(self, serializer):
+        serializer.save()
+        app = serializer.instance.addon
+        mkt.log(mkt.LOG.EDIT_REVIEW, app, serializer.instance)
+        log.debug('[Review:%s] Edited by %s' %
+                  (serializer.instance.pk, self.request.user.id))
 
     def partial_update(self, *args, **kwargs):
         # We don't need/want PATCH for now.
@@ -174,7 +178,7 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
 
         return extra_user, extra_info
 
-    @action(methods=['POST'], permission_classes=[AllowAny])
+    @detail_route(methods=['POST'], permission_classes=[AllowAny])
     def flag(self, request, pk=None):
         self.kwargs[self.lookup_field] = pk
         self.get_object()  # Will check that the Review instance is valid.

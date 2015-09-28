@@ -343,7 +343,7 @@ class TestContentRatingPingbackV2(RestOAuth):
         res = self.anon.post(self.url, data=json.dumps(
             {'StoreRequestID': unicode(uuid.uuid4())}))
         eq_(res.status_code, 404)
-        eq_(res.data, {'detail': 'Not found', 'StatusCode': 'InvalidRequest'})
+        eq_(res.data, {'detail': 'Not found.', 'StatusCode': 'InvalidRequest'})
 
     def test_post_error(self):
         request = IARCRequest.objects.create(app=self.app)

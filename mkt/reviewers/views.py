@@ -1082,7 +1082,7 @@ class ApproveRegion(SlugOrIdMixin, CreateAPIView):
         app = self.get_object()
         region = parse_region(region)
 
-        form = ApproveRegionForm(request.DATA, app=app, region=region)
+        form = ApproveRegionForm(request.data, app=app, region=region)
         if not form.is_valid():
             raise ParseError(dict(form.errors.items()))
         form.save()
@@ -1095,12 +1095,13 @@ class _AppAction(SlugOrIdMixin):
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     model = Webapp
+    queryset = Webapp.objects.all()
     slug_field = 'app_slug'
 
     def _do_post(self, request, pk):
         app = self.get_object()
         handler = ReviewApp(request, app, app.latest_version, ())
-        handler.set_data(request.DATA)
+        handler.set_data(request.data)
         return getattr(handler, "process_" + self.verb)()
 
     def post(self, request, pk, *a, **kw):
@@ -1141,7 +1142,7 @@ class AppEscalate(_AppAction, CreateAPIView, DestroyAPIView):
     def delete(self, request, pk, *a, **kw):
         app = self.get_object()
         handler = ReviewApp(request, app, app.latest_version, ())
-        handler.set_data(request.QUERY_PARAMS)
+        handler.set_data(request.query_params)
         handler.process_clear_escalation()
         return Response()
 
@@ -1156,7 +1157,7 @@ class AppRereview(_AppAction, DestroyAPIView):
     def delete(self, request, pk, *a, **kw):
         app = self.get_object()
         handler = ReviewApp(request, app, app.latest_version, ())
-        handler.set_data(request.QUERY_PARAMS)
+        handler.set_data(request.query_params)
         result = handler.process_clear_rereview()
         return Response({'score': result})
 
@@ -1170,6 +1171,7 @@ class _WebsiteAction(object):
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     model = Website
+    queryset = Website.objects.all()
 
 
 class WebsiteApprove(_WebsiteAction, CreateAPIView):
@@ -1190,22 +1192,25 @@ class UpdateAdditionalReviewViewSet(SlugOrIdMixin, UpdateAPIView):
     """
     API ViewSet for setting pass/fail of an AdditionalReview. This does not
     follow the DRF convention but instead calls review_passed() or
-    review_failed() on the AdditionalReview based on request.DATA['passed'].
+    review_failed() on the AdditionalReview based on request.data['passed'].
     """
 
     model = AdditionalReview
+    queryset = AdditionalReview.objects.all()
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     serializer_class = ReviewerAdditionalReviewSerializer
     # TODO: Change this when there is more than just the Tarako queue.
     permission_classes = [GroupPermission('Apps', 'ReviewTarako')]
 
-    def pre_save(self, additional_review):
-        additional_review.reviewer = self.request.user
-        additional_review.review_completed = datetime.datetime.now()
+    def perform_create(self, serializer):
+        serializer.validated_data['reviewer'] = self.request.user
+        serializer.validated_data['review_completed'] = datetime.datetime.now()
+        serializer.save()
+        serializer.instance.execute_post_review_task()
 
-    def post_save(self, additional_review, created):
-        additional_review.execute_post_review_task()
+    def perform_update(self, serializer):
+        self.perform_create(serializer)
 
 
 class AppOwnerPermission(BasePermission):
@@ -1216,7 +1221,7 @@ class AppOwnerPermission(BasePermission):
         return AddonUser.objects.filter(user=user, addon_id=app_id).exists()
 
     def has_permission(self, request, view):
-        app_id = request.DATA.get('app')
+        app_id = request.data.get('app')
         if not app_id or not self.webapp_exists(app_id):
             # Fall through to a 400 for invalid data.
             return True
@@ -1252,6 +1257,7 @@ class GenerateToken(SlugOrIdMixin, CreateAPIView):
                               RestSharedSecretAuthentication)
     permission_classes = [GroupPermission('Apps', 'Review')]
     model = Webapp
+    queryset = Webapp.objects.all()
     slug_field = 'app_slug'
 
     def post(self, request, pk, *args, **kwargs):
@@ -1326,6 +1332,7 @@ class CannedResponseViewSet(CORSMixin, MarketplaceView, viewsets.ModelViewSet):
                               RestSharedSecretAuthentication)
     permission_classes = [GroupPermission('Admin', 'ReviewerTools')]
     model = CannedResponse
+    queryset = CannedResponse.objects.all()
     serializer_class = CannedResponseSerializer
     cors_allowed_methods = ['get', 'post', 'patch', 'put', 'delete']
 

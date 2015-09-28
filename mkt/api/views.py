@@ -25,6 +25,7 @@ from rest_framework.viewsets import (GenericViewSet, ModelViewSet,
 from lib.constants import ALL_CURRENCIES
 from mkt.account.helpers import fxa_auth_info
 from mkt.api.authentication import RestOAuthAuthentication
+from mkt.api.paginator import CustomPagination
 from mkt.api.permissions import AllowAppOwner, GroupPermission
 from mkt.api.base import cors_api_view, CORSMixin, MarketplaceView
 from mkt.api.fields import SlugChoiceField
@@ -63,10 +64,12 @@ class CategoryViewSet(CORSMixin, MarketplaceView, ReadOnlyModelViewSet):
     authentication_classes = []
     permission_classes = [AllowAny]
     serializer_class = CategorySerializer
-    paginate_by = len(CATEGORY_CHOICES_DICT)
 
-    def get_queryset(self, *args, **kwargs):
-        return CATEGORY_CHOICES
+    def pagination_class(self):
+        return CustomPagination(
+            default_limit=len(CATEGORY_CHOICES_DICT))
+
+    queryset = CATEGORY_CHOICES
 
     def get_object(self, *args, **kwargs):
         cat = CATEGORY_CHOICES_DICT.get(self.kwargs['pk'])
@@ -141,7 +144,10 @@ class RegionViewSet(CORSMixin, MarketplaceView, ReadOnlyModelViewSet):
     authentication_classes = []
     permission_classes = [AllowAny]
     serializer_class = RegionSerializer
-    paginate_by = len(REGIONS_CHOICES_SLUG)
+
+    def pagination_class(self):
+        return CustomPagination(
+            default_limit=len(REGIONS_CHOICES_SLUG))
 
     def get_queryset(self, *args, **kwargs):
         return REGIONS_LIST_SORTED_BY_NAME()
@@ -177,6 +183,7 @@ def error_reporter(request):
 
 class RefreshManifestViewSet(GenericViewSet, CORSMixin):
     model = Webapp
+    queryset = Webapp.objects.all()
     permission_classes = [AllowAppOwner]
     cors_allowed_methods = ('post',)
     slug_lookup = 'app_slug'
@@ -194,13 +201,13 @@ class RefreshManifestViewSet(GenericViewSet, CORSMixin):
 
 class EnumeratedField(ChoiceField):
 
-    def from_native(self, value):
-        for k, v in self.choices:
+    def to_internal_value(self, value):
+        for k, v in self.choices.iteritems():
             if value == v:
                 return k
 
-    def to_native(self, key):
-        for k, v in self.choices:
+    def to_representation(self, key):
+        for k, v in self.choices.iteritems():
             if key == k:
                 return v
 
@@ -210,7 +217,7 @@ class PriceTierSerializer(ModelSerializer):
     active = BooleanField()
     name = CharField()
     method = EnumeratedField(PAYMENT_METHOD_CHOICES)
-    price = DecimalField()
+    price = DecimalField(max_digits=12, decimal_places=2)
 
     class Meta:
         model = Price
@@ -223,16 +230,20 @@ class PriceTierViewSet(generics.CreateAPIView,
     permission_classes = [GroupPermission('Prices', 'Edit')]
     authentication_classes = [RestOAuthAuthentication]
     serializer_class = PriceTierSerializer
+    pagination_class = CustomPagination
     model = Price
+    queryset = Price.objects.all()
 
 
 class PriceCurrencySerializer(ModelSerializer):
     resource_uri = HyperlinkedIdentityField(view_name='price-currency-detail')
-    tier = HyperlinkedRelatedField(view_name='price-tier-detail')
+    tier = HyperlinkedRelatedField(view_name='price-tier-detail',
+                                   queryset=Price.objects)
     currency = ChoiceField(choices=ALL_CURRENCIES.items())
     carrier = SlugChoiceField(choices_dict=CARRIER_MAP,
-                              required=False, empty=None)
-    price = DecimalField()
+                              required=False,
+                              allow_null=True)
+    price = DecimalField(max_digits=12, decimal_places=2)
     provider = EnumeratedField(PROVIDER_CHOICES)
     method = EnumeratedField(PAYMENT_METHOD_CHOICES)
     region = SlugChoiceField(choices_dict=dict(REGIONS_CHOICES_SLUG))
@@ -249,7 +260,9 @@ class PriceCurrencyViewSet(ModelViewSet):
     permission_classes = [GroupPermission('Prices', 'Edit')]
     authentication_classes = [RestOAuthAuthentication]
     serializer_class = PriceCurrencySerializer
+    pagination_class = CustomPagination
     model = PriceCurrency
+    queryset = PriceCurrency.objects.all()
     filter_fields = ('tier', 'provider', 'currency', 'price')
 
     def post_save(self, obj, created):

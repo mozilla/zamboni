@@ -152,10 +152,9 @@ class TestFeedCollectionSerializer(FeedTestMixin, mkt.site.tests.TestCase):
                 '', REGION=mkt.regions.USA)
         }
 
-    def validate(self, **attrs):
-        return (serializers.FeedCollectionSerializer()
-                .validate_color(attrs=self.data,
-                                source='color'))
+    def validate(self):
+        return (serializers.FeedCollectionSerializer(data=self.data)
+                .validate_color(self.data.get('color')))
 
     def test_validate_promo_bg(self):
         self.validate()
@@ -185,7 +184,7 @@ class TestFeedCollectionSerializer(FeedTestMixin, mkt.site.tests.TestCase):
         collection = self.feed_collection_factory(app_ids=[app.id])
         data = serializers.FeedCollectionSerializer(
             collection, context=self.context).data
-        eq_(data['apps'][0]['price'], 1)
+        eq_(data['apps'][0]['price'], '1.00')
 
 
 class TestFeedCollectionESSerializer(FeedTestMixin, mkt.site.tests.TestCase):
@@ -374,13 +373,15 @@ class TestFeedItemSerializer(FeedAppMixin, mkt.site.tests.TestCase):
             'request': mkt.site.tests.req_factory_factory('')
         }
 
-    def serializer(self, item=None):
+    def serializer(self, data=None, item=None):
         if not item:
-            return serializers.FeedItemSerializer(context=self.context)
-        return serializers.FeedItemSerializer(item, context=self.context)
+            return serializers.FeedItemSerializer(data=data,
+                                                  context=self.context)
+        return serializers.FeedItemSerializer(instance=item,
+                                              context=self.context)
 
     def validate(self, **attrs):
-        return self.serializer().validate(attrs=attrs)
+        return self.serializer(data=attrs).validate(attrs=attrs)
 
     def test_validate_passes(self):
         self.validate(app=self.feedapps[0])
@@ -397,7 +398,7 @@ class TestFeedItemSerializer(FeedAppMixin, mkt.site.tests.TestCase):
             'shelf': shelf.id
         }
         data.update(attrs)
-        return self.serializer().validate_shelf(data, 'shelf')
+        return self.serializer(data=data).validate_shelf(data['shelf'])
 
     def test_validate_shelf_passes(self):
         self.validate_shelf()
@@ -418,7 +419,7 @@ class TestFeedItemSerializer(FeedAppMixin, mkt.site.tests.TestCase):
         }
         serializer = serializers.FeedItemSerializer(data=data)
         assert serializer.is_valid()
-        assert serializer.object.region == RESTOFWORLD.id
+        assert serializer.validated_data['region'] == RESTOFWORLD.id
 
 
 class TestFeedItemESSerializer(FeedTestMixin, mkt.site.tests.TestCase):

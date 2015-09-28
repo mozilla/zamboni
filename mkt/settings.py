@@ -188,6 +188,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'mkt.api.middleware.APIBaseMiddleware',
     'mkt.api.middleware.AuthenticationMiddleware',
+    'mkt.api.middleware.MethodOverrideMiddleware',
     'commonware.log.ThreadRequestMiddleware',
     'mkt.search.middleware.ElasticsearchExceptionMiddleware',
     'session_csrf.CsrfMiddleware',
@@ -230,6 +231,7 @@ LOGGING = {
         'nose': {'level': logging.WARNING},
         's.client': {'level': logging.INFO},
         'suds': {'handlers': ['null']},
+        'urllib3': {'handlers': ['null']},
         'z.heka': {'level': logging.INFO},
         'z.elasticsearch': {'level': logging.INFO},
         'z.task': {'level': logging.INFO},
@@ -1019,15 +1021,17 @@ REST_FRAMEWORK = {
         # in each resource to match your needs.
         'mkt.api.permissions.AllowNone',
     ),
-    'DEFAULT_PAGINATION_SERIALIZER_CLASS':
-        'mkt.api.paginator.CustomPaginationSerializer',
+    'DEFAULT_PAGINATION_CLASS': (
+        'mkt.api.paginator.CustomPagination'
+    ),
+    'PAGE_SIZE': 25,
     'DEFAULT_FILTER_BACKENDS': (
         'rest_framework.filters.DjangoFilterBackend',
     ),
     'EXCEPTION_HANDLER': 'mkt.api.exceptions.custom_exception_handler',
-    'MAX_PAGINATE_BY': 50,
-    'PAGINATE_BY': 25,
-    'PAGINATE_BY_PARAM': 'limit'
+    'MAX_PAGE_SIZE': 50,
+    'PAGE_SIZE': 25,
+    'PAGE_SIZE_QUERY_PARAM': 'limit'
 }
 
 RTL_LANGUAGES = ('ar', 'fa', 'fa-IR', 'he')

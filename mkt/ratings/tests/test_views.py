@@ -727,7 +727,7 @@ class TestRatingResourcePagination(RestOAuth, mkt.site.tests.MktPaths):
         prev = urlparse(data['meta']['previous'])
         eq_(next.path, self.url)
         eq_(QueryDict(prev.query).dict(),
-            {'app': str(self.app.pk), 'limit': '2', 'offset': '0'})
+            {'app': str(self.app.pk), 'limit': '2'})
         eq_(data['meta']['offset'], 2)
         eq_(data['meta']['next'], None)
 

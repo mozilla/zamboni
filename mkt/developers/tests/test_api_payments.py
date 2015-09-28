@@ -211,14 +211,17 @@ class TestSerializer(AccountCase):
         self.create()
         request = Request(RequestFactory().get('/'))
         res = AddonPaymentAccountSerializer(self.payment,
-                                            context={'request': request}).data
+                                            context={'request': request},
+                                            ).data
         eq_(res['url'], self.app_payment_detail)
 
     def test_free(self):
         # Just a smoke test that we can serialize this correctly.
         self.create()
         self.app.update(premium_type=mkt.ADDON_FREE)
-        res = AddonPaymentAccountSerializer(self.payment)
+        res = AddonPaymentAccountSerializer(
+            data={'addon': self.app.get_api_url(),
+                  'payment_account': self.payment_url})
         ok_(not res.is_valid())
 
 

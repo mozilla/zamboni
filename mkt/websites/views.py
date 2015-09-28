@@ -12,7 +12,6 @@ from rest_framework.views import APIView
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView
-from mkt.api.paginator import ESPaginator
 from mkt.api.permissions import GroupPermission
 from mkt.reviewers.forms import ReviewersWebsiteSearchForm
 from mkt.search.filters import (PublicContentFilter, WebsiteSearchFormFilter,
@@ -48,7 +47,6 @@ class WebsiteSearchView(CORSMixin, MarketplaceView, ListAPIView):
     filter_backends = [PublicContentFilter, WebsiteSearchFormFilter,
                        RegionFilter, SearchQueryFilter, SortingFilter]
     serializer_class = ESWebsiteSerializer
-    paginator_class = ESPaginator
     form_class = SimpleSearchForm
 
     def get_queryset(self):
@@ -87,7 +85,7 @@ class WebsiteMetadataScraperView(CORSMixin, MarketplaceView, APIView):
     }
 
     def get(self, request, format=None):
-        url = request.QUERY_PARAMS.get('url', None)
+        url = request.query_params.get('url', None)
         if not url:
             return Response(self.errors['no_url'],
                             status=status.HTTP_400_BAD_REQUEST)
@@ -110,5 +108,6 @@ class WebsiteSubmissionViewSet(CORSMixin, MarketplaceView,
     permission_classes = [GroupPermission('Websites', 'Submit')]
     serializer_class = PublicWebsiteSubmissionSerializer
 
-    def pre_save(self, obj):
-        setattr(obj, 'submitter', self.request.user)
+    def perform_create(self, serializer):
+        serializer.save()
+        serializer.instance.update(submitter=self.request.user)

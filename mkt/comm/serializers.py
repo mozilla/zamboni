@@ -15,7 +15,7 @@ from mkt.users.models import UserProfile
 
 
 class AuthorSerializer(ModelSerializer):
-    gravatar_hash = SerializerMethodField('get_gravatar_hash')
+    gravatar_hash = SerializerMethodField()
     name = CharField()
 
     class Meta:
@@ -28,8 +28,8 @@ class AuthorSerializer(ModelSerializer):
 
 class AttachmentSerializer(ModelSerializer):
     url = SerializerMethodField('get_absolute_url')
-    display_name = CharField(source='display_name')
-    is_image = BooleanField(source='is_image')
+    display_name = CharField()
+    is_image = BooleanField()
 
     def get_absolute_url(self, obj):
         return absolutify(obj.get_absolute_url())
@@ -41,8 +41,8 @@ class AttachmentSerializer(ModelSerializer):
 
 class NoteSerializer(ModelSerializer):
     body = CharField()
-    author_meta = SerializerMethodField('get_author_meta')
-    attachments = AttachmentSerializer(source='attachments', read_only=True)
+    author_meta = SerializerMethodField()
+    attachments = AttachmentSerializer(read_only=True, many=True)
 
     def get_author_meta(self, obj):
         if obj.author:
@@ -61,7 +61,7 @@ class NoteSerializer(ModelSerializer):
 
 
 class NoteForListSerializer(NoteSerializer):
-    obj_meta = SerializerMethodField('get_obj_meta')
+    obj_meta = SerializerMethodField()
 
     def get_obj_meta(self, note):
         # grep: comm-content-type.
@@ -69,13 +69,13 @@ class NoteForListSerializer(NoteSerializer):
         if obj.__class__ == Webapp:
             return {
                 'icon': obj.get_icon_url(64),
-                'name': obj.name,
+                'name': unicode(obj.name),
                 'slug': obj.app_slug
             }
         else:
             return {
                 'icon': obj.get_icon_url(64),
-                'name': obj.name,
+                'name': unicode(obj.name),
                 'slug': obj.slug
             }
 
@@ -86,7 +86,7 @@ class NoteForListSerializer(NoteSerializer):
 
 class CommAppSerializer(ModelSerializer):
     name = CharField()
-    review_url = SerializerMethodField('get_review_url')
+    review_url = SerializerMethodField()
     thumbnail_url = SerializerMethodField('get_icon')
     url = CharField(source='get_absolute_url')
 
@@ -103,13 +103,13 @@ class CommAppSerializer(ModelSerializer):
 
 
 class ThreadSerializer(ModelSerializer):
-    addon = SerializerMethodField('get_addon')
+    addon = SerializerMethodField()
     addon_meta = CommAppSerializer(source='addon', read_only=True)
-    notes_count = SerializerMethodField('get_notes_count')
-    recent_notes = SerializerMethodField('get_recent_notes')
-    version = SerializerMethodField('get_version')
-    version_number = SerializerMethodField('get_version_number')
-    version_is_obsolete = SerializerMethodField('get_version_is_obsolete')
+    notes_count = SerializerMethodField()
+    recent_notes = SerializerMethodField()
+    version = SerializerMethodField()
+    version_number = SerializerMethodField()
+    version_is_obsolete = SerializerMethodField()
 
     class Meta:
         model = CommunicationThread
@@ -156,7 +156,7 @@ class CommVersionSerializer(ModelSerializer):
 
 class ThreadSerializerV2(ThreadSerializer):
     app = CommAppSerializer(source='addon', read_only=True)
-    version = CommVersionSerializer(source='version', read_only=True)
+    version = CommVersionSerializer(read_only=True)
 
     class Meta(ThreadSerializer.Meta):
         fields = ('id', 'app', 'created', 'modified', 'notes_count',
@@ -169,7 +169,7 @@ class CommVersionSimpleSerializer(ModelSerializer):
 
 
 class ThreadSimpleSerializer(ThreadSerializerV2):
-    version = CommVersionSimpleSerializer(source='version', read_only=True)
+    version = CommVersionSimpleSerializer(read_only=True)
 
     class Meta(ThreadSerializerV2.Meta):
         fields = ('id', 'version')

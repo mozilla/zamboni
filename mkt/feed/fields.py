@@ -1,14 +1,4 @@
-import hashlib
-import StringIO
-import uuid
-
-from django.conf import settings
-from django.core.files.base import File
-
-import requests
-from PIL import Image
-from rest_framework import exceptions, serializers
-from tower import ugettext as _
+from rest_framework import serializers
 
 from mkt.fireplace.serializers import FeedFireplaceESAppSerializer
 from mkt.webapps.serializers import (AppSerializer, ESAppFeedSerializer,
@@ -16,14 +6,14 @@ from mkt.webapps.serializers import (AppSerializer, ESAppFeedSerializer,
                                      ESAppSerializer)
 
 
-class FeedCollectionMembershipField(serializers.RelatedField):
+class FeedCollectionMembershipField(serializers.PrimaryKeyRelatedField):
     """
     Serializer field to be used with M2M model fields to Webapps, replacing
     instances of the Membership instances with serializations of the Webapps
     that they correspond to.
     """
 
-    def to_native(self, qs, use_es=False):
+    def to_representation(self, qs, use_es=False):
         return AppSerializer(qs, context=self.context).data
 
 
@@ -84,7 +74,7 @@ class AppESField(serializers.Field):
                                         ['group_translations'])
         return app
 
-    def to_native(self, app_ids):
+    def to_representation(self, app_ids):
         """App ID to serialized app."""
         app_map = self.context['app_map']
         if self.context.get('group_apps'):
@@ -116,7 +106,7 @@ class AppESField(serializers.Field):
             return self.serializer_class(app_map[app_ids],
                                          context=self.context).data
 
-    def from_native(self, data):
+    def to_internal_value(self, data):
         if self.many:
             return [app['id'] for app in data['apps']]
         else:
@@ -143,66 +133,3 @@ class AppESHomePromoCollectionField(AppESField):
     @property
     def serializer_class(self):
         return ESAppFeedCollectionSerializer
-
-
-class DataURLImageField(serializers.CharField):
-    def from_native(self, data):
-        if data.startswith('"') and data.endswith('"'):
-            # Strip quotes if necessary.
-            data = data[1:-1]
-        if not data.startswith('data:'):
-            raise serializers.ValidationError('Not a data URI.')
-
-        metadata, encoded = data.rsplit(',', 1)
-        parts = metadata.rsplit(';', 1)
-        if parts[-1] == 'base64':
-            content = encoded.decode('base64')
-            f = StringIO.StringIO(content)
-            f.size = len(content)
-            tmp = File(f, name=uuid.uuid4().hex)
-            hash_ = hashlib.md5(content).hexdigest()[:8]
-            return serializers.ImageField().from_native(tmp), hash_
-        else:
-            raise serializers.ValidationError('Not a base64 data URI.')
-
-    def to_native(self, value):
-        return value.name
-
-
-class ImageURLField(serializers.Field):
-    """
-    Takes a URL pointing to an image (intended to be from Aviary's Feather).
-    Passes it to DataImageURLField which saves to a tmp directory and hashes.
-    """
-    write_only = True
-
-    def from_native(self, image_url):
-        try:
-            res = requests.get(
-                image_url,
-                headers={'User-Agent': settings.MARKETPLACE_USER_AGENT})
-        except:
-            raise exceptions.ParseError(
-                _('Invalid URL %(url)s').format(url=image_url))
-
-        # Check response code from image download.
-        if res.status_code != 200:
-            raise exceptions.ParseError(
-                _('Error downloading image from %(url)s').format(
-                    url=image_url))
-
-        # Validate the image.
-        try:
-            Image.open(StringIO.StringIO(res.content))
-        except IOError:
-            raise exceptions.ParseError(
-                _('Image from %(url)s could not be parsed').format(
-                    url=image_url))
-
-        # Encode image to base64.
-        img_data = StringIO.StringIO(res.content)
-        img_data_uri = ('data:image/jpg;base64,' +
-                        img_data.read().encode('base64'))
-
-        # Return image file object and hash.
-        return DataURLImageField().from_native(img_data_uri)

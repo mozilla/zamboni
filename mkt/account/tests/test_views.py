@@ -230,13 +230,13 @@ class TestAccount(RestOAuth):
                                 data=json.dumps({'display_name': None}))
         eq_(res.status_code, 400)
         data = json.loads(res.content)
-        eq_(data['display_name'], [u'This field is required'])
+        eq_(data['display_name'], [u'This field may not be null.'])
 
         res = self.client.patch(self.url,
                                 data=json.dumps({'display_name': ''}))
         eq_(res.status_code, 400)
         data = json.loads(res.content)
-        eq_(data['display_name'], [u'This field is required'])
+        eq_(data['display_name'], [u'This field may not be blank.'])
 
     def test_put(self):
         res = self.client.put(
@@ -326,7 +326,7 @@ class TestInstalled(RestOAuth):
         eq_(data['meta']['limit'], 2)
         prev = urlparse(data['meta']['previous'])
         eq_(next.path, self.list_url)
-        eq_(QueryDict(prev.query).dict(), {u'limit': u'2', u'offset': u'0'})
+        eq_(QueryDict(prev.query).dict(), {u'limit': u'2'})
         eq_(data['meta']['offset'], 2)
         eq_(data['meta']['next'], None)
 
@@ -664,6 +664,9 @@ class TestFeedbackHandler(TestPotatoCaptcha, RestOAuth):
     def _call(self, anonymous=False, data=None):
         post_data = self.default_data.copy()
         client = self.anon if anonymous else self.client
+        if anonymous:
+            post_data['tuber'] = ''
+            post_data['sprout'] = 'potato'
         if data:
             post_data.update(data)
         res = client.post(self.url, data=json.dumps(post_data),
@@ -721,7 +724,7 @@ class TestFeedbackHandler(TestPotatoCaptcha, RestOAuth):
     def test_send_anonymous(self):
         res, data = self._call(anonymous=True)
         self._test_success(res, data)
-        assert not data['user']
+        assert not data.get('user')
         assert 'Anonymous' in mail.outbox[0].body
         eq_(settings.NOBODY_EMAIL, mail.outbox[0].from_email)
 

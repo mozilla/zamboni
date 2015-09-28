@@ -5,7 +5,7 @@ from mkt.prices.models import Price, price_locale
 
 
 class PriceSerializer(serializers.ModelSerializer):
-    prices = serializers.SerializerMethodField('get_prices')
+    prices = serializers.SerializerMethodField()
     localized = serializers.SerializerMethodField('get_localized_prices')
     pricePoint = serializers.CharField(source='name')
     name = serializers.CharField(source='tier_name')

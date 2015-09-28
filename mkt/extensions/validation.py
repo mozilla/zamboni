@@ -7,9 +7,9 @@ from django.forms import ValidationError
 from django.utils.encoding import smart_unicode
 
 from PIL import Image
-from rest_framework.exceptions import ParseError
 from tower import ugettext as _
 
+from mkt.api.exceptions import ParseError
 from mkt.files.utils import SafeUnzip
 from mkt.site.utils import strip_bom
 

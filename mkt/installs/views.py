@@ -24,7 +24,7 @@ log = commonware.log.getLogger('z.api')
 @parser_classes([JSONParser, FormParser])
 @permission_classes([AllowAny])
 def install(request):
-    form = InstallForm(request.DATA, request=request)
+    form = InstallForm(request.data, request=request)
 
     if form.is_valid():
         app = form.cleaned_data['app']

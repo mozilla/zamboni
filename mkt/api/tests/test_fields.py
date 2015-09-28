@@ -28,8 +28,9 @@ class _TestTranslationSerializerField(object):
         self.factory = APIRequestFactory()
         self.app = Webapp.objects.get(pk=337141)
 
-    def _test_expected_dict(self, field):
-        result = field.field_to_native(self.app, 'name')
+    def _test_expected_dict(self, field, serializer=None):
+        field.bind('name', serializer)
+        result = field.to_representation(field.get_attribute(self.app))
         expected = {
             'en-US': unicode(Translation.objects.get(id=self.app.name.id,
                                                      locale='en-US')),
@@ -37,27 +38,30 @@ class _TestTranslationSerializerField(object):
                                                   locale='es')),
         }
         eq_(result, expected)
-
-        result = field.field_to_native(self.app, 'description')
+        field.source = None
+        field.bind('description', serializer)
+        result = field.to_representation(field.get_attribute(self.app))
         expected = {
             'en-US': Translation.objects.get(id=self.app.description.id,
                                              locale='en-US'),
         }
         eq_(result, expected)
 
-    def _test_expected_single_string(self, field):
-        result = field.field_to_native(self.app, 'name')
+    def _test_expected_single_string(self, field, serializer=None):
+        field.bind('name', serializer)
+        result = field.to_representation(field.get_attribute(self.app))
         expected = unicode(self.app.name)
         eq_(result, expected)
-
-        result = field.field_to_native(self.app, 'description')
+        field.source = None
+        field.bind('description', serializer)
+        result = field.to_representation(field.get_attribute(self.app))
         expected = unicode(self.app.description)
         eq_(result, expected)
 
-    def test_from_native(self):
+    def test_to_internal_value(self):
         data = u'Translatiön'
         field = self.field_class()
-        result = field.from_native(data)
+        result = field.to_internal_value(data)
         eq_(result, data)
 
         data = {
@@ -65,21 +69,21 @@ class _TestTranslationSerializerField(object):
             'en-US': u'No But Hello what!'
         }
         field = self.field_class()
-        result = field.from_native(data)
+        result = field.to_internal_value(data)
         eq_(result, data)
 
         data = ['Bad Data']
         field = self.field_class()
-        result = field.from_native(data)
+        result = field.to_internal_value(data)
         eq_(result, unicode(data))
 
-    def test_field_from_native_strip(self):
+    def test_to_internal_value_strip(self):
         data = {
             'fr': u'  Non mais Allô quoi ! ',
             'en-US': u''
         }
         field = self.field_class()
-        result = field.from_native(data)
+        result = field.to_internal_value(data)
         eq_(result, {'fr': u'Non mais Allô quoi !', 'en-US': u''})
 
     def test_wrong_locale_code(self):
@@ -87,9 +91,9 @@ class _TestTranslationSerializerField(object):
             'unknown-locale': 'some name',
         }
         field = self.field_class()
-        result = field.from_native(data)
+
         with self.assertRaises(ValidationError) as exc:
-            field.validate(result)
+            field.to_internal_value(data)
         eq_(exc.exception.message,
             "The language code 'unknown-locale' is invalid.")
 
@@ -100,7 +104,7 @@ class _TestTranslationSerializerField(object):
             'en-US': None,
         }
         field = self.field_class()
-        result = field.from_native(data)
+        result = field.to_internal_value(data)
         field.validate(result)
         eq_(result, data)
 
@@ -112,7 +116,7 @@ class _TestTranslationSerializerField(object):
         self.app.mymock = Mock()
         self.app.mymock.mymocked_field = self.app.name
         field = self.field_class(source='mymock.mymocked_field')
-        result = field.field_to_native(self.app, 'shouldbeignored')
+        result = field.to_internal_value(field.get_attribute(self.app))
         expected = {
             'en-US': unicode(Translation.objects.get(id=self.app.name.id,
                                                      locale='en-US')),
@@ -125,15 +129,13 @@ class _TestTranslationSerializerField(object):
         mock_serializer = Serializer()
         mock_serializer.context = {}
         field = self.field_class()
-        field.initialize(mock_serializer, 'name')
-        self._test_expected_dict(field)
+        self._test_expected_dict(field, mock_serializer)
 
     def test_field_to_native_request_POST(self):
         request = Request(self.factory.post('/'))
         mock_serializer = Serializer()
         mock_serializer.context = {'request': request}
         field = self.field_class()
-        field.initialize(mock_serializer, 'name')
         self._test_expected_dict(field)
 
     def test_field_to_native_request_GET(self):
@@ -141,7 +143,6 @@ class _TestTranslationSerializerField(object):
         mock_serializer = Serializer()
         mock_serializer.context = {'request': request}
         field = self.field_class()
-        field.initialize(mock_serializer, 'name')
         self._test_expected_dict(field)
 
     def test_field_to_native_request_GET_lang(self):
@@ -155,29 +156,31 @@ class _TestTranslationSerializerField(object):
         # language, whatever it is.
         request = Request(self.factory.get('/', {'lang': 'lol'}))
         eq_(request.GET['lang'], 'lol')
-        mock_serializer = Serializer()
-        mock_serializer.context = {'request': request}
         field = self.field_class()
-        field.initialize(mock_serializer, 'name')
+        field.context = {'request': request}
         self._test_expected_single_string(field)
 
     def test_field_null(self):
         field = self.field_class()
         self.app = Webapp()
-        result = field.field_to_native(self.app, 'name')
+        field.bind('name', None)
+        result = field.to_representation(field.get_attribute(self.app))
         eq_(result, None)
-        result = field.field_to_native(self.app, 'description')
+        field.source = None
+        field.bind('description', None)
+        result = field.to_representation(field.get_attribute(self.app))
         eq_(result, None)
+
+
+class GuessLangSerializer(Serializer):
+    msg = GuessLanguageTranslationField()
 
 
 class TestGuessLanguageTranslationField(TestCase):
     def guessed_value(self, input, expected_output):
-        field = GuessLanguageTranslationField()
-        FIELD_NAME = 'testfield'
-        into = {}
-        DATA = {FIELD_NAME: input}
-        field.field_from_native(DATA, None, FIELD_NAME, into)
-        eq_(expected_output, into[FIELD_NAME])
+        s = GuessLangSerializer(data={'msg': input})
+        ok_(s.is_valid())
+        eq_(expected_output, s.validated_data['msg'])
 
     def test_english(self):
         data = u'This is in English.'
@@ -244,21 +247,25 @@ class TestESTranslationSerializerField(_TestTranslationSerializerField,
         self.field_class().attach_translations(self.app, data, 'foo')
         eq_(self.app.foo_translations, {})
 
-    def _test_expected_dict(self, field):
-        result = field.field_to_native(self.app, 'name')
+    def _test_expected_dict(self, field, serializer=None):
+        field.bind('name', serializer)
+        result = field.to_representation(field.get_attribute(self.app))
         expected = self.app.name_translations
         eq_(result, expected)
-
-        result = field.field_to_native(self.app, 'description')
+        field.source = None
+        field.bind('description', serializer)
+        result = field.to_representation(field.get_attribute(self.app))
         expected = self.app.description_translations
         eq_(result, expected)
 
-    def _test_expected_single_string(self, field):
-        result = field.field_to_native(self.app, 'name')
+    def _test_expected_single_string(self, field, serializer=None):
+        field.bind('name', serializer)
+        result = field.to_representation(field.get_attribute(self.app))
         expected = unicode(self.app.name_translations['en-US'])
         eq_(result, expected)
-
-        result = field.field_to_native(self.app, 'description')
+        field.source = None
+        field.bind('description', serializer)
+        result = field.to_representation(field.get_attribute(self.app))
         expected = unicode(self.app.description_translations['en-US'])
         eq_(result, expected)
 
@@ -266,18 +273,20 @@ class TestESTranslationSerializerField(_TestTranslationSerializerField,
         self.app.mymock = Mock()
         self.app.mymock.mymockedfield_translations = self.app.name_translations
         field = self.field_class(source='mymock.mymockedfield')
-        result = field.field_to_native(self.app, 'shouldbeignored')
+        result = field.to_representation(field.get_attribute(self.app))
         expected = self.app.name_translations
         eq_(result, expected)
 
     def test_field_null(self):
         field = self.field_class()
         self.app.name_translations = {}
-        result = field.field_to_native(self.app, 'name')
+        field.bind('name', None)
+        result = field.to_representation(field.get_attribute(self.app))
         eq_(result, None)
-
+        field.source = None
         self.app.description_translations = None
-        result = field.field_to_native(self.app, 'description')
+        field.bind('description', None)
+        result = field.to_representation(field.get_attribute(self.app))
         eq_(result, None)
 
 
@@ -291,62 +300,63 @@ class SlugOrPrimaryKeyRelatedFieldTests(TestCase):
         obj = Mock()
         obj.attached = self.app
 
-        field = SlugOrPrimaryKeyRelatedField()
-        eq_(field.field_to_native(obj, 'attached'), self.app.pk)
+        field = SlugOrPrimaryKeyRelatedField(read_only=True)
+        field.bind('attached', None)
+        eq_(field.to_representation(field.get_attribute(obj)), self.app.pk)
 
     def test_render_as_pks_many(self):
         obj = Mock()
         obj.attached = [self.app]
 
-        field = SlugOrPrimaryKeyRelatedField(many=True)
-        eq_(field.field_to_native(obj, 'attached'), [self.app.pk])
+        field = SlugOrPrimaryKeyRelatedField(many=True, read_only=True)
+        field.bind('attached', None)
+        eq_(field.to_representation(field.get_attribute(obj)), [self.app.pk])
 
     def test_render_as_slug(self):
         obj = Mock()
         obj.attached = self.app
 
         field = SlugOrPrimaryKeyRelatedField(render_as='slug',
-                                             slug_field='app_slug')
-        eq_(field.field_to_native(obj, 'attached'), self.app.app_slug)
+                                             slug_field='app_slug',
+                                             read_only=True)
+        field.bind('attached', None)
+        eq_(field.to_representation(field.get_attribute(obj)),
+            self.app.app_slug)
 
     def test_render_as_slugs_many(self):
         obj = Mock()
         obj.attached = [self.app]
 
         field = SlugOrPrimaryKeyRelatedField(render_as='slug',
-                                             slug_field='app_slug', many=True)
-        eq_(field.field_to_native(obj, 'attached'), [self.app.app_slug])
+                                             slug_field='app_slug', many=True,
+                                             read_only=True)
+        field.bind('attached', None)
+        eq_(field.to_representation(field.get_attribute(obj)),
+            [self.app.app_slug])
 
     def test_parse_as_pk(self):
-        into = {}
-        field = SlugOrPrimaryKeyRelatedField(queryset=Webapp.objects.all())
-        field.field_from_native({'addon': self.app.pk}, None, 'addon', into)
-        eq_(into, {'addon': self.app})
+        field = SlugOrPrimaryKeyRelatedField(slug_field='app_slug',
+                                             queryset=Webapp.objects.all())
+        eq_(field.to_internal_value(self.app.pk), self.app)
 
     def test_parse_as_pks_many(self):
         app2 = app_factory()
-        into = {}
         field = SlugOrPrimaryKeyRelatedField(queryset=Webapp.objects.all(),
                                              many=True)
-        field.field_from_native({'apps': [self.app.pk, app2.pk]}, None,
-                                'apps', into)
-        eq_(into, {'apps': [self.app, app2]})
+        eq_(field.to_internal_value([self.app.pk, app2.pk]),
+            [self.app, app2])
 
     def test_parse_as_slug(self):
-        into = {}
         field = SlugOrPrimaryKeyRelatedField(queryset=Webapp.objects.all(),
                                              slug_field='app_slug')
-        field.field_from_native({'app': self.app.app_slug}, None, 'app', into)
-        eq_(into, {'app': self.app})
+        eq_(field.to_internal_value(self.app.app_slug), self.app)
 
     def test_parse_as_slugs_many(self):
         app2 = app_factory(app_slug='foo')
-        into = {}
         field = SlugOrPrimaryKeyRelatedField(queryset=Webapp.objects.all(),
                                              slug_field='app_slug', many=True)
-        field.field_from_native({'apps': [self.app.app_slug, app2.app_slug]},
-                                None, 'apps', into)
-        eq_(into, {'apps': [self.app, app2]})
+        eq_(field.to_internal_value([self.app.app_slug, app2.app_slug]),
+            [self.app, app2])
 
 
 class TestSlugChoiceField(TestCase):
@@ -362,15 +372,15 @@ class TestSlugChoiceField(TestCase):
 
     def test_to_native(self):
         field = self.field(choices_dict=CARRIER_MAP)
-        eq_(field.to_native(1), 'telefonica')
+        eq_(field.to_representation(1), 'telefonica')
 
     def test_to_native_none(self):
         field = self.field(choices_dict=CARRIER_MAP)
-        eq_(field.to_native(None), None)
+        eq_(field.to_representation(None), None)
 
     def test_to_native_zero(self):
         field = self.field(choices_dict=CARRIER_MAP)
-        eq_(field.to_native(0), 'carrierless')
+        eq_(field.to_representation(0), 'carrierless')
 
 
 class Spud(object):
@@ -406,7 +416,6 @@ class TestSplitField(TestCase):
         field = self.serializer.fields['spud']
         eq_(self.request, field.output.context['request'],
             self.serializer.context['request'])
-        ok_(not hasattr(field.input, 'context'))
 
 
 class TestIntegerRangeField(TestCase):
