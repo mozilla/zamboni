@@ -29,6 +29,7 @@ def guess_language(text):
     if confidence < 0.9:
         depunct = dict.fromkeys([ord(c) for c in string.punctuation], u' ')
         words = text.lower().translate(depunct).split()
+        assumed_lang = None
         for w in words:
             assumed_lang = COMMON_REVIEW_WORDS.get(w)
             if assumed_lang:

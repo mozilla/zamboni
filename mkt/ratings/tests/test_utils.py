@@ -27,3 +27,8 @@ class LanguageGuessTest(mkt.site.tests.TestCase):
         eq_(guess_language(u'Like it'), None)
         eq_(guess_language(u'dsfksadflkj'), None)
         eq_(guess_language(u'exelente'), None)
+
+    def test_no_text(self):
+        eq_(guess_language(u''), None)
+        eq_(guess_language(u'  '), None)
+        eq_(guess_language(u',,!,[]'), None)
