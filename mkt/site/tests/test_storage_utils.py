@@ -133,5 +133,5 @@ class TestStorageClasses(TestCase):
         tmp = tempfile.mkstemp()[1]
         copy_stored_file(tmp, tmp, src_storage=local_storage,
                          dst_storage=private_storage)
-        assert mock.not_called
+        assert not mock.called
         local_storage.delete(tmp)
