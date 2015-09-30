@@ -221,6 +221,7 @@ POSTFIX_AUTH_TOKEN = env('POSTFIX_AUTH_TOKEN')
 POSTFIX_DOMAIN = DOMAIN
 
 # IARC content ratings.
+IARC_COMPANY = 'Mozilla'
 IARC_ENV = env('IARC_ENV', default='prod')
 IARC_MOCK = False
 IARC_PASSWORD = env('IARC_PASSWORD')
