@@ -77,6 +77,12 @@ class TestExtensionValidator(TestCase):
     def test_name_not_string(self):
         with self.assertRaises(ParseError):
             self.validator.validate_name({'name': 42})
+        with self.assertRaises(ParseError):
+            self.validator.validate_name({'name': []})
+        with self.assertRaises(ParseError):
+            self.validator.validate_name({'name': {}})
+        with self.assertRaises(ParseError):
+            self.validator.validate_name({'name': None})
 
     def test_name_too_short(self):
         with self.assertRaises(ParseError):
@@ -88,21 +94,23 @@ class TestExtensionValidator(TestCase):
 
     def test_name_too_long(self):
         with self.assertRaises(ParseError):
-            self.validator.validate_name({'name': 'X' * 100})
+            self.validator.validate_name({'name': u'ŷ' * 46})
 
     def test_name_valid(self):
-        NAME = u'My Lîttle Extension'
+        expected_name = u'My Lîttle Extension'
         try:
-            self.validator.validate_name({'name': NAME})
+            self.validator.validate_name({'name': expected_name})
         except:
-            assert False, u'A valid name "%s" fails validation' % NAME
+            assert False, u'A valid name "%s" fails validation' % expected_name
 
     def test_description_valid(self):
-        DESC = u'My very lîttle extension has a description'
+        expected_description = u'My very lîttle extension has a description'
         try:
-            self.validator.validate_description({'description': DESC})
+            self.validator.validate_description(
+                {'description': expected_description})
         except:
-            assert False, u'A valid description "%s" fails validation' % DESC
+            assert False, (u'A valid description'
+                           u' "%s" fails validation' % expected_description)
 
     def test_description_missing_valid(self):
         try:
@@ -110,9 +118,19 @@ class TestExtensionValidator(TestCase):
         except:
             assert False, u'Description should not be required.'
 
+    def test_description_invalid(self):
+        with self.assertRaises(ParseError):
+            self.validator.validate_description({'description': 42})
+        with self.assertRaises(ParseError):
+            self.validator.validate_description({'description': []})
+        with self.assertRaises(ParseError):
+            self.validator.validate_description({'description': {}})
+        with self.assertRaises(ParseError):
+            self.validator.validate_description({'description': None})
+
     def test_description_too_long(self):
         with self.assertRaises(ParseError):
-            self.validator.validate_name({'name': 'ô' * 134})
+            self.validator.validate_description({'description': u'ô' * 134})
 
     def test_author_invalid(self):
         with self.assertRaises(ParseError):
@@ -148,11 +166,12 @@ class TestExtensionValidator(TestCase):
             self.validator.validate_name({'name': u'ŷ' * 129})
 
     def test_version_valid(self):
-        VERSION = u'0.42.42.42'
+        expected_version = u'0.42.42.42'
         try:
-            self.validator.validate_version({'version': VERSION})
+            self.validator.validate_version({'version': expected_version})
         except:
-            assert False, u'A valid version "%s" fails validation' % VERSION
+            assert False, (u'A valid version'
+                           u' "%s" fails validation' % expected_version)
 
     def test_version_absent(self):
         with self.assertRaises(ParseError):
@@ -163,6 +182,12 @@ class TestExtensionValidator(TestCase):
             self.validator.validate_version({'version': 42})
         with self.assertRaises(ParseError):
             self.validator.validate_version({'version': 0.42})
+        with self.assertRaises(ParseError):
+            self.validator.validate_version({'version': []})
+        with self.assertRaises(ParseError):
+            self.validator.validate_version({'version': {}})
+        with self.assertRaises(ParseError):
+            self.validator.validate_version({'version': None})
 
     def test_version_too_many_dots(self):
         with self.assertRaises(ParseError):

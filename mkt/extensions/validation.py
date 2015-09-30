@@ -27,6 +27,8 @@ class ExtensionValidator(object):
             u' long and can not consist of only whitespace characters.'),
         'BAD_CONTENT_TYPE': _(
             u'The file sent has an unsupported content-type'),
+        'DESCRIPTION_NOT_STRING': _(
+            u'The `description` property must be a string.'),
         'DESCRIPTION_TOO_LONG': _(
             u'The `description` property cannot be '
             u'longer than 132 characters.'),
@@ -144,9 +146,12 @@ class ExtensionValidator(object):
 
         https://developer.chrome.com/extensions/manifest/description
         """
-        description = manifest_json.get('description')
-        if description and len(description) > 132:
-            raise ParseError(self.errors['DESCRIPTION_TOO_LONG'])
+        if 'description' in manifest_json:
+            description = manifest_json['description']
+            if not isinstance(description, basestring):
+                raise ParseError(self.errors['DESCRIPTION_NOT_STRING'])
+            if len(description.strip()) > 132:
+                raise ParseError(self.errors['DESCRIPTION_TOO_LONG'])
 
     def validate_version(self, manifest_json):
         """
