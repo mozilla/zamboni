@@ -97,17 +97,20 @@ include webapps and websites.
 
 .. http:get:: /api/v2/multi-search/
 
-    **Request**
-
-    :param optional doc_type: The type of content to search for. Defaults to
-        all types of content. Options include `webapp` or `website`.
+    :param string doc_type (optionnal): The type of content to search for,
+        separated by a comma (without spaces). Defaults to ``webapp,website`` if
+        absent or invalid. Supported content types: ``webapp``, ``website`` and
+        ``extension``.
     :type doc_type: string
 
     **Response**
 
-    Similar to Search API but the `objects` field can contain
-    :ref:`apps <app-response-label>` and
-    :ref:`_websites <website-response-label>`
+    Similar to Search API but the ``objects`` field can contain:
+
+     * :ref:`Apps <app-response-label>` if ``doc_type`` includes ``webapp``;
+     * :ref:`Websites <website-response-label>` if ``doc_type`` includes ``website``;
+     * :ref:`Firefox OS Add-ons <addon-detail>` if ``doc_type`` includes
+       ``extension``.
 
 
 .. _feature-profile-label:
