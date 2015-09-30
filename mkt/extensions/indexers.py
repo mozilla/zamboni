@@ -16,12 +16,17 @@ class ExtensionIndexer(BaseIndexer):
     hidden_fields = (
         '*.raw',
         '*_sort',
-        # 'name', as well as its locale variants ('name_l10n_<language>', etc.)
-        # are only used for the query matches, and are never returned to the
-        # client through the API. The fields that are returned to the API are
-        # '*_translations'.
+        'popularity_*',
+        'trending_*',
+        'boost',
+        # 'name' and 'description', as well as their locale variants
+        # ('name_l10n_<language>', etc.) are only used for the query matches,
+        # and are never returned to the client through the API. The fields that
+        # are returned to the API are '*_translations'.
         'name',
         'name_l10n_*',
+        'description',
+        'description_l10n_*',
     )
 
     @classmethod

@@ -75,6 +75,9 @@ class TestExtensionIndexer(TestCase):
         eq_(doc['id'], extension.id)
         eq_(doc['author'], extension.author)
         eq_(doc['created'], extension.created)
+        eq_(doc['description'], [unicode(extension.description)])
+        eq_(doc['description_translations'], [{
+            'lang': u'en-US', 'string': unicode(extension.description)}])
         eq_(doc['default_language'], extension.default_language)
         eq_(doc['guid'], extension.uuid)
         eq_(doc['is_disabled'], extension.disabled)
@@ -106,10 +109,15 @@ class TestExtensionIndexer(TestCase):
 
     def test_extract_with_translations(self):
         extension, version = self._extension_factory()
+        description = {
+            'en-US': u'Description Extensiôn',
+            'fr': u"Description de l'Ëxtension",
+        }
         name = {
             'en-US': u'Namé Extension',
             'fr': u"Nom de l'Ëxtension",
         }
+        extension.description = description
         extension.name = name
         extension.save()
         doc = self._get_doc(extension)
@@ -121,6 +129,15 @@ class TestExtensionIndexer(TestCase):
         eq_(doc['name_l10n_french'], [name['fr']])
         eq_(doc['name_l10n_english'], [name['en-US']])
         eq_(doc['name_sort'], name['en-US'].lower())
+
+        eq_(sorted(doc['description']),
+            [description['en-US'], description['fr']])
+        eq_(sorted(doc['description_translations']),
+            [{'lang': 'en-US', 'string': description['en-US']},
+             {'lang': 'fr', 'string': description['fr']}])
+        eq_(doc['description_l10n_french'], [description['fr']])
+        eq_(doc['description_l10n_english'], [description['en-US']])
+        ok_('description_sort' not in doc)
 
     @mock.patch('mkt.search.indexers.MATURE_REGION_IDS', [42])
     def test_popularity(self):
@@ -167,6 +184,8 @@ class TestExtensionIndexerExcludedFields(ESTestCase):
     def setUp(self):
         super(TestExtensionIndexerExcludedFields, self).setUp()
         self.extension = Extension.objects.create()
+        self.extension.trending.create(region=2, value=50.0)
+        self.extension.popularity.create(region=2, value=142.0)
         self.refresh('extension')
 
     def test_excluded_fields(self):
@@ -181,6 +200,14 @@ class TestExtensionIndexerExcludedFields(ESTestCase):
         ok_('name_l10n_english' not in obj)
         ok_('name_sort' not in obj)
         ok_('name.raw' not in obj)
+
+        ok_('trending_2' not in obj)
+        ok_('popularity_2' not in obj)
+        ok_('boost' not in obj)
+
+        ok_('description_translations' in obj)
+        ok_('description' not in obj)
+        ok_('description_l10n_english' not in obj)
 
 
 class TestExtensionIndexerBasicSearch(ESTestCase):
