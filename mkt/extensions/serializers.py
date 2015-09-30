@@ -43,7 +43,7 @@ class ExtensionSerializer(ModelSerializer):
 
     class Meta:
         model = Extension
-        fields = ['id', 'description', 'disabled', 'last_updated',
+        fields = ['id', 'author', 'description', 'disabled', 'last_updated',
                   'latest_version', 'latest_public_version',
                   'mini_manifest_url', 'name', 'slug', 'status', ]
 
@@ -69,7 +69,8 @@ class ESExtensionSerializer(BaseESSerializer, ExtensionSerializer):
         # Set basic attributes we'll need on the fake instance using the data
         # from ES.
         self._attach_fields(
-            obj, data, ('default_language', 'last_updated', 'slug', 'status',
+            obj, data, ('author', 'created', 'default_language',
+                        'last_updated', 'modified', 'slug', 'status',
                         'version'))
 
         obj.deleted = data['is_deleted']

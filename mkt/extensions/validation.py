@@ -19,6 +19,12 @@ class ExtensionValidator(object):
     error.
     """
     errors = {
+        'AUTHOR_NOT_STRING': _(u'The `author` property must be a string.'),
+        'AUTHOR_TOO_LONG': _(
+            u'The `author` property cannot be longer than 128 characters.'),
+        'AUTHOR_TOO_SHORT': _(
+            u'The `author` property must be at least 1 character'
+            u' long and can not consist of only whitespace characters.'),
         'BAD_CONTENT_TYPE': _(
             u'The file sent has an unsupported content-type'),
         'DESCRIPTION_TOO_LONG': _(
@@ -72,6 +78,7 @@ class ExtensionValidator(object):
         self.validate_name(self.data)
         self.validate_description(self.data)
         self.validate_version(self.data)
+        self.validate_author(self.data)
         return self.data
 
     def validate_file(self, file_obj):
@@ -168,3 +175,19 @@ class ExtensionValidator(object):
             except ValueError:
                 # Not a valid number.
                 raise ParseError(self.errors['VERSION_INVALID'])
+
+    def validate_author(self, manifest_json):
+        """
+        Ensures that, if present, the author property is no longer than
+        128 characters.
+        """
+        if 'author' in manifest_json:
+            author = manifest_json['author']
+            # Author must not be empty/only whitespace if present, since we'll
+            # use it as link text.
+            if not isinstance(author, basestring):
+                raise ParseError(self.errors['AUTHOR_NOT_STRING'])
+            if len(author.strip()) < 1:
+                raise ParseError(self.errors['AUTHOR_TOO_SHORT'])
+            if len(author) > 128:
+                raise ParseError(self.errors['AUTHOR_TOO_LONG'])

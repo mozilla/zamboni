@@ -37,6 +37,7 @@ Detail
 
         {
           "id": 1,
+          "author": "Mozilla",
           "description": null,
           "disabled": false,
           "latest_version": {
@@ -68,6 +69,7 @@ Detail
         depending on the query. See :ref:`translations <overview-translations>`.
 
     :resjson int id: The add-on id.
+    :resjson string author: The add-on author, if specified in the manifest.
     :resjson string|object|null description: The add-on description.
     :resjson boolean disabled: Boolean indicating whether the developer has disabled
         their add-on or not.
@@ -133,12 +135,15 @@ Search
 
     Search through *public* add-ons.
 
-    The default sort order when the sort parameter is absent depends on whether
-    a search query is present of not:
-    * If a query is passed, order by relevance.
-    * If no query is passed, order by popularity descending.
+    All query parameters are optional. The default sort order when the `sort`
+    parameter is absent depends on whether a search query (`q`) is present or
+    not:
+    * If a search query is passed, order by relevance.
+    * If no search query is passed, order by popularity descending.
 
     :param string q: The search query.
+    :param string author: Filter by author. Requires a case-insensitive
+        exact match of the author field.
     :param string sort: The field(s) to sort by. One or more of 'popularity',
         'created', 'name', 'reviewed'. In every case except 'name', sorting is
         done in descending order.

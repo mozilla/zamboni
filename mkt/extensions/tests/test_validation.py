@@ -39,8 +39,9 @@ class TestExtensionValidator(TestCase):
 
     def test_full(self):
         extension = self._extension({
-            'name': 'My Extension',
-            'description': 'This is a valid description',
+            'author': u'Me, Mŷself and I',
+            'name': u'My Extënsion',
+            'description': u'This is a valid descriptiôn',
             'version': '0.1.2.3',
         })
         try:
@@ -55,6 +56,7 @@ class TestExtensionValidator(TestCase):
         include its name in the `validation_methods` list.
         """
         validation_methods = [
+            'validate_author',
             'validate_description',
             'validate_file',
             'validate_json',
@@ -110,7 +112,40 @@ class TestExtensionValidator(TestCase):
 
     def test_description_too_long(self):
         with self.assertRaises(ParseError):
-            self.validator.validate_name({'name': 'X' * 200})
+            self.validator.validate_name({'name': 'ô' * 134})
+
+    def test_author_invalid(self):
+        with self.assertRaises(ParseError):
+            self.validator.validate_author({'author': 42})
+        with self.assertRaises(ParseError):
+            self.validator.validate_author({'author': []})
+        with self.assertRaises(ParseError):
+            self.validator.validate_author({'author': {}})
+        with self.assertRaises(ParseError):
+            self.validator.validate_author({'author': None})
+
+    def test_author_only_whitespace(self):
+        with self.assertRaises(ParseError):
+            self.validator.validate_author({'author': '\n \t'})
+
+    def test_author_valid(self):
+        expected_author = u'I am a famous aûthor'
+        try:
+            self.validator.validate_author(
+                {'author': expected_author})
+        except:
+            assert False, (u'A valid author'
+                           u' "%s" fails validation' % expected_author)
+
+    def test_author_missing_valid(self):
+        try:
+            self.validator.validate_author({})
+        except:
+            assert False, u'Author should not be required.'
+
+    def test_author_too_long(self):
+        with self.assertRaises(ParseError):
+            self.validator.validate_name({'name': u'ŷ' * 129})
 
     def test_version_valid(self):
         VERSION = u'0.42.42.42'

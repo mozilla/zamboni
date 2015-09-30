@@ -75,6 +75,7 @@ class Extension(ModelBase):
 
     # Fields for which the manifest is the source of truth - can't be
     # overridden by the API.
+    author = models.CharField(default='', editable=False, max_length=128)
     default_language = models.CharField(default=settings.LANGUAGE_CODE,
                                         editable=False, max_length=10)
     description = TranslatedField(default=None, editable=False)
@@ -88,7 +89,7 @@ class Extension(ModelBase):
     objects = ManagerBase.from_queryset(ExtensionQuerySet)()
 
     manifest_is_source_of_truth_fields = (
-        'description', 'default_language', 'name')
+        'author', 'description', 'default_language', 'name')
 
     class Meta:
         ordering = ('id', )
@@ -154,11 +155,11 @@ class Extension(ModelBase):
             default_locale = manifest_data.get('default_locale')
             if default_locale:
                 data['default_language'] = to_language(default_locale)
-        # Strip leading / trailing whitespace chars from name and description.
-        if 'name' in data:
-            data['name'] = data['name'].strip()
-        if 'description' in data:
-            data['description'] = data['description'].strip()
+        for key, value in data.items():
+            # Be nice and strip leading / trailing whitespace chars from
+            # strings.
+            if isinstance(value, basestring):
+                data[key] = value.strip()
         return data
 
     @classmethod

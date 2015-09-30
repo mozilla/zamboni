@@ -44,6 +44,16 @@ class ExtensionIndexer(BaseIndexer):
                 '_all': {'enabled': False},
                 'properties': {
                     'id': {'type': 'long'},
+                    'author': {
+                        'type': 'string',
+                        'analyzer': 'default_icu',
+                        'fields': {
+                            # For exact matches. The simple analyzer allows
+                            # for case-insensitive matching.
+                            'raw': {'type': 'string',
+                                    'analyzer': 'exact_lowercase'},
+                        },
+                    },
                     'created': {'type': 'date', 'format': 'dateOptionalTime'},
                     'default_language': cls.string_not_indexed(),
                     'description': {
@@ -112,7 +122,7 @@ class ExtensionIndexer(BaseIndexer):
         # Attach translations for searching and indexing.
         attach_trans_dict(cls.get_model(), [obj])
 
-        attrs = ('created', 'default_language', 'id', 'last_updated',
+        attrs = ('author', 'created', 'default_language', 'id', 'last_updated',
                  'modified', 'slug', 'status')
         doc = dict(zip(attrs, attrgetter(*attrs)(obj)))
 

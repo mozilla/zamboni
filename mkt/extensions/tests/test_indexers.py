@@ -22,6 +22,7 @@ class TestExtensionIndexer(TestCase):
             # our comparisons still work once the model is saved to the db.
             reviewed = datetime.utcnow().replace(microsecond=0)
         extension = Extension.objects.create(
+            author=u'Test Aùthor', description=u'Test Desçription',
             name=u'Test Êxtension', last_updated=reviewed,
             slug=u'test-ëxtension')
         version = ExtensionVersion.objects.create(
@@ -72,6 +73,7 @@ class TestExtensionIndexer(TestCase):
         extension, version = self._extension_factory(STATUS_PUBLIC)
         doc = self._get_doc(extension)
         eq_(doc['id'], extension.id)
+        eq_(doc['author'], extension.author)
         eq_(doc['created'], extension.created)
         eq_(doc['default_language'], extension.default_language)
         eq_(doc['guid'], extension.uuid)
