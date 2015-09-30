@@ -47,7 +47,8 @@ class TestExtensionValidationViewSet(MktPaths, RestOAuth):
         upload = FileUpload.objects.get(pk=data['id'])
         eq_(upload.valid, True)  # We directly set uploads as valid atm.
         eq_(upload.name, 'foo.zip')
-        ok_(upload.hash.startswith('sha256:58ef3f15dd423c3ab9b0285ac01e692c5'))
+        ok_(upload.hash.startswith(
+            'sha256:0530f204f41c1a04e4083f702e0f32647fb6d567e909f13f4951a324'))
         ok_(upload.path)
         ok_(private_storage.exists(upload.path))
         return upload
@@ -165,10 +166,11 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
         eq_(response.status_code, 201)
         data = response.json
 
+        eq_(data['author'], u'Mozillâ')
         eq_(data['description'], {'en-US': u'A Dummÿ Extension'})
         eq_(data['disabled'], False)
         eq_(data['last_updated'], None)  # The extension is not public yet.
-        eq_(data['latest_version']['size'], 319)
+        eq_(data['latest_version']['size'], 268)
         eq_(data['latest_version']['version'], '0.1')
         eq_(data['name'], {'en-US': u'My Lîttle Extension'})
         eq_(data['slug'], u'my-lîttle-extension')
@@ -274,7 +276,8 @@ class TestExtensionViewSetGet(RestOAuth):
         self.user = UserProfile.objects.get(pk=2519)
         self.user2 = UserProfile.objects.get(pk=999)
         self.extension = Extension.objects.create(
-            name=u'Mŷ Extension', description=u'Mÿ Extension Description')
+            author=u'My Favourité Author',
+            description=u'Mÿ Extension Description', name=u'Mŷ Extension')
         self.version = ExtensionVersion.objects.create(
             extension=self.extension, size=4242, status=STATUS_PENDING,
             version='0.42')
@@ -319,6 +322,7 @@ class TestExtensionViewSetGet(RestOAuth):
         eq_(len(response.json['objects']), 1)
         data = response.json['objects'][0]
         eq_(data['id'], self.extension.id)
+        eq_(data['author'], self.extension.author)
         eq_(data['description'], {'en-US': self.extension.description})
         eq_(data['disabled'], False)
         eq_(data['last_updated'], None)  # The extension is not public yet.
@@ -342,6 +346,7 @@ class TestExtensionViewSetGet(RestOAuth):
         eq_(response.status_code, 200)
         data = response.json
         eq_(data['id'], self.extension.id)
+        eq_(data['author'], self.extension.author)
         eq_(data['description'], {'en-US': self.extension.description})
         eq_(data['disabled'], False)
         self.assertCloseToNow(data['last_updated'])
@@ -384,6 +389,7 @@ class TestExtensionViewSetGet(RestOAuth):
         eq_(response.status_code, 200)
         data = response.json
         eq_(data['id'], self.extension.id)
+        eq_(data['author'], self.extension.author)
         eq_(data['description'], {'en-US': self.extension.description})
         eq_(data['disabled'], False)
         eq_(data['last_updated'], None)  # The extension is not public yet.
@@ -415,8 +421,8 @@ class TestExtensionViewSetPatchPut(RestOAuth):
         self.user = UserProfile.objects.get(pk=2519)
         self.user2 = UserProfile.objects.get(pk=999)
         self.extension = Extension.objects.create(
-            name=u'Mŷ Extension', description=u'Mÿ Extension Description',
-            slug=u'mŷ-extension')
+            author=u'I, Âuthor', description=u'Mÿ Extension Description',
+            name=u'Mŷ Extension', slug=u'mŷ-extension')
         self.version = ExtensionVersion.objects.create(
             extension=self.extension, size=4343, status=STATUS_PUBLIC,
             version='0.43')
@@ -467,6 +473,28 @@ class TestExtensionViewSetPatchPut(RestOAuth):
         eq_(self.extension.disabled, False)
         eq_(self.extension.slug, u'mŷ-extension')
 
+    def test_patch_non_editable_fields(self):
+        self.extension.authors.add(self.user)
+        self.extension.update(status=STATUS_PENDING)
+        response = self.client.patch(self.url, json.dumps({
+            'author': u'Aaaarr', 'description': u'Désccc', 'name': u'Nàmeee',
+            'status': 'public'}))
+        # We don't reject PATCH when it tries to modify read-only or
+        # non-existent properties atm, we just ignore them, so it's a 200.
+        eq_(response.status_code, 200)
+        self.extension.reload()
+        # The fields should not have changed:
+        eq_(self.extension.author, u'I, Âuthor')
+        eq_(self.extension.description, u'Mÿ Extension Description')
+        eq_(self.extension.name, u'Mŷ Extension')
+        eq_(self.extension.status, STATUS_PENDING)
+        eq_(response.json['author'], self.extension.author)
+        eq_(response.json['description'],
+            {'en-US': self.extension.description})
+        eq_(response.json['name'],
+            {'en-US': self.extension.name})
+        eq_(response.json['status'], 'pending')
+
 
 class TestExtensionSearchView(RestOAuth, ESTestCase):
     fixtures = fixture('user_2519')
@@ -474,8 +502,9 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
     def setUp(self):
         self.last_updated_date = datetime.now()
         self.extension = Extension.objects.create(
-            name=u'Mâgnificent Extension',
+            author=u'MäÄägnificent Author',
             description=u'Mâgnificent Extension Description',
+            name=u'Mâgnificent Extension',
             last_updated=self.last_updated_date)
         self.version = ExtensionVersion.objects.create(
             extension=self.extension, reviewed=self.days_ago(7),
@@ -501,6 +530,7 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
         eq_(len(response.json['objects']), 1)
         data = response.json['objects'][0]
         eq_(data['id'], self.extension.id)
+        eq_(data['author'], self.extension.author)
         eq_(data['description'], {'en-US': self.extension.description})
         eq_(data['disabled'], False)
         self.assertCloseToNow(data['last_updated'], now=self.last_updated_date)
@@ -600,6 +630,23 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
             response = self.anon.get(self.url)
         eq_(response.status_code, 200)
         eq_(len(response.json['objects']), 0)
+
+    def test_search_author(self):
+        self.extension2 = Extension.objects.create(
+            author=u"Another Author", description="Another Description",
+            name=u'Another Extensiôn', slug='another-extension')
+        self.version2 = ExtensionVersion.objects.create(
+            extension=self.extension2, reviewed=self.days_ago(0),
+            status=STATUS_PUBLIC, version='7.8.9')
+        self.refresh('extension')
+        # Test client wants utf-8 encoded strings for params, not unicode
+        # objects.
+        author = self.extension.author.encode('utf-8')
+        with self.assertNumQueries(0):
+            response = self.anon.get(self.url, data={'author': author})
+        eq_(response.status_code, 200)
+        eq_(len(response.json['objects']), 1)
+        eq_(response.json['objects'][0]['id'], self.extension.pk)
 
 
 class TestReviewersExtensionViewSetGet(RestOAuth):
@@ -1044,7 +1091,7 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
         }))
         eq_(response.status_code, 201)
         data = response.json
-        eq_(data['size'], 319)  # extension.zip size in bytes.
+        eq_(data['size'], 268)  # extension.zip size in bytes.
         eq_(data['status'], 'pending')
         eq_(data['version'], '0.1')
         eq_(Extension.objects.count(), 1)

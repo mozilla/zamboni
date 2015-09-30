@@ -33,7 +33,7 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
             '128': '/icon.png'
         },
         'version': '0.1',
-        'author': 'Mozilla',
+        'author': u'Mozillâ',
         'name': u'My Lîttle Extension'
     }
 
@@ -76,6 +76,7 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         eq_(ExtensionVersion.objects.count(), 1)
 
         eq_(list(extension.authors.all()), [self.user])
+        eq_(extension.author, u'Mozillâ')
         eq_(extension.name, u'My Lîttle Extension')
         eq_(extension.default_language, 'en-GB')
         eq_(extension.description, u'A Dummÿ Extension')
@@ -604,82 +605,94 @@ class TestExtensionStatusChanges(TestCase):
 
     def test_update_fields_from_manifest_when_version_is_made_public(self):
         new_manifest = {
+            'author': u' New Authôr',
             'name': u'\n New Nâme ',
             'description': u'New Descriptîon \t ',
             'version': '0.1',
         }
         extension = Extension.objects.create(
-            name=u'Old Nâme', description=u'Old Descriptîon')
+            author=u'Old Âuthor', description=u'Old Descriptîon',
+            name=u'Old Nâme')
         version = ExtensionVersion.objects.create(
             extension=extension, manifest=new_manifest, status=STATUS_PENDING,
             version='0.1')
         version.update(status=STATUS_PUBLIC)
         # Leading and trailing whitespace are stripped.
+        eq_(extension.author, u'New Authôr')
         eq_(extension.description, u'New Descriptîon')
         eq_(extension.name, u'New Nâme')
 
     def test_update_manifest_when_public_version_is_hard_deleted(self):
         old_manifest = {
-            'name': u'Old Nâme',
+            'author': u'Old Authôr',
             'description': u'Old Descriptîon',
+            'name': u'Old Nâme',
             'version': '0.1',
         }
         new_manifest = {
-            'name': u'Deleted Nâme',
+            'author': u'Deleted Authôr',
             'description': u'Deleted Descriptîon',
+            'name': u'Deleted Nâme',
             'version': '0.2',
         }
-        extension = Extension.objects.create(
-            name=u'Deleted Nâme', description=u'Deleted Descriptîon')
+        extension = Extension.objects.create()
         ExtensionVersion.objects.create(
             extension=extension, manifest=old_manifest, status=STATUS_PUBLIC,
             version='0.1')
         version = ExtensionVersion.objects.create(
             extension=extension, manifest=new_manifest, status=STATUS_PUBLIC,
             version='0.2')
+        eq_(extension.author, new_manifest['author'])
         eq_(extension.description, new_manifest['description'])
         eq_(extension.name, new_manifest['name'])
         version.delete(hard_delete=True)
+        eq_(extension.author, old_manifest['author'])
         eq_(extension.description, old_manifest['description'])
         eq_(extension.name, old_manifest['name'])
 
     def test_update_manifest_when_public_version_is_deleted(self):
         old_manifest = {
-            'name': u'Old Nâme',
+            'author': u'Old Authôr',
             'description': u'Old Descriptîon',
+            'name': u'Old Nâme',
             'version': '0.1',
         }
         new_manifest = {
-            'name': u'Deleted Nâme',
+            'author': u'Deleted Authôr',
             'description': u'Deleted Descriptîon',
+            'name': u'Deleted Nâme',
             'version': '0.2',
         }
-        extension = Extension.objects.create(
-            name=u'Deleted Nâme', description=u'Deleted Descriptîon')
+        extension = Extension.objects.create()
         ExtensionVersion.objects.create(
             extension=extension, manifest=old_manifest, status=STATUS_PUBLIC,
             version='0.1')
         version = ExtensionVersion.objects.create(
             extension=extension, manifest=new_manifest, status=STATUS_PUBLIC,
             version='0.2')
+        eq_(extension.author, new_manifest['author'])
         eq_(extension.description, new_manifest['description'])
         eq_(extension.name, new_manifest['name'])
         version.delete()
+        eq_(extension.author, old_manifest['author'])
         eq_(extension.description, old_manifest['description'])
         eq_(extension.name, old_manifest['name'])
 
     def test_dont_update_fields_from_manifest_when_not_necessary(self):
         new_manifest = {
-            'name': u'New Nâme',
-            'description': u'New Descriptîon',
+            'author': u' New Authôr',
+            'name': u'\n New Nâme ',
+            'description': u'New Descriptîon \t ',
             'version': '0.1',
         }
         extension = Extension.objects.create(
-            name=u'Old Nâme', description=u'Old Descriptîon')
+            author=u'Old Authôr', description=u'Old Descriptîon',
+            name=u'Old Nâme')
         ExtensionVersion.objects.create(
             extension=extension, manifest=new_manifest, status=STATUS_PENDING,
             version='0.1')
         extension.reload()
+        eq_(extension.author, u'Old Authôr')
         eq_(extension.description, u'Old Descriptîon')
         eq_(extension.name, u'Old Nâme')
 

@@ -16,12 +16,17 @@ class ExtensionIndexer(BaseIndexer):
     hidden_fields = (
         '*.raw',
         '*_sort',
-        # 'name', as well as its locale variants ('name_l10n_<language>', etc.)
-        # are only used for the query matches, and are never returned to the
-        # client through the API. The fields that are returned to the API are
-        # '*_translations'.
+        'popularity_*',
+        'trending_*',
+        'boost',
+        # 'name' and 'description', as well as their locale variants
+        # ('name_l10n_<language>', etc.) are only used for the query matches,
+        # and are never returned to the client through the API. The fields that
+        # are returned to the API are '*_translations'.
         'name',
         'name_l10n_*',
+        'description',
+        'description_l10n_*',
     )
 
     @classmethod
@@ -44,6 +49,16 @@ class ExtensionIndexer(BaseIndexer):
                 '_all': {'enabled': False},
                 'properties': {
                     'id': {'type': 'long'},
+                    'author': {
+                        'type': 'string',
+                        'analyzer': 'default_icu',
+                        'fields': {
+                            # For exact matches. The simple analyzer allows
+                            # for case-insensitive matching.
+                            'raw': {'type': 'string',
+                                    'analyzer': 'exact_lowercase'},
+                        },
+                    },
                     'created': {'type': 'date', 'format': 'dateOptionalTime'},
                     'default_language': cls.string_not_indexed(),
                     'description': {
@@ -112,7 +127,7 @@ class ExtensionIndexer(BaseIndexer):
         # Attach translations for searching and indexing.
         attach_trans_dict(cls.get_model(), [obj])
 
-        attrs = ('created', 'default_language', 'id', 'last_updated',
+        attrs = ('author', 'created', 'default_language', 'id', 'last_updated',
                  'modified', 'slug', 'status')
         doc = dict(zip(attrs, attrgetter(*attrs)(obj)))
 

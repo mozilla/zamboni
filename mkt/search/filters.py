@@ -135,7 +135,6 @@ class SearchFormFilter(BaseFilterBackend):
         form = view.form_class(request.GET)
         if not form.is_valid():
             raise form_errors(form)
-
         self.form_data = form.cleaned_data
 
         data = {}
@@ -197,6 +196,10 @@ class WebsiteSearchFormFilter(SearchFormFilter):
 
 class ReviewerWebsiteSearchFormFilter(SearchFormFilter):
     VALID_FILTERS = ['keywords', 'category', 'device', 'status', 'is_disabled']
+
+
+class ExtensionSearchFormFilter(SearchFormFilter):
+    VALID_FILTERS = ['author.raw']
 
 
 class PublicContentFilter(BaseFilterBackend):

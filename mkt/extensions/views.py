@@ -29,6 +29,7 @@ from mkt.api.paginator import ESPaginator
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.apps import MANIFEST_CONTENT_TYPE
+from mkt.extensions.forms import ExtensionSearchForm
 from mkt.extensions.indexers import ExtensionIndexer
 from mkt.extensions.models import Extension, ExtensionVersion
 from mkt.extensions.permissions import AllowExtensionReviewerReadOnly
@@ -37,8 +38,8 @@ from mkt.extensions.serializers import (ESExtensionSerializer,
                                         ExtensionVersionSerializer)
 from mkt.extensions.validation import ExtensionValidator
 from mkt.files.models import FileUpload
-from mkt.search.filters import (PublicContentFilter, SearchQueryFilter,
-                                SortingFilter)
+from mkt.search.filters import (ExtensionSearchFormFilter, PublicContentFilter,
+                                SearchQueryFilter, SortingFilter)
 from mkt.site.decorators import allow_cross_site_request, use_master
 from mkt.site.utils import get_file_response
 from mkt.submit.views import ValidationViewSet as SubmitValidationViewSet
@@ -158,9 +159,11 @@ class ExtensionSearchView(CORSMixin, MarketplaceView, ListAPIView):
     authentication_classes = [RestSharedSecretAuthentication,
                               RestOAuthAuthentication]
     permission_classes = [AllowAny]
-    filter_backends = [PublicContentFilter, SearchQueryFilter, SortingFilter]
+    filter_backends = [ExtensionSearchFormFilter, PublicContentFilter,
+                       SearchQueryFilter, SortingFilter]
     serializer_class = ESExtensionSerializer
     paginator_class = ESPaginator
+    form_class = ExtensionSearchForm
 
     def get_queryset(self):
         return ExtensionIndexer.search()
