@@ -58,6 +58,8 @@ class SearchQueryFilter(BaseFilterBackend):
         # do a term query on `name.raw` for an exact match against the item
         # name and give it a good boost since this is likely what the user
         # wants.
+        # FIXME: we should also do that on translations and slug/app_slug, but
+        # we don't store a raw version for them at the moment.
         should.append(query.Term(**{'name.raw': {'value': q, 'boost': 10}}))
         # Do the same for GUID searches.
         should.append(query.Term(**{'guid': {'value': q, 'boost': 10}}))

@@ -79,6 +79,7 @@ class TestExtensionIndexer(TestCase):
         eq_(doc['description_translations'], [{
             'lang': u'en-US', 'string': unicode(extension.description)}])
         eq_(doc['default_language'], extension.default_language)
+        eq_(doc['device'], extension.devices)
         eq_(doc['guid'], extension.uuid)
         eq_(doc['is_disabled'], extension.disabled)
         eq_(doc['last_updated'], extension.last_updated)

@@ -168,6 +168,7 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
 
         eq_(data['author'], u'Mozillâ')
         eq_(data['description'], {'en-US': u'A Dummÿ Extension'})
+        eq_(data['device_types'], ['firefoxos'])
         eq_(data['disabled'], False)
         eq_(data['last_updated'], None)  # The extension is not public yet.
         eq_(data['latest_version']['size'], 268)
@@ -324,6 +325,7 @@ class TestExtensionViewSetGet(RestOAuth):
         eq_(data['id'], self.extension.id)
         eq_(data['author'], self.extension.author)
         eq_(data['description'], {'en-US': self.extension.description})
+        eq_(data['device_types'], ['firefoxos'])
         eq_(data['disabled'], False)
         eq_(data['last_updated'], None)  # The extension is not public yet.
         eq_(data['latest_version']['download_url'],
@@ -349,6 +351,7 @@ class TestExtensionViewSetGet(RestOAuth):
         eq_(data['author'], self.extension.author)
         eq_(data['description'], {'en-US': self.extension.description})
         eq_(data['disabled'], False)
+        eq_(data['device_types'], ['firefoxos'])
         self.assertCloseToNow(data['last_updated'])
         eq_(data['latest_version']['download_url'],
             self.version.download_url)
@@ -391,6 +394,7 @@ class TestExtensionViewSetGet(RestOAuth):
         eq_(data['id'], self.extension.id)
         eq_(data['author'], self.extension.author)
         eq_(data['description'], {'en-US': self.extension.description})
+        eq_(data['device_types'], ['firefoxos'])
         eq_(data['disabled'], False)
         eq_(data['last_updated'], None)  # The extension is not public yet.
         eq_(data['latest_version']['download_url'],
@@ -533,6 +537,7 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
         eq_(data['author'], self.extension.author)
         eq_(data['description'], {'en-US': self.extension.description})
         eq_(data['disabled'], False)
+        eq_(data['device_types'], ['firefoxos'])
         self.assertCloseToNow(data['last_updated'], now=self.last_updated_date)
         eq_(data['latest_public_version']['created'],
             self.version.created.replace(microsecond=0).isoformat())

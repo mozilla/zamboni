@@ -1,3 +1,4 @@
+from drf_compound_fields.fields import ListField
 from rest_framework.fields import CharField
 from rest_framework.serializers import ModelSerializer
 
@@ -26,6 +27,7 @@ class ExtensionVersionSerializer(ModelSerializer):
 
 class ExtensionSerializer(ModelSerializer):
     description = TranslationSerializerField(read_only=True)
+    device_types = ListField(CharField(), source='device_names')
     latest_public_version = ExtensionVersionSerializer(
         source='latest_public_version', read_only=True)
     latest_version = ExtensionVersionSerializer(
@@ -43,8 +45,8 @@ class ExtensionSerializer(ModelSerializer):
 
     class Meta:
         model = Extension
-        fields = ['id', 'author', 'description', 'disabled', 'last_updated',
-                  'latest_version', 'latest_public_version',
+        fields = ['id', 'author', 'description', 'device_types', 'disabled',
+                  'last_updated', 'latest_version', 'latest_public_version',
                   'mini_manifest_url', 'name', 'slug', 'status', ]
 
 

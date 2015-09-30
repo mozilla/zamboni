@@ -12,6 +12,7 @@ from nose.tools import eq_, ok_
 from rest_framework.exceptions import ParseError
 
 from lib.crypto.packaged import SigningError
+from mkt.constants.applications import DEVICE_GAIA
 from mkt.constants.base import (STATUS_NULL, STATUS_OBSOLETE, STATUS_PENDING,
                                 STATUS_PUBLIC, STATUS_REJECTED)
 from mkt.constants.regions import RESTOFWORLD, USA
@@ -697,7 +698,7 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.name, u'Old Nâme')
 
 
-class TestExtensionMethodsAndProperties(TestCase):
+class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
     def test_latest_public_version_does_not_include_deleted(self):
         """Test that deleted ExtensionVersion are not taken into account when
         determining the latest public version."""
@@ -732,8 +733,12 @@ class TestExtensionMethodsAndProperties(TestCase):
             extension=extension, status=STATUS_PUBLIC, deleted=True)
         eq_(extension.latest_version, version)
 
+    def test_devices(self):
+        eq_(Extension().devices, [DEVICE_GAIA.id])
 
-class TestExtensionVersionMethodsAndProperties(TestCase):
+    def test_devices_names(self):
+        eq_(Extension().device_names, ['firefoxos'])
+
     @override_settings(SITE_URL='https://marketpace.example.com/')
     def test_download_url(self):
         extension = Extension(pk=40, uuid='abcdef78123456781234567812345678')

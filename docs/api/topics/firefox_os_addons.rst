@@ -40,6 +40,7 @@ Detail
           "author": "Mozilla",
           "description": null,
           "disabled": false,
+          "device_types": ["firefoxos"],
           "latest_version": {
             "id": 1,
             "download_url": "https://example.com/downloads/extension/ce6b52d231154a27a1c54b2648c10379/1/extension-0.1.zip",
@@ -73,6 +74,7 @@ Detail
     :resjson string|object|null description: The add-on description.
     :resjson boolean disabled: Boolean indicating whether the developer has disabled
         their add-on or not.
+    :resjson string device_types: The devices the add-on is compatible with.
     :resjson string|null last_updated: The latest date a version was published at for this add-on.
     :resjson object latest_version: The latest :ref:`add-on version <addon-version-detail>` available for this extension.
     :resjson object latest_public_version: The latest *public* :ref:`add-on version <addon-version-detail>` available for this extension.
@@ -138,8 +140,8 @@ Search
     All query parameters are optional. The default sort order when the `sort`
     parameter is absent depends on whether a search query (`q`) is present or
     not:
-    * If a search query is passed, order by relevance.
-    * If no search query is passed, order by popularity descending.
+     * If a search query is passed, order by relevance.
+     * If no search query is passed, order by popularity descending.
 
     :param string q: The search query.
     :param string author: Filter by author. Requires a case-insensitive

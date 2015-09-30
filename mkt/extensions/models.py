@@ -16,6 +16,7 @@ from tower import ugettext as _
 from uuidfield.fields import UUIDField
 
 from lib.crypto.packaged import sign_app, SigningError
+from mkt.constants.applications import DEVICE_GAIA, DEVICE_TYPES
 from mkt.constants.base import (STATUS_CHOICES, STATUS_FILE_CHOICES,
                                 STATUS_NULL, STATUS_OBSOLETE, STATUS_PENDING,
                                 STATUS_PUBLIC, STATUS_REJECTED)
@@ -125,6 +126,20 @@ class Extension(ModelBase):
         # deleting. Undelete should re-generate it - it might differ from the
         # original slug, but that's why you should be careful when deleting...
         self.update(deleted=True, slug=None)
+
+    @property
+    def devices(self):
+        """Device ids the Extension is compatible with.
+
+        For now, hardcoded to only return Firefox OS."""
+        return [DEVICE_GAIA.id]
+
+    @property
+    def device_names(self):
+        """Device names the Extension is compatible with.
+
+        Used by the API."""
+        return [DEVICE_TYPES[device_id].api_name for device_id in self.devices]
 
     @classmethod
     def extract_and_validate_upload(cls, upload):

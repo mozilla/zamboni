@@ -66,6 +66,7 @@ class ExtensionIndexer(BaseIndexer):
                         'analyzer': 'default_icu',
                         'position_offset_gap': 100,
                     },
+                    'device': {'type': 'byte'},
                     'is_deleted': {'type': 'boolean'},
                     'is_disabled': {'type': 'boolean'},
                     'last_updated': {'format': 'dateOptionalTime',
@@ -131,6 +132,7 @@ class ExtensionIndexer(BaseIndexer):
                  'modified', 'slug', 'status')
         doc = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
+        doc['device'] = obj.devices
         doc['guid'] = unicode(obj.uuid)
         doc['is_deleted'] = obj.deleted
         doc['is_disabled'] = obj.disabled
