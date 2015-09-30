@@ -236,7 +236,7 @@ POSTFIX_DOMAIN = DOMAIN
 
 # IARC content ratings.
 IARC_ENV = env('IARC_ENV', default='test')
-IARC_MOCK = env('IARC_MOCK', default=False)
+IARC_MOCK = False
 IARC_PASSWORD = env('IARC_PASSWORD')
 IARC_PLATFORM = env('IARC_PLATFORM', default='Firefox')
 IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServices.svc'  # noqa
