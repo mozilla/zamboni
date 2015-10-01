@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-09-16 12:46+0000\n"
+"PO-Revision-Date: 2015-09-16 12:48+0000\n"
 "Last-Translator: Miha <miha@abecednik.si>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1517,15 +1517,15 @@ msgstr ""
 
 #: mkt/constants/comm.py:71
 msgid "Priority review requested"
-msgstr ""
+msgstr "Zahtevan prednostni pregled"
 
 #: mkt/constants/comm.py:72
 msgid "Additional review passed"
-msgstr ""
+msgstr "Opravljen dodatni pregled"
 
 #: mkt/constants/comm.py:73
 msgid "Additional review failed"
-msgstr ""
+msgstr "Neuspešen dodatni pregled"
 
 #: mkt/constants/comm.py:74
 msgid "Version notes for reviewer"
