@@ -377,6 +377,11 @@ class TestExtensionViewSetGet(RestOAuth):
         response = self.anon.get(self.url)
         eq_(response.status_code, 403)
 
+    def test_detail_anonymous_rejected(self):
+        self.version.update(status=STATUS_REJECTED)
+        response = self.anon.get(self.url)
+        eq_(response.status_code, 403)
+
     def test_detail_with_slug(self):
         self.url = reverse('api-v2:extension-detail',
                            kwargs={'pk': self.extension.slug})
@@ -415,6 +420,14 @@ class TestExtensionViewSetGet(RestOAuth):
         data = response.json
         eq_(data['id'], self.extension.id)
         eq_(data['disabled'], True)
+
+    def test_detail_owner_rejected(self):
+        self.version.update(status=STATUS_REJECTED)
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        data = response.json
+        eq_(data['id'], self.extension.pk)
+        eq_(data['status'], 'rejected')
 
 
 class TestExtensionViewSetPatchPut(RestOAuth):
@@ -1178,9 +1191,7 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
         self.version.reload()
         eq_(self.version.size, 666)
         eq_(self.version.status, STATUS_REJECTED)
-        # Now that the Extension has no pending or public version left, it's
-        # back to incomplete.
-        eq_(self.extension.status, STATUS_NULL)
+        eq_(self.extension.status, STATUS_REJECTED)
 
         note = self.version.threads.get().notes.get()
         eq_(note.note_type, comm.REJECTION)

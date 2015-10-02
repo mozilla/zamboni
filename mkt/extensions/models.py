@@ -62,6 +62,9 @@ class ExtensionVersionQuerySet(models.QuerySet):
     def public(self):
         return self.filter(status=STATUS_PUBLIC)
 
+    def rejected(self):
+        return self.filter(status=STATUS_REJECTED)
+
     def without_deleted(self):
         return self.filter(deleted=False)
 
@@ -306,12 +309,16 @@ class Extension(ModelBase):
         instances attached to this Extension."""
         # If there is a public version available, the extension should be
         # public. If not, and if there is a pending version available, it
-        # should be pending. Otherwise it should just be incomplete.
+        # should be pending. If not, and if there is a rejected version
+        # available, it should be rejected. Otherwise it should just be
+        # incomplete.
         versions = self.versions.without_deleted()
-        if versions.filter(status=STATUS_PUBLIC).exists():
+        if versions.public().exists():
             self.update(status=STATUS_PUBLIC)
-        elif versions.filter(status=STATUS_PENDING).exists():
+        elif versions.pending().exists():
             self.update(status=STATUS_PENDING)
+        elif versions.rejected().exists():
+            self.update(status=STATUS_REJECTED)
         else:
             self.update(status=STATUS_NULL)
         # Delete latest_version and latest_public_version properties, since

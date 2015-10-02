@@ -250,14 +250,15 @@ Delete
 Add-on Statuses
 ===============
 
-* There are 3 possible values for the ``status`` property of an add-on: *public*, *pending* or *incomplete*.
+* There are 4 possible values for the ``status`` property of an add-on: *public*, *pending*, *rejected* or *incomplete*.
 * There are 4 possible values for the ``status`` property on an add-on version: *public*, *obsolete*, *pending*, *rejected*.
 
 Add-on ``status`` directly depend on the ``status`` of its versions:
 
 * Add-ons with at least one *public* version are *public*.
 * Add-ons with no *public* version and at least one *pending* version are *pending*.
-* Add-ons with no *public* or *pending* version are *incomplete*.
+* Add-ons with no *public* or *pending* version, and at least one *rejected* version are *rejected*.
+* Add-ons with no *public*, *pending* or *rejected* version are *incomplete*.
 
 In addition, Add-ons also have a ``disabled`` property that can be set to ``true``
 by the developer to disable the add-on. Disabled add-ons are hidden from the public

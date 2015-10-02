@@ -604,6 +604,20 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.latest_version, new_public_version)
         eq_(extension.latest_public_version, new_public_version)
 
+    def test_new_version_rejected(self):
+        extension = Extension.objects.create()
+        eq_(extension.status, STATUS_NULL)
+        version = ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_REJECTED, version='0.1')
+        eq_(extension.status, STATUS_REJECTED)
+        eq_(extension.latest_version, version)
+
+        new_version = ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_REJECTED, version='0.2')
+        extension.reload()
+        eq_(extension.status, STATUS_REJECTED)
+        eq_(extension.latest_version, new_version)
+
     def test_update_fields_from_manifest_when_version_is_made_public(self):
         new_manifest = {
             'author': u' New Authôr',
@@ -1069,15 +1083,13 @@ class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
         eq_(remove_public_signed_file_mock.call_count, 1)
         eq_(version.size, 667)
         eq_(version.status, STATUS_REJECTED)
-        # At the moment Extension are not rejected, merely set back to
-        # incomplete since they no longer have a pending or public version.
-        eq_(extension.status, STATUS_NULL)
+        eq_(extension.status, STATUS_REJECTED)
 
         # Also reload to make sure the changes hit the database.
         version.reload()
         eq_(version.size, 667)
         eq_(version.status, STATUS_REJECTED)
-        eq_(extension.reload().status, STATUS_NULL)
+        eq_(extension.reload().status, STATUS_REJECTED)
 
 
 class TestExtensionPopularity(TestCase):
