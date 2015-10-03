@@ -173,6 +173,18 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         with self.assertRaises(ParseError):
             ExtensionVersion.from_upload(upload, parent=extension)
 
+    def test_upload_new_version_existing_version_integrity_error(self):
+        # Like test_upload_new_version_existing_version(), but this time the
+        # version number does not clash when we do the check, it clashes later
+        # when we do the db insert (race condition).
+        extension = Extension.objects.create()
+        upload = self.upload('extension')
+        with mock.patch.object(
+                ExtensionVersion.objects, 'create') as create_mock:
+            create_mock.side_effect = IntegrityError
+            with self.assertRaises(ParseError):
+                ExtensionVersion.from_upload(upload, parent=extension)
+
     def test_upload_new_version_existing_version_number_is_higher(self):
         extension = Extension.objects.create()
         ExtensionVersion.objects.create(extension=extension, version='0.2')
@@ -185,6 +197,16 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         upload = self.upload('extension')
         with self.assertRaises(ValueError):
             ExtensionVersion.from_upload(upload)
+
+    def test_handle_file_upload_operations_path_already_exists(self):
+        upload = self.upload('extension')
+        extension = Extension()
+        version = ExtensionVersion(extension=extension)
+        with mock.patch(
+                'mkt.extensions.models.private_storage') as storage_mock:
+            storage_mock.exists.return_value = True
+            with self.assertRaises(RuntimeError):
+                version.handle_file_upload_operations(upload)
 
 
 class TestExtensionAndExtensionVersionDeletion(TestCase):
@@ -348,6 +370,33 @@ class TestExtensionAndExtensionVersionDeletion(TestCase):
         version.delete()
         eq_(version.deleted, True)
         eq_(update_status_mock.call_count, 1)
+
+    def test_undelete(self):
+        extension = Extension.objects.create(deleted=True, slug=None)
+        extension.undelete()
+        ok_(extension.slug)
+        eq_(extension.deleted, False)
+        eq_(Extension.objects.without_deleted().count(), 1)
+
+    def test_version_undelete(self):
+        manifest = {
+            'version': u'0.1',
+        }
+        extension = Extension.objects.create()
+        version = ExtensionVersion.objects.create(
+            deleted=True, extension=extension, manifest=manifest, version=None)
+        version.undelete()
+        eq_(version.deleted, False)
+        eq_(version.version, u'0.1')
+        eq_(ExtensionVersion.objects.without_deleted().count(), 1)
+
+    def test_undelete_not_deleted(self):
+        extension = Extension()
+        eq_(extension.undelete(), False)
+
+    def test_undelete_version_not_deleted(self):
+        version = ExtensionVersion()
+        eq_(version.undelete(), False)
 
 
 class TestExtensionESIndexation(TestCase):
@@ -699,6 +748,24 @@ class TestExtensionStatusChanges(TestCase):
 
 
 class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
+    def test_unicode(self):
+        extension = Extension(pk=42, name=u'lolé', slug=u'lolé')
+        version = ExtensionVersion(pk=42, extension=extension, version=u'0.42')
+        ok_(unicode(extension))
+        ok_(unicode(version))
+
+    def test_get_fallback(self):
+        eq_(Extension.get_fallback(),
+            Extension._meta.get_field('default_language'))
+        eq_(ExtensionVersion.get_fallback(),
+            ExtensionVersion._meta.get_field('default_language'))
+
+    def test_is_dummy_content_for_qa(self):
+        # This method is only here for compatbility with apps, not used at the
+        # moment.
+        extension = Extension()
+        eq_(extension.is_dummy_content_for_qa(), False)
+
     def test_latest_public_version_does_not_include_deleted(self):
         """Test that deleted ExtensionVersion are not taken into account when
         determining the latest public version."""
@@ -1127,6 +1194,7 @@ class TestExtensionQuerySetAndManager(TestCase):
         Extension.objects.all().update(deleted=True)
         with self.assertRaises(Extension.DoesNotExist):
             Extension.objects.without_deleted().by_identifier(extension.pk)
+        with self.assertRaises(Extension.DoesNotExist):
             Extension.objects.without_deleted().by_identifier(extension.slug)
 
     def test_extensive_method_chaining(self):
