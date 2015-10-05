@@ -16,6 +16,7 @@ from tower import ugettext as _
 from uuidfield.fields import UUIDField
 
 from lib.crypto.packaged import sign_app, SigningError
+from mkt.constants.applications import DEVICE_GAIA, DEVICE_TYPES
 from mkt.constants.base import (STATUS_CHOICES, STATUS_FILE_CHOICES,
                                 STATUS_NULL, STATUS_OBSOLETE, STATUS_PENDING,
                                 STATUS_PUBLIC, STATUS_REJECTED)
@@ -35,32 +36,47 @@ from mkt.webapps.models import clean_slug
 log = commonware.log.getLogger('z.extensions')
 
 
-class ExtensionManager(ManagerBase):
+class ExtensionQuerySet(models.QuerySet):
+    def by_identifier(self, identifier):
+        """Return a single Extension from an identifier, slug or pk."""
+        # Slugs can't contain only digits.
+        if unicode(identifier).isdigit():
+            return self.get(pk=int(identifier))
+        else:
+            return self.get(slug=identifier)
+
     def pending(self):
-        return self.filter(
-            disabled=False, versions__status=STATUS_PENDING)
+        return self.filter(disabled=False, versions__status=STATUS_PENDING)
 
     def public(self):
         return self.filter(disabled=False, status=STATUS_PUBLIC)
 
+    def without_deleted(self):
+        return self.filter(deleted=False)
 
-class ExtensionVersionManager(ManagerBase):
+
+class ExtensionVersionQuerySet(models.QuerySet):
     def pending(self):
-        return self.filter(status=STATUS_PENDING).order_by('id')
+        return self.filter(status=STATUS_PENDING)
 
     def public(self):
-        return self.filter(status=STATUS_PUBLIC).order_by('id')
+        return self.filter(status=STATUS_PUBLIC)
+
+    def without_deleted(self):
+        return self.filter(deleted=False)
 
 
 class Extension(ModelBase):
     # Automatically handled fields.
-    last_updated = models.DateTimeField(blank=True, db_index=True, null=True)
+    deleted = models.BooleanField(default=False, editable=False)
+    last_updated = models.DateTimeField(blank=True, null=True, editable=False)
     status = models.PositiveSmallIntegerField(
-        choices=STATUS_CHOICES.items(), default=STATUS_NULL)
-    uuid = UUIDField(auto=True)
+        choices=STATUS_CHOICES.items(), default=STATUS_NULL, editable=False)
+    uuid = UUIDField(auto=True, editable=False)
 
     # Fields for which the manifest is the source of truth - can't be
     # overridden by the API.
+    author = models.CharField(default='', editable=False, max_length=128)
     default_language = models.CharField(default=settings.LANGUAGE_CODE,
                                         editable=False, max_length=10)
     description = TranslatedField(default=None, editable=False)
@@ -69,27 +85,61 @@ class Extension(ModelBase):
     # Fields that can be modified using the API.
     authors = models.ManyToManyField('users.UserProfile')
     disabled = models.BooleanField(default=False)
-    slug = models.CharField(max_length=35, unique=True)
+    slug = models.CharField(max_length=35, null=True, unique=True)
 
-    objects = ExtensionManager()
+    objects = ManagerBase.from_queryset(ExtensionQuerySet)()
 
     manifest_is_source_of_truth_fields = (
-        'description', 'default_language', 'name')
+        'author', 'description', 'default_language', 'name')
 
     class Meta:
         ordering = ('id', )
-        index_together = (('disabled', 'status'),)
+        index_together = (('deleted', 'disabled', 'status'),)
 
     @cached_property(writable=True)
     def latest_public_version(self):
-        return self.versions.public().latest('pk')
+        return self.versions.without_deleted().public().latest('pk')
 
     @cached_property(writable=True)
     def latest_version(self):
-        return self.versions.latest('pk')
+        return self.versions.without_deleted().latest('pk')
 
     def clean_slug(self):
         return clean_slug(self, slug_field='slug')
+
+    def delete(self, *args, **kwargs):
+        """Delete this instance.
+
+        By default, a soft-delete is performed, only hiding the instance from
+        the custom manager methods without actually removing it from the
+        database. pre_delete and post_delete signals are *not* sent in that
+        case. The slug will be set to None during the process.
+
+        Can be overridden by passing `hard_delete=True` keyword argument, in
+        which case it behaves like a regular delete() call instead."""
+        hard_delete = kwargs.pop('hard_delete', False)
+        if hard_delete:
+            # Real, hard delete.
+            return super(Extension, self).delete(*args, **kwargs)
+        # Soft delete.
+        # Since we have a unique constraint with slug, set it to None when
+        # deleting. Undelete should re-generate it - it might differ from the
+        # original slug, but that's why you should be careful when deleting...
+        self.update(deleted=True, slug=None)
+
+    @property
+    def devices(self):
+        """Device ids the Extension is compatible with.
+
+        For now, hardcoded to only return Firefox OS."""
+        return [DEVICE_GAIA.id]
+
+    @property
+    def device_names(self):
+        """Device names the Extension is compatible with.
+
+        Used by the API."""
+        return [DEVICE_TYPES[device_id].api_name for device_id in self.devices]
 
     @classmethod
     def extract_and_validate_upload(cls, upload):
@@ -120,11 +170,11 @@ class Extension(ModelBase):
             default_locale = manifest_data.get('default_locale')
             if default_locale:
                 data['default_language'] = to_language(default_locale)
-        # Strip leading / trailing whitespace chars from name and description.
-        if 'name' in data:
-            data['name'] = data['name'].strip()
-        if 'description' in data:
-            data['description'] = data['description'].strip()
+        for key, value in data.items():
+            # Be nice and strip leading / trailing whitespace chars from
+            # strings.
+            if isinstance(value, basestring):
+                data[key] = value.strip()
         return data
 
     @classmethod
@@ -150,11 +200,15 @@ class Extension(ModelBase):
 
     @classmethod
     def get_fallback(cls):
-        # Class method needed by the translations app.
+        """Class method returning the field holding the default language to use
+        in translations for this instance.
+
+        *Needs* to be called get_fallback() and *needs* to be a classmethod,
+        that's what the translations app requires."""
         return cls._meta.get_field('default_language')
 
     @classmethod
-    def get_indexer(self):
+    def get_indexer(cls):
         return ExtensionIndexer
 
     def is_dummy_content_for_qa(self):
@@ -168,7 +222,8 @@ class Extension(ModelBase):
         return False
 
     def is_public(self):
-        return not self.disabled and self.status == STATUS_PUBLIC
+        return (not self.deleted and not self.disabled and
+                self.status == STATUS_PUBLIC)
 
     @property
     def mini_manifest(self):
@@ -210,12 +265,26 @@ class Extension(ModelBase):
                                   kwargs={'uuid': self.uuid}))
 
     def save(self, *args, **kwargs):
-        if not self.slug:
+        if not self.deleted:
+            # Always clean slug before saving, to avoid clashes.
             self.clean_slug()
         return super(Extension, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return u'%s: %s' % (self.pk, self.name)
+
+    def undelete(self):
+        """Undelete this instance, making it available to all manager methods
+        again and restoring its version number.
+
+        Return False if it was not marked as deleted, True otherwise.
+        Will re-generate a slug, that might differ from the original one if it
+        was taken in the meantime."""
+        if not self.deleted:
+            return False
+        self.clean_slug()
+        self.update(deleted=False, slug=self.slug)
+        return True
 
     def update_manifest_fields_from_latest_public_version(self):
         """Update all fields for which the manifest is the source of truth
@@ -238,9 +307,10 @@ class Extension(ModelBase):
         # If there is a public version available, the extension should be
         # public. If not, and if there is a pending version available, it
         # should be pending. Otherwise it should just be incomplete.
-        if self.versions.filter(status=STATUS_PUBLIC).exists():
+        versions = self.versions.without_deleted()
+        if versions.filter(status=STATUS_PUBLIC).exists():
             self.update(status=STATUS_PUBLIC)
-        elif self.versions.filter(status=STATUS_PENDING).exists():
+        elif versions.filter(status=STATUS_PENDING).exists():
             self.update(status=STATUS_PENDING)
         else:
             self.update(status=STATUS_NULL)
@@ -260,22 +330,47 @@ class Extension(ModelBase):
 
 
 class ExtensionVersion(ModelBase):
-    extension = models.ForeignKey(Extension, related_name='versions')
-
+    # None of these fields should be directly editable by developers, they are
+    # all set automatically from actions or extracted from the manifest.
+    extension = models.ForeignKey(Extension, editable=False,
+                                  related_name='versions')
     default_language = models.CharField(default=settings.LANGUAGE_CODE,
-                                        max_length=10)
-    manifest = JSONField()
-    reviewed = models.DateTimeField(null=True)
-    version = models.CharField(max_length=23, default='')
+                                        editable=False, max_length=10)
+    deleted = models.BooleanField(default=False, editable=False)
+    manifest = JSONField(editable=False)
+    reviewed = models.DateTimeField(editable=False, null=True)
+    version = models.CharField(max_length=23, default=None, editable=False,
+                               null=True)
     size = models.PositiveIntegerField(default=0, editable=False)  # In bytes.
     status = models.PositiveSmallIntegerField(
-        choices=STATUS_FILE_CHOICES.items(), db_index=True,
-        default=STATUS_NULL)
+        choices=STATUS_FILE_CHOICES.items(), default=STATUS_NULL,
+        editable=False)
 
-    objects = ExtensionVersionManager()
+    objects = ManagerBase.from_queryset(ExtensionVersionQuerySet)()
 
     class Meta:
+        ordering = ('id', )
+        index_together = (('extension', 'deleted', 'status'),)
         unique_together = (('extension', 'version'),)
+
+    def delete(self, *args, **kwargs):
+        """Delete this instance.
+
+        By default, a soft-delete is performed, only hiding the instance from
+        the custom manager methods without actually removing it from the
+        database. pre_delete and post_delete signals are *not* sent in that
+        case. The version property will be set to None during the process.
+
+        Can be overridden by passing `hard_delete=True` keyword argument, in
+        which case it behaves like a regular delete() call instead."""
+        hard_delete = kwargs.pop('hard_delete', False)
+        if hard_delete:
+            # Real, hard delete.
+            return super(ExtensionVersion, self).delete(*args, **kwargs)
+        # Soft delete.
+        # Since we have a unique constraint with version, set it to None when
+        # deleting. Undelete should extract it again from the manifest.
+        self.update(deleted=True, version=None)
 
     @property
     def download_url(self):
@@ -294,6 +389,8 @@ class ExtensionVersion(ModelBase):
 
     @property
     def file_path(self):
+        """Path to the unsigned archive for this version, on
+        private storage."""
         prefix = os.path.join(settings.EXTENSIONS_PATH, str(self.extension.pk))
         return os.path.join(prefix, nfd_str(self.filename))
 
@@ -339,7 +436,7 @@ class ExtensionVersion(ModelBase):
 
         # Now that the instance has been saved, we can generate a file path
         # and move the file.
-        size = instance.handle_file_operations(upload)
+        size = instance.handle_file_upload_operations(upload)
 
         # Now that the file is there, all that's left is making older pending
         # versions obsolete and setting this one as pending. That should also
@@ -350,10 +447,14 @@ class ExtensionVersion(ModelBase):
 
     @classmethod
     def get_fallback(cls):
-        # Class method needed by the translations app.
+        """Class method returning the field holding the default language to use
+        in translations for this instance.
+
+        *Needs* to be called get_fallback() and *needs* to be a classmethod,
+        that's what the translations app requires."""
         return cls._meta.get_field('default_language')
 
-    def handle_file_operations(self, upload):
+    def handle_file_upload_operations(self, upload):
         """Copy the file attached to a FileUpload to the Extension instance.
 
         Return the file size."""
@@ -387,23 +488,105 @@ class ExtensionVersion(ModelBase):
 
         Update last_updated and reviewed fields at the same time."""
         now = datetime.utcnow()
-        size = self.sign_and_move_file()
+        size = self.sign_file()
         self.extension.update(last_updated=now)
         self.update(size=size, status=STATUS_PUBLIC, reviewed=now)
 
     def reject(self):
         """Reject this extension version."""
-        size = self.remove_signed_file()
+        size = self.remove_public_signed_file()
         self.update(size=size, status=STATUS_REJECTED)
 
-    def remove_signed_file(self):
-        """Remove signed file if it exists.
+    def remove_public_signed_file(self):
+        """Remove the public signed file if it exists.
 
         Return the size of the unsigned file, to be used by the caller to
         update the size property on the current instance."""
         if public_storage.exists(self.signed_file_path):
             public_storage.delete(self.signed_file_path)
         return private_storage.size(self.file_path)
+
+    @property
+    def reviewer_download_url(self):
+        kwargs = {
+            'filename': self.filename,
+            'uuid': self.extension.uuid,
+            'version_id': self.pk,
+        }
+        return absolutify(
+            reverse('extension.download_signed_reviewer', kwargs=kwargs))
+
+    @property
+    def reviewer_mini_manifest(self):
+        """Reviewer-specific mini-manifest used for install/update of this
+        particular version by reviewers on FxOS devices, in dict form.
+        """
+        mini_manifest = {
+            'name': self.manifest['name'],
+            'package_path': self.reviewer_download_url,
+            # Size is not included, we don't store the reviewer file size,
+            # we don't even know if it has been generated yet at this point.
+            'version': self.manifest['version']
+        }
+        if 'author' in self.manifest:
+            mini_manifest['developer'] = {
+                'name': self.manifest['author']
+            }
+        if 'description' in self.manifest:
+            mini_manifest['description'] = self.manifest['description']
+        return mini_manifest
+
+    @property
+    def reviewer_mini_manifest_url(self):
+        return absolutify(reverse('extension.mini_manifest_reviewer', kwargs={
+            'uuid': self.extension.uuid, 'version_id': self.pk}))
+
+    def reviewer_sign_file(self):
+        """Sign the original file (`file_path`) with reviewer certs, then move
+        the signed file to the reviewers-specific signed path
+        (`reviewer_signed_file_path`) on private storage."""
+        if not self.extension.uuid:
+            raise SigningError('Need uuid to be set to sign')
+        if not self.pk:
+            raise SigningError('Need version pk to be set to sign')
+        ids = json.dumps({
+            # Reviewers get a unique 'id' so the reviewer installed add-on
+            # won't conflict with the public add-on, and also so even multiple
+            # versions of the same add-on can be installed side by side with
+            # other versions.
+            'id': 'reviewer-{guid}-{version_id}'.format(
+                guid=self.extension.uuid, version_id=self.pk),
+            'version': self.pk
+        })
+        with statsd.timer('extensions.sign_reviewer'):
+            try:
+                # This will read the file from self.file_path, generate a
+                # reviewer signature and write the signed file to
+                # self.reviewer_signed_file_path.
+                sign_app(private_storage.open(self.file_path),
+                         self.reviewer_signed_file_path, ids, reviewer=True)
+            except SigningError:
+                log.info(
+                    '[ExtensionVersion:%s] Reviewer Signing failed' % self.pk)
+                if private_storage.exists(self.reviewer_signed_file_path):
+                    private_storage.delete(self.reviewer_signed_file_path)
+                raise
+
+    @property
+    def reviewer_signed_file_path(self):
+        """Path to the reviewer-specific signed archive for this version,
+        on private storage.
+
+        May not exist if the version has not been signed for review yet."""
+        prefix = os.path.join(
+            settings.EXTENSIONS_PATH, str(self.extension.pk), 'reviewers')
+        return os.path.join(prefix, nfd_str(self.filename))
+
+    def reviewer_sign_if_necessary(self):
+        """Simple wrapper around reviewer_sign_file() that generates the
+        reviewer-specific signed package if necessary."""
+        if not private_storage.exists(self.reviewer_signed_file_path):
+            self.reviewer_sign_file()
 
     def set_older_pending_versions_as_obsolete(self):
         """Set all pending versions older than this one attached to the same
@@ -414,19 +597,19 @@ class ExtensionVersion(ModelBase):
         changing its status to PENDING. That way we avoid having extra versions
         laying around when we automatically update the status on the parent
         Extension."""
-        qs = self.__class__.objects.pending().filter(
+        qs = self.__class__.objects.without_deleted().pending().filter(
             extension=self.extension, pk__lt=self.pk)
 
         # Call <queryset>.update() directly, bypassing signals etc, that should
         # not be needed since it should be followed by a self.save().
         qs.update(status=STATUS_OBSOLETE)
 
-    def sign_and_move_file(self):
-        """Sign and move extension file from the unsigned path (`file_path`) on
-        private storage to the signed path (`signed_file_path`) on public
-        storage.
+    def sign_file(self):
+        """Sign the original file (`file_path`), then move signed extension
+        file to the signed path (`signed_file_path`) on public storage. The
+        original file remains on private storage.
 
-        Return the file size."""
+        Return the signed file size."""
         if not self.extension.uuid:
             raise SigningError('Need uuid to be set to sign')
         if not self.pk:
@@ -449,15 +632,31 @@ class ExtensionVersion(ModelBase):
                          self.signed_file_path, ids)
             except SigningError:
                 log.info('[ExtensionVersion:%s] Signing failed' % self.pk)
-                self.remove_signed_file()  # Clean up.
+                self.remove_public_signed_file()  # Clean up.
                 raise
         return public_storage.size(self.signed_file_path)
 
     @property
     def signed_file_path(self):
+        """Path to the signed archive for this version, on public storage.
+
+        May not exist if the version has not been reviewed yet."""
         prefix = os.path.join(settings.SIGNED_EXTENSIONS_PATH,
                               str(self.extension.pk))
         return os.path.join(prefix, nfd_str(self.filename))
+
+    def undelete(self):
+        """Undelete this instance, making it available to all manager methods
+        again and restoring its version number.
+
+        Return False if it was not marked as deleted, True otherwise.
+        May raise IntegrityError if another instance has been uploaded with the
+        same version number in the meantime."""
+        if not self.deleted:
+            return False
+        data = Extension.extract_manifest_fields(self.manifest, ('version',))
+        self.update(deleted=False, **data)
+        return True
 
     def __unicode__(self):
         return u'%s %s' % (self.extension.slug, self.version)

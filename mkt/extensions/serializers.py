@@ -1,3 +1,4 @@
+from drf_compound_fields.fields import ListField
 from rest_framework.fields import CharField
 from rest_framework.serializers import ModelSerializer
 
@@ -12,17 +13,21 @@ class ExtensionVersionSerializer(ModelSerializer):
     download_url = CharField(source='download_url', read_only=True)
     unsigned_download_url = CharField(
         source='unsigned_download_url', read_only=True)
+    reviewer_mini_manifest_url = CharField(
+        source='reviewer_mini_manifest_url', read_only=True)
     status = ReverseChoiceField(
         choices_dict=STATUS_FILE_CHOICES_API_v2, read_only=True)
 
     class Meta:
         model = ExtensionVersion
-        fields = ['id', 'download_url', 'unsigned_download_url', 'size',
-                  'status', 'version']
+        fields = ['id', 'created', 'download_url',
+                  'reviewer_mini_manifest_url', 'unsigned_download_url',
+                  'size', 'status', 'version']
 
 
 class ExtensionSerializer(ModelSerializer):
     description = TranslationSerializerField(read_only=True)
+    device_types = ListField(CharField(), source='device_names')
     latest_public_version = ExtensionVersionSerializer(
         source='latest_public_version', read_only=True)
     latest_version = ExtensionVersionSerializer(
@@ -40,8 +45,8 @@ class ExtensionSerializer(ModelSerializer):
 
     class Meta:
         model = Extension
-        fields = ['id', 'description', 'disabled', 'last_updated',
-                  'latest_version', 'latest_public_version',
+        fields = ['id', 'author', 'description', 'device_types', 'disabled',
+                  'last_updated', 'latest_version', 'latest_public_version',
                   'mini_manifest_url', 'name', 'slug', 'status', ]
 
 
@@ -57,7 +62,8 @@ class ESExtensionSerializer(BaseESSerializer, ExtensionSerializer):
         # Create a fake ExtensionVersion for latest_public_version.
         obj.latest_public_version = ExtensionVersion(
             extension=obj,
-            pk=data['latest_public_version']['id'],
+            id=data['latest_public_version']['id'],
+            created=data['latest_public_version']['created'],
             size=data['latest_public_version'].get('size', 0),
             status=STATUS_PUBLIC,
             version=data['latest_public_version']['version'],)
@@ -65,9 +71,11 @@ class ESExtensionSerializer(BaseESSerializer, ExtensionSerializer):
         # Set basic attributes we'll need on the fake instance using the data
         # from ES.
         self._attach_fields(
-            obj, data, ('default_language', 'last_updated', 'slug', 'status',
+            obj, data, ('author', 'created', 'default_language',
+                        'last_updated', 'modified', 'slug', 'status',
                         'version'))
 
+        obj.deleted = data['is_deleted']
         obj.disabled = data['is_disabled']
         obj.uuid = data['guid']
 

@@ -29,6 +29,7 @@ from mkt.api.paginator import ESPaginator
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.apps import MANIFEST_CONTENT_TYPE
+from mkt.extensions.forms import ExtensionSearchForm
 from mkt.extensions.indexers import ExtensionIndexer
 from mkt.extensions.models import Extension, ExtensionVersion
 from mkt.extensions.permissions import AllowExtensionReviewerReadOnly
@@ -37,8 +38,8 @@ from mkt.extensions.serializers import (ESExtensionSerializer,
                                         ExtensionVersionSerializer)
 from mkt.extensions.validation import ExtensionValidator
 from mkt.files.models import FileUpload
-from mkt.search.filters import (PublicContentFilter, SearchQueryFilter,
-                                SortingFilter)
+from mkt.search.filters import (ExtensionSearchFormFilter, PublicContentFilter,
+                                SearchQueryFilter, SortingFilter)
 from mkt.site.decorators import allow_cross_site_request, use_master
 from mkt.site.utils import get_file_response
 from mkt.submit.views import ValidationViewSet as SubmitValidationViewSet
@@ -78,10 +79,12 @@ class CreateExtensionMixin(object):
 
         # TODO: change create_comm_note to just take a version.
         if 'extension_pk' in self.kwargs:
-            create_comm_note(obj.extension, obj, request.user, '',
+            create_comm_note(obj.extension, obj, request.user,
+                             request.DATA.get('message', ''),
                              note_type=comm.SUBMISSION)
         else:
-            create_comm_note(obj, obj.latest_version, request.user, '',
+            create_comm_note(obj, obj.latest_version, request.user,
+                             request.DATA.get('message', ''),
                              note_type=comm.SUBMISSION)
 
         serializer = self.get_serializer(obj)
@@ -126,7 +129,7 @@ class ExtensionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
     model = Extension
     permission_classes = [AnyOf(AllowAppOwner, AllowExtensionReviewerReadOnly,
                                 AllowReadOnlyIfPublic)]
-    queryset = Extension.objects.all()
+    queryset = Extension.objects.without_deleted()
     serializer_class = ExtensionSerializer
 
     def filter_queryset(self, qs):
@@ -156,9 +159,11 @@ class ExtensionSearchView(CORSMixin, MarketplaceView, ListAPIView):
     authentication_classes = [RestSharedSecretAuthentication,
                               RestOAuthAuthentication]
     permission_classes = [AllowAny]
-    filter_backends = [PublicContentFilter, SearchQueryFilter, SortingFilter]
+    filter_backends = [ExtensionSearchFormFilter, PublicContentFilter,
+                       SearchQueryFilter, SortingFilter]
     serializer_class = ESExtensionSerializer
     paginator_class = ESPaginator
+    form_class = ExtensionSearchForm
 
     def get_queryset(self):
         return ExtensionIndexer.search()
@@ -184,7 +189,7 @@ class ReviewersExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
         'post': GroupPermission('Extensions', 'Review'),
         'get': GroupPermission('Extensions', 'Review'),
     }),)
-    queryset = Extension.objects.pending()
+    queryset = Extension.objects.without_deleted().pending()
     serializer_class = ExtensionSerializer
 
 
@@ -197,7 +202,7 @@ class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
     # Note: In this viewset, permissions are checked against the parent
     # extension.
     permission_classes = ExtensionViewSet.permission_classes
-    queryset = ExtensionVersion.objects.all()
+    queryset = ExtensionVersion.objects.without_deleted()
     serializer_class = ExtensionVersionSerializer
 
     def check_permissions(self, request):
@@ -212,6 +217,8 @@ class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
             raise PermissionDenied(
                 _(u'Modifying or submitting versions is forbidden for disabled'
                   u' Add-ons.'))
+        # Check object permissions (the original implementation, since we
+        # provide a different one) on the parent extension.
         super(ExtensionVersionViewSet, self).check_object_permissions(
             request, extension)
 
@@ -220,33 +227,27 @@ class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
         super(ExtensionVersionViewSet, self).check_object_permissions(
             request, obj.extension)
 
-    def filter_extension_queryset(self, qs, filter_prefix=''):
-        """Filter queryset passed in argument to find the parent Extension
-        by slug or pk."""
-        extension_pk = self.kwargs.get('extension_pk')
-        if not extension_pk:
+    def get_extension_object(self):
+        """Return the parent Extension object using the GET parameter passed
+        to the view."""
+        if hasattr(self, 'extension_object'):
+            return self.extension_object
+        identifier = self.kwargs.get('extension_pk')
+        if not identifier:
             raise ImproperlyConfigured(
                 'extension_pk should be passed to ExtensionVersionViewSet.')
-        if extension_pk.isdigit():
-            filters = {'%spk' % filter_prefix: extension_pk}
-        else:
-            filters = {'%sslug' % filter_prefix: extension_pk}
-        return qs.filter(**filters)
-
-    def get_extension_object(self):
-        """Return the parent Extension object directly."""
         try:
-            extension = self.filter_extension_queryset(
-                ExtensionViewSet.queryset).get()
+            self.extension_object = (
+                Extension.objects.without_deleted().by_identifier(identifier))
         except Extension.DoesNotExist:
             raise Http404
-        return extension
+        return self.extension_object
 
     def get_queryset(self):
         """Return the ExtensionVersion queryset, filtered to only consider the
         children of the parent Extension."""
         qs = super(ExtensionVersionViewSet, self).get_queryset()
-        return self.filter_extension_queryset(qs, filter_prefix='extension__')
+        return qs.filter(extension=self.get_extension_object())
 
     @detail_route(
         methods=['post'],
@@ -255,7 +256,8 @@ class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
     def publish(self, request, *args, **kwargs):
         obj = self.get_object()
         obj.publish()
-        create_comm_note(obj.extension, obj, request.user, '',
+        create_comm_note(obj.extension, obj, request.user,
+                         request.DATA.get('message', ''),
                          note_type=comm.APPROVAL)
         return Response(status=status.HTTP_202_ACCEPTED)
 
@@ -266,7 +268,8 @@ class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
     def reject(self, request, *args, **kwargs):
         obj = self.get_object()
         obj.reject()
-        create_comm_note(obj.extension, obj, request.user, '',
+        create_comm_note(obj.extension, obj, request.user,
+                         request.DATA.get('message', ''),
                          note_type=comm.REJECTION)
         return Response(status=status.HTTP_202_ACCEPTED)
 
@@ -282,17 +285,49 @@ def _download(request, extension, version, path, public=True):
 
 
 def download_signed(request, uuid, **kwargs):
-    extension = get_object_or_404(Extension.objects.public(), uuid=uuid)
-    version = extension.versions.get(pk=kwargs['version_id'])
+    """Download the signed archive for a given public extension/version."""
+    extension = get_object_or_404(
+        Extension.objects.without_deleted().public(), uuid=uuid)
+    version = get_object_or_404(
+        extension.versions.without_deleted().public(), pk=kwargs['version_id'])
 
-    log.info('Downloading add-on: %s version %s from %s' % (
+    log.info('Downloading public add-on: %s version %s from %s' % (
              extension.pk, version.pk, version.signed_file_path))
     return _download(request, extension, version, version.signed_file_path)
 
 
+def download_signed_reviewer(request, uuid, **kwargs):
+    """Download an archive for a given extension/version, signed on-the-fly
+    with reviewers certificate.
+
+    Only reviewers can access this."""
+    extension = get_object_or_404(
+        Extension.objects.without_deleted(), uuid=uuid)
+    version = get_object_or_404(
+        extension.versions.without_deleted(), pk=kwargs['version_id'])
+
+    def is_reviewer():
+        return action_allowed(request, 'Extensions', 'Review')
+
+    if request.user.is_authenticated() and is_reviewer():
+        version.reviewer_sign_if_necessary()
+        log.info(
+            'Downloading reviewers signed add-on: %s version %s from %s' % (
+                extension.pk, version.pk, version.reviewer_signed_file_path))
+        return _download(request, extension, version,
+                         version.reviewer_signed_file_path, public=False)
+    else:
+        raise PermissionDenied
+
+
 def download_unsigned(request, uuid, **kwargs):
-    extension = get_object_or_404(Extension, uuid=uuid)
-    version = extension.versions.get(pk=kwargs['version_id'])
+    """Download the unsigned archive for a given extension/version.
+
+    Only reviewers and developers can do this."""
+    extension = get_object_or_404(
+        Extension.objects.without_deleted(), uuid=uuid)
+    version = get_object_or_404(
+        extension.versions.without_deleted(), pk=kwargs['version_id'])
 
     def is_author():
         return extension.authors.filter(pk=request.user.pk).exists()
@@ -311,7 +346,8 @@ def download_unsigned(request, uuid, **kwargs):
 
 @allow_cross_site_request
 def mini_manifest(request, uuid, **kwargs):
-    extension = get_object_or_404(Extension, uuid=uuid)
+    extension = get_object_or_404(
+        Extension.objects.without_deleted(), uuid=uuid)
 
     if extension.is_public():
         # Let ETag/Last-Modified be handled by the generic middleware for now.
@@ -320,3 +356,22 @@ def mini_manifest(request, uuid, **kwargs):
                             content_type=MANIFEST_CONTENT_TYPE)
     else:
         raise Http404
+
+
+@allow_cross_site_request
+def mini_manifest_reviewer(request, uuid, **kwargs):
+    extension = get_object_or_404(
+        Extension.objects.without_deleted(), uuid=uuid)
+    version = get_object_or_404(
+        extension.versions.without_deleted(), pk=kwargs['version_id'])
+
+    def is_reviewer():
+        return action_allowed(request, 'Extensions', 'Review')
+
+    if request.user.is_authenticated() and is_reviewer():
+        manifest = version.reviewer_mini_manifest
+        # Let ETag/Last-Modified be handled by the generic middleware for now.
+        # If that turns out to be a problem, we'll set them manually.
+        return JsonResponse(manifest, content_type=MANIFEST_CONTENT_TYPE)
+    else:
+        raise PermissionDenied

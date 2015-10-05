@@ -221,13 +221,14 @@ POSTFIX_AUTH_TOKEN = env('POSTFIX_AUTH_TOKEN')
 POSTFIX_DOMAIN = DOMAIN
 
 # IARC content ratings.
+IARC_COMPANY = 'Mozilla'
 IARC_ENV = env('IARC_ENV', default='prod')
-IARC_MOCK = env('IARC_MOCK', default=False)
+IARC_MOCK = False
 IARC_PASSWORD = env('IARC_PASSWORD')
 IARC_PLATFORM = env('IARC_PLATFORM', default='Firefox')
-IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCDEMOService/IARCServices.svc'  # noqa
+IARC_SERVICE_ENDPOINT = 'https://www.globalratings.com/IARCProdService/IARCServices.svc'  # noqa
 IARC_STOREFRONT_ID = env('IARC_STOREFRONT_ID', default=4)
-IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'  # noqa
+IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCProdRating/Submission.aspx'  # noqa
 IARC_ALLOW_CERT_REUSE = False
 
 PAYMENT_PROVIDERS = env.list('PAYMENT_PROVIDERS', default=['bango'])

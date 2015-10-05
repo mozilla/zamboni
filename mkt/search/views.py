@@ -4,6 +4,7 @@ import json
 
 from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse
+from django.utils.functional import lazy
 
 from elasticsearch_dsl import filter as es_filter
 from rest_framework.generics import ListAPIView
@@ -16,6 +17,8 @@ from mkt.api.authentication import (RestOAuthAuthentication,
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.paginator import ESPaginator
 from mkt.api.permissions import AnyOf, GroupPermission
+from mkt.extensions.indexers import ExtensionIndexer
+from mkt.extensions.serializers import ESExtensionSerializer
 from mkt.operators.permissions import IsOperatorPermission
 from mkt.search.forms import ApiSearchForm, COLOMBIA_WEBSITE
 from mkt.search.indexers import BaseIndexer
@@ -71,37 +74,58 @@ class MultiSearchView(SearchView):
     """
     allow_colombia = False
     serializer_class = DynamicSearchSerializer
+    # mapping_names_and_indices is lazy because our tests modify the indices
+    # to use test indices. So we want it to be instantiated only when we start
+    # using it in the code, not before.
+    mapping_names_and_indices = lazy(lambda: {
+        'extension': {
+            'doc_type': ExtensionIndexer.get_mapping_type_name(),
+            'index': ExtensionIndexer.get_index()
+        },
+        'webapp': {
+            'doc_type': WebappIndexer.get_mapping_type_name(),
+            'index': WebappIndexer.get_index(),
+        },
+        'website': {
+            'doc_type': WebsiteIndexer.get_mapping_type_name(),
+            'index': WebsiteIndexer.get_index()
+        }
+    }, dict)()
+    serializer_classes = {
+        'extension': ESExtensionSerializer,
+        'webapp': ESAppSerializer,
+        'website': ESWebsiteSerializer
+    }
 
-    def _get_doc_types(self):
-        # Check if we are filtering by a doc_type (e.g., apps, sites).
-        # Default to all content types.
-        doc_type = self.request.GET.get('doc_type', 'all')
-        app_doc = WebappIndexer.get_mapping_type_name()
-        site_doc = WebsiteIndexer.get_mapping_type_name()
-        if doc_type == 'webapp':
-            return [app_doc]
-        elif doc_type == 'website':
-            return [site_doc]
-        return [app_doc, site_doc]
+    def get_doc_types_and_indices(self):
+        """
+        Return a dict with the index and doc_type keys to use for this request,
+        using the 'doc_type' GET parameter.
 
-    def _get_indices(self):
-        # Check if we are filtering by a doc_type (e.g., apps, sites).
-        # Default to all content types.
-        doc_type = self.request.GET.get('doc_type', 'all')
-        app_index = WebappIndexer.get_index()
-        site_index = WebsiteIndexer.get_index()
-        if doc_type == 'webapp':
-            return [app_index]
-        elif doc_type == 'website':
-            return [site_index]
-        return [app_index, site_index]
+        Valid `doc_type` parameters: 'extension', 'webapp' and 'website'. If
+        no parameter is passed or the value is not recognized, default to
+        'webapp', 'website'."""
+        cls = self.__class__
+        requested_doc_types = self.request.GET.get('doc_type', '').split(',')
+        filtered_names_and_indices = [
+            cls.mapping_names_and_indices[key] for key
+            in cls.mapping_names_and_indices if key in requested_doc_types]
+        if not filtered_names_and_indices:
+            # Default is to include only webapp and website for now.
+            filtered_names_and_indices = [
+                cls.mapping_names_and_indices['webapp'],
+                cls.mapping_names_and_indices['website'],
+            ]
+        # Now regroup to produce a dict with doc_type: [...], index: [...].
+        return {key: [item[key] for item in filtered_names_and_indices]
+                for key in ['doc_type', 'index']}
 
     def get_serializer_context(self):
+        # This context is then used by the DynamicSearchSerializer to switch
+        # serializer depending on the document being serialized.
+        cls = self.__class__
         context = super(MultiSearchView, self).get_serializer_context()
-        context['serializer_classes'] = {
-            'webapp': ESAppSerializer,
-            'website': ESWebsiteSerializer
-        }
+        context['serializer_classes'] = cls.serializer_classes
         return context
 
     def _get_colombia_filter(self):
@@ -115,8 +139,7 @@ class MultiSearchView(SearchView):
                                    WebsiteIndexer.hidden_fields))
         co_filters = self._get_colombia_filter()
         qs = (Search(using=BaseIndexer.get_es(),
-                     index=self._get_indices(),
-                     doc_type=self._get_doc_types())
+                     **self.get_doc_types_and_indices())
               .extra(_source={'exclude': excluded_fields}))
         if co_filters:
             return qs.filter(co_filters)

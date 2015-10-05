@@ -20,6 +20,7 @@ from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.constants.features import FeatureProfile
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
+from mkt.extensions.models import Extension
 from mkt.operators.models import OperatorPermission
 from mkt.prices.models import Price
 from mkt.regions.middleware import RegionMiddleware
@@ -1378,10 +1379,12 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         super(TestMultiSearchView, self).setUp()
         self.url = reverse('api-v2:multi-search-api')
         self.webapp = Webapp.objects.get(pk=337141)
+        self.webapp.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
         self.shared_category = 'books-comics'
         self.webapp.update(categories=[self.shared_category, 'business'])
         self.webapp.popularity.create(region=0, value=11.0)
         self.website = website_factory(
+            devices=[mkt.DEVICE_GAIA.id],
             name='something something webcube',
             short_name='something',
             title='title something something webcube',
@@ -1389,23 +1392,37 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
                          'fr': 'desc something something webcube fr'},
             categories=[self.shared_category, 'sports'],
         )
-        self.refresh(('webapp', 'website'))
+        self.website.update(last_updated=self.days_ago(1))
+        self.extension = Extension.objects.create(
+            author='something',
+            description={
+                'en-US': 'desc something something something webcube',
+                'es': 'desc something something something webcube es',
+                'fr': 'desc something something something webcube fr'},
+            name='something', slug='something')
+        self.extension.versions.create(
+            reviewed=self.days_ago(0), status=mkt.STATUS_PUBLIC)
+        self.refresh(('webapp', 'website', 'extension'))
 
     def tearDown(self):
-        for w in Webapp.objects.all():
-            w.delete()
-        for w in Website.objects.all():
-            w.delete()
+        for o in Webapp.objects.all():
+            o.delete()
+        for o in Website.objects.all():
+            o.delete()
+        for o in Extension.objects.all():
+            o.delete()
         super(TestMultiSearchView, self).tearDown()
 
-        # Make sure to delete and unindex *all* apps. Normally we wouldn't care
-        # about stray deleted apps staying in the index, but they can have an
-        # impact on relevancy scoring so we need to make sure. This needs to
-        # happen after super() has been called since it'll process the indexing
-        # tasks that should happen post_request, and we need to wait for ES to
-        # have done everything before continuing.
+        # Make sure to delete and unindex *all* things. Normally we wouldn't
+        # care about stray deleted content staying in the index, but they can
+        # have an impact on relevancy scoring so we need to make sure. This
+        # needs to happen after super() has been called since it'll process the
+        # indexing tasks that should happen post_request, and we need to wait
+        # for ES to have done everything before continuing.
         Webapp.get_indexer().unindexer(_all=True)
-        self.refresh(('webapp', 'website'))
+        Website.get_indexer().unindexer(_all=True)
+        Extension.get_indexer().unindexer(_all=True)
+        self.refresh(('webapp', 'website', 'extension'))
 
     def _add_co_tag(self, website):
         co = Tag.objects.get_or_create(tag_text=COLOMBIA_WEBSITE)[0]
@@ -1429,10 +1446,11 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         self.anon.get(self.url)
         assert _mock.called
 
-    def test_search(self):
+    def test_search_no_doc_type_passed(self):
         res = self.anon.get(self.url, data={'lang': 'en-US'})
         eq_(res.status_code, 200)
         objs = res.json['objects']
+        # Extensions are excluded by default if there is no doc_type parameter.
         eq_(len(objs), 2)
         eq_(objs[0]['doc_type'], 'webapp')
         eq_(objs[0]['id'], self.webapp.pk)
@@ -1461,47 +1479,84 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         res = self.anon.get(self.url, data={'region': 'None'})
         eq_(res.status_code, 200)
         objs = res.json['objects']
+        # Extensions are excluded by default if there is no doc_type parameter.
         eq_(len(objs), 2)
 
     def test_search_popularity(self):
         self.website.popularity.create(region=0, value=12.0)
+        self.extension.popularity.create(region=0, value=42.0)
         # Force reindex to get the new popularity, it's not done automatically.
         self.reindex(Website)
-        res = self.anon.get(self.url, data={'lang': 'en-US'})
+        self.reindex(Extension)
+        res = self.anon.get(self.url, data={
+            'doc_type': 'extension,webapp,website', 'lang': 'en-US'})
         eq_(res.status_code, 200)
         objs = res.json['objects']
-        eq_(len(objs), 2)
-        eq_(objs[0]['doc_type'], 'website')
-        eq_(objs[0]['id'], self.website.pk)
-        eq_(objs[0]['title'], self.website.title)
-        eq_(objs[0]['url'], self.website.url)
-        eq_(objs[1]['doc_type'], 'webapp')
-        eq_(objs[1]['id'], self.webapp.pk)
-        eq_(objs[1]['name'], self.webapp.name)
-        eq_(objs[1]['slug'], self.webapp.app_slug)
+        eq_(len(objs), 3)
+        eq_(objs[0]['doc_type'], 'extension')
+        eq_(objs[0]['id'], self.extension.pk)
+        eq_(objs[0]['name'], self.extension.name)
+        eq_(objs[0]['slug'], self.extension.slug)
+        eq_(objs[1]['doc_type'], 'website')
+        eq_(objs[1]['id'], self.website.pk)
+        eq_(objs[1]['title'], self.website.title)
+        eq_(objs[1]['url'], self.website.url)
+        eq_(objs[2]['doc_type'], 'webapp')
+        eq_(objs[2]['id'], self.webapp.pk)
+        eq_(objs[2]['name'], self.webapp.name)
+        eq_(objs[2]['slug'], self.webapp.app_slug)
 
     def test_search_sort_by_reviewed(self):
-        res = self.anon.get(self.url, data={'lang': 'en-US',
-                                            'sort': 'reviewed'})
+        res = self.anon.get(self.url, data={
+            'doc_type': 'extension,webapp,website', 'lang': 'en-US',
+            'sort': 'reviewed'})
         eq_(res.status_code, 200)
         objs = res.json['objects']
-        eq_(len(objs), 2)
-        eq_(objs[0]['doc_type'], 'website')
-        eq_(objs[0]['id'], self.website.pk)
-        eq_(objs[0]['title'], self.website.title)
-        eq_(objs[0]['url'], self.website.url)
-        eq_(objs[1]['doc_type'], 'webapp')
-        eq_(objs[1]['id'], self.webapp.pk)
-        eq_(objs[1]['name'], self.webapp.name)
-        eq_(objs[1]['slug'], self.webapp.app_slug)
+        eq_(len(objs), 3)
+        eq_(objs[0]['doc_type'], 'extension')
+        eq_(objs[0]['id'], self.extension.pk)
+        eq_(objs[0]['name'], self.extension.name)
+        eq_(objs[0]['slug'], self.extension.slug)
+        eq_(objs[1]['doc_type'], 'website')
+        eq_(objs[1]['id'], self.website.pk)
+        eq_(objs[1]['title'], self.website.title)
+        eq_(objs[1]['url'], self.website.url)
+        eq_(objs[2]['doc_type'], 'webapp')
+        eq_(objs[2]['id'], self.webapp.pk)
+        eq_(objs[2]['name'], self.webapp.name)
+        eq_(objs[2]['slug'], self.webapp.app_slug)
 
     def test_search_q(self):
-        res = self.anon.get(self.url, data={'q': 'something', 'lang': 'en-US'})
+        res = self.anon.get(self.url, data={
+            'doc_type': 'extension,webapp,website', 'lang': 'en-US',
+            'q': 'something'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(res.json['meta']['total_count'], 3)
+        # Order should be Extension, Website, Webapp, because the Extension
+        # should be more relevant, then the Website, then the Webapp.
+        eq_(len(objs), 3)
+        eq_(objs[0]['doc_type'], 'extension')
+        eq_(objs[0]['id'], self.extension.pk)
+        eq_(objs[0]['name'], self.extension.name)
+        eq_(objs[0]['slug'], self.extension.slug)
+        eq_(objs[1]['doc_type'], 'website')
+        eq_(objs[1]['id'], self.website.pk)
+        eq_(objs[1]['title'], self.website.title)
+        eq_(objs[1]['url'], self.website.url)
+        eq_(objs[2]['doc_type'], 'webapp')
+        eq_(objs[2]['id'], self.webapp.pk)
+        eq_(objs[2]['name'], self.webapp.name)
+        eq_(objs[2]['slug'], self.webapp.app_slug)
+
+    def test_search_q_no_doc_type(self):
+        res = self.anon.get(self.url, data={'lang': 'en-US', 'q': 'something'})
         eq_(res.status_code, 200)
         objs = res.json['objects']
         eq_(res.json['meta']['total_count'], 2)
+        # Order should be Website, Webapp, because the Extension is not
+        # included and Website should be more relevant than the Webapp.
         eq_(len(objs), 2)
-        # Website should be first because it's more relevant than the Webapp.
         eq_(objs[0]['doc_type'], 'website')
         eq_(objs[0]['id'], self.website.pk)
         eq_(objs[0]['title'], self.website.title)
@@ -1527,6 +1582,14 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         eq_(objs[0]['doc_type'], 'webapp')
         eq_(objs[0]['id'], self.webapp.pk)
 
+    def test_extension_only(self):
+        res = self.anon.get(self.url, data={'q': 'something',
+                                            'doc_type': 'extension'})
+        objs = res.json['objects']
+        eq_(res.json['meta']['total_count'], 1)
+        eq_(objs[0]['doc_type'], 'extension')
+        eq_(objs[0]['id'], self.extension.pk)
+
     def test_tag_filter_empty(self):
         res = self.anon.get(self.url, data={'tag': 'featured-game'})
         ok_(not res.json['objects'])
@@ -1551,6 +1614,25 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         res_co = self.client.get(self.url, {'doc_type': 'website',
                                             'region': 'co'})
         eq_(res_co.json['meta']['total_count'], 0)
+
+    def test_search_devices(self):
+        res = self.client.get(self.url, {
+            'dev': 'firefoxos', 'doc_type': 'extension,webapp,website'})
+        eq_(res.status_code, 200)
+        eq_(res.json['meta']['total_count'], 3)
+        eq_(len(res.json['objects']), 3)
+        eq_(res.json['objects'][0]['device_types'], ['firefoxos'])
+        eq_(res.json['objects'][1]['device_types'], ['firefoxos'])
+        eq_(res.json['objects'][2]['device_types'], ['firefoxos'])
+
+    def test_search_typical_full_query(self):
+        res = self.client.get(self.url, {
+            'dev': 'firefoxos', 'doc_type': 'extension,webapp,website',
+            'lang': 'en-US', 'limit': 24, 'q': 'something',
+            'pro': '7fffffffffff0.51.6', 'region': 'us'})
+        eq_(res.status_code, 200)
+        eq_(res.json['meta']['total_count'], 3)
+        eq_(len(res.json['objects']), 3)
 
 
 class TestOpenMobileACLSearchView(RestOAuth, ESTestCase):

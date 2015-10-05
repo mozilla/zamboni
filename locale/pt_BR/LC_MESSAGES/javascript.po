@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-07-01 09:56:05\n"
+"PO-Revision-Date: 2015-10-01 23:15+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -245,19 +245,19 @@ msgstr "Não foi possível alterar o estado para \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:70
 msgid "Group membership \"{0}\" added"
-msgstr ""
+msgstr "Grupo \"{0}\" adicionado"
 
 #: media/js/devreg/lookup-tool.js:84
 msgid "Could not add group \"{0}\""
-msgstr ""
+msgstr "Não foi possível adicionar o grupo \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:108
 msgid "Group membership \"{0}\" removed"
-msgstr ""
+msgstr "Grupo \"{0}\" removido"
 
 #: media/js/devreg/lookup-tool.js:114
 msgid "Could not remove group \"{0}\""
-msgstr ""
+msgstr "Não foi possível remover o grupo \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:183
 msgid "Show All Results"

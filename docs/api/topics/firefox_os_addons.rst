@@ -37,8 +37,10 @@ Detail
 
         {
           "id": 1,
+          "author": "Mozilla",
           "description": null,
           "disabled": false,
+          "device_types": ["firefoxos"],
           "latest_version": {
             "id": 1,
             "download_url": "https://example.com/downloads/extension/ce6b52d231154a27a1c54b2648c10379/1/extension-0.1.zip",
@@ -68,10 +70,12 @@ Detail
         depending on the query. See :ref:`translations <overview-translations>`.
 
     :resjson int id: The add-on id.
+    :resjson string author: The add-on author, if specified in the manifest.
     :resjson string|object|null description: The add-on description.
     :resjson boolean disabled: Boolean indicating whether the developer has disabled
         their add-on or not.
-    :resjson string|null last_updated: The latest date a version was published at for this add-on. 
+    :resjson string device_types: The devices the add-on is compatible with.
+    :resjson string|null last_updated: The latest date a version was published at for this add-on.
     :resjson object latest_version: The latest :ref:`add-on version <addon-version-detail>` available for this extension.
     :resjson object latest_public_version: The latest *public* :ref:`add-on version <addon-version-detail>` available for this extension.
     :resjson string mini_manifest_url: The (absolute) URL to the `mini-manifest <https://developer.mozilla.org/docs/Mozilla/Marketplace/Options/Packaged_apps#Publishing_on_Firefox_Marketplace>`_ for that add-on. That URL may be a 404 if the add-on is not public yet.
@@ -133,12 +137,15 @@ Search
 
     Search through *public* add-ons.
 
-    The default sort order when the sort parameter is absent depends on whether
-    a search query is present of not:
-    * If a query is passed, order by relevance.
-    * If no query is passed, order by popularity descending.
+    All query parameters are optional. The default sort order when the `sort`
+    parameter is absent depends on whether a search query (`q`) is present or
+    not:
+     * If a search query is passed, order by relevance.
+     * If no search query is passed, order by popularity descending.
 
     :param string q: The search query.
+    :param string author: Filter by author. Requires a case-insensitive
+        exact match of the author field.
     :param string sort: The field(s) to sort by. One or more of 'popularity',
         'created', 'name', 'reviewed'. In every case except 'name', sorting is
         done in descending order.
@@ -184,13 +191,17 @@ Detail
 
         {
           "id": 1,
-          "download_url": "https://marketplace.firefox.com/downloads/extension/ce6b52d231154a27a1c54b2648c10379/1/extension-0.1.zip",
-          "unsigned_download_url": "https://marketplace.firefox.com/downloads/extension/unsigned/ce6b52d231154a27a1c54b2648c10379/1/extension-0.1.zip",
+          "created": "2015-09-28T10:02:23",
+          "download_url": "https://marketplace.firefox.com/downloads/extension/ce6b52d231154a27a1c54b2648c10379/42/extension-0.1.zip",
+          "reviewer_mini_manifest_url": "https://marketplace.firefox.com/extension/reviewers/ce6b52d231154a27a1c54b2648c10379/42/manifest.json",
+          "unsigned_download_url": "https://marketplace.firefox.com/downloads/extension/unsigned/ce6b52d231154a27a1c54b2648c10379/42/extension-0.1.zip",
           "status": "public",
           "version": "0.1"
         }
 
+    :resjson string created: The creation date for this version.
     :resjson string download_url: The (absolute) URL to the latest signed package for that add-on. That URL may be a 404 if the add-on is not public.
+    :resjson string reviewer_mini_manifest_url: The (absolute) URL to the reviewer-specific mini_manifest URL (allowing reviewers to install a non-public version) for this version. Only users with Extensions:Review permission may access it.
     :resjson string status: The add-on version current status. Can be *pending*, *obsolete*, *public* or *rejected*.
     :resjson string unsigned_download_url: The (absolute) URL to the latest *unsigned* package for that add-on. Only the add-on author or users with Extensions:Review permission may access it.
     :resjson string version: The version number for this add-on version.
@@ -329,6 +340,8 @@ Add-on Creation
 
     :reqjson string validation_id: the id of the
         :ref:`validation result <addon_validation>` for your add-on.
+    :reqjson string message (optional): Notes for reviewers about the
+                                        submission.
 
     :status 201: successfully created.
     :status 400: some errors were found in your add-on.
@@ -349,6 +362,8 @@ Add-on Version Creation
 
     :reqjson string validation_id: the id of the
         :ref:`validation result <addon_validation>` for your add-on version.
+    :reqjson string message (optional): Notes for reviewers about the
+                                        submission.
 
     :param int id: The add-on id
     :param string slug: The add-on slug
@@ -399,6 +414,7 @@ Publishing
     :param int id: The add-on id
     :param string slug: The add-on slug
     :param int version_id: The add-on version id
+    :param string message (optional): Reviewer notes about publishing
 
     :status 202: successfully published.
     :status 403: not allowed to access this object or disabled add-on.
@@ -415,6 +431,7 @@ Rejecting
     :param int id: The add-on id
     :param string slug: The add-on slug
     :param int version_id: The add-on version id
+    :param string message (optional): Reviewer notes about rejecting
 
     :status 202: successfully published.
     :status 403: not allowed to access this object or disabled add-on.

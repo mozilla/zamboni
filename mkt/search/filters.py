@@ -58,6 +58,8 @@ class SearchQueryFilter(BaseFilterBackend):
         # do a term query on `name.raw` for an exact match against the item
         # name and give it a good boost since this is likely what the user
         # wants.
+        # FIXME: we should also do that on translations and slug/app_slug, but
+        # we don't store a raw version for them at the moment.
         should.append(query.Term(**{'name.raw': {'value': q, 'boost': 10}}))
         # Do the same for GUID searches.
         should.append(query.Term(**{'guid': {'value': q, 'boost': 10}}))
@@ -135,7 +137,6 @@ class SearchFormFilter(BaseFilterBackend):
         form = view.form_class(request.GET)
         if not form.is_valid():
             raise form_errors(form)
-
         self.form_data = form.cleaned_data
 
         data = {}
@@ -199,16 +200,24 @@ class ReviewerWebsiteSearchFormFilter(SearchFormFilter):
     VALID_FILTERS = ['keywords', 'category', 'device', 'status', 'is_disabled']
 
 
+class ExtensionSearchFormFilter(SearchFormFilter):
+    VALID_FILTERS = ['author.raw']
+
+
 class PublicContentFilter(BaseFilterBackend):
     """
     A django-rest-framework filter backend that filters only public items --
-    those with PUBLIC status and not disabled.
+    those not deleted, with PUBLIC status and not disabled.
 
     """
     def filter_queryset(self, request, queryset, view):
+        # Note: only Extensions have is_deleted, for Webapps the status is
+        # changed when deleted. That's why a must_not is used, it will be true
+        # even if the field does not exist.
         return queryset.filter(
             Bool(must=[F('term', status=mkt.STATUS_PUBLIC),
-                       F('term', is_disabled=False)]))
+                       F('term', is_disabled=False)],
+                 must_not=[F('term', is_deleted=True)]))
 
 
 class ValidAppsFilter(BaseFilterBackend):

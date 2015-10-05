@@ -12,12 +12,13 @@ from nose.tools import eq_, ok_
 from rest_framework.exceptions import ParseError
 
 from lib.crypto.packaged import SigningError
+from mkt.constants.applications import DEVICE_GAIA
 from mkt.constants.base import (STATUS_NULL, STATUS_OBSOLETE, STATUS_PENDING,
                                 STATUS_PUBLIC, STATUS_REJECTED)
 from mkt.constants.regions import RESTOFWORLD, USA
 from mkt.extensions.models import Extension, ExtensionVersion
 from mkt.files.tests.test_models import UploadCreationMixin, UploadTest
-from mkt.site.storage_utils import private_storage
+from mkt.site.storage_utils import private_storage, public_storage
 from mkt.site.tests import fixture, TestCase
 from mkt.users.models import UserProfile
 
@@ -33,7 +34,7 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
             '128': '/icon.png'
         },
         'version': '0.1',
-        'author': 'Mozilla',
+        'author': u'Mozillâ',
         'name': u'My Lîttle Extension'
     }
 
@@ -43,7 +44,9 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
 
     def tearDown(self):
         super(TestExtensionUpload, self).tearDown()
-        # Explicitely delete the Extensions to clean up leftover files.
+        # Explicitely delete the Extensions to clean up leftover files. By
+        # using the queryset method we're bypassing the custom delete() method,
+        # but still sending pre_delete and post_delete signals.
         Extension.objects.all().delete()
 
     def test_auto_create_slug(self):
@@ -53,6 +56,10 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         eq_(extension.slug, 'extension-1')
         extension = Extension.objects.create(name=u'Mŷ Ëxtension')
         eq_(extension.slug, u'mŷ-ëxtension')
+        # Slug clashes are avoided automatically:
+        extension = Extension.objects.create(
+            name=u'Mŷ Ëxtension', slug=u'mŷ-ëxtension')
+        eq_(extension.slug, u'mŷ-ëxtension-1')
 
     def test_auto_create_uuid(self):
         extension = Extension.objects.create()
@@ -70,6 +77,7 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         eq_(ExtensionVersion.objects.count(), 1)
 
         eq_(list(extension.authors.all()), [self.user])
+        eq_(extension.author, u'Mozillâ')
         eq_(extension.name, u'My Lîttle Extension')
         eq_(extension.default_language, 'en-GB')
         eq_(extension.description, u'A Dummÿ Extension')
@@ -179,52 +187,166 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
             ExtensionVersion.from_upload(upload)
 
 
-class TestExtensionVersionDeletion(TestCase):
-    def test_delete_with_file(self):
-        """Test that when a Extension instance is deleted, the ExtensionVersion
-        referencing it are also deleted, as well as the attached files."""
+class TestExtensionAndExtensionVersionDeletion(TestCase):
+    def tearDown(self):
+        super(TestExtensionAndExtensionVersionDeletion, self).tearDown()
+        # Explicitely delete the Extensions to clean up leftover files. By
+        # using the queryset method we're bypassing the custom delete() method,
+        # but still sending pre_delete and post_delete signals.
+        Extension.objects.all().delete()
+
+    def _create_files_for_version(self, version):
+        """Create dummy files for a version."""
+        file_path = version.file_path
+        with private_storage.open(file_path, 'w') as f:
+            f.write('sample data\n')
+        signed_file_path = version.signed_file_path
+        with public_storage.open(signed_file_path, 'w') as f:
+            f.write('sample signed data\n')
+        assert private_storage.exists(file_path)
+        assert public_storage.exists(signed_file_path)
+        return file_path, signed_file_path
+
+    def test_hard_delete_with_file(self):
+        """Test that when a Extension instance is hard-deleted, the
+        ExtensionVersion referencing it are also hard-deleted, as well as the
+        attached files."""
+        extension = Extension.objects.create()
+        version = ExtensionVersion.objects.create(
+            extension=extension, version='0.1')
+        file_path, signed_file_path = self._create_files_for_version(version)
+        extension.delete(hard_delete=True)
+        assert not Extension.objects.count()
+        assert not ExtensionVersion.objects.count()
+        assert not private_storage.exists(file_path)
+        assert not public_storage.exists(signed_file_path)
+
+    def test_hard_delete_version_with_file(self):
+        """Test that when a ExtensionVersion instance is hard-deleted, the
+        attached files are too."""
+        extension = Extension.objects.create()
+        version = ExtensionVersion.objects.create(
+            extension=extension, version='0.1')
+        file_path, signed_file_path = self._create_files_for_version(version)
+        version.delete(hard_delete=True)
+        assert Extension.objects.count()  # Parent Extension was not deleted.
+        assert not ExtensionVersion.objects.count()
+        assert not private_storage.exists(file_path)
+        assert not public_storage.exists(signed_file_path)
+
+    def test_hard_delete_no_file(self):
+        """Test that the Extension instance can be hard-deleted."""
+        extension = Extension.objects.create()
+        ExtensionVersion.objects.create(extension=extension, version='0.1')
+        extension.delete(hard_delete=True)
+        assert not ExtensionVersion.objects.count()
+        assert not Extension.objects.count()
+
+    def test_hard_delete_version_no_file(self):
+        """Test that the ExtensionVersion instance can be hard-deleted without
+        the files being present."""
+        extension = Extension.objects.create()
+        version = ExtensionVersion.objects.create(
+            extension=extension, version='0.1')
+        version.delete(hard_delete=True)
+        assert not ExtensionVersion.objects.count()
+        assert Extension.objects.count()  # Parent Extension was not deleted.
+
+    def test_soft_delete(self):
+        """Test that when a Extension instance is soft-deleted, the slug
+        and the deleted properties change."""
+        extension = Extension.objects.create()
+        ExtensionVersion.objects.create(extension=extension, version='0.1')
+        extension.delete()
+        eq_(extension.slug, None)
+        eq_(extension.deleted, True)
+        # Even after reload:
+        extension.reload()
+        eq_(extension.slug, None)
+        eq_(extension.deleted, True)
+
+    def test_soft_delete_version(self):
+        """Test that when a ExtensionVersion instance is soft-deleted, the
+        version and the deleted properties change."""
+        extension = Extension.objects.create()
+        version = ExtensionVersion.objects.create(
+            extension=extension, version='0.1')
+        version.delete()
+        eq_(version.version, None)
+        eq_(version.deleted, True)
+        # Even after reload:
+        version.reload()
+        eq_(version.version, None)
+        eq_(version.deleted, True)
+
+    def test_soft_delete_with_file(self):
+        """Test that when a Extension instance is soft-deleted, nothing is
+        truly deleted, and versions are not affected."""
         extension = Extension.objects.create()
         version = ExtensionVersion.objects.create(
             extension=extension, version='0.1')
         file_path = version.file_path
-        with private_storage.open(file_path, 'w') as f:
-            f.write('sample data\n')
-        assert private_storage.exists(file_path)
-        try:
-            extension.delete()
-            assert not Extension.objects.count()
-            assert not ExtensionVersion.objects.count()
-            assert not private_storage.exists(file_path)
-        finally:
-            if private_storage.exists(file_path):
-                private_storage.delete(file_path)
+        signed_file_path = version.signed_file_path
+        assert not private_storage.exists(file_path)
+        assert not public_storage.exists(signed_file_path)
+        extension.delete()
+        extension.reload()
+        eq_(extension.deleted, True)
+        # ExtensionVersion is still present, but hidden when using
+        # without_deleted().
+        assert ExtensionVersion.objects.count()
+        assert not Extension.objects.without_deleted().count()
+        assert Extension.objects.count()
 
-    def test_delete_no_file(self):
-        """Test that the ExtensionVersion instance can be deleted without the
-        file being present."""
+    def test_soft_delete_version_with_file(self):
+        """Test that when a ExtensionVersion instance is soft-deleted, nothing
+        is truly deleted."""
         extension = Extension.objects.create()
         version = ExtensionVersion.objects.create(
             extension=extension, version='0.1')
-        filename = version.file_path
-        assert not private_storage.exists(filename)
-        extension.delete()
+        file_path, signed_file_path = self._create_files_for_version(version)
+        version.delete()
+        version.reload()
+        eq_(version.deleted, True)
+        # Parent Extension was not deleted.
+        assert Extension.objects.without_deleted().count()
+        # ExtensionVersion is still present, but hidden when using
+        # without_deleted().
+        assert not ExtensionVersion.objects.without_deleted().count()
+        assert ExtensionVersion.objects.count()
+        # Files were not deleted.
+        assert private_storage.exists(file_path)
+        assert public_storage.exists(signed_file_path)
 
-    def test_delete_empty_filename(self):
-        """Test that the ExtensionVersion instance can be deleted with the
-        filename field being empty."""
+    def test_hard_delete_empty_version(self):
+        """Test that the ExtensionVersion instance can be hard-deleted with the
+        version field being empty."""
         extension = Extension.objects.create()
         version = ExtensionVersion.objects.create(extension=extension)
-        version.delete()
+        version.delete(hard_delete=True)
+        assert not ExtensionVersion.objects.count()
 
     @mock.patch.object(Extension, 'update_status_according_to_versions')
-    def test_status_update_on_deletion(self, update_status_mock):
-        """Test that when an ExtensionVersion is deleted, we call
+    def test_status_update_on_hard_deletion(self, update_status_mock):
+        """Test that when an ExtensionVersion is hard-deleted, we call
+        update_status_according_to_versions() on the Extension."""
+        extension = Extension.objects.create()
+        version = ExtensionVersion.objects.create(extension=extension)
+        update_status_mock.reset_mock()
+        eq_(update_status_mock.call_count, 0)
+        version.delete(hard_delete=True)
+        eq_(update_status_mock.call_count, 1)
+
+    @mock.patch.object(Extension, 'update_status_according_to_versions')
+    def test_status_update_on_soft_deletion(self, update_status_mock):
+        """Test that when an ExtensionVersion is soft-deleted, we call
         update_status_according_to_versions() on the Extension."""
         extension = Extension.objects.create()
         version = ExtensionVersion.objects.create(extension=extension)
         update_status_mock.reset_mock()
         eq_(update_status_mock.call_count, 0)
         version.delete()
+        eq_(version.deleted, True)
         eq_(update_status_mock.call_count, 1)
 
 
@@ -242,6 +364,12 @@ class TestExtensionESIndexation(TestCase):
         eq_(count, 3)
         Extension.objects.all().delete()
         eq_(unindex_mock.call_count, count)
+
+    @mock.patch('mkt.search.indexers.BaseIndexer.unindex')
+    def test_delete_search_index_single(self, unindex_mock):
+        extension = Extension.objects.create()
+        extension.delete(hard_delete=True)
+        eq_(unindex_mock.call_count, 1)
 
 
 class TestExtensionStatusChanges(TestCase):
@@ -266,6 +394,17 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.status, STATUS_PENDING)
         eq_(extension.latest_version, new_version)
 
+    def test_extension_pending_version_hard_deleted(self):
+        extension = Extension.objects.create()
+        new_version = ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PENDING, version='0.1')
+        eq_(extension.status, STATUS_PENDING)
+        eq_(extension.latest_version, new_version)
+        new_version.delete(hard_delete=True)
+        eq_(extension.status, STATUS_NULL)
+        with self.assertRaises(ExtensionVersion.DoesNotExist):
+            extension.latest_version
+
     def test_extension_pending_version_deleted(self):
         extension = Extension.objects.create()
         new_version = ExtensionVersion.objects.create(
@@ -277,6 +416,21 @@ class TestExtensionStatusChanges(TestCase):
         with self.assertRaises(ExtensionVersion.DoesNotExist):
             extension.latest_version
 
+    def test_pending_version_hard_deleted_fallback_to_other(self):
+        extension = Extension.objects.create()
+        old_version = ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PENDING, version='0.1')
+        new_version = ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PENDING, version='0.2')
+        eq_(extension.status, STATUS_PENDING)
+        eq_(extension.latest_version, new_version)
+        new_version.delete(hard_delete=True)
+        eq_(extension.status, STATUS_PENDING)
+        eq_(extension.latest_version, old_version)
+        extension.reload()
+        eq_(extension.status, STATUS_PENDING)
+        eq_(extension.latest_version, old_version)
+
     def test_pending_version_deleted_fallback_to_other(self):
         extension = Extension.objects.create()
         old_version = ExtensionVersion.objects.create(
@@ -287,6 +441,20 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.latest_version, new_version)
         new_version.delete()
         eq_(extension.status, STATUS_PENDING)
+        eq_(extension.latest_version, old_version)
+        extension.reload()
+        eq_(extension.status, STATUS_PENDING)
+        eq_(extension.latest_version, old_version)
+
+    def test_public_extension_pending_version_hard_deleted_no_change(self):
+        extension = Extension.objects.create()
+        old_version = ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PENDING, version='0.1')
+        new_version = ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PENDING, version='0.2')
+        eq_(extension.status, STATUS_PENDING)
+        eq_(extension.latest_version, new_version)
+        new_version.delete(hard_delete=True)
         eq_(extension.latest_version, old_version)
         extension.reload()
         eq_(extension.status, STATUS_PENDING)
@@ -322,6 +490,21 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.latest_version, new_pending_version)
         eq_(extension.latest_public_version, new_public_version)
 
+    def test_extension_public_version_hard_deleted(self):
+        extension = Extension.objects.create()
+        new_public_version = ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PUBLIC, version='0.1')
+        eq_(extension.status, STATUS_PUBLIC)
+        eq_(extension.latest_version, new_public_version)
+        eq_(extension.latest_public_version, new_public_version)
+        new_public_version.delete(hard_delete=True)
+        with self.assertRaises(ExtensionVersion.DoesNotExist):
+            extension.latest_version
+        with self.assertRaises(ExtensionVersion.DoesNotExist):
+            extension.latest_public_version
+        eq_(extension.status, STATUS_NULL)
+        eq_(extension.reload().status, STATUS_NULL)
+
     def test_extension_public_version_deleted(self):
         extension = Extension.objects.create()
         new_public_version = ExtensionVersion.objects.create(
@@ -338,6 +521,28 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.reload().status, STATUS_NULL)
 
     def test_extension_public_version_deleted_fallback_to_other(self):
+        extension = Extension.objects.create()
+        ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_NULL, version='0.0')
+        first_public_version = ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PUBLIC, version='0.1')
+        second_public_version = ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PUBLIC, version='0.2')
+        new_pending_version = ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PENDING, version='0.3')
+        eq_(extension.status, STATUS_PUBLIC)
+        eq_(extension.latest_version, new_pending_version)
+        eq_(extension.latest_public_version, second_public_version)
+        second_public_version.delete(hard_delete=True)
+        eq_(extension.status, STATUS_PUBLIC)
+        eq_(extension.latest_version, new_pending_version)
+        eq_(extension.latest_public_version, first_public_version)
+        extension.reload()
+        eq_(extension.status, STATUS_PUBLIC)
+        eq_(extension.latest_version, new_pending_version)
+        eq_(extension.latest_public_version, first_public_version)
+
+    def test_extension_public_version_hard_deleted_fallback_to_other(self):
         extension = Extension.objects.create()
         ExtensionVersion.objects.create(
             extension=extension, status=STATUS_NULL, version='0.0')
@@ -370,6 +575,26 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.status, STATUS_PUBLIC)
         eq_(extension.latest_version, new_pending_version)
         eq_(extension.latest_public_version, new_public_version)
+        new_pending_version.delete(hard_delete=True)
+        eq_(extension.status, STATUS_PUBLIC)
+        eq_(extension.latest_version, new_public_version)
+        eq_(extension.latest_public_version, new_public_version)
+        extension.reload()
+        eq_(extension.status, STATUS_PUBLIC)
+        eq_(extension.latest_version, new_public_version)
+        eq_(extension.latest_public_version, new_public_version)
+
+    def test_extension_public_pending_version_hard_deleted_no_change(self):
+        extension = Extension.objects.create()
+        ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_NULL, version='0.1')
+        new_public_version = ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PUBLIC, version='0.2')
+        new_pending_version = ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PENDING, version='0.3')
+        eq_(extension.status, STATUS_PUBLIC)
+        eq_(extension.latest_version, new_pending_version)
+        eq_(extension.latest_public_version, new_public_version)
         new_pending_version.delete()
         eq_(extension.status, STATUS_PUBLIC)
         eq_(extension.latest_version, new_public_version)
@@ -381,62 +606,139 @@ class TestExtensionStatusChanges(TestCase):
 
     def test_update_fields_from_manifest_when_version_is_made_public(self):
         new_manifest = {
+            'author': u' New Authôr',
             'name': u'\n New Nâme ',
             'description': u'New Descriptîon \t ',
             'version': '0.1',
         }
         extension = Extension.objects.create(
-            name=u'Old Nâme', description=u'Old Descriptîon')
+            author=u'Old Âuthor', description=u'Old Descriptîon',
+            name=u'Old Nâme')
         version = ExtensionVersion.objects.create(
             extension=extension, manifest=new_manifest, status=STATUS_PENDING,
             version='0.1')
         version.update(status=STATUS_PUBLIC)
         # Leading and trailing whitespace are stripped.
+        eq_(extension.author, u'New Authôr')
         eq_(extension.description, u'New Descriptîon')
         eq_(extension.name, u'New Nâme')
 
-    def test_update_fields_from_manifest_when_public_version_is_deleted(self):
+    def test_update_manifest_when_public_version_is_hard_deleted(self):
         old_manifest = {
-            'name': u'Old Nâme',
+            'author': u'Old Authôr',
             'description': u'Old Descriptîon',
+            'name': u'Old Nâme',
             'version': '0.1',
         }
         new_manifest = {
-            'name': u'Deleted Nâme',
+            'author': u'Deleted Authôr',
             'description': u'Deleted Descriptîon',
+            'name': u'Deleted Nâme',
             'version': '0.2',
         }
-        extension = Extension.objects.create(
-            name=u'Deleted Nâme', description=u'Deleted Descriptîon')
+        extension = Extension.objects.create()
         ExtensionVersion.objects.create(
             extension=extension, manifest=old_manifest, status=STATUS_PUBLIC,
             version='0.1')
         version = ExtensionVersion.objects.create(
             extension=extension, manifest=new_manifest, status=STATUS_PUBLIC,
             version='0.2')
+        eq_(extension.author, new_manifest['author'])
+        eq_(extension.description, new_manifest['description'])
+        eq_(extension.name, new_manifest['name'])
+        version.delete(hard_delete=True)
+        eq_(extension.author, old_manifest['author'])
+        eq_(extension.description, old_manifest['description'])
+        eq_(extension.name, old_manifest['name'])
+
+    def test_update_manifest_when_public_version_is_deleted(self):
+        old_manifest = {
+            'author': u'Old Authôr',
+            'description': u'Old Descriptîon',
+            'name': u'Old Nâme',
+            'version': '0.1',
+        }
+        new_manifest = {
+            'author': u'Deleted Authôr',
+            'description': u'Deleted Descriptîon',
+            'name': u'Deleted Nâme',
+            'version': '0.2',
+        }
+        extension = Extension.objects.create()
+        ExtensionVersion.objects.create(
+            extension=extension, manifest=old_manifest, status=STATUS_PUBLIC,
+            version='0.1')
+        version = ExtensionVersion.objects.create(
+            extension=extension, manifest=new_manifest, status=STATUS_PUBLIC,
+            version='0.2')
+        eq_(extension.author, new_manifest['author'])
         eq_(extension.description, new_manifest['description'])
         eq_(extension.name, new_manifest['name'])
         version.delete()
+        eq_(extension.author, old_manifest['author'])
         eq_(extension.description, old_manifest['description'])
         eq_(extension.name, old_manifest['name'])
 
     def test_dont_update_fields_from_manifest_when_not_necessary(self):
         new_manifest = {
-            'name': u'New Nâme',
-            'description': u'New Descriptîon',
+            'author': u' New Authôr',
+            'name': u'\n New Nâme ',
+            'description': u'New Descriptîon \t ',
             'version': '0.1',
         }
         extension = Extension.objects.create(
-            name=u'Old Nâme', description=u'Old Descriptîon')
+            author=u'Old Authôr', description=u'Old Descriptîon',
+            name=u'Old Nâme')
         ExtensionVersion.objects.create(
             extension=extension, manifest=new_manifest, status=STATUS_PENDING,
             version='0.1')
         extension.reload()
+        eq_(extension.author, u'Old Authôr')
         eq_(extension.description, u'Old Descriptîon')
         eq_(extension.name, u'Old Nâme')
 
 
-class TestExtensionVersionMethodsAndProperties(TestCase):
+class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
+    def test_latest_public_version_does_not_include_deleted(self):
+        """Test that deleted ExtensionVersion are not taken into account when
+        determining the latest public version."""
+        extension = Extension.objects.create()
+        ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PUBLIC)
+        version = ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PUBLIC)
+        ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_REJECTED)
+        ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_OBSOLETE)
+        ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PENDING)
+        ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PUBLIC, deleted=True)
+        eq_(extension.latest_public_version, version)
+
+    def test_latest_version_does_not_include_deleted(self):
+        """Test that deleted ExtensionVersion are not taken into account when
+        determining the latest version."""
+        extension = Extension.objects.create()
+        ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PUBLIC)
+        ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_REJECTED)
+        ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_OBSOLETE)
+        version = ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PENDING)
+        ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PUBLIC, deleted=True)
+        eq_(extension.latest_version, version)
+
+    def test_devices(self):
+        eq_(Extension().devices, [DEVICE_GAIA.id])
+
+    def test_devices_names(self):
+        eq_(Extension().device_names, ['firefoxos'])
+
     @override_settings(SITE_URL='https://marketpace.example.com/')
     def test_download_url(self):
         extension = Extension(pk=40, uuid='abcdef78123456781234567812345678')
@@ -455,6 +757,15 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
             'https://marketpace.example.com/downloads/extension/unsigned/'
             'abcdef78123456781234567812345678/2432615184/extension-0.41.0.zip')
 
+    @override_settings(SITE_URL='https://marketpace.example.com/')
+    def test_reviewer_download_url(self):
+        extension = Extension(pk=42, uuid='abcdef78123456781234567812345678')
+        version = ExtensionVersion(
+            pk=4815162342, extension=extension, version='0.42.0')
+        eq_(version.reviewer_download_url,
+            'https://marketpace.example.com/downloads/extension/reviewers/'
+            'abcdef78123456781234567812345678/4815162342/extension-0.42.0.zip')
+
     def test_file_paths(self):
         extension = Extension(pk=42)
         version = ExtensionVersion(extension=extension, version='0.42.0')
@@ -465,6 +776,9 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
         eq_(version.signed_file_path,
             os.path.join(settings.SIGNED_EXTENSIONS_PATH,
                          str(extension.pk), version.filename))
+        eq_(version.reviewer_signed_file_path,
+            os.path.join(settings.EXTENSIONS_PATH,
+                         str(extension.pk), 'reviewers', version.filename))
 
     def test_is_public(self):
         extension = Extension(disabled=False, status=STATUS_PUBLIC)
@@ -488,20 +802,18 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
             '12345678123456781234567812abcdef/manifest.json')
 
     def test_mini_manifest_no_version(self):
-        extension = Extension()
+        extension = Extension(pk=42)
         eq_(extension.mini_manifest, {})
 
     def test_mini_manifest_no_public_version(self):
         manifest = {
-            'author': 'Me',
-            'description': 'Blah',
-            'manifest_version': 2,
-            'name': u'Ëxtension',
-            'version': '0.44',
+            'you_should_not_see': 'this_manifest'
         }
-        extension = Extension(pk=44, uuid='abcdefabcdefabcdefabcdefabcdef44')
-        ExtensionVersion(
-            pk=1234, extension=extension, manifest=manifest, version='0.44.0')
+        extension = Extension.objects.create(
+            uuid='abcdefabcdefabcdefabcdefabcdef44')
+        ExtensionVersion.objects.create(
+            extension=extension, manifest=manifest, status=STATUS_PENDING,
+            version='0.44.0')
         eq_(extension.mini_manifest, {})
 
     def test_mini_manifest(self):
@@ -510,7 +822,7 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
             'description': 'Blah',
             'manifest_version': 2,
             'name': u'Ëxtension',
-            'version': '0.45',
+            'version': '0.45.0',
         }
         extension = Extension.objects.create(
             status=STATUS_PUBLIC, uuid='abcdefabcdefabcdefabcdefabcdef45')
@@ -528,21 +840,53 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
             'name': u'Ëxtension',
             'package_path': version.download_url,
             'size': 421,
-            'version': '0.45',
+            'version': '0.45.0',
         }
         eq_(extension.mini_manifest, expected_mini_manifest)
+
+    @override_settings(SITE_URL='https://marketpace.example.com/')
+    def test_reviewer_mini_manifest_url(self):
+        extension = Extension(pk=43, uuid='12345678123456781234567812abcdef')
+        version = ExtensionVersion(extension=extension, pk=4343)
+        eq_(version.reviewer_mini_manifest_url,
+            'https://marketpace.example.com/extension/reviewers/'
+            '12345678123456781234567812abcdef/4343/manifest.json')
+
+    def test_reviewer_mini_manifest(self):
+        manifest = {
+            'author': 'Me',
+            'description': 'Blah',
+            'manifest_version': 2,
+            'name': u'Ëxtension',
+            'version': '0.55.0',
+        }
+        extension = Extension.objects.create(
+            status=STATUS_PENDING, uuid='abcdefabcdefabcdefabcdefabcdef45')
+        version = ExtensionVersion.objects.create(
+            extension=extension, manifest=manifest,
+            status=STATUS_PENDING, version='0.54.0')
+        expected_mini_manifest = {
+            'description': 'Blah',
+            'developer': {
+                'name': 'Me'
+            },
+            'name': u'Ëxtension',
+            'package_path': version.reviewer_download_url,
+            'version': '0.55.0',
+        }
+        eq_(version.reviewer_mini_manifest, expected_mini_manifest)
 
     @mock.patch('mkt.extensions.models.sign_app')
     @mock.patch('mkt.extensions.models.private_storage')
     @mock.patch('mkt.extensions.models.public_storage')
-    @mock.patch.object(ExtensionVersion, 'remove_signed_file')
-    def test_sign_and_move_file(self, remove_signed_file_mock,
-                                public_storage_mock, private_storage_mock,
-                                sign_app_mock):
+    @mock.patch.object(ExtensionVersion, 'remove_public_signed_file')
+    def test_sign_file(self, remove_public_signed_file_mock,
+                       public_storage_mock, private_storage_mock,
+                       sign_app_mock):
         extension = Extension(uuid='ab345678123456781234567812345678')
         version = ExtensionVersion(extension=extension, pk=123)
         public_storage_mock.size.return_value = 665
-        size = version.sign_and_move_file()
+        size = version.sign_file()
         eq_(size, 665)
         expected_args = (
             private_storage_mock.open.return_value,
@@ -553,47 +897,119 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
             })
         )
         eq_(sign_app_mock.call_args[0], expected_args)
-        eq_(remove_signed_file_mock.call_count, 0)
+        eq_(remove_public_signed_file_mock.call_count, 0)
 
     @mock.patch('mkt.extensions.models.sign_app')
     @mock.patch('mkt.extensions.models.private_storage')
-    def test_sign_and_move_file_no_uuid(self, private_storage_mock,
-                                        sign_app_mock):
+    def test_sign_file_no_uuid(self, private_storage_mock,
+                               sign_app_mock):
         extension = Extension(uuid='')
         version = ExtensionVersion(extension=extension)
         with self.assertRaises(SigningError):
-            version.sign_and_move_file()
+            version.sign_file()
 
     @mock.patch('mkt.extensions.models.sign_app')
     @mock.patch('mkt.extensions.models.private_storage')
-    def test_sign_and_move_file_no_version_pk(self, private_storage_mock,
-                                              sign_app_mock):
+    def test_sign_file_no_version_pk(self, private_storage_mock,
+                                     sign_app_mock):
         extension = Extension(uuid='12345678123456781234567812345678')
         version = ExtensionVersion(extension=extension)
         with self.assertRaises(SigningError):
-            version.sign_and_move_file()
+            version.sign_file()
 
     @mock.patch('mkt.extensions.models.sign_app')
     @mock.patch('mkt.extensions.models.private_storage')
-    @mock.patch.object(ExtensionVersion, 'remove_signed_file')
-    def test_sign_and_move_file_error(self, remove_signed_file_mock,
-                                      private_storage_mock, sign_app_mock):
+    @mock.patch.object(ExtensionVersion, 'remove_public_signed_file')
+    def test_sign_file_error(self, remove_public_signed_file_mock,
+                             private_storage_mock, sign_app_mock):
         extension = Extension(uuid='12345678123456781234567812345678')
         version = ExtensionVersion(extension=extension, pk=123)
         sign_app_mock.side_effect = SigningError
         with self.assertRaises(SigningError):
-            version.sign_and_move_file()
-        eq_(remove_signed_file_mock.call_count, 1)
+            version.sign_file()
+        eq_(remove_public_signed_file_mock.call_count, 1)
+
+    @mock.patch('mkt.extensions.models.private_storage')
+    @mock.patch('mkt.extensions.models.ExtensionVersion.reviewer_sign_file')
+    def test_reviewer_sign_if_necessary(self, reviewer_sign_file_mock,
+                                        mocked_private_storage):
+        mocked_private_storage.exists.return_value = False
+        extension = Extension(pk=40)
+        version = ExtensionVersion(extension=extension, pk=404040)
+
+        version.reviewer_sign_if_necessary()
+        eq_(reviewer_sign_file_mock.call_count, 1)
+
+    @mock.patch('mkt.extensions.models.private_storage')
+    @mock.patch('mkt.extensions.models.ExtensionVersion.reviewer_sign_file')
+    def test_reviewer_sign_if_necessary_exists(self, reviewer_sign_file_mock,
+                                               mocked_private_storage):
+        mocked_private_storage.exists.return_value = True
+        extension = Extension(pk=40)
+        version = ExtensionVersion(extension=extension, pk=404040)
+
+        version.reviewer_sign_if_necessary()
+        eq_(reviewer_sign_file_mock.call_count, 0)
+
+    @mock.patch('mkt.extensions.models.sign_app')
+    @mock.patch('mkt.extensions.models.private_storage')
+    @mock.patch('mkt.extensions.models.public_storage')
+    def test_reviewer_sign_file(self, public_storage_mock,
+                                private_storage_mock, sign_app_mock):
+        extension = Extension(uuid='ab345678123456781234567812345678')
+        version = ExtensionVersion(extension=extension, pk=123)
+        version.reviewer_sign_file()
+        expected_args = (
+            private_storage_mock.open.return_value,
+            version.reviewer_signed_file_path,
+            json.dumps({
+                'id': 'reviewer-ab345678123456781234567812345678-123',
+                'version': 123,
+            }),
+        )
+        expected_kwargs = {'reviewer': True}
+        eq_(sign_app_mock.call_args[0], expected_args)
+        eq_(sign_app_mock.call_args[1], expected_kwargs)
+        eq_(private_storage_mock.delete.call_count, 0)
+
+    @mock.patch('mkt.extensions.models.sign_app')
+    @mock.patch('mkt.extensions.models.private_storage')
+    def test_reviewer_sign_file_no_uuid(self, private_storage_mock,
+                                        sign_app_mock):
+        extension = Extension(uuid='')
+        version = ExtensionVersion(extension=extension)
+        with self.assertRaises(SigningError):
+            version.reviewer_sign_file()
+
+    @mock.patch('mkt.extensions.models.sign_app')
+    @mock.patch('mkt.extensions.models.private_storage')
+    def test_reviewer_sign_file_no_version_pk(self, private_storage_mock,
+                                              sign_app_mock):
+        extension = Extension(uuid='12345678123456781234567812345678')
+        version = ExtensionVersion(extension=extension)
+        with self.assertRaises(SigningError):
+            version.reviewer_sign_file()
+
+    @mock.patch('mkt.extensions.models.sign_app')
+    @mock.patch('mkt.extensions.models.private_storage')
+    def test_reviewer_sign_file_error(self, private_storage_mock,
+                                      sign_app_mock):
+        extension = Extension(uuid='12345678123456781234567812345678')
+        version = ExtensionVersion(extension=extension, pk=123)
+        sign_app_mock.side_effect = SigningError
+        with self.assertRaises(SigningError):
+            version.reviewer_sign_file()
+        eq_(private_storage_mock.delete.call_count, 1)
 
     @mock.patch('mkt.extensions.models.private_storage')
     @mock.patch('mkt.extensions.models.public_storage')
-    def test_remove_signed_file(self, mocked_public_storage,
-                                mocked_private_storage):
+    def test_remove_public_signed_file(self, mocked_public_storage,
+                                       mocked_private_storage):
         extension = Extension(pk=42, slug='mocked_ext')
         version = ExtensionVersion(extension=extension, pk=123)
         mocked_public_storage.exists.return_value = True
         mocked_private_storage.size.return_value = 668
-        size = version.remove_signed_file()
+        size = version.remove_public_signed_file()
         eq_(size, 668)
         eq_(mocked_public_storage.exists.call_args[0][0],
             version.signed_file_path)
@@ -602,33 +1018,33 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
 
     @mock.patch('mkt.extensions.models.private_storage')
     @mock.patch('mkt.extensions.models.public_storage')
-    def test_remove_signed_file_not_exists(self, public_storage_mock,
-                                           mocked_private_storage):
+    def test_remove_public_signed_file_not_exists(self, public_storage_mock,
+                                                  mocked_private_storage):
         extension = Extension(pk=42, slug='mocked_ext')
         version = ExtensionVersion(extension=extension, pk=123)
         public_storage_mock.exists.return_value = False
         mocked_private_storage.size.return_value = 669
-        size = version.remove_signed_file()
+        size = version.remove_public_signed_file()
         eq_(size, 669)
         eq_(public_storage_mock.exists.call_args[0][0],
             version.signed_file_path)
         eq_(public_storage_mock.delete.call_count, 0)
 
-    @mock.patch.object(ExtensionVersion, 'sign_and_move_file')
+    @mock.patch.object(ExtensionVersion, 'sign_file')
     @mock.patch('mkt.extensions.models.datetime')
-    def test_publish(self, datetime_mock, mocked_sign_and_move_file):
+    def test_publish(self, datetime_mock, mocked_sign_file):
         datetime_mock.utcnow.return_value = (
             # Microseconds are not saved by MySQL, so set it to 0 to make sure
             # our comparisons still work once the model is saved to the db.
             datetime.utcnow().replace(microsecond=0))
-        mocked_sign_and_move_file.return_value = 666
+        mocked_sign_file.return_value = 666
         extension = Extension.objects.create(slug='mocked_ext')
         version = ExtensionVersion.objects.create(
             extension=extension, size=0, status=STATUS_PENDING)
         eq_(version.status, STATUS_PENDING)
         eq_(extension.status, STATUS_PENDING)  # Set automatically.
         version.publish()
-        eq_(mocked_sign_and_move_file.call_count, 1)
+        eq_(mocked_sign_file.call_count, 1)
         eq_(version.size, 666)
         eq_(version.status, STATUS_PUBLIC)
         eq_(extension.status, STATUS_PUBLIC)
@@ -641,16 +1057,16 @@ class TestExtensionVersionMethodsAndProperties(TestCase):
         eq_(extension.last_updated, datetime_mock.utcnow.return_value)
         eq_(extension.status, STATUS_PUBLIC)
 
-    @mock.patch.object(ExtensionVersion, 'remove_signed_file')
-    def test_reject(self, mocked_remove_signed_file):
-        mocked_remove_signed_file.return_value = 667
+    @mock.patch.object(ExtensionVersion, 'remove_public_signed_file')
+    def test_reject(self, remove_public_signed_file_mock):
+        remove_public_signed_file_mock.return_value = 667
         extension = Extension.objects.create(slug='mocked_ext')
         version = ExtensionVersion.objects.create(
             extension=extension, size=42, status=STATUS_PENDING)
         eq_(version.status, STATUS_PENDING)
         eq_(extension.status, STATUS_PENDING)  # Set automatically.
         version.reject()
-        eq_(mocked_remove_signed_file.call_count, 1)
+        eq_(remove_public_signed_file_mock.call_count, 1)
         eq_(version.size, 667)
         eq_(version.status, STATUS_REJECTED)
         # At the moment Extension are not rejected, merely set back to
@@ -677,19 +1093,63 @@ class TestExtensionPopularity(TestCase):
             extension.popularity.create(region=RESTOFWORLD.id)
 
 
-class TestExtensionManager(TestCase):
+class TestExtensionQuerySetAndManager(TestCase):
+    def test_by_identifier(self):
+        # Force a high-pk deliberately, to make sure we don't just test with
+        # single-digit pks.
+        extension = Extension.objects.create(slug='lol', pk=9999)
+        Extension.objects.create(slug='not-lol')
+        eq_(Extension.objects.by_identifier(extension.pk), extension)
+        eq_(Extension.objects.by_identifier(unicode(extension.pk)), extension)
+        eq_(Extension.objects.by_identifier(extension.slug), extension)
+        # Should still work even with deleted, as long as we are not combining
+        # with without_deleted() method.
+        Extension.objects.all().update(deleted=True)
+        eq_(Extension.objects.by_identifier(extension.pk), extension)
+        eq_(Extension.objects.by_identifier(extension.slug), extension)
+
+    def test_by_identifier_without_deleted(self):
+        # Note: deleted Extensions are not supposed to have slugs anymore, so
+        # this test might seem a bit useless, but it's here to prove that
+        # chaining without_deleted() with by_identifier() works fine, since it
+        # was not trivial to make it work.
+
+        # Force a high-pk deliberately, to make sure we don't just test with
+        # single-digit pks.
+        extension = Extension.objects.create(slug='lol', pk=9999)
+        Extension.objects.create(slug='not-lol')
+        eq_(Extension.objects.without_deleted().by_identifier(extension.pk),
+            extension)
+        eq_(Extension.objects.without_deleted().by_identifier(
+            unicode(extension.pk)), extension)
+        eq_(Extension.objects.without_deleted().by_identifier(extension.slug),
+            extension)
+        Extension.objects.all().update(deleted=True)
+        with self.assertRaises(Extension.DoesNotExist):
+            Extension.objects.without_deleted().by_identifier(extension.pk)
+            Extension.objects.without_deleted().by_identifier(extension.slug)
+
+    def test_extensive_method_chaining(self):
+        extension = Extension.objects.create(name=u'lôl', status=STATUS_PUBLIC)
+        result = Extension.objects.without_deleted().public().transform(
+            lambda o: o).by_identifier(extension.pk)
+        eq_(result.pk, extension.pk)
+        eq_(result.name, u'lôl')
+
     def test_public(self):
         extension1 = Extension.objects.create(status=STATUS_PUBLIC)
-        extension2 = Extension.objects.create(status=STATUS_PUBLIC)
+        extension2 = Extension.objects.create(
+            deleted=True, status=STATUS_PUBLIC)
         Extension.objects.create(status=STATUS_NULL)
         Extension.objects.create(status=STATUS_PUBLIC, disabled=True)
         eq_(list(Extension.objects.public()), [extension1, extension2])
+        eq_(list(Extension.objects.without_deleted().public()), [extension1])
 
     def test_pending(self):
         extension1 = Extension.objects.create()
         ExtensionVersion.objects.create(
             extension=extension1, status=STATUS_PENDING, version='1.1')
-        extension2 = Extension.objects.create()
+        extension2 = Extension.objects.create(deleted=True)
         ExtensionVersion.objects.create(
             extension=extension2, status=STATUS_PENDING, version='2.1')
         ExtensionVersion.objects.create(
@@ -701,21 +1161,27 @@ class TestExtensionManager(TestCase):
             extension=disabled_extension, status=STATUS_PENDING, version='3.1')
 
         eq_(list(Extension.objects.pending()), [extension1, extension2])
+        eq_(list(Extension.objects.without_deleted().pending()), [extension1])
 
 
-class TestExtensionVersionManager(TestCase):
+class TestExtensionVersionQuerySetAndManager(TestCase):
     def test_public(self):
         extension = Extension.objects.create(status=STATUS_PUBLIC)
         version1 = ExtensionVersion.objects.create(
             extension=extension, status=STATUS_PUBLIC, version='1.0')
         version2 = ExtensionVersion.objects.create(
-            extension=extension, status=STATUS_PUBLIC, version='1.1')
+            extension=extension, status=STATUS_PUBLIC, version='1.1',
+            deleted=True)
         ExtensionVersion.objects.create(
             extension=extension, status=STATUS_REJECTED, version='1.2')
         ExtensionVersion.objects.create(
             extension=extension, status=STATUS_PENDING, version='1.3')
         eq_(list(ExtensionVersion.objects.public()), [version1, version2])
         eq_(list(extension.versions.public()), [version1, version2])
+
+        eq_(list(ExtensionVersion.objects.without_deleted().public()),
+            [version1])
+        eq_(list(extension.versions.without_deleted().public()), [version1])
 
     def test_pending(self):
         extension = Extension.objects.create()
@@ -724,8 +1190,14 @@ class TestExtensionVersionManager(TestCase):
         version1 = ExtensionVersion.objects.create(
             extension=extension, status=STATUS_PENDING, version='2.1')
         version2 = ExtensionVersion.objects.create(
-            extension=extension, status=STATUS_PENDING, version='2.2')
+            extension=extension, status=STATUS_PENDING, version='2.2',
+            deleted=True)
         ExtensionVersion.objects.create(
             extension=extension, status=STATUS_PUBLIC, version='2.3')
 
         eq_(list(ExtensionVersion.objects.pending()), [version1, version2])
+        eq_(list(extension.versions.pending()), [version1, version2])
+
+        eq_(list(ExtensionVersion.objects.without_deleted().pending()),
+            [version1])
+        eq_(list(extension.versions.without_deleted().pending()), [version1])

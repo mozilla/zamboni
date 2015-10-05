@@ -250,7 +250,7 @@ class TestUpdateManifest(mkt.site.tests.TestCase):
         later = datetime.datetime.now() + datetime.timedelta(seconds=3600)
         fetch.side_effect = RuntimeError
         update_manifests(ids=(self.addon.pk,))
-        retry.assert_called()
+        eq_(retry.call_count, 1)
         # Not using assert_called_with b/c eta is a datetime.
         eq_(retry.call_args[1]['args'], ([self.addon.pk],))
         eq_(retry.call_args[1]['kwargs'], {'check_hash': True,
