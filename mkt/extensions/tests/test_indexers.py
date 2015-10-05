@@ -50,6 +50,11 @@ class TestExtensionIndexer(TestCase):
     def _get_doc(self, extension):
         return self.indexer.extract_document(extension.pk, extension)
 
+    def test_extract_dont_pass_obj(self):
+        extension, version = self._extension_factory()
+        doc = self.indexer.extract_document(extension.pk)
+        eq_(doc['id'], extension.id)
+
     def test_extract_not_public(self):
         extension, version = self._extension_factory()
         doc = self._get_doc(extension)

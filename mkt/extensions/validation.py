@@ -111,7 +111,7 @@ class ExtensionValidator(object):
         try:
             # We support only UTF-8 encoded manifests.
             decoded_data = smart_unicode(strip_bom(contents))
-        except (ValueError, UnicodeDecodeError):
+        except UnicodeDecodeError:
             raise ParseError(self.errors['INVALID_JSON_ENCODING'])
         try:
             return json.loads(decoded_data)

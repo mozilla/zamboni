@@ -5,6 +5,7 @@ import mock
 from datetime import datetime
 
 from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import reverse
 from django.test.utils import override_settings
 
@@ -16,6 +17,7 @@ from mkt.constants.apps import MANIFEST_CONTENT_TYPE
 from mkt.constants.base import (STATUS_NULL, STATUS_OBSOLETE, STATUS_PENDING,
                                 STATUS_PUBLIC, STATUS_REJECTED)
 from mkt.extensions.models import Extension, ExtensionVersion
+from mkt.extensions.views import ExtensionVersionViewSet
 from mkt.files.models import FileUpload
 from mkt.files.tests.test_models import UploadTest
 from mkt.site.fixtures import fixture
@@ -154,6 +156,27 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
         super(TestExtensionViewSetPost, self).tearDown()
         # Explicitely delete the Extensions to clean up leftover files.
         Extension.objects.all().delete()
+
+    def test_create_no_validation_id(self):
+        response = self.client.post(self.list_url)
+        eq_(response.status_code, 400)
+
+    def test_create_logged_out(self):
+        upload = self.get_upload(
+            abspath=self.packaged_app_path('extension.zip'), user=None)
+        eq_(upload.valid, True)
+        response = self.anon.post(self.list_url, json.dumps({
+            'validation_id': upload.pk
+        }))
+        eq_(response.status_code, 403)
+
+        upload = self.get_upload(
+            abspath=self.packaged_app_path('extension.zip'), user=self.user)
+        eq_(upload.valid, True)
+        response = self.anon.post(self.list_url, json.dumps({
+            'validation_id': upload.pk
+        }))
+        eq_(response.status_code, 403)
 
     def test_create_logged_in(self):
         upload = self.get_upload(
@@ -829,6 +852,15 @@ class TestExtensionVersionViewSetGet(RestOAuth):
                         'get', 'patch', 'put', 'post', 'delete')
         self.assertCORS(self.anon.options(self.url),
                         'get', 'patch', 'put', 'post', 'delete')
+
+    def test_get_extension_object(self):
+        # This is an internal method we're testing. self.kwargs['extension_id']
+        # should never be absent if everything is properly configured, so we
+        # have to manually instantiate the view to test it.
+        viewset = ExtensionVersionViewSet()
+        viewset.kwargs = {}
+        with self.assertRaises(ImproperlyConfigured):
+            viewset.get_extension_object()
 
     def test_get_non_existing_extension(self):
         self.extension.authors.add(self.user)

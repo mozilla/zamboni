@@ -54,10 +54,6 @@ class CreateExtensionMixin(object):
         if not upload_pk:
             raise exceptions.ParseError(_('No validation_id specified.'))
 
-        if not request.user.is_authenticated():
-            raise exceptions.PermissionDenied(
-                _('You need to be authenticated to perform this action.'))
-
         try:
             upload = FileUpload.objects.get(pk=upload_pk, user=request.user)
         except FileUpload.DoesNotExist:

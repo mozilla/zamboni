@@ -4,9 +4,10 @@ import json
 import mock
 from nose.tools import eq_
 from rest_framework.exceptions import ParseError
-from zipfile import ZipFile
+from zipfile import BadZipfile, ZipFile
 
 from django.core.files.uploadedfile import TemporaryUploadedFile
+from django.forms import ValidationError
 
 from mkt.site.tests import TestCase
 from mkt.extensions.validation import ExtensionValidator
@@ -34,18 +35,20 @@ class TestExtensionValidator(TestCase):
         self.extension = TemporaryUploadedFile('ext.zip', 'application/zip', 0,
                                                'UTF-8')
         with ZipFile(self.extension, "w") as z:
-            z.writestr('manifest.json', json.dumps(data))
+            if data is not None:
+                z.writestr('manifest.json', json.dumps(data))
         return self.extension
 
     def test_full(self):
-        extension = self._extension({
+        extension_file = self._extension({
             'author': u'Me, Mŷself and I',
             'name': u'My Extënsion',
             'description': u'This is a valid descriptiôn',
             'version': '0.1.2.3',
         })
         try:
-            ExtensionValidator(extension).validate()
+            self.validator = ExtensionValidator(extension_file)
+            self.validator.validate()
         except ParseError as e:
             assert False, u'Got unexpected validation error: %s' % unicode(e)
 
@@ -69,6 +72,49 @@ class TestExtensionValidator(TestCase):
             for method in validation_methods:
                 mocked = getattr(ExtensionValidator, method)
                 eq_(mocked.call_count, 1)
+
+    def test_validate_file(self):
+        manifest_data = {
+            'name': u'My Extënsion',
+        }
+        extension_file = self._extension(manifest_data)
+        manifest = self.validator.validate_file(extension_file)
+        eq_(json.loads(manifest), manifest_data)
+
+    def test_validate_file_wrong_content_type(self):
+        extension_file = self._extension({'name': u'My Extënsion'})
+        extension_file.content_type = 'application/wrong_content_type'
+        with self.assertRaises(ParseError):
+            self.validator.validate_file(extension_file)
+
+    @mock.patch('mkt.extensions.validation.SafeUnzip.is_valid')
+    def test_validate_file_unsafe_zip(self, is_valid_mock):
+        extension_file = self._extension({'name': u'My Extënsion'})
+
+        is_valid_mock.side_effect = ValidationError('oops')
+        with self.assertRaises(ParseError):
+            self.validator.validate_file(extension_file)
+
+        is_valid_mock.side_effect = IOError
+        with self.assertRaises(ParseError):
+            self.validator.validate_file(extension_file)
+
+        is_valid_mock.side_effect = BadZipfile
+        with self.assertRaises(ParseError):
+            self.validator.validate_file(extension_file)
+
+    def test_validate_file_no_manifest(self):
+        extension_file = self._extension(None)
+        with self.assertRaises(ParseError):
+            self.validator.validate_file(extension_file)
+
+    def test_validate_json_unicodeerror(self):
+        with self.assertRaises(ParseError):
+            self.validator.validate_json('{"name": "\x81"}')
+
+    def test_validate_json_not_json(self):
+        with self.assertRaises(ParseError):
+            self.validator.validate_json('not json')
 
     def test_name_missing(self):
         with self.assertRaises(ParseError):
@@ -163,7 +209,7 @@ class TestExtensionValidator(TestCase):
 
     def test_author_too_long(self):
         with self.assertRaises(ParseError):
-            self.validator.validate_name({'name': u'ŷ' * 129})
+            self.validator.validate_author({'author': u'ŷ' * 129})
 
     def test_version_valid(self):
         expected_version = u'0.42.42.42'
