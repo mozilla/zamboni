@@ -9,6 +9,7 @@ from django import http
 from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.signals import user_logged_in
+from django.core.urlresolvers import reverse
 from django.db import IntegrityError
 from django.utils.datastructures import MultiValueDictKeyError
 
@@ -455,7 +456,35 @@ class GroupsViewSet(CORSMixin, ListModelMixin, DestroyModelMixin,
         return Response(status=status.HTTP_201_CREATED)
 
 
-class TOSView(CORSMixin, APIView):
+class TOSShowView(CORSMixin, APIView):
+    """
+    Viewset allowing a user to see the developer agreement. Users cannot sign
+    to the agreement until they've viewed it.
+    """
+    allowed_methods = ['post']
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    cors_allowed_methods = ['post']
+    permission_classes = (IsAuthenticated,)
+
+    def response_body(self):
+        return {
+            'url': reverse('mkt.developers.apps.terms_standalone')
+        }
+
+    def post(self, request):
+        if request.user.shown_dev_agreement is not None:
+            return Response(self.response_body(),
+                            status=status.HTTP_200_OK)
+        request.user.update(shown_dev_agreement=datetime.now())
+        return Response(self.response_body(), status=status.HTTP_201_CREATED)
+
+
+class TOSReadView(CORSMixin, APIView):
+    """
+    Viewset allowing a user to sign the developer agreement. Users cannot do so
+    until they have previously been shown the agreement.
+    """
     allowed_methods = ['post']
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication]
@@ -463,7 +492,8 @@ class TOSView(CORSMixin, APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
-        if request.user.read_dev_agreement is not None:
+        if (request.user.read_dev_agreement is not None or
+                request.user.shown_dev_agreement is None):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         request.user.update(read_dev_agreement=datetime.now())
         return Response(status=status.HTTP_201_CREATED)

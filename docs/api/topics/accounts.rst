@@ -237,9 +237,29 @@ carrier/region pairs.
 Sign Developer Agreement
 ========================
 
-.. http:post:: /api/v2/account/devtos/
+.. _show-agreement:
 
-    Sign the developer agreement for the authenticating user.
+.. http:post:: /api/v2/account/dev-agreement/show/
+
+    Get the developer agreement URL for the authenticating user.
+
+    .. note:: Authentication is required.
+
+    **Response**
+
+    :status 200: successfully viewed developer agreement.
+    :status 201: successfully viewed developer agreement for the first time.
+      The user can now :ref:`sign the agreement <read-agreement>`.
+    :status 400: user has already signed terms of service.
+    :status 403: authentication required.
+    :status 405: invalid HTTP method; only POST is allowed on this endpoint.
+
+.. read-agreement:
+
+.. http:post:: /api/v2/account/dev-agreement/read/
+
+    Sign the developer agreement for the authenticating user. The user must
+    have already :ref:`been shown <show-agreement>` the developer agreement
 
     .. note:: Authentication is required.
 

@@ -945,12 +945,12 @@ class TestGroupsViewSet(RestOAuth):
         eq_(res.status_code, 400, res.content)
 
 
-class TestTOSView(RestOAuth):
+class TestTOSReadView(RestOAuth):
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        super(TestTOSView, self).setUp()
-        self.url = reverse('api-v2:account-devtos')
+        super(TestTOSReadView, self).setUp()
+        self.url = reverse('api-v2:account-devagreement-read')
         self.user = UserProfile.objects.get(pk=2519)
 
     def test_verbs(self):
@@ -972,10 +972,59 @@ class TestTOSView(RestOAuth):
         res = self.client.post(self.url)
         eq_(res.status_code, 400)
 
-    def test_sign(self):
+    def test_sign_not_shown(self):
+        self.user.update(read_dev_agreement=None, shown_dev_agreement=None)
+        eq_(self.user.shown_dev_agreement, None)
+        eq_(self.user.read_dev_agreement, None)
+        res = self.client.post(self.url)
+        eq_(res.status_code, 400)
+
+    def test_sign_shown(self):
+        self.user.update(read_dev_agreement=None,
+                         shown_dev_agreement=datetime.now())
+        ok_(isinstance(self.user.shown_dev_agreement, datetime))
+        eq_(self.user.read_dev_agreement, None)
+        res = self.client.post(self.url)
+        eq_(res.status_code, 201)
+        updated_user = UserProfile.objects.get(pk=self.user.pk)
+        ok_(isinstance(updated_user.shown_dev_agreement, datetime))
+        ok_(isinstance(updated_user.read_dev_agreement, datetime))
+
+
+class TestTOSShowView(RestOAuth):
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        super(TestTOSShowView, self).setUp()
+        self.url = reverse('api-v2:account-devagreement-show')
+        self.user = UserProfile.objects.get(pk=2519)
+
+    def test_verbs(self):
+        self._allowed_verbs(self.url, ('post'))
+
+    def test_has_cors(self):
+        self.assertCORS(self.client.post(self.url), 'post')
+
+    def test_anon(self):
+        res = self.anon.post(self.url)
+        eq_(res.status_code, 403)
+
+    def test_get(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 405)
+
+    def test_already_signed(self):
+        now = datetime.now()
+        self.user.update(shown_dev_agreement=now)
+        res = self.client.post(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.json['url'], reverse('mkt.developers.apps.terms_standalone'))
+
+    def test_show_user(self):
         self.user.update(read_dev_agreement=None)
         eq_(self.user.read_dev_agreement, None)
         res = self.client.post(self.url)
         eq_(res.status_code, 201)
         updated_user = UserProfile.objects.get(pk=self.user.pk)
-        eq_(type(updated_user.read_dev_agreement), datetime)
+        ok_(isinstance(updated_user.shown_dev_agreement, datetime))
+        eq_(res.json['url'], reverse('mkt.developers.apps.terms_standalone'))
