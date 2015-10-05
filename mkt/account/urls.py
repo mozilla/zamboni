@@ -33,7 +33,8 @@ drf_patterns = patterns(
         name='account-groups'),
     url('^dev-agreement/show/$', TOSShowView.as_view(),
         name='account-devagreement-show'),
-    url('^devtos/$', TOSReadView.as_view(), name='account-devagreement-read'),
+    url('^dev-agreement/read/$', TOSReadView.as_view(),
+        name='account-devagreement-read'),
 )
 
 api_patterns = patterns(
