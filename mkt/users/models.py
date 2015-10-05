@@ -71,7 +71,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                                     blank=True)
     email = models.EmailField(unique=True, null=True)
     deleted = models.BooleanField(default=False)
-    read_dev_agreement = models.DateTimeField(null=True, blank=True)
     last_login_ip = models.CharField(default='', max_length=45, editable=False)
     source = models.PositiveIntegerField(default=mkt.LOGIN_SOURCE_UNKNOWN,
                                          editable=False, db_index=True)
@@ -82,6 +81,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     lang = models.CharField(max_length=10, null=True, blank=True,
                             editable=False)
     enable_recommendations = models.BooleanField(default=True)
+
+    # Here, "read" actually means "signed".
+    shown_dev_agreement = models.DateTimeField(null=True, blank=True)
+    read_dev_agreement = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         db_table = 'users'
