@@ -13,6 +13,7 @@ from mkt.extensions.urls import urlpatterns as extensions_urlpatterns
 from mkt.games.views import DailyGamesView
 from mkt.langpacks.views import LangPackViewSet
 from mkt.operators.views import OperatorPermissionViewSet
+from mkt.latecustomization.views import LateCustomizationViewSet
 from mkt.recommendations.views import RecommendationView
 from mkt.search.views import (MultiSearchView, NonPublicSearchView,
                               NoRegionSearchView, OpenMobileACLSearchView,
@@ -46,6 +47,10 @@ subfeedshelf.register('image_landing', views.FeedShelfLandingImageViewSet,
 
 langpacks = SimpleRouter()
 langpacks.register(r'', LangPackViewSet, base_name='langpack')
+
+latecustomization = SimpleRouter()
+latecustomization.register(r'', LateCustomizationViewSet,
+                           base_name='late-customization')
 
 comm_thread = SimpleRouter()
 comm_thread.register(r'', ThreadViewSetV2, base_name='comm-thread')
@@ -104,6 +109,7 @@ urlpatterns = patterns(
     url(r'^games/daily/$', DailyGamesView.as_view(), name='games.daily'),
 
     url(r'^langpacks', include(langpacks.urls)),
+    url(r'^late-customization', include(latecustomization.urls)),
     url(r'^websites/search/', WebsiteSearchView.as_view(),
         name='website-search-api'),
     url(r'^websites/website/(?P<pk>[^/.]+)/', WebsiteView.as_view(),
