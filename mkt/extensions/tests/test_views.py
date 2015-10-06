@@ -246,6 +246,7 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
         response = self.client.post(
             self.list_url, json.dumps({'validation_id': upload.pk}))
         eq_(response.status_code, 400)
+        eq_(u'NO_MANIFEST', response.json['detail']['key'])
 
 
 class TestExtensionViewSetDelete(RestOAuth):

@@ -66,12 +66,10 @@ class ExtensionValidator(object):
         self.file_obj = file_obj
 
     def error(self, error_key):
-        error = ParseError()
-        error.message = {
+        raise ParseError(detail={
             'key': error_key,
             'message': self.errors[error_key],
-        }
-        raise error
+        })
 
     def validate(self):
         """

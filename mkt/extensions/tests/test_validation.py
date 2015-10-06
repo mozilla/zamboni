@@ -49,8 +49,8 @@ class TestExtensionValidator(TestCase):
             yield
         except Exception, e:
             eq_(e.__class__, ParseError)
-            eq_(e.message['key'], key)
-            eq_(e.message['message'], ExtensionValidator.errors[key])
+            eq_(e.detail['key'], key)
+            eq_(e.detail['message'], ExtensionValidator.errors[key])
         else:
             self.fail('Does not raise a ParseError.')
 
