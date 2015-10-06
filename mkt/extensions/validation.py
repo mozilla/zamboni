@@ -65,6 +65,14 @@ class ExtensionValidator(object):
     def __init__(self, file_obj=None):
         self.file_obj = file_obj
 
+    def error(self, error_key):
+        error = ParseError()
+        error.message = {
+            'key': error_key,
+            'message': self.errors[error_key],
+        }
+        raise error
+
     def validate(self):
         """
         Run the full validation suite against the uploaded file:
@@ -89,7 +97,7 @@ class ExtensionValidator(object):
         manifest.json file.
         """
         if file_obj.content_type not in self.valid_content_types:
-            raise ParseError(self.errors['BAD_CONTENT_TYPE'])
+            self.error('BAD_CONTENT_TYPE')
         try:
             zf = SafeUnzip(file_obj)
             try:
@@ -97,10 +105,10 @@ class ExtensionValidator(object):
             except ValidationError as e:
                 raise ParseError(unicode(e))
             except (BadZipfile, IOError):
-                raise ParseError(self.errors['INVALID_ZIP'])
+                self.error('INVALID_ZIP')
             manifest = zf.extract_path('manifest.json')
         except KeyError:
-            raise ParseError(self.errors['NO_MANIFEST'])
+            self.error('NO_MANIFEST')
         return manifest
 
     def validate_json(self, contents):
@@ -112,11 +120,11 @@ class ExtensionValidator(object):
             # We support only UTF-8 encoded manifests.
             decoded_data = smart_unicode(strip_bom(contents))
         except UnicodeDecodeError:
-            raise ParseError(self.errors['INVALID_JSON_ENCODING'])
+            self.error('INVALID_JSON_ENCODING')
         try:
             return json.loads(decoded_data)
         except ValueError:
-            raise ParseError(self.errors['INVALID_JSON'])
+            self.error('INVALID_JSON')
 
     def validate_name(self, manifest_json):
         """
@@ -131,13 +139,13 @@ class ExtensionValidator(object):
         try:
             name = manifest_json['name']
         except KeyError:
-            raise ParseError(self.errors['NAME_MISSING'])
+            self.error('NAME_MISSING')
         if not isinstance(name, basestring):
-            raise ParseError(self.errors['NAME_NOT_STRING'])
+            self.error('NAME_NOT_STRING')
         if len(name.strip()) < 1:
-            raise ParseError(self.errors['NAME_TOO_SHORT'])
+            self.error('NAME_TOO_SHORT')
         if len(name) > 45:
-            raise ParseError(self.errors['NAME_TOO_LONG'])
+            self.error('NAME_TOO_LONG')
 
     def validate_description(self, manifest_json):
         """
@@ -149,9 +157,9 @@ class ExtensionValidator(object):
         if 'description' in manifest_json:
             description = manifest_json['description']
             if not isinstance(description, basestring):
-                raise ParseError(self.errors['DESCRIPTION_NOT_STRING'])
+                self.error('DESCRIPTION_NOT_STRING')
             if len(description.strip()) > 132:
-                raise ParseError(self.errors['DESCRIPTION_TOO_LONG'])
+                self.error('DESCRIPTION_TOO_LONG')
 
     def validate_version(self, manifest_json):
         """
@@ -161,25 +169,25 @@ class ExtensionValidator(object):
         try:
             version = manifest_json['version']
         except KeyError:
-            raise ParseError(self.errors['VERSION_MISSING'])
+            self.error('VERSION_MISSING')
         if not isinstance(version, basestring):
-            raise ParseError(self.errors['VERSION_NOT_STRING'])
+            self.error('VERSION_NOT_STRING')
         splitted = version.split('.')
         if len(splitted) > 4:
             # Too many dots.
-            raise ParseError(self.errors['VERSION_INVALID'])
+            self.error('VERSION_INVALID')
         for version_component in splitted:
             try:
                 number = int(version_component)
                 if version_component.startswith('0') and number != 0:
                     # Leading zeros are forbidden.
-                    raise ParseError(self.errors['VERSION_INVALID'])
+                    self.error('VERSION_INVALID')
                 if number < 0 or number > 65535:
                     # All numbers must be between 0 and 65535 inclusive.
-                    raise ParseError(self.errors['VERSION_INVALID'])
+                    self.error('VERSION_INVALID')
             except ValueError:
                 # Not a valid number.
-                raise ParseError(self.errors['VERSION_INVALID'])
+                self.error('VERSION_INVALID')
 
     def validate_author(self, manifest_json):
         """
@@ -191,8 +199,8 @@ class ExtensionValidator(object):
             # Author must not be empty/only whitespace if present, since we'll
             # use it as link text.
             if not isinstance(author, basestring):
-                raise ParseError(self.errors['AUTHOR_NOT_STRING'])
+                self.error('AUTHOR_NOT_STRING')
             if len(author.strip()) < 1:
-                raise ParseError(self.errors['AUTHOR_TOO_SHORT'])
+                self.error('AUTHOR_TOO_SHORT')
             if len(author) > 128:
-                raise ParseError(self.errors['AUTHOR_TOO_LONG'])
+                self.error('AUTHOR_TOO_LONG')

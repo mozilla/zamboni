@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+from contextlib import contextmanager
 
 import mock
 from nose.tools import eq_
@@ -30,6 +31,28 @@ class TestExtensionValidator(TestCase):
     def tearDown(self):
         if self.extension:
             self.extension.close()
+
+    @contextmanager
+    def assertValidationError(self, key):
+        """
+        Context manager assertion which asserts that the yielded code raises an
+        appropriate validation exception and message.
+
+        Asserts:
+        - That the exception is an instance of ParseError.
+        - That the exception message's key matches the passed validation error
+          key.
+        - That the exception message's message string matches the message
+          string for the passed validation error key.
+        """
+        try:
+            yield
+        except Exception, e:
+            eq_(e.__class__, ParseError)
+            eq_(e.message['key'], key)
+            eq_(e.message['message'], ExtensionValidator.errors[key])
+        else:
+            self.fail('Does not raise a ParseError.')
 
     def _extension(self, data):
         self.extension = TemporaryUploadedFile('ext.zip', 'application/zip', 0,
@@ -84,7 +107,7 @@ class TestExtensionValidator(TestCase):
     def test_validate_file_wrong_content_type(self):
         extension_file = self._extension({'name': u'My Extënsion'})
         extension_file.content_type = 'application/wrong_content_type'
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('BAD_CONTENT_TYPE'):
             self.validator.validate_file(extension_file)
 
     @mock.patch('mkt.extensions.validation.SafeUnzip.is_valid')
@@ -105,41 +128,41 @@ class TestExtensionValidator(TestCase):
 
     def test_validate_file_no_manifest(self):
         extension_file = self._extension(None)
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('NO_MANIFEST'):
             self.validator.validate_file(extension_file)
 
     def test_validate_json_unicodeerror(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('INVALID_JSON_ENCODING'):
             self.validator.validate_json('{"name": "\x81"}')
 
     def test_validate_json_not_json(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('INVALID_JSON'):
             self.validator.validate_json('not json')
 
     def test_name_missing(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('NAME_MISSING'):
             self.validator.validate_name({})
 
     def test_name_not_string(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('NAME_NOT_STRING'):
             self.validator.validate_name({'name': 42})
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('NAME_NOT_STRING'):
             self.validator.validate_name({'name': []})
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('NAME_NOT_STRING'):
             self.validator.validate_name({'name': {}})
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('NAME_NOT_STRING'):
             self.validator.validate_name({'name': None})
 
     def test_name_too_short(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('NAME_TOO_SHORT'):
             self.validator.validate_name({'name': ''})
 
     def test_name_only_whitespace(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('NAME_TOO_SHORT'):
             self.validator.validate_name({'name': '\n \t'})
 
     def test_name_too_long(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('NAME_TOO_LONG'):
             self.validator.validate_name({'name': u'ŷ' * 46})
 
     def test_name_valid(self):
@@ -165,31 +188,31 @@ class TestExtensionValidator(TestCase):
             assert False, u'Description should not be required.'
 
     def test_description_invalid(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('DESCRIPTION_NOT_STRING'):
             self.validator.validate_description({'description': 42})
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('DESCRIPTION_NOT_STRING'):
             self.validator.validate_description({'description': []})
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('DESCRIPTION_NOT_STRING'):
             self.validator.validate_description({'description': {}})
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('DESCRIPTION_NOT_STRING'):
             self.validator.validate_description({'description': None})
 
     def test_description_too_long(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('DESCRIPTION_TOO_LONG'):
             self.validator.validate_description({'description': u'ô' * 134})
 
     def test_author_invalid(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('AUTHOR_NOT_STRING'):
             self.validator.validate_author({'author': 42})
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('AUTHOR_NOT_STRING'):
             self.validator.validate_author({'author': []})
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('AUTHOR_NOT_STRING'):
             self.validator.validate_author({'author': {}})
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('AUTHOR_NOT_STRING'):
             self.validator.validate_author({'author': None})
 
     def test_author_only_whitespace(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('AUTHOR_TOO_SHORT'):
             self.validator.validate_author({'author': '\n \t'})
 
     def test_author_valid(self):
@@ -208,7 +231,7 @@ class TestExtensionValidator(TestCase):
             assert False, u'Author should not be required.'
 
     def test_author_too_long(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('AUTHOR_TOO_LONG'):
             self.validator.validate_author({'author': u'ŷ' * 129})
 
     def test_version_valid(self):
@@ -220,41 +243,41 @@ class TestExtensionValidator(TestCase):
                            u' "%s" fails validation' % expected_version)
 
     def test_version_absent(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('VERSION_MISSING'):
             self.validator.validate_version({})
 
     def test_version_not_string(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('VERSION_NOT_STRING'):
             self.validator.validate_version({'version': 42})
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('VERSION_NOT_STRING'):
             self.validator.validate_version({'version': 0.42})
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('VERSION_NOT_STRING'):
             self.validator.validate_version({'version': []})
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('VERSION_NOT_STRING'):
             self.validator.validate_version({'version': {}})
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('VERSION_NOT_STRING'):
             self.validator.validate_version({'version': None})
 
     def test_version_too_many_dots(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('VERSION_INVALID'):
             self.validator.validate_version({'version': '0.42.42.42.42'})
 
     def test_version_contains_leading_zero(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('VERSION_INVALID'):
             self.validator.validate_version({'version': '0.42.042.42'})
 
     def test_version_contains_hexadecimal_number(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('VERSION_INVALID'):
             self.validator.validate_version({'version': '0.42.0x0.42'})
 
     def test_version_contains_a_non_number(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('VERSION_INVALID'):
             self.validator.validate_version({'version': '0.42.x42.42'})
 
     def test_version_contains_a_negative_number(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('VERSION_INVALID'):
             self.validator.validate_version({'version': '0.42.-42.42'})
 
     def test_version_contains_a_number_too_large(self):
-        with self.assertRaises(ParseError):
+        with self.assertValidationError('VERSION_INVALID'):
             self.validator.validate_version({'version': '0.42.65536.42'})
