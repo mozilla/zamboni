@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-09-25 17:58+0000\n"
+"PO-Revision-Date: 2015-10-07 14:34+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1443203906.0\n"
+"X-POOTLE-MTIME: 1444228471.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -4974,7 +4974,10 @@ msgstr "<strong>Snadné platby</strong> &ndash; s více platebními modely a int
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:58
 msgid "<strong>A Massive Audience</strong> &ndash; over 450 million users call Firefox home, put your app in their hands today."
-msgstr "<strong>Velké množství uživatelů</strong> &ndash; více než 450 miliónů uživatelů používá Firefox jako výchozí. Dejte jim svou aplikaci snadno k dispozici."
+msgstr ""
+"<strong>Velké množství uživatelů</strong> &ndash; více než 450 miliónů "
+"uživatelů používá Firefox jako výchozí, dejte jim svou aplikaci snadno k "
+"dispozici."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:68
 msgid "Join the biggest and the best"
@@ -5160,7 +5163,7 @@ msgstr "Hodnota `name` nesmí být delší než 45 znaků."
 
 #: mkt/extensions/validation.py:38
 msgid "The `name` property must be at least 1 character long."
-msgstr "Hodnota `name` musí být alespoň jeden znak dlouhá."
+msgstr "Hodnota `name` musí být alespoň 1 znak dlouhá."
 
 #: mkt/extensions/validation.py:41
 msgid "The archive does not contain a 'manifest.json' file."
@@ -5239,7 +5242,7 @@ msgstr "Tento soubor je adresář."
 
 #: mkt/files/tasks.py:32
 msgid "There was an error accessing file %s. %s."
-msgstr "Vyskytl se problém při přístupu k souboru %s. %s."
+msgstr "Při přístupu k souboru %s došlo k chybě. %s"
 
 #: mkt/files/tasks.py:35
 msgid "There was an error accessing file %s."
@@ -6290,7 +6293,9 @@ msgstr "Požádat o opětovnou kontrolu"
 
 #: mkt/reviewers/utils.py:435
 msgid "Add this app to the re-review queue. Any comments here won't be visible to the author(s), and no notification will be sent tothem."
-msgstr "Přidat aplikaci do fronty opětovné kontroly. Žádné komentáře nebudou pro autora(y) viditelné a nebude jim zasláno žádné upozornění."
+msgstr ""
+"Přidat aplikaci do fronty opětovné kontroly. Žádné komentáře nebudou pro "
+"autory viditelné a nebude jim zasláno žádné upozornění."
 
 #: mkt/reviewers/utils.py:441
 msgid "Clear Escalation"
@@ -8002,9 +8007,9 @@ msgstr[2] "\"{0}\" jsou rezervované štítky, které nemůžete použít."
 #: mkt/tags/utils.py:46
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] "Máte příliš mnoho štítků: {0}"
-msgstr[1] "Máte příliš mnoho štítků: {0}"
-msgstr[2] "Máte příliš mnoho štítků: {0}"
+msgstr[0] "Máte {0} štítek navíc."
+msgstr[1] "Máte {0} štítky navíc."
+msgstr[2] "Máte {0} štítků navíc."
 
 #: mkt/tags/utils.py:52
 msgid "All tags must be %s characters or less after invalid characters are removed."
