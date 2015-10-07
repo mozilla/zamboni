@@ -96,7 +96,7 @@ class Extension(ModelBase):
         'author', 'description', 'default_language', 'name')
 
     class Meta:
-        ordering = ('id', )
+        ordering = ('-id', )
         index_together = (('deleted', 'disabled', 'status'),)
 
     @cached_property(writable=True)
