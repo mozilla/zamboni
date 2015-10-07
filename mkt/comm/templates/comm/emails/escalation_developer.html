@@ -3,7 +3,7 @@
 {% block content %}
 {{ obj.name }} has been escalated for an admin review by a reviewer.
 
-Your app is now in our escalated review queue, and it will need to be checked by one of our senior comm. This means that your review will probably take longer than usual. You don't need to take any further action - we will contact you if any more information is required from you. Thanks for your understanding.
+Your {{ obj_type }} is now in our escalated review queue, and it will need to be checked by one of our senior comm. This means that your review will probably take longer than usual. You don't need to take any further action - we will contact you if any more information is required from you. Thanks for your understanding.
 
 {% include 'comm/emails/includes/questions.html' %}
 {% endblock %}

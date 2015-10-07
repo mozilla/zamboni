@@ -143,14 +143,18 @@ def get_mail_context(note):
 
     # grep: comm-content-type.
     manage_url = ''
+    obj_type = ''
     review_url = ''
     if obj.__class__ == Webapp:
         manage_url = absolutify(obj.get_dev_url('versions'))
+        obj_type = 'app'
         review_url = absolutify(reverse('reviewers.apps.review',
                                         args=[obj.app_slug]))
     elif obj.__class__ == Extension:
         manage_url = absolutify(reverse('commonplace.content.addon_manage',
                                         args=[obj.slug]))
+        # Not "Firefox OS add-on" for a/an consistency with "app".
+        obj_type = 'add-on'
         review_url = absolutify(reverse('commonplace.content.addon_review',
                                         args=[obj.slug]))
 
@@ -162,6 +166,7 @@ def get_mail_context(note):
         'manage_url': manage_url,
         'note': note,
         'obj': obj,
+        'obj_type': obj_type,
         'review_url': review_url,
         'settings': settings
     }
