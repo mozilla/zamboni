@@ -1222,7 +1222,7 @@ class TestExtensionQuerySetAndManager(TestCase):
             deleted=True, status=STATUS_PUBLIC)
         Extension.objects.create(status=STATUS_NULL)
         Extension.objects.create(status=STATUS_PUBLIC, disabled=True)
-        eq_(list(Extension.objects.public()), [extension1, extension2])
+        eq_(list(Extension.objects.public()), [extension2, extension1])
         eq_(list(Extension.objects.without_deleted().public()), [extension1])
 
     def test_pending(self):
@@ -1240,7 +1240,7 @@ class TestExtensionQuerySetAndManager(TestCase):
         ExtensionVersion.objects.create(
             extension=disabled_extension, status=STATUS_PENDING, version='3.1')
 
-        eq_(list(Extension.objects.pending()), [extension1, extension2])
+        eq_(list(Extension.objects.pending()), [extension2, extension1])
         eq_(list(Extension.objects.without_deleted().pending()), [extension1])
 
 
