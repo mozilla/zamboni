@@ -3,10 +3,10 @@
 {% block content %}
 Dear Superheroes,
 
-A developer has uploaded/resubmitted an app that uses prerelease permissions
+A developer has uploaded/resubmitted an {{ obj_type }} that uses prerelease permissions
 (the ones that used to be certified but are now privileged).
 
-Please ensure that this app is on the approved list for use of these APIs.
+Please ensure that this {{ obj_type }} is on the approved list for use of these APIs.
 
 {% include 'comm/emails/includes/details.html' %}
 {% endblock %}
