@@ -182,8 +182,8 @@ class ReviewersExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     cors_allowed_methods = ('get', 'post')
     permission_classes = (ByHttpMethod({
         'options': AllowAny,
-        'post': GroupPermission('Extensions', 'Review'),
-        'get': GroupPermission('Extensions', 'Review'),
+        'post': GroupPermission('ContentTools', 'AddonReview'),
+        'get': GroupPermission('ContentTools', 'AddonReview'),
     }),)
     queryset = Extension.objects.without_deleted().pending()
     serializer_class = ExtensionSerializer
@@ -303,7 +303,7 @@ def download_signed_reviewer(request, uuid, **kwargs):
         extension.versions.without_deleted(), pk=kwargs['version_id'])
 
     def is_reviewer():
-        return action_allowed(request, 'Extensions', 'Review')
+        return action_allowed(request, 'ContentTools', 'AddonReview')
 
     if request.user.is_authenticated() and is_reviewer():
         version.reviewer_sign_if_necessary()
@@ -329,7 +329,7 @@ def download_unsigned(request, uuid, **kwargs):
         return extension.authors.filter(pk=request.user.pk).exists()
 
     def is_reviewer():
-        return action_allowed(request, 'Extensions', 'Review')
+        return action_allowed(request, 'ContentTools', 'AddonReview')
 
     if request.user.is_authenticated() and (is_author() or is_reviewer()):
         log.info('Downloading unsigned add-on: %s version %s from %s' % (
@@ -362,7 +362,7 @@ def mini_manifest_reviewer(request, uuid, **kwargs):
         extension.versions.without_deleted(), pk=kwargs['version_id'])
 
     def is_reviewer():
-        return action_allowed(request, 'Extensions', 'Review')
+        return action_allowed(request, 'ContentTools', 'AddonReview')
 
     if request.user.is_authenticated() and is_reviewer():
         manifest = version.reviewer_mini_manifest

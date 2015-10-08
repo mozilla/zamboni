@@ -723,13 +723,13 @@ class TestReviewersExtensionViewSetGet(RestOAuth):
         eq_(response.status_code, 403)
 
     def test_list_logged_in_with_rights_status(self):
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         response = self.client.get(self.list_url)
         eq_(response.status_code, 200)
         eq_(len(response.json['objects']), 1)
 
     def test_list_logged_in_with_rights_deleted(self):
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         # Deleted extensions do not show up in the review queue.
         self.extension.update(deleted=True)
         response = self.client.get(self.list_url)
@@ -737,7 +737,7 @@ class TestReviewersExtensionViewSetGet(RestOAuth):
         eq_(len(response.json['objects']), 0)
 
     def test_list_logged_in_with_rights_disabled(self):
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         # Disabled extensions do not show up in the review queue.
         self.extension.update(disabled=True)
         response = self.client.get(self.list_url)
@@ -745,7 +745,7 @@ class TestReviewersExtensionViewSetGet(RestOAuth):
         eq_(len(response.json['objects']), 0)
 
     def test_list_logged_in_with_rights(self):
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         response = self.client.get(self.list_url)
         eq_(response.status_code, 200)
         data = response.json['objects'][0]
@@ -781,12 +781,12 @@ class TestReviewersExtensionViewSetGet(RestOAuth):
 
     def test_detail_logged_in_with_rights_status_public(self):
         self.version.update(status=STATUS_PUBLIC)
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         response = self.client.get(self.url)
         eq_(response.status_code, 404)
 
     def test_detail_logged_in_with_rights(self):
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         response = self.client.get(self.url)
         eq_(response.status_code, 200)
         data = response.json
@@ -818,14 +818,14 @@ class TestReviewersExtensionViewSetGet(RestOAuth):
         self.test_detail_logged_in_with_rights()
 
     def test_detail_logged_in_with_rights_deleted(self):
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         # Deleted extensions do not show up in the review queue.
         self.extension.update(deleted=True)
         response = self.client.get(self.url)
         eq_(response.status_code, 404)
 
     def test_detail_logged_in_with_rights_disabled(self):
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         # Disabled extensions do not show up in the review queue.
         self.extension.update(disabled=True)
         response = self.client.get(self.url)
@@ -1106,7 +1106,7 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
         eq_(response.status_code, 403)
 
     def test_post_non_existing_extension(self):
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         self.list_url = reverse('api-v2:extension-version-list', kwargs={
             'extension_pk': self.extension.pk + 42})
         self.publish_url = reverse('api-v2:extension-version-publish', kwargs={
@@ -1177,7 +1177,7 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
 
     @mock.patch('mkt.extensions.models.ExtensionVersion.sign_file')
     def test_publish_disabled(self, sign_file_mock):
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         self.extension.update(disabled=True)
         response = self.client.post(self.publish_url)
         eq_(response.status_code, 403)
@@ -1185,7 +1185,7 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
 
     @mock.patch('mkt.extensions.models.ExtensionVersion.sign_file')
     def test_publish(self, sign_file_mock):
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         sign_file_mock.return_value = 665
         response = self.client.post(self.publish_url, data=json.dumps({
             'message': u'Nîce extension'
@@ -1204,7 +1204,7 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
 
     @mock.patch.object(ExtensionVersion, 'remove_public_signed_file')
     def test_reject_disabled(self, remove_public_signed_file_mock):
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         self.extension.update(disabled=True)
         response = self.client.post(self.reject_url)
         eq_(response.status_code, 403)
@@ -1212,7 +1212,7 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
 
     @mock.patch.object(ExtensionVersion, 'remove_public_signed_file')
     def test_reject(self, remove_public_signed_file_mock):
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         remove_public_signed_file_mock.return_value = 666
         response = self.client.post(self.reject_url, data=json.dumps({
             'message': u'Bâd extension'
@@ -1395,7 +1395,7 @@ class TestExtensionNonAPIViews(TestCase):
         response = self.client.get(self.version.download_url)
         eq_(response.status_code, 404)
 
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         self.login(self.user)
         response = self.client.get(self.version.download_url)
         # Even authors and reviewers can't access it: it doesn't exist.
@@ -1403,7 +1403,7 @@ class TestExtensionNonAPIViews(TestCase):
 
     def test_download_signed_deleted(self):
         self.extension.update(deleted=True)
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         self.login(self.user)
         response = self.client.get(self.version.download_url)
         # Even authors and reviewers can't access it: it doesn't exist.
@@ -1411,7 +1411,7 @@ class TestExtensionNonAPIViews(TestCase):
 
     def test_download_signed_version_deleted(self):
         self.version.update(deleted=True)
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         self.login(self.user)
         response = self.client.get(self.version.download_url)
         # Even authors and reviewers can't access it: it doesn't exist.
@@ -1429,7 +1429,7 @@ class TestExtensionNonAPIViews(TestCase):
 
     def test_download_signed_reviewer_deleted(self):
         self.extension.update(deleted=True)
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         self.login(self.user)
 
         ok_(self.version.reviewer_download_url)
@@ -1438,7 +1438,7 @@ class TestExtensionNonAPIViews(TestCase):
 
     def test_download_signed_reviewer_version_deleted(self):
         self.version.update(deleted=True)
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         self.login(self.user)
 
         ok_(self.version.reviewer_download_url)
@@ -1451,7 +1451,7 @@ class TestExtensionNonAPIViews(TestCase):
     @mock.patch.object(ExtensionVersion, 'reviewer_sign_if_necessary')
     def test_download_signed_reviewer_with_reviewer_permission(
             self, reviewer_sign_if_necessary_mock):
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         self.version.update(status=STATUS_PENDING)
         ok_(self.version.reviewer_download_url)
         self.login(self.user)
@@ -1470,7 +1470,7 @@ class TestExtensionNonAPIViews(TestCase):
     def test_download_signed_reviewer_with_reviewer_permission_using_storage(
             self, private_storage_mock, reviewer_sign_if_necessary_mock):
         private_storage_mock.url = lambda path: 'https://s3.priv/%s' % path
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         self.version.update(status=STATUS_PENDING)
         ok_(self.version.reviewer_download_url)
         self.login(self.user)
@@ -1519,7 +1519,7 @@ class TestExtensionNonAPIViews(TestCase):
         response = self.client.get(self.version.unsigned_download_url)
         eq_(response.status_code, 403)
 
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         response = self.client.get(self.version.unsigned_download_url)
         eq_(response.status_code, 200)
 
@@ -1542,7 +1542,7 @@ class TestExtensionNonAPIViews(TestCase):
         response = self.client.get(self.version.unsigned_download_url)
         eq_(response.status_code, 403)
 
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         response = self.client.get(self.version.unsigned_download_url)
         self.assert3xx(response, expected_path)
 
@@ -1602,7 +1602,7 @@ class TestExtensionNonAPIViews(TestCase):
         self.version.update(status=STATUS_PENDING)
         ok_(self.version.reviewer_mini_manifest_url)
         ok_(self.version.reviewer_mini_manifest)
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         self.login(self.user)
         response = self.client.get(self.version.reviewer_mini_manifest_url)
         eq_(response.status_code, 200)
@@ -1611,7 +1611,7 @@ class TestExtensionNonAPIViews(TestCase):
 
     def test_reviewer_mini_manifest_etag(self):
         self.version.update(status=STATUS_PENDING)
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         self.login(self.user)
         response = self.client.get(self.version.reviewer_mini_manifest_url)
         eq_(response.status_code, 200)
@@ -1642,7 +1642,7 @@ class TestExtensionNonAPIViews(TestCase):
     def test_reviewer_mini_manifest_deleted(self):
         self.version.update(status=STATUS_PENDING)
         self.extension.update(deleted=True)
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         self.login(self.user)
         # `reviewer_mini_manifest_url` exists but is a 404 when the extension
         # or the version is deleted.
@@ -1652,7 +1652,7 @@ class TestExtensionNonAPIViews(TestCase):
 
     def test_reviewer_mini_manifest_version_deleted(self):
         self.version.update(status=STATUS_PENDING, deleted=True)
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         self.login(self.user)
         # `reviewer_mini_manifest_url` exists but is a 404 when the extension
         # or the version is deleted.
