@@ -57,9 +57,14 @@ class PermissionTestMixin(object):
         self.addon.addonuser_set.create(user=self.user)
         self._eq_obj_perm(True)
 
-    def test_has_perm_rev(self):
+    def test_has_perm_rev_addons(self):
         self.obj.update(read_permission_reviewer=True)
         self.grant_permission(self.user, 'Apps:Review')
+        self._eq_obj_perm(True)
+
+    def test_has_perm_rev_ext(self):
+        self.obj.update(read_permission_reviewer=True)
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         self._eq_obj_perm(True)
 
     def test_has_perm_senior_rev(self):
