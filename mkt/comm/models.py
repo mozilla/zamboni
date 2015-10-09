@@ -45,7 +45,8 @@ def check_acls(user, obj, acl_type):
     elif acl_type == 'admin':
         return acl.action_allowed_user(user, 'Admin', '%')
     elif acl_type == 'reviewer':
-        return acl.action_allowed_user(user, 'Apps', 'Review')
+        return (acl.action_allowed_user(user, 'Apps', 'Review') or
+                acl.action_allowed_user(user, 'ContentTools', 'AddonReview'))
     elif acl_type == 'senior_reviewer':
         return acl.action_allowed_user(user, 'Apps', 'ReviewEscalated')
     else:
