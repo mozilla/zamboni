@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-10-01 23:23+0000\n"
+"PO-Revision-Date: 2015-10-09 12:52+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -6205,18 +6205,20 @@ msgid ""
 "Version number must be higher than the latest version uploaded for this Add-"
 "on, which is \"%s\"."
 msgstr ""
+"O número de versão deve ser maior do que a versão mais recente, carregada "
+"para esse complemento, que é \"%s\"."
 
 #: mkt/extensions/models.py:315
 msgid "An Add-on with this version number already exists."
-msgstr ""
+msgstr "Um complemento com este número de versão já existe."
 
 #: mkt/extensions/validation.py:22
 msgid "The file sent has an unsupported content-type"
-msgstr ""
+msgstr "O arquivo enviado tem um tipo de conteúdo não suportado"
 
 #: mkt/extensions/validation.py:24
 msgid "The `description` property cannot be longer than 132 characters."
-msgstr ""
+msgstr "A propriedade `descrição` não pode ter mais de 132 caracteres."
 
 #: mkt/extensions/validation.py:27
 msgid "'manifest.json' in the archive is not a valid JSON file."
@@ -6270,7 +6272,7 @@ msgstr ""
 
 #: mkt/extensions/views.py:56
 msgid "You need to be authenticated to perform this action."
-msgstr ""
+msgstr "Você precisa estar autenticado para executar esta ação."
 
 #: mkt/extensions/views.py:61
 msgid "No such upload."
@@ -6278,7 +6280,7 @@ msgstr ""
 
 #: mkt/extensions/views.py:64
 msgid "The specified upload has not passed validation."
-msgstr ""
+msgstr "O upload especificado não passou na validação."
 
 #: mkt/extensions/views.py:101
 msgid "Missing file in request."
@@ -6794,15 +6796,15 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/group_summary.html:13
 msgid "Group Summary"
-msgstr ""
+msgstr "Resumo do grupo"
 
 #: mkt/lookup/templates/lookup/group_summary.html:18
 msgid "Group Details"
-msgstr ""
+msgstr "Detalhes do grupo"
 
 #: mkt/lookup/templates/lookup/group_summary.html:22
 msgid "Rules"
-msgstr ""
+msgstr "Regras"
 
 #: mkt/lookup/templates/lookup/group_summary.html:24
 msgid "Notes"
