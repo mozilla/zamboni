@@ -27,7 +27,7 @@ Detail
 
     .. note::
         Non public add-ons can only be viewed by their authors or extension
-        reviewers (users with the *Extensions:Review* permission)
+        reviewers (users with the *ContentTools:AddonReview* permission)
 
     A single add-on.
 
@@ -181,7 +181,7 @@ Detail
 
     .. note::
         Non public add-ons versions can only be viewed by their authors or
-        extension reviewers (users with the *Extensions:Review* permission)
+        extension reviewers (users with the *ContentTools:AddonReview* permission)
 
     A single add-on version.
 
@@ -201,9 +201,9 @@ Detail
 
     :resjson string created: The creation date for this version.
     :resjson string download_url: The (absolute) URL to the latest signed package for that add-on. That URL may be a 404 if the add-on is not public.
-    :resjson string reviewer_mini_manifest_url: The (absolute) URL to the reviewer-specific mini_manifest URL (allowing reviewers to install a non-public version) for this version. Only users with Extensions:Review permission may access it.
+    :resjson string reviewer_mini_manifest_url: The (absolute) URL to the reviewer-specific mini_manifest URL (allowing reviewers to install a non-public version) for this version. Only users with ContentTools:AddonReview permission may access it.
     :resjson string status: The add-on version current status. Can be *pending*, *obsolete*, *public* or *rejected*.
-    :resjson string unsigned_download_url: The (absolute) URL to the latest *unsigned* package for that add-on. Only the add-on author or users with Extensions:Review permission may access it.
+    :resjson string unsigned_download_url: The (absolute) URL to the latest *unsigned* package for that add-on. Only the add-on author or users with ContentTools:AddonReview permission may access it.
     :resjson string version: The version number for this add-on version.
 
     :param int id: The add-on id
@@ -221,7 +221,7 @@ List
 
     .. note::
         Non public add-ons versions can only be viewed by their authors or
-        extension reviewers (users with the *Extensions:Review* permission)
+        extension reviewers (users with the *ContentTools:AddonReview* permission)
 
     A list of versions attached to an add-on.
 
@@ -394,7 +394,7 @@ List
 
 .. http:get:: /api/v2/extensions/queue/
 
-    .. note:: Requires authentication and the Extensions:Review permission.
+    .. note:: Requires authentication and the ContentTools:AddonReview permission.
 
     The list of add-ons in the review queue.
 

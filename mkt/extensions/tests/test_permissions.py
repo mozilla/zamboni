@@ -41,7 +41,7 @@ class TestAllowExtensionReviewerReadOnly(TestCase):
 
     def test_has_permission_reviewer(self):
         self.user = UserProfile.objects.get(pk=2519)
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         for verb in self.safe_methods:
             eq_(self.permission.has_permission(self._request(verb), 'myview'),
                 True)
@@ -67,7 +67,7 @@ class TestAllowExtensionReviewerReadOnly(TestCase):
 
     def test_has_object_permission_reviewer(self):
         self.user = UserProfile.objects.get(pk=2519)
-        self.grant_permission(self.user, 'Extensions:Review')
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
         obj = Mock()
 
         for verb in self.safe_methods:
