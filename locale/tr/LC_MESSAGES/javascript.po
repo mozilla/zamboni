@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2013-12-10 07:52+0000\n"
-"Last-Translator: Menekşe <menekse.celik@gmail.com>\n"
+"PO-Revision-Date: 2015-10-10 13:19+0000\n"
+"Last-Translator: Selim <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1386661961.0\n"
+"X-POOTLE-MTIME: 1444483184.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -106,31 +106,31 @@ msgstr "Uygulamanız hatasız ve uyarısız olarak doğrulamayı geçti."
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
-msgstr ""
+msgstr "Manifest belirtilen konumda bulunamadı."
 
 #: media/js/devreg/apps.js:87
 msgid "App host could not be reached."
-msgstr ""
+msgstr "Uygulama host'una ulaşılamadı."
 
 #: media/js/devreg/apps.js:90
 msgid "App manifest is unparsable."
-msgstr ""
+msgstr "Uygulama manifest'i çözülemiyor."
 
 #: media/js/devreg/apps.js:93
 msgid "App manifest is invalid."
-msgstr ""
+msgstr "Uygulama manifest'i geçersiz."
 
 #: media/js/devreg/apps.js:96
 msgid "App is already installed."
-msgstr ""
+msgstr "Uygulama zaten yüklenmiş."
 
 #: media/js/devreg/apps.js:100
 msgid "Internal server error."
-msgstr ""
+msgstr "İç sunucu hatası."
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
-msgstr ""
+msgstr "Uygulama kurulumunda iç sunucu hatası."
 
 #: media/js/devreg/apps.js:106
 msgid "Install failed. Please try again later."
@@ -160,11 +160,11 @@ msgstr "Yeni ekip üyesinin e-posta adresini girin"
 
 #: media/js/devreg/devhub.js:476
 msgid "Manifest refreshed"
-msgstr ""
+msgstr "Manifest tazelendi"
 
 #: media/js/devreg/devhub.js:481
 msgid "Could not refresh manifest. Try again later."
-msgstr ""
+msgstr "Manifest tazelenemedi. Daha sonra yeniden deneyin."
 
 #: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
@@ -184,23 +184,23 @@ msgstr "Resim değişiklikleri işleniyor"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr ""
+msgstr "Bu video için açık videoları destekleyen bir tarayıcı "
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
-msgstr ""
+msgstr "veya <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
 
 #: media/js/devreg/ecosystem.js:28
 msgid "Flash Player</a>."
-msgstr ""
+msgstr "Flash Player</a> gerekiyor."
 
 #: media/js/devreg/in_app_products.js:281
 msgid "Enabled"
-msgstr ""
+msgstr "Etkin"
 
 #: media/js/devreg/in_app_products.js:283
 msgid "Disabled"
-msgstr ""
+msgstr "Devre dışı"
 
 #: media/js/devreg/init.js:35
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -244,7 +244,7 @@ msgstr ""
 
 #: media/js/devreg/lookup-tool.js:183
 msgid "Show All Results"
-msgstr ""
+msgstr "Tüm Sonuçları Göster"
 
 #: media/js/devreg/lookup-tool.js:186
 msgid "Over {0} results found, consider refining your search."
@@ -272,23 +272,23 @@ msgstr ""
 
 #: media/js/devreg/overlay.js:41
 msgid "OK"
-msgstr ""
+msgstr "Tamam"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
-msgstr ""
+msgstr "İspanyol Banka Kodu"
 
 #: media/js/devreg/payments-enroll.js:11
 msgid "Irish Sort Code"
-msgstr ""
+msgstr "İrlanda Sıralama Kodu"
 
 #: media/js/devreg/payments-enroll.js:13
 msgid "Belgian Sort Code"
-msgstr ""
+msgstr "Belçika Sıralama Kodu"
 
 #: media/js/devreg/payments-enroll.js:15
 msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr ""
+msgstr "İspanyol/Fransız/İtalyan/Alman Banka Kodu"
 
 #: media/js/devreg/payments-enroll.js:17
 msgid "Dutch/US Sort Code"
@@ -528,27 +528,27 @@ msgstr ""
 
 #: media/js/devreg/reviewers/reviewers.js:122
 msgid "Free"
-msgstr ""
+msgstr "Ücretsiz"
 
 #: media/js/devreg/reviewers/reviewers.js:219
 msgid "Any"
-msgstr ""
+msgstr "Herhangi biri"
 
 #: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "Onaylanmış uygulama: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "Reddedilmiş uygulama: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:255
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "Uygulama onaylamada hata: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:256
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "Uygulama reddetmede hata: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:307
 msgid "Error passing app: {app}"

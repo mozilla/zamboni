@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2013-12-10 07:51+0000\n"
-"Last-Translator: Menekşe <menekse.celik@gmail.com>\n"
+"PO-Revision-Date: 2015-10-10 13:21+0000\n"
+"Last-Translator: Selim <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1386661873.0\n"
+"X-POOTLE-MTIME: 1444483279.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -24,7 +24,7 @@ msgstr ""
 
 #: mkt/abuse/forms.py:78 mkt/abuse/forms.py:92 mkt/ratings/forms.py:67
 msgid "Skip for now"
-msgstr ""
+msgstr "Şimdilik geç"
 
 #: mkt/abuse/forms.py:79 mkt/abuse/forms.py:93
 msgid "Mark all reports Read"
@@ -48,7 +48,7 @@ msgstr ""
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:211
 msgid "Unknown"
-msgstr ""
+msgstr "Bilinmiyor"
 
 #: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/reviewers/forms.py:212 mkt/submit/forms.py:330
 msgid "Yes"
@@ -60,15 +60,15 @@ msgstr "Hayır"
 
 #: mkt/api/serializers.py:67
 msgid "Form could not be submitted."
-msgstr ""
+msgstr "Form gönderilemedi."
 
 #: mkt/comm/forms.py:28
 msgid "Note body is empty."
-msgstr ""
+msgstr "Not gövdesi boş."
 
 #: mkt/comm/forms.py:32
 msgid "Invalid note type."
-msgstr ""
+msgstr "Geçersiz not türü."
 
 #: mkt/comm/forms.py:47
 msgid "Version %s does not exist"
@@ -76,7 +76,7 @@ msgstr ""
 
 #: mkt/comm/forms.py:51
 msgid "Attachment:"
-msgstr ""
+msgstr "Ek:"
 
 #: mkt/comm/forms.py:52 mkt/submit/forms.py:280
 msgid "Description:"
@@ -84,11 +84,11 @@ msgstr "Açıklama:"
 
 #: mkt/comm/forms.py:63
 msgid "Attachment exceeds maximum size of %s."
-msgstr ""
+msgstr "Ek, %s maksimum dosya boyutunu aşıyor."
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
@@ -100,11 +100,11 @@ msgstr "Masaüstü"
 
 #: mkt/constants/applications.py:13 mkt/constants/platforms.py:8 mkt/constants/platforms.py:32 mkt/constants/tests/test_platforms.py:16 mkt/constants/tests/test_platforms.py:33
 msgid "Firefox Mobile"
-msgstr ""
+msgstr "Firefox Mobil"
 
 #: mkt/constants/applications.py:20 mkt/constants/platforms.py:9 mkt/constants/platforms.py:33 mkt/constants/tests/test_platforms.py:17 mkt/constants/tests/test_platforms.py:34
 msgid "Firefox Tablet"
-msgstr ""
+msgstr "Firefox Tablet"
 
 #: mkt/constants/applications.py:27 mkt/constants/platforms.py:6 mkt/constants/platforms.py:18 mkt/constants/tests/test_platforms.py:14 mkt/constants/tests/test_platforms.py:24
 #: mkt/constants/tests/test_platforms.py:32 mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:47 mkt/search/forms.py:54
@@ -125,11 +125,11 @@ msgstr "Geliştirici"
 
 #: mkt/constants/bango.py:19 mkt/constants/regions.py:70
 msgid "Afghanistan"
-msgstr ""
+msgstr "Afganistan"
 
 #: mkt/constants/bango.py:20 mkt/constants/regions.py:73
 msgid "Åland Islands"
-msgstr ""
+msgstr "Åland Adaları"
 
 #: mkt/constants/bango.py:21 mkt/constants/regions.py:74
 msgid "Albania"
