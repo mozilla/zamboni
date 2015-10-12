@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-05-06 02:54+0000\n"
-"Last-Translator: Anonymous Pootle User\n"
+"PO-Revision-Date: 2015-10-12 02:31+0000\n"
+"Last-Translator: r4k0nb4k0n <chj6097@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1430880868.0\n"
+"X-POOTLE-MTIME: 1444617100.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -28,7 +28,7 @@ msgstr "지금은 접어두기"
 
 #: mkt/abuse/forms.py:79 mkt/abuse/forms.py:93
 msgid "Mark all reports Read"
-msgstr ""
+msgstr "모두 읽기 표시"
 
 #: mkt/abuse/forms.py:80
 msgid "Flag for re-review"
@@ -44,7 +44,7 @@ msgstr "적어도 {num}자 이상 되어야 합니다."
 
 #: mkt/api/fields.py:91
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "언어 코드 {lang_code}가 유효하지 않습니다."
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:211
 msgid "Unknown"
@@ -365,7 +365,7 @@ msgstr "체코 공화국"
 
 #: mkt/constants/bango.py:79 mkt/constants/regions.py:131
 msgid "Denmark"
-msgstr ""
+msgstr "덴마크"
 
 #: mkt/constants/bango.py:80 mkt/constants/regions.py:129
 msgid "Djibouti"
@@ -1293,7 +1293,7 @@ msgstr ""
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
-msgstr ""
+msgstr "책 & 만화"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
@@ -1325,11 +1325,11 @@ msgstr "건강 및 운동"
 
 #: mkt/constants/categories.py:13
 msgid "Humor"
-msgstr ""
+msgstr "유머"
 
 #: mkt/constants/categories.py:14
 msgid "Internet"
-msgstr ""
+msgstr "인터넷"
 
 #: mkt/constants/categories.py:15 mkt/constants/categories.py:47
 msgid "Lifestyle"
@@ -1345,11 +1345,11 @@ msgstr "음악"
 
 #: mkt/constants/categories.py:18
 msgid "News"
-msgstr ""
+msgstr "뉴스"
 
 #: mkt/constants/categories.py:19
 msgid "Personalization"
-msgstr ""
+msgstr "개인화"
 
 #: mkt/constants/categories.py:20
 msgid "Photo & Video"
@@ -1365,7 +1365,7 @@ msgstr "사전"
 
 #: mkt/constants/categories.py:23
 msgid "Science & Tech"
-msgstr ""
+msgstr "과학 & 기술"
 
 #: mkt/constants/categories.py:24
 msgid "Shopping"
@@ -1389,7 +1389,7 @@ msgstr "유틸리티"
 
 #: mkt/constants/categories.py:29
 msgid "Weather"
-msgstr ""
+msgstr "날씨"
 
 #: mkt/constants/categories.py:45 mkt/ecosystem/templates/ecosystem/macros.html:134 mkt/site/context_processors.py:48
 msgid "Tools"
@@ -1417,7 +1417,7 @@ msgstr ""
 
 #: mkt/constants/comm.py:52
 msgid "App resubmission"
-msgstr ""
+msgstr "앱 재제출"
 
 #: mkt/constants/comm.py:54 mkt/site/log.py:424
 msgid "Escalation cleared"
@@ -1441,7 +1441,7 @@ msgstr ""
 
 #: mkt/constants/comm.py:59
 msgid "Developer comment"
-msgstr ""
+msgstr "개발자 댓글"
 
 #: mkt/constants/comm.py:60
 msgid "Device(s) changed by reviewer"
@@ -1557,7 +1557,7 @@ msgstr "기사"
 
 #: mkt/constants/features.py:51
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "본 앱은 `ArchiveReader` API를 필요로 합니다."
 
 #: mkt/constants/features.py:55
 msgid "Battery"
@@ -1605,7 +1605,7 @@ msgstr "Idle"
 
 #: mkt/constants/features.py:91
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr ""
+msgstr "본 앱은  `addIdleObserver` API를 지원하는 플랫폼을 필요로 합니다."
 
 #: mkt/constants/features.py:96
 msgid "Network Information"
@@ -1855,15 +1855,15 @@ msgstr "본 앱은 서드파티 키보드를 지원하는 플랫폼을 필요로
 
 #: mkt/constants/features.py:311
 msgid "Multiple Network Information"
-msgstr ""
+msgstr "다중 네트워크 정보"
 
 #: mkt/constants/features.py:312
 msgid "The app requires the ability to get information about multiple network connections."
-msgstr ""
+msgstr "본 앱은 다중 네트워크 연결에 대한 정보를 얻을 수 있는 것을 필요로 합니다."
 
 #: mkt/constants/features.py:318
 msgid "Mobile ID"
-msgstr ""
+msgstr "모바일 ID"
 
 #: mkt/constants/features.py:319
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
@@ -1883,7 +1883,7 @@ msgstr ""
 
 #: mkt/constants/features.py:331
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "이 앱은 적어도 512MB 이상의 램을 요구합니다."
 
 #: mkt/constants/features.py:336
 msgid "1GB RAM Device"
@@ -1891,7 +1891,7 @@ msgstr ""
 
 #: mkt/constants/features.py:337
 msgid "The app requires the device to have at least 1GB RAM."
-msgstr ""
+msgstr "이 앱은 적어도 1GB 이상의 램을 요구합니다."
 
 #: mkt/constants/features.py:342
 msgid "NFC"
@@ -1899,7 +1899,7 @@ msgstr ""
 
 #: mkt/constants/features.py:343
 msgid "The app requires access to the Near Field Communication (NFC) API."
-msgstr ""
+msgstr "본 앱은 Near Field Communication (NFC) API 접속을 필요로 합니다."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -1959,7 +1959,7 @@ msgstr "완료됨"
 
 #: mkt/constants/platforms.py:7 mkt/constants/platforms.py:27 mkt/constants/tests/test_platforms.py:15
 msgid "Firefox for Desktop"
-msgstr ""
+msgstr "데스크탑용 Firefox"
 
 #: mkt/constants/platforms.py:41 mkt/constants/platforms.py:45
 msgid "Fully open mobile ecosystem"
@@ -1975,7 +1975,7 @@ msgstr "안드로이드 스마트폰"
 
 #: mkt/constants/platforms.py:44 mkt/constants/platforms.py:48
 msgid "Tablets"
-msgstr ""
+msgstr "태블릿"
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "For all ages"
@@ -2008,29 +2008,29 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:207
 msgid "Everyone"
-msgstr ""
+msgstr "모든 연령층"
 
 #: mkt/constants/ratingsbodies.py:214
 msgid "Everyone 10+"
-msgstr ""
+msgstr "10세 이상의 모든 연령층"
 
 #: mkt/constants/ratingsbodies.py:221
 msgid "Teen"
-msgstr ""
+msgstr "10대"
 
 #: mkt/constants/ratingsbodies.py:228
 msgid "Mature 17+"
-msgstr ""
+msgstr "17세 이상의 연령층"
 
 #: mkt/constants/ratingsbodies.py:235
 msgid "Adults Only 18+"
-msgstr ""
+msgstr "18세 이상의 성인"
 
 #. L10n: `18+` is age eighteen and over.
 #. L10n: North and South American, but not Brazil.
 #: mkt/constants/ratingsbodies.py:249
 msgid "All Americas except Brazil"
-msgstr ""
+msgstr "브라질을 제외한 모든 남, 북아메리카 국가"
 
 #: mkt/constants/ratingsbodies.py:250
 msgid "Entertainment Software Rating Board"
@@ -2098,11 +2098,11 @@ msgstr ""
 
 #: mkt/constants/regions.py:256
 msgid "Russia"
-msgstr ""
+msgstr "러시아"
 
 #: mkt/constants/regions.py:260
 msgid "Senegal"
-msgstr ""
+msgstr "세네갈"
 
 #: mkt/constants/regions.py:263
 msgid "Saint Helena, Ascension and Tristan da Cunha"
@@ -2110,11 +2110,11 @@ msgstr ""
 
 #: mkt/constants/regions.py:295
 msgid "Taiwan"
-msgstr ""
+msgstr "대만"
 
 #: mkt/constants/regions.py:296
 msgid "Tanzania"
-msgstr ""
+msgstr "탄자니아"
 
 #: mkt/constants/regions.py:303
 msgid "Holy See"
@@ -2166,7 +2166,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:64
 msgid "You cannot select {region}."
-msgstr ""
+msgstr "{region}을 선택할 수 없습니다."
 
 #: mkt/developers/forms.py:122
 msgid "All team members must have read and agreed to the developer agreement."
@@ -2274,7 +2274,7 @@ msgstr "기본 언어를 변경하기에 앞서 해당 언어의 이름 및 설�
 
 #: mkt/developers/forms.py:747 mkt/submit/templates/submit/details.html:125
 msgid "You must provide either a website, an email, or both."
-msgstr ""
+msgstr "웹사이트나 이메일 중 하나 또는 모두를 제공해야 합니다."
 
 #: mkt/developers/forms.py:772
 msgid "Your comments"
@@ -2310,7 +2310,7 @@ msgstr "새 지역 활성화"
 
 #: mkt/developers/forms.py:877
 msgid "Make my app available in most regions"
-msgstr ""
+msgstr "대부분의 지역에서 사용가능한 나의 앱 만들기"
 
 #: mkt/developers/forms.py:878
 msgid "Choose where my app is made available"
@@ -2375,7 +2375,7 @@ msgstr "종료일"
 
 #: mkt/developers/forms.py:1157
 msgid "Web site"
-msgstr ""
+msgstr "웹 사이트"
 
 #: mkt/developers/forms.py:1158
 msgid "Command line"
@@ -2571,7 +2571,7 @@ msgstr "지불 계좌를 변경할 수 있는 권한이 없습니다."
 
 #: mkt/developers/forms_payments.py:619
 msgid "Account name"
-msgstr ""
+msgstr "계정 이름"
 
 #: mkt/developers/forms_payments.py:620 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:49
 #: mkt/lookup/templates/lookup/group_summary.html:20 mkt/lookup/templates/lookup/website_edit.html:20 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:21
@@ -2841,7 +2841,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
-msgstr ""
+msgstr "고객 유형"
 
 #: mkt/developers/templates/developers/api.html:40 mkt/developers/templates/developers/api.html:66
 msgid "Application Name"
@@ -2919,7 +2919,7 @@ msgstr "오늘의 메시지"
 
 #: mkt/developers/templates/developers/motd.html:11
 msgid "Update Message of the Day"
-msgstr ""
+msgstr "오늘의 메시지 업데이트"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:32 mkt/reviewers/templates/reviewers/motd.html:15
 #: mkt/reviewers/templates/reviewers/review.html:218
@@ -3267,7 +3267,7 @@ msgstr "심사 완료시 이메일을 받아보게 됩니다."
 
 #: mkt/developers/templates/developers/apps/status.html:99
 msgid "This app is <b>published</b>."
-msgstr ""
+msgstr "이 앱은 <b>제출되었습니다</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:104
 msgid "Your app has been <b>approved</b> and is currently <b>unlisted</b>."
