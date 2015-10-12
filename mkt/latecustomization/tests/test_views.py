@@ -112,3 +112,15 @@ class TestLateCustomization(RestOAuth):
         eq_(res.status_code, 403)
         ok_(LateCustomizationItem.objects.filter(app_id=ap.pk, region=14,
                                                  carrier=4).exists())
+
+    def test_delete_wrong_operator_forbidden(self):
+        ap = make_packaged_app()
+        OperatorPermission.objects.create(user=self.user, region=14,
+                                          carrier=20)
+        lci = LateCustomizationItem.objects.create(app_id=ap.pk, region=14,
+                                                   carrier=4)
+        res = self.client.delete(
+            reverse('api-v2:late-customization-detail', kwargs={'pk': lci.pk}))
+        eq_(res.status_code, 403)
+        ok_(LateCustomizationItem.objects.filter(app_id=ap.pk, region=14,
+                                                 carrier=4).exists())

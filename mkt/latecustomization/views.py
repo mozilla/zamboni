@@ -62,3 +62,12 @@ class LateCustomizationViewSet(FeedShelfPermissionMixin, CORSMixin,
                 "Operator permission required to add late-customization apps")
         return super(LateCustomizationViewSet, self).create(request, *args,
                                                             **kwargs)
+
+    def pre_delete(self, obj):
+        try:
+            self.require_operator_permission(
+                self.request.user, obj.carrier, obj.region)
+        except (KeyError, MultiValueDictKeyError):
+            raise ParseError(
+                "Operator permission for this late-customization app's "
+                "region/carrier required to remove it")
