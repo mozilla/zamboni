@@ -430,3 +430,8 @@ def REGIONS_CHOICES_SORTED_BY_NAME():
 
     """
     return [(v.id, v.name) for v in REGIONS_LIST_SORTED_BY_NAME()]
+
+
+REGIONS_BY_MCC = {c['mcc']: c['slug']
+                  for c in countries.COUNTRY_DETAILS.itervalues()
+                  if 'mcc' in c}
