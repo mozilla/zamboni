@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-09-21 19:19+0000\n"
+"PO-Revision-Date: 2015-10-14 22:12+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1442863198.0\n"
+"X-POOTLE-MTIME: 1444860734.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -5125,15 +5126,17 @@ msgstr "Přidatk z tutym wersijowym čisłom hižo eksistuje."
 
 #: mkt/extensions/validation.py:22
 msgid "The `author` property must be a string."
-msgstr ""
+msgstr "Kajkosć „awtor“ dyrbi znamješkowy rjećazk być."
 
 #: mkt/extensions/validation.py:23
 msgid "The `author` property cannot be longer than 128 characters."
-msgstr ""
+msgstr "Kajkosć „awtor“ njesmě dlěša hač 128 znamješkow być."
 
 #: mkt/extensions/validation.py:25
 msgid "The `author` property must be at least 1 character long and can not consist of only whitespace characters."
 msgstr ""
+"Kajkosć „awtor“ dyrbi znajmjeńša 1 znamješko dołha być a njemóže jenož z "
+"mjezotow wobstać."
 
 #: mkt/extensions/validation.py:28
 msgid "The file sent has an unsupported content-type"
@@ -5141,7 +5144,7 @@ msgstr "Pósłana dataja ma njepodpěrany wobsahowy typ"
 
 #: mkt/extensions/validation.py:30
 msgid "The `description` property must be a string."
-msgstr ""
+msgstr "Kajkosć „wopisanje“ dyrbi znamješkowy rjećazk być."
 
 #: mkt/extensions/validation.py:32
 msgid "The `description` property cannot be longer than 132 characters."
@@ -5174,6 +5177,8 @@ msgstr "Kajkosć \"name\" njesmě dlěša hač 45 znamješkow być."
 #: mkt/extensions/validation.py:46
 msgid "The `name` property must be at least 1 character long and can not consist of only whitespace characters."
 msgstr ""
+"Kajkosć „mjeno“ dyrbi znajmjeńša 1 znamješko dołho być a njemóže jenož z "
+"mjezotow wobstać."
 
 #: mkt/extensions/validation.py:49
 msgid "The archive does not contain a 'manifest.json' file."
@@ -5210,6 +5215,7 @@ msgstr "Falowaca dataja při naprašowanju."
 #: mkt/extensions/views.py:214
 msgid "Modifying or submitting versions is forbidden for disabled Add-ons."
 msgstr ""
+"Měnjenje abo wotposyłanje wersijow je zakazane za znjemóžnjene přidatki."
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
