@@ -12,6 +12,7 @@ from mkt.search.utils import BOOST_MULTIPLIER_FOR_PUBLIC_CONTENT, get_boost
 from mkt.site.fixtures import fixture
 from mkt.site.tests import ESTestCase, TestCase
 from mkt.site.utils import version_factory
+from mkt.tags.models import Tag
 from mkt.translations.utils import to_language
 from mkt.users.models import UserProfile
 from mkt.webapps.indexers import WebappIndexer
@@ -77,6 +78,7 @@ class TestWebappIndexer(TestCase):
         eq_(doc['status'], obj.status)
         eq_(doc['trending'], 0)
         eq_(doc['is_escalated'], False)
+        eq_(doc['is_homescreen'], False)
         eq_(doc['latest_version']['status'], mkt.STATUS_PUBLIC)
         eq_(doc['latest_version']['has_editor_comment'], False)
         eq_(doc['latest_version']['has_info_request'], False)
@@ -145,6 +147,11 @@ class TestWebappIndexer(TestCase):
         obj, doc = self._get_doc()
         eq_(doc['is_rereviewed'], True)
         self.assertCloseToNow(doc['rereview_date'])
+
+    def test_extract_is_homescreen(self):
+        Tag(tag_text='homescreen').save_tag(self.app)
+        obj, doc = self._get_doc()
+        ok_(doc['is_homescreen'])
 
     def test_extract_is_priority(self):
         self.app.update(priority_review=True)
