@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-09-21 13:12-0400\n"
+"PO-Revision-Date: 2015-10-14 17:26-0400\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -5111,15 +5111,15 @@ msgstr "このバージョン番号のアドオンが既に存在します。"
 
 #: mkt/extensions/validation.py:22
 msgid "The `author` property must be a string."
-msgstr ""
+msgstr "「author」プロパティは文字列でなければなりません。"
 
 #: mkt/extensions/validation.py:23
 msgid "The `author` property cannot be longer than 128 characters."
-msgstr ""
+msgstr "「author」プロパティは 128 文字以下でなければなりません。"
 
 #: mkt/extensions/validation.py:25
 msgid "The `author` property must be at least 1 character long and can not consist of only whitespace characters."
-msgstr ""
+msgstr "「author」プロパティは最低でも 1 文字でなければならず、空白文字だけを含めることはできません。"
 
 #: mkt/extensions/validation.py:28
 msgid "The file sent has an unsupported content-type"
@@ -5127,11 +5127,11 @@ msgstr "送信されたファイルは未対応のコンテンツタイプです
 
 #: mkt/extensions/validation.py:30
 msgid "The `description` property must be a string."
-msgstr ""
+msgstr "「description」プロパティは文字列でなければなりません。"
 
 #: mkt/extensions/validation.py:32
 msgid "The `description` property cannot be longer than 132 characters."
-msgstr "「description」プロパティは最長でも 132 文字までとなっています。"
+msgstr "「description」プロパティは 132 文字以下でなければなりません。"
 
 #: mkt/extensions/validation.py:35
 msgid "'manifest.json' in the archive is not a valid JSON file."
@@ -5159,7 +5159,7 @@ msgstr "「name」プロパティは最長でも 45 文字までとなってい�
 
 #: mkt/extensions/validation.py:46
 msgid "The `name` property must be at least 1 character long and can not consist of only whitespace characters."
-msgstr ""
+msgstr "「name」プロパティは最低でも 1 文字でなければならず、空白文字だけを含めることはできません。"
 
 #: mkt/extensions/validation.py:49
 msgid "The archive does not contain a 'manifest.json' file."
@@ -5195,7 +5195,7 @@ msgstr "リクエスト内のファイルが見つかりません。"
 
 #: mkt/extensions/views.py:214
 msgid "Modifying or submitting versions is forbidden for disabled Add-ons."
-msgstr ""
+msgstr "無効化されているアドオンのバージョン変更や登録は許可されていません。"
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
