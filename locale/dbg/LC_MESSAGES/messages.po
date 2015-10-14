@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-21 09:48-0700\n"
+"POT-Creation-Date: 2015-10-14 13:42-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,7 +146,7 @@ msgid "Reviewer"
 msgstr "Řḗṽīḗẇḗř"
 
 #: mkt/constants/apps.py:11
-#: mkt/constants/base.py:133
+#: mkt/constants/base.py:146
 #: mkt/developers/templates/developers/apps/owner.html:91
 #: mkt/operators/templates/operators/preloads.html:15
 #: mkt/users/notifications.py:157
@@ -1387,72 +1387,72 @@ msgstr "Ẑȧḿƀīȧ"
 msgid "Zimbabwe"
 msgstr "Ẑīḿƀȧƀẇḗ"
 
-#: mkt/constants/base.py:26
+#: mkt/constants/base.py:27
 #: mkt/lookup/views.py:184
 msgid "Incomplete"
 msgstr "Īƞƈǿḿƥŀḗŧḗ"
 
-#: mkt/constants/base.py:27
+#: mkt/constants/base.py:28
 msgid "Pending approval"
 msgstr "Ƥḗƞḓīƞɠ ȧƥƥřǿṽȧŀ"
 
-#: mkt/constants/base.py:28
-#: mkt/constants/base.py:44
+#: mkt/constants/base.py:29
+#: mkt/constants/base.py:45
 msgid "Published"
 msgstr "Ƥŭƀŀīşħḗḓ"
 
-#: mkt/constants/base.py:29
+#: mkt/constants/base.py:30
 msgid "Banned from Marketplace"
 msgstr "Ɓȧƞƞḗḓ ƒřǿḿ Ḿȧřķḗŧƥŀȧƈḗ"
 
-#: mkt/constants/base.py:30
+#: mkt/constants/base.py:31
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Deleted"
 msgstr "Ḓḗŀḗŧḗḓ"
 
-#: mkt/constants/base.py:31
+#: mkt/constants/base.py:32
 #: mkt/constants/comm.py:47
 #: mkt/reviewers/helpers.py:192
 #: mkt/site/log.py:176
 msgid "Rejected"
 msgstr "Řḗĵḗƈŧḗḓ"
 
-#: mkt/constants/base.py:34
+#: mkt/constants/base.py:35
 #: mkt/constants/comm.py:53
 #: mkt/site/log.py:375
 msgid "Approved but private"
 msgstr "Ȧƥƥřǿṽḗḓ ƀŭŧ ƥřīṽȧŧḗ"
 
-#: mkt/constants/base.py:35
+#: mkt/constants/base.py:36
 msgid "Blocked"
 msgstr "Ɓŀǿƈķḗḓ"
 
-#: mkt/constants/base.py:36
+#: mkt/constants/base.py:37
 msgid "Unlisted"
 msgstr "Ŭƞŀīşŧḗḓ"
 
-#: mkt/constants/base.py:42
+#: mkt/constants/base.py:43
 msgid "Obsolete"
 msgstr "Ǿƀşǿŀḗŧḗ"
 
-#: mkt/constants/base.py:43
+#: mkt/constants/base.py:44
 #: mkt/constants/comm.py:46
 #: mkt/constants/payments.py:66
 #: mkt/site/log.py:155
 msgid "Approved"
 msgstr "Ȧƥƥřǿṽḗḓ"
 
-#: mkt/constants/base.py:132
+#: mkt/constants/base.py:145
 #: mkt/developers/templates/developers/apps/owner.html:88
 msgid "Owner"
 msgstr "Ǿẇƞḗř"
 
-#: mkt/constants/base.py:134
+#: mkt/constants/base.py:147
 #: mkt/developers/templates/developers/apps/owner.html:94
 msgid "Viewer"
 msgstr "Ṽīḗẇḗř"
 
-#: mkt/constants/base.py:135
+#: mkt/constants/base.py:148
 #: mkt/developers/templates/developers/skeleton_impala.html:60
 #: mkt/developers/templates/developers/apps/owner.html:96
 #: mkt/ecosystem/templates/ecosystem/support.html:5
@@ -1461,7 +1461,7 @@ msgstr "Ṽīḗẇḗř"
 msgid "Support"
 msgstr "Şŭƥƥǿřŧ"
 
-#: mkt/constants/base.py:160
+#: mkt/constants/base.py:173
 #: mkt/detail/templates/detail/includes/price.html:6
 #: mkt/developers/templates/developers/payments/premium.html:62
 #: mkt/search/forms.py:35
@@ -1469,104 +1469,104 @@ msgstr "Şŭƥƥǿřŧ"
 msgid "Free"
 msgstr "Ƒřḗḗ"
 
-#: mkt/constants/base.py:161
+#: mkt/constants/base.py:174
 #: mkt/search/forms.py:37
 msgid "Premium"
 msgstr "Ƥřḗḿīŭḿ"
 
-#: mkt/constants/base.py:162
+#: mkt/constants/base.py:175
 msgid "Premium with in-app payments"
 msgstr "Ƥřḗḿīŭḿ ẇīŧħ īƞ-ȧƥƥ ƥȧẏḿḗƞŧş"
 
-#: mkt/constants/base.py:163
+#: mkt/constants/base.py:176
 msgid "Free with in-app payments"
 msgstr "Ƒřḗḗ ẇīŧħ īƞ-ȧƥƥ ƥȧẏḿḗƞŧş"
 
-#: mkt/constants/base.py:164
+#: mkt/constants/base.py:177
 msgid "I'll use my own system for in-app payments"
 msgstr "Ī'ŀŀ ŭşḗ ḿẏ ǿẇƞ şẏşŧḗḿ ƒǿř īƞ-ȧƥƥ ƥȧẏḿḗƞŧş"
 
-#: mkt/constants/base.py:228
+#: mkt/constants/base.py:241
 msgid "Manual Reviewer Points"
 msgstr "Ḿȧƞŭȧŀ Řḗṽīḗẇḗř Ƥǿīƞŧş"
 
-#: mkt/constants/base.py:229
+#: mkt/constants/base.py:242
 msgid "Web App Review"
 msgstr "Ẇḗƀ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:230
+#: mkt/constants/base.py:243
 msgid "Packaged App Review"
 msgstr "Ƥȧƈķȧɠḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:231
+#: mkt/constants/base.py:244
 msgid "Privileged App Review"
 msgstr "Ƥřīṽīŀḗɠḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:232
+#: mkt/constants/base.py:245
 msgid "Web App Re-review"
 msgstr "Ẇḗƀ Ȧƥƥ Řḗ-řḗṽīḗẇ"
 
-#: mkt/constants/base.py:233
+#: mkt/constants/base.py:246
 msgid "Updated Packaged App Review"
 msgstr "Ŭƥḓȧŧḗḓ Ƥȧƈķȧɠḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:234
+#: mkt/constants/base.py:247
 msgid "Updated Privileged App Review"
 msgstr "Ŭƥḓȧŧḗḓ Ƥřīṽīŀḗɠḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:235
+#: mkt/constants/base.py:248
 msgid "Moderated App Review"
 msgstr "Ḿǿḓḗřȧŧḗḓ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:236
+#: mkt/constants/base.py:249
 msgid "App Review Moderation Reverted"
 msgstr "Ȧƥƥ Řḗṽīḗẇ Ḿǿḓḗřȧŧīǿƞ Řḗṽḗřŧḗḓ"
 
-#: mkt/constants/base.py:237
+#: mkt/constants/base.py:250
 msgid "Tarako App Review"
 msgstr "Ŧȧřȧķǿ Ȧƥƥ Řḗṽīḗẇ"
 
-#: mkt/constants/base.py:238
+#: mkt/constants/base.py:251
 msgid "App Abuse Report Read"
 msgstr "Ȧƥƥ Ȧƀŭşḗ Řḗƥǿřŧ Řḗȧḓ"
 
-#: mkt/constants/base.py:239
+#: mkt/constants/base.py:252
 msgid "Website Abuse Report Read"
 msgstr "Ẇḗƀşīŧḗ Ȧƀŭşḗ Řḗƥǿřŧ Řḗȧḓ"
 
-#: mkt/constants/base.py:273
+#: mkt/constants/base.py:286
 msgid "Level 1"
 msgstr "Ŀḗṽḗŀ 1"
 
-#: mkt/constants/base.py:274
+#: mkt/constants/base.py:287
 msgid "Level 2"
 msgstr "Ŀḗṽḗŀ 2"
 
-#: mkt/constants/base.py:275
+#: mkt/constants/base.py:288
 msgid "Level 3"
 msgstr "Ŀḗṽḗŀ 3"
 
-#: mkt/constants/base.py:276
+#: mkt/constants/base.py:289
 msgid "Level 4"
 msgstr "Ŀḗṽḗŀ 4"
 
-#: mkt/constants/base.py:277
+#: mkt/constants/base.py:290
 msgid "Level 5"
 msgstr "Ŀḗṽḗŀ 5"
 
-#: mkt/constants/base.py:278
+#: mkt/constants/base.py:291
 msgid "Level 6"
 msgstr "Ŀḗṽḗŀ 6"
 
-#: mkt/constants/base.py:279
+#: mkt/constants/base.py:292
 msgid "Level 7"
 msgstr "Ŀḗṽḗŀ 7"
 
-#: mkt/constants/base.py:280
+#: mkt/constants/base.py:293
 msgid "Level 8"
 msgstr "Ŀḗṽḗŀ 8"
 
-#: mkt/constants/base.py:281
+#: mkt/constants/base.py:294
 msgid "Level 9"
 msgstr "Ŀḗṽḗŀ 9"
 
@@ -2549,7 +2549,7 @@ msgstr "Şŭƀḿīŧ"
 #: mkt/constants/submit.py:7
 #: mkt/reviewers/templates/reviewers/includes/details.html:5
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:39
-#: mkt/webapps/models.py:1447
+#: mkt/webapps/models.py:1446
 msgid "Details"
 msgstr "Ḓḗŧȧīŀş"
 
@@ -2654,7 +2654,7 @@ msgid "Invalid region(s) selected."
 msgstr "Īƞṽȧŀīḓ řḗɠīǿƞ(ş) şḗŀḗƈŧḗḓ."
 
 #: mkt/developers/forms.py:398
-#: mkt/webapps/models.py:1356
+#: mkt/webapps/models.py:1355
 msgid "You must upload at least one screenshot or video."
 msgstr "Ẏǿŭ ḿŭşŧ ŭƥŀǿȧḓ ȧŧ ŀḗȧşŧ ǿƞḗ şƈřḗḗƞşħǿŧ ǿř ṽīḓḗǿ."
 
@@ -3296,23 +3296,23 @@ msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƥř
 msgid "Terms of service accepted."
 msgstr "Ŧḗřḿş ǿƒ şḗřṽīƈḗ ȧƈƈḗƥŧḗḓ."
 
-#: mkt/developers/views.py:1018
+#: mkt/developers/views.py:1022
 msgid "Users with the admin role cannot use the API."
 msgstr "Ŭşḗřş ẇīŧħ ŧħḗ ȧḓḿīƞ řǿŀḗ ƈȧƞƞǿŧ ŭşḗ ŧħḗ ȦƤĪ."
 
-#: mkt/developers/views.py:1027
+#: mkt/developers/views.py:1031
 msgid "No such API key."
 msgstr "Ƞǿ şŭƈħ ȦƤĪ ķḗẏ."
 
-#: mkt/developers/views.py:1033
+#: mkt/developers/views.py:1037
 msgid "New API key generated."
 msgstr "Ƞḗẇ ȦƤĪ ķḗẏ ɠḗƞḗřȧŧḗḓ."
 
-#: mkt/developers/views.py:1051
+#: mkt/developers/views.py:1055
 msgid "Created blocklisted version."
 msgstr "Ƈřḗȧŧḗḓ ƀŀǿƈķŀīşŧḗḓ ṽḗřşīǿƞ."
 
-#: mkt/developers/views.py:1053
+#: mkt/developers/views.py:1057
 msgid "App already blocklisted."
 msgstr "Ȧƥƥ ȧŀřḗȧḓẏ ƀŀǿƈķŀīşŧḗḓ."
 
@@ -5018,7 +5018,7 @@ msgstr "Şŧȧŧŭş &amp; Ṽḗřşīǿƞş"
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:12
-#: mkt/webapps/models.py:1454
+#: mkt/webapps/models.py:1453
 msgid "Content Ratings"
 msgstr "Ƈǿƞŧḗƞŧ Řȧŧīƞɠş"
 
@@ -6115,7 +6115,7 @@ msgstr "Ḓḗṽḗŀǿƥīƞɠ Ɠȧḿḗ Ȧƥƥş"
 #: mkt/lookup/templates/lookup/user_summary.html:60
 #: mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26
-#: mkt/webapps/models.py:1460
+#: mkt/webapps/models.py:1459
 msgid "Payments"
 msgstr "Ƥȧẏḿḗƞŧş"
 
@@ -6388,7 +6388,7 @@ msgstr "Ḿǿzīŀŀȧ Ẇḗƀ ȧƥƥş (Ḗƞɠŀīşħ)"
 msgid "Mozilla Web apps (Brazilian Portuguese)"
 msgstr "Ḿǿzīŀŀȧ Ẇḗƀ ȧƥƥş (Ɓřȧzīŀīȧƞ Ƥǿřŧŭɠŭḗşḗ)"
 
-#: mkt/extensions/models.py:304
+#: mkt/extensions/models.py:431
 msgid ""
 "Version number must be higher than the latest version uploaded for this Add-"
 "on, which is \"%s\"."
@@ -6396,59 +6396,83 @@ msgstr ""
 "Ṽḗřşīǿƞ ƞŭḿƀḗř ḿŭşŧ ƀḗ ħīɠħḗř ŧħȧƞ ŧħḗ ŀȧŧḗşŧ ṽḗřşīǿƞ ŭƥŀǿȧḓḗḓ ƒǿř ŧħīş Ȧḓḓ-"
 "ǿƞ, ẇħīƈħ īş \"%s\"."
 
-#: mkt/extensions/models.py:315
+#: mkt/extensions/models.py:442
 msgid "An Add-on with this version number already exists."
 msgstr "Ȧƞ Ȧḓḓ-ǿƞ ẇīŧħ ŧħīş ṽḗřşīǿƞ ƞŭḿƀḗř ȧŀřḗȧḓẏ ḗẋīşŧş."
 
 #: mkt/extensions/validation.py:22
+msgid "The `author` property must be a string."
+msgstr "Ŧħḗ `ȧŭŧħǿř` ƥřǿƥḗřŧẏ ḿŭşŧ ƀḗ ȧ şŧřīƞɠ."
+
+#: mkt/extensions/validation.py:23
+msgid "The `author` property cannot be longer than 128 characters."
+msgstr "Ŧħḗ `ȧŭŧħǿř` ƥřǿƥḗřŧẏ ƈȧƞƞǿŧ ƀḗ ŀǿƞɠḗř ŧħȧƞ 128 ƈħȧřȧƈŧḗřş."
+
+#: mkt/extensions/validation.py:25
+msgid ""
+"The `author` property must be at least 1 character long and can not consist "
+"of only whitespace characters."
+msgstr ""
+"Ŧħḗ `ȧŭŧħǿř` ƥřǿƥḗřŧẏ ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ 1 ƈħȧřȧƈŧḗř ŀǿƞɠ ȧƞḓ ƈȧƞ ƞǿŧ ƈǿƞşīşŧ "
+"ǿƒ ǿƞŀẏ ẇħīŧḗşƥȧƈḗ ƈħȧřȧƈŧḗřş."
+
+#: mkt/extensions/validation.py:28
 msgid "The file sent has an unsupported content-type"
 msgstr "Ŧħḗ ƒīŀḗ şḗƞŧ ħȧş ȧƞ ŭƞşŭƥƥǿřŧḗḓ ƈǿƞŧḗƞŧ-ŧẏƥḗ"
 
-#: mkt/extensions/validation.py:24
+#: mkt/extensions/validation.py:30
+msgid "The `description` property must be a string."
+msgstr "Ŧħḗ `ḓḗşƈřīƥŧīǿƞ` ƥřǿƥḗřŧẏ ḿŭşŧ ƀḗ ȧ şŧřīƞɠ."
+
+#: mkt/extensions/validation.py:32
 msgid "The `description` property cannot be longer than 132 characters."
 msgstr "Ŧħḗ `ḓḗşƈřīƥŧīǿƞ` ƥřǿƥḗřŧẏ ƈȧƞƞǿŧ ƀḗ ŀǿƞɠḗř ŧħȧƞ 132 ƈħȧřȧƈŧḗřş."
 
-#: mkt/extensions/validation.py:27
+#: mkt/extensions/validation.py:35
 msgid "'manifest.json' in the archive is not a valid JSON file."
 msgstr "'ḿȧƞīƒḗşŧ.ĵşǿƞ' īƞ ŧħḗ ȧřƈħīṽḗ īş ƞǿŧ ȧ ṽȧŀīḓ ĴŞǾȠ ƒīŀḗ."
 
-#: mkt/extensions/validation.py:30
+#: mkt/extensions/validation.py:38
 msgid "'manifest.json' in the archive is not encoded in UTF-8."
 msgstr "'ḿȧƞīƒḗşŧ.ĵşǿƞ' īƞ ŧħḗ ȧřƈħīṽḗ īş ƞǿŧ ḗƞƈǿḓḗḓ īƞ ŬŦƑ-8."
 
-#: mkt/extensions/validation.py:32
+#: mkt/extensions/validation.py:40
 msgid "The file sent is not a valid ZIP file."
 msgstr "Ŧħḗ ƒīŀḗ şḗƞŧ īş ƞǿŧ ȧ ṽȧŀīḓ ẐĪƤ ƒīŀḗ."
 
-#: mkt/extensions/validation.py:33
+#: mkt/extensions/validation.py:41
 msgid "There is no `name` property in the manifest."
 msgstr "Ŧħḗřḗ īş ƞǿ `ƞȧḿḗ` ƥřǿƥḗřŧẏ īƞ ŧħḗ ḿȧƞīƒḗşŧ."
 
-#: mkt/extensions/validation.py:34
+#: mkt/extensions/validation.py:42
 msgid "The `name` property must be a string."
 msgstr "Ŧħḗ `ƞȧḿḗ` ƥřǿƥḗřŧẏ ḿŭşŧ ƀḗ ȧ şŧřīƞɠ."
 
-#: mkt/extensions/validation.py:35
+#: mkt/extensions/validation.py:43
 msgid "The `name` property cannot be longer than 45 characters."
 msgstr "Ŧħḗ `ƞȧḿḗ` ƥřǿƥḗřŧẏ ƈȧƞƞǿŧ ƀḗ ŀǿƞɠḗř ŧħȧƞ 45 ƈħȧřȧƈŧḗřş."
 
-#: mkt/extensions/validation.py:38
-msgid "The `name` property must be at least 1 character long."
-msgstr "Ŧħḗ `ƞȧḿḗ` ƥřǿƥḗřŧẏ ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ 1 ƈħȧřȧƈŧḗř ŀǿƞɠ."
+#: mkt/extensions/validation.py:46
+msgid ""
+"The `name` property must be at least 1 character long and can not consist of "
+"only whitespace characters."
+msgstr ""
+"Ŧħḗ `ƞȧḿḗ` ƥřǿƥḗřŧẏ ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ 1 ƈħȧřȧƈŧḗř ŀǿƞɠ ȧƞḓ ƈȧƞ ƞǿŧ ƈǿƞşīşŧ ǿƒ "
+"ǿƞŀẏ ẇħīŧḗşƥȧƈḗ ƈħȧřȧƈŧḗřş."
 
-#: mkt/extensions/validation.py:41
+#: mkt/extensions/validation.py:49
 msgid "The archive does not contain a 'manifest.json' file."
 msgstr "Ŧħḗ ȧřƈħīṽḗ ḓǿḗş ƞǿŧ ƈǿƞŧȧīƞ ȧ 'ḿȧƞīƒḗşŧ.ĵşǿƞ' ƒīŀḗ."
 
-#: mkt/extensions/validation.py:44
+#: mkt/extensions/validation.py:52
 msgid "There is no `version` property in the manifest."
 msgstr "Ŧħḗřḗ īş ƞǿ `ṽḗřşīǿƞ` ƥřǿƥḗřŧẏ īƞ ŧħḗ ḿȧƞīƒḗşŧ."
 
-#: mkt/extensions/validation.py:46
+#: mkt/extensions/validation.py:54
 msgid "The `version` property must be a string."
 msgstr "Ŧħḗ `ṽḗřşīǿƞ` ƥřǿƥḗřŧẏ ḿŭşŧ ƀḗ ȧ şŧřīƞɠ."
 
-#: mkt/extensions/validation.py:47
+#: mkt/extensions/validation.py:55
 msgid ""
 "The `version` property must be a string containing one to four dot-separated "
 "integers each between 0 and 65535."
@@ -6456,25 +6480,25 @@ msgstr ""
 "Ŧħḗ `ṽḗřşīǿƞ` ƥřǿƥḗřŧẏ ḿŭşŧ ƀḗ ȧ şŧřīƞɠ ƈǿƞŧȧīƞīƞɠ ǿƞḗ ŧǿ ƒǿŭř ḓǿŧ-şḗƥȧřȧŧḗḓ "
 "īƞŧḗɠḗřş ḗȧƈħ ƀḗŧẇḗḗƞ 0 ȧƞḓ 65535."
 
-#: mkt/extensions/views.py:52
+#: mkt/extensions/views.py:55
 msgid "No validation_id specified."
 msgstr "Ƞǿ ṽȧŀīḓȧŧīǿƞ_īḓ şƥḗƈīƒīḗḓ."
 
-#: mkt/extensions/views.py:56
-msgid "You need to be authenticated to perform this action."
-msgstr "Ẏǿŭ ƞḗḗḓ ŧǿ ƀḗ ȧŭŧħḗƞŧīƈȧŧḗḓ ŧǿ ƥḗřƒǿřḿ ŧħīş ȧƈŧīǿƞ."
-
-#: mkt/extensions/views.py:61
+#: mkt/extensions/views.py:60
 msgid "No such upload."
 msgstr "Ƞǿ şŭƈħ ŭƥŀǿȧḓ."
 
-#: mkt/extensions/views.py:64
+#: mkt/extensions/views.py:63
 msgid "The specified upload has not passed validation."
 msgstr "Ŧħḗ şƥḗƈīƒīḗḓ ŭƥŀǿȧḓ ħȧş ƞǿŧ ƥȧşşḗḓ ṽȧŀīḓȧŧīǿƞ."
 
-#: mkt/extensions/views.py:101
+#: mkt/extensions/views.py:102
 msgid "Missing file in request."
 msgstr "Ḿīşşīƞɠ ƒīŀḗ īƞ řḗɋŭḗşŧ."
+
+#: mkt/extensions/views.py:214
+msgid "Modifying or submitting versions is forbidden for disabled Add-ons."
+msgstr "Ḿǿḓīƒẏīƞɠ ǿř şŭƀḿīŧŧīƞɠ ṽḗřşīǿƞş īş ƒǿřƀīḓḓḗƞ ƒǿř ḓīşȧƀŀḗḓ Ȧḓḓ-ǿƞş."
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
@@ -9814,62 +9838,62 @@ msgstr "Ƥŀḗȧşḗ ŭşḗ ŧħḗ ṽḗřīƒīḗḓ ḗḿȧīŀ ƒǿř 
 msgid "Listed"
 msgstr "Ŀīşŧḗḓ"
 
-#: mkt/webapps/models.py:1347
+#: mkt/webapps/models.py:1346
 msgid "You must provide a support email or URL."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧ şŭƥƥǿřŧ ḗḿȧīŀ ǿř ŬŘĿ."
 
-#: mkt/webapps/models.py:1349
+#: mkt/webapps/models.py:1348
 msgid "You must provide an app name."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧƞ ȧƥƥ ƞȧḿḗ."
 
-#: mkt/webapps/models.py:1351
+#: mkt/webapps/models.py:1350
 msgid "You must provide at least one device type."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧŧ ŀḗȧşŧ ǿƞḗ ḓḗṽīƈḗ ŧẏƥḗ."
 
-#: mkt/webapps/models.py:1354
+#: mkt/webapps/models.py:1353
 msgid "You must provide at least one category."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧŧ ŀḗȧşŧ ǿƞḗ ƈȧŧḗɠǿřẏ."
 
-#: mkt/webapps/models.py:1421
+#: mkt/webapps/models.py:1420
 msgid "You must set up content ratings."
 msgstr "Ẏǿŭ ḿŭşŧ şḗŧ ŭƥ ƈǿƞŧḗƞŧ řȧŧīƞɠş."
 
-#: mkt/webapps/models.py:1423
+#: mkt/webapps/models.py:1422
 msgid "You must set up a payment account."
 msgstr "Ẏǿŭ ḿŭşŧ şḗŧ ŭƥ ȧ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ."
 
-#: mkt/webapps/models.py:1448
+#: mkt/webapps/models.py:1447
 msgid "This app's submission process has not been fully completed."
 msgstr "Ŧħīş ȧƥƥ'ş şŭƀḿīşşīǿƞ ƥřǿƈḗşş ħȧş ƞǿŧ ƀḗḗƞ ƒŭŀŀẏ ƈǿḿƥŀḗŧḗḓ."
 
-#: mkt/webapps/models.py:1455
+#: mkt/webapps/models.py:1454
 msgid "This app needs to get a content rating."
 msgstr "Ŧħīş ȧƥƥ ƞḗḗḓş ŧǿ ɠḗŧ ȧ ƈǿƞŧḗƞŧ řȧŧīƞɠ."
 
-#: mkt/webapps/models.py:1461
+#: mkt/webapps/models.py:1460
 msgid "This app needs a payment account set up."
 msgstr "Ŧħīş ȧƥƥ ƞḗḗḓş ȧ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ şḗŧ ŭƥ."
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2722
+#: mkt/webapps/models.py:2721
 msgid "awaiting approval"
 msgstr "ȧẇȧīŧīƞɠ ȧƥƥřǿṽȧŀ"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2724
+#: mkt/webapps/models.py:2723
 msgid "rejected"
 msgstr "řḗĵḗƈŧḗḓ"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2726
+#: mkt/webapps/models.py:2725
 msgid "requires additional review"
 msgstr "řḗɋŭīřḗş ȧḓḓīŧīǿƞȧŀ řḗṽīḗẇ"
 
-#: mkt/webapps/models.py:2777
+#: mkt/webapps/models.py:2776
 msgid "{region} approval status"
 msgstr "{řḗɠīǿƞ} ȧƥƥřǿṽȧŀ şŧȧŧŭş"
 
-#: mkt/webapps/models.py:2786
+#: mkt/webapps/models.py:2785
 msgid "{region} nomination date"
 msgstr "{řḗɠīǿƞ} ƞǿḿīƞȧŧīǿƞ ḓȧŧḗ"
 

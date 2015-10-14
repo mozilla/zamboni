@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-21 09:48-0700\n"
+"POT-Creation-Date: 2015-10-14 13:42-0700\n"
 "PO-Revision-Date: 2015-09-27 11:36+0000\n"
 "Last-Translator: Sandro <gialloporpora@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
@@ -120,7 +120,7 @@ msgstr "Utente"
 msgid "Reviewer"
 msgstr "Revisore"
 
-#: mkt/constants/apps.py:11 mkt/constants/base.py:133 mkt/developers/templates/developers/apps/owner.html:91 mkt/operators/templates/operators/preloads.html:15 mkt/users/notifications.py:157
+#: mkt/constants/apps.py:11 mkt/constants/base.py:146 mkt/developers/templates/developers/apps/owner.html:91 mkt/operators/templates/operators/preloads.html:15 mkt/users/notifications.py:157
 msgid "Developer"
 msgstr "Sviluppatore"
 
@@ -1128,167 +1128,167 @@ msgstr "Zambia"
 msgid "Zimbabwe"
 msgstr "Zimbabwe"
 
-#: mkt/constants/base.py:26 mkt/lookup/views.py:184
+#: mkt/constants/base.py:27 mkt/lookup/views.py:184
 msgid "Incomplete"
 msgstr "Incompleto"
 
-#: mkt/constants/base.py:27
+#: mkt/constants/base.py:28
 msgid "Pending approval"
 msgstr "Approvazione in sospeso"
 
-#: mkt/constants/base.py:28 mkt/constants/base.py:44
+#: mkt/constants/base.py:29 mkt/constants/base.py:45
 msgid "Published"
 msgstr "Pubblicata"
 
-#: mkt/constants/base.py:29
+#: mkt/constants/base.py:30
 msgid "Banned from Marketplace"
 msgstr "Espulsa dal Marketplace"
 
-#: mkt/constants/base.py:30 mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
+#: mkt/constants/base.py:31 mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Deleted"
 msgstr "Cancellato"
 
-#: mkt/constants/base.py:31 mkt/constants/comm.py:47 mkt/reviewers/helpers.py:192 mkt/site/log.py:176
+#: mkt/constants/base.py:32 mkt/constants/comm.py:47 mkt/reviewers/helpers.py:192 mkt/site/log.py:176
 msgid "Rejected"
 msgstr "Respinto"
 
-#: mkt/constants/base.py:34 mkt/constants/comm.py:53 mkt/site/log.py:375
+#: mkt/constants/base.py:35 mkt/constants/comm.py:53 mkt/site/log.py:375
 msgid "Approved but private"
 msgstr "Approvata, privata"
 
-#: mkt/constants/base.py:35
+#: mkt/constants/base.py:36
 msgid "Blocked"
 msgstr "Bloccato"
 
-#: mkt/constants/base.py:36
+#: mkt/constants/base.py:37
 msgid "Unlisted"
 msgstr "Non in elenco"
 
-#: mkt/constants/base.py:42
+#: mkt/constants/base.py:43
 msgid "Obsolete"
 msgstr "Obsoleta"
 
-#: mkt/constants/base.py:43 mkt/constants/comm.py:46 mkt/constants/payments.py:66 mkt/site/log.py:155
+#: mkt/constants/base.py:44 mkt/constants/comm.py:46 mkt/constants/payments.py:66 mkt/site/log.py:155
 msgid "Approved"
 msgstr "Approvato"
 
 # <option> text in a <select> for Author role in an add-on.
-#: mkt/constants/base.py:132 mkt/developers/templates/developers/apps/owner.html:88
+#: mkt/constants/base.py:145 mkt/developers/templates/developers/apps/owner.html:88
 msgid "Owner"
 msgstr "Proprietario"
 
 # <option> text in a <select> for Author role in an add-on.
-#: mkt/constants/base.py:134 mkt/developers/templates/developers/apps/owner.html:94
+#: mkt/constants/base.py:147 mkt/developers/templates/developers/apps/owner.html:94
 msgid "Viewer"
 msgstr "Ospite"
 
-#: mkt/constants/base.py:135 mkt/developers/templates/developers/skeleton_impala.html:60 mkt/developers/templates/developers/apps/owner.html:96 mkt/ecosystem/templates/ecosystem/support.html:5
+#: mkt/constants/base.py:148 mkt/developers/templates/developers/skeleton_impala.html:60 mkt/developers/templates/developers/apps/owner.html:96 mkt/ecosystem/templates/ecosystem/support.html:5
 #: mkt/ecosystem/templates/ecosystem/support.html:13 templates/base.html:61
 msgid "Support"
 msgstr "Supporto"
 
-#: mkt/constants/base.py:160 mkt/detail/templates/detail/includes/price.html:6 mkt/developers/templates/developers/payments/premium.html:62 mkt/search/forms.py:35
+#: mkt/constants/base.py:173 mkt/detail/templates/detail/includes/price.html:6 mkt/developers/templates/developers/payments/premium.html:62 mkt/search/forms.py:35
 #: mkt/submit/templates/submit/manifest.html:30
 msgid "Free"
 msgstr "Gratis"
 
-#: mkt/constants/base.py:161 mkt/search/forms.py:37
+#: mkt/constants/base.py:174 mkt/search/forms.py:37
 msgid "Premium"
 msgstr "Premium"
 
-#: mkt/constants/base.py:162
+#: mkt/constants/base.py:175
 msgid "Premium with in-app payments"
 msgstr "Premium con pagamenti in-app"
 
-#: mkt/constants/base.py:163
+#: mkt/constants/base.py:176
 msgid "Free with in-app payments"
 msgstr "Gratuito con pagamenti in-app"
 
-#: mkt/constants/base.py:164
+#: mkt/constants/base.py:177
 msgid "I'll use my own system for in-app payments"
 msgstr "Utilizzerò un mio metodo per i pagamenti in-app"
 
-#: mkt/constants/base.py:228
+#: mkt/constants/base.py:241
 msgid "Manual Reviewer Points"
 msgstr "Manuale per attribuire i punti ai revisori"
 
-#: mkt/constants/base.py:229
+#: mkt/constants/base.py:242
 msgid "Web App Review"
 msgstr "Recensione dell’app web"
 
-#: mkt/constants/base.py:230
+#: mkt/constants/base.py:243
 msgid "Packaged App Review"
 msgstr "Recensione dell’app locale"
 
-#: mkt/constants/base.py:231
+#: mkt/constants/base.py:244
 msgid "Privileged App Review"
 msgstr "Revisione app con privilegi"
 
-#: mkt/constants/base.py:232
+#: mkt/constants/base.py:245
 msgid "Web App Re-review"
 msgstr "Nuova revisione dell’app web"
 
-#: mkt/constants/base.py:233
+#: mkt/constants/base.py:246
 msgid "Updated Packaged App Review"
 msgstr "Revisione nuova versione app locale"
 
-#: mkt/constants/base.py:234
+#: mkt/constants/base.py:247
 msgid "Updated Privileged App Review"
 msgstr "Revisione nuova versione app con privilegi"
 
-#: mkt/constants/base.py:235
+#: mkt/constants/base.py:248
 msgid "Moderated App Review"
 msgstr "Revisione moderata dell’app"
 
-#: mkt/constants/base.py:236
+#: mkt/constants/base.py:249
 msgid "App Review Moderation Reverted"
 msgstr "Moderazione su recensione app ripristinata"
 
-#: mkt/constants/base.py:237
+#: mkt/constants/base.py:250
 msgid "Tarako App Review"
 msgstr "Revisione app Tarako"
 
-#: mkt/constants/base.py:238
+#: mkt/constants/base.py:251
 msgid "App Abuse Report Read"
 msgstr "Questa segnalazione d’abuso per un’app è stata letta"
 
-#: mkt/constants/base.py:239
+#: mkt/constants/base.py:252
 msgid "Website Abuse Report Read"
 msgstr "Questa segnalazione d’abuso sito è stata letta"
 
-#: mkt/constants/base.py:273
+#: mkt/constants/base.py:286
 msgid "Level 1"
 msgstr "Livello 1"
 
-#: mkt/constants/base.py:274
+#: mkt/constants/base.py:287
 msgid "Level 2"
 msgstr "Livello 2"
 
-#: mkt/constants/base.py:275
+#: mkt/constants/base.py:288
 msgid "Level 3"
 msgstr "Livello 3"
 
-#: mkt/constants/base.py:276
+#: mkt/constants/base.py:289
 msgid "Level 4"
 msgstr "Livello 4"
 
-#: mkt/constants/base.py:277
+#: mkt/constants/base.py:290
 msgid "Level 5"
 msgstr "Livello 5"
 
-#: mkt/constants/base.py:278
+#: mkt/constants/base.py:291
 msgid "Level 6"
 msgstr "Livello 6"
 
-#: mkt/constants/base.py:279
+#: mkt/constants/base.py:292
 msgid "Level 7"
 msgstr "Livello 7"
 
-#: mkt/constants/base.py:280
+#: mkt/constants/base.py:293
 msgid "Level 8"
 msgstr "Livello 8"
 
-#: mkt/constants/base.py:281
+#: mkt/constants/base.py:294
 msgid "Level 9"
 msgstr "Livello 9"
 
@@ -2143,7 +2143,7 @@ msgstr "Accordo"
 msgid "Submit"
 msgstr "Invia"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1447
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1446
 msgid "Details"
 msgstr "Dettagli"
 
@@ -2219,7 +2219,7 @@ msgstr "Esiste già un’app associata a questo dominio; è possibile associare 
 msgid "Invalid region(s) selected."
 msgstr "Regione o regioni selezionate non valide."
 
-#: mkt/developers/forms.py:398 mkt/webapps/models.py:1356
+#: mkt/developers/forms.py:398 mkt/webapps/models.py:1355
 msgid "You must upload at least one screenshot or video."
 msgstr "È necessario caricare almeno uno screenshot o un video."
 
@@ -2768,23 +2768,23 @@ msgstr "Si è verificato un errore durante il caricamento dell’anteprima."
 msgid "Terms of service accepted."
 msgstr "I termini di servizio sono stati accettati."
 
-#: mkt/developers/views.py:1018
+#: mkt/developers/views.py:1022
 msgid "Users with the admin role cannot use the API."
 msgstr "Gli amministratori non possono utilizzare le API."
 
-#: mkt/developers/views.py:1027
+#: mkt/developers/views.py:1031
 msgid "No such API key."
 msgstr "API key inesistente."
 
-#: mkt/developers/views.py:1033
+#: mkt/developers/views.py:1037
 msgid "New API key generated."
 msgstr "La nuova API Key è stata generata."
 
-#: mkt/developers/views.py:1051
+#: mkt/developers/views.py:1055
 msgid "Created blocklisted version."
 msgstr "L’app è stata bloccata."
 
-#: mkt/developers/views.py:1053
+#: mkt/developers/views.py:1057
 msgid "App already blocklisted."
 msgstr "Questa app è già stata bloccata."
 
@@ -4064,7 +4064,7 @@ msgstr "Stato e versioni"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1454
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1453
 msgid "Content Ratings"
 msgstr "Classificazione dei contenuti"
 
@@ -4922,7 +4922,7 @@ msgid "Developing Game Apps"
 msgstr "Sviluppare app giochi"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:119 mkt/lookup/templates/lookup/user_summary.html:56 mkt/lookup/templates/lookup/user_summary.html:60
-#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1460
+#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1459
 msgid "Payments"
 msgstr "Pagamenti"
 
@@ -5136,94 +5136,101 @@ msgstr "Mozilla Web apps (inglese)"
 msgid "Mozilla Web apps (Brazilian Portuguese)"
 msgstr "App web di Mozilla (portoghese brasiliano)"
 
-#: mkt/extensions/models.py:304
+#: mkt/extensions/models.py:431
 msgid "Version number must be higher than the latest version uploaded for this Add-on, which is \"%s\"."
-msgstr ""
-"La versione attuale del componente aggiuntivo è %s. La nuova versione "
-"caricata deve riportare un numero superiore."
+msgstr "La versione attuale del componente aggiuntivo è %s. La nuova versione caricata deve riportare un numero superiore."
 
-#: mkt/extensions/models.py:315
+#: mkt/extensions/models.py:442
 msgid "An Add-on with this version number already exists."
-msgstr ""
-"Esiste già una versione del componente aggiuntivo con questo numero di "
-"versione."
+msgstr "Esiste già una versione del componente aggiuntivo con questo numero di versione."
 
 #: mkt/extensions/validation.py:22
+msgid "The `author` property must be a string."
+msgstr ""
+
+#: mkt/extensions/validation.py:23
+msgid "The `author` property cannot be longer than 128 characters."
+msgstr ""
+
+#: mkt/extensions/validation.py:25
+msgid "The `author` property must be at least 1 character long and can not consist of only whitespace characters."
+msgstr ""
+
+#: mkt/extensions/validation.py:28
 msgid "The file sent has an unsupported content-type"
 msgstr "Il content-type del file inviato non è supportato"
 
-#: mkt/extensions/validation.py:24
-msgid "The `description` property cannot be longer than 132 characters."
+#: mkt/extensions/validation.py:30
+msgid "The `description` property must be a string."
 msgstr ""
-"Il valore della proprietà `description` non può superare i 132 caratteri."
 
-#: mkt/extensions/validation.py:27
+#: mkt/extensions/validation.py:32
+msgid "The `description` property cannot be longer than 132 characters."
+msgstr "Il valore della proprietà `description` non può superare i 132 caratteri."
+
+#: mkt/extensions/validation.py:35
 msgid "'manifest.json' in the archive is not a valid JSON file."
 msgstr "Il formato JSON del file ‘manifest.json’ contenuto nell’archivio non è valido."
 
-#: mkt/extensions/validation.py:30
+#: mkt/extensions/validation.py:38
 msgid "'manifest.json' in the archive is not encoded in UTF-8."
-msgstr ""
-"il file 'manifest.json' dell’archivio non utilizza la codifica caratteri "
-"UTF-8."
+msgstr "il file 'manifest.json' dell’archivio non utilizza la codifica caratteri UTF-8."
 
-#: mkt/extensions/validation.py:32
+#: mkt/extensions/validation.py:40
 msgid "The file sent is not a valid ZIP file."
 msgstr "Il file inviato non è un archivio ZIP valido."
 
-#: mkt/extensions/validation.py:33
+#: mkt/extensions/validation.py:41
 msgid "There is no `name` property in the manifest."
 msgstr "Nel file manifesto non è specificata la proprietà `name`."
 
-#: mkt/extensions/validation.py:34
+#: mkt/extensions/validation.py:42
 msgid "The `name` property must be a string."
 msgstr "La proprietà `name` deve essere di tipo stringa."
 
-#: mkt/extensions/validation.py:35
+#: mkt/extensions/validation.py:43
 msgid "The `name` property cannot be longer than 45 characters."
 msgstr "Il valore della proprietà `name` non può superare i 45 caratteri."
 
-#: mkt/extensions/validation.py:38
-msgid "The `name` property must be at least 1 character long."
-msgstr "Il valore della proprietà `name` deve contenere almeno un carattere."
+#: mkt/extensions/validation.py:46
+msgid "The `name` property must be at least 1 character long and can not consist of only whitespace characters."
+msgstr ""
 
-#: mkt/extensions/validation.py:41
+#: mkt/extensions/validation.py:49
 msgid "The archive does not contain a 'manifest.json' file."
 msgstr "L’archivio non contiene un file ‘manifest.json’."
 
-#: mkt/extensions/validation.py:44
+#: mkt/extensions/validation.py:52
 msgid "There is no `version` property in the manifest."
 msgstr "Nel file manifesto non è specificata una proprietà `version`."
 
-#: mkt/extensions/validation.py:46
+#: mkt/extensions/validation.py:54
 msgid "The `version` property must be a string."
 msgstr "La proprietà `version` deve essere di tipo stringa."
 
-#: mkt/extensions/validation.py:47
+#: mkt/extensions/validation.py:55
 msgid "The `version` property must be a string containing one to four dot-separated integers each between 0 and 65535."
-msgstr ""
-"La proprietà `version` deve essere di tipo stringa e contenere una sequenza "
-"da uno a quattro interi (da 0 a 65535) separati da un punto."
+msgstr "La proprietà `version` deve essere di tipo stringa e contenere una sequenza da uno a quattro interi (da 0 a 65535) separati da un punto."
 
-#: mkt/extensions/views.py:52
+#: mkt/extensions/views.py:55
 msgid "No validation_id specified."
 msgstr "Id validazione non specificato."
 
-#: mkt/extensions/views.py:56
-msgid "You need to be authenticated to perform this action."
-msgstr "Per eseguire questa azione occorre essere autenticati."
-
-#: mkt/extensions/views.py:61
+#: mkt/extensions/views.py:60
 msgid "No such upload."
 msgstr "Nessun file corrispondente."
 
-#: mkt/extensions/views.py:64
+#: mkt/extensions/views.py:63
 msgid "The specified upload has not passed validation."
 msgstr "Il file specificato non ha superato il processo di validazione."
 
-#: mkt/extensions/views.py:101
+#: mkt/extensions/views.py:102
 msgid "Missing file in request."
 msgstr "Nessun file allegato alla richiesta."
+
+#: mkt/extensions/views.py:214
+msgid "Modifying or submitting versions is forbidden for disabled Add-ons."
+msgstr ""
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
@@ -5304,9 +5311,7 @@ msgstr "File che supera la dimensione massima consentita nell’archivio: {0}"
 
 #: mkt/files/utils.py:207
 msgid "Total size of files exeeding limit in archive: {0}"
-msgstr ""
-"Dimensione totale dei file che superano il limite consentito dell’archivio: "
-"{0}"
+msgstr "Dimensione totale dei file che superano il limite consentito dell’archivio: {0}"
 
 #: mkt/files/utils.py:238
 msgid "Invalid archive."
@@ -8211,62 +8216,62 @@ msgstr "Utilizza l’indirizzo email verificato per questo account."
 msgid "Listed"
 msgstr "Visualizzato"
 
-#: mkt/webapps/models.py:1347
+#: mkt/webapps/models.py:1346
 msgid "You must provide a support email or URL."
 msgstr "È necessario inserire un indirizzo email o l’indirizzo a un sito web di supporto."
 
-#: mkt/webapps/models.py:1349
+#: mkt/webapps/models.py:1348
 msgid "You must provide an app name."
 msgstr "È necessario indicare un nome per l’app."
 
-#: mkt/webapps/models.py:1351
+#: mkt/webapps/models.py:1350
 msgid "You must provide at least one device type."
 msgstr "Devi inserire almeno un tipo di dispositivo."
 
-#: mkt/webapps/models.py:1354
+#: mkt/webapps/models.py:1353
 msgid "You must provide at least one category."
 msgstr "È necessario selezionare almeno una categoria."
 
-#: mkt/webapps/models.py:1421
+#: mkt/webapps/models.py:1420
 msgid "You must set up content ratings."
 msgstr "È necessario impostare la classificazione dei contenuti."
 
-#: mkt/webapps/models.py:1423
+#: mkt/webapps/models.py:1422
 msgid "You must set up a payment account."
 msgstr "È necessario impostare un account pagamenti."
 
-#: mkt/webapps/models.py:1448
+#: mkt/webapps/models.py:1447
 msgid "This app's submission process has not been fully completed."
 msgstr "Il processo di caricamento di quest’app non è stato completato al 100%."
 
-#: mkt/webapps/models.py:1455
+#: mkt/webapps/models.py:1454
 msgid "This app needs to get a content rating."
 msgstr "Quest’app deve ricevere una classificazione dei contenuti."
 
-#: mkt/webapps/models.py:1461
+#: mkt/webapps/models.py:1460
 msgid "This app needs a payment account set up."
 msgstr "È necessario configurare un account pagamenti per l’app."
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2722
+#: mkt/webapps/models.py:2721
 msgid "awaiting approval"
 msgstr "in attesa di approvazione"
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2724
+#: mkt/webapps/models.py:2723
 msgid "rejected"
 msgstr "respinto"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2726
+#: mkt/webapps/models.py:2725
 msgid "requires additional review"
 msgstr "necessita di ulteriore revisione"
 
-#: mkt/webapps/models.py:2777
+#: mkt/webapps/models.py:2776
 msgid "{region} approval status"
 msgstr "Stato di approvazione in {region}"
 
-#: mkt/webapps/models.py:2786
+#: mkt/webapps/models.py:2785
 msgid "{region} nomination date"
 msgstr "Venduta in {region} a partire da"
 
