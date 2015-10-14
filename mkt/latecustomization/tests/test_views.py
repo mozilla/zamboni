@@ -33,7 +33,7 @@ class TestLateCustomization(RestOAuth):
     fixtures = fixture('user_2519')
 
     @mock.patch.object(packaged, 'sign', mock_sign)
-    def test_list(self):
+    def create_apps_extensions(self):
         apps = []
         extensions = []
         for r, c in (('de', 'deutsche_telekom'), ('jp', 'kddi')):
@@ -52,12 +52,9 @@ class TestLateCustomization(RestOAuth):
                     extension=e, region=mkt.regions.REGIONS_DICT[r].id,
                     carrier=mkt.carriers.CARRIER_MAP[c].id)
 
-        res = self.anon.get(reverse('api-v2:late-customization-list'),
-                            {'region': 'de',
-                             'carrier': 'deutsche_telekom'})
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        eq_(len(data['objects']), 6)
+        return apps, extensions
+
+    def check_list_data(self, data, apps, extensions):
         for result, a in zip(data['objects'][:3], apps[:3]):
             eq_(result['slug'], a.app_slug)
             eq_(result['id'], a.pk)
@@ -74,6 +71,26 @@ class TestLateCustomization(RestOAuth):
             eq_(result['latecustomization_id'],
                 LateCustomizationItem.objects.get(extension=e).pk)
             eq_(result['mini_manifest_url'], e.mini_manifest_url)
+
+    def test_list(self):
+        apps, extensions = self.create_apps_extensions()
+        res = self.anon.get(reverse('api-v2:late-customization-list'),
+                            {'region': 'de',
+                             'carrier': 'deutsche_telekom'})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 6)
+        self.check_list_data(data, apps, extensions)
+
+    def test_list_mcc(self):
+        apps, extensions = self.create_apps_extensions()
+        res = self.anon.get(reverse('api-v2:late-customization-list'),
+                            {'mcc': 262,
+                             'mnc': 2})
+        eq_(res.status_code, 200)
+        data = json.loads(res.content)
+        eq_(len(data['objects']), 6)
+        self.check_list_data(data, apps, extensions)
 
     def test_create(self):
         OperatorPermission.objects.create(user=self.user, region=14, carrier=4)
