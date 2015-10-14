@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-09-21 20:58+0000\n"
+"PO-Revision-Date: 2015-10-14 22:03+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1442869134.0\n"
+"X-POOTLE-MTIME: 1444860213.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -2274,7 +2274,7 @@ msgstr "您必须提供网站、电子邮件之一或两者。"
 
 #: mkt/developers/forms.py:772
 msgid "Your comments"
-msgstr "您的评论。"
+msgstr "您的评论"
 
 #: mkt/developers/forms.py:799
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
@@ -2598,7 +2598,7 @@ msgstr "捐赠给 {0}"
 
 #: mkt/developers/models.py:493
 msgid "Review"
-msgstr "评论"
+msgstr "审核"
 
 #: mkt/developers/models.py:496 mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
@@ -5088,15 +5088,15 @@ msgstr "使用此版本号的附加组件已存在。"
 
 #: mkt/extensions/validation.py:22
 msgid "The `author` property must be a string."
-msgstr ""
+msgstr "`author` 属性必须是一个字符串。"
 
 #: mkt/extensions/validation.py:23
 msgid "The `author` property cannot be longer than 128 characters."
-msgstr ""
+msgstr "`author` 属性不能超过 128 个字符。"
 
 #: mkt/extensions/validation.py:25
 msgid "The `author` property must be at least 1 character long and can not consist of only whitespace characters."
-msgstr ""
+msgstr "`author` 属性至少要有 1 个字符，并且不能只包含空白字符。"
 
 #: mkt/extensions/validation.py:28
 msgid "The file sent has an unsupported content-type"
@@ -5104,7 +5104,7 @@ msgstr "发送的文件存在不支持的 content-type"
 
 #: mkt/extensions/validation.py:30
 msgid "The `description` property must be a string."
-msgstr ""
+msgstr "`description` 属性必须是一个字符串。"
 
 #: mkt/extensions/validation.py:32
 msgid "The `description` property cannot be longer than 132 characters."
@@ -5136,7 +5136,7 @@ msgstr "“name”属性不能超过 45 个字符。"
 
 #: mkt/extensions/validation.py:46
 msgid "The `name` property must be at least 1 character long and can not consist of only whitespace characters."
-msgstr ""
+msgstr "`description` 属性至少要有 1 个字符，并且不能只包含空白字符。"
 
 #: mkt/extensions/validation.py:49
 msgid "The archive does not contain a 'manifest.json' file."
@@ -5172,7 +5172,7 @@ msgstr "请求中缺少文件。"
 
 #: mkt/extensions/views.py:214
 msgid "Modifying or submitting versions is forbidden for disabled Add-ons."
-msgstr ""
+msgstr "禁止对已禁用的附加组件修改或者提交版本。"
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
@@ -5824,7 +5824,7 @@ msgstr "应用详情"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:40
 msgid "Review History"
-msgstr "历史评论。"
+msgstr "审核历史"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:45
 msgid "Communication Dashboard"
@@ -5958,11 +5958,11 @@ msgstr "您的购买历史："
 
 #: mkt/ratings/forms.py:66
 msgid "Keep review; remove flags"
-msgstr "保留评论；移除标记"
+msgstr "保留评价；移除标记"
 
 #: mkt/ratings/forms.py:68
 msgid "Delete review"
-msgstr "删除评论"
+msgstr "删除评价"
 
 #: mkt/ratings/helpers.py:12 mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
@@ -5974,7 +5974,7 @@ msgstr "已评价 %s/5 星"
 
 #: mkt/ratings/models.py:155
 msgid "Spam or otherwise non-review content"
-msgstr "垃圾信息或其他非评论内容"
+msgstr "垃圾信息或其他非评价内容"
 
 #: mkt/ratings/models.py:156
 msgid "Inappropriate language/dialog"
@@ -6042,11 +6042,11 @@ msgstr "任何状态"
 
 #: mkt/reviewers/forms.py:28
 msgid "Approved reviews"
-msgstr "已通过审核的评论"
+msgstr "已通过审核的评价"
 
 #: mkt/reviewers/forms.py:29
 msgid "Deleted reviews"
-msgstr "已删除的评论"
+msgstr "已删除的评价"
 
 #: mkt/reviewers/forms.py:34 mkt/search/forms.py:44
 msgid "Any Device"
@@ -6145,7 +6145,7 @@ msgstr "向上呈报"
 
 #: mkt/reviewers/helpers.py:46 mkt/reviewers/helpers.py:159
 msgid "Moderated Reviews"
-msgstr "提请仲裁的评论"
+msgstr "提请仲裁的评价"
 
 #: mkt/reviewers/helpers.py:48
 msgid "Website Abuse Reports"
@@ -6194,7 +6194,7 @@ msgstr "Tarako ({0})"
 #: mkt/reviewers/helpers.py:123
 msgctxt "moderated"
 msgid "Moderated Reviews ({0})"
-msgstr "提请仲裁的评论 ({0})"
+msgstr "提请仲裁的评价 ({0})"
 
 #: mkt/reviewers/helpers.py:130
 msgctxt "abuse"
@@ -6208,7 +6208,7 @@ msgstr "网站滥用报告 ({0})"
 
 #: mkt/reviewers/helpers.py:154
 msgid "Reviews"
-msgstr "评论"
+msgstr "审核"
 
 #: mkt/reviewers/helpers.py:196
 msgid "Rejected or Unreviewed"
@@ -6244,7 +6244,7 @@ msgstr "上升"
 
 #: mkt/reviewers/utils.py:420
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
-msgstr "将应用标记为管理员审核。将会给管理员而不是作者发送评论。"
+msgstr "将此应用标记为需管理员审核。评论将发送给管理员，而非作者。"
 
 #: mkt/reviewers/utils.py:425
 msgid "Private comment"
@@ -6395,7 +6395,7 @@ msgstr "包含审核员意见"
 
 #: mkt/reviewers/templates/reviewers/base.html:11
 msgid "<small>Marketplace</small> Reviewer Tools"
-msgstr "<small>Marketplace</small> 评论工具"
+msgstr "<small>Marketplace</small> 审核者工具"
 
 #: mkt/reviewers/templates/reviewers/base.html:29 mkt/reviewers/templates/reviewers/base.html:69
 msgid "Queues"
@@ -6422,7 +6422,7 @@ msgstr[0] "{num} 个重新审核"
 #: mkt/reviewers/templates/reviewers/home.html:32
 msgid "{num} Update Review"
 msgid_plural "{num} Update Reviews"
-msgstr[0] "{num}个评论更新{num}个评论更新"
+msgstr[0] "{num} 个更新审核"
 
 #: mkt/reviewers/templates/reviewers/home.html:41
 msgid "{c} unreviewed app submission this week."
@@ -6456,7 +6456,7 @@ msgstr "审核者排行榜"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:18 mkt/reviewers/templates/reviewers/performance.html:18
 msgid "No review points awarded yet."
-msgstr "尚未获得评论点。"
+msgstr "尚未获得过审核点数。"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:23
 msgid "Rank"
@@ -6492,7 +6492,7 @@ msgstr "在此时间段内没有审核。"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:4 mkt/reviewers/templates/reviewers/moderatelog_detail.html:5
 msgid "Moderated Review Log"
-msgstr "审核评论的记录"
+msgstr "审核评价的记录"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:31
 msgid "More details."
@@ -6520,19 +6520,19 @@ msgstr "应用标题"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:20
 msgid "Review title"
-msgstr "评论标题"
+msgstr "评价标题"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:22
 msgid "Review text"
-msgstr "评论文本"
+msgstr "评价文本"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
 msgid "Review was flagged prior to moderation."
-msgstr "评论在管理操作前已被标记。"
+msgstr "评价在管理操作前已被标记。"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:32
 msgid "Current review status"
-msgstr "当前评论状态"
+msgstr "当前评价状态"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Alive"
@@ -6806,7 +6806,7 @@ msgstr "已阅读所有滥用报告。做得不错！"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
-msgstr "处理评论"
+msgstr "处理评价"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:14 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:55
 msgid "Moderation actions:"
@@ -6826,7 +6826,7 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">由 %(user)s 于 %(dat
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
-msgstr "所有评论已仲裁完成。做得真棒！"
+msgstr "所有评价已仲裁完成。做得真棒！"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:10 mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:11
 msgid "Advanced Search"
@@ -7248,7 +7248,7 @@ msgstr "{addon} 已从 {collection} 中移除。"
 
 #: mkt/site/log.py:265
 msgid "{review} for {addon} written."
-msgstr "{addon} 的评论 {review} 已撰写。"
+msgstr "{addon} 的 {review} 已撰写。"
 
 #. L10n: {0} is a category name.
 #: mkt/site/log.py:273
@@ -7296,11 +7296,11 @@ msgstr "{user} 核准了 {addon} 的 {review}。"
 
 #: mkt/site/log.py:335
 msgid "Review {review} for {addon} deleted."
-msgstr "已删除 {addon} 的 {review} 评论。"
+msgstr "{addon} 的评价 {review} 已删除。"
 
 #: mkt/site/log.py:336
 msgid "{user} deleted {review} for {addon}."
-msgstr "{user} 删除了 {addon} 的 {review} 评论。"
+msgstr "{user} 删除了 {addon} 的 {review} 评价。"
 
 #: mkt/site/log.py:343
 msgid "Application max version for {version} updated."
@@ -8041,11 +8041,11 @@ msgstr "一名附加组件开发者感谢了我的捐款"
 
 #: mkt/users/notifications.py:24
 msgid "an add-on developer replies to my review"
-msgstr "一名附加组件的开发者回复了我的评论"
+msgstr "一名附加组件开发者回复了我的评价"
 
 #: mkt/users/notifications.py:32
 msgid "an app developer replies to my review"
-msgstr "一个应用开发者回复了我的评论"
+msgstr "一名应用开发者回复了我的评价"
 
 #: mkt/users/notifications.py:39
 msgid "new add-ons or Firefox features are available"
@@ -8057,15 +8057,15 @@ msgstr "我的附加组件的兼容性升级成功"
 
 #: mkt/users/notifications.py:57
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr "我的基于SDK的附加组件升级成功"
+msgstr "我的基于 SDK 的附加组件升级成功"
 
 #: mkt/users/notifications.py:66
 msgid "someone writes a review of my add-on"
-msgstr "有人对我的附加组件写了评论"
+msgstr "有人给我的附加组件写了评价"
 
 #: mkt/users/notifications.py:74
 msgid "someone writes a review of my app"
-msgstr "有人给我的应用撰写了评论"
+msgstr "有人给我的应用写了评价"
 
 #: mkt/users/notifications.py:81
 msgid "add-on contests or events are announced"
@@ -8077,7 +8077,7 @@ msgstr "我的附加组件的兼容性不能升级"
 
 #: mkt/users/notifications.py:99
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr "我的基于SDK的附加组件不能升级"
+msgstr "我的基于 SDK 的附加组件不能升级"
 
 #: mkt/users/notifications.py:108
 msgid "my add-on is reviewed by an editor"

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2015-09-21 20:45+0000\n"
+"PO-Revision-Date: 2015-10-14 21:48+0000\n"
 "Last-Translator: yfdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1442868354.0\n"
+"X-POOTLE-MTIME: 1444859338.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -488,11 +488,11 @@ msgstr "更少..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
-msgstr "保留评论 / 移除标记"
+msgstr "保留评价 / 移除标记"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
-msgstr "删除评论"
+msgstr "删除评价"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:9
 msgid "Skip for now"
