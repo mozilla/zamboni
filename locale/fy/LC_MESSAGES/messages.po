@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-09-23 09:52+0000\n"
+"PO-Revision-Date: 2015-10-15 06:44+0000\n"
 "Last-Translator: Wim <fryskefirefox@gmail.com>\n"
 "Language-Team: FRISIAN <LL@li.org>\n"
 "Language: fy\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1443001936.0\n"
+"X-POOTLE-MTIME: 1444891490.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -5131,15 +5131,17 @@ msgstr "Der bestiet al in add-on mei dit ferzjenûmer."
 
 #: mkt/extensions/validation.py:22
 msgid "The `author` property must be a string."
-msgstr ""
+msgstr "De eigenskip `author` moat in wurd wêze."
 
 #: mkt/extensions/validation.py:23
 msgid "The `author` property cannot be longer than 128 characters."
-msgstr ""
+msgstr "De eigenskip `author` kin net langer as 128 karakters wêze."
 
 #: mkt/extensions/validation.py:25
 msgid "The `author` property must be at least 1 character long and can not consist of only whitespace characters."
 msgstr ""
+"De eigenskip `author` moat op syn minst 1 karakter lang wêze en mei net "
+"allinnich spaasjes befetsje."
 
 #: mkt/extensions/validation.py:28
 msgid "The file sent has an unsupported content-type"
@@ -5147,7 +5149,7 @@ msgstr "It ferstjoerde bestân hat in net-stipe ynhâldstype"
 
 #: mkt/extensions/validation.py:30
 msgid "The `description` property must be a string."
-msgstr ""
+msgstr "De eigenskip `description` moat in wurd wêze."
 
 #: mkt/extensions/validation.py:32
 msgid "The `description` property cannot be longer than 132 characters."
@@ -5180,6 +5182,8 @@ msgstr "De eigenskip ‘name’ kin net langer wêze as 45 tekens."
 #: mkt/extensions/validation.py:46
 msgid "The `name` property must be at least 1 character long and can not consist of only whitespace characters."
 msgstr ""
+"De eigenskip `name` moat op syn minst 1 karakter lang wêze en mei net "
+"allinnich spaasjes befetsje."
 
 #: mkt/extensions/validation.py:49
 msgid "The archive does not contain a 'manifest.json' file."
@@ -5215,7 +5219,7 @@ msgstr "Untbrekkend bestân yn oanfraach."
 
 #: mkt/extensions/views.py:214
 msgid "Modifying or submitting versions is forbidden for disabled Add-ons."
-msgstr ""
+msgstr "Ferzjes bewurkje of yntsjinje is ferbean foar útskeakele add-ons."
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
