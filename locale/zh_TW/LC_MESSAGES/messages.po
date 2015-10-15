@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-10-15 03:38+0000\n"
+"PO-Revision-Date: 2015-10-15 03:42+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1444880331.0\n"
+"X-POOTLE-MTIME: 1444880523.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -5196,7 +5196,7 @@ msgstr "無法對停用的附加元件進行修改或送出新版本。"
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
-msgstr "網址無效 %(url)s"
+msgstr "%(url)s 網址無效"
 
 #: mkt/feed/fields.py:191
 msgid "Error downloading image from %(url)s"
