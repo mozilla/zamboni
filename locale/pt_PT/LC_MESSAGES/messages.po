@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-09-21 22:52+0000\n"
+"PO-Revision-Date: 2015-10-15 00:47+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1442875933.0\n"
+"X-POOTLE-MTIME: 1444870040.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -5148,15 +5148,17 @@ msgstr "Um extra com este número de versão já existe."
 
 #: mkt/extensions/validation.py:22
 msgid "The `author` property must be a string."
-msgstr ""
+msgstr "A propriedade `author` deve ser uma string."
 
 #: mkt/extensions/validation.py:23
 msgid "The `author` property cannot be longer than 128 characters."
-msgstr ""
+msgstr "A propriedade `author` não pode ser maior do que 128 caracteres."
 
 #: mkt/extensions/validation.py:25
 msgid "The `author` property must be at least 1 character long and can not consist of only whitespace characters."
 msgstr ""
+"A propriedade `author` deve ter pelo menos 1 caracter e não pode conter "
+"apenas espaços."
 
 #: mkt/extensions/validation.py:28
 msgid "The file sent has an unsupported content-type"
@@ -5164,7 +5166,7 @@ msgstr "O ficheiro enviado tinha um tipo de conteúdo não suportado"
 
 #: mkt/extensions/validation.py:30
 msgid "The `description` property must be a string."
-msgstr ""
+msgstr "A propriedade `description` deve ser uma string."
 
 #: mkt/extensions/validation.py:32
 msgid "The `description` property cannot be longer than 132 characters."
@@ -5197,6 +5199,8 @@ msgstr "A propriedade `nome` não pode ser maior do que 45 carateres."
 #: mkt/extensions/validation.py:46
 msgid "The `name` property must be at least 1 character long and can not consist of only whitespace characters."
 msgstr ""
+"A propriedade `name` deve ter pelo menos 1 caracter e não pode conter apenas "
+"espaços."
 
 #: mkt/extensions/validation.py:49
 msgid "The archive does not contain a 'manifest.json' file."
@@ -5233,6 +5237,7 @@ msgstr "Ficheiro em falta no pedido."
 #: mkt/extensions/views.py:214
 msgid "Modifying or submitting versions is forbidden for disabled Add-ons."
 msgstr ""
+"A modificação ou submissão de versões é proibida para Extras desativados."
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
