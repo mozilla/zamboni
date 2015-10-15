@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-09-21 18:11+0000\n"
+"PO-Revision-Date: 2015-10-15 03:38+0000\n"
 "Last-Translator: Peter <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1442859102.0\n"
+"X-POOTLE-MTIME: 1444880331.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -5108,15 +5108,15 @@ msgstr "已有使用此版本號的附加元件。"
 
 #: mkt/extensions/validation.py:22
 msgid "The `author` property must be a string."
-msgstr ""
+msgstr "「author」屬性必須為字串。"
 
 #: mkt/extensions/validation.py:23
 msgid "The `author` property cannot be longer than 128 characters."
-msgstr ""
+msgstr "「author」屬性不能超過 128 字元。"
 
 #: mkt/extensions/validation.py:25
 msgid "The `author` property must be at least 1 character long and can not consist of only whitespace characters."
-msgstr ""
+msgstr "「author」屬性至少要有一個字元長，且不能為空白。"
 
 #: mkt/extensions/validation.py:28
 msgid "The file sent has an unsupported content-type"
@@ -5124,7 +5124,7 @@ msgstr "送出的檔案的 content-type 不受支援"
 
 #: mkt/extensions/validation.py:30
 msgid "The `description` property must be a string."
-msgstr ""
+msgstr "「description」屬性必須為字串。"
 
 #: mkt/extensions/validation.py:32
 msgid "The `description` property cannot be longer than 132 characters."
@@ -5156,7 +5156,7 @@ msgstr "「name」屬性不能超過 45 字元。"
 
 #: mkt/extensions/validation.py:46
 msgid "The `name` property must be at least 1 character long and can not consist of only whitespace characters."
-msgstr ""
+msgstr "「name」屬性至少要有一個字元長，且不能為空白。"
 
 #: mkt/extensions/validation.py:49
 msgid "The archive does not contain a 'manifest.json' file."
@@ -5192,7 +5192,7 @@ msgstr "請求中缺少檔案。"
 
 #: mkt/extensions/views.py:214
 msgid "Modifying or submitting versions is forbidden for disabled Add-ons."
-msgstr ""
+msgstr "無法對停用的附加元件進行修改或送出新版本。"
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
