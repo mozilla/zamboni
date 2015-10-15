@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-09-21 19:13+0000\n"
+"PO-Revision-Date: 2015-10-15 07:15+0000\n"
 "Last-Translator: Michael <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1442862783.0\n"
+"X-POOTLE-MTIME: 1444893355.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -5138,15 +5138,17 @@ msgstr "Ein Add-on mit dieser Versionsnummer existiert bereits."
 
 #: mkt/extensions/validation.py:22
 msgid "The `author` property must be a string."
-msgstr ""
+msgstr "Die Eigenschaft 'author' muss ein String sein."
 
 #: mkt/extensions/validation.py:23
 msgid "The `author` property cannot be longer than 128 characters."
-msgstr ""
+msgstr "Die Eigenschaft 'author' darf nicht länger als 128 Zeichen sein."
 
 #: mkt/extensions/validation.py:25
 msgid "The `author` property must be at least 1 character long and can not consist of only whitespace characters."
 msgstr ""
+"Die Eigenschaft 'author' muss mindestens ein Zeichen lang sein und darf "
+"nicht nur aus Leerzeichen bestehen."
 
 #: mkt/extensions/validation.py:28
 msgid "The file sent has an unsupported content-type"
@@ -5154,7 +5156,7 @@ msgstr "Die gesendete Datei hat einen nicht-unterstützten Content-Type."
 
 #: mkt/extensions/validation.py:30
 msgid "The `description` property must be a string."
-msgstr ""
+msgstr "Die Eigenschaft 'description' muss ein String sein."
 
 #: mkt/extensions/validation.py:32
 msgid "The `description` property cannot be longer than 132 characters."
@@ -5187,6 +5189,8 @@ msgstr "Die Eigenschaft 'name' darf nicht länger als 45 Zeichen sein."
 #: mkt/extensions/validation.py:46
 msgid "The `name` property must be at least 1 character long and can not consist of only whitespace characters."
 msgstr ""
+"Die Eigenschaft 'name' muss mindestens ein Zeichen lang sein und darf nicht "
+"nur aus Leerzeichen bestehen."
 
 #: mkt/extensions/validation.py:49
 msgid "The archive does not contain a 'manifest.json' file."
@@ -5223,6 +5227,8 @@ msgstr "Fehlende Datei in Anfrage."
 #: mkt/extensions/views.py:214
 msgid "Modifying or submitting versions is forbidden for disabled Add-ons."
 msgstr ""
+"Verändern oder Übermitteln von Versionen ist bei deaktivierten Add-ons "
+"verboten."
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
