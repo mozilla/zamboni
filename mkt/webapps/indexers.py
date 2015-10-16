@@ -297,6 +297,8 @@ class WebappIndexer(BaseIndexer):
         d['is_rereviewed'] = is_rereviewed
         d['rereview_date'] = (obj.rereviewqueue_set.get().created
                               if is_rereviewed else None)
+        is_homescreen = obj.tags.filter(tag_text='homescreen').exists()
+        d['is_homescreen'] = is_homescreen
 
         if latest_version:
             d['latest_version'] = {

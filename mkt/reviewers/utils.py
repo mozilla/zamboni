@@ -38,6 +38,8 @@ def get_review_type(request, addon, version):
         queue = 'escalated'
     elif RereviewQueue.objects.filter(addon=addon).exists():
         queue = 'rereview'
+    elif addon.is_homescreen():
+        queue = 'homescreen'
     else:
         queue = 'pending'
     return queue
@@ -56,7 +58,6 @@ class ReviewBase(object):
         self.comm_thread = None
         self.attachment_formset = attachment_formset
         self.testedon_formset = testedon_formset
-        self.in_pending = self.addon.status == mkt.STATUS_PENDING
         self.in_rereview = RereviewQueue.objects.filter(
             addon=self.addon).exists()
         self.in_escalate = EscalationQueue.objects.filter(
@@ -656,6 +657,7 @@ class ReviewersQueuesHelper(object):
         return self.get_escalated_queue().values_list('addon', flat=True)
 
     def get_escalated_queue(self):
+        # Apps and homescreens flagged for escalation go in this queue.
         if self.use_es:
             must = [
                 es_filter.Term(is_disabled=False),
@@ -667,6 +669,7 @@ class ReviewersQueuesHelper(object):
             addon__disabled_by_user=False)
 
     def get_pending_queue(self):
+        # Unreviewed apps go in this queue.
         if self.use_es:
             must = [
                 es_filter.Term(status=mkt.STATUS_PENDING),
@@ -674,6 +677,7 @@ class ReviewersQueuesHelper(object):
                                   mkt.STATUS_PENDING}),
                 es_filter.Term(is_escalated=False),
                 es_filter.Term(is_disabled=False),
+                es_filter.Term(is_homescreen=False),
             ]
             return WebappIndexer.search().filter('bool', must=must)
 
@@ -682,10 +686,33 @@ class ReviewersQueuesHelper(object):
             addon__disabled_by_user=False,
             addon__status=mkt.STATUS_PENDING)
             .exclude(addon__id__in=self.excluded_ids)
+            .exclude(addon__tags__tag_text='homescreen')
+            .order_by('nomination', 'created')
+            .select_related('addon', 'files').no_transforms())
+
+    def get_homescreen_queue(self):
+        # Both unreviewed homescreens and published homescreens with new
+        # unreviewed versions go in this queue.
+        if self.use_es:
+            must = [
+                es_filter.Term(**{'latest_version.status':
+                                  mkt.STATUS_PENDING}),
+                es_filter.Term(is_escalated=False),
+                es_filter.Term(is_disabled=False),
+                es_filter.Term(is_homescreen=True),
+            ]
+            return WebappIndexer.search().filter('bool', must=must)
+
+        return (Version.objects.filter(
+            files__status=mkt.STATUS_PENDING,
+            addon__disabled_by_user=False,
+            addon__tags__tag_text='homescreen')
+            .exclude(addon__id__in=self.excluded_ids)
             .order_by('nomination', 'created')
             .select_related('addon', 'files').no_transforms())
 
     def get_rereview_queue(self):
+        # Apps and homescreens flagged for re-review go in this queue.
         if self.use_es:
             must = [
                 es_filter.Term(is_rereviewed=True),
@@ -699,6 +726,8 @@ class ReviewersQueuesHelper(object):
                 exclude(addon__in=self.excluded_ids))
 
     def get_updates_queue(self):
+        # Updated apps, i.e. apps that have been published but have new
+        # unreviewed versions, go in this queue.
         if self.use_es:
             must = [
                 es_filter.Terms(status=mkt.WEBAPPS_APPROVED_STATUSES),
@@ -707,6 +736,7 @@ class ReviewersQueuesHelper(object):
                 es_filter.Terms(app_type=[mkt.ADDON_WEBAPP_PACKAGED,
                                           mkt.ADDON_WEBAPP_PRIVILEGED]),
                 es_filter.Term(is_disabled=False),
+                es_filter.Term(is_homescreen=False),
                 es_filter.Term(is_escalated=False),
             ]
             return WebappIndexer.search().filter('bool', must=must)
@@ -719,6 +749,7 @@ class ReviewersQueuesHelper(object):
             addon__is_packaged=True,
             addon__status__in=mkt.WEBAPPS_APPROVED_STATUSES)
             .exclude(addon__id__in=self.excluded_ids)
+            .exclude(addon__tags__tag_text='homescreen')
             .order_by('nomination', 'created')
             .select_related('addon', 'files').no_transforms())
 

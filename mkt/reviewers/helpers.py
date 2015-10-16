@@ -47,6 +47,7 @@ def reviewers_breadcrumbs(context, queue=None, items=None):
                   'abuse': _('Abuse Reports'),
                   'abusewebsites': _('Website Abuse Reports'),
                   'reviewing': _('Reviewing'),
+                  'homescreen': _('Homescreens'),
 
                   'region': _('Regional Queues')}
 
@@ -91,7 +92,7 @@ def queue_tabnav(context):
 
             (reverse('reviewers.apps.queue_rereview'), 'rereview',
              _('Re-reviews ({0})', counts['rereview']).format(
-             counts['rereview'])),
+                 counts['rereview'])),
 
             (reverse('reviewers.apps.queue_updates'), 'updates',
              _('Updates ({0})', counts['updates']).format(counts['updates'])),
@@ -114,6 +115,11 @@ def queue_tabnav(context):
                            args=[QUEUE_TARAKO])
             rv.append((url_, 'additional',
                       _('Tarako ({0})').format(counts['additional_tarako'])))
+        rv.append(
+            (reverse('reviewers.apps.queue_homescreen'), 'homescreen',
+             _('Homescreens ({0})', counts['homescreen']).format(
+                 counts['homescreen'])),
+        )
     else:
         rv = []
 
@@ -137,7 +143,6 @@ def queue_tabnav(context):
              _('Website Abuse Reports ({0})', counts['abusewebsites'])
              .format(counts['abusewebsites'])),
         )
-
     return rv
 
 
