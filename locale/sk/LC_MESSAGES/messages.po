@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-09-15 21:50+0000\n"
+"PO-Revision-Date: 2015-10-16 20:11+0000\n"
 "Last-Translator: kusavica <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-POOTLE-MTIME: 1442353801.0\n"
+"X-POOTLE-MTIME: 1445026269.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -1281,15 +1281,15 @@ msgstr "Úroveň 6"
 
 #: mkt/constants/base.py:292
 msgid "Level 7"
-msgstr ""
+msgstr "Úroveň 7"
 
 #: mkt/constants/base.py:293
 msgid "Level 8"
-msgstr ""
+msgstr "Úroveň 8"
 
 #: mkt/constants/base.py:294
 msgid "Level 9"
-msgstr ""
+msgstr "Úroveň 9"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
@@ -1349,7 +1349,7 @@ msgstr "Správy"
 
 #: mkt/constants/categories.py:19
 msgid "Personalization"
-msgstr ""
+msgstr "Prispôsobenie"
 
 #: mkt/constants/categories.py:20
 msgid "Photo & Video"
@@ -1365,7 +1365,7 @@ msgstr "Referencie"
 
 #: mkt/constants/categories.py:23
 msgid "Science & Tech"
-msgstr ""
+msgstr "Veda a technika"
 
 #: mkt/constants/categories.py:24
 msgid "Shopping"
@@ -1642,7 +1642,7 @@ msgstr ""
 
 #: mkt/constants/features.py:120
 msgid "Screen Orientation"
-msgstr ""
+msgstr "Orientácia obrazovky"
 
 #: mkt/constants/features.py:121
 msgid "The app requires the platform to support the `ondeviceorientation` API."
@@ -1658,7 +1658,7 @@ msgstr ""
 
 #: mkt/constants/features.py:131
 msgid "Vibration"
-msgstr ""
+msgstr "Vibrácie"
 
 #: mkt/constants/features.py:132
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
@@ -1696,7 +1696,7 @@ msgstr ""
 
 #: mkt/constants/features.py:171
 msgid "Audio"
-msgstr ""
+msgstr "Zvuk"
 
 #: mkt/constants/features.py:172
 msgid "The app requires that the platform supports the HTML5 audio API."
@@ -1752,7 +1752,7 @@ msgstr ""
 
 #: mkt/constants/features.py:224
 msgid "Microphone"
-msgstr ""
+msgstr "Mikrofón"
 
 #: mkt/constants/features.py:225
 msgid "The app requires the platform to allow access to audio from the device microphone."
@@ -2067,7 +2067,7 @@ msgstr "Kapverdy"
 
 #: mkt/constants/regions.py:153
 msgid "Guinea-Conakry"
-msgstr ""
+msgstr "Guinea-Konakry"
 
 #: mkt/constants/regions.py:166
 msgid "Heard Island and McDonald Islands"
@@ -2075,7 +2075,7 @@ msgstr ""
 
 #: mkt/constants/regions.py:192
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "Laoská ľudovodemokratická republika"
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
@@ -2962,11 +2962,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
-msgstr ""
+msgstr "Povoliť"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:17
 msgid "Deny"
-msgstr ""
+msgstr "Zakázať"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:54 templates/base.html:55
 msgid "Firefox Marketplace Developers"
@@ -3066,12 +3066,11 @@ msgstr "Typ"
 
 #: mkt/developers/templates/developers/transactions.html:45
 msgid "Currency"
-msgstr ""
+msgstr "Mena"
 
 #: mkt/developers/templates/developers/transactions.html:46
-#, fuzzy
 msgid "Amount"
-msgstr "Priemerná čiastka"
+msgstr "Čiastka"
 
 #: mkt/developers/templates/developers/validate_app.html:3 mkt/developers/templates/developers/includes/testing_nav.html:2
 msgid "Test App Validation"
@@ -3148,9 +3147,8 @@ msgid "You haven't yet submitted an app to the Firefox Marketplace. Once you've 
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/dashboard.html:37
-#, fuzzy
 msgid "Submit An App"
-msgstr "Přidat aplikaci"
+msgstr "Zverejniť aplikáciu"
 
 #: mkt/developers/templates/developers/apps/edit.html:3 mkt/developers/templates/developers/apps/listing/item_actions.html:25 mkt/developers/templates/developers/apps/listing/item_actions_app.html:46
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:2 mkt/lookup/templates/lookup/helpers/app_header.html:33 mkt/lookup/templates/lookup/helpers/website_header.html:22
@@ -3167,7 +3165,7 @@ msgstr "Žiadne"
 #: mkt/developers/templates/developers/apps/owner.html:3 mkt/developers/templates/developers/apps/owner.html:26 mkt/developers/templates/developers/apps/listing/item_actions_app.html:90
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:28 mkt/reviewers/templates/reviewers/includes/details.html:118 mkt/reviewers/templates/reviewers/includes/mobile_details.html:128
 msgid "Team Members"
-msgstr ""
+msgstr "Členovia týmu"
 
 #: mkt/developers/templates/developers/apps/owner.html:22 mkt/developers/templates/developers/payments/premium.html:51
 msgid "Only the app owner(s) can edit this page."
@@ -4393,7 +4391,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:22
 msgid "Recommended"
-msgstr ""
+msgstr "Odporúčané"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:29
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
@@ -4421,7 +4419,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:27
 msgid "Enable"
-msgstr ""
+msgstr "Povoliť"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
@@ -4487,7 +4485,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:144
 msgid "Countries"
-msgstr ""
+msgstr "Krajiny"
 
 #: mkt/developers/templates/developers/payments/premium.html:159
 msgid "Add, manage or view transactions for your payment accounts"
@@ -4495,7 +4493,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:169
 msgid "Prices and Countries"
-msgstr ""
+msgstr "Ceny a krajiny"
 
 #: mkt/developers/templates/developers/payments/premium.html:176 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:79
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:68 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:18
@@ -4536,11 +4534,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:232
 msgid "local currency"
-msgstr ""
+msgstr "miestna mena"
 
 #: mkt/developers/templates/developers/payments/premium.html:233
 msgid "Billing method"
-msgstr ""
+msgstr "Platobná metóda"
 
 #: mkt/developers/templates/developers/payments/premium.html:244
 msgid "Add a payment account to enable your app for sale in more regions"
@@ -4615,7 +4613,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:66
 msgid "Delete Payment Account"
-msgstr ""
+msgstr "Odstrániť platobný účet"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
@@ -5932,9 +5930,8 @@ msgid "App Lookup results for"
 msgstr "Výsledky vyhľadávania aplikácií pre"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:4
-#, fuzzy
 msgid "App Detail"
-msgstr "Detaily o aplikaci"
+msgstr "Podrobnosti o aplikácií"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:40
 msgid "Review History"
@@ -6045,11 +6042,11 @@ msgstr ""
 
 #: mkt/purchase/templates/purchase/receipt.html:28
 msgid "Order Number:"
-msgstr ""
+msgstr "Číslo objednávky:"
 
 #: mkt/purchase/templates/purchase/receipt.html:29
 msgid "Order Date:"
-msgstr ""
+msgstr "Dátum objednávky:"
 
 #: mkt/purchase/templates/purchase/receipt.html:37
 msgid "Item"
@@ -6057,7 +6054,7 @@ msgstr ""
 
 #: mkt/purchase/templates/purchase/receipt.html:38
 msgid "Seller"
-msgstr ""
+msgstr "Predajca"
 
 #: mkt/purchase/templates/purchase/receipt.html:61
 msgid "For the Firefox Marketplace Terms of Service please visit:"
@@ -6069,7 +6066,7 @@ msgstr ""
 
 #: mkt/purchase/templates/purchase/receipt.html:71
 msgid "Your purchase history:"
-msgstr ""
+msgstr "História vašich nákupov:"
 
 #: mkt/ratings/forms.py:66
 msgid "Keep review; remove flags"
@@ -6198,15 +6195,15 @@ msgstr "aplikace, recenze nebo komentář"
 
 #: mkt/reviewers/forms.py:104
 msgid "Device Type:"
-msgstr ""
+msgstr "Typ zariadenia:"
 
 #: mkt/reviewers/forms.py:105
 msgid "Device:"
-msgstr ""
+msgstr "Zariadenie:"
 
 #: mkt/reviewers/forms.py:106
 msgid "Firefox Version:"
-msgstr ""
+msgstr "Verzia Firefoxu:"
 
 #: mkt/reviewers/forms.py:118
 msgid "Comments:"
@@ -6238,7 +6235,7 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:205 mkt/reviewers/helpers.py:45 mkt/search/forms.py:104
 msgid "Device"
-msgstr ""
+msgstr "Zariadenie"
 
 #: mkt/reviewers/helpers.py:38 mkt/reviewers/helpers.py:68 mkt/site/context_processors.py:70
 #, fuzzy
@@ -6343,7 +6340,7 @@ msgstr ""
 
 #: mkt/reviewers/utils.py:399 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
-msgstr ""
+msgstr "Schváliť"
 
 #: mkt/reviewers/utils.py:400
 msgid "This will approve the app and allow the author(s) to publish it."
@@ -7853,12 +7850,11 @@ msgstr "Nemůže být zdarma a zároveň placená."
 
 #: mkt/submit/forms.py:51
 msgid "Please select a device."
-msgstr ""
+msgstr "Prosím zvoľte zariadenie."
 
 #: mkt/submit/forms.py:129
-#, fuzzy
 msgid "Agree and Continue"
-msgstr "Souhlasím a pokračovat"
+msgstr "Súhlasím a pokračovať"
 
 #: mkt/submit/forms.py:156 mkt/submit/forms.py:230
 msgid "There was an error with your upload. Please try again."
@@ -7866,7 +7862,7 @@ msgstr "Pri odosielaní sa vyskytla chyba. Skúste to znova."
 
 #: mkt/submit/forms.py:191
 msgid "Version %s already exists."
-msgstr ""
+msgstr "Verzia %s už existuje."
 
 #: mkt/submit/forms.py:202
 msgid "Changes to \"origin\" are not allowed."
@@ -7906,7 +7902,7 @@ msgstr "Pokud má vaše aplikace další domovskou stránku, vložte zde její a
 
 #: mkt/submit/forms.py:313
 msgid "Website:"
-msgstr ""
+msgstr "Webová stránka:"
 
 #: mkt/submit/forms.py:315
 #, fuzzy
@@ -7915,7 +7911,7 @@ msgstr "Pokud má vaše aplikace stránky podpory či fórum, vložte zde jejich
 
 #: mkt/submit/forms.py:319
 msgid "Email:"
-msgstr ""
+msgstr "E-mail:"
 
 #: mkt/submit/forms.py:321
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
@@ -7943,9 +7939,8 @@ msgid "My app works without an Internet connection."
 msgstr ""
 
 #: mkt/submit/templates/submit/details.html:5
-#, fuzzy
 msgid "Edit App Details"
-msgstr "Úprava detailů aplikace"
+msgstr "Upraviť podrobnosti aplikácie"
 
 #: mkt/submit/templates/submit/details.html:16 mkt/submit/templates/submit/done.html:8 mkt/submit/templates/submit/manifest.html:22 mkt/submit/templates/submit/next_steps.html:10
 #: mkt/submit/templates/submit/terms.html:8
@@ -8424,7 +8419,7 @@ msgstr "Vytvorené"
 
 #: mkt/websites/forms.py:89
 msgid "Invalid device(s) selected."
-msgstr ""
+msgstr "Bolo zvolené neplatné zariadenie."
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"
