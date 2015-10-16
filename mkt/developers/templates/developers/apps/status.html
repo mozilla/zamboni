@@ -282,72 +282,19 @@
       </section>
     {% endif %}
 
+    {% if is_tarako %}
     <section>
       <h2 id="low-memory-devices">{{ _("Low-Memory Devices") }}</h2>
       <div class="island">
         <p>
-          <strong>
-            {% if is_tarako %}
-              {{ _("Your app is shown on low-memory devices.") }}
-            {% else %}
-              {{ _("Your app is not shown on low-memory devices.") }}
-            {% endif %}
+          {% trans support_url=settings.SUPPORT_GROUP %}
+            Your app is shown on <a href="https://developer.mozilla.org/Apps/Build/Performance/Apps_for_low-memory_Firefox_OS_devices" target="_blank">low-memory devices</a>.
+            If you want to stop showing your app on low-memory devices <a href="{{ support_url }}">contact us</a>.
+          {% endtrans %}
           </strong>
         </p>
-
-        {% if not tarako_review %}
-          <p>{{ _("You have not requested a low-memory review.") }}</p>
-        {% else %}
-          <p>
-            {% if tarako_review.pending %}
-              {{ _("Your app is awaiting review.") }}
-            {% elif tarako_review.passed %}
-              {{ _("Our review on {review_date} found that your app supports low-memory devices.")
-                 |fe(review_date=tarako_review.review_completed|babel_datetime) }}
-            {% elif tarako_review.failed %}
-              {{ _("Our review on {review_date} found that your app does not support low-memory devices.")
-                 |fe(review_date=tarako_review.review_completed|babel_datetime) }}
-            {% endif %}
-            {{ _("You requested a review on {request_date}.")
-               |fe(request_date=tarako_review.created|babel_datetime) }}
-          </p>
-        {% endif %}
-
-        {% if not has_tarako_region(addon) %}
-          <p>
-            {{ _('Your app is not enabled in any regions with low-memory devices.') }}
-            {{ _('You can update your regions on the <a href="{compatibility_page}">compatibility page</a>.')
-               |fe(compatibility_page=url('mkt.developers.apps.payments', addon.app_slug) + '#regions-and-listings') }}
-        {% endif %}
-
-        {% set can_request_review = not (tarako_review and tarako_review.pending) %}
-        <p>
-          {% if can_request_review %}
-            {{ _('If your app works on low-memory devices then you can request a review to be shown on low-memory devices.') }}
-          {% endif %}
-          <a href="https://developer.mozilla.org/Apps/Build/Performance/Apps_for_low-memory_Firefox_OS_devices" target="_blank">
-            {{ _("Learn about low-memory devices.") }}
-          </a>
-        </p>
-        {% if is_tarako %}
-          <div class="listing-footer">
-            <button id="remove-tarako">
-              {{ _("Do not show my app on low-memory devices") }}
-            </button>
-          </div>
-        {% elif can_request_review %}
-          <div class="listing-footer">
-            <form id="request-tarako" action="{{ url('additionalreviews') }}" method="post">
-              <input type="hidden" name="app" value="{{ addon.pk }}">
-              <input type="hidden" name="queue" value="{{ QUEUE_TARAKO }}">
-              <span class="error"></span>
-              <button class="only-child">
-                {{ _("Request a low-memory review") }}
-              </button>
-            </form>
-          </div>
-        {% endif %}
     </section>
+    {% endif %}
 
     {% if waffle.switch('preload-apps') %}
       <section id="preload">
@@ -502,23 +449,6 @@
             {{ _('or') }} <a href="#" class="cancel close">{{ _('Cancel') }}</a>
           </p>
         </form>
-      </div>
-    {% endif %}
-
-    {% if is_tarako %}
-      <div id="modal-remove-tarako" class="modal">
-        <h3>{{ _('Low-Memory Devices') }}</h3>
-        <p>
-          <label>{{ _('Are you sure you want to stop showing your app on low-memory devices?') }}</label>
-        </p>
-        <p class="error"></p>
-        <p class="listing-footer">
-          <button id="remove-tarako-tag" class="bad" data-action="{{ url('app-tags-detail', addon.app_slug, QUEUE_TARAKO) }}">
-            {{ _("Do not show my app on low-memory devices") }}
-          </button>
-          {{ _('or') }}
-          <a href="#" class="cancel close">{{ _('Cancel') }}</a>
-        </p>
       </div>
     {% endif %}
   </div>
