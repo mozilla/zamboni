@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-09-21 22:10+0000\n"
+"PO-Revision-Date: 2015-10-15 23:33+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -6111,17 +6111,19 @@ msgstr "An Add-on with this version number already exists."
 
 #: mkt/extensions/validation.py:22
 msgid "The `author` property must be a string."
-msgstr ""
+msgstr "The `author` property must be a string."
 
 #: mkt/extensions/validation.py:23
 msgid "The `author` property cannot be longer than 128 characters."
-msgstr ""
+msgstr "The `author` property cannot be longer than 128 characters."
 
 #: mkt/extensions/validation.py:25
 msgid ""
 "The `author` property must be at least 1 character long and can not consist "
 "of only whitespace characters."
 msgstr ""
+"The `author` property must be at least 1 character long and can not consist "
+"of only whitespace characters."
 
 #: mkt/extensions/validation.py:28
 msgid "The file sent has an unsupported content-type"
@@ -6129,7 +6131,7 @@ msgstr "The file sent has an unsupported content-type"
 
 #: mkt/extensions/validation.py:30
 msgid "The `description` property must be a string."
-msgstr ""
+msgstr "The `description` property must be a string."
 
 #: mkt/extensions/validation.py:32
 msgid "The `description` property cannot be longer than 132 characters."
@@ -6164,6 +6166,8 @@ msgid ""
 "The `name` property must be at least 1 character long and can not consist of"
 " only whitespace characters."
 msgstr ""
+"The `name` property must be at least 1 character long and can not consist of"
+" only whitespace characters."
 
 #: mkt/extensions/validation.py:49
 msgid "The archive does not contain a 'manifest.json' file."
@@ -6203,7 +6207,7 @@ msgstr "Missing file in request."
 
 #: mkt/extensions/views.py:214
 msgid "Modifying or submitting versions is forbidden for disabled Add-ons."
-msgstr ""
+msgstr "Modifying or submitting versions is forbidden for disabled Add-ons."
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
