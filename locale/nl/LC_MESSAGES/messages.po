@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-09-21 18:20+0000\n"
+"PO-Revision-Date: 2015-10-16 12:09+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1442859618.0\n"
+"X-POOTLE-MTIME: 1444997367.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -5130,15 +5130,17 @@ msgstr "Er bestaat al een add-on met dit versienummer."
 
 #: mkt/extensions/validation.py:22
 msgid "The `author` property must be a string."
-msgstr ""
+msgstr "De eigenschap ‘author’ moet een tekenreeks zijn."
 
 #: mkt/extensions/validation.py:23
 msgid "The `author` property cannot be longer than 128 characters."
-msgstr ""
+msgstr "De eigenschap ‘author’ kan niet langer zijn dan 128 tekens."
 
 #: mkt/extensions/validation.py:25
 msgid "The `author` property must be at least 1 character long and can not consist of only whitespace characters."
 msgstr ""
+"De eigenschap ‘author’ moet minstens 1 teken lang zijn en kan niet alleen "
+"uit spaties bestaan."
 
 #: mkt/extensions/validation.py:28
 msgid "The file sent has an unsupported content-type"
@@ -5146,7 +5148,7 @@ msgstr "Het verzonden bestand heeft een niet-ondersteund inhoudstype"
 
 #: mkt/extensions/validation.py:30
 msgid "The `description` property must be a string."
-msgstr ""
+msgstr "De eigenschap ‘description’ moet een tekenreeks zijn."
 
 #: mkt/extensions/validation.py:32
 msgid "The `description` property cannot be longer than 132 characters."
@@ -5179,6 +5181,8 @@ msgstr "De eigenschap ‘name’ kan niet langer zijn dan 45 tekens."
 #: mkt/extensions/validation.py:46
 msgid "The `name` property must be at least 1 character long and can not consist of only whitespace characters."
 msgstr ""
+"De eigenschap ‘name’ moet minstens 1 teken lang zijn en kan niet alleen uit "
+"spaties bestaan."
 
 #: mkt/extensions/validation.py:49
 msgid "The archive does not contain a 'manifest.json' file."
@@ -5215,6 +5219,8 @@ msgstr "Ontbrekend bestand in aanvraag."
 #: mkt/extensions/views.py:214
 msgid "Modifying or submitting versions is forbidden for disabled Add-ons."
 msgstr ""
+"Aanpassen of indienen van versies is niet toegestaan voor uitgeschakelde "
+"add-ons."
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
