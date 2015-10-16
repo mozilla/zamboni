@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-10-09 12:52+0000\n"
+"PO-Revision-Date: 2015-10-15 23:16+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2434,6 +2434,8 @@ msgid ""
 "A URL to where your app is hosted on the web, if it exists. This allows "
 "users to try out your app before installing it."
 msgstr ""
+"Uma URL onde seu aplicativo esteja hospedado na web, se ela existir. Isso "
+"permite aos usuários experimentar seu aplicativo antes de instalarem."
 
 #: mkt/developers/forms.py:538
 msgid "Provide a detailed description of your app"
@@ -4345,6 +4347,9 @@ msgid ""
 "If your app has a URL where it is hosted, you can set it for users that want"
 " to try your app before installing it."
 msgstr ""
+"Se o seu aplicativo tem uma URL de onde ele está hospedado, você pode passá-"
+"lo para os usuários que querem experiementar seu aplicativo antes de "
+"instalá-lo."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:119
 #: mkt/lookup/templates/lookup/website_edit.html:41
@@ -6214,17 +6219,19 @@ msgstr "Um complemento com este número de versão já existe."
 
 #: mkt/extensions/validation.py:22
 msgid "The `author` property must be a string."
-msgstr ""
+msgstr "A propriedade `autor` deve ser uma string."
 
 #: mkt/extensions/validation.py:23
 msgid "The `author` property cannot be longer than 128 characters."
-msgstr ""
+msgstr "A propriedade `autor` não pode ser maior que 128 caracteres."
 
 #: mkt/extensions/validation.py:25
 msgid ""
 "The `author` property must be at least 1 character long and can not consist "
 "of only whitespace characters."
 msgstr ""
+"A propriedade `autor` deve conter ao menos 1 caractere e não pode consitir "
+"de um caractere de espaço."
 
 #: mkt/extensions/validation.py:28
 msgid "The file sent has an unsupported content-type"
@@ -6232,7 +6239,7 @@ msgstr "O arquivo enviado tem um tipo de conteúdo não suportado"
 
 #: mkt/extensions/validation.py:30
 msgid "The `description` property must be a string."
-msgstr ""
+msgstr "A propriedade `descrição` deve ser uma string."
 
 #: mkt/extensions/validation.py:32
 msgid "The `description` property cannot be longer than 132 characters."
@@ -6256,17 +6263,19 @@ msgstr ""
 
 #: mkt/extensions/validation.py:42
 msgid "The `name` property must be a string."
-msgstr ""
+msgstr "A propriedade `nome` deve ser uma string."
 
 #: mkt/extensions/validation.py:43
 msgid "The `name` property cannot be longer than 45 characters."
-msgstr ""
+msgstr "A propriedade `nome` não pode ter mais do que 45 caracteres."
 
 #: mkt/extensions/validation.py:46
 msgid ""
 "The `name` property must be at least 1 character long and can not consist of"
 " only whitespace characters."
 msgstr ""
+"A propriedade `nome` deve ter ao menos 1 caractere e não pode consistir "
+"somente de espaços."
 
 #: mkt/extensions/validation.py:49
 msgid "The archive does not contain a 'manifest.json' file."
@@ -6274,11 +6283,11 @@ msgstr "O arquivo não contém um arquivo 'manifest.json'."
 
 #: mkt/extensions/validation.py:52
 msgid "There is no `version` property in the manifest."
-msgstr ""
+msgstr "Não há a propriedade `versão` no manifesto."
 
 #: mkt/extensions/validation.py:54
 msgid "The `version` property must be a string."
-msgstr ""
+msgstr "A propriedade `versão` deve ser uma string."
 
 #: mkt/extensions/validation.py:55
 msgid ""
