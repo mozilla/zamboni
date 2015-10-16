@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-10-15 15:11+0000\n"
-"Last-Translator: Tomáš <zelitomas@gmail.com>\n"
+"PO-Revision-Date: 2015-10-16 17:35+0000\n"
+"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1444921869.0\n"
+"X-POOTLE-MTIME: 1445016902.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -3245,7 +3245,9 @@ msgstr "Tato aplikace byla <b>zablokována na Marketplace</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:51
 msgid "Your app was banned by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
-msgstr "Vaše aplikace byla správcem serveru zablokována. Pokud máte nějaké otázky, <a href=\"%(support_url)s\">kontaktujte nás prosím</a>."
+msgstr ""
+"Vaše aplikace byla správcem serveru zablokována. Pokud máte nějaké otázky, "
+"<a href=\"%(support_url)s\"> kontaktujte nás prosím</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
@@ -3253,7 +3255,9 @@ msgstr "Vaše aplikace <b>byla Mozillou zablokována</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:59
 msgid "Your app was blocked by a site administrator. If you have any questions, please <a href=\"%(support_url)s\"> contact us</a>."
-msgstr "Vaše aplikace byla správcem serveru zablokována. Pokud máte nějaké otázky, <a href=\"%(support_url)s\">kontaktujte nás prosím</a>."
+msgstr ""
+"Vaše aplikace byla správcem serveru zablokována. Pokud máte nějaké otázky, "
+"<a href=\"%(support_url)s\"> kontaktujte nás prosím</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:65
 msgid "This app has been <b>rejected</b> by a Firefox Marketplace reviewer."
@@ -4149,9 +4153,13 @@ msgid ""
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
 "servers where they will be reviewed by interested phone operators. If you have further questions, you can <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
-"Svou aplikaci můžete přihlásit, aby byla <strong>přítomna na zařízeních s FirefoxOS rovnou při nákupu</strong> u mobilních operátorů. Pro přihlášení stáhněte šablonu níže, otestujte svou aplikaci, "
-"vyplňte šablonu a nahrajte vaše výsledky zpět pomocí <a href=\"%(submit_url)s\">tohoto formuláře</a>. Vaše výsledky uložíme na našich serverech, kde je uvidí jednotliví operátoři a budou je moci "
-"zhodnotit. Pokud máte otázky k přihlášení vaší aplikace, můžete nás <a href=\"%(support_url)s\">kontaktovat</a>."
+"Svou aplikaci můžete přihlásit, aby byla <strong>přítomna na zařízeních s "
+"FirefoxOS rovnou při nákupu</strong> u mobilních operátorů. Pro přihlášení "
+"stáhněte šablonu níže, otestujte svou aplikaci, vyplňte šablonu a nahrajte "
+"vaše výsledky zpět pomocí <a href=\"%(submit_url)s\">tohoto formuláře</a>. "
+"Vaše výsledky uložíme na našich serverech, kde je uvidí jednotliví operátoři "
+"a budou je moci zhodnotit. Pokud máte otázky k přihlášení vaší aplikace, "
+"můžete nás <a href=\"%(support_url)s\"> kontaktovat</a>."
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -5255,11 +5263,11 @@ msgstr "Tento soubor je adresář."
 
 #: mkt/files/tasks.py:32
 msgid "There was an error accessing file %s. %s."
-msgstr "Při přístupu k souboru %s došlo k chybě. %s"
+msgstr "Při přístupu k souboru %s došlo k chybě. %s."
 
 #: mkt/files/tasks.py:35
 msgid "There was an error accessing file %s."
-msgstr "Vyskytl se problém při přístupu k souboru %s."
+msgstr "Při přístupu k souboru %s došlo k chybě."
 
 #: mkt/files/utils.py:77
 msgid "The file \"manifest.webapp\" was not found at the root of the packaged app archive."
@@ -6836,7 +6844,7 @@ msgstr "Novější verze"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "Process"
-msgstr "Process"
+msgstr "Zpracovat"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:14 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:55
 msgid "Actions:"
@@ -6880,7 +6888,9 @@ msgstr "přeložit"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:42
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">Označil(a) %(user)s dne %(date)s</span>"
+msgstr ""
+"<strong>%(reason)s</strong> <span class=\"light\">Označil uživatel %(user)s "
+"dne %(date)s</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:62
 msgid "All reviews have been moderated. Good work!"
@@ -7644,7 +7654,7 @@ msgstr "Hlášení zneužití {report} pro {addon} přečteno."
 
 #: mkt/site/log.py:705
 msgid "{user} marked read {report} for {addon}."
-msgstr "{user} označil(a) hlášení {report} pro {addon} jako přečtené."
+msgstr "Uživatel {user} označil hlášení {report} pro {addon} jako přečtené."
 
 #: mkt/site/log.py:713
 msgid "Abuse report {report} for {website} read."
@@ -7652,7 +7662,7 @@ msgstr "Hlášení zneužití {report} pro {website} přečteno."
 
 #: mkt/site/log.py:714
 msgid "{user} marked read {report} for {website}."
-msgstr "{user} označila(a) hlášení {report} pro {website} jako přečtené."
+msgstr "Uživatel {user} označila hlášení {report} pro {website} jako přečtené."
 
 #: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
