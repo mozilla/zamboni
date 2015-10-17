@@ -81,6 +81,8 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         eq_(extension.name, u'My Lîttle Extension')
         eq_(extension.default_language, 'en-GB')
         eq_(extension.description, u'A Dummÿ Extension')
+        eq_(extension.name.locale, 'en-gb')
+        eq_(extension.description.locale, 'en-gb')
         eq_(extension.slug, u'my-lîttle-extension')
         eq_(extension.status, STATUS_PENDING)
         ok_(extension.uuid)
@@ -685,6 +687,9 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.author, u'New Authôr')
         eq_(extension.description, u'New Descriptîon')
         eq_(extension.name, u'New Nâme')
+        # Locale should be en-US since none is specified in the manifest.
+        eq_(extension.name.locale, 'en-us')
+        eq_(extension.description.locale, 'en-us')
 
     def test_update_manifest_when_public_version_is_hard_deleted(self):
         old_manifest = {

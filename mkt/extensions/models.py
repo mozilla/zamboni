@@ -165,19 +165,36 @@ class Extension(ModelBase):
         if fields is None:
             fields = cls.manifest_is_source_of_truth_fields
         data = {k: manifest_data[k] for k in fields if k in manifest_data}
+
+        # Determine default language to use for translations.
+        # Web Extensions Manifest contains locales (e.g. "en_US"), not
+        # languages (e.g. "en-US"). The field is also called differently as a
+        # result (default_locale vs default_language), so we need to transform
+        # both the key and the value before adding it to data. A default value
+        # needs to be set to correctly generate the translated fields below.
+        default_language = to_language(manifest_data.get(
+            'default_locale', cls._meta.get_field('default_language').default))
         if 'default_language' in fields:
-            # Manifest contains locales (e.g. "en_US"), not languages
-            # (e.g. "en-US"). The field is also called differently as a result
-            # (default_locale vs default_language), so we need to transform
-            # both the key and the value before adding it to data.
-            default_locale = manifest_data.get('default_locale')
-            if default_locale:
-                data['default_language'] = to_language(default_locale)
+            data['default_language'] = default_language
+
+        # Be nice and strip leading / trailing whitespace chars from
+        # strings.
         for key, value in data.items():
-            # Be nice and strip leading / trailing whitespace chars from
-            # strings.
             if isinstance(value, basestring):
                 data[key] = value.strip()
+
+        # Translated fields should not be extracted as simple strings,
+        # otherwise we end up setting a locale on the translation that is
+        # dependent on the locale of the thread. Use dicts instead, always
+        # setting default_language as the language for now (since we don't
+        # support i18n in web extensions yet).
+        for field in cls._meta.translated_fields:
+            field_name = field.name
+            if field_name in data:
+                data[field_name] = {
+                    default_language: manifest_data[field_name]
+                }
+
         return data
 
     @classmethod
