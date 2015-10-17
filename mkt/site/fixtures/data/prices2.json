@@ -5,7 +5,7 @@
     "fields": {
       "localized_string_clean": null,
       "created": "2010-07-02 01:26:32",
-      "locale": "en-US",
+      "locale": "en-us",
       "modified": "2010-01-02 12:34:56",
       "id": 1241126,
       "localized_string": ""
@@ -17,7 +17,7 @@
     "fields": {
       "localized_string_clean": null,
       "created": "2010-07-02 01:26:32",
-      "locale": "en-US",
+      "locale": "en-us",
       "modified": "2010-01-02 12:34:56",
       "id": 1241127,
       "localized_string": ""

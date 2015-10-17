@@ -1140,7 +1140,7 @@ class TestRemoveLocale(mkt.site.tests.TestCase):
         qs = list(Translation.objects.filter(localized_string__isnull=False)
                   .values_list('locale', flat=True)
                   .filter(id=self.webapp.name_id))
-        eq_(qs, ['en-US', 'es'])
+        eq_(qs, ['en-us', 'es'])
 
     def test_delete_default_locale(self):
         r = self.client.post(self.url, {'locale': self.webapp.default_locale})
