@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-08-17 05:02+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2015-10-17 16:41+0000\n"
+"Last-Translator: Théo Chevalier <tchevalier@theochevalier.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -1316,15 +1316,15 @@ msgstr "Niveau 6"
 
 #: mkt/constants/base.py:292
 msgid "Level 7"
-msgstr ""
+msgstr "Niveau 7"
 
 #: mkt/constants/base.py:293
 msgid "Level 8"
-msgstr ""
+msgstr "Niveau 8"
 
 #: mkt/constants/base.py:294
 msgid "Level 9"
-msgstr ""
+msgstr "Niveau 9"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
@@ -2230,11 +2230,11 @@ msgstr ""
 
 #: mkt/constants/regions.py:115
 msgid "Congo, Democratic Republic of the"
-msgstr ""
+msgstr "République démocratique du Congo"
 
 #: mkt/constants/regions.py:120
 msgid "Cabo Verde"
-msgstr ""
+msgstr "Cap-Vert"
 
 #: mkt/constants/regions.py:153
 msgid "Guinea-Conakry"
@@ -2254,7 +2254,7 @@ msgstr "Libye"
 
 #: mkt/constants/regions.py:197
 msgid "Liechtenstein"
-msgstr ""
+msgstr "Liechtenstein"
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
@@ -2443,13 +2443,15 @@ msgstr "Erreur à l'extraction du manifeste depuis le fichier ZIP."
 
 #: mkt/developers/forms.py:532
 msgid "Hosted URL:"
-msgstr ""
+msgstr "URL d'hébergement :"
 
 #: mkt/developers/forms.py:533
 msgid ""
 "A URL to where your app is hosted on the web, if it exists. This allows "
 "users to try out your app before installing it."
 msgstr ""
+"Une URL où votre application est hébergée sur le web, si elle existe. Elle "
+"permet à l'utilisateur d'essayer votre application avant de l'installer."
 
 #: mkt/developers/forms.py:538
 msgid "Provide a detailed description of your app"
@@ -2968,7 +2970,7 @@ msgstr "L'aperçu n'a pas pu être ouvert."
 
 #: mkt/developers/utils.py:107
 msgid "Promo image could not be opened."
-msgstr ""
+msgstr "L'image de promotion n'a pas pu être ouverte."
 
 #: mkt/developers/utils.py:114
 msgid "Icons must be at least 128px by 128px."
@@ -3050,7 +3052,7 @@ msgstr "Une erreur est survenue avec l'envoi."
 
 #: mkt/developers/views.py:701
 msgid "An error occurred validating the manifest."
-msgstr ""
+msgstr "Une erreur est apparue lors de la validation du manifeste."
 
 #: mkt/developers/views.py:955
 msgid "There was an error uploading your preview."
@@ -6252,17 +6254,19 @@ msgstr ""
 
 #: mkt/extensions/validation.py:22
 msgid "The `author` property must be a string."
-msgstr ""
+msgstr "La propriété `author` doit être une chaîne de caractères."
 
 #: mkt/extensions/validation.py:23
 msgid "The `author` property cannot be longer than 128 characters."
-msgstr ""
+msgstr "La propriété `author` ne peut dépasser 128 caractères."
 
 #: mkt/extensions/validation.py:25
 msgid ""
 "The `author` property must be at least 1 character long and can not consist "
 "of only whitespace characters."
 msgstr ""
+"La propriété `author` doit comporter au moins 1 caractère et ne peut "
+"contenir uniquement des caractères blancs."
 
 #: mkt/extensions/validation.py:28
 msgid "The file sent has an unsupported content-type"
@@ -6270,7 +6274,7 @@ msgstr ""
 
 #: mkt/extensions/validation.py:30
 msgid "The `description` property must be a string."
-msgstr ""
+msgstr "La propriété `description` doit être une chaîne de caractères."
 
 #: mkt/extensions/validation.py:32
 msgid "The `description` property cannot be longer than 132 characters."
@@ -6294,7 +6298,7 @@ msgstr ""
 
 #: mkt/extensions/validation.py:42
 msgid "The `name` property must be a string."
-msgstr ""
+msgstr "La propriété `name` doit être une chaîne de caractères."
 
 #: mkt/extensions/validation.py:43
 msgid "The `name` property cannot be longer than 45 characters."
@@ -6316,7 +6320,7 @@ msgstr ""
 
 #: mkt/extensions/validation.py:54
 msgid "The `version` property must be a string."
-msgstr ""
+msgstr "La propriété `version` doit être une chaîne de caractères."
 
 #: mkt/extensions/validation.py:55
 msgid ""
@@ -6634,7 +6638,7 @@ msgstr ""
 
 #: mkt/lookup/forms.py:82
 msgid "Minimum size: {0}x{1}"
-msgstr ""
+msgstr "Taille minimale : {0}x{1}"
 
 #: mkt/lookup/views.py:201
 msgid "A refund has already been processed."
@@ -6851,7 +6855,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/group_summary.html:24
 msgid "Notes"
-msgstr ""
+msgstr "Notes"
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
@@ -6975,7 +6979,7 @@ msgstr "Groupes"
 
 #: mkt/lookup/templates/lookup/user_summary.html:33
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: mkt/lookup/templates/lookup/user_summary.html:58
 msgid "Marketplace Credit"
@@ -7052,13 +7056,13 @@ msgstr ""
 #: mkt/lookup/templates/lookup/website_summary.html:16
 #: mkt/websites/forms.py:38
 msgid "Title"
-msgstr ""
+msgstr "Titre"
 
 #: mkt/lookup/templates/lookup/website_edit.html:48
 #: mkt/lookup/templates/lookup/website_summary.html:28
 #: mkt/websites/forms.py:40
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: mkt/lookup/templates/lookup/website_edit.html:55
 #: mkt/lookup/templates/lookup/website_summary.html:32
