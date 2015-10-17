@@ -1,4 +1,4 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -31,7 +31,8 @@ msgstr "Зображення повинні бути PNG або JPG."
 msgid "Videos must be in WebM."
 msgstr "Відео повинно бути у форматі WebM."
 
-#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Виникла проблема при спробі зв'язатись із сервером."
 
@@ -79,7 +80,8 @@ msgstr[0] "&hellip;і ще {0}"
 msgstr[1] "&hellip;і ще {0}"
 msgstr[2] "&hellip;і ще {0}"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199
+#: media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
 msgstr "Переглянути повний звіт перевірки"
 
@@ -104,8 +106,10 @@ msgstr "Завершена перевірка {0}"
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
 msgstr[0] "Ваша програма пройшла перевірку без помилок і з {0} попередженням."
-msgstr[1] "Ваша програма пройшла перевірку без помилок і з {0} попередженнями."
-msgstr[2] "Ваша програма пройшла перевірку без помилок і з {0} попередженнями."
+msgstr[1] ""
+"Ваша програма пройшла перевірку без помилок і з {0} попередженнями."
+msgstr[2] ""
+"Ваша програма пройшла перевірку без помилок і з {0} попередженнями."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
@@ -146,16 +150,21 @@ msgstr "Встановлення невдале. Спробуйте ще раз 
 #: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "Ваша програма не пройшла перевірку з {0} помилкою і {1} повідомленням(и)."
-msgstr[1] "Ваша програма не пройшла перевірку з {0} помилками і {1} повідомленням(и)."
-msgstr[2] "Ваша програма не пройшла перевірку з {0} помилками і {1} повідомленням(и)."
+msgstr[0] ""
+"Ваша програма не пройшла перевірку з {0} помилкою і {1} повідомленням(и)."
+msgstr[1] ""
+"Ваша програма не пройшла перевірку з {0} помилками і {1} повідомленням(и)."
+msgstr[2] ""
+"Ваша програма не пройшла перевірку з {0} помилками і {1} повідомленням(и)."
 
 #: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Ваша програма пройшла перевірку без помилок і з {0} повідомленням."
-msgstr[1] "Ваша програма пройшла перевірку без помилок і з {0} повідомленнями."
-msgstr[2] "Ваша програма пройшла перевірку без помилок і з {0} повідомленнями."
+msgstr[1] ""
+"Ваша програма пройшла перевірку без помилок і з {0} повідомленнями."
+msgstr[2] ""
+"Ваша програма пройшла перевірку без помилок і з {0} повідомленнями."
 
 #: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors or messages."
@@ -214,16 +223,24 @@ msgid "Disabled"
 msgstr "Вимкнено"
 
 #: media/js/devreg/init.js:35
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Дану функцію тимчасово вимкнено, поки ми проводимо технічне обслуговування веб-сайту. Спробуйте трохи пізніше."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Дану функцію тимчасово вимкнено, поки ми проводимо технічне обслуговування "
+"веб-сайту. Спробуйте трохи пізніше."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "Вилучити цю локалізацію"
 
 #: media/js/devreg/login.js:126
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Вхід за допомогою Persona невдалий. Можливо ви не маєте облікового запису під цією адресою ел. пошти?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Вхід за допомогою Persona невдалий. Можливо ви не маєте облікового запису "
+"під цією адресою ел. пошти?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
@@ -259,7 +276,8 @@ msgstr "Показати всі результати"
 
 #: media/js/devreg/lookup-tool.js:186
 msgid "Over {0} results found, consider refining your search."
-msgstr "Знайдено більше {0} результатів. Спробуйте уточнити ваш пошуковий запит."
+msgstr ""
+"Знайдено більше {0} результатів. Спробуйте уточнити ваш пошуковий запит."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
@@ -319,7 +337,9 @@ msgstr "Грецький HEBIC/Індонезійський банківськи
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "Британський/Ірландський код сортування або префікс Новозеландського рахунку або Австралійський BSB код"
+msgstr ""
+"Британський/Ірландський код сортування або префікс Новозеландського рахунку "
+"або Австралійський BSB код"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -344,22 +364,38 @@ msgstr "Виявлено: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
-msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] "Вилучення платіжного рахунку \"{0}\" прибере його з наступної програми. Програми без платіжного рахунку більше не будуть доступними для продажу."
-msgstr[1] "Вилучення платіжного рахунку \"{0}\" прибере його з наступних програм. Програми без платіжного рахунку більше не будуть доступними для продажу."
-msgstr[2] "Вилучення платіжного рахунку \"{0}\" прибере його з наступних програм. Програми без платіжного рахунку більше не будуть доступними для продажу."
+msgid ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following apps. Applications without a payment account will no longer be "
+"available for sale."
+msgid_plural ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
+msgstr[0] ""
+"Вилучення платіжного рахунку \"{0}\" прибере його з наступної програми. "
+"Програми без платіжного рахунку більше не будуть доступними для продажу."
+msgstr[1] ""
+"Вилучення платіжного рахунку \"{0}\" прибере його з наступних програм. "
+"Програми без платіжного рахунку більше не будуть доступними для продажу."
+msgstr[2] ""
+"Вилучення платіжного рахунку \"{0}\" прибере його з наступних програм. "
+"Програми без платіжного рахунку більше не будуть доступними для продажу."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
 msgstr "Платіжні рахунки {appName}:"
 
-#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:112
+#: media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Помилка"
 
-#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
+#: media/js/devreg/payments-manage.js:113
+#: media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
 msgstr "Сталась помилка з'єднання з сервером оплат."
 
@@ -553,11 +589,13 @@ msgstr "Безплатні"
 msgid "Any"
 msgstr "Будь-які"
 
-#: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
+#: media/js/devreg/reviewers/reviewers.js:246
+#: media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
 msgstr "Схвалена програма: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
+#: media/js/devreg/reviewers/reviewers.js:249
+#: media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
 msgstr "Відхилена програма: {app}"
 
@@ -578,10 +616,15 @@ msgid "Error failing app: {app}"
 msgstr "Помилка не проходження перевірки програми: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
-msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr "Вибачте! У нас виникла помилка під час вибірки історії переглядів. Спробуйте увійти знову.<p>"
+msgid ""
+"Sorry! We had an error fetching the review history. Please try logging in "
+"again.<p>"
+msgstr ""
+"Вибачте! У нас виникла помилка під час вибірки історії переглядів. Спробуйте"
+" увійти знову.<p>"
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on
+#. Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr "По {0} на {1}"
