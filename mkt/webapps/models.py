@@ -874,14 +874,13 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         Don't forget to call save() in your calling method.
         """
         updated_locales = {}
-        locales = dict(Translation.objects.filter(id=self.name_id)
-                                          .values_list('locale',
-                                                       'localized_string'))
+        qs = Translation.objects.filter(id=self.name_id)
+        locales = {to_language(locale): localized for locale, localized
+                   in qs.values_list('locale', 'localized_string')}
         msg_c = []  # For names that were created.
         msg_d = []  # For deletes.
         msg_u = []  # For updates.
 
-        # Normalize locales.
         names = {}
         for locale, name in new_names.iteritems():
             loc = find_language(locale)

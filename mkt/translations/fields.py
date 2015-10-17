@@ -163,6 +163,7 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
 
     def translation_from_string(self, instance, lang, string):
         """Create, save, and return a Translation from a string."""
+        lang = lang.lower()
         try:
             trans = getattr(instance, self.field.name)
             trans_id = getattr(instance, self.field.attname)
@@ -170,7 +171,7 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
                 # This locale doesn't have a translation set, but there are
                 # translations in another locale, so we have an id already.
                 translation = self.model.new(string, lang, id=trans_id)
-            elif to_language(trans.locale) == lang.lower():
+            elif to_language(trans.locale) == lang:
                 # Replace the translation in the current language.
                 trans.localized_string = string
                 translation = trans

@@ -184,7 +184,7 @@ class TranslationTestCase(TestCase):
 
     def test_create_with_dict(self):
         # Set translations with a dict.
-        strings = {'en-US': 'right language', 'de': 'wrong language'}
+        strings = {'en-us': 'right language', 'de': 'wrong language'}
         o = self.TranslatedModel.objects.create(name=strings)
 
         # Make sure we get the English text since we're in en-US.
@@ -232,6 +232,19 @@ class TranslationTestCase(TestCase):
         translation.activate('sr-Latn')
         trans_eq(get_model().name, 'yes I speak serbian', 'sr-Latn')
 
+    def test_update_with_dict_locale_in_different_case(self):
+        def get_model():
+            return self.TranslatedModel.objects.get(id=1)
+
+        obj = get_model()
+        eq_(obj.name.locale, 'en-us')
+        trans_eq(obj.name, 'some name', 'en-US')
+        obj.name = {'en-US': u'yes I speak englîsh'}
+        obj.save()
+        obj = get_model()
+        eq_(obj.name.locale, 'en-us')
+        trans_eq(obj.name, u'yes I speak englîsh', 'en-US')
+
     def test_dict_bad_locale(self):
         m = self.TranslatedModel.objects.get(id=1)
         m.name = {'de': 'oof', 'xxx': 'bam', 'es': 'si'}
@@ -239,7 +252,7 @@ class TranslationTestCase(TestCase):
 
         ts = Translation.objects.filter(id=m.name_id)
         eq_(sorted(ts.values_list('locale', flat=True)),
-            ['de', 'en-US', 'es'])
+            ['de', 'en-us', 'es'])
 
     def test_sorting(self):
         """Test translation comparisons in Python code."""
@@ -351,7 +364,7 @@ class TranslationTestCase(TestCase):
     def test_require_locale(self):
         obj = self.TranslatedModel.objects.get(id=1)
         eq_(unicode(obj.no_locale), 'blammo')
-        eq_(obj.no_locale.locale, 'en-US')
+        eq_(obj.no_locale.locale, 'en-us')
 
         # Switch the translation to a locale we wouldn't pick up by default.
         obj.no_locale.locale = 'fr'
