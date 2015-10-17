@@ -190,24 +190,50 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
         data = response.json
 
         eq_(data['author'], u'Mozillâ')
-        eq_(data['description'], {'en-US': u'A Dummÿ Extension'})
+        # The extension.zip package has "default_locale": "en_GB".
+        eq_(data['description'], {'en-GB': u'A Dummÿ Extension'})
         eq_(data['device_types'], ['firefoxos'])
         eq_(data['disabled'], False)
         eq_(data['last_updated'], None)  # The extension is not public yet.
         eq_(data['latest_version']['size'], 268)
         eq_(data['latest_version']['version'], '0.1')
-        eq_(data['name'], {'en-US': u'My Lîttle Extension'})
+        eq_(data['name'], {'en-GB': u'My Lîttle Extension'})
         eq_(data['slug'], u'my-lîttle-extension')
         eq_(data['status'], 'pending')
         eq_(Extension.objects.without_deleted().count(), 1)
         eq_(ExtensionVersion.objects.without_deleted().count(), 1)
         extension = Extension.objects.without_deleted().get(pk=data['id'])
+        eq_(extension.default_language, 'en-GB')
+        eq_(extension.description, u'A Dummÿ Extension')
+        eq_(extension.description.locale, 'en-gb')
+        eq_(extension.name, u'My Lîttle Extension')
+        eq_(extension.name.locale, 'en-gb')
         eq_(extension.status, STATUS_PENDING)
         eq_(list(extension.authors.all()), [self.user])
 
         note = extension.threads.get().notes.get()
         eq_(note.body, u'add-on has arrivedÄ')
         eq_(note.note_type, comm.SUBMISSION)
+
+    def test_create_logged_in_with_lang(self):
+        upload = self.get_upload(
+            abspath=self.packaged_app_path('extension.zip'), user=self.user)
+        eq_(upload.valid, True)
+        response = self.client.post(self.list_url, json.dumps({
+            'lang': 'es',
+            'validation_id': upload.pk
+        }))
+        eq_(response.status_code, 201)
+        data = response.json
+
+        eq_(data['author'], u'Mozillâ')
+        # The extension.zip package has "default_locale": "en_GB".
+        eq_(data['description'], {'en-GB': u'A Dummÿ Extension'})
+        eq_(data['name'], {'en-GB': u'My Lîttle Extension'})
+        extension = Extension.objects.without_deleted().get(pk=data['id'])
+        eq_(extension.default_language, 'en-GB')
+        eq_(extension.description.locale, 'en-gb')
+        eq_(extension.name.locale, 'en-gb')
 
     def test_create_upload_has_no_user(self):
         upload = self.get_upload(
