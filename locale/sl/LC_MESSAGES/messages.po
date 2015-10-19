@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-09-16 12:48+0000\n"
-"Last-Translator: Miha <miha@abecednik.si>\n"
+"PO-Revision-Date: 2015-10-19 10:58+0000\n"
+"Last-Translator: Miha Knavs <miha@abecednik.si>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -1441,7 +1441,7 @@ msgstr "Stopnjevano"
 
 #: mkt/constants/comm.py:51
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "Komentar zasebnega ocenjevalca"
 
 #: mkt/constants/comm.py:52
 msgid "App resubmission"
@@ -1461,7 +1461,7 @@ msgstr "Stopnjevano zaradi veliko zahtevkov povračil"
 
 #: mkt/constants/comm.py:57 mkt/site/log.py:472
 msgid "Re-review cleared"
-msgstr "Ponovna recenzija odobren"
+msgstr "Ponovni pregled odobren"
 
 #: mkt/constants/comm.py:58
 msgid "App submission notes"
@@ -1473,47 +1473,47 @@ msgstr "Razvijalčev komentar"
 
 #: mkt/constants/comm.py:60
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "Naprava(-e), ki jih je spremenil pregledovalec"
 
 #: mkt/constants/comm.py:61
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "Zahteva(-e), ki jih je spremenil pregledovalec"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Manifest Change"
-msgstr ""
+msgstr "Ponovni pregled zaradi spremembe manifesta"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "Ponovni pregled zaradi spremembe URL-ja manifesta"
 
 #: mkt/constants/comm.py:64
 msgid "Rereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Ponovni pregled zaradi nadgradnje na Premium"
 
 #: mkt/constants/comm.py:65
 msgid "Rereview due to Devices Added"
-msgstr ""
+msgstr "Ponovni pregled zaradi dodanih naprav"
 
 #: mkt/constants/comm.py:66
 msgid "Rereview due to Requirements Change"
-msgstr ""
+msgstr "Ponovni pregled zaradi spremembe zahtev"
 
 #: mkt/constants/comm.py:67
 msgid "Rereview due to Adult Content Rating"
-msgstr ""
+msgstr "Ponovni pregled zaradi umestitve med vsebine za odrasle"
 
 #: mkt/constants/comm.py:68
 msgid "Manual re-review requested"
-msgstr ""
+msgstr "Zahtevan ponovni ročni pregled"
 
 #: mkt/constants/comm.py:69
 msgid "Escalation due to VIP App"
-msgstr ""
+msgstr "Stopnjevanje zaradi VIP-aplikacije"
 
 #: mkt/constants/comm.py:70
 msgid "Escalation due to Prelease App"
-msgstr ""
+msgstr "Stopnjevanje zaradi predizdajne aplikacije"
 
 #: mkt/constants/comm.py:71
 msgid "Priority review requested"
@@ -1529,15 +1529,15 @@ msgstr "Neuspešen dodatni pregled"
 
 #: mkt/constants/comm.py:74
 msgid "Version notes for reviewer"
-msgstr ""
+msgstr "Beležke različice za ocenjevalca"
 
 #: mkt/constants/comm.py:75
 msgid "Public reviewer comment"
-msgstr ""
+msgstr "Komentar javnega ocenjevalca"
 
 #: mkt/constants/comm.py:76 mkt/site/log.py:545
 msgid "Abuse reports investigation"
-msgstr ""
+msgstr "Poizvedba poročil o zlorabah"
 
 #: mkt/constants/features.py:20
 msgid "App Management API"
@@ -1553,13 +1553,15 @@ msgstr ""
 
 #: mkt/constants/features.py:26
 msgid "Packaged Apps Install API"
-msgstr ""
+msgstr "API za nameščanje zapakiranih aplikacij"
 
 #: mkt/constants/features.py:27
 msgid ""
 "The app requires the `navigator.mozApps.installPackage` API to install other"
 " packaged apps."
 msgstr ""
+"Aplikacija zahteva API `navigator.mozApps.installPackage` za namestitev "
+"drugih zapakiranih aplikacij."
 
 #: mkt/constants/features.py:33
 msgid "Web Payment"
