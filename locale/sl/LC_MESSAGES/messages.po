@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-10-19 10:58+0000\n"
+"PO-Revision-Date: 2015-10-19 11:54+0000\n"
 "Last-Translator: Miha Knavs <miha@abecednik.si>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1613,7 +1613,7 @@ msgstr "Stiki"
 
 #: mkt/constants/features.py:67
 msgid "The app requires the `navigator.mozContacts` API."
-msgstr ""
+msgstr "Aplikacija zahteva API `navigator.mozContacts`."
 
 #: mkt/constants/features.py:72
 msgid "Device Storage"
@@ -1626,7 +1626,7 @@ msgstr ""
 
 #: mkt/constants/features.py:79
 msgid "The app requires the platform to support IndexedDB."
-msgstr ""
+msgstr "Aplikacija zahteva platformo za podporo IndexedDB."
 
 #: mkt/constants/features.py:84
 msgid "Geolocation"
@@ -1636,6 +1636,7 @@ msgstr "Geolokacija"
 msgid ""
 "The app requires the platform to support the `navigator.geolocation` API."
 msgstr ""
+"Aplikacija zahteva platformo za podporo API-ja`navigator.geolocation`."
 
 #: mkt/constants/features.py:90
 msgid "Idle"
@@ -1643,7 +1644,7 @@ msgstr "V mirovanju"
 
 #: mkt/constants/features.py:91
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr ""
+msgstr "Aplikacija zahteva platformo za podporo API-ja`addIdleObserver`."
 
 #: mkt/constants/features.py:96
 msgid "Network Information"
