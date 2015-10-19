@@ -8,6 +8,7 @@ from mpconstants.carriers import MOBILE_CODES
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView
+from mkt.access import acl
 from mkt.constants.carriers import CARRIER_MAP
 from mkt.constants.regions import REGIONS_DICT, REGIONS_BY_MCC
 from mkt.feed.views import FeedShelfPermissionMixin, RegionCarrierFilter
@@ -22,7 +23,8 @@ class LateCustomizationPermission(permissions.BasePermission):
     carrier/region pair.
     """
     def has_permission(self, request, view):
-        if request.method in permissions.SAFE_METHODS:
+        if (request.method in permissions.SAFE_METHODS or
+                acl.action_allowed(request, 'OperatorDashboard', '*')):
             return True
         return OperatorPermission.user_is_operator(request.user)
 
