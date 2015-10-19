@@ -22,6 +22,7 @@ class TestExtensionValidator(TestCase):
 
     * ExtensionValidator.validate_file
     * ExtensionValidator.validate_json
+    * ExtensionValidator.validate_icon_files
     """
     def setUp(self):
         self.extension = None
@@ -85,6 +86,7 @@ class TestExtensionValidator(TestCase):
             'validate_author',
             'validate_description',
             'validate_file',
+            'validate_icons',
             'validate_json',
             'validate_name',
             'validate_version',
@@ -281,3 +283,23 @@ class TestExtensionValidator(TestCase):
     def test_version_contains_a_number_too_large(self):
         with self.assertValidationError('VERSION_INVALID'):
             self.validator.validate_version({'version': '0.42.65536.42'})
+
+    def test_no_icons(self):
+        try:
+            self.validator.validate_icons({})
+        except:
+            self.fail('A missing icons object is allowed.')
+
+    def test_empty_icons(self):
+        try:
+            self.validator.validate_icons({'icons': {}})
+        except:
+            self.fail('Empty icons object is allowed.')
+
+    def test_icon_missing_128(self):
+        with self.assertValidationError('ICONS_NO_128'):
+            self.validator.validate_icons({'icons': {'64': ''}})
+
+    def test_icon_not_png_extension(self):
+        with self.assertValidationError('ICONS_INVALID_FORMAT'):
+            self.validator.validate_icons({'icons': {'128': 'me.jpg'}})
