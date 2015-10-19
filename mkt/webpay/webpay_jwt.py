@@ -12,6 +12,7 @@ import mkt
 from lib.crypto.webpay import sign_webpay_jwt
 from mkt.site.helpers import absolutify
 from mkt.translations.models import Translation
+from mkt.translations.utils import to_language
 from mkt.webpay.utils import make_external_id, strip_tags
 
 
@@ -96,8 +97,9 @@ class WebAppProduct(object):
         for attr in ('name', 'description'):
             tr_object = getattr(self.webapp, attr)
             for tr in Translation.objects.filter(id=tr_object.id):
-                props.setdefault(tr.locale, {})
-                props[tr.locale][attr] = tr.localized_string
+                language = to_language(tr.locale)
+                props.setdefault(language, {})
+                props[language][attr] = tr.localized_string
 
         return props
 

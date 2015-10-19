@@ -8,7 +8,7 @@
         "model": "translations.translation",
         "fields": {
             "id": 1,
-            "locale": "en-US",
+            "locale": "en-us",
             "localized_string": "some name",
             "created": "2007-03-05 16:06:55",
             "modified": "2007-03-21 13:42:36"
@@ -19,7 +19,7 @@
         "model": "translations.translation",
         "fields": {
             "id": 2,
-            "locale": "en-US",
+            "locale": "en-us",
             "localized_string": "some description",
             "created": "2007-03-05 16:06:55",
             "modified": "2007-03-21 13:42:36"
@@ -52,7 +52,7 @@
         "model": "translations.translation",
         "fields": {
             "id": 3,
-            "locale": "en-US",
+            "locale": "en-us",
             "localized_string": "speak American",
             "created": "2007-03-05 16:06:55",
             "modified": "2007-03-21 13:42:36"
@@ -63,7 +63,7 @@
         "model": "translations.translation",
         "fields": {
             "id": 4,
-            "locale": "en-US",
+            "locale": "en-us",
             "localized_string": "hot dogs",
             "created": "2007-03-05 16:06:55",
             "modified": "2007-03-21 13:42:36"
@@ -74,7 +74,7 @@
         "model": "translations.translation",
         "fields": {
             "id": 10,
-            "locale": "en-US",
+            "locale": "en-us",
             "localized_string": "blammo",
             "created": "2007-03-05 16:06:55",
             "modified": "2007-03-21 13:42:36"
@@ -85,7 +85,7 @@
         "model": "translations.purifiedtranslation",
         "fields": {
             "id": 20,
-            "locale": "en-US",
+            "locale": "en-us",
             "localized_string": "<i>x</i> http://yyy.com",
             "created": "2007-03-05 16:06:55",
             "modified": "2007-03-21 13:42:36"
@@ -96,7 +96,7 @@
         "model": "translations.linkifiedtranslation",
         "fields": {
             "id": 30,
-            "locale": "en-US",
+            "locale": "en-us",
             "localized_string": "<i>x</i> http://yyy.com",
             "created": "2007-03-05 16:06:55",
             "modified": "2007-03-21 13:42:36"
