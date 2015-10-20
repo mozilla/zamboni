@@ -32,6 +32,10 @@ class ExtensionValidator(object):
         'DESCRIPTION_TOO_LONG': _(
             u'The `description` property cannot be '
             u'longer than 132 characters.'),
+        'ICONS_DO_NOT_EXIST': _(u'Not all specified icons exist.'),
+        'ICONS_NO_128': _(
+            u'If defining `icons`, you must include a 128x128 variant.'),
+        'ICONS_INVALID_FORMAT': _(u'Only PNG icons are permitted.'),
         'INVALID_JSON': _(
             u"'manifest.json' in the archive is not a valid JSON"
             u" file."),
@@ -64,6 +68,7 @@ class ExtensionValidator(object):
 
     def __init__(self, file_obj=None):
         self.file_obj = file_obj
+        self.zipfile = None
 
     def error(self, error_key):
         raise ParseError(detail={
@@ -87,6 +92,8 @@ class ExtensionValidator(object):
         self.validate_description(self.data)
         self.validate_version(self.data)
         self.validate_author(self.data)
+        self.validate_icons(self.data)
+        # self.validate_icon_files(self.data)
         return self.data
 
     def validate_file(self, file_obj):
@@ -97,14 +104,15 @@ class ExtensionValidator(object):
         if file_obj.content_type not in self.valid_content_types:
             self.error('BAD_CONTENT_TYPE')
         try:
-            zf = SafeUnzip(file_obj)
+            self.zipfile = SafeUnzip(file_obj)
             try:
-                zf.is_valid()  # Will throw ValidationError if necessary.
+                # Will throw ValidationError if necessary.
+                self.zipfile.is_valid()
             except ValidationError as e:
                 raise ParseError(unicode(e))
             except (BadZipfile, IOError):
                 self.error('INVALID_ZIP')
-            manifest = zf.extract_path('manifest.json')
+            manifest = self.zipfile.extract_path('manifest.json')
         except KeyError:
             self.error('NO_MANIFEST')
         return manifest
@@ -202,3 +210,32 @@ class ExtensionValidator(object):
                 self.error('AUTHOR_TOO_SHORT')
             if len(author) > 128:
                 self.error('AUTHOR_TOO_LONG')
+
+    def validate_icons(self, manifest_json):
+        """
+        Validate the `icons` property in the manifest:
+
+        * Ensure that, if the icons property is present, a 128px icon is
+          provided.
+        * Ensure that each icon referenced has a .png extension.
+        """
+        icons = manifest_json.get('icons', {})
+        if icons:
+            if '128' not in icons:
+                self.error('ICONS_NO_128')
+            for size, path in icons.iteritems():
+                if not path.endswith('.png'):
+                    self.error('ICONS_INVALID_FORMAT')
+
+    def validate_icon_files(self, manifest_json):
+        """
+        In turn, validate each icon file referenced by the `icons` property of
+        the manifest:
+
+        * Ensure that the file exists in the zip.
+        * Ensure that it is a valid PNG file.
+        * Ensure that it has the claimed dimensions.
+        * Ensure that it is square.
+        """
+        icons = manifest_json.get('icons', {})
+        return icons

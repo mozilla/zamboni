@@ -137,7 +137,7 @@
         "fields": {
             "localized_string": "We sell your ish \r\nhttp://omg.org/yes",
             "created": "2007-04-05 08:08:48",
-            "locale": "en-US",
+            "locale": "en-us",
             "modified": "2009-03-26 07:41:10",
             "id": 2326784,
             "localized_string_clean": null
@@ -149,7 +149,7 @@
         "fields": {
             "localized_string_clean": null,
             "created": "2011-10-18 16:28:24",
-            "locale": "en-US",
+            "locale": "en-us",
             "modified": "2011-10-18 16:28:57",
             "id": 2425897,
             "localized_string": "Something Something Steamcube!"
@@ -173,7 +173,7 @@
         "fields": {
             "localized_string_clean": null,
             "created": "2011-10-18 16:28:24",
-            "locale": "en-US",
+            "locale": "en-us",
             "modified": "2011-10-18 16:28:57",
             "id": 2425898,
             "localized_string": "Something Something Steamcube description!"
@@ -185,7 +185,7 @@
         "fields": {
             "localized_string_clean": null,
             "created": "2011-10-18 16:28:24",
-            "locale": "en-US",
+            "locale": "en-us",
             "modified": "2011-10-18 16:28:57",
             "id": 2425899,
             "localized_string": "foo@bar.com"

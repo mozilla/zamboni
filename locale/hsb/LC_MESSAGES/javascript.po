@@ -1,3 +1,4 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -11,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
-"X-Generator: Pootle 2.5.0\n"
+"X-Generator: Pontoon\n"
 "X-POOTLE-MTIME: 1442861455.0\n"
 
 #: media/js/common/upload-base.js:61
@@ -30,7 +31,8 @@ msgstr "Wobrazy dyrbja pak PNG pak JPG być."
 msgid "Videos must be in WebM."
 msgstr "Wideja dyrbja we formaće WebM być."
 
-#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Při kontaktowanju serwera je problem wustupił."
 
@@ -80,7 +82,8 @@ msgstr[1] "&hellip;a {0} dalšej"
 msgstr[2] "&hellip;a {0} dalše"
 msgstr[3] "&hellip;a {0} dalšich"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199
+#: media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
 msgstr "Dospołnu přepruwowansku rozprawu čitać"
 
@@ -104,14 +107,20 @@ msgstr "Přepruwowanje {0} dokónčene"
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] "Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} warnowanjom wobstało."
-msgstr[1] "Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} warnowanjomaj wobstało."
-msgstr[2] "Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} warnowanjemi wobstało."
-msgstr[3] "Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} warnowanjemi wobstało."
+msgstr[0] ""
+"Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} warnowanjom wobstało."
+msgstr[1] ""
+"Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} warnowanjomaj "
+"wobstało."
+msgstr[2] ""
+"Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} warnowanjemi wobstało."
+msgstr[3] ""
+"Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} warnowanjemi wobstało."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
-msgstr "Waše nałoženje je přepruwowanje bjez zmylkow abo warnowanjow wobstało."
+msgstr ""
+"Waše nałoženje je přepruwowanje bjez zmylkow abo warnowanjow wobstało."
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
@@ -148,22 +157,35 @@ msgstr "Instalacija je so nimokuliła. Prošu spytajće pozdźišo hišće raz."
 #: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "Waše nałoženje je při přepruwowanju z {0} zmylkom a {1} zdźělenku přepadnyło."
-msgstr[1] "Waše nałoženje je při přepruwowanju z {0} zmylkomaj a {1} zdźělenkomaj přepadnyło."
-msgstr[2] "Waše nałoženje je při přepruwowanju z {0} zmylkami a {1} zdźělenkami přepadnyło."
-msgstr[3] "Waše nałoženje je při přepruwowanju z {0} zmylkami a {1} zdźělenkami přepadnyło."
+msgstr[0] ""
+"Waše nałoženje je při přepruwowanju z {0} zmylkom a {1} zdźělenku "
+"přepadnyło."
+msgstr[1] ""
+"Waše nałoženje je při přepruwowanju z {0} zmylkomaj a {1} zdźělenkomaj "
+"přepadnyło."
+msgstr[2] ""
+"Waše nałoženje je při přepruwowanju z {0} zmylkami a {1} zdźělenkami "
+"přepadnyło."
+msgstr[3] ""
+"Waše nałoženje je při přepruwowanju z {0} zmylkami a {1} zdźělenkami "
+"přepadnyło."
 
 #: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} zdźělenku wobstało."
-msgstr[1] "Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} zdźělenkomaj wobstało."
-msgstr[2] "Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} zdźělenkami wobstało."
-msgstr[3] "Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} zdźělenkami wobstało."
+msgstr[0] ""
+"Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} zdźělenku wobstało."
+msgstr[1] ""
+"Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} zdźělenkomaj wobstało."
+msgstr[2] ""
+"Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} zdźělenkami wobstało."
+msgstr[3] ""
+"Waše nałoženje je přepruwowanje bjeze zmylkow a z {0} zdźělenkami wobstało."
 
 #: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors or messages."
-msgstr "Waše nałoženje je přepruwowanje bjeze zmylkow abo zdźělenkow wobstało."
+msgstr ""
+"Waše nałoženje je přepruwowanje bjeze zmylkow abo zdźělenkow wobstało."
 
 #: media/js/devreg/devhub.js:447
 msgid "Changes Saved"
@@ -218,16 +240,24 @@ msgid "Disabled"
 msgstr "Znjemóžnjeny"
 
 #: media/js/devreg/init.js:35
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Tuta funkcija je so nachwilu znjemóžnjena, mjeztym zo wothladowanske dźěła na websydle přewjedźemy. Prošu spytajće tróšku pozdźišo hišće raz."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Tuta funkcija je so nachwilu znjemóžnjena, mjeztym zo wothladowanske dźěła "
+"na websydle přewjedźemy. Prošu spytajće tróšku pozdźišo hišće raz."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "Tutón přełožk wotstronić"
 
 #: media/js/devreg/login.js:126
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Přizjewjenje z Persona je so nimokuliło. Snano nimaće konto pod tutej e-mejlowej adresu?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Přizjewjenje z Persona je so nimokuliło. Snano nimaće konto pod tutej "
+"e-mejlowej adresu?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
@@ -348,23 +378,45 @@ msgstr "Spóznaty: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
-msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] "Zhašenje płaćenskeho konta \"{0}\" wotstroni płaćenske konto ze slědowacych nałoženjow. Nałoženja bjez płaćenskeho konta hižo njebudźe za kup k dispoziciji."
-msgstr[1] "Zhašenje płaćenskeho konta \"{0}\" wotstroni płaćenske konto ze slědowacych nałoženjow. Nałoženja bjez płaćenskeho konta hižo njebudźe za kup k dispoziciji."
-msgstr[2] "Zhašenje płaćenskeho konta \"{0}\" wotstroni płaćenske konto ze slědowaceju nałoženjow. Nałoženja bjez płaćenskeho konta hižo njebudźe za kup k dispoziciji."
-msgstr[3] "Zhašenje płaćenskeho konta \"{0}\" wotstroni płaćenske konto ze slědowaceho nałoženja. Nałoženja bjez płaćenskeho konta hižo njebudźe za kup k dispoziciji."
+msgid ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following apps. Applications without a payment account will no longer be "
+"available for sale."
+msgid_plural ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
+msgstr[0] ""
+"Zhašenje płaćenskeho konta \"{0}\" wotstroni płaćenske konto ze slědowacych "
+"nałoženjow. Nałoženja bjez płaćenskeho konta hižo njebudźe za kup k "
+"dispoziciji."
+msgstr[1] ""
+"Zhašenje płaćenskeho konta \"{0}\" wotstroni płaćenske konto ze slědowacych "
+"nałoženjow. Nałoženja bjez płaćenskeho konta hižo njebudźe za kup k "
+"dispoziciji."
+msgstr[2] ""
+"Zhašenje płaćenskeho konta \"{0}\" wotstroni płaćenske konto ze slědowaceju "
+"nałoženjow. Nałoženja bjez płaćenskeho konta hižo njebudźe za kup k "
+"dispoziciji."
+msgstr[3] ""
+"Zhašenje płaćenskeho konta \"{0}\" wotstroni płaćenske konto ze slědowaceho "
+"nałoženja. Nałoženja bjez płaćenskeho konta hižo njebudźe za kup k "
+"dispoziciji."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
 msgstr "Płaćenske konta {appName}:"
 
-#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:112
+#: media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Zmylk"
 
-#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
+#: media/js/devreg/payments-manage.js:113
+#: media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
 msgstr "Při kontaktowanju płaćenskeho serwera je problem wustupił."
 
@@ -561,11 +613,13 @@ msgstr "Darmo"
 msgid "Any"
 msgstr "Wšojedne"
 
-#: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
+#: media/js/devreg/reviewers/reviewers.js:246
+#: media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
 msgstr "Nałoženje schwalene: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
+#: media/js/devreg/reviewers/reviewers.js:249
+#: media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
 msgstr "Nałoženje wotpokazane: {app}"
 
@@ -586,10 +640,15 @@ msgid "Error failing app: {app}"
 msgstr "Zmylk při přepadnjenju nałoženja: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
-msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr "Wodajće! Mějachmy zmylk při wotwołowanju historije přepruwowanjow. Prošu spytajće so hišće raz přizjewjeć.<p>"
+msgid ""
+"Sorry! We had an error fetching the review history. Please try logging in "
+"again.<p>"
+msgstr ""
+"Wodajće! Mějachmy zmylk při wotwołowanju historije přepruwowanjow. Prošu "
+"spytajće so hišće raz přizjewjeć.<p>"
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on
+#. Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr "Wot {0} {1}"

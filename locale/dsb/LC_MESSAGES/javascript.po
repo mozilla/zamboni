@@ -1,3 +1,4 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -11,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
-"X-Generator: Pootle 2.5.0\n"
+"X-Generator: Pontoon\n"
 "X-POOTLE-MTIME: 1442863456.0\n"
 
 #: media/js/common/upload-base.js:61
@@ -30,7 +31,8 @@ msgstr "Wobraze muse pak PNG pak JPG byś."
 msgid "Videos must be in WebM."
 msgstr "Wideo muse we formaśe WebM byś."
 
-#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Pśi kontaktěrowanju serwera jo problem nastał."
 
@@ -80,7 +82,8 @@ msgstr[1] "&hellip;a {0} dalšnej"
 msgstr[2] "&hellip;a {0} dalšne"
 msgstr[3] "&hellip;a {0} dalšnych"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199
+#: media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
 msgid "See full validation report"
 msgstr "Dopołnu pśeglědowańsku rozpšawu cytaś"
 
@@ -104,14 +107,20 @@ msgstr "Pśeglědowanje {0} dokóńcone"
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] "Wašo nałoženje jo pśeglědowanje bźeze zmólkow a z {0} warnowanim wobstało."
-msgstr[1] "Wašo nałoženje jo pśeglědowanje bźeze zmólkow a z {0} warnowanjoma wobstało."
-msgstr[2] "Wašo nałoženje jo pśeglědowanje bźeze zmólkow a z {0} warnowanjami wobstało."
-msgstr[3] "Wašo nałoženje jo pśeglědowanje bźeze zmólkow a z {0} warnowanijami wobstało."
+msgstr[0] ""
+"Wašo nałoženje jo pśeglědowanje bźeze zmólkow a z {0} warnowanim wobstało."
+msgstr[1] ""
+"Wašo nałoženje jo pśeglědowanje bźeze zmólkow a z {0} warnowanjoma wobstało."
+msgstr[2] ""
+"Wašo nałoženje jo pśeglědowanje bźeze zmólkow a z {0} warnowanjami wobstało."
+msgstr[3] ""
+"Wašo nałoženje jo pśeglědowanje bźeze zmólkow a z {0} warnowanijami "
+"wobstało."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
-msgstr "Wašo nałoženje jo pśeglědowanje bźez zmólkow abo warnowanjow wobstało."
+msgstr ""
+"Wašo nałoženje jo pśeglědowanje bźez zmólkow abo warnowanjow wobstało."
 
 #: media/js/devreg/apps.js:84
 msgid "The manifest could not be found at the given location."
@@ -148,18 +157,29 @@ msgstr "Instalacija njejo se raźiła. Pšosym wopytajśo pózdźej hyšći raz.
 #: media/js/devreg/devhub.js:213
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "Wašo nałoženje jo pśi pśeglědowanju z {0} zmólku a {1} powěźeńku pśepadnuło."
-msgstr[1] "Wašo nałoženje jo pśi pśeglědowanju z {0} zmólkoma a {1} powěźeńkoma pśepadnuło."
-msgstr[2] "Wašo nałoženje jo pśi pśeglědowanju z {0} zmólkami a {1} powěźeńkami pśepadnuło."
-msgstr[3] "Wašo nałoženje jo pśi pśeglědowanju z {0} zmólkami a {1} powěźeńkami pśepadnuło."
+msgstr[0] ""
+"Wašo nałoženje jo pśi pśeglědowanju z {0} zmólku a {1} powěźeńku pśepadnuło."
+msgstr[1] ""
+"Wašo nałoženje jo pśi pśeglědowanju z {0} zmólkoma a {1} powěźeńkoma "
+"pśepadnuło."
+msgstr[2] ""
+"Wašo nałoženje jo pśi pśeglědowanju z {0} zmólkami a {1} powěźeńkami "
+"pśepadnuło."
+msgstr[3] ""
+"Wašo nałoženje jo pśi pśeglědowanju z {0} zmólkami a {1} powěźeńkami "
+"pśepadnuło."
 
 #: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "Wašo nałoženje jo pśeglědowanje bźeze zmólkow a z {0} powěźeńku wobstało."
-msgstr[1] "Wašo nałoženje jo pśeglědowanje bźeze zmólkow a z {0} powěźeńkoma wobstało."
-msgstr[2] "Wašo nałoženje jo pśeglědowanje bźeze zmólkow a z {0} powěźeńkami wobstało."
-msgstr[3] "Wašo nałoženje jo pśeglědowanje bźeze zmólkow a z {0} powěźeńkami wobstało."
+msgstr[0] ""
+"Wašo nałoženje jo pśeglědowanje bźeze zmólkow a z {0} powěźeńku wobstało."
+msgstr[1] ""
+"Wašo nałoženje jo pśeglědowanje bźeze zmólkow a z {0} powěźeńkoma wobstało."
+msgstr[2] ""
+"Wašo nałoženje jo pśeglědowanje bźeze zmólkow a z {0} powěźeńkami wobstało."
+msgstr[3] ""
+"Wašo nałoženje jo pśeglědowanje bźeze zmólkow a z {0} powěźeńkami wobstało."
 
 #: media/js/devreg/devhub.js:232
 msgid "Your app passed validation with no errors or messages."
@@ -218,16 +238,24 @@ msgid "Disabled"
 msgstr "Znjemóžnjony"
 
 #: media/js/devreg/init.js:35
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Toś ta funkcija jo se nachylu znjemóžnjona, mjaztym až pśewjedujomy wótwardowańske źěła na websedle. Pšosym wopytajśo pitśku pózdźej hyšći raz."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Toś ta funkcija jo se nachylu znjemóžnjona, mjaztym až pśewjedujomy "
+"wótwardowańske źěła na websedle. Pšosym wopytajśo pitśku pózdźej hyšći raz."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "Toś ten pśełožk wótpóraś"
 
 #: media/js/devreg/login.js:126
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Pśizjawjenje z Persona njejo se raźiło. Snaź njamaśo konto pód toś teju e-mailoweju adresu?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Pśizjawjenje z Persona njejo se raźiło. Snaź njamaśo konto pód toś teju "
+"e-mailoweju adresu?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
@@ -348,23 +376,45 @@ msgstr "Spóznaty: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
-msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] "Lašowanje płaśeńskego konta \"{0}\" wótpórajo płaśeńske konto ze slědujucych nałoženjow. Nałoženja bźez płaśeńskego konta južo njebuźo k dispoziciji za kup."
-msgstr[1] "Lašowanje płaśeńskego konta \"{0}\" wótpórajo płaśeńske konto ze slědujucych nałoženjow. Nałoženja bźez płaśeńskego konta južo njebuźo k dispoziciji za kup."
-msgstr[2] "Lašowanje płaśeńskego konta \"{0}\" wótpórajo płaśeńske konto ze slědujuceju nałoženjowu. Nałoženja bźez płaśeńskego konta južo njebuźo k dispoziciji za kup."
-msgstr[3] "Lašowanje płaśeńskego konta \"{0}\" wótpórajo płaśeńske konto ze slědujucego nałoženja. Nałoženja bźez płaśeńskego konta južo njebuźo k dispoziciji za kup."
+msgid ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following apps. Applications without a payment account will no longer be "
+"available for sale."
+msgid_plural ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
+msgstr[0] ""
+"Lašowanje płaśeńskego konta \"{0}\" wótpórajo płaśeńske konto ze slědujucych"
+" nałoženjow. Nałoženja bźez płaśeńskego konta južo njebuźo k dispoziciji za "
+"kup."
+msgstr[1] ""
+"Lašowanje płaśeńskego konta \"{0}\" wótpórajo płaśeńske konto ze slědujucych"
+" nałoženjow. Nałoženja bźez płaśeńskego konta južo njebuźo k dispoziciji za "
+"kup."
+msgstr[2] ""
+"Lašowanje płaśeńskego konta \"{0}\" wótpórajo płaśeńske konto ze slědujuceju"
+" nałoženjowu. Nałoženja bźez płaśeńskego konta južo njebuźo k dispoziciji za"
+" kup."
+msgstr[3] ""
+"Lašowanje płaśeńskego konta \"{0}\" wótpórajo płaśeńske konto ze slědujucego"
+" nałoženja. Nałoženja bźez płaśeńskego konta južo njebuźo k dispoziciji za "
+"kup."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
 msgstr "Płaśeńske konta {appName}:"
 
-#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:112
+#: media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Zmólka"
 
-#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
+#: media/js/devreg/payments-manage.js:113
+#: media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
 msgstr "Pśi kontaktěrowanju płaśeńskego serwera jo problem nastał."
 
@@ -561,11 +611,13 @@ msgstr "Dermo"
 msgid "Any"
 msgstr "Wšojadno"
 
-#: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
+#: media/js/devreg/reviewers/reviewers.js:246
+#: media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
 msgstr "Nałoženje pśizwólone: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
+#: media/js/devreg/reviewers/reviewers.js:249
+#: media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
 msgstr "Nałoženje wótpokazane: {app}"
 
@@ -586,10 +638,15 @@ msgid "Error failing app: {app}"
 msgstr "Zmólka pśi pśepadnjenju nałoženja: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
-msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr "Wódajśo! Pśi wótwołowanju historije pśeglědanjow jo zmólka nastała. Pšosym wopytajśo se hyšći raz pśizjawjaś.<p>"
+msgid ""
+"Sorry! We had an error fetching the review history. Please try logging in "
+"again.<p>"
+msgstr ""
+"Wódajśo! Pśi wótwołowanju historije pśeglědanjow jo zmólka nastała. Pšosym "
+"wopytajśo se hyšći raz pśizjawjaś.<p>"
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on
+#. Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr "Wót {0} {1}"

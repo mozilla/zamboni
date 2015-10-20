@@ -554,8 +554,8 @@ class TestRemoveLocale(mkt.site.tests.TestCase):
         app.remove_locale('el')
         qs = (Translation.objects.filter(localized_string__isnull=False)
               .values_list('locale', flat=True))
-        eq_(sorted(qs.filter(id=app.name_id)), ['en-US'])
-        eq_(sorted(qs.filter(id=app.description_id)), ['en-US', 'ja'])
+        eq_(sorted(qs.filter(id=app.name_id)), ['en-us'])
+        eq_(sorted(qs.filter(id=app.description_id)), ['en-us', 'ja'])
 
     def test_remove_version_locale(self):
         app = app_factory()
