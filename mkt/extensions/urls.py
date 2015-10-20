@@ -4,8 +4,9 @@ from rest_framework.routers import SimpleRouter
 from rest_framework_nested.routers import NestedSimpleRouter
 
 from mkt.extensions.views import (ExtensionSearchView, ExtensionVersionViewSet,
-                                  ExtensionViewSet, ReviewersExtensionViewSet,
-                                  ValidationViewSet)
+                                  ExtensionViewSet,
+                                  ReviewerExtensionSearchView,
+                                  ReviewersExtensionViewSet, ValidationViewSet)
 
 extensions = SimpleRouter()
 extensions.register(r'validation', ValidationViewSet,
@@ -26,4 +27,6 @@ urlpatterns = patterns(
     url(r'', include(extensions.urls)),
     url(r'', include(sub_extensions.urls)),
     url(r'search/$', ExtensionSearchView.as_view(), name='extension-search'),
+    url(r'search/reviewers/$', ReviewerExtensionSearchView.as_view(),
+        name='extension-search-reviewers'),
 )
