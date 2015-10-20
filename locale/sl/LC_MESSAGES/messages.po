@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-10-20 07:30+0000\n"
+"PO-Revision-Date: 2015-10-20 07:37+0000\n"
 "Last-Translator: Miha Knavs <miha@abecednik.si>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2411,7 +2411,7 @@ msgstr "Rakleta ne more biti \"%s\". Izberite kako drugo."
 
 #: mkt/developers/forms.py:630
 msgid "Manifest URL changed from {before_url} to {after_url}"
-msgstr ""
+msgstr "URL manifesta se je spremil iz {before_url} v {after_url}"
 
 # 86%
 #: mkt/developers/forms.py:667
@@ -2427,7 +2427,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:747 mkt/submit/templates/submit/details.html:125
 msgid "You must provide either a website, an email, or both."
-msgstr ""
+msgstr "Vnesti morate spletno stran, e-pošto ali oboje."
 
 #: mkt/developers/forms.py:772
 msgid "Your comments"
@@ -2438,12 +2438,16 @@ msgid ""
 "<b>Published</b>: Visible to everyone in the Marketplace and included in "
 "search results and listing pages."
 msgstr ""
+"<b>Objavljeno</b>: vidno vsem v Marketplacu in vključeno v rezultate iskanja"
+" ter strani s seznamom."
 
 #: mkt/developers/forms.py:803
 msgid ""
 "<b>Unlisted</b>: Visible to only people with the URL and does not appear in "
 "search results and listing pages."
 msgstr ""
+"<b>Neobjavljeno</b>: vidno samo z vnosom URL-ja, ni vključeno v rezultatih "
+"iskanja in straneh s seznamom."
 
 #: mkt/developers/forms.py:819
 msgid "App Visibility:"
@@ -2451,7 +2455,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:821
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
-msgstr ""
+msgstr "<b>Omeji na mojo skupino</b>: vidno samo članom skupine."
 
 #: mkt/developers/forms.py:867
 msgid "Choose the regions your app will be listed in:"
