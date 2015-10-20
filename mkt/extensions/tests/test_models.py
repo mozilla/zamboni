@@ -1239,6 +1239,10 @@ class TestExtensionQuerySetAndManager(TestCase):
             extension=extension2, status=STATUS_PENDING, version='2.1')
         ExtensionVersion.objects.create(
             extension=extension2, status=STATUS_PUBLIC, version='2.2')
+        extension3 = Extension.objects.create()
+        ExtensionVersion.objects.create(
+            extension=extension3, deleted=True, status=STATUS_PENDING,
+            version='3.1')
         Extension.objects.create(status=STATUS_PUBLIC)
         Extension.objects.create(status=STATUS_NULL)
         disabled_extension = Extension.objects.create(disabled=True)
