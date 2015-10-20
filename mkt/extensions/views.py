@@ -38,8 +38,9 @@ from mkt.extensions.serializers import (ESExtensionSerializer,
                                         ExtensionVersionSerializer)
 from mkt.extensions.validation import ExtensionValidator
 from mkt.files.models import FileUpload
-from mkt.search.filters import (ExtensionSearchFormFilter, PublicContentFilter,
-                                SearchQueryFilter, SortingFilter)
+from mkt.search.filters import (ExtensionSearchFormFilter, NotDeletedFilter,
+                                PublicContentFilter, SearchQueryFilter,
+                                SortingFilter)
 from mkt.site.decorators import allow_cross_site_request, use_master
 from mkt.site.utils import get_file_response
 from mkt.submit.views import ValidationViewSet as SubmitValidationViewSet
@@ -187,6 +188,12 @@ class ReviewersExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     }),)
     queryset = Extension.objects.without_deleted().pending()
     serializer_class = ExtensionSerializer
+
+
+class ReviewerExtensionSearchView(ExtensionSearchView):
+    filter_backends = [ExtensionSearchFormFilter, NotDeletedFilter,
+                       SearchQueryFilter, SortingFilter]
+    permission_classes = [GroupPermission('ContentTools', 'AddonReview')]
 
 
 class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,

@@ -60,13 +60,14 @@ class ESExtensionSerializer(BaseESSerializer, ExtensionSerializer):
         obj = Extension(id=data['id'])
 
         # Create a fake ExtensionVersion for latest_public_version.
-        obj.latest_public_version = ExtensionVersion(
-            extension=obj,
-            id=data['latest_public_version']['id'],
-            created=data['latest_public_version']['created'],
-            size=data['latest_public_version'].get('size', 0),
-            status=STATUS_PUBLIC,
-            version=data['latest_public_version']['version'],)
+        if data['latest_public_version']:
+            obj.latest_public_version = ExtensionVersion(
+                extension=obj,
+                id=data['latest_public_version']['id'],
+                created=data['latest_public_version']['created'],
+                size=data['latest_public_version'].get('size', 0),
+                status=STATUS_PUBLIC,
+                version=data['latest_public_version']['version'],)
 
         # Set basic attributes we'll need on the fake instance using the data
         # from ES.

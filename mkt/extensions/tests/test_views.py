@@ -716,6 +716,124 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
         eq_(response.json['objects'][0]['id'], self.extension.pk)
 
 
+class TestReviewerExtensionSearchView(RestOAuth, ESTestCase):
+    fixtures = fixture('user_2519')
+
+    def setUp(self):
+        self.user = UserProfile.objects.get()
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
+        self.last_updated_date = datetime.now()
+        self.extension = Extension.objects.create(
+            author=u'MäÄägnificent Author',
+            description=u'Mâgnificent Extension Description',
+            name=u'Mâgnificent Extension',
+            last_updated=self.last_updated_date)
+        self.version = ExtensionVersion.objects.create(
+            extension=self.extension, reviewed=self.days_ago(7),
+            size=333, status=STATUS_PUBLIC, version='1.0.0')
+        self.url = reverse('api-v2:extension-search-reviewers')
+        super(TestReviewerExtensionSearchView, self).setUp()
+        self.refresh('extension')
+
+    def tearDown(self):
+        Extension.get_indexer().unindexer(_all=True)
+        super(TestReviewerExtensionSearchView, self).tearDown()
+
+    def test_verbs(self):
+        self._allowed_verbs(self.url, ['get'])
+
+    def test_has_cors(self):
+        self.assertCORS(self.anon.get(self.url), 'get')
+
+    def test_basic(self):
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        eq_(len(response.json['objects']), 1)
+
+    def test_anon(self):
+        response = self.anon.get(self.url)
+        eq_(response.status_code, 403)
+
+    def test_user_no_perm(self):
+        self.user.groups.all().delete()
+        response = self.client.get(self.url)
+        eq_(response.status_code, 403)
+
+    def test_list(self):
+        self.extension2 = Extension.objects.create(name=u'Mŷ Second Extension')
+        self.version2 = ExtensionVersion.objects.create(
+            extension=self.extension2, status=STATUS_PUBLIC, version='1.2.3')
+        self.refresh('extension')
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        eq_(len(response.json['objects']), 2)
+
+    def test_query(self):
+        self.extension2 = Extension.objects.create(name=u'Superb Extensiôn')
+        self.version2 = ExtensionVersion.objects.create(
+            extension=self.extension2, status=STATUS_PUBLIC, version='4.5.6')
+        self.refresh('extension')
+        res = self.client.get(self.url, data={'q': 'superb'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 1)
+        eq_(objs[0]['id'], self.extension2.pk)
+
+    def test_query_sort_reviewed(self):
+        self.extension2 = Extension.objects.create(name=u'Superb Extensiôn')
+        self.version2 = ExtensionVersion.objects.create(
+            extension=self.extension2, reviewed=self.days_ago(0),
+            status=STATUS_PUBLIC, version='4.5.6')
+        self.refresh('extension')
+        res = self.client.get(
+            self.url, data={'q': 'extension', 'sort': 'reviewed'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 2)
+        eq_(objs[0]['id'], self.extension2.pk)
+        eq_(objs[1]['id'], self.extension.pk)
+
+    def test_query_sort_relevance(self):
+        self.extension2 = Extension.objects.create(
+            name=u'Superb Extensiôn', slug='superb-lol')
+        self.version2 = ExtensionVersion.objects.create(
+            extension=self.extension2, reviewed=self.days_ago(0),
+            status=STATUS_PUBLIC, version='4.5.6')
+        self.refresh('extension')
+        res = self.client.get(self.url, data={'q': 'extension'})
+        eq_(res.status_code, 200)
+        objs = res.json['objects']
+        eq_(len(objs), 2)
+        eq_(objs[0]['id'], self.extension.pk)
+        eq_(objs[1]['id'], self.extension2.pk)
+
+    def test_query_no_results(self):
+        res = self.client.get(self.url, data={'q': 'something'})
+        eq_(res.status_code, 200)
+        eq_(res.json['objects'], [])
+
+    def test_not_public(self):
+        self.extension.update(status=STATUS_PENDING)
+        self.refresh('extension')
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        eq_(len(response.json['objects']), 1)
+
+    def test_disabled(self):
+        self.extension.update(disabled=True)
+        self.refresh('extension')
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        eq_(len(response.json['objects']), 1)
+
+    def test_deleted(self):
+        self.extension.update(deleted=True)
+        self.refresh('extension')
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        eq_(len(response.json['objects']), 0)
+
+
 class TestReviewersExtensionViewSetGet(RestOAuth):
     fixtures = fixture('user_2519')
 
