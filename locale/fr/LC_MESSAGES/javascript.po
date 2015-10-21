@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2014-07-20 20:29+0000\n"
-"Last-Translator: goofyfr <goofyfr@gmail.com>\n"
+"PO-Revision-Date: 2015-10-21 22:25+0000\n"
+"Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -266,7 +266,7 @@ msgstr ""
 
 #: media/js/devreg/lookup-tool.js:84
 msgid "Could not add group \"{0}\""
-msgstr ""
+msgstr "Impossible d'ajouter le groupe «&nbsp;{0}&nbsp;»"
 
 #: media/js/devreg/lookup-tool.js:108
 msgid "Group membership \"{0}\" removed"
@@ -274,7 +274,7 @@ msgstr ""
 
 #: media/js/devreg/lookup-tool.js:114
 msgid "Could not remove group \"{0}\""
-msgstr ""
+msgstr "Impossible de supprimer le groupe «&nbsp;{0}&nbsp;»"
 
 #: media/js/devreg/lookup-tool.js:183
 msgid "Show All Results"
