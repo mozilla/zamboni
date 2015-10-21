@@ -210,6 +210,7 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
         eq_(extension.description.locale, 'en-gb')
         eq_(extension.name, u'My Lîttle Extension')
         eq_(extension.name.locale, 'en-gb')
+        eq_(data['uuid'], extension.uuid)
         eq_(extension.status, STATUS_PENDING)
         eq_(list(extension.authors.all()), [self.user])
 
@@ -388,6 +389,7 @@ class TestExtensionViewSetGet(RestOAuth):
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'pending')
+        eq_(data['uuid'], self.extension.uuid)
 
     def test_detail_anonymous(self):
         response = self.anon.get(self.url)
@@ -414,6 +416,7 @@ class TestExtensionViewSetGet(RestOAuth):
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'public')
+        eq_(data['uuid'], self.extension.uuid)
 
     def test_detail_deleted(self):
         response = self.anon.get(self.deleted_url)
@@ -463,6 +466,7 @@ class TestExtensionViewSetGet(RestOAuth):
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'pending')
+        eq_(data['uuid'], self.extension.uuid)
 
         # Even works if disabled.
         self.extension.update(disabled=True)
@@ -617,6 +621,7 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'public')
+        eq_(data['uuid'], self.extension.uuid)
 
     def test_list(self):
         self.extension2 = Extension.objects.create(name=u'Mŷ Second Extension')
@@ -896,6 +901,7 @@ class ReviewQueueTestMixin(object):
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         ok_(data['status'])
+        eq_(data['uuid'], self.extension.uuid)
         return data
 
 
@@ -961,6 +967,7 @@ class TestReviewerExtensionViewSet(ReviewQueueTestMixin, RestOAuth):
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         eq_(data['status'], 'pending')
+        eq_(data['uuid'], self.extension.uuid)
 
     def test_detail_with_slug(self):
         self.url = reverse('api-v2:extension-queue-detail',

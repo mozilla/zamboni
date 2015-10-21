@@ -923,6 +923,7 @@ class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
             'developer': {
                 'name': 'Me'
             },
+            'id': 'abcdefabcdefabcdefabcdefabcdef45',
             'name': u'Ëxtension',
             'package_path': version.download_url,
             'size': 421,
@@ -956,6 +957,7 @@ class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
             'developer': {
                 'name': 'Me'
             },
+            'id': 'reviewer-abcdefabcdefabcdefabcdefabcdef45-%d' % version.pk,
             'name': u'Ëxtension',
             'package_path': version.reviewer_download_url,
             'version': '0.55.0',

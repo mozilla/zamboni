@@ -61,7 +61,8 @@ Detail
             "en-US": "My Lîttle Extension"
           },
           "slug": "my-lîttle-extension",
-          "status": "public"
+          "status": "public",
+          "uuid": "be98056d6963461eb543bea2ddf3b9af"
         }
 
     .. note::
@@ -84,6 +85,7 @@ Detail
         instead of the id to retrieve an add-on).
     :resjson string status: The add-on current status.
         Can be *incomplete*, *pending*, or *public*.
+    :resjson string uuid: The add-on uuid, used internally for URLs and for blocklisting.
 
     :param int id: The add-on id
     :param string slug: The add-on slug

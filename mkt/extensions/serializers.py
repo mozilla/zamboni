@@ -47,7 +47,7 @@ class ExtensionSerializer(ModelSerializer):
         model = Extension
         fields = ['id', 'author', 'description', 'device_types', 'disabled',
                   'last_updated', 'latest_version', 'latest_public_version',
-                  'mini_manifest_url', 'name', 'slug', 'status', ]
+                  'mini_manifest_url', 'name', 'slug', 'status', 'uuid', ]
 
 
 class ESExtensionSerializer(BaseESSerializer, ExtensionSerializer):
