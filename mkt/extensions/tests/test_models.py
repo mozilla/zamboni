@@ -44,7 +44,7 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
 
     def tearDown(self):
         super(TestExtensionUpload, self).tearDown()
-        # Explicitely delete the Extensions to clean up leftover files. By
+        # Explicitly delete the Extensions to clean up leftover files. By
         # using the queryset method we're bypassing the custom delete() method,
         # but still sending pre_delete and post_delete signals.
         Extension.objects.all().delete()
@@ -214,7 +214,7 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
 class TestExtensionAndExtensionVersionDeletion(TestCase):
     def tearDown(self):
         super(TestExtensionAndExtensionVersionDeletion, self).tearDown()
-        # Explicitely delete the Extensions to clean up leftover files. By
+        # Explicitly delete the Extensions to clean up leftover files. By
         # using the queryset method we're bypassing the custom delete() method,
         # but still sending pre_delete and post_delete signals.
         Extension.objects.all().delete()
@@ -1230,7 +1230,7 @@ class TestExtensionQuerySetAndManager(TestCase):
         eq_(list(Extension.objects.public()), [extension2, extension1])
         eq_(list(Extension.objects.without_deleted().public()), [extension1])
 
-    def test_pending(self):
+    def test_pending_with_versions(self):
         extension1 = Extension.objects.create()
         ExtensionVersion.objects.create(
             extension=extension1, status=STATUS_PENDING, version='1.1')
@@ -1249,8 +1249,20 @@ class TestExtensionQuerySetAndManager(TestCase):
         ExtensionVersion.objects.create(
             extension=disabled_extension, status=STATUS_PENDING, version='3.1')
 
-        eq_(list(Extension.objects.pending()), [extension2, extension1])
-        eq_(list(Extension.objects.without_deleted().pending()), [extension1])
+        eq_(list(Extension.objects.pending_with_versions()),
+            [extension2, extension1])
+        eq_(list(Extension.objects.without_deleted().pending_with_versions()),
+            [extension1])
+
+    def test_pending(self):
+        extension1 = Extension.objects.create(status=STATUS_PENDING)
+
+        extension2 = Extension.objects.create()
+        ExtensionVersion.objects.create(
+            extension=extension2, status=STATUS_PENDING, version='2.1')
+        extension2.update(status=STATUS_PUBLIC)
+
+        self.assertSetEqual(list(Extension.objects.pending()), [extension1])
 
 
 class TestExtensionVersionQuerySetAndManager(TestCase):

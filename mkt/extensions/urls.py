@@ -6,13 +6,14 @@ from rest_framework_nested.routers import NestedSimpleRouter
 from mkt.extensions.views import (ExtensionSearchView, ExtensionVersionViewSet,
                                   ExtensionViewSet,
                                   ReviewerExtensionSearchView,
-                                  ReviewersExtensionViewSet, ValidationViewSet)
+                                  ReviewerExtensionViewSet,
+                                  ValidationViewSet)
 
 extensions = SimpleRouter()
 extensions.register(r'validation', ValidationViewSet,
                     base_name='extension-validation')
 extensions.register(r'extension', ExtensionViewSet)
-extensions.register(r'queue', ReviewersExtensionViewSet,
+extensions.register(r'queue', ReviewerExtensionViewSet,
                     base_name='extension-queue')
 
 # Router for children of /extensions/extension/{extension_pk}/.

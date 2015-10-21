@@ -834,29 +834,21 @@ class TestReviewerExtensionSearchView(RestOAuth, ESTestCase):
         eq_(len(response.json['objects']), 0)
 
 
-class TestReviewersExtensionViewSetGet(RestOAuth):
+class ReviewQueueTestMixin(object):
     fixtures = fixture('user_2519')
 
     def setUp(self):
-        super(TestReviewersExtensionViewSetGet, self).setUp()
-        self.list_url = reverse('api-v2:extension-queue-list')
+        super(ReviewQueueTestMixin, self).setUp()
         self.user = UserProfile.objects.get(pk=2519)
-        self.extension = Extension.objects.create(
-            name=u'Än Extension', description=u'Än Extension Description')
-        self.version = ExtensionVersion.objects.create(
-            extension=self.extension, size=999, status=STATUS_PENDING,
-            version='48.1516.2342')
+
         another_extension = Extension.objects.create(
             name=u'Anothër Extension', description=u'Anothër Description')
         ExtensionVersion.objects.create(
             extension=another_extension, size=888, status=STATUS_PUBLIC,
             version='0.1')
-        self.url = reverse('api-v2:extension-queue-detail',
-                           kwargs={'pk': self.extension.pk})
 
     def test_has_cors(self):
         self.assertCORS(self.anon.get(self.list_url), 'get', 'post')
-        self.assertCORS(self.anon.get(self.url), 'get', 'post')
 
     def test_list_anonymous(self):
         response = self.anon.get(self.list_url)
@@ -893,27 +885,33 @@ class TestReviewersExtensionViewSetGet(RestOAuth):
         response = self.client.get(self.list_url)
         eq_(response.status_code, 200)
         data = response.json['objects'][0]
-        version = self.version
-        expected_data_version = {
-            'id': version.pk,
-            'created': version.created.replace(microsecond=0).isoformat(),
-            'download_url': version.download_url,
-            'reviewer_mini_manifest_url': version.reviewer_mini_manifest_url,
-            'size': 999,
-            'status': 'pending',
-            'unsigned_download_url': version.unsigned_download_url,
-            'version': version.version
-        }
         eq_(data['id'], self.extension.id)
         eq_(data['description'], {'en-US': self.extension.description})
         eq_(data['disabled'], False)
         eq_(data['last_updated'], None)  # The extension is not public yet.
-        eq_(data['latest_public_version'], None)
-        eq_(data['latest_version'], expected_data_version)
+        ok_(data['latest_version'])
         eq_(data['mini_manifest_url'], self.extension.mini_manifest_url)
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
-        eq_(data['status'], 'pending')
+        ok_(data['status'])
+
+
+class TestReviewerExtensionViewSet(ReviewQueueTestMixin, RestOAuth):
+
+    def setUp(self):
+        super(TestReviewerExtensionViewSet, self).setUp()
+        self.list_url = reverse('api-v2:extension-queue-list')
+        self.extension = Extension.objects.create(
+            name=u'Än Extension', description=u'Än Extension Description')
+        self.version = ExtensionVersion.objects.create(
+            status=STATUS_PENDING, extension=self.extension, size=999,
+            version='48.1516.2342')
+        self.extension.update(status=STATUS_PENDING)
+        self.url = reverse('api-v2:extension-queue-detail',
+                           kwargs={'pk': self.extension.pk})
+
+    def test_detail_has_cors(self):
+        self.assertCORS(self.anon.get(self.url), 'get', 'post')
 
     def test_detail_anonymous(self):
         response = self.anon.get(self.url)
@@ -974,6 +972,23 @@ class TestReviewersExtensionViewSetGet(RestOAuth):
         self.extension.update(disabled=True)
         response = self.client.get(self.url)
         eq_(response.status_code, 404)
+
+
+class TestReviewerExtensionViewSetUpdates(ReviewQueueTestMixin, RestOAuth):
+
+    def setUp(self):
+        super(TestReviewerExtensionViewSetUpdates, self).setUp()
+        self.list_url = reverse('api-v2:extension-queue-updates')
+        self.extension = Extension.objects.create(
+            status=STATUS_PUBLIC, name=u'Än Extension',
+            description=u'Än Extension Description')
+        ExtensionVersion.objects.create(
+            extension=self.extension, size=999, status=STATUS_PUBLIC,
+            version='48.1516.2342')
+        self.version = ExtensionVersion.objects.create(
+            extension=self.extension, size=999, status=STATUS_PENDING,
+            version='48.1516.2352')
+        self.extension.update(status=STATUS_PUBLIC)
 
 
 class TestExtensionVersionViewSetGet(RestOAuth):

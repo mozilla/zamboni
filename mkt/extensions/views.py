@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404
 import commonware
 from rest_framework import exceptions
 from rest_framework import status
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import detail_route, list_route
 from rest_framework.generics import ListAPIView
 from rest_framework.mixins import (DestroyModelMixin, ListModelMixin,
                                    RetrieveModelMixin, UpdateModelMixin)
@@ -174,9 +174,9 @@ class ExtensionSearchView(CORSMixin, MarketplaceView, ListAPIView):
         return non_atomic_requests(view)
 
 
-class ReviewersExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
-                                ListModelMixin, RetrieveModelMixin,
-                                GenericViewSet):
+class ReviewerExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
+                               ListModelMixin, RetrieveModelMixin,
+                               GenericViewSet):
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication,
                               RestAnonymousAuthentication]
@@ -188,6 +188,14 @@ class ReviewersExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     }),)
     queryset = Extension.objects.without_deleted().pending()
     serializer_class = ExtensionSerializer
+
+    @list_route(queryset=Extension.objects.without_deleted().public()
+                                          .pending_with_versions())
+    def updates(self, *args, **kwargs):
+        qs = self.get_queryset()
+        page = self.paginate_queryset(qs)
+        serializer = self.get_pagination_serializer(page)
+        return Response(serializer.data)
 
 
 class ReviewerExtensionSearchView(ExtensionSearchView):
@@ -255,7 +263,7 @@ class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
     @detail_route(
         methods=['post'],
         cors_allowed_methods=['post'],
-        permission_classes=ReviewersExtensionViewSet.permission_classes)
+        permission_classes=ReviewerExtensionViewSet.permission_classes)
     def publish(self, request, *args, **kwargs):
         obj = self.get_object()
         obj.publish()
@@ -267,7 +275,7 @@ class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
     @detail_route(
         methods=['post'],
         cors_allowed_methods=['post'],
-        permission_classes=ReviewersExtensionViewSet.permission_classes)
+        permission_classes=ReviewerExtensionViewSet.permission_classes)
     def reject(self, request, *args, **kwargs):
         obj = self.get_object()
         obj.reject()

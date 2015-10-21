@@ -46,6 +46,9 @@ class ExtensionQuerySet(models.QuerySet):
             return self.get(slug=identifier)
 
     def pending(self):
+        return self.filter(disabled=False, status=STATUS_PENDING)
+
+    def pending_with_versions(self):
         return self.filter(disabled=False, versions__deleted=False,
                            versions__status=STATUS_PENDING)
 
