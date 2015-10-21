@@ -960,7 +960,8 @@ class TestReviewerExtensionSearchView(RestOAuth, ESTestCase):
         self.refresh('extension')
         response = self.client.get(self.url)
         eq_(response.status_code, 200)
-        eq_(len(response.json['objects']), 0)
+        # We want to show deleted add-ons in reviewer search.
+        eq_(len(response.json['objects']), 1)
 
 
 class ReviewQueueTestMixin(object):
