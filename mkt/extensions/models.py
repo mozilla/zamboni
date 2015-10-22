@@ -16,11 +16,13 @@ from tower import ugettext as _
 from uuidfield.fields import UUIDField
 
 from lib.crypto.packaged import sign_app, SigningError
+from lib.utils import static_url
 from mkt.constants.applications import DEVICE_GAIA, DEVICE_TYPES
 from mkt.constants.base import (STATUS_CHOICES, STATUS_FILE_CHOICES,
                                 STATUS_NULL, STATUS_OBSOLETE, STATUS_PENDING,
                                 STATUS_PUBLIC, STATUS_REJECTED)
 from mkt.extensions.indexers import ExtensionIndexer
+from mkt.extensions.tasks import fetch_icon
 from mkt.extensions.validation import ExtensionValidator
 from mkt.files.models import cleanup_file, nfd_str
 from mkt.translations.fields import save_signal, TranslatedField
@@ -28,7 +30,7 @@ from mkt.site.helpers import absolutify
 from mkt.site.models import ManagerBase, ModelBase
 from mkt.site.storage_utils import (copy_stored_file, private_storage,
                                     public_storage)
-from mkt.site.utils import cached_property, smart_path
+from mkt.site.utils import cached_property, get_icon_url, smart_path
 from mkt.translations.utils import to_language
 from mkt.webapps.models import clean_slug
 
@@ -76,6 +78,7 @@ class ExtensionVersionQuerySet(models.QuerySet):
 class Extension(ModelBase):
     # Automatically handled fields.
     deleted = models.BooleanField(default=False, editable=False)
+    icon_hash = models.CharField(max_length=8, blank=True)
     last_updated = models.DateTimeField(blank=True, null=True, editable=False)
     status = models.PositiveSmallIntegerField(
         choices=STATUS_CHOICES.items(), default=STATUS_NULL, editable=False)
@@ -218,8 +221,13 @@ class Extension(ModelBase):
         # on the ExtensionVersion we're creating which will automatically be
         # replicated on the Extension instance.
         instance.authors.add(user)
-        ExtensionVersion.from_upload(
+        version = ExtensionVersion.from_upload(
             upload, parent=instance, manifest_contents=manifest_contents)
+
+        # Trigger icon fetch task asynchronously if necessary now that we have
+        # an extension and a version.
+        if 'icons' in manifest_contents:
+            fetch_icon.delay(instance.pk, version.pk)
         return instance
 
     @classmethod
@@ -231,9 +239,19 @@ class Extension(ModelBase):
         that's what the translations app requires."""
         return cls._meta.get_field('default_language')
 
+    def get_icon_dir(self):
+        return os.path.join(settings.EXTENSION_ICONS_PATH, str(self.pk / 1000))
+
+    def get_icon_url(self, size):
+        return get_icon_url(static_url('EXTENSION_ICON_URL'), self, size)
+
     @classmethod
     def get_indexer(cls):
         return ExtensionIndexer
+
+    @property
+    def icon_type(self):
+        return 'png' if self.icon_hash else ''
 
     def is_dummy_content_for_qa(self):
         """
@@ -322,6 +340,11 @@ class Extension(ModelBase):
             return
         if not version.manifest:
             return
+        # Trigger icon fetch task asynchronously if necessary now that we have
+        # an extension and a version.
+        if 'icons' in version.manifest:
+            fetch_icon.delay(self.pk, version.pk)
+
         # We need to re-extract the fields from manifest contents because some
         # fields like default_language are transformed before being stored.
         data = self.extract_manifest_fields(version.manifest)
@@ -747,9 +770,11 @@ def delete_search_index(sender, instance, **kw):
           sender=ExtensionVersion, dispatch_uid='extension_version_change')
 def update_extension_status_and_manifest_fields(sender, instance, **kw):
     """Update extension status as well as fields for which the manifest is the
-    source of truth when an ExtensionVersion is changed or deleted."""
+    source of truth when an ExtensionVersion is made public or was public and
+    is deleted."""
     instance.extension.update_status_according_to_versions()
-    instance.extension.update_manifest_fields_from_latest_public_version()
+    if instance.status == STATUS_PUBLIC:
+        instance.extension.update_manifest_fields_from_latest_public_version()
 
 
 # Save translations before saving Extensions instances with translated fields.

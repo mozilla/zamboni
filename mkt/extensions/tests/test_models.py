@@ -12,13 +12,15 @@ from nose.tools import eq_, ok_
 from rest_framework.exceptions import ParseError
 
 from lib.crypto.packaged import SigningError
+from lib.utils import static_url
 from mkt.constants.applications import DEVICE_GAIA
 from mkt.constants.base import (STATUS_NULL, STATUS_OBSOLETE, STATUS_PENDING,
                                 STATUS_PUBLIC, STATUS_REJECTED)
 from mkt.constants.regions import RESTOFWORLD, USA
 from mkt.extensions.models import Extension, ExtensionVersion
 from mkt.files.tests.test_models import UploadCreationMixin, UploadTest
-from mkt.site.storage_utils import private_storage, public_storage
+from mkt.site.storage_utils import (private_storage, public_storage,
+                                    storage_is_remote)
 from mkt.site.tests import fixture, TestCase
 from mkt.users.models import UserProfile
 
@@ -67,7 +69,8 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         extension2 = Extension.objects.create()
         ok_(extension.uuid != extension2.uuid)
 
-    def test_upload_new(self):
+    @mock.patch('mkt.extensions.models.fetch_icon')
+    def test_upload_new(self, fetch_icon_mock):
         eq_(Extension.objects.count(), 0)
         upload = self.upload('extension')
         extension = Extension.from_upload(upload, user=self.user)
@@ -94,6 +97,10 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         ok_(version.filename in version.file_path)
         ok_(private_storage.exists(version.file_path))
         eq_(version.manifest, self.expected_manifest)
+        eq_(fetch_icon_mock.call_count, 0)
+        eq_(fetch_icon_mock.delay.call_count, 1)
+        eq_(fetch_icon_mock.delay.call_args_list[0][0],
+            (extension.pk, version.pk))
 
     @mock.patch('mkt.extensions.models.ExtensionValidator.validate_json')
     def test_upload_no_version(self, validate_mock):
@@ -109,7 +116,8 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         with self.assertRaises(ParseError):
             Extension.from_upload(upload, user=self.user)
 
-    def test_upload_new_version(self):
+    @mock.patch('mkt.extensions.models.fetch_icon')
+    def test_upload_new_version(self, fetch_icon_mock):
         extension = Extension.objects.create()
         old_version = ExtensionVersion.objects.create(
             extension=extension, version='0.0')
@@ -131,6 +139,11 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         ok_(private_storage.exists(version.file_path))
         eq_(version.manifest, self.expected_manifest)
         eq_(version.status, STATUS_PENDING)
+
+        # We should not have called fetch_icon: it should be called only when
+        # the new version is made public.
+        eq_(fetch_icon_mock.delay.call_count, 0)
+        eq_(fetch_icon_mock.call_count, 0)
 
     def test_upload_new_version_existing_pending_are_rendered_obsolete(self):
         extension = Extension.objects.create()
@@ -669,19 +682,27 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.status, STATUS_REJECTED)
         eq_(extension.latest_version, new_version)
 
-    def test_update_fields_from_manifest_when_version_is_made_public(self):
+    @mock.patch('mkt.extensions.models.fetch_icon')
+    def test_update_fields_from_manifest_when_version_is_made_public(
+            self, fetch_icon_mock):
         new_manifest = {
             'author': u' New Authôr',
-            'name': u'\n New Nâme ',
             'description': u'New Descriptîon \t ',
+            'icons': {
+                '128': '/path/to/128.png',
+            },
+            'name': u'\n New Nâme ',
             'version': '0.1',
         }
         extension = Extension.objects.create(
             author=u'Old Âuthor', description=u'Old Descriptîon',
             name=u'Old Nâme')
+        ExtensionVersion.objects.create(
+            extension=extension, status=STATUS_PUBLIC, version='0.0')
         version = ExtensionVersion.objects.create(
             extension=extension, manifest=new_manifest, status=STATUS_PENDING,
             version='0.1')
+        fetch_icon_mock.reset_mock()
         version.update(status=STATUS_PUBLIC)
         # Leading and trailing whitespace are stripped.
         eq_(extension.author, u'New Authôr')
@@ -690,11 +711,21 @@ class TestExtensionStatusChanges(TestCase):
         # Locale should be en-US since none is specified in the manifest.
         eq_(extension.name.locale, 'en-us')
         eq_(extension.description.locale, 'en-us')
+        # fetch_icon should have been called with new version.
+        eq_(fetch_icon_mock.call_count, 0)
+        eq_(fetch_icon_mock.delay.call_count, 1)
+        eq_(fetch_icon_mock.delay.call_args_list[0][0],
+            (extension.pk, version.pk))
 
-    def test_update_manifest_when_public_version_is_hard_deleted(self):
+    @mock.patch('mkt.extensions.models.fetch_icon')
+    def test_update_manifest_when_public_version_is_hard_deleted(
+            self, fetch_icon_mock):
         old_manifest = {
             'author': u'Old Authôr',
             'description': u'Old Descriptîon',
+            'icons': {
+                '128': '/path/to/128.png',
+            },
             'name': u'Old Nâme',
             'version': '0.1',
         }
@@ -705,12 +736,13 @@ class TestExtensionStatusChanges(TestCase):
             'version': '0.2',
         }
         extension = Extension.objects.create()
-        ExtensionVersion.objects.create(
+        old_version = ExtensionVersion.objects.create(
             extension=extension, manifest=old_manifest, status=STATUS_PUBLIC,
             version='0.1')
         version = ExtensionVersion.objects.create(
             extension=extension, manifest=new_manifest, status=STATUS_PUBLIC,
             version='0.2')
+        fetch_icon_mock.reset_mock()
         eq_(extension.author, new_manifest['author'])
         eq_(extension.description, new_manifest['description'])
         eq_(extension.name, new_manifest['name'])
@@ -718,11 +750,21 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.author, old_manifest['author'])
         eq_(extension.description, old_manifest['description'])
         eq_(extension.name, old_manifest['name'])
+        # fetch_icon should have been called with the old public version.
+        eq_(fetch_icon_mock.call_count, 0)
+        eq_(fetch_icon_mock.delay.call_count, 1)
+        eq_(fetch_icon_mock.delay.call_args_list[0][0],
+            (extension.pk, old_version.pk))
 
-    def test_update_manifest_when_public_version_is_deleted(self):
+    @mock.patch('mkt.extensions.models.fetch_icon')
+    def test_update_manifest_when_public_version_is_deleted(
+            self, fetch_icon_mock):
         old_manifest = {
             'author': u'Old Authôr',
             'description': u'Old Descriptîon',
+            'icons': {
+                '128': '/path/to/128.png',
+            },
             'name': u'Old Nâme',
             'version': '0.1',
         }
@@ -733,12 +775,13 @@ class TestExtensionStatusChanges(TestCase):
             'version': '0.2',
         }
         extension = Extension.objects.create()
-        ExtensionVersion.objects.create(
+        old_version = ExtensionVersion.objects.create(
             extension=extension, manifest=old_manifest, status=STATUS_PUBLIC,
             version='0.1')
         version = ExtensionVersion.objects.create(
             extension=extension, manifest=new_manifest, status=STATUS_PUBLIC,
             version='0.2')
+        fetch_icon_mock.reset_mock()
         eq_(extension.author, new_manifest['author'])
         eq_(extension.description, new_manifest['description'])
         eq_(extension.name, new_manifest['name'])
@@ -747,9 +790,20 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.description, old_manifest['description'])
         eq_(extension.name, old_manifest['name'])
 
-    def test_dont_update_fields_from_manifest_when_not_necessary(self):
+        # fetch_icon should have been called with the old public version.
+        eq_(fetch_icon_mock.call_count, 0)
+        eq_(fetch_icon_mock.delay.call_count, 1)
+        eq_(fetch_icon_mock.delay.call_args_list[0][0],
+            (extension.pk, old_version.pk))
+
+    @mock.patch('mkt.extensions.models.fetch_icon')
+    def test_dont_update_fields_from_manifest_when_not_necessary(
+            self, fetch_icon_mock):
         new_manifest = {
             'author': u' New Authôr',
+            'icons': {
+                '128': '/path/to/128.png',
+            },
             'name': u'\n New Nâme ',
             'description': u'New Descriptîon \t ',
             'version': '0.1',
@@ -764,6 +818,8 @@ class TestExtensionStatusChanges(TestCase):
         eq_(extension.author, u'Old Authôr')
         eq_(extension.description, u'Old Descriptîon')
         eq_(extension.name, u'Old Nâme')
+        eq_(fetch_icon_mock.call_count, 0)
+        eq_(fetch_icon_mock.delay.call_count, 0)
 
 
 class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
@@ -778,6 +834,32 @@ class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
             Extension._meta.get_field('default_language'))
         eq_(ExtensionVersion.get_fallback(),
             ExtensionVersion._meta.get_field('default_language'))
+
+    def test_get_icon_dir(self):
+        extension = Extension(pk=42467)
+        ok_(settings.EXTENSION_ICONS_PATH)
+        eq_(extension.get_icon_dir(),
+            os.path.join(settings.EXTENSION_ICONS_PATH, '42'))
+
+    def test_get_icon_url(self):
+        extension = Extension(pk=42467, icon_hash='myhash')
+        ok_(settings.EXTENSION_ICON_URL)
+        if not storage_is_remote():
+            expected_url = (static_url('EXTENSION_ICON_URL')
+                            % ('42', extension.pk, 128, 'myhash'))
+        else:
+            path = '%s/%s-%s.png' % (
+                extension.get_icon_dir(), extension.pk, 128)
+            expected_url = '%s?modified=myhash' % public_storage.url(path)
+
+        eq_(extension.get_icon_url(128), expected_url)
+
+    def test_get_icon_url_no_icons(self):
+        extension = Extension(pk=42467)
+        eq_(extension.get_icon_url(64),
+            '%s/default-64.png' % static_url('ICONS_DEFAULT_URL'))
+        eq_(extension.get_icon_url(128),
+            '%s/default-128.png' % static_url('ICONS_DEFAULT_URL'))
 
     def test_is_dummy_content_for_qa(self):
         # This method is only here for compatbility with apps, not used at the

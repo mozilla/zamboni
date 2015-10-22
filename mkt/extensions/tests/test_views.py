@@ -2,6 +2,7 @@
 import hashlib
 import json
 import mock
+import os
 from datetime import datetime
 
 from django.conf import settings
@@ -214,6 +215,14 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
         eq_(extension.status, STATUS_PENDING)
         eq_(list(extension.authors.all()), [self.user])
 
+        def expected_icon_path(size):
+            return os.path.join(extension.get_icon_dir(),
+                                '%s-%s.png' % (extension.pk, size))
+
+        ok_(private_storage.exists(expected_icon_path(128)))
+        ok_(private_storage.exists(expected_icon_path(64)))
+        ok_(extension.icon_hash)
+
         note = extension.threads.get().notes.get()
         eq_(note.body, u'add-on has arrivedÄ')
         eq_(note.note_type, comm.SUBMISSION)
@@ -379,6 +388,10 @@ class TestExtensionViewSetGet(RestOAuth):
         eq_(data['description'], {'en-US': self.extension.description})
         eq_(data['device_types'], ['firefoxos'])
         eq_(data['disabled'], False)
+        eq_(data['icons'], {
+            '64': self.extension.get_icon_url(64),
+            '128': self.extension.get_icon_url(128),
+        })
         eq_(data['last_updated'], None)  # The extension is not public yet.
         eq_(data['latest_version']['download_url'],
             self.version.download_url)
@@ -405,6 +418,10 @@ class TestExtensionViewSetGet(RestOAuth):
         eq_(data['description'], {'en-US': self.extension.description})
         eq_(data['disabled'], False)
         eq_(data['device_types'], ['firefoxos'])
+        eq_(data['icons'], {
+            '64': self.extension.get_icon_url(64),
+            '128': self.extension.get_icon_url(128),
+        })
         self.assertCloseToNow(data['last_updated'])
         eq_(data['latest_version']['download_url'],
             self.version.download_url)
@@ -455,6 +472,10 @@ class TestExtensionViewSetGet(RestOAuth):
         eq_(data['description'], {'en-US': self.extension.description})
         eq_(data['device_types'], ['firefoxos'])
         eq_(data['disabled'], False)
+        eq_(data['icons'], {
+            '64': self.extension.get_icon_url(64),
+            '128': self.extension.get_icon_url(128),
+        })
         eq_(data['last_updated'], None)  # The extension is not public yet.
         eq_(data['latest_version']['download_url'],
             self.version.download_url)
@@ -606,6 +627,10 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
         eq_(data['description'], {'en-US': self.extension.description})
         eq_(data['disabled'], False)
         eq_(data['device_types'], ['firefoxos'])
+        eq_(data['icons'], {
+            '64': self.extension.get_icon_url(64),
+            '128': self.extension.get_icon_url(128),
+        })
         self.assertCloseToNow(data['last_updated'], now=self.last_updated_date)
         eq_(data['latest_public_version']['created'],
             self.version.created.replace(microsecond=0).isoformat())
@@ -895,6 +920,10 @@ class ReviewQueueTestMixin(object):
         eq_(data['id'], self.extension.id)
         eq_(data['description'], {'en-US': self.extension.description})
         eq_(data['disabled'], False)
+        eq_(data['icons'], {
+            '64': self.extension.get_icon_url(64),
+            '128': self.extension.get_icon_url(128),
+        })
         eq_(data['last_updated'], None)  # The extension is not public yet.
         ok_(data['latest_version'])
         eq_(data['mini_manifest_url'], self.extension.mini_manifest_url)
@@ -960,6 +989,10 @@ class TestReviewerExtensionViewSet(ReviewQueueTestMixin, RestOAuth):
         eq_(data['id'], self.extension.id)
         eq_(data['description'], {'en-US': self.extension.description})
         eq_(data['disabled'], False)
+        eq_(data['icons'], {
+            '64': self.extension.get_icon_url(64),
+            '128': self.extension.get_icon_url(128),
+        })
         eq_(data['last_updated'], None)  # The extension is not public yet.
         eq_(data['latest_public_version'], None)
         eq_(data['latest_version'], expected_data_version)

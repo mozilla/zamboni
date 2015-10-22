@@ -46,6 +46,8 @@ class ExtensionValidator(object):
             u'The icon file `%s` is not a valid PNG.'),
         'ICON_NOT_SQUARE': _(
             u'The icon file `%(icon_path)s` is not square.'),
+        'ICON_INVALID_SIZE': _(
+            u'The manifest contains an invalid icon size: %(icon_size)s'),
         'INVALID_JSON': _(
             u"'manifest.json' in the archive is not a valid JSON"
             u" file."),
@@ -243,7 +245,8 @@ class ExtensionValidator(object):
                     if icon_size <= 0:
                         raise ValueError
                 except ValueError:
-                    self.error('ICON_INVALID_SIZE', icon_path=icon_path)
+                    self.error(
+                        'ICON_INVALID_SIZE', icon_size=unicode(icon_size))
                 self._validate_icon_file(icon_path, icon_size)
 
     def _validate_icon_file(self, icon_path, icon_size):
@@ -259,7 +262,6 @@ class ExtensionValidator(object):
             icon_contents = self.zipfile.extract_path(icon_path.lstrip('/'))
         except KeyError:
             self.error('ICON_DOES_NOT_EXIST', icon_path=icon_path)
-            return
         try:
             if imghdr.what(None, icon_contents) != 'png':
                 raise IOError
@@ -267,7 +269,6 @@ class ExtensionValidator(object):
         except IOError:
             self.error('ICON_NOT_A_VALID_IMAGE_OR_PNG',
                        icon_path=icon_path)
-            return
         if image.size[0] != image.size[1]:
             self.error('ICON_NOT_SQUARE', icon_path=icon_path)
         if icon_size != image.size[0]:

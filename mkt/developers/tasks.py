@@ -345,7 +345,11 @@ def save_icon(obj, icon_content):
     # submit step 4 does it through AppFormMedia, but we want to beat them to
     # the punch. resize_icon outputs pngs so we know it's 'image/png'.
     obj.icon_hash = icon_hash['icon_hash']  # In case, we're running not async.
-    obj.icon_type = 'image/png'
+    try:
+        obj.icon_type = 'image/png'
+    except AttributeError:
+        # icon_type can be just a @property on models that only implement png.
+        pass
     obj.save()
 
 

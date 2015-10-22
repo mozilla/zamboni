@@ -51,7 +51,7 @@ def static_url(url):
     Return the relevant URL from settings. Rather than rely on
     a complicated layer of settings to do their work, this just does
     it at runtime. This allows MEDIA_URL and STATIC_URL to be
-    changed in a local settings file, without having to overidde all the
+    changed in a local settings file, without having to override all the
     URLs.
 
     If the URL starts with https:// or http://, then no changes are made.
@@ -59,6 +59,7 @@ def static_url(url):
     prefix = {
         'ICONS_DEFAULT_URL': settings.MEDIA_URL,
         'ADDON_ICON_URL': settings.STATIC_URL,
+        'EXTENSION_ICON_URL': settings.STATIC_URL,
         'PREVIEW_THUMBNAIL_URL': settings.STATIC_URL,
         'PREVIEW_FULL_URL': settings.STATIC_URL,
         'PRODUCT_ICON_URL': settings.MEDIA_URL,

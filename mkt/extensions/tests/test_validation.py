@@ -309,6 +309,20 @@ class TestExtensionValidator(TestCase):
         except:
             self.fail('Empty icons object is allowed.')
 
+    def test_icons_invalid_size_not_int(self):
+        self.validator.zipfile = mock.Mock(spec=SafeUnzip)
+        self.validator.zipfile.extract_path.return_value = self._icon()
+        with self.assertValidationError('ICON_INVALID_SIZE', icon_size='bad'):
+            self.validator.validate_icons(
+                {'icons': {'128': 'good.png', 'bad': '/path/ugly.png'}})
+
+    def test_icons_invalid_size_zero(self):
+        self.validator.zipfile = mock.Mock(spec=SafeUnzip)
+        self.validator.zipfile.extract_path.return_value = self._icon()
+        with self.assertValidationError('ICON_INVALID_SIZE', icon_size='0'):
+            self.validator.validate_icons(
+                {'icons': {'128': 'good.png', '0': '/path/zero.png'}})
+
     def test_icons_missing_128(self):
         with self.assertValidationError('ICONS_NO_128'):
             self.validator.validate_icons({'icons': {'64': ''}})

@@ -1,5 +1,5 @@
 from drf_compound_fields.fields import ListField
-from rest_framework.fields import CharField
+from rest_framework.fields import CharField, SerializerMethodField
 from rest_framework.serializers import ModelSerializer
 
 from mkt.api.fields import ReverseChoiceField, TranslationSerializerField
@@ -28,6 +28,7 @@ class ExtensionVersionSerializer(ModelSerializer):
 class ExtensionSerializer(ModelSerializer):
     description = TranslationSerializerField(read_only=True)
     device_types = ListField(CharField(), source='device_names')
+    icons = SerializerMethodField('get_icons')
     latest_public_version = ExtensionVersionSerializer(
         source='latest_public_version', read_only=True)
     latest_version = ExtensionVersionSerializer(
@@ -43,11 +44,15 @@ class ExtensionSerializer(ModelSerializer):
     # to use that other endpoint instead of the regular one, but maybe that's
     # the way to go ? That endpoint could include all versions info, too.
 
+    def get_icons(self, obj):
+        return {size: obj.get_icon_url(size) for size in (64, 128)}
+
     class Meta:
         model = Extension
         fields = ['id', 'author', 'description', 'device_types', 'disabled',
-                  'last_updated', 'latest_version', 'latest_public_version',
-                  'mini_manifest_url', 'name', 'slug', 'status', 'uuid', ]
+                  'icons', 'last_updated', 'latest_version',
+                  'latest_public_version', 'mini_manifest_url', 'name', 'slug',
+                  'status', 'uuid', ]
 
 
 class ESExtensionSerializer(BaseESSerializer, ExtensionSerializer):
