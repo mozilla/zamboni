@@ -270,6 +270,9 @@ class Extension(ModelBase):
         except ExtensionVersion.DoesNotExist:
             return {}
         mini_manifest = {
+            # 'id' here is the uuid, like in sign_file(). This is used by
+            # platform to do blocklisting.
+            'id': self.uuid,
             'name': version.manifest['name'],
             'package_path': version.download_url,
             'size': version.size,
@@ -545,11 +548,22 @@ class ExtensionVersion(ModelBase):
             reverse('extension.download_signed_reviewer', kwargs=kwargs))
 
     @property
+    def review_id(self):
+        """Unique identifier for this extension+version so that reviewers can
+        install different versions of the same non-public add-ons side by side
+        for testing, and it won't conflict with the "real" public add-on.
+
+        Used in signing and in the reviewer-specific mini-manifest."""
+        return 'reviewer-{guid}-{version_id}'.format(
+            guid=self.extension.uuid, version_id=self.pk)
+
+    @property
     def reviewer_mini_manifest(self):
         """Reviewer-specific mini-manifest used for install/update of this
         particular version by reviewers on FxOS devices, in dict form.
         """
         mini_manifest = {
+            'id': self.review_id,
             'name': self.manifest['name'],
             'package_path': self.reviewer_download_url,
             # Size is not included, we don't store the reviewer file size,
@@ -578,12 +592,7 @@ class ExtensionVersion(ModelBase):
         if not self.pk:
             raise SigningError('Need version pk to be set to sign')
         ids = json.dumps({
-            # Reviewers get a unique 'id' so the reviewer installed add-on
-            # won't conflict with the public add-on, and also so even multiple
-            # versions of the same add-on can be installed side by side with
-            # other versions.
-            'id': 'reviewer-{guid}-{version_id}'.format(
-                guid=self.extension.uuid, version_id=self.pk),
+            'id': self.review_id,
             'version': self.pk
         })
         with statsd.timer('extensions.sign_reviewer'):
