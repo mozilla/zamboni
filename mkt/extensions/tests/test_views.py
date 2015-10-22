@@ -896,6 +896,7 @@ class ReviewQueueTestMixin(object):
         eq_(data['name'], {'en-US': self.extension.name})
         eq_(data['slug'], self.extension.slug)
         ok_(data['status'])
+        return data
 
 
 class TestReviewerExtensionViewSet(ReviewQueueTestMixin, RestOAuth):
@@ -922,6 +923,11 @@ class TestReviewerExtensionViewSet(ReviewQueueTestMixin, RestOAuth):
     def test_detail_logged_in_no_rights(self):
         response = self.client.get(self.url)
         eq_(response.status_code, 403)
+
+    def test_list_logged_in_with_rights(self):
+        data = super(TestReviewerExtensionViewSet,
+                     self).test_list_logged_in_with_rights()
+        eq_(data['status'], 'pending')
 
     def test_detail_logged_in_with_rights_status_public(self):
         self.version.update(status=STATUS_PUBLIC)
@@ -991,6 +997,12 @@ class TestReviewerExtensionViewSetUpdates(ReviewQueueTestMixin, RestOAuth):
             extension=self.extension, size=999, status=STATUS_PENDING,
             version='48.1516.2352')
         self.extension.update(status=STATUS_PUBLIC)
+
+    def test_list_logged_in_with_rights(self):
+        data = super(TestReviewerExtensionViewSetUpdates,
+                     self).test_list_logged_in_with_rights()
+        # Extension is public, latest_version is pending.
+        eq_(data['status'], 'public')
 
 
 class TestExtensionVersionViewSetGet(RestOAuth):
