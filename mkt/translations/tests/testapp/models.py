@@ -7,7 +7,7 @@ from mkt.translations.fields import (LinkifiedField, PurifiedField,
 
 
 class ManagerWithTranslations(models.Manager):
-    def get_query_set(self):
+    def get_queryset(self):
         qs = TransformQuerySet(self.model)
         if hasattr(self.model._meta, 'translated_fields'):
             qs = qs.transform(transformer.get_trans)
