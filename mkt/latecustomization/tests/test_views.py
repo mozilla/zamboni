@@ -92,6 +92,61 @@ class TestLateCustomization(RestOAuth):
         eq_(len(data['objects']), 6)
         self.check_list_data(data, apps, extensions)
 
+    def test_invalid_mcc(self):
+        apps, extensions = self.create_apps_extensions()
+        res = self.anon.get(reverse('api-v2:late-customization-list'),
+                            {'mcc': 9999,
+                             'mnc': 2})
+        eq_(res.status_code, 400)
+
+    def test_invalid_carrier(self):
+        apps, extensions = self.create_apps_extensions()
+        res = self.anon.get(reverse('api-v2:late-customization-list'),
+                            {'carrier': 'bananaphone',
+                             'region': 'de'})
+        eq_(res.status_code, 400)
+
+    def test_invalid_region(self):
+        apps, extensions = self.create_apps_extensions()
+        res = self.anon.get(reverse('api-v2:late-customization-list'),
+                            {'carrier': 'deutsche_telekom',
+                             'region': 'xx'})
+        eq_(res.status_code, 400)
+
+    def test_list_spn(self):
+        ap1 = make_packaged_app()
+        LateCustomizationItem.objects.create(
+            app=ap1, region=mkt.regions.REGIONS_DICT['de'].id,
+            carrier=mkt.carriers.CARRIER_MAP['congstar'].id)
+        ap2 = make_packaged_app()
+        LateCustomizationItem.objects.create(
+            app=ap2, region=mkt.regions.REGIONS_DICT['de'].id,
+            carrier=mkt.carriers.CARRIER_MAP['deutsche_telekom'].id)
+
+        res1 = self.anon.get(reverse('api-v2:late-customization-list'),
+                             {'mcc': 262,
+                              'mnc': 1,
+                              'spn': 'congstar'})
+        eq_(res1.status_code, 200)
+        data = json.loads(res1.content)
+        eq_(len(data['objects']), 1)
+        eq_(data['objects'][0]['id'], ap1.pk)
+
+        res2 = self.anon.get(reverse('api-v2:late-customization-list'),
+                             {'mcc': 262,
+                              'mnc': 1})
+        eq_(res1.status_code, 200)
+        data = json.loads(res2.content)
+        eq_(len(data['objects']), 1)
+        eq_(data['objects'][0]['id'], ap2.pk)
+
+    def test_invalid_spn(self):
+        res1 = self.anon.get(reverse('api-v2:late-customization-list'),
+                             {'mcc': 262,
+                              'mnc': 1,
+                              'spn': 'bananaphone'})
+        eq_(res1.status_code, 400)
+
     def test_create(self):
         OperatorPermission.objects.create(user=self.user, region=14, carrier=4)
         ap = make_packaged_app()
