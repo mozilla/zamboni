@@ -21,7 +21,7 @@ from mkt.extensions.views import ExtensionVersionViewSet
 from mkt.files.models import FileUpload
 from mkt.files.tests.test_models import UploadTest
 from mkt.site.fixtures import fixture
-from mkt.site.storage_utils import private_storage
+from mkt.site.storage_utils import local_storage, private_storage
 from mkt.site.tests import ESTestCase, MktPaths, TestCase
 from mkt.users.models import UserProfile
 
@@ -41,16 +41,16 @@ class TestExtensionValidationViewSet(MktPaths, RestOAuth):
                                         'filename="foo.zip"'
         }
         with open(self.packaged_app_path('extension.zip'), 'rb') as fd:
-            response = client.post(self.list_url, fd.read(),
+            contents = fd.read()
+            response = client.post(self.list_url, contents,
                                    content_type='application/zip', **headers)
-
         eq_(response.status_code, 202)
         data = response.json
         upload = FileUpload.objects.get(pk=data['id'])
+        expected_hash = hashlib.sha256(contents).hexdigest()
         eq_(upload.valid, True)  # We directly set uploads as valid atm.
         eq_(upload.name, 'foo.zip')
-        ok_(upload.hash.startswith(
-            'sha256:0530f204f41c1a04e4083f702e0f32647fb6d567e909f13f4951a324'))
+        eq_(upload.hash, 'sha256:%s' % expected_hash)
         ok_(upload.path)
         ok_(private_storage.exists(upload.path))
         return upload
@@ -189,13 +189,15 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
         eq_(response.status_code, 201)
         data = response.json
 
+        expected_size = local_storage.size(
+            self.packaged_app_path('extension.zip'))
         eq_(data['author'], u'Mozillâ')
         # The extension.zip package has "default_locale": "en_GB".
         eq_(data['description'], {'en-GB': u'A Dummÿ Extension'})
         eq_(data['device_types'], ['firefoxos'])
         eq_(data['disabled'], False)
         eq_(data['last_updated'], None)  # The extension is not public yet.
-        eq_(data['latest_version']['size'], 268)
+        eq_(data['latest_version']['size'], expected_size)
         eq_(data['latest_version']['version'], '0.1')
         eq_(data['name'], {'en-GB': u'My Lîttle Extension'})
         eq_(data['slug'], u'my-lîttle-extension')
@@ -1300,7 +1302,8 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
         }))
         eq_(response.status_code, 201)
         data = response.json
-        eq_(data['size'], 268)  # extension.zip size in bytes.
+        eq_(data['size'],
+            local_storage.size(self.packaged_app_path('extension.zip')))
         eq_(data['status'], 'pending')
         eq_(data['version'], '0.1')
         eq_(Extension.objects.count(), 1)

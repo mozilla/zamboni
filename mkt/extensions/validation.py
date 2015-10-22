@@ -1,10 +1,12 @@
+import imghdr
 import json
+from cStringIO import StringIO
 from zipfile import BadZipfile
 
 from django.forms import ValidationError
 from django.utils.encoding import smart_unicode
 
-
+from PIL import Image
 from rest_framework.exceptions import ParseError
 from tower import ugettext as _
 
@@ -32,10 +34,18 @@ class ExtensionValidator(object):
         'DESCRIPTION_TOO_LONG': _(
             u'The `description` property cannot be '
             u'longer than 132 characters.'),
-        'ICONS_DO_NOT_EXIST': _(u'Not all specified icons exist.'),
+        'ICON_INCORRECT_DIMENSIONS': _(
+            u'The icon file `%(icon_path)s` is not the specified dimensions '
+            u' of %(icon_size)s x %(icon_size)s as defined in the manifest.'),
+        'ICON_DOES_NOT_EXIST': _(
+            u'The icon file `%(icon_path)s` is referenced in the manifest but'
+            u' does not exist in the ZIP file.'),
         'ICONS_NO_128': _(
             u'If defining `icons`, you must include a 128x128 variant.'),
-        'ICONS_INVALID_FORMAT': _(u'Only PNG icons are permitted.'),
+        'ICON_NOT_A_VALID_IMAGE_OR_PNG': _(
+            u'The icon file `%s` is not a valid PNG.'),
+        'ICON_NOT_SQUARE': _(
+            u'The icon file `%(icon_path)s` is not square.'),
         'INVALID_JSON': _(
             u"'manifest.json' in the archive is not a valid JSON"
             u" file."),
@@ -70,10 +80,14 @@ class ExtensionValidator(object):
         self.file_obj = file_obj
         self.zipfile = None
 
-    def error(self, error_key):
+    def error(self, key, **kwargs):
+        message = self.errors[key]
+        if kwargs:
+            message = self.errors[key] % kwargs
         raise ParseError(detail={
-            'key': error_key,
-            'message': self.errors[error_key],
+            'key': key,
+            'message': message,
+            'params': kwargs,
         })
 
     def validate(self):
@@ -93,7 +107,6 @@ class ExtensionValidator(object):
         self.validate_version(self.data)
         self.validate_author(self.data)
         self.validate_icons(self.data)
-        # self.validate_icon_files(self.data)
         return self.data
 
     def validate_file(self, file_obj):
@@ -217,25 +230,46 @@ class ExtensionValidator(object):
 
         * Ensure that, if the icons property is present, a 128px icon is
           provided.
-        * Ensure that each icon referenced has a .png extension.
+        * Ensure that each icon size is a valid integer.
+        * Ensure that each icon file is valid by calling _validate_icon_file().
         """
         icons = manifest_json.get('icons', {})
         if icons:
             if '128' not in icons:
                 self.error('ICONS_NO_128')
-            for size, path in icons.iteritems():
-                if not path.endswith('.png'):
-                    self.error('ICONS_INVALID_FORMAT')
+            for icon_size, icon_path in icons.iteritems():
+                try:
+                    icon_size = int(icon_size)
+                    if icon_size <= 0:
+                        raise ValueError
+                except ValueError:
+                    self.error('ICON_INVALID_SIZE', icon_path=icon_path)
+                self._validate_icon_file(icon_path, icon_size)
 
-    def validate_icon_files(self, manifest_json):
+    def _validate_icon_file(self, icon_path, icon_size):
         """
-        In turn, validate each icon file referenced by the `icons` property of
-        the manifest:
+        Validate a specific icon path referenced in the manifest:
 
         * Ensure that the file exists in the zip.
         * Ensure that it is a valid PNG file.
-        * Ensure that it has the claimed dimensions.
         * Ensure that it is square.
+        * Ensure that it has the claimed dimensions.
         """
-        icons = manifest_json.get('icons', {})
-        return icons
+        try:
+            icon_contents = self.zipfile.extract_path(icon_path.lstrip('/'))
+        except KeyError:
+            self.error('ICON_DOES_NOT_EXIST', icon_path=icon_path)
+            return
+        try:
+            if imghdr.what(None, icon_contents) != 'png':
+                raise IOError
+            image = Image.open(StringIO(icon_contents))
+        except IOError:
+            self.error('ICON_NOT_A_VALID_IMAGE_OR_PNG',
+                       icon_path=icon_path)
+            return
+        if image.size[0] != image.size[1]:
+            self.error('ICON_NOT_SQUARE', icon_path=icon_path)
+        if icon_size != image.size[0]:
+            self.error('ICON_INCORRECT_DIMENSIONS',
+                       icon_path=icon_path, icon_size=icon_size)
