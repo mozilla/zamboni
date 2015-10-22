@@ -1028,3 +1028,27 @@ class TestTOSShowView(RestOAuth):
         updated_user = UserProfile.objects.get(pk=self.user.pk)
         ok_(isinstance(updated_user.shown_dev_agreement, datetime))
         eq_(res.json['url'], reverse('mkt.developers.apps.terms_standalone'))
+
+
+class TestUserSessionView(TestCase):
+    fixtures = fixture('user_999',)
+
+    def setUp(self):
+        super(TestUserSessionView, self).setUp()
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.url = reverse('users.session')
+
+    def test_no_cors(self):
+        response = self.client.get(self.url)
+        assert 'Access-Control-Allow-Origin' not in response
+
+    def test_no_session(self):
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        eq_(json.loads(response.content)['has_session'], False)
+
+    def test_session(self):
+        self.login(self.user.email)
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        eq_(json.loads(response.content)['has_session'], True)

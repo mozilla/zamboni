@@ -11,6 +11,7 @@ from django.contrib import auth
 from django.contrib.auth.signals import user_logged_in
 from django.core.urlresolvers import reverse
 from django.db import IntegrityError
+from django.http import JsonResponse
 from django.utils.datastructures import MultiValueDictKeyError
 
 import basket
@@ -497,3 +498,9 @@ class TOSReadView(CORSMixin, APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         request.user.update(read_dev_agreement=datetime.now())
         return Response(status=status.HTTP_201_CREATED)
+
+
+def user_session_view(request):
+    return JsonResponse({
+        'has_session': request.user.is_authenticated()
+    })

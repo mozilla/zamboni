@@ -3,7 +3,7 @@ from django.conf.urls import include, patterns, url
 from mkt.account.views import (AccountView, FeedbackView, FxALoginView,
                                GroupsViewSet, InstalledViewSet, LoginView,
                                LogoutView, NewsletterView, PermissionsView,
-                               TOSShowView, TOSReadView)
+                               TOSShowView, TOSReadView, user_session_view)
 from mkt.feed.views import FeedShelfViewSet
 from mkt.users import views
 
@@ -45,4 +45,5 @@ api_patterns = patterns(
 user_patterns = patterns(
     '',
     url('^ajax$', views.ajax, name='users.ajax'),
+    url('^session/$', user_session_view, name='users.session'),
 )
