@@ -14,10 +14,11 @@ from rest_framework.exceptions import ParseError
 from lib.crypto.packaged import SigningError
 from lib.utils import static_url
 from mkt.constants.applications import DEVICE_GAIA
-from mkt.constants.base import (STATUS_NULL, STATUS_OBSOLETE, STATUS_PENDING,
-                                STATUS_PUBLIC, STATUS_REJECTED)
+from mkt.constants.base import (STATUS_BLOCKED, STATUS_NULL, STATUS_OBSOLETE,
+                                STATUS_PENDING, STATUS_PUBLIC, STATUS_REJECTED)
 from mkt.constants.regions import RESTOFWORLD, USA
-from mkt.extensions.models import Extension, ExtensionVersion
+from mkt.extensions.models import (BlockedExtensionError, Extension,
+                                   ExtensionVersion)
 from mkt.files.tests.test_models import UploadCreationMixin, UploadTest
 from mkt.site.storage_utils import (private_storage, public_storage,
                                     storage_is_remote)
@@ -213,6 +214,12 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         with self.assertRaises(ValueError):
             ExtensionVersion.from_upload(upload)
 
+    def test_upload_new_version_parent_is_blocked(self):
+        extension = Extension.objects.create(status=STATUS_BLOCKED)
+        upload = self.upload('extension')
+        with self.assertRaises(BlockedExtensionError):
+            ExtensionVersion.from_upload(upload, parent=extension)
+
     def test_handle_file_upload_operations_path_already_exists(self):
         upload = self.upload('extension')
         extension = Extension()
@@ -230,6 +237,9 @@ class TestExtensionAndExtensionVersionDeletion(TestCase):
         # Explicitly delete the Extensions to clean up leftover files. By
         # using the queryset method we're bypassing the custom delete() method,
         # but still sending pre_delete and post_delete signals.
+        # We have to change the extension status first to prevent blocked
+        # extensions from raising an exception.
+        Extension.objects.all().update(status=STATUS_NULL)
         Extension.objects.all().delete()
 
     def _create_files_for_version(self, version):
@@ -243,6 +253,30 @@ class TestExtensionAndExtensionVersionDeletion(TestCase):
         assert private_storage.exists(file_path)
         assert public_storage.exists(signed_file_path)
         return file_path, signed_file_path
+
+    def test_delete_blocked(self):
+        extension = Extension(status=STATUS_BLOCKED)
+        with self.assertRaises(BlockedExtensionError):
+            extension.delete()
+
+    def test_hard_delete_blocked(self):
+        extension = Extension(status=STATUS_BLOCKED)
+        with self.assertRaises(BlockedExtensionError):
+            extension.delete(hard_delete=True)
+
+    def test_version_delete_blocked(self):
+        extension = Extension.objects.create()
+        version = extension.versions.create()
+        extension.block()
+        with self.assertRaises(BlockedExtensionError):
+            version.delete()
+
+    def test_version_hard_delete_blocked(self):
+        extension = Extension.objects.create()
+        version = extension.versions.create()
+        extension.block()
+        with self.assertRaises(BlockedExtensionError):
+            version.delete(hard_delete=True)
 
     def test_hard_delete_with_file(self):
         """Test that when a Extension instance is hard-deleted, the
@@ -821,6 +855,26 @@ class TestExtensionStatusChanges(TestCase):
         eq_(fetch_icon_mock.call_count, 0)
         eq_(fetch_icon_mock.delay.call_count, 0)
 
+    def test_update_manifest_fields_from_latest_public_version_blocked(self):
+        # Explicitly call update_manifest_fields_from_latest_public_version()
+        # instead of relying on signals to make sure it too does a blocked
+        # check just in case.
+        extension = Extension(status=STATUS_BLOCKED)
+        with self.assertRaises(BlockedExtensionError):
+            extension.update_manifest_fields_from_latest_public_version()
+
+    def test_raise_error_when_creating_version_on_blocked_extension(self):
+        extension = Extension.objects.create(status=STATUS_BLOCKED)
+        with self.assertRaises(BlockedExtensionError):
+            extension.versions.create()
+
+    def test_raise_error_when_modifying_version_on_blocked_extension(self):
+        extension = Extension.objects.create()
+        version = extension.versions.create(status=STATUS_PENDING)
+        extension.block()
+        with self.assertRaises(BlockedExtensionError):
+            version.save()
+
 
 class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
     def test_unicode(self):
@@ -828,6 +882,22 @@ class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
         version = ExtensionVersion(pk=42, extension=extension, version=u'0.42')
         ok_(unicode(extension))
         ok_(unicode(version))
+
+    def test_block(self):
+        extension = Extension.objects.create()
+        extension.versions.create(status=STATUS_PUBLIC)
+        eq_(extension.status, STATUS_PUBLIC)
+        eq_(extension.is_blocked(), False)
+        extension.block()
+        eq_(extension.status, STATUS_BLOCKED)
+        eq_(extension.is_blocked(), True)
+        return extension
+
+    def test_unblock(self):
+        extension = self.test_block()
+        extension.unblock()
+        eq_(extension.status, STATUS_PUBLIC)
+        eq_(extension.is_blocked(), False)
 
     def test_get_fallback(self):
         eq_(Extension.get_fallback(),
@@ -984,6 +1054,18 @@ class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
             version='0.44.0')
         eq_(extension.mini_manifest, {})
 
+    def test_mini_manifest_blocked(self):
+        manifest = {
+            'you_should_not_see': 'this_manifest'
+        }
+        extension = Extension.objects.create(
+            uuid='abcdefabcdefabcdefabcdefabcdef44')
+        ExtensionVersion.objects.create(
+            extension=extension, manifest=manifest, status=STATUS_PUBLIC,
+            version='0.44.0')
+        extension.block()
+        eq_(extension.mini_manifest, {})
+
     def test_mini_manifest(self):
         manifest = {
             'author': 'Me',
@@ -1099,6 +1181,15 @@ class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
             version.sign_file()
         eq_(remove_public_signed_file_mock.call_count, 1)
 
+    @mock.patch('mkt.extensions.models.sign_app')
+    @mock.patch('mkt.extensions.models.private_storage')
+    def test_sign_blocked(self, private_storage_mock, sign_app_mock):
+        extension = Extension(
+            status=STATUS_BLOCKED, uuid='12345678123456781234567812345678')
+        version = ExtensionVersion(extension=extension, pk=456)
+        with self.assertRaises(SigningError):
+            version.sign_file()
+
     @mock.patch('mkt.extensions.models.private_storage')
     @mock.patch('mkt.extensions.models.ExtensionVersion.reviewer_sign_file')
     def test_reviewer_sign_if_necessary(self, reviewer_sign_file_mock,
@@ -1200,6 +1291,12 @@ class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
             version.signed_file_path)
         eq_(public_storage_mock.delete.call_count, 0)
 
+    def test_publish_blocked(self):
+        extension = Extension(status=STATUS_BLOCKED)
+        version = ExtensionVersion(extension=extension)
+        with self.assertRaises(BlockedExtensionError):
+            version.publish()
+
     @mock.patch.object(ExtensionVersion, 'sign_file')
     @mock.patch('mkt.extensions.models.datetime')
     def test_publish(self, datetime_mock, mocked_sign_file):
@@ -1226,6 +1323,12 @@ class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
         eq_(version.size, 666)
         eq_(extension.last_updated, datetime_mock.utcnow.return_value)
         eq_(extension.status, STATUS_PUBLIC)
+
+    def test_reject_blocked(self):
+        extension = Extension(status=STATUS_BLOCKED)
+        version = ExtensionVersion(extension=extension)
+        with self.assertRaises(BlockedExtensionError):
+            version.reject()
 
     @mock.patch.object(ExtensionVersion, 'remove_public_signed_file')
     def test_reject(self, remove_public_signed_file_mock):
