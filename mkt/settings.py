@@ -325,7 +325,10 @@ UPLOADS_PATH = NETAPP_STORAGE + '/uploads'
 
 PREVIEWS_PATH = UPLOADS_PATH + '/previews'
 
+# Directory must match ADDON_ICON_URL, EXTENSION_ICON_URL and
+# WEBSITE_ICON_URL, respectively.
 ADDON_ICONS_PATH = UPLOADS_PATH + '/addon_icons'
+EXTENSION_ICONS_PATH = UPLOADS_PATH + '/extension_icons'
 WEBSITE_ICONS_PATH = UPLOADS_PATH + '/website_icons'
 
 WEBAPP_PROMO_IMG_PATH = UPLOADS_PATH + '/webapp_promo_imgs'
@@ -384,8 +387,10 @@ STATIC_URL = SITE_URL + '/'
 
 ICONS_DEFAULT_URL = 'img/hub'
 
-# Directory must match ADDON_ICONS_PATH and WEBSITE_ICONS_PATH, respectively.
+# Directory must match ADDON_ICONS_PATH, EXTENSION_ICONS_PATH and
+# WEBSITE_ICONS_PATH, respectively.
 ADDON_ICON_URL = 'img/uploads/addon_icons/%s/%s-%s.png?modified=%s'
+EXTENSION_ICON_URL = 'img/uploads/extension_icons/%s/%s-%s.png?m=%s'
 WEBSITE_ICON_URL = 'img/uploads/website_icons/%s/%s-%s.png?modified=%s'
 
 WEBAPP_PROMO_IMG_URL = (
