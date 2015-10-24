@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-10-24 17:00+0000\n"
+"PO-Revision-Date: 2015-10-24 17:20+0000\n"
 "Last-Translator: sphinx_knight <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3216,6 +3216,9 @@ msgid ""
 "<p>Example using a Python library for the command-line on Mac OS X/Linux "
 "using your OAuth credentials:</p>"
 msgstr ""
+"<p>Exemple utilisant une bibliothèque Python depuis l'interface en ligne de "
+"commande Mac OS X/Linux avec les informations d'authentification "
+"OAuth&nbsp;:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step
 #. of the submission process (e.g. 'Payments' or 'Content Ratings').
@@ -4377,13 +4380,16 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101
 msgid "Hosted URL"
-msgstr ""
+msgstr "URL d’hébergement"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:107
 msgid ""
 "If your app has a URL where it is hosted, you can set it for users that want"
 " to try your app before installing it."
 msgstr ""
+"Si votre application est hébergée à une URL donnée, vous pouvez utiliser ce "
+"champ pour l’indiquer afin que vos utilisateurs puissent essayer "
+"l’application avant de l’installer."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:119
 #: mkt/lookup/templates/lookup/website_edit.html:41
@@ -6247,10 +6253,12 @@ msgid ""
 "Version number must be higher than the latest version uploaded for this Add-"
 "on, which is \"%s\"."
 msgstr ""
+"Le numéro de version doit être supérieur à celui de la dernière version "
+"transmise pour ce module complémentaire et qui vaut «&nbsp;%s&nbsp;»."
 
 #: mkt/extensions/models.py:442
 msgid "An Add-on with this version number already exists."
-msgstr ""
+msgstr "Un module avec ce numéro de version existe déjà."
 
 #: mkt/extensions/validation.py:22
 msgid "The `author` property must be a string."
@@ -6270,7 +6278,7 @@ msgstr ""
 
 #: mkt/extensions/validation.py:28
 msgid "The file sent has an unsupported content-type"
-msgstr ""
+msgstr "Le type de fichier envoyé n'est pas supporté"
 
 #: mkt/extensions/validation.py:30
 msgid "The `description` property must be a string."
@@ -6278,23 +6286,26 @@ msgstr "La propriété `description` doit être une chaîne de caractères."
 
 #: mkt/extensions/validation.py:32
 msgid "The `description` property cannot be longer than 132 characters."
-msgstr ""
+msgstr "La propriété `description` ne doit pas dépasser 132 caractères."
 
 #: mkt/extensions/validation.py:35
 msgid "'manifest.json' in the archive is not a valid JSON file."
 msgstr ""
+"Le fichier 'manifest.json' contenu dans l'archive n'est pas un fichier JSON "
+"valide."
 
 #: mkt/extensions/validation.py:38
 msgid "'manifest.json' in the archive is not encoded in UTF-8."
 msgstr ""
+"Le fichier 'manifest.json' contenu dans l'archive n'est pas encodé en UTF-8."
 
 #: mkt/extensions/validation.py:40
 msgid "The file sent is not a valid ZIP file."
-msgstr ""
+msgstr "Le fichier envoyé n'est pas un fichier ZIP valide."
 
 #: mkt/extensions/validation.py:41
 msgid "There is no `name` property in the manifest."
-msgstr ""
+msgstr "Il n'y a pas de propriété `name` dans le manifeste."
 
 #: mkt/extensions/validation.py:42
 msgid "The `name` property must be a string."
@@ -6302,21 +6313,23 @@ msgstr "La propriété `name` doit être une chaîne de caractères."
 
 #: mkt/extensions/validation.py:43
 msgid "The `name` property cannot be longer than 45 characters."
-msgstr ""
+msgstr "La propriété `name` ne doit pas dépasser 45 caractères."
 
 #: mkt/extensions/validation.py:46
 msgid ""
 "The `name` property must be at least 1 character long and can not consist of"
 " only whitespace characters."
 msgstr ""
+"La propriété `name` doit contenir au moins 1 caractère et ne doit pas être "
+"composée uniquement de blancs."
 
 #: mkt/extensions/validation.py:49
 msgid "The archive does not contain a 'manifest.json' file."
-msgstr ""
+msgstr "L'archive ne contient pas de fichier 'manifest.json'."
 
 #: mkt/extensions/validation.py:52
 msgid "There is no `version` property in the manifest."
-msgstr ""
+msgstr "Il n'y a aucune propriété `version` dans le manifeste."
 
 #: mkt/extensions/validation.py:54
 msgid "The `version` property must be a string."
@@ -6327,10 +6340,13 @@ msgid ""
 "The `version` property must be a string containing one to four dot-separated"
 " integers each between 0 and 65535."
 msgstr ""
+"La propriété `version` doit être une chaîne de caractères contenant entre un"
+" et quatre entiers, compris entre 0 et 65535 et séparés entre eux par des "
+"points."
 
 #: mkt/extensions/views.py:55
 msgid "No validation_id specified."
-msgstr ""
+msgstr "Aucun validation_id spécifié."
 
 #: mkt/extensions/views.py:60
 msgid "No such upload."
