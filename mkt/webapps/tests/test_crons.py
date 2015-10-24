@@ -162,10 +162,14 @@ class TestSignApps(mkt.site.tests.TestCase):
 
     def test_by_webapp(self, sign_mock):
         v1 = self.app.current_version
-        call_command('sign_apps', webapps=str(v1.pk))
         file1 = v1.all_files[0]
-        assert sign_mock.called_with(((file1.file_path,
-                                       file1.signed_file_path),))
+        with private_storage.open(file1.file_path, 'w') as f:
+            f.write('.')
+        call_command('sign_apps', webapps=str(self.app.pk))
+        eq_(sign_mock.call_count, 1)
+        eq_(os.path.join('/', sign_mock.mock_calls[0][1][0].name),
+            file1.file_path)
+        eq_(sign_mock.mock_calls[0][1][1], file1.signed_file_path)
 
     def test_all(self, sign_mock):
         v1 = self.app.current_version

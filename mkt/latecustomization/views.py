@@ -53,16 +53,30 @@ class LateCustomizationViewSet(FeedShelfPermissionMixin, CORSMixin,
         elif 'mnc' in data and 'mcc' in data:
             try:
                 carrier = MOBILE_CODES[int(data['mcc'])][int(data['mnc'])]
+                if isinstance(carrier, dict):
+                    carrier = carrier.get(data.get('spn', '__default'))
+                    if carrier is None:
+                        raise ParseError('Invalid mcc/mnc/spn triplet')
                 region = REGIONS_BY_MCC[int(data['mcc'])]
             except (KeyError, ValueError):
                 raise ParseError("Invalid mnc/mcc pair")
         else:
             raise ParseError("Both 'region' and 'carrier' or both "
                              "'mnc' and 'mcc' parameters must be provided")
-        carrier = (carrier if isinstance(carrier, (int, long)) else
-                   CARRIER_MAP[carrier].id)
-        region = (region if isinstance(region, (int, long)) else
-                  REGIONS_DICT[region].id)
+        try:
+            carrier = int(carrier)
+        except ValueError:
+            c = CARRIER_MAP.get(carrier)
+            if c is None:
+                raise ParseError("No carrier " + repr(carrier))
+            carrier = c.id
+        try:
+            region = int(region)
+        except ValueError:
+            r = REGIONS_DICT.get(region)
+            if r is None:
+                raise ParseError("No region " + repr(region))
+            region = r.id
         return carrier, region
 
     def list(self, request, *args, **kwargs):

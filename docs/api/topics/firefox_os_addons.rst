@@ -41,6 +41,10 @@ Detail
           "description": null,
           "disabled": false,
           "device_types": ["firefoxos"],
+          "icons": {
+            "64": "https://example.com/uploads/extensions_icons/0/1-64.png?m=1a1337",
+            "128": "https://example.com/uploads/extensions_icons/0/1-128.png?m=1a1337",
+          }
           "latest_version": {
             "id": 1,
             "download_url": "https://example.com/downloads/extension/ce6b52d231154a27a1c54b2648c10379/1/extension-0.1.zip",
@@ -61,7 +65,8 @@ Detail
             "en-US": "My Lîttle Extension"
           },
           "slug": "my-lîttle-extension",
-          "status": "public"
+          "status": "public",
+          "uuid": "be98056d6963461eb543bea2ddf3b9af"
         }
 
     .. note::
@@ -75,6 +80,7 @@ Detail
     :resjson boolean disabled: Boolean indicating whether the developer has disabled
         their add-on or not.
     :resjson string device_types: The devices the add-on is compatible with.
+    :resjson object icons: An object containing information about the app icons. The keys represent icon sizes, the values the corresponding URLs.
     :resjson string|null last_updated: The latest date a version was published at for this add-on.
     :resjson object latest_version: The latest :ref:`add-on version <addon-version-detail>` available for this extension.
     :resjson object latest_public_version: The latest *public* :ref:`add-on version <addon-version-detail>` available for this extension.
@@ -84,6 +90,7 @@ Detail
         instead of the id to retrieve an add-on).
     :resjson string status: The add-on current status.
         Can be *incomplete*, *pending*, or *public*.
+    :resjson string uuid: The add-on uuid, used internally for URLs and for blocklisting.
 
     :param int id: The add-on id
     :param string slug: The add-on slug
@@ -337,7 +344,9 @@ Add-on Creation
 
     Create an add-on. Note that an add-on version is created automatically for
     you.
-    An :ref:`add-on <addon-detail>` is returned.
+    An :ref:`add-on <addon-detail>` is returned. Icons are processed
+    asynchronously; as a result, the json data returned might not contain the
+    final URL for the icons at this time.
 
     :reqjson string validation_id: the id of the
         :ref:`validation result <addon_validation>` for your add-on.

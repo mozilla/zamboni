@@ -1,28 +1,25 @@
 # -*- coding: utf-8 -*-
 import json
 from contextlib import contextmanager
+from cStringIO import StringIO
 
 import mock
 from nose.tools import eq_
+from PIL import Image
 from rest_framework.exceptions import ParseError
 from zipfile import BadZipfile, ZipFile
 
 from django.core.files.uploadedfile import TemporaryUploadedFile
 from django.forms import ValidationError
 
+from mkt.files.utils import SafeUnzip
 from mkt.site.tests import TestCase
 from mkt.extensions.validation import ExtensionValidator
 
 
 class TestExtensionValidator(TestCase):
     """
-    Tests the ExtensionValidator class. The following methods are tested in
-    the TestExtensionViewSetPost test case instead, as part of an end-to-end
-    workflow:
-
-    * ExtensionValidator.validate_file
-    * ExtensionValidator.validate_json
-    * ExtensionValidator.validate_icon_files
+    Tests the ExtensionValidator class.
     """
     def setUp(self):
         self.extension = None
@@ -34,7 +31,7 @@ class TestExtensionValidator(TestCase):
             self.extension.close()
 
     @contextmanager
-    def assertValidationError(self, key):
+    def assertValidationError(self, key, **kwargs):
         """
         Context manager assertion which asserts that the yielded code raises an
         appropriate validation exception and message.
@@ -49,27 +46,43 @@ class TestExtensionValidator(TestCase):
         try:
             yield
         except Exception, e:
+            expected_message = ExtensionValidator.errors[key]
+            if kwargs:
+                expected_message = expected_message % kwargs
             eq_(e.__class__, ParseError)
             eq_(e.detail['key'], key)
-            eq_(e.detail['message'], ExtensionValidator.errors[key])
+            eq_(e.detail['message'], expected_message)
+            if kwargs:
+                eq_(e.detail['params'], kwargs)
         else:
             self.fail('Does not raise a ParseError.')
 
-    def _extension(self, data):
+    def _extension(self, data, icon=None):
         self.extension = TemporaryUploadedFile('ext.zip', 'application/zip', 0,
                                                'UTF-8')
         with ZipFile(self.extension, "w") as z:
             if data is not None:
                 z.writestr('manifest.json', json.dumps(data))
+            if icon is not None:
+                z.writestr('path/to/128.png', icon)
         return self.extension
+
+    def _icon(self, size=(128, 128), format='png'):
+        fake_icon = StringIO()
+        Image.new('RGB', size).save(fake_icon, format)
+        fake_icon.seek(0)
+        return fake_icon.read()
 
     def test_full(self):
         extension_file = self._extension({
             'author': u'Me, Mŷself and I',
             'name': u'My Extënsion',
             'description': u'This is a valid descriptiôn',
+            'icons': {
+                '128': '/path/to/128.png',
+            },
             'version': '0.1.2.3',
-        })
+        }, icon=self._icon())
         try:
             self.validator = ExtensionValidator(extension_file)
             self.validator.validate()
@@ -284,22 +297,81 @@ class TestExtensionValidator(TestCase):
         with self.assertValidationError('VERSION_INVALID'):
             self.validator.validate_version({'version': '0.42.65536.42'})
 
-    def test_no_icons(self):
+    def test_icons_no_icons(self):
         try:
             self.validator.validate_icons({})
         except:
             self.fail('A missing icons object is allowed.')
 
-    def test_empty_icons(self):
+    def test_icons_empty(self):
         try:
             self.validator.validate_icons({'icons': {}})
         except:
             self.fail('Empty icons object is allowed.')
 
-    def test_icon_missing_128(self):
+    def test_icons_invalid_size_not_int(self):
+        self.validator.zipfile = mock.Mock(spec=SafeUnzip)
+        self.validator.zipfile.extract_path.return_value = self._icon()
+        with self.assertValidationError('ICON_INVALID_SIZE', icon_size='bad'):
+            self.validator.validate_icons(
+                {'icons': {'128': 'good.png', 'bad': '/path/ugly.png'}})
+
+    def test_icons_invalid_size_zero(self):
+        self.validator.zipfile = mock.Mock(spec=SafeUnzip)
+        self.validator.zipfile.extract_path.return_value = self._icon()
+        with self.assertValidationError('ICON_INVALID_SIZE', icon_size='0'):
+            self.validator.validate_icons(
+                {'icons': {'128': 'good.png', '0': '/path/zero.png'}})
+
+    def test_icons_missing_128(self):
         with self.assertValidationError('ICONS_NO_128'):
             self.validator.validate_icons({'icons': {'64': ''}})
 
-    def test_icon_not_png_extension(self):
-        with self.assertValidationError('ICONS_INVALID_FORMAT'):
-            self.validator.validate_icons({'icons': {'128': 'me.jpg'}})
+    def test_icons_valid(self):
+        icons_property = {'128': 'me.png'}
+        self.validator.zipfile = mock.Mock(spec=SafeUnzip)
+        self.validator.zipfile.extract_path.return_value = self._icon()
+
+        try:
+            self.validator.validate_icons({'icons': icons_property})
+        except:
+            raise
+            assert False, (u'A valid icons'
+                           u' "%s" fails validation' % icons_property)
+
+    def test_icons_missing(self):
+        self.validator.zipfile = mock.Mock(spec=SafeUnzip)
+        self.validator.zipfile.extract_path.side_effect = KeyError
+        with self.assertValidationError('ICON_DOES_NOT_EXIST',
+                                        icon_path='me.png'):
+            self.validator.validate_icons({'icons': {'128': 'me.png'}})
+
+    def test_icons_not_valid_image(self):
+        self.validator.zipfile = mock.Mock(spec=SafeUnzip)
+        self.validator.zipfile.extract_path.return_value = 'lol not an image'
+        with self.assertValidationError(
+                'ICON_NOT_A_VALID_IMAGE_OR_PNG', icon_path='me.png'):
+            self.validator.validate_icons({'icons': {'128': 'me.png'}})
+
+    def test_icons_not_valid_png(self):
+        self.validator.zipfile = mock.Mock(spec=SafeUnzip)
+        self.validator.zipfile.extract_path.return_value = self._icon(
+            format='JPEG')
+        with self.assertValidationError(
+                'ICON_NOT_A_VALID_IMAGE_OR_PNG', icon_path='me.png'):
+            self.validator.validate_icons({'icons': {'128': 'me.png'}})
+
+    def test_icons_not_square(self):
+        self.validator.zipfile = mock.Mock(spec=SafeUnzip)
+        self.validator.zipfile.extract_path.return_value = self._icon(
+            size=(128, 127))
+        with self.assertValidationError('ICON_NOT_SQUARE', icon_path='me.png'):
+            self.validator.validate_icons({'icons': {'128': 'me.png'}})
+
+    def test_icons_not_real_size(self):
+        self.validator.zipfile = mock.Mock(spec=SafeUnzip)
+        self.validator.zipfile.extract_path.return_value = self._icon(
+            size=(256, 256))
+        with self.assertValidationError('ICON_INCORRECT_DIMENSIONS',
+                                        icon_path='me.png', icon_size=128):
+            self.validator.validate_icons({'icons': {'128': 'me.png'}})

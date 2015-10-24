@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-10-19 11:54+0000\n"
+"PO-Revision-Date: 2015-10-20 07:37+0000\n"
 "Last-Translator: Miha Knavs <miha@abecednik.si>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1655,6 +1655,8 @@ msgid ""
 "The app requires the ability to get information about the network connection"
 " (the `navigator.mozConnection` API)."
 msgstr ""
+"Aplikacija zahteva možnost pridobivanja informacij o omrežni povezavi (API "
+"`navigator.mozConnection`)."
 
 #: mkt/constants/features.py:103
 msgid "Network Stats"
@@ -1662,7 +1664,7 @@ msgstr "Statistika o mreži"
 
 #: mkt/constants/features.py:104
 msgid "The app requires the `navigator.mozNetworkStats` API."
-msgstr ""
+msgstr "Aplikacija zahteva API `navigator.mozNetworkStats`."
 
 #: mkt/constants/features.py:109
 msgid "Proximity"
@@ -1670,7 +1672,7 @@ msgstr "Bližina"
 
 #: mkt/constants/features.py:110
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
-msgstr ""
+msgstr "Aplikacija zahteva senzor bližine (API `ondeviceproximity`)."
 
 #: mkt/constants/features.py:115
 msgid "Simple Push"
@@ -1678,7 +1680,7 @@ msgstr "Enostaven poriv"
 
 #: mkt/constants/features.py:116
 msgid "The app requires the `navigator.mozPush` API."
-msgstr ""
+msgstr "Aplikacija zahteva API `navigator.mozPush`."
 
 #: mkt/constants/features.py:120
 msgid "Screen Orientation"
@@ -1687,33 +1689,35 @@ msgstr "Orientacija zaslona"
 #: mkt/constants/features.py:121
 msgid ""
 "The app requires the platform to support the `ondeviceorientation` API."
-msgstr ""
+msgstr "Aplikacija zahteva platformo za podporo API-ja`ondeviceorientation`."
 
 #: mkt/constants/features.py:126
 msgid "Time/Clock"
-msgstr "Ćas/Ura"
+msgstr "Čas/Ura"
 
 #: mkt/constants/features.py:127
 msgid "The app requires the `navigator.mozTime` API."
-msgstr ""
+msgstr "Aplikacija zahteva API `navigator.mozTime`."
 
 #: mkt/constants/features.py:131
 msgid "Vibration"
-msgstr "Vibracija"
+msgstr "Vibriranje"
 
 #: mkt/constants/features.py:132
 msgid ""
 "The app requires the device to support vibration (the `navigator.vibrate` "
 "API)."
 msgstr ""
+"Naprava mora za delovanje aplikacije podpirati vibriranje (API "
+"`navigator.vibrate`)."
 
 #: mkt/constants/features.py:138
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
-msgstr ""
+msgstr "Aplikacija zahteva API `navigator.mozFM` ali `navigator.mozFMRadio`."
 
 #: mkt/constants/features.py:144
 msgid "The app requires the `navigator.mozSms` API."
-msgstr ""
+msgstr "Aplikacija zahteva API `navigator.mozSms`."
 
 #: mkt/constants/features.py:148
 msgid "Touch"
@@ -1780,16 +1784,20 @@ msgid ""
 "The app requires the Full Screen API (`requestFullScreen` or "
 "`mozRequestFullScreen`)."
 msgstr ""
+"Aplikacija zahteva API celoten zaslon (`requestFullScreen` ali "
+"`mozRequestFullScreen`)."
 
 #: mkt/constants/features.py:202
 msgid "Gamepad"
-msgstr "Gamepad"
+msgstr "Igralna ploščica"
 
 #: mkt/constants/features.py:203
 msgid ""
 "The app requires the platform to support the gamepad API "
 "(`navigator.getGamepads`)."
 msgstr ""
+"Aplikacija zahteva platformo za podporo API-ja igralna ploščica "
+"(`navigator.getGamepads`)."
 
 #: mkt/constants/features.py:208
 msgid "Quota Management"
@@ -1834,7 +1842,7 @@ msgstr "Aplikacija zahteva dostop do zaslona naprave za zajem."
 
 #: mkt/constants/features.py:237
 msgid "WebRTC MediaStream"
-msgstr ""
+msgstr "WebRTC MediaStream"
 
 #: mkt/constants/features.py:238
 msgid ""
@@ -1844,7 +1852,7 @@ msgstr ""
 
 #: mkt/constants/features.py:244
 msgid "WebRTC DataChannel"
-msgstr ""
+msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:245
 msgid ""
@@ -1854,7 +1862,7 @@ msgstr ""
 
 #: mkt/constants/features.py:251
 msgid "WebRTC PeerConnection"
-msgstr ""
+msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:252
 msgid ""
@@ -1912,7 +1920,7 @@ msgstr ""
 
 #: mkt/constants/features.py:292
 msgid "SystemXHR"
-msgstr ""
+msgstr "SystemXHR"
 
 #: mkt/constants/features.py:293
 msgid ""
@@ -1985,6 +1993,8 @@ msgstr ""
 #: mkt/constants/features.py:343
 msgid "The app requires access to the Near Field Communication (NFC) API."
 msgstr ""
+"Naprava zahteva dostop do API-ja za komunikacijo s tehnologijo bližnjega "
+"polja (NFC). "
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -2134,23 +2144,23 @@ msgstr ""
 
 #: mkt/constants/regions.py:61
 msgid "Rest of World"
-msgstr ""
+msgstr "Preostalo"
 
 #: mkt/constants/regions.py:89
 msgid "Bonaire, Sint Eustatius and Saba"
-msgstr ""
+msgstr "Bonaire, Saint Eustatius in Saba"
 
 #: mkt/constants/regions.py:100
 msgid "Bolivia, Plurinational State of"
-msgstr ""
+msgstr "Plurinacionalna država Bolivija"
 
 #: mkt/constants/regions.py:115
 msgid "Congo, Democratic Republic of the"
-msgstr ""
+msgstr "Demokratična republika Kongo"
 
 #: mkt/constants/regions.py:120
 msgid "Cabo Verde"
-msgstr ""
+msgstr "Zelenortsko otočje"
 
 #: mkt/constants/regions.py:153
 msgid "Guinea-Conakry"
@@ -2158,15 +2168,15 @@ msgstr ""
 
 #: mkt/constants/regions.py:166
 msgid "Heard Island and McDonald Islands"
-msgstr ""
+msgstr "Heardov otok in McDonaldovi otoki"
 
 #: mkt/constants/regions.py:192
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "Laoška ljudska demokratična republika"
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
-msgstr ""
+msgstr "Libija"
 
 #: mkt/constants/regions.py:197
 msgid "Liechtenstein"
@@ -2174,7 +2184,7 @@ msgstr ""
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
-msgstr ""
+msgstr "Saint Martin (francoski del)"
 
 #: mkt/constants/regions.py:212
 msgid "Macedonia, the former Yugoslav Republic of"
@@ -2182,11 +2192,11 @@ msgstr ""
 
 #: mkt/constants/regions.py:251
 msgid "Palestine, State of"
-msgstr ""
+msgstr "Palestina"
 
 #: mkt/constants/regions.py:256
 msgid "Russia"
-msgstr ""
+msgstr "Rusija"
 
 #: mkt/constants/regions.py:260
 msgid "Senegal"
@@ -2194,19 +2204,19 @@ msgstr ""
 
 #: mkt/constants/regions.py:263
 msgid "Saint Helena, Ascension and Tristan da Cunha"
-msgstr ""
+msgstr "Sveta Helena, Ascension in Tristan da Cunha"
 
 #: mkt/constants/regions.py:295
 msgid "Taiwan"
-msgstr ""
+msgstr "Tajvan"
 
 #: mkt/constants/regions.py:296
 msgid "Tanzania"
-msgstr ""
+msgstr "Tanzanija"
 
 #: mkt/constants/regions.py:303
 msgid "Holy See"
-msgstr ""
+msgstr "Sveti sedež"
 
 #: mkt/constants/regions.py:305
 msgid "Venezuela"
@@ -2259,11 +2269,11 @@ msgstr ""
 
 #: mkt/developers/cron.py:128
 msgid "Content rating changed to Adult."
-msgstr ""
+msgstr "Ocena vsebine je bila spremenjena v za odrasle."
 
 #: mkt/developers/forms.py:64
 msgid "You cannot select {region}."
-msgstr ""
+msgstr "Ni mogoče izbrati območja {region}."
 
 #: mkt/developers/forms.py:122
 msgid "All team members must have read and agreed to the developer agreement."
@@ -2319,6 +2329,8 @@ msgid ""
 "Oops, looks like you already submitted that manifest for %s, which is "
 "currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
 msgstr ""
+"Opala, kaže, da ste že poslali manifest za %s, ki je trenutno v Marketplacu "
+"nedovoljena. <a href=\"%s\">Urejaj aplikacijo</a>"
 
 #: mkt/developers/forms.py:207
 msgid ""
@@ -2337,7 +2349,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:337 mkt/websites/forms.py:80
 msgid "Invalid region(s) selected."
-msgstr ""
+msgstr "Izbrano neveljavno območje ali območja."
 
 #: mkt/developers/forms.py:398 mkt/webapps/models.py:1355
 msgid "You must upload at least one screenshot or video."
@@ -2347,6 +2359,7 @@ msgstr "Prenesti morate najmanj en posnetek zaslona ali video."
 msgid ""
 "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr ""
+"Zapakirana aplikacija je prevelika za oddajo. Paket mora biti manjši od %s."
 
 #: mkt/developers/forms.py:462
 msgid "Error extracting manifest from zip file."
@@ -2354,13 +2367,15 @@ msgstr ""
 
 #: mkt/developers/forms.py:532
 msgid "Hosted URL:"
-msgstr ""
+msgstr "Gostujoči URL:"
 
 #: mkt/developers/forms.py:533
 msgid ""
 "A URL to where your app is hosted on the web, if it exists. This allows "
 "users to try out your app before installing it."
 msgstr ""
+"URL do mesta, kjer gostuje aplikacija, če je ne voljo. To uporabnikom "
+"omogoča preizkus aplikacije pred nameščanjem."
 
 #: mkt/developers/forms.py:538
 msgid "Provide a detailed description of your app"
@@ -2373,7 +2388,7 @@ msgstr "Ta opis bo videti na strani s podrobnostmi."
 
 #: mkt/developers/forms.py:542 mkt/submit/forms.py:288
 msgid "Search Keywords:"
-msgstr ""
+msgstr "Ključne besede iskanja:"
 
 #: mkt/developers/forms.py:544
 #: mkt/developers/templates/developers/apps/edit/basic.html:143
@@ -2382,6 +2397,9 @@ msgid ""
 "The search keywords are used to return search results in the Firefox "
 "Marketplace. Be sure to include a keywords that accurately reflect your app."
 msgstr ""
+"Ključne besede iskanja se uporabijo za izpis rezultatov iskanja v Firefox "
+"Marketplacu. Vključite tiste ključne besede, ki natančno opisujejo "
+"aplikacijo."
 
 #: mkt/developers/forms.py:599 mkt/submit/forms.py:374
 msgid "This slug is already in use. Please choose another."
@@ -2393,7 +2411,7 @@ msgstr "Rakleta ne more biti \"%s\". Izberite kako drugo."
 
 #: mkt/developers/forms.py:630
 msgid "Manifest URL changed from {before_url} to {after_url}"
-msgstr ""
+msgstr "URL manifesta se je spremil iz {before_url} v {after_url}"
 
 # 86%
 #: mkt/developers/forms.py:667
@@ -2409,7 +2427,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:747 mkt/submit/templates/submit/details.html:125
 msgid "You must provide either a website, an email, or both."
-msgstr ""
+msgstr "Vnesti morate spletno stran, e-pošto ali oboje."
 
 #: mkt/developers/forms.py:772
 msgid "Your comments"
@@ -2420,12 +2438,16 @@ msgid ""
 "<b>Published</b>: Visible to everyone in the Marketplace and included in "
 "search results and listing pages."
 msgstr ""
+"<b>Objavljeno</b>: vidno vsem v Marketplacu in vključeno v rezultate iskanja"
+" ter strani s seznamom."
 
 #: mkt/developers/forms.py:803
 msgid ""
 "<b>Unlisted</b>: Visible to only people with the URL and does not appear in "
 "search results and listing pages."
 msgstr ""
+"<b>Neobjavljeno</b>: vidno samo z vnosom URL-ja, ni vključeno v rezultatih "
+"iskanja in straneh s seznamom."
 
 #: mkt/developers/forms.py:819
 msgid "App Visibility:"
@@ -2433,7 +2455,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:821
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
-msgstr ""
+msgstr "<b>Omeji na mojo skupino</b>: vidno samo članom skupine."
 
 #: mkt/developers/forms.py:867
 msgid "Choose the regions your app will be listed in:"

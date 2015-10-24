@@ -195,7 +195,7 @@ define('login', ['notification', 'storage'], function(notification, storage) {
                 },
                 onlogout: function() {
                     clearToken();
-                    window.location = '/';}
+                    }
             });
         }
     }

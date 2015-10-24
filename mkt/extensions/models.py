@@ -16,11 +16,13 @@ from tower import ugettext as _
 from uuidfield.fields import UUIDField
 
 from lib.crypto.packaged import sign_app, SigningError
+from lib.utils import static_url
 from mkt.constants.applications import DEVICE_GAIA, DEVICE_TYPES
 from mkt.constants.base import (STATUS_CHOICES, STATUS_FILE_CHOICES,
                                 STATUS_NULL, STATUS_OBSOLETE, STATUS_PENDING,
                                 STATUS_PUBLIC, STATUS_REJECTED)
 from mkt.extensions.indexers import ExtensionIndexer
+from mkt.extensions.tasks import fetch_icon
 from mkt.extensions.validation import ExtensionValidator
 from mkt.files.models import cleanup_file, nfd_str
 from mkt.translations.fields import save_signal, TranslatedField
@@ -28,7 +30,7 @@ from mkt.site.helpers import absolutify
 from mkt.site.models import ManagerBase, ModelBase
 from mkt.site.storage_utils import (copy_stored_file, private_storage,
                                     public_storage)
-from mkt.site.utils import cached_property, smart_path
+from mkt.site.utils import cached_property, get_icon_url, smart_path
 from mkt.translations.utils import to_language
 from mkt.webapps.models import clean_slug
 
@@ -46,7 +48,11 @@ class ExtensionQuerySet(models.QuerySet):
             return self.get(slug=identifier)
 
     def pending(self):
-        return self.filter(disabled=False, versions__status=STATUS_PENDING)
+        return self.filter(disabled=False, status=STATUS_PENDING)
+
+    def pending_with_versions(self):
+        return self.filter(disabled=False, versions__deleted=False,
+                           versions__status=STATUS_PENDING)
 
     def public(self):
         return self.filter(disabled=False, status=STATUS_PUBLIC)
@@ -72,6 +78,7 @@ class ExtensionVersionQuerySet(models.QuerySet):
 class Extension(ModelBase):
     # Automatically handled fields.
     deleted = models.BooleanField(default=False, editable=False)
+    icon_hash = models.CharField(max_length=8, blank=True)
     last_updated = models.DateTimeField(blank=True, null=True, editable=False)
     status = models.PositiveSmallIntegerField(
         choices=STATUS_CHOICES.items(), default=STATUS_NULL, editable=False)
@@ -214,8 +221,13 @@ class Extension(ModelBase):
         # on the ExtensionVersion we're creating which will automatically be
         # replicated on the Extension instance.
         instance.authors.add(user)
-        ExtensionVersion.from_upload(
+        version = ExtensionVersion.from_upload(
             upload, parent=instance, manifest_contents=manifest_contents)
+
+        # Trigger icon fetch task asynchronously if necessary now that we have
+        # an extension and a version.
+        if 'icons' in manifest_contents:
+            fetch_icon.delay(instance.pk, version.pk)
         return instance
 
     @classmethod
@@ -227,9 +239,19 @@ class Extension(ModelBase):
         that's what the translations app requires."""
         return cls._meta.get_field('default_language')
 
+    def get_icon_dir(self):
+        return os.path.join(settings.EXTENSION_ICONS_PATH, str(self.pk / 1000))
+
+    def get_icon_url(self, size):
+        return get_icon_url(static_url('EXTENSION_ICON_URL'), self, size)
+
     @classmethod
     def get_indexer(cls):
         return ExtensionIndexer
+
+    @property
+    def icon_type(self):
+        return 'png' if self.icon_hash else ''
 
     def is_dummy_content_for_qa(self):
         """
@@ -266,6 +288,9 @@ class Extension(ModelBase):
         except ExtensionVersion.DoesNotExist:
             return {}
         mini_manifest = {
+            # 'id' here is the uuid, like in sign_file(). This is used by
+            # platform to do blocklisting.
+            'id': self.uuid,
             'name': version.manifest['name'],
             'package_path': version.download_url,
             'size': version.size,
@@ -315,6 +340,11 @@ class Extension(ModelBase):
             return
         if not version.manifest:
             return
+        # Trigger icon fetch task asynchronously if necessary now that we have
+        # an extension and a version.
+        if 'icons' in version.manifest:
+            fetch_icon.delay(self.pk, version.pk)
+
         # We need to re-extract the fields from manifest contents because some
         # fields like default_language are transformed before being stored.
         data = self.extract_manifest_fields(version.manifest)
@@ -541,11 +571,22 @@ class ExtensionVersion(ModelBase):
             reverse('extension.download_signed_reviewer', kwargs=kwargs))
 
     @property
+    def review_id(self):
+        """Unique identifier for this extension+version so that reviewers can
+        install different versions of the same non-public add-ons side by side
+        for testing, and it won't conflict with the "real" public add-on.
+
+        Used in signing and in the reviewer-specific mini-manifest."""
+        return 'reviewer-{guid}-{version_id}'.format(
+            guid=self.extension.uuid, version_id=self.pk)
+
+    @property
     def reviewer_mini_manifest(self):
         """Reviewer-specific mini-manifest used for install/update of this
         particular version by reviewers on FxOS devices, in dict form.
         """
         mini_manifest = {
+            'id': self.review_id,
             'name': self.manifest['name'],
             'package_path': self.reviewer_download_url,
             # Size is not included, we don't store the reviewer file size,
@@ -574,12 +615,7 @@ class ExtensionVersion(ModelBase):
         if not self.pk:
             raise SigningError('Need version pk to be set to sign')
         ids = json.dumps({
-            # Reviewers get a unique 'id' so the reviewer installed add-on
-            # won't conflict with the public add-on, and also so even multiple
-            # versions of the same add-on can be installed side by side with
-            # other versions.
-            'id': 'reviewer-{guid}-{version_id}'.format(
-                guid=self.extension.uuid, version_id=self.pk),
+            'id': self.review_id,
             'version': self.pk
         })
         with statsd.timer('extensions.sign_reviewer'):
@@ -734,9 +770,11 @@ def delete_search_index(sender, instance, **kw):
           sender=ExtensionVersion, dispatch_uid='extension_version_change')
 def update_extension_status_and_manifest_fields(sender, instance, **kw):
     """Update extension status as well as fields for which the manifest is the
-    source of truth when an ExtensionVersion is changed or deleted."""
+    source of truth when an ExtensionVersion is made public or was public and
+    is deleted."""
     instance.extension.update_status_according_to_versions()
-    instance.extension.update_manifest_fields_from_latest_public_version()
+    if instance.status == STATUS_PUBLIC:
+        instance.extension.update_manifest_fields_from_latest_public_version()
 
 
 # Save translations before saving Extensions instances with translated fields.
