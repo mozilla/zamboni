@@ -3,16 +3,17 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2014-10-08 05:48+0400\n"
-"Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
+"PO-Revision-Date: 2015-10-24 12:56+0000\n"
+"Last-Translator: Alexander <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.6.9\n"
-"X-POOTLE-MTIME: 1411222633.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1445691379.0\n"
 
 #: media/js/common/upload-base.js:61
 msgid "The filetype you uploaded isn't recognized."
@@ -169,14 +170,12 @@ msgid "Enter a new team member's email address"
 msgstr "Введите адрес эл. почты нового члена команды"
 
 #: media/js/devreg/devhub.js:476
-#, fuzzy
 msgid "Manifest refreshed"
-msgstr "Манифест"
+msgstr "Манифест обновлен"
 
 #: media/js/devreg/devhub.js:481
-#, fuzzy
 msgid "Could not refresh manifest. Try again later."
-msgstr "Не удалось загрузить файл. Пожалуйста, попробуйте позже."
+msgstr "Не удалось обновить манифест. Пожалуйста, попробуйте позже."
 
 #: media/js/devreg/devhub.js:662
 msgid "There was an error uploading your file."
@@ -207,9 +206,8 @@ msgid "Flash Player</a>."
 msgstr "Flash-плейер</a>."
 
 #: media/js/devreg/in_app_products.js:281
-#, fuzzy
 msgid "Enabled"
-msgstr "{addon} включено."
+msgstr "Включено"
 
 #: media/js/devreg/in_app_products.js:283
 #, fuzzy
@@ -233,30 +231,28 @@ msgid "Persona login failed. A server error was encountered."
 msgstr "Ошибка входа через Persona. Произошла ошибка сервера."
 
 #: media/js/devreg/lookup-tool.js:39
-#, fuzzy
 msgid "Status successfully changed to \"{0}\""
-msgstr "стутус {addon} изменён на {0}."
+msgstr "Статус успешно изменён на \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:44
-#, fuzzy
 msgid "Could not change status to \"{0}\""
-msgstr "стутус {addon} изменён на {0}."
+msgstr "Не удалось изменить статус на \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:70
 msgid "Group membership \"{0}\" added"
-msgstr ""
+msgstr "Добавлено членство в группе \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:84
 msgid "Could not add group \"{0}\""
-msgstr ""
+msgstr "Не удалось добавить группу \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:108
 msgid "Group membership \"{0}\" removed"
-msgstr ""
+msgstr "Удалено членство в группе \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:114
 msgid "Could not remove group \"{0}\""
-msgstr ""
+msgstr "Не удалось удалить группу \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:183
 msgid "Show All Results"
@@ -513,9 +509,8 @@ msgid "less..."
 msgstr "меньше..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
-#, fuzzy
 msgid "Keep review / Remove flags"
-msgstr "Удержать рецензию; удалить флаги"
+msgstr "Продолжить проверку / Удалить флаги"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"

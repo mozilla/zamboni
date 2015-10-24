@@ -10,16 +10,17 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2014-10-08 05:49+0400\n"
-"Last-Translator: Alexander L. Slovesnik <unghost@mozilla-russia.org>\n"
+"PO-Revision-Date: 2015-10-24 12:57+0000\n"
+"Last-Translator: Alexander <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.6.9\n"
-"X-POOTLE-MTIME: 1411223873.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Pootle 2.5.0\n"
+"X-POOTLE-MTIME: 1445691455.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -2416,9 +2417,8 @@ msgid "Web site"
 msgstr ""
 
 #: mkt/developers/forms.py:1158
-#, fuzzy
 msgid "Command line"
-msgstr "SDK Дополнений это набор API, а также утилита командной строки, которая позволяет вам разрабатывать дополнения, используя ваш набор инструментов."
+msgstr "Командная строка"
 
 #: mkt/developers/forms.py:1179
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
@@ -2867,9 +2867,8 @@ msgid "No payment account for this app."
 msgstr "Счёт для платежа"
 
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:12
-#, fuzzy
 msgid "Marketplace API"
-msgstr "Marketplace"
+msgstr "Marketplace API"
 
 #: mkt/developers/templates/developers/api.html:12
 msgid "To access the Marketplace API, create an OAuth key pair using the form below."
@@ -4454,9 +4453,8 @@ msgid "Price Point"
 msgstr "Стандартная цена неизвестна или недействительна."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:51
-#, fuzzy
 msgid "Product ID"
-msgstr "Продукт:"
+msgstr "ID продукта"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:63
 #, fuzzy
@@ -5288,9 +5286,8 @@ msgid "Modifying or submitting versions is forbidden for disabled Add-ons."
 msgstr ""
 
 #: mkt/feed/fields.py:186
-#, fuzzy
 msgid "Invalid URL %(url)s"
-msgstr "или <a href=\"%(url)s\">Отменить</a>"
+msgstr "Неверная ссылка %(url)s"
 
 #: mkt/feed/fields.py:191
 msgid "Error downloading image from %(url)s"
@@ -5343,9 +5340,8 @@ msgid "Could not decode the webapp manifest file. Check your manifest file for s
 msgstr ""
 
 #: mkt/files/utils.py:108
-#, fuzzy
 msgid "The webapp manifest is not valid JSON."
-msgstr "Не удалось распарсить файл манифеста веб-приложения."
+msgstr "Манифест веб-приложения не является корректным JSON."
 
 #: mkt/files/utils.py:115
 msgid "The \"langpack\" role is invalid for Web Apps. Please submit this app as a language pack instead."
@@ -5545,14 +5541,12 @@ msgid "Refund for this transaction now pending."
 msgstr ""
 
 #: mkt/lookup/views.py:256
-#, fuzzy
 msgid "Refund for this transaction successfully approved."
-msgstr "возмещение %s одобрено"
+msgstr "Возмещение для этой транзакции успешно одобрено."
 
 #: mkt/lookup/views.py:261
-#, fuzzy
 msgid "Refund request for this transaction failed."
-msgstr "Возмещение не прошло. ошибка: %s"
+msgstr "Запрос возмещения для этой транзакции не удался."
 
 #: mkt/lookup/views.py:359
 msgid "Website saved."
@@ -6015,9 +6009,8 @@ msgid "Website Lookup"
 msgstr ""
 
 #: mkt/operators/helpers.py:12
-#, fuzzy
 msgid "Operator Dashboard"
-msgstr "Панель <small>Оператора</small>"
+msgstr "Панель оператора"
 
 #: mkt/operators/templates/operators/base.html:12
 msgid "<small>Operator</small> Dashboard"
@@ -6803,9 +6796,8 @@ msgid "Resolution"
 msgstr "Разрешение"
 
 #: mkt/reviewers/templates/reviewers/review.html:100
-#, fuzzy
 msgid "App submission incomplete"
-msgstr "Это приложение <b>незавершено</b>."
+msgstr "Это приложение незавершено"
 
 #: mkt/reviewers/templates/reviewers/review.html:121
 msgid "You can still submit this form, however only do so if you know it won't conflict."
@@ -7658,9 +7650,8 @@ msgid "{addon} auto-escalated because its a VIP app."
 msgstr ""
 
 #: mkt/site/log.py:520
-#, fuzzy
 msgid "VIP auto-escalation"
-msgstr "автоодобрено"
+msgstr "VIP автоэскалация"
 
 #: mkt/site/log.py:527
 msgid "{addon} re-reviewed because of manifest URL change."
