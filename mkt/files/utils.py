@@ -205,7 +205,7 @@ class SafeUnzip(object):
             log.error('Extraction error, total size of files too big (%s)'
                       ' in archive: %s' % (sum_size, self.source, ))
             raise forms.ValidationError(_(
-                'Total size of files exeeding limit in archive: {0}').format(
+                'Total size of files exceeding limit in archive: {0}').format(
                 info.filename))
         return True
 
