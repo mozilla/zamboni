@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-10-25 08:56+0000\n"
+"PO-Revision-Date: 2015-10-25 09:12+0000\n"
 "Last-Translator: sphinx_knight <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -7098,7 +7098,7 @@ msgstr "Mots-clés"
 #: mkt/lookup/templates/lookup/website_summary.html:40
 #: mkt/websites/forms.py:34
 msgid "Preferred Regions"
-msgstr ""
+msgstr "Régions préférées"
 
 #: mkt/lookup/templates/lookup/website_edit.html:88
 #: mkt/lookup/templates/lookup/website_summary.html:48
@@ -7610,6 +7610,9 @@ msgid ""
 "Add this app to the re-review queue. Any comments here won't be visible to "
 "the author(s), and no notification will be sent tothem."
 msgstr ""
+"Ajouter cette application dans la file dédiée aux revues redemandées. Les "
+"auteurs du module ne recevront pas de notifications et ne pourront pas voir "
+"les commentaires saisis ici."
 
 #: mkt/reviewers/utils.py:441
 msgid "Clear Escalation"
