@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-10-15 16:00+0000\n"
-"Last-Translator: Rickson Rodrigues <ricksrodrigues2@gmail.com>\n"
+"PO-Revision-Date: 2015-10-25 19:46+0000\n"
+"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -1280,11 +1280,11 @@ msgstr "Análise tarako do aplicativo"
 
 #: mkt/constants/base.py:251
 msgid "App Abuse Report Read"
-msgstr ""
+msgstr "Denúncia de abuso de aplicativo lido"
 
 #: mkt/constants/base.py:252
 msgid "Website Abuse Report Read"
-msgstr ""
+msgstr "Denúncia de abuso de site lido"
 
 #: mkt/constants/base.py:286
 msgid "Level 1"
@@ -2427,7 +2427,7 @@ msgstr "Erro ao extrair o manifesto do arquivo zip."
 
 #: mkt/developers/forms.py:532
 msgid "Hosted URL:"
-msgstr ""
+msgstr "URL da hospedagem:"
 
 #: mkt/developers/forms.py:533
 msgid ""
@@ -2956,7 +2956,7 @@ msgstr "A pré-visualização não pôde ser aberta."
 
 #: mkt/developers/utils.py:107
 msgid "Promo image could not be opened."
-msgstr ""
+msgstr "Imagem promocional não pode ser aberta."
 
 #: mkt/developers/utils.py:114
 msgid "Icons must be at least 128px by 128px."
@@ -3197,6 +3197,8 @@ msgid ""
 "<p>Example using a Python library for the command-line on Mac OS X/Linux "
 "using your OAuth credentials:</p>"
 msgstr ""
+"<p>Exemplo utilizando uma biblioteca Python para a linha de comandos no Mac "
+"OS X/Linux usando as suas credenciais OAuth:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step
 #. of the submission process (e.g. 'Payments' or 'Content Ratings').
@@ -4340,7 +4342,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101
 msgid "Hosted URL"
-msgstr ""
+msgstr "URL da hospedagem"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:107
 msgid ""
@@ -6247,11 +6249,11 @@ msgstr "A propriedade `descrição` não pode ter mais de 132 caracteres."
 
 #: mkt/extensions/validation.py:35
 msgid "'manifest.json' in the archive is not a valid JSON file."
-msgstr ""
+msgstr "'manifest.json' no arquivo não é um arquivo JSON válido."
 
 #: mkt/extensions/validation.py:38
 msgid "'manifest.json' in the archive is not encoded in UTF-8."
-msgstr ""
+msgstr "'manifest.json' no arquivo não está codificado em UTF-8."
 
 #: mkt/extensions/validation.py:40
 msgid "The file sent is not a valid ZIP file."
@@ -6294,14 +6296,16 @@ msgid ""
 "The `version` property must be a string containing one to four dot-separated"
 " integers each between 0 and 65535."
 msgstr ""
+"A propriedade `versão` deve ser um texto contendo de um a quatro carateres "
+"de inteiros separados por pontos, cada um entre 0 e 65535."
 
 #: mkt/extensions/views.py:55
 msgid "No validation_id specified."
-msgstr ""
+msgstr "Nenhum validation_id especificado."
 
 #: mkt/extensions/views.py:60
 msgid "No such upload."
-msgstr ""
+msgstr "Sem nenhum envio."
 
 #: mkt/extensions/views.py:63
 msgid "The specified upload has not passed validation."
@@ -6309,11 +6313,13 @@ msgstr "O upload especificado não passou na validação."
 
 #: mkt/extensions/views.py:102
 msgid "Missing file in request."
-msgstr ""
+msgstr "Arquivo ausente na solicitação."
 
 #: mkt/extensions/views.py:214
 msgid "Modifying or submitting versions is forbidden for disabled Add-ons."
 msgstr ""
+"A modificação ou submissão de versões é proibida para complementos "
+"desativados."
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
@@ -6416,7 +6422,7 @@ msgstr "Arquivos maiores do que o permitido em: {0}"
 
 #: mkt/files/utils.py:207
 msgid "Total size of files exeeding limit in archive: {0}"
-msgstr ""
+msgstr "O tamanho total dos arquivos excede o limite no arquivo: {0}"
 
 #: mkt/files/utils.py:238
 msgid "Invalid archive."
@@ -6821,7 +6827,7 @@ msgstr "Ferramenta de pesquisa do <small>Marketplace</small>"
 
 #: mkt/lookup/templates/lookup/group_summary.html:11
 msgid "Group Lookup results for"
-msgstr ""
+msgstr "Resultados da pesquisa do grupo para"
 
 #: mkt/lookup/templates/lookup/group_summary.html:13
 msgid "Group Summary"
@@ -6841,7 +6847,7 @@ msgstr "Notas"
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
-msgstr ""
+msgstr "Restrito (não são possíveis alterações de API)"
 
 #: mkt/lookup/templates/lookup/group_summary.html:30
 msgid "Group Members"
@@ -7135,7 +7141,7 @@ msgstr "Pesquisar"
 
 #: mkt/lookup/templates/lookup/includes/group_search.html:4
 msgid "Group Lookup"
-msgstr ""
+msgstr "Pesquisa de grupo"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
@@ -7392,7 +7398,7 @@ msgstr "Substituição do tipo de dispositivo:"
 
 #: mkt/reviewers/forms.py:126
 msgid "Nominate this app to be featured."
-msgstr ""
+msgstr "Indique esse app para ser destaque."
 
 #: mkt/reviewers/forms.py:133
 msgid "Choose a canned response..."
@@ -7583,6 +7589,9 @@ msgid ""
 "Add this app to the re-review queue. Any comments here won't be visible to "
 "the author(s), and no notification will be sent tothem."
 msgstr ""
+"Adicionar este aplicativo para a fila de reavaliação. Quaisquer comentários "
+"aqui não serão visíveis para o(s) autor(es) e não será enviada nenhuma "
+"notificação a estes."
 
 #: mkt/reviewers/utils.py:441
 msgid "Clear Escalation"
@@ -8925,15 +8934,15 @@ msgstr "Auto-escalamento de pré-lançamento"
 
 #: mkt/site/log.py:543
 msgid "{addon} re-reviewed because abuse reports need investigation."
-msgstr ""
+msgstr "{addon} reavaliado por denúncias de abuso requerem investigação."
 
 #: mkt/site/log.py:552
 msgid "{addon} manually flagged for re-review."
-msgstr ""
+msgstr "{addon} marcado manualmente para reavaliação."
 
 #: mkt/site/log.py:553
 msgid "Manual re-review"
-msgstr ""
+msgstr "Reavaliação manual"
 
 #: mkt/site/log.py:570
 msgid "Created: {0}."
