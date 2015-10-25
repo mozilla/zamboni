@@ -434,7 +434,7 @@ class ReviewHelper(object):
             'minimal': True,
             'details': _lazy(u'Add this app to the re-review queue. Any '
                              u'comments here won\'t be visible to the '
-                             u'author(s), and no notification will be sent to'
+                             u'author(s), and no notification will be sent to '
                              u'them.')}
         clear_escalation = {
             'method': self.handler.process_clear_escalation,
