@@ -1,14 +1,16 @@
 {% block content %}{% endblock %}
 
 {% if nonuser_mozilla_contact %}
-You may reply by creating a Firefox Account under your email and posting to {{ url('commonplace.commbadge.show_thread', note.thread.id)|absolutify }}
+You may reply by creating a Firefox Account under your email and posting to {{ thread_url }}
 
 If you wish to stop receiving email notifications for this thread, ask a reviewer
 to remove you from being a Mozilla contact for this {{ obj_type }}.
 {% else %}
-You may reply to this email or post to {{ url('commonplace.commbadge.show_thread', note.thread.id)|absolutify }}
+You may reply to this email or post to {{ thread_url }}
 
-If you wish to stop receiving email notifications for this thread, you can click 'Unsubscribe' at {{ url('commonplace.commbadge.show_thread', note.thread.id)|absolutify }}
+{% if is_app %}
+If you wish to stop receiving email notifications for this thread, you can click 'Unsubscribe' at {{ thread_url }}
+{% endif %}
 {% endif %}
 
 --
