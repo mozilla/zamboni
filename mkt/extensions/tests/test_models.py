@@ -1070,6 +1070,14 @@ class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
         manifest = {
             'author': 'Me',
             'description': 'Blah',
+            'content_scripts': {
+                "matches": [
+                    "app://system.gaiamobile.org/index.html"
+                ],
+                "js": [
+                    "addon.js"
+                ]
+            },
             'manifest_version': 2,
             'name': u'Ëxtension',
             'version': '0.45.0',
@@ -1083,6 +1091,14 @@ class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
             extension=extension, manifest=manifest,
             status=STATUS_PUBLIC, size=421, version='0.45.0')
         expected_mini_manifest = {
+            'content_scripts': {
+                "matches": [
+                    "app://system.gaiamobile.org/index.html"
+                ],
+                "js": [
+                    "addon.js"
+                ]
+            },
             'description': 'Blah',
             'developer': {
                 'name': 'Me'
@@ -1106,6 +1122,14 @@ class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
     def test_reviewer_mini_manifest(self):
         manifest = {
             'author': 'Me',
+            'content_scripts': {
+                "matches": [
+                    "app://system.gaiamobile.org/index.html"
+                ],
+                "js": [
+                    "addon.js"
+                ]
+            },
             'description': 'Blah',
             'manifest_version': 2,
             'name': u'Ëxtension',
@@ -1117,6 +1141,14 @@ class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
             extension=extension, manifest=manifest,
             status=STATUS_PENDING, version='0.54.0')
         expected_mini_manifest = {
+            'content_scripts': {
+                "matches": [
+                    "app://system.gaiamobile.org/index.html"
+                ],
+                "js": [
+                    "addon.js"
+                ]
+            },
             'description': 'Blah',
             'developer': {
                 'name': 'Me'
