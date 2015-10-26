@@ -232,15 +232,6 @@ class ValidAppsFilter(BaseFilterBackend):
                        F('term', is_disabled=False)]))
 
 
-class NotDeletedFilter(BaseFilterBackend):
-    """
-    A django-rest-framework filter backend that filters out soft-deleted items.
-    """
-    def filter_queryset(self, request, queryset, view):
-        return queryset.filter(
-            Bool(must_not=[F('term', is_deleted=True)]))
-
-
 class DeviceTypeFilter(BaseFilterBackend):
     """
     A django-rest-framework filter backend that filters based on the matching
