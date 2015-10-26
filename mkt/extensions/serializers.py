@@ -77,7 +77,7 @@ class ESExtensionSerializer(BaseESSerializer, ExtensionSerializer):
         # Set basic attributes we'll need on the fake instance using the data
         # from ES.
         self._attach_fields(
-            obj, data, ('author', 'created', 'default_language',
+            obj, data, ('author', 'created', 'default_language', 'icon_hash',
                         'last_updated', 'modified', 'slug', 'status',
                         'version'))
 
