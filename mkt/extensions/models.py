@@ -279,29 +279,34 @@ class Extension(ModelBase):
         # verifies that some specific key properties in the real manifest match
         # what's found in the mini-manifest. To prevent manifest mismatch
         # errors, we need to copy those properties from the real manifest:
-        # name, description and author. To be on the safe side we also copy
-        # version. We don't bother with locales at the moment, this probably
-        # breaks extensions using https://developer.chrome.com/extensions/i18n
-        # but we'll deal with that later.
+        # name, description and author. To help Firefox OS display useful info
+        # to the user we also copy content_scripts and version.
+        # We don't bother with locales at the moment, this probably breaks
+        # extensions using https://developer.chrome.com/extensions/i18n but
+        # we'll deal with that later.
         try:
             version = self.latest_public_version
         except ExtensionVersion.DoesNotExist:
             return {}
+        manifest = version.manifest
         mini_manifest = {
             # 'id' here is the uuid, like in sign_file(). This is used by
             # platform to do blocklisting.
             'id': self.uuid,
-            'name': version.manifest['name'],
+            'name': manifest['name'],
             'package_path': version.download_url,
             'size': version.size,
-            'version': version.manifest['version']
+            'version': manifest['version']
         }
-        if 'author' in version.manifest:
+        if 'author' in manifest:
+            # author is copied as a different key to match app manifest format.
             mini_manifest['developer'] = {
-                'name': version.manifest['author']
+                'name': manifest['author']
             }
-        if 'description' in version.manifest:
-            mini_manifest['description'] = version.manifest['description']
+        if 'content_scripts' in manifest:
+            mini_manifest['content_scripts'] = manifest['content_scripts']
+        if 'description' in manifest:
+            mini_manifest['description'] = manifest['description']
         return mini_manifest
 
     @property
@@ -597,6 +602,8 @@ class ExtensionVersion(ModelBase):
             mini_manifest['developer'] = {
                 'name': self.manifest['author']
             }
+        if 'content_scripts' in self.manifest:
+            mini_manifest['content_scripts'] = self.manifest['content_scripts']
         if 'description' in self.manifest:
             mini_manifest['description'] = self.manifest['description']
         return mini_manifest
