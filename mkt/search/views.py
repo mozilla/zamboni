@@ -136,7 +136,8 @@ class MultiSearchView(SearchView):
 
     def get_queryset(self):
         excluded_fields = list(set(WebappIndexer.hidden_fields +
-                                   WebsiteIndexer.hidden_fields))
+                                   WebsiteIndexer.hidden_fields +
+                                   ExtensionIndexer.hidden_fields))
         co_filters = self._get_colombia_filter()
         qs = (Search(using=BaseIndexer.get_es(),
                      **self.get_doc_types_and_indices())
