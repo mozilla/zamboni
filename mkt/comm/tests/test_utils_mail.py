@@ -334,7 +334,7 @@ class TestEmailReplySavingExtensions(TestCase):
             thread=t, user=self.profile)
         self.token.update(uuid='5a0b8a83d501412589cc5d562334b46b')
         self.email_base64 = open(sample_email).read()
-        self.grant_permission(self.profile, 'Apps:Review')
+        self.grant_permission(self.profile, 'ContentTools:AddonReview')
 
     def test_successful_save(self):
         note = save_from_email_reply(self.email_base64)
@@ -346,7 +346,7 @@ class TestEmailReplySavingExtensions(TestCase):
         eq_(note.note_type, comm.DEVELOPER_COMMENT)
 
     def test_reviewer_comment(self):
-        self.grant_permission(self.profile, 'Apps:Review')
+        self.grant_permission(self.profile, 'ContentTools:AddonReview')
         note = save_from_email_reply(self.email_base64)
         eq_(note.note_type, comm.REVIEWER_COMMENT)
 
@@ -357,8 +357,7 @@ class TestEmailReplySavingExtensions(TestCase):
 
     def test_with_unpermitted_token(self):
         """Test when the token's user does not have a permission on thread."""
-        self.profile.groupuser_set.filter(
-            group__rules__contains='Apps:Review').delete()
+        self.profile.groupuser_set.all().delete()
         assert not save_from_email_reply(self.email_base64)
 
     def test_non_existent_token(self):
