@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-09-26 13:07+0000\n"
+"PO-Revision-Date: 2015-10-26 17:35+0000\n"
 "Last-Translator: Vanja Tumbas <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -2409,7 +2409,7 @@ msgstr "Грешка при екстракцији манифеста из zip �
 
 #: mkt/developers/forms.py:532
 msgid "Hosted URL:"
-msgstr ""
+msgstr "Хостован URL:"
 
 #: mkt/developers/forms.py:533
 msgid ""
@@ -2427,7 +2427,7 @@ msgstr "Опис ће се појавити на страници за дета�
 
 #: mkt/developers/forms.py:542 mkt/submit/forms.py:288
 msgid "Search Keywords:"
-msgstr ""
+msgstr "Кључне речи претраге:"
 
 #: mkt/developers/forms.py:544
 #: mkt/developers/templates/developers/apps/edit/basic.html:143
@@ -4291,7 +4291,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101
 msgid "Hosted URL"
-msgstr ""
+msgstr "Хостован URL"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:107
 msgid ""
@@ -6156,7 +6156,7 @@ msgstr ""
 
 #: mkt/extensions/validation.py:40
 msgid "The file sent is not a valid ZIP file."
-msgstr ""
+msgstr "Послата датотека није валидна ZIP датотека."
 
 #: mkt/extensions/validation.py:41
 msgid "There is no `name` property in the manifest."
@@ -6208,7 +6208,7 @@ msgstr ""
 
 #: mkt/extensions/views.py:102
 msgid "Missing file in request."
-msgstr ""
+msgstr "Недостаје датотека у захтеву."
 
 #: mkt/extensions/views.py:214
 msgid "Modifying or submitting versions is forbidden for disabled Add-ons."
@@ -6500,7 +6500,7 @@ msgstr ""
 
 #: mkt/lookup/forms.py:82
 msgid "Minimum size: {0}x{1}"
-msgstr ""
+msgstr "Минимална величина: {0}x{1}"
 
 #: mkt/lookup/views.py:201
 msgid "A refund has already been processed."
@@ -6701,23 +6701,23 @@ msgstr "<small>Marketplace</small> алат за претрагу"
 
 #: mkt/lookup/templates/lookup/group_summary.html:11
 msgid "Group Lookup results for"
-msgstr ""
+msgstr "Резултати претраге групе за"
 
 #: mkt/lookup/templates/lookup/group_summary.html:13
 msgid "Group Summary"
-msgstr ""
+msgstr "Опис групе"
 
 #: mkt/lookup/templates/lookup/group_summary.html:18
 msgid "Group Details"
-msgstr ""
+msgstr "Детаљи групе"
 
 #: mkt/lookup/templates/lookup/group_summary.html:22
 msgid "Rules"
-msgstr ""
+msgstr "Правила"
 
 #: mkt/lookup/templates/lookup/group_summary.html:24
 msgid "Notes"
-msgstr ""
+msgstr "Белешке"
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
@@ -6725,7 +6725,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/group_summary.html:30
 msgid "Group Members"
-msgstr ""
+msgstr "Чланови групе"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
@@ -6942,7 +6942,7 @@ msgstr "Жељени региони"
 #: mkt/lookup/templates/lookup/website_summary.html:48
 #: mkt/websites/forms.py:28
 msgid "Compatible Devices"
-msgstr ""
+msgstr "Компатибилни уређаји"
 
 #: mkt/lookup/templates/lookup/website_summary.html:20
 msgid "Name - Short Name"
@@ -7762,7 +7762,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:40
 msgid "Undelete"
-msgstr ""
+msgstr "Поништи брисање"
 
 #: mkt/reviewers/templates/reviewers/motd.html:12
 msgid "Update message of the day"
@@ -8023,16 +8023,16 @@ msgstr "Новије верзије"
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "Process"
-msgstr ""
+msgstr "Процес"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:14
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:55
 msgid "Actions:"
-msgstr ""
+msgstr "Акције:"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "Review page"
-msgstr ""
+msgstr "Прегледај страницу"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
 msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
@@ -8043,6 +8043,8 @@ msgid ""
 "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s "
 "[%(ip_address)s]</span>"
 msgstr ""
+"<span class=\"submitted-by\">Послао %(user)s датума %(date)s "
+"[%(ip_address)s]</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:40
 msgid ""
@@ -9057,7 +9059,7 @@ msgstr "Да ли апликација захтева Flash подршку?"
 
 #: mkt/submit/forms.py:333
 msgid "Your comments for reviewers:"
-msgstr ""
+msgstr "Коментари за рецезента:"
 
 #: mkt/submit/forms.py:335
 msgid ""
