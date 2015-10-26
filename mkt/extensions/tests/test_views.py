@@ -339,7 +339,8 @@ class TestExtensionViewSetGet(RestOAuth):
         self.user2 = UserProfile.objects.get(pk=999)
         self.extension = Extension.objects.create(
             author=u'My Favourité Author',
-            description=u'Mÿ Extension Description', name=u'Mŷ Extension')
+            description=u'Mÿ Extension Description', icon_hash='654321',
+            name=u'Mŷ Extension')
         self.version = ExtensionVersion.objects.create(
             extension=self.extension, size=4242, status=STATUS_PENDING,
             version='0.42')
@@ -597,6 +598,7 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
         self.extension = Extension.objects.create(
             author=u'MäÄägnificent Author',
             description=u'Mâgnificent Extension Description',
+            icon_hash='abcdef',
             name=u'Mâgnificent Extension',
             last_updated=self.last_updated_date)
         self.version = ExtensionVersion.objects.create(
@@ -874,7 +876,8 @@ class ReviewQueueTestMixin(object):
         self.user = UserProfile.objects.get(pk=2519)
 
         another_extension = Extension.objects.create(
-            name=u'Anothër Extension', description=u'Anothër Description')
+            name=u'Anothër Extension', description=u'Anothër Description',
+            icon_hash='fdecba')
         ExtensionVersion.objects.create(
             extension=another_extension, size=888, status=STATUS_PUBLIC,
             version='0.1')
@@ -940,7 +943,8 @@ class TestReviewerExtensionViewSet(ReviewQueueTestMixin, RestOAuth):
         super(TestReviewerExtensionViewSet, self).setUp()
         self.list_url = reverse('api-v2:extension-queue-list')
         self.extension = Extension.objects.create(
-            name=u'Än Extension', description=u'Än Extension Description')
+            name=u'Än Extension', description=u'Än Extension Description',
+            icon_hash='123456')
         self.version = ExtensionVersion.objects.create(
             status=STATUS_PENDING, extension=self.extension, size=999,
             version='48.1516.2342')
