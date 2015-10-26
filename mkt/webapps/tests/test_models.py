@@ -2365,6 +2365,16 @@ class TestManifestUpload(BaseUploadTest, mkt.site.tests.TestCase):
         addon = Webapp.from_upload(upload)
         eq_(addon.manifest_url, upload.name)
 
+    def test_homescreen(self):
+        upload = self.get_upload(abspath=self.manifest('mozscreen.webapp'))
+        addon = Webapp.from_upload(upload)
+        ok_(addon.is_homescreen())
+
+    def test_no_homescreen(self):
+        upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
+        addon = Webapp.from_upload(upload)
+        ok_(not addon.is_homescreen())
+
     def test_app_domain(self):
         upload = self.get_upload(abspath=self.manifest('mozball.webapp'))
         upload.name = 'http://mozilla.com/my/rad/app.webapp'  # manifest URL

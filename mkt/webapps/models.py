@@ -637,6 +637,8 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             addon.manifest_url = upload.name
             addon.app_domain = addon.domain_from_url(addon.manifest_url)
         addon.save()
+        if data.get('role') == 'homescreen':
+            Tag(tag_text='homescreen').save_tag(addon)
         Version.from_upload(upload, addon)
 
         mkt.log(mkt.LOG.CREATE_ADDON, addon)
@@ -720,6 +722,9 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
     def is_rejected(self):
         return self.status == mkt.STATUS_REJECTED
+
+    def is_homescreen(self):
+        return self.tags.filter(tag_text='homescreen').exists()
 
     @property
     def is_deleted(self):

@@ -24,6 +24,8 @@ url_patterns = patterns(
     url(r'^$', views.route_reviewer, name='reviewers'),
     url(r'^apps/queue/$', views.queue_apps,
         name='reviewers.apps.queue_pending'),
+    url(r'^apps/queue/homescreen/$', views.queue_homescreen,
+        name='reviewers.apps.queue_homescreen'),
     url(r'^apps/queue/region/(?P<region>[^ /]+)?$', views.queue_region,
         name='reviewers.apps.queue_region'),
     url(r'^apps/queue/additional/(?P<queue>[^ /]+)$', views.additional_review,

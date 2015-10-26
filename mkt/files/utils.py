@@ -146,6 +146,7 @@ class WebAppParser(object):
                 'description': self.trans_all_locales(localized_descr),
                 'version': data.get('version', '1.0'),
                 'default_locale': default_locale,
+                'role': data.get('role', None),
                 'origin': data.get('origin')}
 
     def trans_locale(self, locale):

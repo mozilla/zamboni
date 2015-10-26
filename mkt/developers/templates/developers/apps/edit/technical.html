@@ -59,6 +59,17 @@
                      _("No, this app's stats are not publicly viewable.")) }}
           </td>
         </tr>
+        <tr>
+          <th>
+            {{ tip(_("Homescreen?"),
+                   _("Whether this app is a homescreen for Firefox OS.")) }}
+          </th>
+          <td>
+            {{ flags(_("Yes"),
+                     addon.is_homescreen(),
+                     False, _("No")) }}
+          </td>
+        </tr>
         {% if not addon.is_packaged %}
           <tr>
             <th>
