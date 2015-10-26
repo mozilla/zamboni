@@ -147,8 +147,9 @@ Search
     All query parameters are optional. The default sort order when the `sort`
     parameter is absent depends on whether a search query (`q`) is present or
     not:
-     * If a search query is passed, order by relevance.
-     * If no search query is passed, order by popularity descending.
+
+        * If a search query is passed, order by relevance.
+        * If no search query is passed, order by popularity descending.
 
     :param string q: The search query.
     :param string author: Filter by author. Requires a case-insensitive
@@ -173,6 +174,31 @@ Delete
     .. note:: Requires authentication. Only works on your own Add-ons.
 
     Delete an add-on. This action is irreversible.
+
+
+Blocking and Unblocking
+-----------------------
+
+.. _addon-block:
+
+.. http:post:: /api/v2/extensions/extension/(int:id)|(string:slug)/block/
+
+    .. note:: Requires authentication and admin rights (*Admin:%s* permission).
+
+    Blocks an add-on.
+
+    When in this state the Extension should not be editable by the developers
+    at all; not visible publicly; not searchable by users; but should be shown
+    in the developer's dashboard, as 'Blocked'.
+
+.. _addon-unblock:
+
+.. http:post:: /api/v2/extensions/extension/(int:id)|(string:slug)/unblock/
+
+    .. note:: Requires authentication and admin rights (*Admin:%s* permission).
+
+    Unblocks an add-on. It should restore its status according to the :ref:`rules
+    below <addon_statuses>`.
 
 
 Add-on Versions
@@ -257,20 +283,25 @@ Delete
 Add-on Statuses
 ===============
 
-* There are 4 possible values for the ``status`` property of an add-on: *public*, *pending*, *rejected* or *incomplete*.
+* There are 5 possible values for the ``status`` property of an add-on: *public*, *pending*, *rejected*, *incomplete* or *blocked*.
 * There are 4 possible values for the ``status`` property on an add-on version: *public*, *obsolete*, *pending*, *rejected*.
 
 Add-on ``status`` directly depend on the ``status`` of its versions:
 
+* Add-ons that are *blocked* never change.
 * Add-ons with at least one *public* version are *public*.
 * Add-ons with no *public* version and at least one *pending* version are *pending*.
 * Add-ons with no *public* or *pending* version, and at least one *rejected* version are *rejected*.
 * Add-ons with no *public*, *pending* or *rejected* version are *incomplete*.
 
-In addition, Add-ons also have a ``disabled`` property that can be set to ``true``
-by the developer to disable the add-on. Disabled add-ons are hidden from the public
-and reviewers, but retain their original status so they can be re-enabled by just
-switching ``disabled`` back to ``false``.
+Blocked Add-ons are hidden from the public. Reviewers and developers may still
+access them, but can not make any modifications to them, only admins can.
+
+In addition, Add-ons also have a ``disabled`` property that can be set to
+``true`` by the developer to disable the add-on. Disabled add-ons are hidden
+from the public and do not appear in the reviewers queue, but retain their
+original status so they can be re-enabled by just switching ``disabled`` back
+to ``false``.
 
 
 Add-on and Add-on Version Submission

@@ -23,8 +23,8 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
-from mkt.api.permissions import (AllowAppOwner, AllowReadOnlyIfPublic,
-                                 AnyOf, ByHttpMethod, GroupPermission)
+from mkt.api.permissions import (AllowReadOnlyIfPublic, AnyOf, ByHttpMethod,
+                                 GroupPermission)
 from mkt.api.paginator import ESPaginator
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
@@ -32,7 +32,8 @@ from mkt.constants.apps import MANIFEST_CONTENT_TYPE
 from mkt.extensions.forms import ExtensionSearchForm
 from mkt.extensions.indexers import ExtensionIndexer
 from mkt.extensions.models import Extension, ExtensionVersion
-from mkt.extensions.permissions import AllowExtensionReviewerReadOnly
+from mkt.extensions.permissions import (AllowExtensionReviewerReadOnly,
+                                        AllowOwnerButReadOnlyIfBlocked)
 from mkt.extensions.serializers import (ESExtensionSerializer,
                                         ExtensionSerializer,
                                         ExtensionVersionSerializer)
@@ -124,8 +125,10 @@ class ExtensionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
                               RestAnonymousAuthentication]
     cors_allowed_methods = ('get', 'patch', 'put', 'post', 'delete')
     model = Extension
-    permission_classes = [AnyOf(AllowAppOwner, AllowExtensionReviewerReadOnly,
-                                AllowReadOnlyIfPublic)]
+    permission_classes = [AnyOf(AllowReadOnlyIfPublic,
+                                AllowOwnerButReadOnlyIfBlocked,
+                                AllowExtensionReviewerReadOnly,
+                                GroupPermission('Admin', '%'))]
     queryset = Extension.objects.without_deleted()
     serializer_class = ExtensionSerializer
 
@@ -145,6 +148,22 @@ class ExtensionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
             # PUT are not supported, only PATCH is.
             raise exceptions.MethodNotAllowed(request.method)
         return super(ExtensionViewSet, self).update(request, *args, **kwargs)
+
+    @detail_route(
+        methods=['post'], cors_allowed_methods=['post'],
+        permission_classes=[GroupPermission('Admin', '%')])
+    def block(self, request, *args, **kwargs):
+        obj = self.get_object()
+        obj.block()
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+    @detail_route(
+        methods=['post'], cors_allowed_methods=['post'],
+        permission_classes=[GroupPermission('Admin', '%')])
+    def unblock(self, request, *args, **kwargs):
+        obj = self.get_object()
+        obj.unblock()
+        return Response(status=status.HTTP_202_ACCEPTED)
 
 
 class ExtensionSearchView(CORSMixin, MarketplaceView, ListAPIView):

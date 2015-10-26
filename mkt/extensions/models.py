@@ -18,9 +18,10 @@ from uuidfield.fields import UUIDField
 from lib.crypto.packaged import sign_app, SigningError
 from lib.utils import static_url
 from mkt.constants.applications import DEVICE_GAIA, DEVICE_TYPES
-from mkt.constants.base import (STATUS_CHOICES, STATUS_FILE_CHOICES,
-                                STATUS_NULL, STATUS_OBSOLETE, STATUS_PENDING,
-                                STATUS_PUBLIC, STATUS_REJECTED)
+from mkt.constants.base import (STATUS_BLOCKED, STATUS_CHOICES,
+                                STATUS_FILE_CHOICES, STATUS_NULL,
+                                STATUS_OBSOLETE, STATUS_PENDING, STATUS_PUBLIC,
+                                STATUS_REJECTED)
 from mkt.extensions.indexers import ExtensionIndexer
 from mkt.extensions.tasks import fetch_icon
 from mkt.extensions.validation import ExtensionValidator
@@ -36,6 +37,10 @@ from mkt.webapps.models import clean_slug
 
 
 log = commonware.log.getLogger('z.extensions')
+
+
+class BlockedExtensionError(Exception):
+    pass
 
 
 class ExtensionQuerySet(models.QuerySet):
@@ -114,6 +119,14 @@ class Extension(ModelBase):
     def latest_version(self):
         return self.versions.without_deleted().latest('pk')
 
+    def block(self):
+        """Block this Extension.
+
+        When in this state the Extension should not be editable by the
+        developers at all; not visible publicly; not searchable by users; but
+        should be shown in the developer's dashboard, as 'Blocked'."""
+        self.update(status=STATUS_BLOCKED)
+
     def clean_slug(self):
         return clean_slug(self, slug_field='slug')
 
@@ -127,6 +140,8 @@ class Extension(ModelBase):
 
         Can be overridden by passing `hard_delete=True` keyword argument, in
         which case it behaves like a regular delete() call instead."""
+        if self.is_blocked():
+            raise BlockedExtensionError
         hard_delete = kwargs.pop('hard_delete', False)
         if hard_delete:
             # Real, hard delete.
@@ -253,6 +268,9 @@ class Extension(ModelBase):
     def icon_type(self):
         return 'png' if self.icon_hash else ''
 
+    def is_blocked(self):
+        return self.status == STATUS_BLOCKED
+
     def is_dummy_content_for_qa(self):
         """
         Returns whether this extension is a dummy extension used for testing
@@ -275,6 +293,8 @@ class Extension(ModelBase):
         requires to install/update add-ons), *not* the Web Extension manifest
         format.
         """
+        if self.is_blocked():
+            return {}
         # Platform "translates" back the mini-manifest into an app manifest and
         # verifies that some specific key properties in the real manifest match
         # what's found in the mini-manifest. To prevent manifest mismatch
@@ -318,6 +338,11 @@ class Extension(ModelBase):
     def __unicode__(self):
         return u'%s: %s' % (self.pk, self.name)
 
+    def unblock(self):
+        """Unblock this Extension. The original status is restored."""
+        self.status = STATUS_NULL
+        self.update_status_according_to_versions()
+
     def undelete(self):
         """Undelete this instance, making it available to all manager methods
         again and restoring its version number.
@@ -334,6 +359,8 @@ class Extension(ModelBase):
     def update_manifest_fields_from_latest_public_version(self):
         """Update all fields for which the manifest is the source of truth
         with the manifest from the latest public add-on."""
+        if self.is_blocked():
+            raise BlockedExtensionError
         try:
             version = self.latest_public_version
         except ExtensionVersion.DoesNotExist:
@@ -354,6 +381,9 @@ class Extension(ModelBase):
         """Update `status`, `latest_version` and `latest_public_version`
         properties depending on the `status` on the ExtensionVersion
         instances attached to this Extension."""
+        if self.is_blocked():
+            raise BlockedExtensionError
+
         # If there is a public version available, the extension should be
         # public. If not, and if there is a pending version available, it
         # should be pending. If not, and if there is a rejected version
@@ -417,6 +447,8 @@ class ExtensionVersion(ModelBase):
 
         Can be overridden by passing `hard_delete=True` keyword argument, in
         which case it behaves like a regular delete() call instead."""
+        if self.extension.is_blocked():
+            raise BlockedExtensionError
         hard_delete = kwargs.pop('hard_delete', False)
         if hard_delete:
             # Real, hard delete.
@@ -461,6 +493,8 @@ class ExtensionVersion(ModelBase):
         within a try/except."""
         if parent is None:
             raise ValueError('ExtensionVersion.from_upload() needs a parent.')
+        if parent.is_blocked():
+            raise BlockedExtensionError
 
         if manifest_contents is None:
             manifest_contents = Extension.extract_and_validate_upload(upload)
@@ -541,6 +575,8 @@ class ExtensionVersion(ModelBase):
         """Publicize this extension version.
 
         Update last_updated and reviewed fields at the same time."""
+        if self.extension.is_blocked():
+            raise BlockedExtensionError
         now = datetime.utcnow()
         size = self.sign_file()
         self.extension.update(last_updated=now)
@@ -548,6 +584,8 @@ class ExtensionVersion(ModelBase):
 
     def reject(self):
         """Reject this extension version."""
+        if self.extension.is_blocked():
+            raise BlockedExtensionError
         size = self.remove_public_signed_file()
         self.update(size=size, status=STATUS_REJECTED)
 
@@ -674,6 +712,8 @@ class ExtensionVersion(ModelBase):
             raise SigningError('Need uuid to be set to sign')
         if not self.pk:
             raise SigningError('Need version pk to be set to sign')
+        if self.extension.is_blocked():
+            raise SigningError('Trying to signed a blocked extension')
 
         ids = json.dumps({
             # 'id' needs to be an unique identifier not shared with anything
