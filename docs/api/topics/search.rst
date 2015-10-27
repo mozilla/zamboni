@@ -136,59 +136,60 @@ Feature table version 8:
 ==============  ===============================
   bit position   feature
 ==============  ===============================
-             0  OpenMobile ACL
-             1  NFC
-             2  1GB RAM Device
-             3  512MB RAM Device
-             4  Asm.js Precompilation
-             5  Mobile ID
-             6  Multiple Network Information
-             7  Third-Party Keyboard Support
-             8  TCP Sockets
-             9  SystemXHR
-            10  Alarms
-            11  Notifications
-            12  Pointer Lock
-            13  Web Speech Recognition
-            14  Web Speech Synthesis
-            15  WebRTC PeerConnection
-            16  WebRTC DataChannel
-            17  WebRTC MediaStream
-            18  Screen Capture
-            19  Microphone
-            20  Camera
-            21  Quota Management
-            22  Gamepad
-            23  Full Screen
-            24  WebM
-            25  H.264
-            26  Web Audio
-            27  Audio
-            28  MP3
-            29  Smartphone-Sized Displays (qHD)
-            30  Touch
-            31  WebSMS
-            32  WebFM
-            33  Vibration
-            34  Time/Clock
-            35  Screen Orientation
-            36  Simple Push
-            37  Proximity
-            38  Network Stats
-            39  Network Information
-            40  Idle
-            41  Geolocation
-            42  IndexedDB
-            43  Device Storage
-            44  Contacts
-            45  Bluetooth
-            46  Battery
-            47  Archive
-            48  Ambient Light Sensor
-            49  Web Activities
-            50  Web Payment
-            51  Packaged Apps Install API
-            52  App Management API
+             0  UDP Sockets
+             1  OpenMobile ACL
+             2  NFC
+             3  1GB RAM Device
+             4  512MB RAM Device
+             5  Asm.js Precompilation
+             6  Mobile ID
+             7  Multiple Network Information
+             8  Third-Party Keyboard Support
+             9  TCP Sockets
+            10  SystemXHR
+            11  Alarms
+            12  Notifications
+            13  Pointer Lock
+            14  Web Speech Recognition
+            15  Web Speech Synthesis
+            16  WebRTC PeerConnection
+            17  WebRTC DataChannel
+            18  WebRTC MediaStream
+            19  Screen Capture
+            20  Microphone
+            21  Camera
+            22  Quota Management
+            23  Gamepad
+            24  Full Screen
+            25  WebM
+            26  H.264
+            27  Web Audio
+            28  Audio
+            29  MP3
+            30  Smartphone-Sized Displays (qHD)
+            31  Touch
+            32  WebSMS
+            33  WebFM
+            34  Vibration
+            35  Time/Clock
+            36  Screen Orientation
+            37  Simple Push
+            38  Proximity
+            39  Network Stats
+            40  Network Information
+            41  Idle
+            42  Geolocation
+            43  IndexedDB
+            44  Device Storage
+            45  Contacts
+            46  Bluetooth
+            47  Battery
+            48  Archive
+            49  Ambient Light Sensor
+            50  Web Activities
+            51  Web Payment
+            52  Packaged Apps Install API
+            53  App Management API
 ==============  ===============================
 
 
