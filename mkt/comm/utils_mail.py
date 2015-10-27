@@ -290,8 +290,8 @@ def save_from_email_reply(reply_text):
                 tok.user.extension_set.filter(id=thread.obj.id).exists()):
             note_type = comm.DEVELOPER_COMMENT
         elif (acl.action_allowed_user(tok.user, 'Apps', 'Review') or
-              acl.action_allowed_user(tok.user, 'Firefox OS Add-ons',
-                                      'Review')):
+              acl.action_allowed_user(tok.user, 'ContentTools',
+                                      'AddonReview')):
             note_type = comm.REVIEWER_COMMENT
 
         t, note = create_comm_note(tok.thread.obj, tok.thread.version,
