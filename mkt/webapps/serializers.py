@@ -82,6 +82,7 @@ class AppSerializer(serializers.ModelSerializer):
     icons = serializers.SerializerMethodField('get_icons')
     id = serializers.IntegerField(source='pk', required=False)
     is_disabled = serializers.BooleanField(read_only=True, default=False)
+    is_homescreen = serializers.SerializerMethodField('get_is_homescreen')
     is_offline = serializers.BooleanField(read_only=True)
     is_packaged = serializers.BooleanField(read_only=True)
     last_updated = serializers.DateField(read_only=True)
@@ -131,13 +132,13 @@ class AppSerializer(serializers.ModelSerializer):
             'categories', 'content_ratings', 'created', 'current_version',
             'default_locale', 'description', 'device_types', 'file_size',
             'homepage', 'hosted_url', 'icons', 'id', 'is_disabled',
-            'is_offline', 'is_packaged', 'last_updated', 'manifest_url',
-            'name', 'package_path', 'payment_account', 'payment_required',
-            'premium_type', 'previews', 'price', 'price_locale',
-            'privacy_policy', 'promo_imgs', 'public_stats', 'release_notes',
-            'ratings', 'regions', 'resource_uri', 'slug', 'status',
-            'support_email', 'support_url', 'supported_locales', 'tags',
-            'upsell', 'upsold', 'user', 'versions'
+            'is_homescreen', 'is_offline', 'is_packaged', 'last_updated',
+            'manifest_url', 'name', 'package_path', 'payment_account',
+            'payment_required', 'premium_type', 'previews', 'price',
+            'price_locale', 'privacy_policy', 'promo_imgs', 'public_stats',
+            'release_notes', 'ratings', 'regions', 'resource_uri', 'slug',
+            'status', 'support_email', 'support_url', 'supported_locales',
+            'tags', 'upsell', 'upsold', 'user', 'versions'
         ]
 
     def _get_region_id(self):
@@ -255,6 +256,9 @@ class AppSerializer(serializers.ModelSerializer):
                 'installed': app.has_installed(user),
                 'purchased': app.pk in user.purchase_ids(),
             }
+
+    def get_is_homescreen(self, app):
+        return app.is_homescreen()
 
     def get_versions(self, app):
         # Disable transforms, we only need two fields: version and pk.
@@ -529,6 +533,9 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
 
     def get_file_size(self, obj):
         return obj.es_data.get('file_size')
+
+    def get_is_homescreen(self, obj):
+        return obj.es_data.get('is_homescreen')
 
 
 class BaseESAppFeedSerializer(ESAppSerializer):

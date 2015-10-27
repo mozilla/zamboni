@@ -204,6 +204,23 @@ class ExtensionSearchFormFilter(SearchFormFilter):
     VALID_FILTERS = ['author.raw']
 
 
+class HomescreenFilter(BaseFilterBackend):
+    """
+    A django-rest-framework filter backend that filters in or out homescreens.
+    """
+    def filter_queryset(self, request, queryset, view):
+        is_homescreen = request.GET.get('is_homescreen')
+        if is_homescreen is None:
+            return queryset
+
+        if is_homescreen == u'0':
+            return queryset.filter(
+                Bool(must_not=[F('term', is_homescreen=True)]))
+        else:
+            return queryset.filter(
+                Bool(must=[F('term', is_homescreen=True)]))
+
+
 class PublicContentFilter(BaseFilterBackend):
     """
     A django-rest-framework filter backend that filters only public items --
