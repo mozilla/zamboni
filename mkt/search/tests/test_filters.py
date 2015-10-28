@@ -11,10 +11,10 @@ from django.test.utils import override_settings
 import mkt
 from mkt.constants.applications import DEVICE_CHOICES_IDS
 from mkt.constants.features import FeatureProfile
-from mkt.search.filters import (DeviceTypeFilter, OpenMobileACLFilter,
-                                ProfileFilter, PublicContentFilter,
-                                PublicSearchFormFilter, RegionFilter,
-                                SearchQueryFilter, SortingFilter,
+from mkt.search.filters import (DeviceTypeFilter, HomescreenFilter,
+                                OpenMobileACLFilter, ProfileFilter,
+                                PublicContentFilter, PublicSearchFormFilter,
+                                RegionFilter, SearchQueryFilter, SortingFilter,
                                 ValidAppsFilter)
 from mkt.search.forms import TARAKO_CATEGORIES_MAPPING
 from mkt.search.views import SearchView
@@ -244,6 +244,23 @@ class TestValidAppsFilter(FilterTestsBase):
             in qs['query']['filtered']['filter']['bool']['must'])
         ok_({'term': {'is_disabled': False}}
             in qs['query']['filtered']['filter']['bool']['must'])
+
+
+class HomescreenFilter(FilterTestsBase):
+
+    filter_classes = [HomescreenFilter]
+
+    def test_homescreen(self):
+        self.req = RequestFactory().get('/', data={'is_homescreen': '1'})
+        qs = self._filter(self.req)
+        ok_({'term': {'is_homescreen': True}}
+            in qs['query']['filtered']['filter']['bool']['must'])
+
+    def test_no_homescreen(self):
+        self.req = RequestFactory().get('/', data={'is_homescreen': 'false'})
+        qs = self._filter(self.req)
+        ok_({'term': {'is_homescreen': True}}
+            in qs['query']['filtered']['filter']['bool']['must_not'])
 
 
 class TestDeviceTypeFilter(FilterTestsBase):

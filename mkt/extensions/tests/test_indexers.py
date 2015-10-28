@@ -23,7 +23,7 @@ class TestExtensionIndexer(TestCase):
             reviewed = datetime.utcnow().replace(microsecond=0)
         extension = Extension.objects.create(
             author=u'Test Aùthor', description=u'Test Desçription',
-            name=u'Test Êxtension', last_updated=reviewed,
+            icon_hash='a12345', last_updated=reviewed, name=u'Test Êxtension',
             slug=u'test-ëxtension')
         version = ExtensionVersion.objects.create(
             extension=extension, size=42, status=status, reviewed=reviewed,
@@ -74,10 +74,26 @@ class TestExtensionIndexer(TestCase):
              'created': version.created.replace(microsecond=0),
              'size': 42, 'version': '0.1', })
 
+    def test_extract_deleted(self):
+        extension, version = self._extension_factory(STATUS_PUBLIC)
+        extension.delete()
+        doc = self._get_doc(extension)
+        eq_(doc['id'], extension.id)
+        eq_(doc['is_deleted'], True)
+        eq_(doc['is_disabled'], False)
+        eq_(doc['status'], STATUS_PUBLIC)
+        eq_(doc['latest_public_version'],
+            {'id': version.pk,
+             'created': version.created.replace(microsecond=0),
+             'size': 42, 'version': '0.1', })
+
     def test_extract_public(self):
         extension, version = self._extension_factory(STATUS_PUBLIC)
         doc = self._get_doc(extension)
+        eq_(doc['icon_hash'], extension.icon_hash)
         eq_(doc['id'], extension.id)
+        eq_(doc['is_deleted'], False)
+        eq_(doc['is_disabled'], False)
         eq_(doc['author'], extension.author)
         eq_(doc['created'], extension.created)
         eq_(doc['description'], [unicode(extension.description)])

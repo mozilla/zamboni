@@ -166,6 +166,7 @@ def queue_counts(request):
         'moderated': queues_helper.get_moderated_queue().count(),
         'abuse': queues_helper.get_abuse_queue().count(),
         'abusewebsites': queues_helper.get_abuse_queue_websites().count(),
+        'homescreen': queues_helper.get_homescreen_queue().count(),
         'region_cn': Webapp.objects.pending_in_region(mkt.regions.CHN).count(),
         'additional_tarako': (
             AdditionalReview.objects
@@ -194,6 +195,8 @@ def _progress():
     base_filters = {
         'pending': (queues_helper.get_pending_queue(),
                     'nomination'),
+        'homescreen': (queues_helper.get_homescreen_queue(),
+                       'nomination'),
         'rereview': (queues_helper.get_rereview_queue(),
                      'created'),
         'escalated': (queues_helper.get_escalated_queue(),
@@ -503,6 +506,26 @@ def queue_apps(request):
                 for app in Webapp.version_and_file_transformer(apps)]
 
     return _queue(request, apps, 'pending', date_sort='nomination',
+                  use_es=use_es)
+
+
+@reviewer_required
+def queue_homescreen(request):
+    use_es = waffle.switch_is_active('reviewer-tools-elasticsearch')
+    sort_field = 'nomination'
+
+    queues_helper = ReviewersQueuesHelper(request, use_es=use_es)
+    apps = queues_helper.get_homescreen_queue()
+    apps = queues_helper.sort(apps, date_sort=sort_field)
+
+    if use_es:
+        apps = [QueuedApp(app, app.latest_version.nomination_date)
+                for app in apps.execute()]
+    else:
+        apps = [QueuedApp(app, app.all_versions[0].nomination)
+                for app in Webapp.version_and_file_transformer(apps)]
+
+    return _queue(request, apps, 'homescreen', date_sort='nomination',
                   use_es=use_es)
 
 

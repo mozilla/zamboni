@@ -578,6 +578,20 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(links[0].text, u'Apps (2)')
         eq_(links[1].text, u'Re-reviews (1)')
         eq_(links[2].text, u'Updates (0)')
+        eq_(links[4].text, u'Homescreens (0)')
+
+    def test_homescreen_count(self):
+        Tag(tag_text='homescreen').save_tag(self.apps[1])
+        if self.uses_es():
+            self.reindex(Webapp)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        links = doc('.tabnav li a')
+        eq_(links[0].text, u'Apps (1)')
+        eq_(links[1].text, u'Re-reviews (1)')
+        eq_(links[2].text, u'Updates (0)')
+        eq_(links[4].text, u'Homescreens (1)')
 
     def test_queue_count_senior_reviewer(self):
         self.login_as_senior_reviewer()
@@ -945,6 +959,20 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(links[0].text, u'Apps (0)')
         eq_(links[1].text, u'Re-reviews (0)')
         eq_(links[2].text, u'Updates (2)')
+
+    def test_homescreen(self):
+        Tag(tag_text='homescreen').save_tag(self.apps[1])
+        if self.uses_es():
+            self.reindex(Webapp)
+        r = self.client.get(self.url)
+        eq_(r.status_code, 200)
+        doc = pq(r.content)
+        links = doc('.tabnav li a')
+        eq_(links[0].text, u'Apps (0)')
+        eq_(links[1].text, u'Re-reviews (0)')
+        eq_(links[2].text, u'Updates (1)')
+        eq_(links[3].text, u'Reviewing (0)')
+        eq_(links[4].text, u'Homescreens (1)')
 
     def test_queue_count_senior_reviewer(self):
         self.login_as_senior_reviewer()
@@ -3377,7 +3405,8 @@ class TestModeratedQueue(mkt.site.tests.TestCase, AccessMixin):
         eq_(links[1].text, u'Re-reviews (0)')
         eq_(links[2].text, u'Updates (0)')
         eq_(links[3].text, u'Reviewing (0)')
-        eq_(links[4].text, u'Moderated Reviews (2)')
+        eq_(links[4].text, u'Homescreens (0)')
+        eq_(links[5].text, u'Moderated Reviews (2)')
 
     def test_deleted_app(self):
         "Test that a deleted app doesn't break the queue."
@@ -3534,7 +3563,8 @@ class TestAppAbuseQueue(mkt.site.tests.TestCase, AccessMixin,
         eq_(links[1].text, u'Re-reviews (0)')
         eq_(links[2].text, u'Updates (0)')
         eq_(links[3].text, u'Reviewing (0)')
-        eq_(links[4].text, u'Abuse Reports (2)')
+        eq_(links[4].text, u'Homescreens (0)')
+        eq_(links[5].text, u'Abuse Reports (2)')
 
 
 class TestWebsiteAbuseQueue(mkt.site.tests.TestCase, AccessMixin,

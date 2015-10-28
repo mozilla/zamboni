@@ -146,6 +146,7 @@ class WebAppParser(object):
                 'description': self.trans_all_locales(localized_descr),
                 'version': data.get('version', '1.0'),
                 'default_locale': default_locale,
+                'role': data.get('role', None),
                 'origin': data.get('origin')}
 
     def trans_locale(self, locale):
@@ -205,7 +206,7 @@ class SafeUnzip(object):
             log.error('Extraction error, total size of files too big (%s)'
                       ' in archive: %s' % (sum_size, self.source, ))
             raise forms.ValidationError(_(
-                'Total size of files exeeding limit in archive: {0}').format(
+                'Total size of files exceeding limit in archive: {0}').format(
                 info.filename))
         return True
 

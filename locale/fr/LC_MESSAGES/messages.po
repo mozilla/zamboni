@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-07-27 21:26+0000\n"
-"Last-Translator: fredchat <fredchat@frenchmozilla.org>\n"
+"PO-Revision-Date: 2015-10-25 09:12+0000\n"
+"Last-Translator: sphinx_knight <sphinx_knight@hotmail.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -1546,7 +1546,7 @@ msgstr "Commentaire public de l'évaluateur"
 
 #: mkt/constants/comm.py:76 mkt/site/log.py:545
 msgid "Abuse reports investigation"
-msgstr ""
+msgstr "Investigation sur les signalements"
 
 #: mkt/constants/features.py:20
 msgid "App Management API"
@@ -2222,11 +2222,11 @@ msgstr "Reste du monde"
 
 #: mkt/constants/regions.py:89
 msgid "Bonaire, Sint Eustatius and Saba"
-msgstr ""
+msgstr "Bonaire, Saint-Eustache et Saba"
 
 #: mkt/constants/regions.py:100
 msgid "Bolivia, Plurinational State of"
-msgstr ""
+msgstr "État plurinational de Bolivie"
 
 #: mkt/constants/regions.py:115
 msgid "Congo, Democratic Republic of the"
@@ -2242,11 +2242,11 @@ msgstr "Guinée-Conakry"
 
 #: mkt/constants/regions.py:166
 msgid "Heard Island and McDonald Islands"
-msgstr ""
+msgstr "Îles Heard-et-MacDonald"
 
 #: mkt/constants/regions.py:192
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "République démocratique populaire lao"
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
@@ -2258,15 +2258,15 @@ msgstr "Liechtenstein"
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
-msgstr ""
+msgstr "Saint-Martin (partie française)"
 
 #: mkt/constants/regions.py:212
 msgid "Macedonia, the former Yugoslav Republic of"
-msgstr ""
+msgstr "Ancienne République yougoslave de Macédoine"
 
 #: mkt/constants/regions.py:251
 msgid "Palestine, State of"
-msgstr ""
+msgstr "État de Palestine"
 
 #: mkt/constants/regions.py:256
 msgid "Russia"
@@ -2278,7 +2278,7 @@ msgstr "Sénégal"
 
 #: mkt/constants/regions.py:263
 msgid "Saint Helena, Ascension and Tristan da Cunha"
-msgstr ""
+msgstr "Sainte-Hélène, Ascension et Tristan da Cunha"
 
 #: mkt/constants/regions.py:295
 msgid "Taiwan"
@@ -2290,7 +2290,7 @@ msgstr "Tanzanie"
 
 #: mkt/constants/regions.py:303
 msgid "Holy See"
-msgstr ""
+msgstr "Saint-Siège"
 
 #: mkt/constants/regions.py:305
 msgid "Venezuela"
@@ -3216,6 +3216,9 @@ msgid ""
 "<p>Example using a Python library for the command-line on Mac OS X/Linux "
 "using your OAuth credentials:</p>"
 msgstr ""
+"<p>Exemple utilisant une bibliothèque Python depuis l'interface en ligne de "
+"commande Mac OS X/Linux avec les informations d'authentification "
+"OAuth&nbsp;:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step
 #. of the submission process (e.g. 'Payments' or 'Content Ratings').
@@ -4377,13 +4380,16 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:101
 msgid "Hosted URL"
-msgstr ""
+msgstr "URL d’hébergement"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:107
 msgid ""
 "If your app has a URL where it is hosted, you can set it for users that want"
 " to try your app before installing it."
 msgstr ""
+"Si votre application est hébergée à une URL donnée, vous pouvez utiliser ce "
+"champ pour l’indiquer afin que vos utilisateurs puissent essayer "
+"l’application avant de l’installer."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:119
 #: mkt/lookup/templates/lookup/website_edit.html:41
@@ -6247,10 +6253,12 @@ msgid ""
 "Version number must be higher than the latest version uploaded for this Add-"
 "on, which is \"%s\"."
 msgstr ""
+"Le numéro de version doit être supérieur à celui de la dernière version "
+"transmise pour ce module complémentaire et qui vaut «&nbsp;%s&nbsp;»."
 
 #: mkt/extensions/models.py:442
 msgid "An Add-on with this version number already exists."
-msgstr ""
+msgstr "Un module avec ce numéro de version existe déjà."
 
 #: mkt/extensions/validation.py:22
 msgid "The `author` property must be a string."
@@ -6270,7 +6278,7 @@ msgstr ""
 
 #: mkt/extensions/validation.py:28
 msgid "The file sent has an unsupported content-type"
-msgstr ""
+msgstr "Le type de fichier envoyé n'est pas supporté"
 
 #: mkt/extensions/validation.py:30
 msgid "The `description` property must be a string."
@@ -6278,23 +6286,26 @@ msgstr "La propriété `description` doit être une chaîne de caractères."
 
 #: mkt/extensions/validation.py:32
 msgid "The `description` property cannot be longer than 132 characters."
-msgstr ""
+msgstr "La propriété `description` ne doit pas dépasser 132 caractères."
 
 #: mkt/extensions/validation.py:35
 msgid "'manifest.json' in the archive is not a valid JSON file."
 msgstr ""
+"Le fichier 'manifest.json' contenu dans l'archive n'est pas un fichier JSON "
+"valide."
 
 #: mkt/extensions/validation.py:38
 msgid "'manifest.json' in the archive is not encoded in UTF-8."
 msgstr ""
+"Le fichier 'manifest.json' contenu dans l'archive n'est pas encodé en UTF-8."
 
 #: mkt/extensions/validation.py:40
 msgid "The file sent is not a valid ZIP file."
-msgstr ""
+msgstr "Le fichier envoyé n'est pas un fichier ZIP valide."
 
 #: mkt/extensions/validation.py:41
 msgid "There is no `name` property in the manifest."
-msgstr ""
+msgstr "Il n'y a pas de propriété `name` dans le manifeste."
 
 #: mkt/extensions/validation.py:42
 msgid "The `name` property must be a string."
@@ -6302,21 +6313,23 @@ msgstr "La propriété `name` doit être une chaîne de caractères."
 
 #: mkt/extensions/validation.py:43
 msgid "The `name` property cannot be longer than 45 characters."
-msgstr ""
+msgstr "La propriété `name` ne doit pas dépasser 45 caractères."
 
 #: mkt/extensions/validation.py:46
 msgid ""
 "The `name` property must be at least 1 character long and can not consist of"
 " only whitespace characters."
 msgstr ""
+"La propriété `name` doit contenir au moins 1 caractère et ne doit pas être "
+"composée uniquement de blancs."
 
 #: mkt/extensions/validation.py:49
 msgid "The archive does not contain a 'manifest.json' file."
-msgstr ""
+msgstr "L'archive ne contient pas de fichier 'manifest.json'."
 
 #: mkt/extensions/validation.py:52
 msgid "There is no `version` property in the manifest."
-msgstr ""
+msgstr "Il n'y a aucune propriété `version` dans le manifeste."
 
 #: mkt/extensions/validation.py:54
 msgid "The `version` property must be a string."
@@ -6327,26 +6340,31 @@ msgid ""
 "The `version` property must be a string containing one to four dot-separated"
 " integers each between 0 and 65535."
 msgstr ""
+"La propriété `version` doit être une chaîne de caractères contenant entre un"
+" et quatre entiers, compris entre 0 et 65535 et séparés entre eux par des "
+"points."
 
 #: mkt/extensions/views.py:55
 msgid "No validation_id specified."
-msgstr ""
+msgstr "Aucun validation_id spécifié."
 
 #: mkt/extensions/views.py:60
 msgid "No such upload."
-msgstr ""
+msgstr "Aucun envoi correspondant."
 
 #: mkt/extensions/views.py:63
 msgid "The specified upload has not passed validation."
-msgstr ""
+msgstr "L'envoi spécifié n'a pas pu être validé."
 
 #: mkt/extensions/views.py:102
 msgid "Missing file in request."
-msgstr ""
+msgstr "Fichier manquant dans la requête."
 
 #: mkt/extensions/views.py:214
 msgid "Modifying or submitting versions is forbidden for disabled Add-ons."
 msgstr ""
+"Il est interdit de modifier ou denvoyer des versions pour les modules "
+"désactivés."
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
@@ -6450,6 +6468,7 @@ msgstr "Fichier dépassant la taille limite dans l'archive : {0}"
 #: mkt/files/utils.py:207
 msgid "Total size of files exeeding limit in archive: {0}"
 msgstr ""
+"La taille totale des fichiers dépasse la taille limite dans l'archive : {0}"
 
 #: mkt/files/utils.py:238
 msgid "Invalid archive."
@@ -6634,7 +6653,7 @@ msgstr "Raison de suppression"
 
 #: mkt/lookup/forms.py:81
 msgid "Promo Image"
-msgstr ""
+msgstr "Image pour la promotion"
 
 #: mkt/lookup/forms.py:82
 msgid "Minimum size: {0}x{1}"
@@ -6662,7 +6681,7 @@ msgstr "Échec de la demande de remboursement pour cette transaction."
 
 #: mkt/lookup/views.py:359
 msgid "Website saved."
-msgstr ""
+msgstr "Site web enregistré."
 
 #: mkt/lookup/templates/lookup/app_activity.html:10
 #: mkt/lookup/templates/lookup/helpers/app_header.html:22
@@ -6839,19 +6858,19 @@ msgstr "Outil de recherche <small>Marketplace</small>"
 
 #: mkt/lookup/templates/lookup/group_summary.html:11
 msgid "Group Lookup results for"
-msgstr ""
+msgstr "Résultats de recherche pour les groupes"
 
 #: mkt/lookup/templates/lookup/group_summary.html:13
 msgid "Group Summary"
-msgstr ""
+msgstr "Résumé du groupe"
 
 #: mkt/lookup/templates/lookup/group_summary.html:18
 msgid "Group Details"
-msgstr ""
+msgstr "Détails du groupe"
 
 #: mkt/lookup/templates/lookup/group_summary.html:22
 msgid "Rules"
-msgstr ""
+msgstr "Règles"
 
 #: mkt/lookup/templates/lookup/group_summary.html:24
 msgid "Notes"
@@ -6859,11 +6878,11 @@ msgstr "Notes"
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
-msgstr ""
+msgstr "Limité (aucun changement d'API possible)"
 
 #: mkt/lookup/templates/lookup/group_summary.html:30
 msgid "Group Members"
-msgstr ""
+msgstr "Membres du groupe"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
@@ -7050,7 +7069,7 @@ msgstr "Raison"
 
 #: mkt/lookup/templates/lookup/website_edit.html:27 mkt/websites/forms.py:36
 msgid "Short Name"
-msgstr ""
+msgstr "Nom court"
 
 #: mkt/lookup/templates/lookup/website_edit.html:34
 #: mkt/lookup/templates/lookup/website_summary.html:16
@@ -7067,7 +7086,7 @@ msgstr "URL"
 #: mkt/lookup/templates/lookup/website_edit.html:55
 #: mkt/lookup/templates/lookup/website_summary.html:32
 msgid "Mobile URL"
-msgstr ""
+msgstr "URL mobile"
 
 #: mkt/lookup/templates/lookup/website_edit.html:62
 #: mkt/lookup/templates/lookup/website_summary.html:36
@@ -7079,17 +7098,17 @@ msgstr "Mots-clés"
 #: mkt/lookup/templates/lookup/website_summary.html:40
 #: mkt/websites/forms.py:34
 msgid "Preferred Regions"
-msgstr ""
+msgstr "Régions préférées"
 
 #: mkt/lookup/templates/lookup/website_edit.html:88
 #: mkt/lookup/templates/lookup/website_summary.html:48
 #: mkt/websites/forms.py:28
 msgid "Compatible Devices"
-msgstr ""
+msgstr "Appareils compatibles"
 
 #: mkt/lookup/templates/lookup/website_summary.html:20
 msgid "Name - Short Name"
-msgstr ""
+msgstr "Nom - Nom court"
 
 #: mkt/lookup/templates/lookup/website_summary.html:56
 msgid "disabled"
@@ -7121,7 +7140,7 @@ msgstr "Compte supprimé"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:3
 msgid "Website Summary for"
-msgstr ""
+msgstr "Résumé du site web pour"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:5
 msgid "Edit Website"
@@ -7146,11 +7165,11 @@ msgstr "Recherche"
 
 #: mkt/lookup/templates/lookup/includes/group_search.html:4
 msgid "Group Lookup"
-msgstr ""
+msgstr "Recherche de groupe"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
-msgstr ""
+msgstr "Enregistrer l'image pour la promotion"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
@@ -7162,7 +7181,7 @@ msgstr "Résolution du compte"
 
 #: mkt/lookup/templates/lookup/includes/website_search.html:5
 msgid "Website Lookup"
-msgstr ""
+msgstr "Recherche de site web"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
@@ -7384,11 +7403,11 @@ msgstr "application, éditeur ou commentaire"
 
 #: mkt/reviewers/forms.py:104
 msgid "Device Type:"
-msgstr ""
+msgstr "Type d'appareil :"
 
 #: mkt/reviewers/forms.py:105
 msgid "Device:"
-msgstr ""
+msgstr "Appareil :"
 
 #: mkt/reviewers/forms.py:106
 msgid "Firefox Version:"
@@ -7404,7 +7423,7 @@ msgstr "Forçage du type d'appareil :"
 
 #: mkt/reviewers/forms.py:126
 msgid "Nominate this app to be featured."
-msgstr ""
+msgstr "Nommer cette application pour qu'elle soit mise en avant."
 
 #: mkt/reviewers/forms.py:133
 msgid "Choose a canned response..."
@@ -7454,7 +7473,7 @@ msgstr "Revues modérées"
 
 #: mkt/reviewers/helpers.py:48
 msgid "Website Abuse Reports"
-msgstr ""
+msgstr "Signalements de sites web"
 
 #: mkt/reviewers/helpers.py:49
 msgid "Reviewing"
@@ -7505,12 +7524,12 @@ msgstr "Critiques modérées ({0})"
 #: mkt/reviewers/helpers.py:130
 msgctxt "abuse"
 msgid "Abuse Reports ({0})"
-msgstr ""
+msgstr "Signalements ({0})"
 
 #: mkt/reviewers/helpers.py:137
 msgctxt "abusewebsites"
 msgid "Website Abuse Reports ({0})"
-msgstr ""
+msgstr "Signalements de sites web ({0})"
 
 #: mkt/reviewers/helpers.py:154
 msgid "Reviews"
@@ -7584,13 +7603,16 @@ msgstr ""
 
 #: mkt/reviewers/utils.py:433
 msgid "Request Re-review"
-msgstr ""
+msgstr "Demander une nouvelle revue"
 
 #: mkt/reviewers/utils.py:435
 msgid ""
 "Add this app to the re-review queue. Any comments here won't be visible to "
 "the author(s), and no notification will be sent tothem."
 msgstr ""
+"Ajouter cette application dans la file dédiée aux revues redemandées. Les "
+"auteurs du module ne recevront pas de notifications et ne pourront pas voir "
+"les commentaires saisis ici."
 
 #: mkt/reviewers/utils.py:441
 msgid "Clear Escalation"
@@ -7679,7 +7701,7 @@ msgstr "Revue complétée avec succès."
 
 #: mkt/reviewers/templates/reviewers/abuse.html:9
 msgid "Abuse Reports for {item} ({num})"
-msgstr ""
+msgstr "Signalements pour {item} ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
@@ -8023,7 +8045,7 @@ msgstr "Testé sur :"
 
 #: mkt/reviewers/templates/reviewers/review.html:159
 msgid "Add device"
-msgstr ""
+msgstr "Ajouter un appareil"
 
 #: mkt/reviewers/templates/reviewers/review.html:176
 msgid "Browse"
@@ -8172,20 +8194,20 @@ msgstr "Versions récentes"
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "Process"
-msgstr ""
+msgstr "Processus"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:14
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:55
 msgid "Actions:"
-msgstr ""
+msgstr "Actions&nbsp;:"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "Review page"
-msgstr ""
+msgstr "Revoir la page"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
 msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
-msgstr ""
+msgstr "<a href=\"%(abuses_url)s\">Tous les signalements (%(abuses_count)s)</a>]"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:34
 msgid ""
@@ -8200,10 +8222,12 @@ msgid ""
 "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" "
 "target=\"_blank\" href=\"%(translate_url)s\">translate</a>"
 msgstr ""
+"- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" "
+"target=\"_blank\" href=\"%(translate_url)s\">traduire</a>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:62
 msgid "All abuse reports read. Good work!"
-msgstr ""
+msgstr "Tous les signalements ont été lus. Beau travail&nbsp;!"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
@@ -8908,14 +8932,15 @@ msgstr "Mise en avant dûe à la préparation de la sortie de version"
 #: mkt/site/log.py:543
 msgid "{addon} re-reviewed because abuse reports need investigation."
 msgstr ""
+"{addon} revu à nouveau car le signalement nécessitait une investigation."
 
 #: mkt/site/log.py:552
 msgid "{addon} manually flagged for re-review."
-msgstr ""
+msgstr "{addon} signalé manuellement afin qu'il soit revu à nouveau."
 
 #: mkt/site/log.py:553
 msgid "Manual re-review"
-msgstr ""
+msgstr "Nouvelle revue manuelle"
 
 #: mkt/site/log.py:570
 msgid "Created: {0}."
@@ -9013,7 +9038,7 @@ msgstr "{addon} {version} rejeté pour la file {queue}."
 
 #: mkt/site/log.py:704
 msgid "Abuse report {report} for {addon} read."
-msgstr ""
+msgstr "Signalement {report} lu pour {addon}."
 
 #: mkt/site/log.py:705
 msgid "{user} marked read {report} for {addon}."
@@ -9021,11 +9046,11 @@ msgstr "{user} a marqué comme lu {report} pour {addon}."
 
 #: mkt/site/log.py:713
 msgid "Abuse report {report} for {website} read."
-msgstr ""
+msgstr "Signalement {report} lu pour {website}."
 
 #: mkt/site/log.py:714
 msgid "{user} marked read {report} for {website}."
-msgstr ""
+msgstr "{user} a marqué {report} comme lu pour {website}."
 
 #: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
@@ -9796,7 +9821,7 @@ msgstr "Créé"
 
 #: mkt/websites/forms.py:89
 msgid "Invalid device(s) selected."
-msgstr ""
+msgstr "Appareil(s) invalide(s) sélectionné(s)."
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"

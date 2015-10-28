@@ -15,8 +15,8 @@ from nose.tools import eq_, ok_
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants import comm
 from mkt.constants.apps import MANIFEST_CONTENT_TYPE
-from mkt.constants.base import (STATUS_NULL, STATUS_OBSOLETE, STATUS_PENDING,
-                                STATUS_PUBLIC, STATUS_REJECTED)
+from mkt.constants.base import (STATUS_BLOCKED, STATUS_NULL, STATUS_OBSOLETE,
+                                STATUS_PENDING, STATUS_PUBLIC, STATUS_REJECTED)
 from mkt.extensions.models import Extension, ExtensionVersion
 from mkt.extensions.views import ExtensionVersionViewSet
 from mkt.files.models import FileUpload
@@ -329,6 +329,61 @@ class TestExtensionViewSetDelete(RestOAuth):
         eq_(Extension.objects.without_deleted().count(), 2)
 
 
+class TestExtensionViewSetPostAction(UploadTest, RestOAuth):
+    fixtures = fixture('user_2519', 'user_999')
+
+    def setUp(self):
+        super(TestExtensionViewSetPostAction, self).setUp()
+        self.extension = Extension.objects.create()
+        self.user = UserProfile.objects.get(pk=2519)
+        self.block_url = reverse(
+            'api-v2:extension-block', kwargs={'pk': self.extension.slug})
+        self.unblock_url = reverse(
+            'api-v2:extension-unblock', kwargs={'pk': self.extension.slug})
+
+    def test_cors(self):
+        self.grant_permission(self.user, 'Admin:%')
+        self.assertCORS(self.client.post(self.block_url), 'post')
+        self.assertCORS(self.client.post(self.unblock_url), 'post')
+
+    def test_block_unblock_reviewer(self):
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
+        response = self.client.post(self.block_url)
+        eq_(response.status_code, 403)
+
+        response = self.client.post(self.unblock_url)
+        eq_(response.status_code, 403)
+
+    def test_block_unblock_anonymous(self):
+        response = self.anon.post(self.block_url)
+        eq_(response.status_code, 403)
+
+        response = self.anon.post(self.unblock_url)
+        eq_(response.status_code, 403)
+
+    def test_block_unblock_author(self):
+        self.extension.authors.add(self.user)
+        response = self.client.post(self.block_url)
+        eq_(response.status_code, 403)
+
+        response = self.client.post(self.unblock_url)
+        eq_(response.status_code, 403)
+
+    def test_block(self):
+        self.grant_permission(self.user, 'Admin:%')
+        response = self.client.post(self.block_url)
+        eq_(response.status_code, 202)
+        self.extension.reload()
+        eq_(self.extension.status, STATUS_BLOCKED)
+
+    def test_unblock(self):
+        self.grant_permission(self.user, 'Admin:%')
+        response = self.client.post(self.unblock_url)
+        eq_(response.status_code, 202)
+        self.extension.reload()
+        eq_(self.extension.status, STATUS_NULL)
+
+
 class TestExtensionViewSetGet(RestOAuth):
     fixtures = fixture('user_2519', 'user_999')
 
@@ -339,7 +394,8 @@ class TestExtensionViewSetGet(RestOAuth):
         self.user2 = UserProfile.objects.get(pk=999)
         self.extension = Extension.objects.create(
             author=u'My Favourité Author',
-            description=u'Mÿ Extension Description', name=u'Mŷ Extension')
+            description=u'Mÿ Extension Description', icon_hash='654321',
+            name=u'Mŷ Extension')
         self.version = ExtensionVersion.objects.create(
             extension=self.extension, size=4242, status=STATUS_PENDING,
             version='0.42')
@@ -497,6 +553,24 @@ class TestExtensionViewSetGet(RestOAuth):
         eq_(data['id'], self.extension.id)
         eq_(data['disabled'], True)
 
+    def test_detail_anonymous_or_not_owner_blocked(self):
+        self.extension.update(status=STATUS_BLOCKED)
+        response = self.anon.get(self.url)
+        eq_(response.status_code, 403)
+
+        self.extension.authors.remove(self.user)
+        self.extension.update(status=STATUS_BLOCKED)
+        response = self.client.get(self.url)
+        eq_(response.status_code, 403)
+
+    def test_detail_owner_blocked(self):
+        self.extension.update(status=STATUS_BLOCKED)
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        data = response.json
+        eq_(data['id'], self.extension.pk)
+        eq_(data['status'], 'blocked')
+
     def test_detail_owner_rejected(self):
         self.version.update(status=STATUS_REJECTED)
         response = self.client.get(self.url)
@@ -537,6 +611,13 @@ class TestExtensionViewSetPatchPut(RestOAuth):
         eq_(self.extension.deleted, True)
         eq_(self.extension.disabled, False)
         eq_(self.extension.slug, u'mŷ-extension')
+
+    def test_patch_owner_blocked(self):
+        self.extension.authors.add(self.user)
+        self.extension.update(status=STATUS_BLOCKED)
+        response = self.client.patch(self.url, json.dumps({
+            'slug': u'lolé', 'disabled': True}))
+        eq_(response.status_code, 403)
 
     def test_patch_without_rights(self):
         response = self.anon.patch(self.url, json.dumps({'slug': 'lol'}))
@@ -597,6 +678,7 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
         self.extension = Extension.objects.create(
             author=u'MäÄägnificent Author',
             description=u'Mâgnificent Extension Description',
+            icon_hash='abcdef',
             name=u'Mâgnificent Extension',
             last_updated=self.last_updated_date)
         self.version = ExtensionVersion.objects.create(
@@ -716,6 +798,14 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
 
     def test_disabled(self):
         self.extension.update(disabled=True)
+        self.refresh('extension')
+        with self.assertNumQueries(0):
+            response = self.anon.get(self.url)
+        eq_(response.status_code, 200)
+        eq_(len(response.json['objects']), 0)
+
+    def test_blocked(self):
+        self.extension.update(status=STATUS_BLOCKED)
         self.refresh('extension')
         with self.assertNumQueries(0):
             response = self.anon.get(self.url)
@@ -851,6 +941,13 @@ class TestReviewerExtensionSearchView(RestOAuth, ESTestCase):
         eq_(response.status_code, 200)
         eq_(len(response.json['objects']), 1)
 
+    def test_blocked(self):
+        self.extension.update(status=STATUS_BLOCKED)
+        self.refresh('extension')
+        response = self.client.get(self.url)
+        eq_(response.status_code, 200)
+        eq_(len(response.json['objects']), 1)
+
     def test_disabled(self):
         self.extension.update(disabled=True)
         self.refresh('extension')
@@ -863,7 +960,8 @@ class TestReviewerExtensionSearchView(RestOAuth, ESTestCase):
         self.refresh('extension')
         response = self.client.get(self.url)
         eq_(response.status_code, 200)
-        eq_(len(response.json['objects']), 0)
+        # We want to show deleted add-ons in reviewer search.
+        eq_(len(response.json['objects']), 1)
 
 
 class ReviewQueueTestMixin(object):
@@ -874,7 +972,8 @@ class ReviewQueueTestMixin(object):
         self.user = UserProfile.objects.get(pk=2519)
 
         another_extension = Extension.objects.create(
-            name=u'Anothër Extension', description=u'Anothër Description')
+            name=u'Anothër Extension', description=u'Anothër Description',
+            icon_hash='fdecba')
         ExtensionVersion.objects.create(
             extension=another_extension, size=888, status=STATUS_PUBLIC,
             version='0.1')
@@ -940,7 +1039,8 @@ class TestReviewerExtensionViewSet(ReviewQueueTestMixin, RestOAuth):
         super(TestReviewerExtensionViewSet, self).setUp()
         self.list_url = reverse('api-v2:extension-queue-list')
         self.extension = Extension.objects.create(
-            name=u'Än Extension', description=u'Än Extension Description')
+            name=u'Än Extension', description=u'Än Extension Description',
+            icon_hash='123456')
         self.version = ExtensionVersion.objects.create(
             status=STATUS_PENDING, extension=self.extension, size=999,
             version='48.1516.2342')

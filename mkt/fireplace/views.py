@@ -8,6 +8,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin
+from mkt.extensions.serializers import ESExtensionSerializer
 from mkt.fireplace.serializers import (FireplaceAppSerializer,
                                        FireplaceESAppSerializer,
                                        FireplaceESWebsiteSerializer)
@@ -27,14 +28,11 @@ class SearchView(BaseSearchView):
 
 class MultiSearchView(BaseMultiSearchView):
     allow_colombia = True
-
-    def get_serializer_context(self):
-        context = super(MultiSearchView, self).get_serializer_context()
-        context['serializer_classes'] = {
-            'webapp': FireplaceESAppSerializer,
-            'website': FireplaceESWebsiteSerializer
-        }
-        return context
+    serializer_classes = {
+        'extension': ESExtensionSerializer,
+        'webapp': FireplaceESAppSerializer,
+        'website': FireplaceESWebsiteSerializer
+    }
 
 
 class ConsumerInfoView(CORSMixin, RetrieveAPIView):

@@ -22,6 +22,7 @@ from mkt.extensions.models import Extension
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail_jinja
 from mkt.translations.utils import to_language
+from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 
 
@@ -55,7 +56,7 @@ def send_mail_comm(note):
                                   note.thread.obj.name)
             mail_template = comm.COMM_MAIL_MAP.get(note.note_type, 'generic')
             send_mail_jinja(subject, 'comm/emails/%s.html' % mail_template,
-                            get_mail_context(note),
+                            get_mail_context(note, None),
                             recipient_list=[settings.MKT_REVIEWS_EMAIL],
                             from_email=settings.MKT_REVIEWERS_EMAIL,
                             perm_setting='app_reviewed')
@@ -88,10 +89,10 @@ def tokenize_recipients(recipients, thread):
     tokenized_recipients = []
     for user_id, user_email in recipients:
         if not user_id:
-            tokenized_recipients.append((user_email, None))
+            tokenized_recipients.append((user_email, None, None))
         else:
             tok = get_reply_token(thread, user_id)
-            tokenized_recipients.append((user_email, tok.uuid))
+            tokenized_recipients.append((user_email, user_id, tok.uuid))
     return tokenized_recipients
 
 
@@ -104,7 +105,7 @@ def email_recipients(recipients, note, template=None, extra_context=None):
     subject = '%s: %s' % (unicode(comm.NOTE_TYPES[note.note_type]),
                           note.thread.obj.name)
 
-    for email, tok in tokenize_recipients(recipients, note.thread):
+    for email, user_id, tok in tokenize_recipients(recipients, note.thread):
         headers = {}
         if tok:
             headers['Reply-To'] = '{0}{1}@{2}'.format(
@@ -115,7 +116,7 @@ def email_recipients(recipients, note, template=None, extra_context=None):
                                                            'generic')
 
         # Send mail.
-        context = get_mail_context(note)
+        context = get_mail_context(note, user_id)
         context.update(extra_context or {})
         send_mail_jinja(subject, 'comm/emails/%s.html' % mail_template,
                         context, recipient_list=[email],
@@ -123,7 +124,7 @@ def email_recipients(recipients, note, template=None, extra_context=None):
                         perm_setting='app_reviewed', headers=headers)
 
 
-def get_mail_context(note):
+def get_mail_context(note, user_id):
     """
     Get context data for comm emails, specifically for review action emails.
     """
@@ -141,22 +142,31 @@ def get_mail_context(note):
         # For deleted objects.
         obj.name = obj.app_slug if hasattr(obj, 'app_slug') else obj.slug
 
+    if user_id:
+        UserProfile.objects.get(id=user_id)
+
     # grep: comm-content-type.
     manage_url = ''
     obj_type = ''
-    review_url = ''
+    thread_url = ''
     if obj.__class__ == Webapp:
         manage_url = absolutify(obj.get_dev_url('versions'))
         obj_type = 'app'
-        review_url = absolutify(reverse('reviewers.apps.review',
-                                        args=[obj.app_slug]))
+        thread_url = absolutify(reverse('commonplace.commbadge.show_thread',
+                                        args=[note.thread.id]))
     elif obj.__class__ == Extension:
         manage_url = absolutify(reverse('commonplace.content.addon_manage',
                                         args=[obj.slug]))
         # Not "Firefox OS add-on" for a/an consistency with "app".
         obj_type = 'add-on'
-        review_url = absolutify(reverse('commonplace.content.addon_review',
-                                        args=[obj.slug]))
+        if user_id:
+            user = UserProfile.objects.get(id=user_id)
+            if acl.action_allowed_user(user, 'ContentTools', 'AddonReview'):
+                thread_url = absolutify(
+                    reverse('commonplace.content.addon_review',
+                            args=[obj.slug]))
+            else:
+                thread_url = manage_url
 
     return {
         'mkt': mkt,
@@ -167,8 +177,8 @@ def get_mail_context(note):
         'note': note,
         'obj': obj,
         'obj_type': obj_type,
-        'review_url': review_url,
-        'settings': settings
+        'settings': settings,
+        'thread_url': thread_url
     }
 
 
@@ -280,8 +290,8 @@ def save_from_email_reply(reply_text):
                 tok.user.extension_set.filter(id=thread.obj.id).exists()):
             note_type = comm.DEVELOPER_COMMENT
         elif (acl.action_allowed_user(tok.user, 'Apps', 'Review') or
-              acl.action_allowed_user(tok.user, 'Firefox OS Add-ons',
-                                      'Review')):
+              acl.action_allowed_user(tok.user, 'ContentTools',
+                                      'AddonReview')):
             note_type = comm.REVIEWER_COMMENT
 
         t, note = create_comm_note(tok.thread.obj, tok.thread.version,

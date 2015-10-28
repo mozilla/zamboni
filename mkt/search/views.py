@@ -22,10 +22,10 @@ from mkt.extensions.serializers import ESExtensionSerializer
 from mkt.operators.permissions import IsOperatorPermission
 from mkt.search.forms import ApiSearchForm, COLOMBIA_WEBSITE
 from mkt.search.indexers import BaseIndexer
-from mkt.search.filters import (DeviceTypeFilter, OpenMobileACLFilter,
-                                ProfileFilter, PublicContentFilter,
-                                PublicSearchFormFilter, RegionFilter,
-                                SearchQueryFilter, SortingFilter,
+from mkt.search.filters import (DeviceTypeFilter, HomescreenFilter,
+                                OpenMobileACLFilter, ProfileFilter,
+                                PublicContentFilter, PublicSearchFormFilter,
+                                RegionFilter, SearchQueryFilter, SortingFilter,
                                 ValidAppsFilter)
 from mkt.search.serializers import DynamicSearchSerializer
 from mkt.search.utils import Search
@@ -46,9 +46,9 @@ class SearchView(CORSMixin, MarketplaceView, ListAPIView):
     authentication_classes = [RestSharedSecretAuthentication,
                               RestOAuthAuthentication]
     permission_classes = [AllowAny]
-    filter_backends = [DeviceTypeFilter, ProfileFilter, PublicContentFilter,
-                       PublicSearchFormFilter, RegionFilter, SearchQueryFilter,
-                       SortingFilter]
+    filter_backends = [DeviceTypeFilter, HomescreenFilter, ProfileFilter,
+                       PublicContentFilter, PublicSearchFormFilter,
+                       RegionFilter, SearchQueryFilter, SortingFilter]
 
     serializer_class = ESAppSerializer
     form_class = ApiSearchForm
@@ -136,7 +136,8 @@ class MultiSearchView(SearchView):
 
     def get_queryset(self):
         excluded_fields = list(set(WebappIndexer.hidden_fields +
-                                   WebsiteIndexer.hidden_fields))
+                                   WebsiteIndexer.hidden_fields +
+                                   ExtensionIndexer.hidden_fields))
         co_filters = self._get_colombia_filter()
         qs = (Search(using=BaseIndexer.get_es(),
                      **self.get_doc_types_and_indices())

@@ -67,6 +67,7 @@ class ExtensionIndexer(BaseIndexer):
                         'position_offset_gap': 100,
                     },
                     'device': {'type': 'byte'},
+                    'icon_hash': cls.string_not_indexed(),
                     'is_deleted': {'type': 'boolean'},
                     'is_disabled': {'type': 'boolean'},
                     'last_updated': {'format': 'dateOptionalTime',
@@ -128,8 +129,8 @@ class ExtensionIndexer(BaseIndexer):
         # Attach translations for searching and indexing.
         attach_trans_dict(cls.get_model(), [obj])
 
-        attrs = ('author', 'created', 'default_language', 'id', 'last_updated',
-                 'modified', 'slug', 'status')
+        attrs = ('author', 'created', 'default_language', 'icon_hash', 'id',
+                 'last_updated', 'modified', 'slug', 'status')
         doc = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
         doc['device'] = obj.devices

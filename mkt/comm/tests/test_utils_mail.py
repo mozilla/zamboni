@@ -12,7 +12,8 @@ import mkt
 from mkt.comm.models import CommunicationThread, CommunicationThreadToken
 from mkt.comm.tests.test_views import CommTestMixin
 from mkt.comm.utils import create_comm_note
-from mkt.comm.utils_mail import CommEmailParser, save_from_email_reply
+from mkt.comm.utils_mail import (CommEmailParser, get_mail_context,
+                                 save_from_email_reply)
 from mkt.constants import comm
 from mkt.site.fixtures import fixture
 from mkt.site.tests import TestCase, user_factory
@@ -334,7 +335,7 @@ class TestEmailReplySavingExtensions(TestCase):
             thread=t, user=self.profile)
         self.token.update(uuid='5a0b8a83d501412589cc5d562334b46b')
         self.email_base64 = open(sample_email).read()
-        self.grant_permission(self.profile, 'Apps:Review')
+        self.grant_permission(self.profile, 'ContentTools:AddonReview')
 
     def test_successful_save(self):
         note = save_from_email_reply(self.email_base64)
@@ -346,7 +347,7 @@ class TestEmailReplySavingExtensions(TestCase):
         eq_(note.note_type, comm.DEVELOPER_COMMENT)
 
     def test_reviewer_comment(self):
-        self.grant_permission(self.profile, 'Apps:Review')
+        self.grant_permission(self.profile, 'ContentTools:AddonReview')
         note = save_from_email_reply(self.email_base64)
         eq_(note.note_type, comm.REVIEWER_COMMENT)
 
@@ -357,8 +358,7 @@ class TestEmailReplySavingExtensions(TestCase):
 
     def test_with_unpermitted_token(self):
         """Test when the token's user does not have a permission on thread."""
-        self.profile.groupuser_set.filter(
-            group__rules__contains='Apps:Review').delete()
+        self.profile.groupuser_set.all().delete()
         assert not save_from_email_reply(self.email_base64)
 
     def test_non_existent_token(self):
@@ -437,3 +437,50 @@ class TestEmailNonUsers(TestCase, CommTestMixin):
 
         for call in email.call_args_list:
             ok_('Reply-To' not in call[1]['headers'])
+
+
+class TestGetMailContextApp(TestCase):
+
+    def setUp(self):
+        self.app = app_factory()
+        self.user = user_factory()
+        self.thread = self.app.threads.create()
+        self.note = self.thread.notes.create(thread=self.thread)
+
+    def test_basic(self):
+        context = get_mail_context(self.note, self.user.id)
+        eq_(context['is_app'], True)
+        eq_(context['obj_type'], 'app')
+
+    def test_manage_url(self):
+        context = get_mail_context(self.note, self.user.id)
+        ok_('developers/app/%s' % self.app.app_slug in context['manage_url'])
+
+    def test_thread_url(self):
+        context = get_mail_context(self.note, self.user.id)
+        ok_('comm/thread/%s' % self.thread.id in context['thread_url'])
+
+
+class TestGetMailContextExtension(TestCase):
+
+    def setUp(self):
+        self.extension = extension_factory()
+        self.user = user_factory()
+        self.thread = self.extension.threads.create()
+        self.note = self.thread.notes.create()
+
+    def test_basic(self):
+        context = get_mail_context(self.note, self.user.id)
+        eq_(context['is_extension'], True)
+        eq_(context['obj_type'], 'add-on')
+
+    def test_thread_url_developer(self):
+        context = get_mail_context(self.note, self.user.id)
+        ok_('addon/dashboard/%s' % self.extension.slug in
+            context['thread_url'])
+
+    def test_thread_url_reviewer(self):
+        self.grant_permission(self.user, 'ContentTools:AddonReview')
+        context = get_mail_context(self.note, self.user.id)
+        ok_('addon/review/addon/%s' % self.extension.slug in
+            context['thread_url'])

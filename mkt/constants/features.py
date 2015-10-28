@@ -352,7 +352,13 @@ APP_FEATURES = OrderedDict([
         'description': '',
         'apis': (),
         'hidden': True,
-    })
+    }),
+    ('UDPSOCKET', {
+        'name': _lazy(u'UDP Sockets'),
+        'description': _lazy(u'The app requires the platform to allow opening '
+                             u'raw UDP sockets.'),
+        'apis': ('UDPSocket',)
+    }),
 ])
 
 

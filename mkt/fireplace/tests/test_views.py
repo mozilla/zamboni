@@ -11,6 +11,8 @@ from nose.tools import eq_, ok_
 import mkt
 from mkt.api.tests import BaseAPI
 from mkt.api.tests.test_oauth import RestOAuth
+from mkt.constants.base import STATUS_PUBLIC
+from mkt.extensions.models import Extension, ExtensionPopularity
 from mkt.fireplace.serializers import (FireplaceAppSerializer,
                                        FireplaceWebsiteSerializer)
 from mkt.search.forms import COLOMBIA_WEBSITE
@@ -167,12 +169,32 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         self.website = website_factory()
         self.website.popularity.add(WebsitePopularity(region=0, value=666))
         self.webapp = Webapp.objects.get(pk=337141)
+        self.extension = Extension.objects.create(name='test-ext-lol')
+        self.extension.versions.create(status=STATUS_PUBLIC)
+        self.extension.popularity.add(ExtensionPopularity(region=0, value=999))
+        self.reindex(Extension)
         self.reindex(Webapp)
         self.reindex(Website)
 
     def tearDown(self):
-        Website.get_indexer().unindexer(_all=True)
+        for o in Webapp.objects.all():
+            o.delete()
+        for o in Website.objects.all():
+            o.delete()
+        for o in Extension.objects.all():
+            o.delete()
         super(TestMultiSearchView, self).tearDown()
+
+        # Make sure to delete and unindex *all* things. Normally we wouldn't
+        # care about stray deleted content staying in the index, but they can
+        # have an impact on relevancy scoring so we need to make sure. This
+        # needs to happen after super() has been called since it'll process the
+        # indexing tasks that should happen post_request, and we need to wait
+        # for ES to have done everything before continuing.
+        Webapp.get_indexer().unindexer(_all=True)
+        Website.get_indexer().unindexer(_all=True)
+        Extension.get_indexer().unindexer(_all=True)
+        self.refresh(('webapp', 'website', 'extension'))
 
     def _add_co_tag(self, website):
         co = Tag.objects.get_or_create(tag_text=COLOMBIA_WEBSITE)[0]
@@ -182,11 +204,29 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
     def test_get_multi(self):
         res = self.client.get(self.url)
         objects = res.json['objects']
+        eq_(len(objects), 2)  # By default we don't include extensions for now.
+
         eq_(objects[0]['doc_type'], 'website')
         assert_fireplace_website(objects[0])
         eq_(objects[0]['slug'], '{website-%d}' % self.website.pk)
+
         eq_(objects[1]['doc_type'], 'webapp')
         assert_fireplace_app(objects[1])
+
+    def test_multi_with_extensions(self):
+        res = self.client.get(self.url + '?doc_type=webapp,extension,website')
+        objects = res.json['objects']
+        eq_(len(objects), 3)
+
+        eq_(objects[0]['doc_type'], 'extension')
+        eq_(objects[0]['slug'], self.extension.slug)
+
+        eq_(objects[1]['doc_type'], 'website')
+        assert_fireplace_website(objects[1])
+        eq_(objects[1]['slug'], '{website-%d}' % self.website.pk)
+
+        eq_(objects[2]['doc_type'], 'webapp')
+        assert_fireplace_app(objects[2])
 
     def test_get_multi_colombia(self):
         self._add_co_tag(self.website)

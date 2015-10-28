@@ -34,8 +34,15 @@
                           queue_counts['updates'])|f(num=queue_counts['updates']) }}
             </a>
           </div>
+          <div class="editor-stats-title">
+            <a href="{{ url('reviewers.apps.queue_homescreen') }}">
+              {{ ngettext('{num} Homescreen Review',
+                          '{num} Homescreen Reviews',
+                          queue_counts['homescreen'])|f(num=queue_counts['homescreen']) }}
+            </a>
+          </div>
           <div class="editor-stats">
-            {% for type in ['pending', 'rereview', 'updates']: %}
+            {% for type in ['pending', 'rereview', 'updates', 'homescreen']: %}
               <div class="editor-stats-table">
                 <div>
                   {{ ngettext("{c} unreviewed app submission this week.",

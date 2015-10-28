@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 
 from mock import patch
 from nose.tools import eq_, ok_
+from nose import SkipTest
 
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.games.constants import GAME_CATEGORIES
@@ -131,6 +132,10 @@ class TestDailyGamesView(RestOAuth, ESTestCase):
 
     @patch('mkt.games.filters.datetime')
     def test_randomization(self, datetime_mock):
+        # This test fails randomly, skipped for now as we are going to get rid
+        # of games eventually anyway.
+        # See discussion in https://github.com/mozilla/zamboni/pull/3418
+        raise SkipTest
         datetime_mock.datetime.now.return_value = datetime.datetime.now()
 
         for x in range(4):
