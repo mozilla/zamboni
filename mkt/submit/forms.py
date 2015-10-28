@@ -164,6 +164,7 @@ class NewWebappVersionForm(happyforms.Form):
         kw.pop('request', None)
         self.addon = kw.pop('addon', None)
         self._is_packaged = kw.pop('is_packaged', False)
+        self.is_homescreen = False
         super(NewWebappVersionForm, self).__init__(*args, **kw)
 
     def clean(self):
@@ -201,6 +202,8 @@ class NewWebappVersionForm(happyforms.Form):
                 if self.addon and origin != self.addon.app_domain:
                     errors.append(_('Changes to "origin" are not allowed.'))
 
+            self.is_homescreen = pkg.get('role') == 'homescreen'
+
             if errors:
                 self._errors['upload'] = self.error_class(errors)
                 return
@@ -223,7 +226,8 @@ class NewWebappVersionForm(happyforms.Form):
 class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
     ERRORS = DeviceTypeForm.ERRORS.copy()
     ERRORS['user'] = _lazy('User submitting validation does not match.')
-
+    ERRORS['homescreen'] = _lazy('Homescreens can only be submitted for '
+                                 'Firefox OS.')
     upload = forms.ModelChoiceField(
         widget=forms.HiddenInput,
         queryset=FileUpload.objects.filter(valid=True),
@@ -252,6 +256,8 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
             if not (upload.user and upload.user.pk == self.request.user.pk):
                 self._add_error('user')
 
+            if self.is_homescreen and self.get_devices() != [mkt.DEVICE_GAIA]:
+                self._add_error('homescreen')
         return data
 
     def is_packaged(self):
