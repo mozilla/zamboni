@@ -124,6 +124,27 @@ class TestNewWebappForm(mkt.site.tests.TestCase):
             assert form.is_valid(), form.errors
             assert form.is_packaged()
 
+    @mock.patch('mkt.submit.forms.parse_addon',
+                lambda *args: {'version': None, 'role': 'homescreen'})
+    def test_homescreen_device(self):
+        form = forms.NewWebappForm({'upload': self.file.uuid,
+                                    'free_platforms': ['free-firefoxos'],
+                                    'packaged': True},
+                                   request=self.request)
+        assert form.is_valid()
+
+    @mock.patch('mkt.submit.forms.parse_addon',
+                lambda *args: {'version': None, 'role': 'homescreen'})
+    def test_homescreen_wrong_device(self):
+        form = forms.NewWebappForm({'upload': self.file.uuid,
+                                    'free_platforms': ['free-firefoxos',
+                                                       'free-desktop'],
+                                    'packaged': True},
+                                   request=self.request)
+        assert not form.is_valid()
+        eq_(form.ERRORS['homescreen'], form.errors['free_platforms'])
+        eq_(form.ERRORS['homescreen'], form.errors['paid_platforms'])
+
 
 class TestNewWebappVersionForm(mkt.site.tests.TestCase):
 
