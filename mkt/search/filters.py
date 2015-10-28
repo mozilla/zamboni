@@ -213,7 +213,7 @@ class HomescreenFilter(BaseFilterBackend):
         if is_homescreen is None:
             return queryset
 
-        if is_homescreen == u'0':
+        if is_homescreen == u'false':
             return queryset.filter(
                 Bool(must_not=[F('term', is_homescreen=True)]))
         else:
