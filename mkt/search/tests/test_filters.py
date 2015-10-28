@@ -257,7 +257,7 @@ class HomescreenFilter(FilterTestsBase):
             in qs['query']['filtered']['filter']['bool']['must'])
 
     def test_no_homescreen(self):
-        self.req = RequestFactory().get('/', data={'is_homescreen': '0'})
+        self.req = RequestFactory().get('/', data={'is_homescreen': 'false'})
         qs = self._filter(self.req)
         ok_({'term': {'is_homescreen': True}}
             in qs['query']['filtered']['filter']['bool']['must_not'])
