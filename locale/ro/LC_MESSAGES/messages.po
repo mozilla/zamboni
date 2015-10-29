@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-10-05 07:31+0000\n"
-"Last-Translator: CristianSilaghi <cristian.silaghi@mozilla.ro>\n"
+"PO-Revision-Date: 2015-10-29 11:38+0000\n"
+"Last-Translator: Jobava <jobaval10n@gmail.com>\n"
 "Language-Team: Romanian <dev-l10n-web@lists.mozilla.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -6192,17 +6192,20 @@ msgstr "Există deja un supliment cu acest număr de versiune."
 
 #: mkt/extensions/validation.py:22
 msgid "The `author` property must be a string."
-msgstr ""
+msgstr "proprietatea „author” trebuie să fie un șir."
 
 #: mkt/extensions/validation.py:23
 msgid "The `author` property cannot be longer than 128 characters."
 msgstr ""
+"Proprietatea „author” nu trebuie să fie mai lungă de 128 de caractere."
 
 #: mkt/extensions/validation.py:25
 msgid ""
 "The `author` property must be at least 1 character long and can not consist "
 "of only whitespace characters."
 msgstr ""
+"Proprietatea „author” trebuie să aibă cel puțin 1 caracter lungime și nu "
+"poate fi compusă doar din caractere spații."
 
 #: mkt/extensions/validation.py:28
 msgid "The file sent has an unsupported content-type"
@@ -6210,7 +6213,7 @@ msgstr "Fișierul trimis are un content-type nesuportat"
 
 #: mkt/extensions/validation.py:30
 msgid "The `description` property must be a string."
-msgstr ""
+msgstr "Proprietatea „description” trebuie să fie un șir."
 
 #: mkt/extensions/validation.py:32
 msgid "The `description` property cannot be longer than 132 characters."
@@ -6247,6 +6250,8 @@ msgid ""
 "The `name` property must be at least 1 character long and can not consist of"
 " only whitespace characters."
 msgstr ""
+"Proprietatea „name” trebuie să aibă cel puțin 1 caracter lungime și nu poate"
+" fi compusă doar din caractere spații."
 
 #: mkt/extensions/validation.py:49
 msgid "The archive does not contain a 'manifest.json' file."
@@ -6289,6 +6294,8 @@ msgstr "Fișier lipsă în cerere."
 #: mkt/extensions/views.py:214
 msgid "Modifying or submitting versions is forbidden for disabled Add-ons."
 msgstr ""
+"Modificarea sau trimiterea de versiuni este interzisă pentru suplimente "
+"dezactivate."
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
