@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-10-27 10:40+0000\n"
+"PO-Revision-Date: 2015-10-30 10:18+0000\n"
 "Last-Translator: Aleksandra Uzelac <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -3945,6 +3945,8 @@ msgid ""
 "<a href=\"%(lnk_url)s\">Learn how</a> to get your app pre-installed on "
 "Firefox OS devices"
 msgstr ""
+"<a href=\"%(lnk_url)s\">Сазнајте како</a> да пре-инсталирате вашу апликацију"
+" на Firefox OS уређаје"
 
 #: mkt/developers/templates/developers/apps/status.html:393
 #: mkt/developers/templates/developers/apps/status.html:411
@@ -4309,6 +4311,9 @@ msgid ""
 "If your app has a URL where it is hosted, you can set it for users that want"
 " to try your app before installing it."
 msgstr ""
+"Ако ваша апликација има URL где је хостована, можете је подесити за "
+"кориснике који желе да испробају вашу апликацију пре него што је "
+"инсталирају."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:119
 #: mkt/lookup/templates/lookup/website_edit.html:41
@@ -4496,6 +4501,8 @@ msgid ""
 "If your app works without an Internet connection then we will list that your"
 " app &quot;Works Offline&quot;."
 msgstr ""
+"Ако ваша апликација ради без интернет конекције, онда је она приказана као "
+"&quot;ради ван мреже&quot;."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -5014,6 +5021,9 @@ msgid ""
 " this, you can <a href=\"%(support_url)s\">contact us</a> to check the "
 "status."
 msgstr ""
+"Већина апликација се прегледа у року од недељу дана. Ако чекате на преглед "
+"дуже од овога, можете нас <a href=\"%(support_url)s\">контактирати</a> и "
+"проверити статус."
 
 #: mkt/developers/templates/developers/includes/macros.html:119
 msgid ""
@@ -6126,44 +6136,48 @@ msgid ""
 "Version number must be higher than the latest version uploaded for this Add-"
 "on, which is \"%s\"."
 msgstr ""
+"Број верзије мора бити већи од последње верзије постављене за овај додатак, "
+"који је \"%s\"."
 
 #: mkt/extensions/models.py:442
 msgid "An Add-on with this version number already exists."
-msgstr ""
+msgstr "Додатак са овим бројем верзије већ постоји."
 
 #: mkt/extensions/validation.py:22
 msgid "The `author` property must be a string."
-msgstr ""
+msgstr "`author` мора да буде стринг (текст)."
 
 #: mkt/extensions/validation.py:23
 msgid "The `author` property cannot be longer than 128 characters."
-msgstr ""
+msgstr "`author` не сме бити дужи од 128 карактера."
 
 #: mkt/extensions/validation.py:25
 msgid ""
 "The `author` property must be at least 1 character long and can not consist "
 "of only whitespace characters."
 msgstr ""
+"`author` мора да буде најмање дужине од 1 карактер и не може садржати само "
+"размаке."
 
 #: mkt/extensions/validation.py:28
 msgid "The file sent has an unsupported content-type"
-msgstr ""
+msgstr "Послата датотека има неподржан content-type"
 
 #: mkt/extensions/validation.py:30
 msgid "The `description` property must be a string."
-msgstr ""
+msgstr "`description` мора да буде стринг (текст)."
 
 #: mkt/extensions/validation.py:32
 msgid "The `description` property cannot be longer than 132 characters."
-msgstr ""
+msgstr "`description` не сме бити дужи од 132 карактера."
 
 #: mkt/extensions/validation.py:35
 msgid "'manifest.json' in the archive is not a valid JSON file."
-msgstr ""
+msgstr "'manifest.json' у архиви није исправна JSON датотека."
 
 #: mkt/extensions/validation.py:38
 msgid "'manifest.json' in the archive is not encoded in UTF-8."
-msgstr ""
+msgstr "'manifest.json' у архиви није кодиран у UTF-8."
 
 #: mkt/extensions/validation.py:40
 msgid "The file sent is not a valid ZIP file."
@@ -6171,25 +6185,27 @@ msgstr "Послата датотека није валидна ZIP датоте
 
 #: mkt/extensions/validation.py:41
 msgid "There is no `name` property in the manifest."
-msgstr ""
+msgstr "Не постоји `name` у манифесту."
 
 #: mkt/extensions/validation.py:42
 msgid "The `name` property must be a string."
-msgstr ""
+msgstr "`name` мора да буде стринг (текст)."
 
 #: mkt/extensions/validation.py:43
 msgid "The `name` property cannot be longer than 45 characters."
-msgstr ""
+msgstr "`name` не сме бити дужи од 45 карактера."
 
 #: mkt/extensions/validation.py:46
 msgid ""
 "The `name` property must be at least 1 character long and can not consist of"
 " only whitespace characters."
 msgstr ""
+"`name` мора да буде најмање дужине од 1 карактер и не може садржати само "
+"размаке."
 
 #: mkt/extensions/validation.py:49
 msgid "The archive does not contain a 'manifest.json' file."
-msgstr ""
+msgstr "Архива не садржи 'manifest.json' датотеку."
 
 #: mkt/extensions/validation.py:52
 msgid "There is no `version` property in the manifest."
