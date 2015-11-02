@@ -979,37 +979,43 @@ class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
 
     @override_settings(SITE_URL='https://marketpace.example.com/')
     def test_download_url(self):
-        extension = Extension(pk=40, uuid='abcdef78123456781234567812345678')
+        extension = Extension(
+            pk=40, slug=u'hâllœ', uuid='abcdef78123456781234567812345678')
         version = ExtensionVersion(
             pk=4815162342, extension=extension, version='0.40.0')
         eq_(version.download_url,
             'https://marketpace.example.com/downloads/extension/'
-            'abcdef78123456781234567812345678/4815162342/extension-0.40.0.zip')
+            'abcdef78123456781234567812345678/4815162342/'
+            'h%C3%A2ll%C5%93-0.40.0.zip')
 
     @override_settings(SITE_URL='https://marketpace.example.com/')
     def test_unsigned_download_url(self):
-        extension = Extension(pk=41, uuid='abcdef78123456781234567812345678')
+        extension = Extension(
+            pk=41, slug=u'bönjôùr', uuid='abcdef78123456781234567812345678')
         version = ExtensionVersion(
             pk=2432615184, extension=extension, version='0.41.0')
         eq_(version.unsigned_download_url,
-            'https://marketpace.example.com/downloads/extension/unsigned/'
-            'abcdef78123456781234567812345678/2432615184/extension-0.41.0.zip')
+            u'https://marketpace.example.com/downloads/extension/unsigned/'
+            u'abcdef78123456781234567812345678/2432615184/'
+            u'b%C3%B6nj%C3%B4%C3%B9r-0.41.0.zip')
 
     @override_settings(SITE_URL='https://marketpace.example.com/')
     def test_reviewer_download_url(self):
-        extension = Extension(pk=42, uuid='abcdef78123456781234567812345678')
+        extension = Extension(
+            pk=42, slug=u'héllô', uuid='abcdef78123456781234567812345678')
         version = ExtensionVersion(
             pk=4815162342, extension=extension, version='0.42.0')
         eq_(version.reviewer_download_url,
             'https://marketpace.example.com/downloads/extension/reviewers/'
-            'abcdef78123456781234567812345678/4815162342/extension-0.42.0.zip')
+            'abcdef78123456781234567812345678/4815162342/'
+            'h%C3%A9ll%C3%B4-0.42.0.zip')
 
     def test_file_paths(self):
-        extension = Extension(pk=42)
+        extension = Extension(pk=42, slug=u'àlohâ')
         version = ExtensionVersion(extension=extension, pk=4815162342,
                                    version='0.42.0')
         eq_(version.filename, 'extension-4815162342.zip')
-        eq_(version.fancy_filename, 'extension-0.42.0.zip')
+        eq_(version.fancy_filename, u'àlohâ-0.42.0.zip')
         eq_(version.file_path,
             os.path.join(settings.EXTENSIONS_PATH, str(extension.pk),
                          version.filename))

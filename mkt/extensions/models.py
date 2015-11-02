@@ -478,7 +478,7 @@ class ExtensionVersion(ModelBase):
     @property
     def fancy_filename(self):
         """Filename to use in URLs."""
-        return 'extension-%s.zip' % self.version
+        return '%s-%s.zip' % (self.extension.slug, self.version)
 
     @property
     def filename(self):
