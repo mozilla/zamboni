@@ -448,7 +448,8 @@ class ExtensionVersion(ModelBase):
         By default, a soft-delete is performed, only hiding the instance from
         the custom manager methods without actually removing it from the
         database. pre_delete and post_delete signals are *not* sent in that
-        case. The version property will be set to None during the process.
+        case. The version property will be set to None during the process, the
+        file(s) will be kept at their original location(s).
 
         Can be overridden by passing `hard_delete=True` keyword argument, in
         which case it behaves like a regular delete() call instead."""
@@ -460,23 +461,30 @@ class ExtensionVersion(ModelBase):
             return super(ExtensionVersion, self).delete(*args, **kwargs)
         # Soft delete.
         # Since we have a unique constraint with version, set it to None when
-        # deleting. Undelete should extract it again from the manifest.
+        # deleting. Undelete should extract it again from the manifest (and
+        # can possibly fail if the version has been re-uploaded since - that's
+        # fine).
         self.update(deleted=True, version=None)
 
     @property
     def download_url(self):
         kwargs = {
-            'filename': self.filename,
+            'filename': self.fancy_filename,
             'uuid': self.extension.uuid,
             'version_id': self.pk,
         }
         return absolutify(reverse('extension.download_signed', kwargs=kwargs))
 
     @property
+    def fancy_filename(self):
+        """Filename to use in URLs."""
+        return 'extension-%s.zip' % self.version
+
+    @property
     def filename(self):
         """Filename to use when storing the file in storage."""
         # The filename needs to be unique for a given version.
-        return 'extension-%s.zip' % self.version
+        return 'extension-%s.zip' % self.pk
 
     @property
     def file_path(self):
@@ -606,7 +614,7 @@ class ExtensionVersion(ModelBase):
     @property
     def reviewer_download_url(self):
         kwargs = {
-            'filename': self.filename,
+            'filename': self.fancy_filename,
             'uuid': self.extension.uuid,
             'version_id': self.pk,
         }
@@ -771,7 +779,7 @@ class ExtensionVersion(ModelBase):
     @property
     def unsigned_download_url(self):
         kwargs = {
-            'filename': self.filename,
+            'filename': self.fancy_filename,
             'uuid': self.extension.uuid,
             'version_id': self.pk,
         }
@@ -831,5 +839,7 @@ models.signals.pre_save.connect(save_signal, sender=ExtensionVersion,
                                 dispatch_uid='extension_version_translations')
 
 # Delete files when deleting ExtensionVersion instances.
+# Note that this only happens on hard deletes, soft-deletion does not send the
+# pre/post_delete signals, it sends pre/post_save instead.
 models.signals.post_delete.connect(cleanup_file, sender=ExtensionVersion,
                                    dispatch_uid='extension_cleanup_file')

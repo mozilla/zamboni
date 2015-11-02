@@ -22,7 +22,8 @@ from mkt.extensions.views import ExtensionVersionViewSet
 from mkt.files.models import FileUpload
 from mkt.files.tests.test_models import UploadTest
 from mkt.site.fixtures import fixture
-from mkt.site.storage_utils import local_storage, private_storage
+from mkt.site.storage_utils import (local_storage, private_storage,
+                                    public_storage)
 from mkt.site.tests import ESTestCase, MktPaths, TestCase
 from mkt.users.models import UserProfile
 
@@ -1468,6 +1469,22 @@ class TestExtensionVersionViewSetPost(UploadTest, RestOAuth):
         note = self.extension.threads.get().notes.get()
         eq_(note.body, u'add-on has arrivedÄ')
         eq_(note.note_type, comm.SUBMISSION)
+
+    def test_post_same_version_that_was_deleted(self):
+        # Pretend version was already published, include some fake data to have
+        # the files that would normally exist on the fileystem.
+        self.version.update(version='0.1', status=STATUS_PUBLIC)
+        file_path = self.version.file_path
+        with private_storage.open(file_path, 'w') as f:
+            f.write('sample data\n')
+        signed_file_path = self.version.signed_file_path
+        with public_storage.open(signed_file_path, 'w') as f:
+            f.write('sample signed data\n')
+        # Now delete the file...
+        self.version.delete()
+
+        # ... And try to upload the same version again.
+        self.test_post_logged_in_with_rights()
 
     def test_post_logged_in_with_rights_disabled(self):
         self.extension.authors.add(self.user)

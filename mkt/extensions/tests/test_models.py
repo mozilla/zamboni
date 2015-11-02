@@ -94,7 +94,7 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         version = extension.latest_version
         eq_(version.version, '0.1')
         eq_(version.default_language, 'en-GB')
-        eq_(version.filename, 'extension-%s.zip' % version.version)
+        eq_(version.filename, 'extension-%s.zip' % version.pk)
         ok_(version.filename in version.file_path)
         ok_(private_storage.exists(version.file_path))
         eq_(version.manifest, self.expected_manifest)
@@ -135,7 +135,7 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
 
         eq_(version.version, '0.1')
         eq_(version.default_language, 'en-GB')
-        eq_(version.filename, 'extension-%s.zip' % version.version)
+        eq_(version.filename, 'extension-%s.zip' % version.pk)
         ok_(version.filename in version.file_path)
         ok_(private_storage.exists(version.file_path))
         eq_(version.manifest, self.expected_manifest)
@@ -1006,8 +1006,10 @@ class TestExtensionAndExtensionVersionMethodsAndProperties(TestCase):
 
     def test_file_paths(self):
         extension = Extension(pk=42)
-        version = ExtensionVersion(extension=extension, version='0.42.0')
-        eq_(version.filename, 'extension-0.42.0.zip')
+        version = ExtensionVersion(extension=extension, pk=4815162342,
+                                   version='0.42.0')
+        eq_(version.filename, 'extension-4815162342.zip')
+        eq_(version.fancy_filename, 'extension-0.42.0.zip')
         eq_(version.file_path,
             os.path.join(settings.EXTENSIONS_PATH, str(extension.pk),
                          version.filename))
