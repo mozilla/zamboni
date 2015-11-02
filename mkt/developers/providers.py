@@ -281,7 +281,7 @@ class Reference(Provider):
     forms = {
         'account': forms_payments.ReferenceAccountForm,
     }
-    full = _('Reference Implementation')
+    full = unicode(_(u'Reference Implementation'))
     name = 'reference'
     provider = PROVIDER_REFERENCE
     templates = {
