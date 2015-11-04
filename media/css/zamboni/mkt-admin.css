@@ -290,24 +290,6 @@ table {
 #aux-nav > ul > li.login.legacy a:first-child {
   padding-right: .5em;
 }
-#aux-nav .other-apps a {
-  padding-left: 24px;
-  background-repeat: no-repeat;
-  background-position: left 4px;
-  background-image: url(../../img/app-icons/16/sprite.png);
-}
-#aux-nav .thunderbird a {
-  background-position: left -28px;
-}
-#aux-nav .sunbird a {
-  background-position: left -92px;
-}
-#aux-nav .seamonkey a {
-  background-position: left -60px;
-}
-#aux-nav .android a {
-  background-position: left -124px;
-}
 .html-rtl #aux-nav > ul > li:hover:after {
   left: 1px;
   right: auto;
@@ -588,7 +570,7 @@ fieldset.module {
 }
 #navbar li.top:hover,
 #navbar li.top.selected {
-  background-image: url(../../img/bg/heading-dark-blue-highlighted.png);
+  background-color: #305083;
 }
 #navbar li.top ul {
   display: none;
@@ -601,7 +583,6 @@ fieldset.module {
   display: block;
 }
 #navbar li ul li {
-  background-image: url(../../img/bg/heading-dark-blue-highlighted.png);
   background-repeat: repeat-x;
   background-position: bottom left;
   background-color: #305083;
