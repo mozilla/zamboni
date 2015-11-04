@@ -6,6 +6,7 @@ import mock
 from nose.tools import eq_
 
 import mkt
+from lib.post_request_task.task import _send_tasks
 from lib.crypto import packaged
 from lib.crypto.tests import mock_sign
 from mkt.site.fixtures import fixture
@@ -22,6 +23,9 @@ class TestDownload(BasePackagedAppTest):
         super(TestDownload, self).setUp()
         super(TestDownload, self).setup_files()
         self.url = reverse('downloads.file', args=[self.file.pk])
+        # Don't count things left over from setup, so assertNumQueries will be
+        # accurate.
+        _send_tasks()
 
     @override_settings(
         DEFAULT_FILE_STORAGE='mkt.site.storage_utils.S3BotoPrivateStorage'
@@ -54,7 +58,6 @@ class TestDownload(BasePackagedAppTest):
         with mock.patch.object(packaged, 'sign', mock_sign):
             # Sign the app before downloading, like it would normally happen.
             self.app.sign_if_packaged(self.file.version_id)
-
         # Now download and look at the number of queries.
         with self.assertNumQueries(2):
             res = self.client.get(self.url)

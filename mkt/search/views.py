@@ -30,7 +30,7 @@ from mkt.search.filters import (DeviceTypeFilter, HomescreenFilter,
 from mkt.search.serializers import DynamicSearchSerializer
 from mkt.search.utils import Search
 from mkt.translations.helpers import truncate
-from mkt.webapps.indexers import WebappIndexer
+from mkt.webapps.indexers import HomescreenIndexer, WebappIndexer
 from mkt.webapps.serializers import (ESAppSerializer, RocketbarESAppSerializer,
                                      RocketbarESAppSerializerV2,
                                      SuggestionsESAppSerializer)
@@ -86,6 +86,11 @@ class MultiSearchView(SearchView):
             'doc_type': WebappIndexer.get_mapping_type_name(),
             'index': WebappIndexer.get_index(),
         },
+        'homescreen': {
+            'doc_type': HomescreenIndexer.get_mapping_type_name(),
+            'index': HomescreenIndexer.get_index(),
+        },
+
         'website': {
             'doc_type': WebsiteIndexer.get_mapping_type_name(),
             'index': WebsiteIndexer.get_index()
@@ -94,6 +99,7 @@ class MultiSearchView(SearchView):
     serializer_classes = {
         'extension': ESExtensionSerializer,
         'webapp': ESAppSerializer,
+        'homescreen': ESAppSerializer,
         'website': ESWebsiteSerializer
     }
 

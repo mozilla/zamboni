@@ -697,6 +697,7 @@ ES_DEFAULT_NUM_SHARDS = 5
 ES_HOSTS = [os.getenv('ES_HOST', '127.0.0.1:9200')]
 ES_INDEXES = {
     'webapp': 'apps',
+    'homescreen': 'homescreens',
     'extension': 'extensions',
     'mkt_feed_app': 'feed_apps',
     'mkt_feed_brand': 'feed_brands',
