@@ -299,7 +299,7 @@ class TestEmailReplySaving(TestCase):
     def test_reviewer_comment(self):
         self.grant_permission(self.profile, 'Apps:Review')
         note = save_from_email_reply(self.email_base64)
-        eq_(note.note_type, comm.REVIEWER_COMMENT)
+        eq_(note.note_type, comm.REVIEWER_PUBLIC_COMMENT)
 
     def test_with_max_count_token(self):
         # Test with an invalid token.
@@ -349,7 +349,7 @@ class TestEmailReplySavingExtensions(TestCase):
     def test_reviewer_comment(self):
         self.grant_permission(self.profile, 'ContentTools:AddonReview')
         note = save_from_email_reply(self.email_base64)
-        eq_(note.note_type, comm.REVIEWER_COMMENT)
+        eq_(note.note_type, comm.REVIEWER_PUBLIC_COMMENT)
 
     def test_with_max_count_token(self):
         # Test with an invalid token.

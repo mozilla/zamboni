@@ -292,7 +292,7 @@ def save_from_email_reply(reply_text):
         elif (acl.action_allowed_user(tok.user, 'Apps', 'Review') or
               acl.action_allowed_user(tok.user, 'ContentTools',
                                       'AddonReview')):
-            note_type = comm.REVIEWER_COMMENT
+            note_type = comm.REVIEWER_PUBLIC_COMMENT
 
         t, note = create_comm_note(tok.thread.obj, tok.thread.version,
                                    tok.user, parser.get_body(),
