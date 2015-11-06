@@ -17,7 +17,7 @@ from mkt.api.authentication import (RestOAuthAuthentication,
 from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.paginator import ESPaginator
 from mkt.api.permissions import AnyOf, GroupPermission
-from mkt.extensions.indexers import ExtensionIndexer
+from mkt.extensions import indexers as e_indexers
 from mkt.extensions.serializers import ESExtensionSerializer
 from mkt.operators.permissions import IsOperatorPermission
 from mkt.search.forms import ApiSearchForm, COLOMBIA_WEBSITE
@@ -30,11 +30,11 @@ from mkt.search.filters import (DeviceTypeFilter, HomescreenFilter,
 from mkt.search.serializers import DynamicSearchSerializer
 from mkt.search.utils import Search
 from mkt.translations.helpers import truncate
-from mkt.webapps.indexers import HomescreenIndexer, WebappIndexer
+from mkt.webapps import indexers
 from mkt.webapps.serializers import (ESAppSerializer, RocketbarESAppSerializer,
                                      RocketbarESAppSerializerV2,
                                      SuggestionsESAppSerializer)
-from mkt.websites.indexers import WebsiteIndexer
+from mkt.websites import indexers as ws_indexers
 from mkt.websites.serializers import ESWebsiteSerializer
 
 
@@ -55,7 +55,7 @@ class SearchView(CORSMixin, MarketplaceView, ListAPIView):
     paginator_class = ESPaginator
 
     def get_queryset(self):
-        return WebappIndexer.search()
+        return indexers.WebappIndexer.search()
 
     @classmethod
     def as_view(cls, **kwargs):
@@ -79,21 +79,21 @@ class MultiSearchView(SearchView):
     # using it in the code, not before.
     mapping_names_and_indices = lazy(lambda: {
         'extension': {
-            'doc_type': ExtensionIndexer.get_mapping_type_name(),
-            'index': ExtensionIndexer.get_index()
+            'doc_type': e_indexers.ExtensionIndexer.get_mapping_type_name(),
+            'index': e_indexers.ExtensionIndexer.get_index()
         },
         'webapp': {
-            'doc_type': WebappIndexer.get_mapping_type_name(),
-            'index': WebappIndexer.get_index(),
+            'doc_type': indexers.WebappIndexer.get_mapping_type_name(),
+            'index': indexers.WebappIndexer.get_index(),
         },
         'homescreen': {
-            'doc_type': HomescreenIndexer.get_mapping_type_name(),
-            'index': HomescreenIndexer.get_index(),
+            'doc_type': indexers.HomescreenIndexer.get_mapping_type_name(),
+            'index': indexers.HomescreenIndexer.get_index(),
         },
 
         'website': {
-            'doc_type': WebsiteIndexer.get_mapping_type_name(),
-            'index': WebsiteIndexer.get_index()
+            'doc_type': ws_indexers.WebsiteIndexer.get_mapping_type_name(),
+            'index': ws_indexers.WebsiteIndexer.get_index()
         }
     }, dict)()
     serializer_classes = {
@@ -141,9 +141,9 @@ class MultiSearchView(SearchView):
         return es_filter.F(es_filter.Bool(must_not=[co_filter]),)
 
     def get_queryset(self):
-        excluded_fields = list(set(WebappIndexer.hidden_fields +
-                                   WebsiteIndexer.hidden_fields +
-                                   ExtensionIndexer.hidden_fields))
+        excluded_fields = list(set(indexers.WebappIndexer.hidden_fields +
+                                   ws_indexers.WebsiteIndexer.hidden_fields +
+                                   e_indexers.ExtensionIndexer.hidden_fields))
         co_filters = self._get_colombia_filter()
         qs = (Search(using=BaseIndexer.get_es(),
                      **self.get_doc_types_and_indices())
@@ -247,8 +247,8 @@ class RocketbarView(SearchView):
             }
         }
 
-        results = WebappIndexer.get_es().suggest(
-            body=es_query, index=WebappIndexer.get_index())
+        results = indexers.WebappIndexer.get_es().suggest(
+            body=es_query, index=indexers.WebappIndexer.get_index())
 
         if 'apps' in results:
             data = results['apps'][0]['options']
