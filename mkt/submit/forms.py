@@ -1,6 +1,5 @@
 import datetime
 import os
-from collections import defaultdict
 
 from django import forms
 from django.conf import settings
@@ -414,9 +413,9 @@ class AppFeaturesForm(happyforms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AppFeaturesForm, self).__init__(*args, **kwargs)
         if self.instance:
-            self.initial_features = sorted(self.instance.to_keys())
+            self.initial_feature_keys = sorted(self.instance.to_keys())
         else:
-            self.initial_features = None
+            self.initial_feature_keys = None
 
     def all_fields(self):
         """
@@ -437,11 +436,10 @@ class AppFeaturesForm(happyforms.ModelForm):
         return (unicode(APP_FEATURES[field_id].get('description') or '') if
                 field_id in APP_FEATURES else None)
 
-    def _changed_features(self):
-        old_features = defaultdict.fromkeys(self.initial_features, True)
-        old_features = set(unicode(f) for f
-                           in AppFeatures(**old_features).to_list())
-        new_features = set(unicode(f) for f in self.instance.to_list())
+    def get_changed_features(self):
+        old_features = dict.fromkeys(self.initial_feature_keys, True)
+        old_features = set(AppFeatures(**old_features).to_names())
+        new_features = set(self.instance.to_names())
 
         added_features = new_features - old_features
         removed_features = old_features - new_features
@@ -456,8 +454,8 @@ class AppFeaturesForm(happyforms.ModelForm):
         # Trigger a re-review if necessary.
         if (self.instance and mark_for_rereview and
                 addon.status in mkt.WEBAPPS_APPROVED_STATUSES and
-                sorted(self.instance.to_keys()) != self.initial_features):
-            added_features, removed_features = self._changed_features()
+                self.changed_data):
+            added_features, removed_features = self.get_changed_features()
             mark_for_rereview_features_change(addon,
                                               added_features,
                                               removed_features)

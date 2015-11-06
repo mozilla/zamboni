@@ -79,6 +79,7 @@ App
             "device_types": [
                 "firefoxos"
             ],
+            "feature_compatibility": true,
             "file_size": 8675,
             "homepage": {
                 "en-US": "http://www.example.com/"
@@ -208,6 +209,12 @@ App
         is marked as compatible with. Currently available devices names are
         ``desktop``, ``android-mobile``, ``android-tablet``, ``firefoxos``.
     :type device_types: array
+    :param feature_compatibility: Boolean indicating whether the app's current
+        version is compatible with the
+        :ref:`feature profile signature <feature-profile-label>`  passed to the
+        API request. If no profile signature was passed or if the backend is
+        unable to determine compatibility, null is returned.
+    :type feature_compatibility: boolean|null
     :param file_size: Size of the app's current version in bytes.
     :type file_size: int
     :param homepage: The app's homepage.

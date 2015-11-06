@@ -1,7 +1,15 @@
 from mkt.constants.features import FeatureProfile
 
 
-def get_feature_profile(request):
+def load_feature_profile(request):
+    """
+    Adds a `feature_profile` on the request object if one is present and the
+    dev parameter is either firefoxos or android.
+
+    Does nothing if one was already set.
+    """
+    if hasattr(request, 'feature_profile'):
+        return
     profile = None
     if request.GET.get('dev') in ('firefoxos', 'android'):
         sig = request.GET.get('pro')
@@ -10,4 +18,4 @@ def get_feature_profile(request):
                 profile = FeatureProfile.from_signature(sig)
             except ValueError:
                 pass
-    return profile
+    request.feature_profile = profile

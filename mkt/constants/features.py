@@ -574,3 +574,12 @@ class FeatureProfile(OrderedDict):
 
         """
         return dict((prefix + k, False) for k, v in self.iteritems() if not v)
+
+    def has_features(self, required_features):
+        """Returns whether this profile has all the features listed in the
+        `required_features` parameter.
+
+        `required_features` is expected to be a simple list of feature keys,
+        like so: ['packaged_apps', 'alarm'].
+        """
+        return set(required_features).issubset(self.to_list())
