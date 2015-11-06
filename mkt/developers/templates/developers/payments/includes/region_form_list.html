@@ -5,7 +5,7 @@
     {% set region = region_form.regions_by_id[value] %}
     {% set checked = value in region_form.initial[regions_field_name] %}
     <li data-region="{{ value }}">
-      <label class="region-cb{{ ' special' if region.special }}{{ ' disabled' if region.disabled }}{{ ' low-memory' if region.low_memory }}">
+      <label class="region-cb{{ ' special' if region.special }}{{ ' disabled' if region.disabled }}">
         <input type="checkbox" class="restricted{{ ' special' if region.special }}"
           {% if region.disabled %}disabled{% elif checked %}checked{% endif %}
           name="{{ regions_field_name }}" value="{{ value }}">
@@ -13,9 +13,6 @@
       </label>
       {% if region.special %}
         <span class="status-label"></span>
-      {% endif %}
-      {% if region.low_memory %}
-        <span class="status-label">{{ _('low-memory devices') }}</span>
       {% endif %}
     </li>
   {% endfor %}
