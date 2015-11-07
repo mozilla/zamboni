@@ -134,24 +134,27 @@ def user_has_perm_note(note, profile, request=None):
     Developers of the add-on used in the note, users in the CC list,
     and users who post to the thread are allowed to access the object.
 
-    Moreover, other object permissions are also checked agaisnt the ACLs
+    Moreover, other object permissions are also checked against the ACLs
     of the user.
     """
     if note.author and note.author.id == profile.id:
         # Let the person access their own note.
         return True
 
-    if note.note_type == comm.DEVELOPER_COMMENT:
-        # Developer comment only for developers.
-        return note.thread.check_obj_author(profile)
-
     if request and note.note_type == comm.REVIEWER_COMMENT:
-        # Reviewer comment only for reviewers.
+        # Internal reviewer comment only for reviewers.
         return acl.check_reviewer(request)
+
+    if (request and note.note_type == comm.DEVELOPER_COMMENT and
+            acl.check_reviewer(request)):
+        # Reviewers can see developer comments.
+        return True
 
     # User is a developer of the add-on and has the permission to read.
     user_is_author = profile.addons.filter(pk=note.thread._addon_id)
-    if note.read_permission_developer and user_is_author.exists():
+    if (user_is_author.exists() and
+            note.read_permission_developer or
+            note.note_type == comm.REVIEWER_PUBLIC_COMMENT):
         return True
 
     return check_acls_comm_obj(note, profile)
