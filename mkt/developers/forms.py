@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-import mimetypes
 import os
 from datetime import datetime
 
@@ -1198,53 +1197,6 @@ class AppVersionForm(happyforms.ModelForm):
                 publish_type = mkt.PUBLISH_PRIVATE
             self.instance.addon.update(publish_type=publish_type)
         return rval
-
-
-class PreloadTestPlanForm(happyforms.Form):
-    agree = forms.BooleanField(
-        widget=forms.CheckboxInput,
-        label=_lazy(
-            u'Please consider my app as a candidate to be pre-loaded on a '
-            u'Firefox OS device. I agree to the terms and conditions outlined '
-            u'above. I understand that this document is not a commitment to '
-            u'pre-load my app.'
-        ))
-    test_plan = forms.FileField(
-        label=_lazy(u'Upload Your Test Plan (.pdf, .xls under 2.5MB)'),
-        widget=forms.FileInput(attrs={'class': 'button'}))
-
-    def clean(self):
-        """Validate test_plan file."""
-        content_types = [
-            'application/pdf',
-            'application/vnd.pdf',
-            'application/ms-excel',
-            'application/vnd.ms-excel',
-            'application/vnd.openxmlformats-officedocument.spreadsheetml.'
-            'sheet'
-        ]
-        max_upload_size = 2621440  # 2.5MB
-
-        if 'test_plan' not in self.files:
-            raise forms.ValidationError(_('Test plan required.'))
-
-        file = self.files['test_plan']
-        content_type = mimetypes.guess_type(file.name)[0]
-
-        if content_type in content_types:
-            if file._size > max_upload_size:
-                msg = _('File too large. Keep size under %s. Current size %s.')
-                msg = msg % (filesizeformat(max_upload_size),
-                             filesizeformat(file._size))
-                self._errors['test_plan'] = self.error_class([msg])
-                raise forms.ValidationError(msg)
-        else:
-            msg = (_('Invalid file type {0}. Only {1} files are supported.')
-                   .format(content_type, ', '.join(content_types)))
-            self._errors['test_plan'] = self.error_class([msg])
-            raise forms.ValidationError(msg)
-
-        return self.cleaned_data
 
 
 class IARCGetAppInfoForm(happyforms.Form):

@@ -35,17 +35,6 @@
     {
         "fields": {
             "active": false,
-            "created": "2014-04-04T15:43:05",
-            "modified": "2014-04-04T15:43:05",
-            "name": "preload-apps",
-            "note": "Submission process for preinstalled apps."
-        },
-        "model": "waffle.switch",
-        "pk": 48
-    },
-    {
-        "fields": {
-            "active": false,
             "created": "2014-04-04T15:43:10",
             "modified": "2014-04-04T15:43:10",
             "name": "reviews-translate",

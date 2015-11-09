@@ -1,30 +1,13 @@
-from django.shortcuts import render
-
 from rest_framework import mixins, response, status, viewsets
-from waffle.decorators import waffle_switch
 
-import mkt
 from mkt.access import acl
 from mkt.api.base import CORSMixin
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
-from mkt.developers.models import PreloadTestPlan
-from mkt.site.decorators import permission_required
-from mkt.site.utils import paginate
 from mkt.users.models import UserProfile
 
 from .models import OperatorPermission
 from .serializers import OperatorPermissionSerializer
-
-
-@permission_required([('Operators', '*')])
-@waffle_switch('preload-apps')
-def preloads(request):
-    preloads = (PreloadTestPlan.objects.filter(status=mkt.STATUS_PUBLIC)
-                                       .order_by('-created'))
-    preloads = paginate(request, preloads, per_page=20)
-
-    return render(request, 'operators/preloads.html', {'preloads': preloads})
 
 
 class OperatorPermissionViewSet(CORSMixin, mixins.ListModelMixin,

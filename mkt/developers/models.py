@@ -1,5 +1,4 @@
 import json
-import os
 import string
 import uuid
 from copy import copy
@@ -22,7 +21,6 @@ from mkt.constants.payments import (ACCESS_SIMULATE, PROVIDER_BANGO,
                                     PROVIDER_CHOICES)
 from mkt.ratings.models import Review
 from mkt.site.models import ManagerBase, ModelBase
-from mkt.site.storage_utils import private_storage, storage_is_remote
 from mkt.tags.models import Tag
 from mkt.users.models import UserForeignKey, UserProfile
 from mkt.versions.models import Version
@@ -191,41 +189,6 @@ class UserInappKey(ModelBase):
 
     class Meta:
         db_table = 'user_inapp_keys'
-
-
-class PreloadTestPlan(ModelBase):
-    addon = models.ForeignKey('webapps.Webapp')
-    last_submission = models.DateTimeField(auto_now_add=True)
-    filename = models.CharField(max_length=60)
-    status = models.PositiveSmallIntegerField(default=mkt.STATUS_PUBLIC)
-
-    class Meta:
-        db_table = 'preload_test_plans'
-        ordering = ['-last_submission']
-
-    @property
-    def preload_test_plan_url(self):
-        if storage_is_remote():
-            return private_storage.url(self.preload_test_plan_path)
-        else:
-            host = (settings.PRIVATE_MIRROR_URL if self.addon.is_disabled
-                    else settings.LOCAL_MIRROR_URL)
-            return os.path.join(host, str(self.addon.id), self.filename)
-
-    @property
-    def preload_test_plan_path(self):
-        return os.path.join(settings.ADDONS_PATH, str(self.addon_id),
-                            self.filename)
-
-
-# When an app is deleted we need to remove the preload test plan.
-def preload_cleanup(*args, **kwargs):
-    instance = kwargs.get('instance')
-    PreloadTestPlan.objects.filter(addon=instance).delete()
-
-
-models.signals.post_delete.connect(preload_cleanup, sender=Webapp,
-                                   dispatch_uid='webapps_preload_cleanup')
 
 
 class AppLog(ModelBase):

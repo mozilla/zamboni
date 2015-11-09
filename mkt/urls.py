@@ -15,7 +15,6 @@ from mkt.extensions.views import (
     mini_manifest as mini_extension_manifest,
     mini_manifest_reviewer as mini_extension_manifest_reviewer)
 from mkt.langpacks.views import manifest as mini_langpack_manifest
-from mkt.operators.urls import url_patterns as operator_patterns
 from mkt.purchase.urls import webpay_services_patterns
 from mkt.reviewers.urls import url_patterns as reviewer_url_patterns
 from mkt.users.views import logout
@@ -69,9 +68,6 @@ urlpatterns = patterns(
 
     # Account lookup.
     ('^lookup/', include('mkt.lookup.urls')),
-
-    # Bootstrapped operator dashboard.
-    ('^operators/', include(operator_patterns)),
 
     # Javascript translations.
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),

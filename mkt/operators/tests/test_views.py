@@ -3,42 +3,13 @@ import json
 from django.core.urlresolvers import reverse
 
 from nose.tools import eq_
-from pyquery import PyQuery as pq
 
 import mkt
 import mkt.site.tests
 from mkt.api.tests.test_oauth import RestOAuth
-from mkt.developers.models import PreloadTestPlan
 from mkt.operators.models import OperatorPermission
-from mkt.operators.views import preloads
 from mkt.site.fixtures import fixture
-from mkt.site.tests import app_factory
 from mkt.users.models import UserProfile
-
-
-class TestPreloadCandidates(mkt.site.tests.TestCase):
-    fixtures = fixture('user_operator')
-
-    def setUp(self):
-        self.create_switch('preload-apps')
-        self.url = reverse('operators.preloads')
-        self.user = UserProfile.objects.get(pk=322)
-        self.app = app_factory()
-
-    def _preload_factory(self):
-        return PreloadTestPlan.objects.create(addon=app_factory(),
-                                              filename='tstpn')
-
-    def test_preloads(self):
-        plan = self._preload_factory()
-        req = mkt.site.tests.req_factory_factory(self.url, user=self.user)
-        res = preloads(req)
-        eq_(res.status_code, 200)
-        doc = pq(res.content)
-
-        eq_(doc('tbody tr').length, 1)
-        eq_(doc('td:last-child a').attr('href'),
-            plan.preload_test_plan_url)
 
 
 class TestOperatorPermissionsViewSet(RestOAuth, mkt.site.tests.ESTestCase):
