@@ -8,8 +8,6 @@ import random
 import tempfile
 from zipfile import ZipFile, ZIP_DEFLATED
 
-from django.conf import settings
-
 import pydenticon
 
 from lib.video.tasks import resize_video
@@ -211,12 +209,6 @@ def generate_app_package(app, out, apptype, permissions, namedict,
     }
     outz = ZipFile(file=out, mode='w', compression=ZIP_DEFLATED)
     try:
-        for size in ('32', 'med'):
-            outz.writestr(
-                'icons/%s.png' % (size,),
-                open(os.path.join(
-                    settings.MEDIA_ROOT,
-                    'img/app-icons/%s/generic.png' % (size,))).read())
         outz.writestr('script.js',
                       'document.onload=function() {alert("Hello!");};')
         outz.writestr(

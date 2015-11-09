@@ -48,37 +48,6 @@ button, .button {
     }
 }
 
-.button, button {
-    &.paypal,
-    &.bluevia {
-        font: bold italic 24px/26px Verdana, $open-stack;
-        padding: 22px 40px 21px;
-        min-width: 175px;
-    }
-    &.paypal {
-        gradient-two-color(#F8EAC4, #EEC546);
-        color: rgb(51, 70, 118);
-        text-shadow: 1px 1px #EDE8BF;
-        small {
-            font-size: .7em;
-        }
-        em {
-            color: rgb(90, 120, 168);
-        }
-        &.disabled em {
-            color: #919497;
-        }
-    }
-    &.bluevia {
-        background: #def url(../../img/mkt/bluevia.png) 50% -20% no-repeat;
-        text-indent: -9999px;
-
-        &:hover {
-            background-color: rgba(#def,0.7);
-        }
-    }
-}
-
 .button {
     display: inline-block;
 
