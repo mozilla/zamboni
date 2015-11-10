@@ -244,6 +244,7 @@ class JSONClient(Client):
 
 ES_patchers = [mock.patch('elasticsearch.Elasticsearch'),
                mock.patch('mkt.websites.indexers.WebsiteIndexer', spec=True),
+               mock.patch('mkt.webapps.indexers.HomescreenIndexer', spec=True),
                mock.patch('mkt.webapps.indexers.WebappIndexer', spec=True),
                mock.patch('mkt.search.indexers.index', spec=True),
                mock.patch('mkt.search.indexers.BaseIndexer.unindex'),

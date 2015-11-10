@@ -15,7 +15,7 @@ TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 FILES_DIR = os.path.join(TEST_DIR, 'files')
 
 
-class TestAppESField(mkt.site.tests.TestCase):
+class TestAppESField(mkt.site.tests.ESTestCase):
 
     def test_deserialize_single(self):
         app = mkt.site.tests.app_factory(description={'en-US': 'lol'})

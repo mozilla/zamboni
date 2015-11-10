@@ -8,6 +8,7 @@ from django.core.cache import cache
 from django.db.models import Q
 
 import commonware.log
+from elasticsearch_dsl import Search
 from elasticsearch_dsl import filter as es_filter
 from tower import ugettext_lazy as _lazy
 
@@ -25,7 +26,7 @@ from mkt.site.utils import cached_property, JSONEncoder
 from mkt.translations.query import order_by_translation
 from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
-from mkt.webapps.indexers import WebappIndexer
+from mkt.webapps.indexers import HomescreenIndexer, WebappIndexer
 from mkt.webapps.tasks import set_storefront_data
 from mkt.websites.models import Website
 
@@ -645,6 +646,14 @@ def log_reviewer_action(addon, user, msg, action, **kwargs):
             **kwargs)
 
 
+def search_webapps_and_homescreens():
+    return (Search(using=WebappIndexer.get_es(),
+                   index=[settings.ES_INDEXES['homescreen'],
+                          settings.ES_INDEXES['webapp']],
+                   doc_type=['homescreen', 'webapp'])
+            .extra(_source={'exclude': WebappIndexer.hidden_fields}))
+
+
 class ReviewersQueuesHelper(object):
     def __init__(self, request=None, use_es=False):
         self.request = request
@@ -663,7 +672,7 @@ class ReviewersQueuesHelper(object):
                 es_filter.Term(is_disabled=False),
                 es_filter.Term(is_escalated=True),
             ]
-            return WebappIndexer.search().filter('bool', must=must)
+            return search_webapps_and_homescreens().filter('bool', must=must)
 
         return EscalationQueue.objects.filter(
             addon__disabled_by_user=False)
@@ -677,7 +686,6 @@ class ReviewersQueuesHelper(object):
                                   mkt.STATUS_PENDING}),
                 es_filter.Term(is_escalated=False),
                 es_filter.Term(is_disabled=False),
-                es_filter.Term(is_homescreen=False),
             ]
             return WebappIndexer.search().filter('bool', must=must)
 
@@ -699,9 +707,8 @@ class ReviewersQueuesHelper(object):
                                   mkt.STATUS_PENDING}),
                 es_filter.Term(is_escalated=False),
                 es_filter.Term(is_disabled=False),
-                es_filter.Term(is_homescreen=True),
             ]
-            return WebappIndexer.search().filter('bool', must=must)
+            return HomescreenIndexer.search().filter('bool', must=must)
 
         return (Version.objects.filter(
             files__status=mkt.STATUS_PENDING,
@@ -719,7 +726,7 @@ class ReviewersQueuesHelper(object):
                 es_filter.Term(is_disabled=False),
                 es_filter.Term(is_escalated=False),
             ]
-            return WebappIndexer.search().filter('bool', must=must)
+            return search_webapps_and_homescreens().filter('bool', must=must)
 
         return (RereviewQueue.objects.
                 filter(addon__disabled_by_user=False).
@@ -736,7 +743,6 @@ class ReviewersQueuesHelper(object):
                 es_filter.Terms(app_type=[mkt.ADDON_WEBAPP_PACKAGED,
                                           mkt.ADDON_WEBAPP_PRIVILEGED]),
                 es_filter.Term(is_disabled=False),
-                es_filter.Term(is_homescreen=False),
                 es_filter.Term(is_escalated=False),
             ]
             return WebappIndexer.search().filter('bool', must=must)

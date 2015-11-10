@@ -38,7 +38,7 @@ from mkt.site.storage_utils import (copy_stored_file, local_storage,
 from mkt.site.utils import JSONEncoder, chunked
 from mkt.users.models import UserProfile
 from mkt.users.utils import get_task_user
-from mkt.webapps.indexers import WebappIndexer
+from mkt.webapps.indexers import HomescreenIndexer, WebappIndexer
 from mkt.webapps.models import Preview, Webapp
 from mkt.webapps.utils import get_locale_properties
 
@@ -323,13 +323,23 @@ def update_supported_locales(ids, **kw):
 @use_master
 def index_webapps(ids, **kw):
     # DEPRECATED: call WebappIndexer.index_ids directly.
-    WebappIndexer.index_ids(ids, no_delay=True)
+    homescreens = set(
+        Webapp.tags.through.objects.filter(
+            webapp_id__in=ids,
+            tag__tag_text='homescreen')
+        .values_list('webapp_id', flat=True))
+    webapps = set(ids) - homescreens
+    if homescreens:
+        HomescreenIndexer.index_ids(list(homescreens), no_delay=True)
+    if webapps:
+        WebappIndexer.index_ids(list(webapps), no_delay=True)
 
 
 @post_request_task(acks_late=True)
 @use_master
 def unindex_webapps(ids, **kw):
     # DEPRECATED: call WebappIndexer.unindexer directly.
+    HomescreenIndexer.unindexer(ids)
     WebappIndexer.unindexer(ids)
 
 
