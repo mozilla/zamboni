@@ -59,7 +59,7 @@ from mkt.translations.utils import find_language, to_language
 from mkt.users.models import UserForeignKey, UserProfile
 from mkt.versions.models import Version
 from mkt.webapps import signals
-from mkt.webapps import indexers
+from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.utils import (dehydrate_content_rating, get_locale_properties,
                                get_cached_minifest, get_supported_locales)
 
@@ -616,7 +616,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
     @classmethod
     def get_indexer(cls):
-        return indexers.WebappIndexer
+        return WebappIndexer
 
     @classmethod
     def from_upload(cls, upload, is_packaged=False):

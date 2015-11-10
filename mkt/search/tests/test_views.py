@@ -33,7 +33,7 @@ from mkt.site.tests import app_factory, ESTestCase, TestCase, user_factory
 from mkt.tags.models import Tag
 from mkt.translations.helpers import truncate
 from mkt.users.models import UserProfile
-from mkt.webapps.indexers import HomescreenIndexer, WebappIndexer
+from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import AddonDeviceType, AddonUpsell, Webapp
 from mkt.webapps.tasks import unindex_webapps
 from mkt.websites.models import Website
@@ -1414,8 +1414,7 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
             device_type=mkt.DEVICE_GAIA.id)
         self.homescreen.update(categories=['health-fitness', 'productivity'])
         self.homescreen.update_version()
-        HomescreenIndexer.index_ids([self.homescreen.pk], no_delay=True)
-        self.refresh(('webapp', 'website', 'extension', 'homescreen'))
+        self.refresh(('webapp', 'website', 'extension'))
         return self.homescreen
 
     def tearDown(self):
@@ -1434,7 +1433,6 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         # indexing tasks that should happen post_request, and we need to wait
         # for ES to have done everything before continuing.
         Webapp.get_indexer().unindexer(_all=True)
-        HomescreenIndexer.unindexer(_all=True)
         Website.get_indexer().unindexer(_all=True)
         Extension.get_indexer().unindexer(_all=True)
         self.refresh(('webapp', 'website', 'extension'))
@@ -1462,7 +1460,6 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         assert _mock.called
 
     def test_search_no_doc_type_passed(self):
-        self.make_homescreen()
         res = self.anon.get(self.url, data={'lang': 'en-US'})
         eq_(res.status_code, 200)
         objs = res.json['objects']
@@ -1482,14 +1479,29 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
 
     def test_search_homescreen(self):
         self.make_homescreen()
-        res = self.anon.get(self.url, data={'lang': 'en-US',
-                                            'doc_type': 'homescreen'})
+        self.refresh(('webapp', 'website', 'extension'))
+        res = self.anon.get(self.url, data={'lang': 'en-US'})
         eq_(res.status_code, 200)
         objs = res.json['objects']
-        eq_(objs[0]['id'], self.homescreen.pk)
-        eq_(objs[0]['name'], self.homescreen.name)
-        eq_(objs[0]['slug'], self.homescreen.app_slug)
-        eq_(objs[0]['doc_type'], 'homescreen')
+        # Extensions are excluded by default if there is no doc_type parameter.
+        eq_(len(objs), 3)
+        eq_(objs[0]['doc_type'], 'webapp')
+        eq_(objs[0]['id'], self.webapp.pk)
+        eq_(objs[0]['name'], self.webapp.name)
+        eq_(objs[0]['slug'], self.webapp.app_slug)
+        eq_(objs[0]['is_homescreen'], False)
+        eq_(objs[1]['doc_type'], 'webapp')
+        eq_(objs[1]['id'], self.homescreen.pk)
+        eq_(objs[1]['name'], self.homescreen.name)
+        eq_(objs[1]['slug'], self.homescreen.app_slug)
+        eq_(objs[1]['is_homescreen'], True)
+        eq_(objs[2]['doc_type'], 'website')
+        eq_(objs[2]['id'], self.website.pk)
+        eq_(objs[2]['title'], self.website.title)
+        eq_(objs[2]['url'], self.website.url)
+        eq_(objs[2]['promo_imgs']['1050'], '')
+        eq_(objs[2]['promo_imgs']['640'], '')
+        eq_(objs[2]['promo_imgs']['320'], '')
 
     def test_search_preferred_region_match(self):
         """
@@ -1552,11 +1564,12 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         eq_(objs[2]['id'], self.webapp.pk)
         eq_(objs[2]['name'], self.webapp.name)
         eq_(objs[2]['slug'], self.webapp.app_slug)
+        eq_(objs[2]['is_homescreen'], False)
 
     def test_search_homescreen_sort_by_reviewed(self):
         self.make_homescreen()
         res = self.anon.get(self.url, data={
-            'doc_type': 'extension,webapp,website,homescreen', 'lang': 'en-US',
+            'doc_type': 'extension,webapp,website', 'lang': 'en-US',
             'sort': 'reviewed'})
         eq_(res.status_code, 200)
         objs = res.json['objects']
@@ -1564,7 +1577,9 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         eq_(objs[0]['id'], self.extension.pk)
         eq_(objs[1]['id'], self.website.pk)
         eq_(objs[2]['id'], self.webapp.pk)
-        eq_(objs[3]['doc_type'], 'homescreen')
+        eq_(objs[2]['is_homescreen'], False)
+        eq_(objs[3]['doc_type'], 'webapp')
+        eq_(objs[3]['is_homescreen'], True)
 
     def test_search_q(self):
         res = self.anon.get(self.url, data={

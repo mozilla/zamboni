@@ -53,7 +53,6 @@ from mkt.submit.tests.test_views import BasePackagedAppTest, SetupFilesMixin
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
-from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import AddonDeviceType, Webapp
 from mkt.webapps.tasks import unindex_webapps
 from mkt.websites.utils import website_factory
@@ -420,7 +419,7 @@ class XSSMixin(object):
         a.name = '<script>alert("xss")</script>'
         a.save()
         if self.uses_es():
-            self.refresh(doctypes=('homescreen', 'webapp'))
+            self.reindex(Webapp)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         tbody = pq(res.content)('#addon-queue tbody').html()
@@ -583,10 +582,8 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
     def test_homescreen_count(self):
         Tag(tag_text='homescreen').save_tag(self.apps[1])
-        self.apps[1].save()
         if self.uses_es():
-            WebappIndexer.unindex(self.apps[1].id)
-            self.refresh(('homescreen', 'webapp'))
+            self.reindex(Webapp)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
@@ -717,7 +714,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.apps[2].update(created=self.days_ago(11))
 
         if self.uses_es():
-            self.refresh(doctypes=('homescreen', 'webapp'))
+            self.reindex(Webapp)
 
         self.url = reverse('reviewers.apps.queue_rereview')
 
@@ -965,10 +962,8 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
     def test_homescreen(self):
         Tag(tag_text='homescreen').save_tag(self.apps[1])
-        self.apps[1].save()
-        WebappIndexer.unindex(self.apps[1].id)
         if self.uses_es():
-            self.refresh(doctypes=('homescreen', 'webapp'))
+            self.reindex(Webapp)
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
@@ -1122,7 +1117,7 @@ class TestUpdateQueueES(mkt.site.tests.ESTestCase, TestUpdateQueue):
     def setUp(self):
         super(TestUpdateQueueES, self).setUp()
         self.create_switch('reviewer-tools-elasticsearch')
-        self.refresh(doctypes=('homescreen', 'webapp'))
+        self.reindex(Webapp)
 
 
 @mock.patch('mkt.versions.models.Version.is_privileged', False)

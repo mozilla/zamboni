@@ -60,6 +60,8 @@ class WebappIndexer(BaseIndexer):
         """
         Returns mapping type name which is used as the key in ES_INDEXES to
         determine which index to use.
+
+        We override this because Webapp is a proxy model to Addon.
         """
         return 'webapp'
 
@@ -125,6 +127,7 @@ class WebappIndexer(BaseIndexer):
                     'installs_allowed_from': cls.string_not_analyzed(),
                     'is_disabled': {'type': 'boolean'},
                     'is_escalated': {'type': 'boolean'},
+                    'is_homescreen': {'type': 'boolean'},
                     'is_offline': {'type': 'boolean'},
                     'is_priority': {'type': 'boolean'},
                     'is_rereviewed': {'type': 'boolean'},
@@ -295,6 +298,7 @@ class WebappIndexer(BaseIndexer):
         d['is_rereviewed'] = is_rereviewed
         d['rereview_date'] = (obj.rereviewqueue_set.get().created
                               if is_rereviewed else None)
+        d['is_homescreen'] = obj.is_homescreen()
 
         if latest_version:
             d['latest_version'] = {
@@ -413,7 +417,7 @@ class WebappIndexer(BaseIndexer):
     def get_indexable(cls):
         """Returns the queryset of ids of all things to be indexed."""
         from mkt.webapps.models import Webapp
-        return Webapp.with_deleted.exclude(tags__tag_text='homescreen')
+        return Webapp.with_deleted.all()
 
     @classmethod
     def run_indexing(cls, ids, ES=None, index=None, **kw):
@@ -449,17 +453,6 @@ class WebappIndexer(BaseIndexer):
         app_ids = list(set(app_ids))  # De-dupe.
         queryset = queryset.filter(Bool(should=[F('terms', id=app_ids)]))
         return queryset[0:len(app_ids)]
-
-
-class HomescreenIndexer(WebappIndexer):
-    @classmethod
-    def get_mapping_type_name(cls):
-        return 'homescreen'
-
-    @classmethod
-    def get_indexable(cls):
-        from mkt.webapps.models import Webapp
-        return Webapp.with_deleted.filter(tags__tag_text='homescreen')
 
 
 def reverse_version(version):

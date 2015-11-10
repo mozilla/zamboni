@@ -109,8 +109,6 @@ class BaseFeedCollection(ModelBase):
             aggregate = qs.aggregate(models.Max('order'))['order__max']
             order = aggregate + 1 if aggregate is not None else 0
 
-        if app.is_homescreen():
-            raise ValueError("Cannot add homescreens to feed")
         rval = self.membership_class.objects.create(obj=self, app=app,
                                                     order=order)
         index_webapps.delay([app.pk])
@@ -364,12 +362,6 @@ class FeedApp(BaseFeedImage, ModelBase):
 
     class Meta:
         db_table = 'mkt_feed_app'
-
-    def __init__(self, *a, **kw):
-        app = kw.get('app')
-        if app is not None and app.is_homescreen():
-            raise ValueError("Feed app may not be homescreen")
-        super(FeedApp, self).__init__(*a, **kw)
 
     @classmethod
     def get_indexer(self):

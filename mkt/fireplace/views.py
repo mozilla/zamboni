@@ -31,7 +31,6 @@ class MultiSearchView(BaseMultiSearchView):
     serializer_classes = {
         'extension': ESExtensionSerializer,
         'webapp': FireplaceESAppSerializer,
-        'homescreen': FireplaceESAppSerializer,
         'website': FireplaceESWebsiteSerializer
     }
 

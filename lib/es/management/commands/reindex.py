@@ -20,7 +20,7 @@ import mkt.feed.indexers as f_indexers
 from lib.es.models import Reindexing
 from mkt.extensions.indexers import ExtensionIndexer
 from mkt.site.utils import chunked, timestamp_index
-from mkt.webapps.indexers import HomescreenIndexer, WebappIndexer
+from mkt.webapps.indexers import WebappIndexer
 from mkt.websites.indexers import WebsiteIndexer
 
 
@@ -39,7 +39,6 @@ ES_INDEXES = settings.ES_INDEXES
 INDEX_CHOICES = {
     # In case we want to index only a subset of indexes.
     'apps': [WebappIndexer],
-    'homescreens': [HomescreenIndexer],
     'extensions': [ExtensionIndexer],
     'feed': [f_indexers.FeedAppIndexer,
              f_indexers.FeedBrandIndexer,

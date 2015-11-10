@@ -19,7 +19,6 @@ from mkt.search.forms import COLOMBIA_WEBSITE
 from mkt.site.fixtures import fixture
 from mkt.site.tests import app_factory, ESTestCase, TestCase
 from mkt.tags.models import Tag
-from mkt.webapps.indexers import HomescreenIndexer
 from mkt.webapps.models import AddonUser, Installed, Webapp
 from mkt.websites.models import Website, WebsitePopularity
 from mkt.websites.utils import website_factory
@@ -169,15 +168,13 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         self.url = reverse('fireplace-multi-search-api')
         self.website = website_factory()
         self.website.popularity.add(WebsitePopularity(region=0, value=666))
-        self.website.save()
         self.webapp = Webapp.objects.get(pk=337141)
-        self.webapp.save()
         self.extension = Extension.objects.create(name='test-ext-lol')
         self.extension.versions.create(status=STATUS_PUBLIC)
         self.extension.popularity.add(ExtensionPopularity(region=0, value=999))
-        self.extension.save()
-        self.refresh(doctypes=('extension', 'webapp', 'website',
-                               'homescreen'))
+        self.reindex(Extension)
+        self.reindex(Webapp)
+        self.reindex(Website)
 
     def tearDown(self):
         for o in Webapp.objects.all():
@@ -197,22 +194,7 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         Webapp.get_indexer().unindexer(_all=True)
         Website.get_indexer().unindexer(_all=True)
         Extension.get_indexer().unindexer(_all=True)
-        HomescreenIndexer.unindexer(_all=True)
-        self.refresh(('webapp', 'website', 'extension', 'homescreen'))
-
-    def make_homescreen(self):
-        self.homescreen = app_factory(name=u'Elegant Waffle',
-                                      description=u'homescreen runner',
-                                      created=self.days_ago(5),
-                                      manifest_url='http://h.testmanifest.com')
-        Tag(tag_text='homescreen').save_tag(self.homescreen)
-        self.homescreen.addondevicetype_set.create(
-            device_type=mkt.DEVICE_GAIA.id)
-        self.homescreen.update(categories=['health-fitness', 'productivity'])
-        self.homescreen.update_version()
-        HomescreenIndexer.index_ids([self.homescreen.pk], no_delay=True)
-        self.refresh(('webapp', 'website', 'extension', 'homescreen'))
-        return self.homescreen
+        self.refresh(('webapp', 'website', 'extension'))
 
     def _add_co_tag(self, website):
         co = Tag.objects.get_or_create(tag_text=COLOMBIA_WEBSITE)[0]
@@ -245,22 +227,6 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
 
         eq_(objects[2]['doc_type'], 'webapp')
         assert_fireplace_app(objects[2])
-
-    def test_multi_with_homescreen(self):
-        h = self.make_homescreen()
-        res = self.client.get(self.url + '?doc_type=webapp,homescreen,website')
-        objects = res.json['objects']
-        eq_(len(objects), 3)
-
-        eq_(objects[0]['doc_type'], 'website')
-        assert_fireplace_website(objects[0])
-        eq_(objects[0]['slug'], '{website-%d}' % self.website.pk)
-
-        eq_(objects[1]['doc_type'], 'webapp')
-        assert_fireplace_app(objects[1])
-
-        eq_(objects[2]['doc_type'], 'homescreen')
-        eq_(objects[2]['slug'], h.app_slug)
 
     def test_get_multi_colombia(self):
         self._add_co_tag(self.website)
