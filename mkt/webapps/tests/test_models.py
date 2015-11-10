@@ -40,7 +40,7 @@ from mkt.files.models import File
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.files.utils import WebAppParser
 from mkt.prices.models import AddonPremium, Price, PriceCurrency
-from mkt.reviewers.models import EscalationQueue, QUEUE_TARAKO, RereviewQueue
+from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
 from mkt.site.storage_utils import (public_storage, private_storage,
@@ -321,28 +321,6 @@ class TestWebapp(WebappTestCase):
         eq_(self.get_app().get_regions(sort_by='id'),
             sorted(mkt.regions.REGIONS_CHOICES_ID_DICT.values(),
                    key=lambda x: x.id))
-
-    def test_in_tarako_queue_pending_in_queue(self):
-        app = self.get_app()
-        app.update(status=mkt.STATUS_PENDING)
-        app.additionalreview_set.create(queue=QUEUE_TARAKO)
-        ok_(app.in_tarako_queue())
-
-    def test_in_tarako_queue_approved_in_queue(self):
-        app = self.get_app()
-        app.update(status=mkt.STATUS_APPROVED)
-        app.additionalreview_set.create(queue=QUEUE_TARAKO)
-        ok_(app.in_tarako_queue())
-
-    def test_in_tarako_queue_pending_not_in_queue(self):
-        app = self.get_app()
-        app.update(status=mkt.STATUS_PENDING)
-        ok_(not app.in_tarako_queue())
-
-    def test_in_tarako_queue_approved_not_in_queue(self):
-        app = self.get_app()
-        app.update(status=mkt.STATUS_APPROVED)
-        ok_(not app.in_tarako_queue())
 
     def test_in_china_queue_pending_not_in_queue(self):
         app = self.get_app()

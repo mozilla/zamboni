@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 import json
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from django.conf import settings
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
 
-import mock
 from cache_nuggets.lib import Token
 from nose.tools import eq_, ok_
 
@@ -17,13 +16,11 @@ from mkt.access.models import GroupUser
 from mkt.api.models import Access
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
 from mkt.constants.features import FeatureProfile
-from mkt.reviewers.models import (AdditionalReview, CannedResponse,
-                                  EscalationQueue, QUEUE_TARAKO,
+from mkt.reviewers.models import (CannedResponse, EscalationQueue,
                                   RereviewQueue, ReviewerScore)
 from mkt.reviewers.utils import AppsReviewing
 from mkt.site.fixtures import fixture
 from mkt.site.tests import ESTestCase
-from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 from mkt.websites.utils import website_factory
@@ -174,26 +171,6 @@ class TestApiReviewerSearch(RestOAuth, ESTestCase):
         eq_(obj['slug'], self.webapp.app_slug)
 
         res = self.client.get(self.url, {'is_escalated': None})
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-    def test_is_tarako(self):
-        Tag(tag_text='tarako').save_tag(self.webapp)
-        self.webapp.save()
-        self.refresh('webapp')
-
-        res = self.client.get(self.url, {'is_tarako': True})
-        eq_(res.status_code, 200)
-        obj = res.json['objects'][0]
-        eq_(obj['slug'], self.webapp.app_slug)
-
-        res = self.client.get(self.url, {'is_tarako': False})
-        eq_(res.status_code, 200)
-        objs = res.json['objects']
-        eq_(len(objs), 0)
-
-        res = self.client.get(self.url, {'is_tarako': None})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
@@ -436,176 +413,6 @@ class TestGenerateToken(RestOAuth):
 
         # Check data in token.
         assert Token.valid(data['token'], data={'app_id': self.app.id})
-
-
-class TestUpdateAdditionalReview(RestOAuth):
-    fixtures = fixture('user_2519', 'webapp_337141')
-
-    def setUp(self):
-        super(TestUpdateAdditionalReview, self).setUp()
-        self.grant_permission(self.profile, 'Apps:ReviewTarako')
-        self.app = Webapp.objects.get(pk=337141)
-        self.review = self.app.additionalreview_set.create(queue='my-queue')
-        self.get_object_patcher = mock.patch(
-            'mkt.reviewers.views.UpdateAdditionalReviewViewSet.get_object')
-        self.get_object = self.get_object_patcher.start()
-        self.get_object.return_value = self.review
-        self.addCleanup(self.get_object_patcher.stop)
-
-    def patch(self, data, pk=None):
-        if pk is None:
-            pk = self.review.pk
-        return self.client.patch(
-            reverse('additionalreview-detail', args=[pk]),
-            data=json.dumps(data),
-            content_type='application/json')
-
-    def test_review_tarako_required(self):
-        self.remove_permission(self.profile, 'Apps:ReviewTarako')
-        response = self.patch({'passed': True})
-        eq_(response.status_code, 403)
-
-    def test_404_with_invalid_id(self):
-        self.get_object_patcher.stop()
-        response = self.patch({'passed': True}, pk=self.review.pk + 1)
-        eq_(response.status_code, 404)
-        self.get_object_patcher.start()
-
-    def test_post_review_task_called_when_passed(self):
-        with mock.patch.object(self.review, 'execute_post_review_task') as \
-                execute_post_review_task:
-            response = self.patch({'passed': True})
-            eq_(response.status_code, 200)
-            ok_(execute_post_review_task.called)
-
-    def test_post_review_task_called_when_failed(self):
-        with mock.patch.object(self.review, 'execute_post_review_task') as \
-                execute_post_review_task:
-            response = self.patch({'passed': False})
-            eq_(response.status_code, 200)
-            ok_(execute_post_review_task.called)
-
-    def test_no_changes_without_pass_or_fail(self):
-        with mock.patch.object(self.review, 'execute_post_review_task') as \
-                execute_post_review_task:
-            response = self.patch({})
-            eq_(response.status_code, 400)
-            eq_(response.json,
-                {'non_field_errors': ['passed must be a boolean value']})
-            ok_(not execute_post_review_task.called)
-
-    def test_comment_is_not_required(self):
-        with mock.patch.object(self.review, 'execute_post_review_task') as \
-                execute_post_review_task:
-            response = self.patch({'passed': False})
-            eq_(response.status_code, 200)
-            ok_(execute_post_review_task.called)
-
-    def test_comment_can_be_set(self):
-        with mock.patch.object(self.review, 'execute_post_review_task') as \
-                execute_post_review_task:
-            response = self.patch({'passed': False, 'comment': 'no work'})
-            eq_(response.status_code, 200)
-            eq_(self.review.reload().comment, 'no work')
-            ok_(execute_post_review_task.called)
-
-    def test_reviewer_gets_set_to_current_user(self):
-        with mock.patch.object(self.review, 'execute_post_review_task') as \
-                execute_post_review_task:
-            response = self.patch({'passed': False})
-            eq_(response.status_code, 200)
-            eq_(self.review.reload().reviewer, self.profile)
-            ok_(execute_post_review_task.called)
-
-    def test_review_completed_gets_set(self):
-        with mock.patch.object(self.review, 'execute_post_review_task') as \
-                execute_post_review_task:
-            response = self.patch({'passed': False})
-            eq_(response.status_code, 200)
-            ok_(self.review.reload().review_completed - datetime.now() <
-                timedelta(seconds=1))
-            ok_(execute_post_review_task.called)
-
-    def test_review_can_only_happen_once(self):
-        self.review.update(passed=True)
-        with mock.patch.object(self.review, 'execute_post_review_task') as \
-                execute_post_review_task:
-            response = self.patch({'passed': False})
-            eq_(response.status_code, 400)
-            eq_(response.json,
-                {'non_field_errors': ['has already been reviewed']})
-            ok_(not execute_post_review_task.called)
-
-
-class TestCreateAdditionalReview(RestOAuth):
-    fixtures = fixture('user_2519', 'webapp_337141')
-
-    def setUp(self):
-        super(TestCreateAdditionalReview, self).setUp()
-        self.app = Webapp.objects.get(pk=337141)
-        self.addon_user = self.app.addonuser_set.create(user=self.profile)
-
-    def post(self, data):
-        return self.client.post(
-            reverse('additionalreviews'),
-            data=json.dumps(data),
-            content_type='application/json')
-
-    def review_exists(self):
-        return (AdditionalReview.objects
-                                .filter(queue=QUEUE_TARAKO, app_id=self.app.pk)
-                                .exists())
-
-    def test_review_can_be_created(self):
-        ok_(not self.review_exists())
-        response = self.post({'queue': QUEUE_TARAKO, 'app': self.app.pk})
-        eq_(response.status_code, 201)
-        ok_(self.review_exists())
-
-    def test_queue_must_be_tarako(self):
-        ok_(not self.review_exists())
-        response = self.post({'queue': 'not-tarako', 'app': self.app.pk})
-        eq_(response.status_code, 400)
-        eq_(response.json, {'queue': ['is not a valid choice']})
-        ok_(not self.review_exists())
-
-    def test_a_non_author_does_not_have_access(self):
-        self.addon_user.delete()
-        ok_(not self.review_exists())
-        response = self.post({'queue': QUEUE_TARAKO, 'app': self.app.pk})
-        eq_(response.status_code, 403)
-        ok_(not self.review_exists())
-
-    def test_admin_has_access(self):
-        self.grant_permission(self.profile, 'Apps:Edit')
-        self.addon_user.delete()
-        ok_(not self.review_exists())
-        response = self.post({'queue': QUEUE_TARAKO, 'app': self.app.pk})
-        eq_(response.status_code, 201)
-        ok_(self.review_exists())
-
-    def test_passed_cannot_be_set(self):
-        ok_(not self.review_exists())
-        response = self.post(
-            {'queue': QUEUE_TARAKO, 'app': self.app.pk, 'passed': True})
-        eq_(response.status_code, 201)
-        ok_(self.review_exists())
-        eq_(AdditionalReview.objects.get(app_id=self.app.pk).passed, None)
-
-    def test_only_one_pending_review(self):
-        AdditionalReview.objects.create(queue=QUEUE_TARAKO, app=self.app)
-        self.app.update(status=mkt.STATUS_PENDING)
-        eq_(AdditionalReview.objects.filter(app=self.app).count(), 1)
-        response = self.post({'queue': QUEUE_TARAKO, 'app': self.app.pk})
-        eq_(response.status_code, 400)
-        eq_(response.json, {'app': ['has a pending review']})
-        eq_(AdditionalReview.objects.filter(app=self.app).count(), 1)
-
-    def test_unknown_app_is_an_error(self):
-        response = self.post({'queue': QUEUE_TARAKO, 'app': 123})
-        eq_(response.status_code, 400)
-        eq_(response.json,
-            {'app': ['Invalid pk "123" - object does not exist.']})
 
 
 class TestCannedResponseAPI(RestOAuth):

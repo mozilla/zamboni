@@ -31,7 +31,7 @@
 
         <!-- Value selector fields. -->
         {% for field in ('has_editor_comment', 'has_info_request',
-                         'is_escalated', 'is_tarako', 'status', 'app_type',
+                         'is_escalated', 'status', 'app_type',
                          'dev_and_device', 'premium_types') %}
           <!-- Differentiate radio and checkbox form elements. -->
           {% set multi = field in ('premium_types',) %}

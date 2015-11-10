@@ -32,7 +32,6 @@ from mkt.lookup.views import (_transaction_summary, app_summary,
                               transaction_refund, user_delete, user_summary)
 from mkt.prices.models import AddonPaymentData, Refund
 from mkt.purchase.models import Contribution
-from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.site.fixtures import fixture
 from mkt.site.tests import (ESTestCase, req_factory_factory, TestCase,
                             user_factory)
@@ -874,20 +873,10 @@ class TestAppSummary(AppSummaryTest):
         text = 'Tarako enabled'
         assert text in pq(res.content)('.column-b dd').eq(6).text()
 
-    def test_tarako_disabled_not_pending(self):
+    def test_tarako_not_enabled(self):
         res = self.summary()
-        texta = 'Tarako not enabled |'
-        textb = 'Review not requested'
+        texta = 'Tarako not enabled'
         assert texta in pq(res.content)('.column-b dd').eq(6).text()
-        assert textb in pq(res.content)('.column-b dd').eq(6).text()
-
-    def test_tarako_review_pending(self):
-        self.app.additionalreview_set.create(queue=QUEUE_TARAKO)
-        res = self.summary()
-        texta = 'Tarako not enabled |'
-        textb = 'Review pending'
-        assert texta in pq(res.content)('.column-b dd').eq(6).text()
-        assert textb in pq(res.content)('.column-b dd').eq(6).text()
 
     def test_visible_authors(self):
         AddonUser.objects.all().delete()

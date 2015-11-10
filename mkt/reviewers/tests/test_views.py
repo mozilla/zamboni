@@ -37,7 +37,7 @@ from mkt.constants import MANIFEST_CONTENT_TYPE, comm
 from mkt.developers.models import ActivityLog, AppLog
 from mkt.files.models import File
 from mkt.ratings.models import Review, ReviewFlag
-from mkt.reviewers.models import (QUEUE_TARAKO, SHOWCASE_TAG, CannedResponse,
+from mkt.reviewers.models import (SHOWCASE_TAG, CannedResponse,
                                   EscalationQueue, RereviewQueue,
                                   ReviewerScore)
 from mkt.reviewers.utils import ReviewersQueuesHelper
@@ -4278,31 +4278,6 @@ class TestReviewTranslate(RestOAuth):
                     args=[review.addon.app_slug, review.id, 'fr']),
             HTTP_X_REQUESTED_WITH='XMLHttpRequest')
         eq_(res.status_code, 400)
-
-
-class TestAdditionalReviewListingAccess(mkt.site.tests.TestCase):
-
-    def setUp(self):
-        super(TestAdditionalReviewListingAccess, self).setUp()
-        self.user = user_factory()
-        self.login(self.user)
-
-    def url(self):
-        return reverse('reviewers.apps.additional_review', args=[QUEUE_TARAKO])
-
-    def listing(self):
-        return self.client.get(self.url())
-
-    def test_regular_user_has_no_access(self):
-        eq_(self.listing().status_code, 403)
-
-    def test_regular_reviewer_has_no_access(self):
-        self.grant_permission(self.user, 'Apps:Review')
-        eq_(self.listing().status_code, 403)
-
-    def test_tarako_reviewer_has_access(self):
-        self.grant_permission(self.user, 'Apps:ReviewTarako')
-        eq_(self.listing().status_code, 200)
 
 
 class TestReviewHistory(mkt.site.tests.TestCase, CommTestMixin):

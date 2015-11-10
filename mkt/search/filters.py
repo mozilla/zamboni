@@ -175,22 +175,6 @@ class ReviewerSearchFormFilter(SearchFormFilter):
                      'manifest_url', 'premium_type', 'status',
                      'supported_locales', 'tags']
 
-    def filter_queryset(self, request, queryset, view):
-        queryset = super(ReviewerSearchFormFilter,
-                         self).filter_queryset(request, queryset, view)
-
-        # Special case for `is_tarako`, which gets converted to a tag filter.
-        is_tarako = self.form_data.get('is_tarako')
-        if is_tarako is not None:
-            if is_tarako:
-                queryset = queryset.filter(
-                    Bool(must=[F('term', tags='tarako')]))
-            else:
-                queryset = queryset.filter(
-                    Bool(must=[~F('term', tags='tarako')]))
-
-        return queryset
-
 
 class WebsiteSearchFormFilter(SearchFormFilter):
     VALID_FILTERS = ['keywords', 'category', 'device']

@@ -196,10 +196,6 @@ class ApiReviewersSearchForm(ApiSearchForm):
         required=False,
         label=_lazy(u'Escalated'),
         widget=CustomNullBooleanSelect)
-    is_tarako = forms.NullBooleanField(
-        required=False,
-        label=_lazy(u'Tarako-ready'),
-        widget=CustomNullBooleanSelect)
     dev_and_device = forms.ChoiceField(
         required=False, choices=COMBINED_DEVICE_CHOICES,
         label=_lazy(u'Device'))

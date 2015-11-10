@@ -14,7 +14,7 @@ from django.utils.translation import ugettext_lazy as _lazy
 
 import mkt
 from mkt.access import acl
-from mkt.reviewers.models import EscalationQueue, QUEUE_TARAKO, ReviewerScore
+from mkt.reviewers.models import EscalationQueue, ReviewerScore
 from mkt.reviewers.utils import (AppsReviewing, clean_sort_param,
                                  create_sort_link)
 from mkt.search.serializers import es_to_datetime
@@ -113,11 +113,6 @@ def queue_tabnav(context):
                            args=[mkt.regions.CHN.slug])
             rv.append((url_, 'region',
                       _('China ({0})').format(counts['region_cn'])))
-        if acl.action_allowed(request, 'Apps', 'ReviewTarako'):
-            url_ = reverse('reviewers.apps.additional_review',
-                           args=[QUEUE_TARAKO])
-            rv.append((url_, 'additional',
-                      _('Tarako ({0})').format(counts['additional_tarako'])))
         rv.append(
             (reverse('reviewers.apps.queue_homescreen'), 'homescreen',
              pgettext(counts['homescreen'], 'Homescreens ({0})').format(

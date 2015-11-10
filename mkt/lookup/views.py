@@ -319,8 +319,6 @@ def app_summary(request, addon_id):
         'price': price, 'provider_portals': provider_portals,
         'status_form': status_form, 'versions': versions,
         'is_tarako': app.tags.filter(tag_text=QUEUE_TARAKO).exists(),
-        'tarako_review':
-            app.additionalreview_set.latest_for_queue(QUEUE_TARAKO),
         'version_status_forms': version_status_forms,
         'permissions': permissions,
         'promo_img_form': promo_img_form,

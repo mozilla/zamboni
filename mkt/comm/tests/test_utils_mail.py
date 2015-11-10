@@ -148,17 +148,6 @@ class TestSendMailComm(TestCase, CommTestMixin):
 
         self._check_template(email.call_args, 'generic')
 
-    @mock.patch('mkt.comm.utils_mail.send_mail_jinja')
-    def test_additional_review(self, email):
-        self._create(comm.ADDITIONAL_REVIEW_PASSED)
-        eq_(email.call_count, 2)
-
-        recipients = self._recipients(email)
-        assert self.mozilla_contact.email in recipients
-        assert self.developer.email in recipients
-
-        self._check_template(email.call_args, 'tarako')
-
     def test_mail_templates_exist(self):
         for note_type in comm.COMM_MAIL_MAP:
             self._create(note_type)
