@@ -259,9 +259,12 @@ class CommunicationThreadCC(ModelBase):
 
 class CommunicationNoteManager(models.Manager):
 
-    def with_perms(self, profile, thread):
-        ids = [note.id for note in self.filter(thread=thread) if
-               user_has_perm_note(note, profile)]
+    def with_perms(self, profile, thread=None):
+        qs = self.all()
+        if thread:
+            qs = self.filter(thread=thread)
+
+        ids = [note.id for note in qs if user_has_perm_note(note, profile)]
         return self.filter(id__in=ids)
 
 
