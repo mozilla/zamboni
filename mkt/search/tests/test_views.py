@@ -12,6 +12,7 @@ from nose.tools import eq_, ok_
 
 import mkt
 import mkt.regions
+from lib.post_request_task.task import _send_tasks
 from mkt.access.middleware import ACLMiddleware
 from mkt.access.models import GroupUser
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
@@ -1414,7 +1415,7 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
             device_type=mkt.DEVICE_GAIA.id)
         self.homescreen.update(categories=['health-fitness', 'productivity'])
         self.homescreen.update_version()
-        HomescreenIndexer.index_ids([self.homescreen.pk], no_delay=True)
+        _send_tasks()
         self.refresh(('webapp', 'website', 'extension', 'homescreen'))
         return self.homescreen
 

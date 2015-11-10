@@ -10,8 +10,9 @@ from mkt.constants.applications import DEVICE_TYPES
 from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.search.utils import BOOST_MULTIPLIER_FOR_PUBLIC_CONTENT, get_boost
 from mkt.site.fixtures import fixture
-from mkt.site.tests import ESTestCase, TestCase
+from mkt.site.tests import ESTestCase, TestCase, app_factory
 from mkt.site.utils import version_factory
+from mkt.tags.models import Tag
 from mkt.translations.utils import to_language
 from mkt.users.models import UserProfile
 from mkt.webapps.indexers import HomescreenIndexer, WebappIndexer
@@ -31,6 +32,16 @@ class TestWebappIndexer(TestCase):
     def test_index(self):
         with self.settings(ES_INDEXES={'webapp': 'apps'}):
             eq_(WebappIndexer.get_index(), 'apps')
+
+    def test_indexable(self):
+        homescreen = app_factory(name=u'Elegant Waffle',
+                                 description=u'homescreen runner',
+                                 created=self.days_ago(5),
+                                 manifest_url='http://h.testmanifest.com')
+        Tag(tag_text='homescreen').save_tag(homescreen)
+        homescreen.save()
+        q = WebappIndexer.get_indexable()
+        eq_(list(q), [self.app])
 
     def test_model(self):
         eq_(WebappIndexer.get_model(), Webapp)
@@ -257,6 +268,8 @@ class TestWebappIndexer(TestCase):
 
 
 class TestHomescreenIndexer(TestCase):
+    fixtures = fixture('webapp_337141')
+
     def test_mapping_type_name(self):
         eq_(HomescreenIndexer.get_mapping_type_name(), 'homescreen')
 
@@ -270,6 +283,16 @@ class TestHomescreenIndexer(TestCase):
     def test_mapping(self):
         mapping = HomescreenIndexer.get_mapping()
         eq_(mapping.keys(), ['homescreen'])
+
+    def test_indexable(self):
+        homescreen = app_factory(name=u'Elegant Waffle',
+                                 description=u'homescreen runner',
+                                 created=self.days_ago(5),
+                                 manifest_url='http://h.testmanifest.com')
+        Tag(tag_text='homescreen').save_tag(homescreen)
+        homescreen.save()
+        q = HomescreenIndexer.get_indexable()
+        eq_(list(q), [homescreen])
 
 
 class TestExcludedFields(ESTestCase):
