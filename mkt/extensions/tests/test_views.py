@@ -638,6 +638,19 @@ class TestExtensionViewSetPatchPut(RestOAuth):
         eq_(self.extension.disabled, True)
         eq_(self.extension.slug, u'lolé')
 
+    def test_patch_with_rights_with_slug(self):
+        # Changes to the slug are ignored if you used the slug in the URL.
+        self.url = reverse('api-v2:extension-detail',
+                           kwargs={'pk': self.extension.slug})
+        self.extension.authors.add(self.user)
+        response = self.client.patch(self.url, json.dumps({'slug': u'làlé'}))
+        eq_(response.status_code, 200)
+        eq_(response.json['slug'], u'mŷ-extension')
+        eq_(response.json['disabled'], False)
+        self.extension.reload()
+        eq_(self.extension.disabled, False)
+        eq_(self.extension.slug, u'mŷ-extension')
+
     def test_patch_slug_not_available(self):
         Extension.objects.create(slug=u'sorrŷ-already-taken')
         self.extension.authors.add(self.user)
