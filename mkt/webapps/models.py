@@ -2589,56 +2589,15 @@ class AppFeatures(ModelBase, DynamicBoolFieldsMixin):
     class Meta:
         db_table = 'addons_features'
 
-    def __unicode__(self):
-        return u'Version: %s: %s' % (self.version.id, self.to_signature())
-
-    def set_flags(self, signature):
-        """
-        Sets flags given the signature.
-
-        This takes the reverse steps in `to_signature` to set the various flags
-        given a signature. Boolean math is used since "0.23.1" is a valid
-        signature but does not produce a string of required length when doing
-        string indexing.
-        """
-        fields = self._fields()
-        # Grab the profile part of the signature and convert to binary string.
-        try:
-            profile = bin(int(signature.split('.')[0], 16)).lstrip('0b')
-            n = len(fields) - 1
-            for i, f in enumerate(fields):
-                setattr(self, f, bool(int(profile, 2) & 2 ** (n - i)))
-        except ValueError as e:
-            log.error(u'ValueError converting %s. %s' % (signature, e))
-
-    def to_signature(self):
-        """
-        This converts the boolean values of the flags to a signature string.
-
-        For example, all the flags in APP_FEATURES order produce a string of
-        binary digits that is then converted to a hexadecimal string with the
-        length of the features list plus a version appended. E.g.::
-
-            >>> profile = '10001010111111010101011'
-            >>> int(profile, 2)
-            4554411
-            >>> '%x' % int(profile, 2)
-            '457eab'
-            >>> '%x.%s.%s' % (int(profile, 2), len(profile), 1)
-            '457eab.23.1'
-
-        """
-        profile = ''.join('1' if getattr(self, f) else '0'
-                          for f in self._fields())
-        return '%x.%s.%s' % (int(profile, 2), len(profile),
-                             settings.APP_FEATURES_VERSION)
+    def to_names(self):
+        field_names = [unicode(self.field_source[key.upper()]['name'])
+                       for key in self.to_list()]
+        return sorted(field_names)
 
     def to_list(self):
-        keys = self.to_keys()
-        # Strip `has_` from each feature.
-        field_names = [self.field_source[key[4:].upper()]['name']
-                       for key in keys]
-        return sorted(field_names)
+        """Return the list of features set to True on this instance."""
+        # Strip the first 4 characters in each key, corresponding to "has_".
+        return [k[4:] for k, v in self.to_dict().iteritems() if v]
 
 
 # Add a dynamic field to `AppFeatures` model for each buchet feature.

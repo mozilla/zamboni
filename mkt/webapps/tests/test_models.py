@@ -2239,9 +2239,9 @@ class TestAppFeatures(DynamicBoolFieldsTestMixin, mkt.site.tests.TestCase):
     def setUp(self):
         super(TestAppFeatures, self).setUp()
 
+        # Fields used by DynamicBoolFieldsTestMixin methods.
         self.model = AppFeatures
         self.related_name = 'features'
-
         self.BOOL_DICT = mkt.constants.features.APP_FEATURES
         self.flags = ('APPS', 'GEOLOCATION', 'PAY', 'SMS')
         self.expected = [u'App Management API', u'Geolocation', u'Web Payment',
@@ -2252,22 +2252,20 @@ class TestAppFeatures(DynamicBoolFieldsTestMixin, mkt.site.tests.TestCase):
     def _get_related_bool_obj(self):
         return getattr(self.app.current_version, self.related_name)
 
-    def test_signature_parity(self):
-        # Test flags -> signature -> flags works as expected.
+    def test_to_list(self):
         self._flag()
-        signature = self.app.current_version.features.to_signature()
-        eq_(signature.count('.'), 2, 'Unexpected signature format')
+        obj = self._get_related_bool_obj()
+        eq_(obj.to_list(), ['apps', 'geolocation', 'pay', 'sms'])
 
-        self.af.set_flags(signature)
-        self._check(self.af)
-
-    def test_bad_data(self):
-        self.af.set_flags('foo')
-        self.af.set_flags('<script>')
+    def test_to_names(self):
+        self._flag()
+        obj = self._get_related_bool_obj()
+        eq_(obj.to_names(), self.expected)
 
     def test_default_false(self):
         obj = self.model(version=self.app.current_version)
-        eq_(getattr(obj, 'has_%s' % self.flags[0].lower()), False)
+        for field in self.BOOL_DICT:
+            eq_(getattr(obj, 'has_%s' % field.lower()), False)
 
 
 class TestRatingDescriptors(mkt.site.tests.TestCase):
