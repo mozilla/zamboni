@@ -14,8 +14,20 @@ import mkt.feed.constants as feed
 from mkt.feed.models import (FeedApp, FeedBrand, FeedCollection, FeedItem,
                              FeedShelf)
 from mkt.operators.models import OperatorPermission
+from mkt.site.tests import app_factory
 from mkt.site.fixtures import fixture
+from mkt.tags.models import Tag
 from mkt.webapps.models import Webapp
+
+
+def homescreen_factory(self):
+    # Homescreens may not be added to feed collections.
+    homescreen = app_factory(name=u'Elegant Waffle',
+                                  description=u'homescreen runner',
+                                  created=self.days_ago(5),
+                                  manifest_url='http://h.testmanifest.com')
+    Tag(tag_text='homescreen').save_tag(homescreen)
+    return homescreen
 
 
 class FeedTestMixin(object):
@@ -173,6 +185,11 @@ class TestFeedApp(FeedAppMixin, mkt.site.tests.TestCase):
         feedapp.clean()  # Test model validation.
         feedapp.save()  # Tests required fields.
 
+    def test_no_create_homescreen(self):
+        h = homescreen_factory(self)
+        with self.assertRaises(ValueError):
+            FeedApp(app=h)
+
     def test_missing_pullquote_rating(self):
         del self.feedapp_data['pullquote_rating']
         self.test_create()
@@ -226,6 +243,12 @@ class TestFeedBrand(mkt.site.tests.TestCase):
         eq_(m.order, 3)
         eq_(m.app, self.apps[0])
         eq_(m.obj, self.brand)
+
+    def test_no_add_homescreen(self):
+        self.test_create()
+        with self.assertRaises(ValueError):
+            self.brand.add_app(homescreen_factory(self), order=3)
+        eq_(len(self.brand.apps()), 0)
 
     def test_add_app_sort_order_respected(self):
         self.test_add_app()
@@ -289,6 +312,12 @@ class TestFeedShelf(FeedTestMixin, mkt.site.tests.TestCase):
         shelf.feeditem_set.create()
         assert shelf.is_published
 
+    def test_no_add_homescreen(self):
+        shelf = self.feed_shelf_factory()
+        with self.assertRaises(ValueError):
+            shelf.add_app(homescreen_factory(self), order=3)
+        eq_(shelf.apps().count(), 1)
+
 
 class TestFeedCollection(FeedTestMixin, mkt.site.tests.TestCase):
 
@@ -298,3 +327,9 @@ class TestFeedCollection(FeedTestMixin, mkt.site.tests.TestCase):
         coll.set_apps([337141, mkt.site.tests.app_factory().id,
                        mkt.site.tests.app_factory().id])
         eq_(coll.apps().count(), 3)
+
+    def test_no_add_homescreen(self):
+        coll = self.feed_collection_factory()
+        with self.assertRaises(ValueError):
+            coll.add_app(homescreen_factory(self), order=3)
+        eq_(coll.apps().count(), 1)
