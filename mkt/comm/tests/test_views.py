@@ -260,6 +260,13 @@ class TestThreadList(RestOAuth, CommTestMixin):
         self.addon = Webapp.objects.get(pk=337141)
         self.list_url = reverse('comm-thread-list')
 
+        # Exclude extensions.
+        extension = extension_factory()
+        thread = CommunicationThread.objects.create(
+            _extension=extension,
+            _extension_version=extension.latest_version)
+        CommunicationNote.objects.create(thread=thread, body='abc')
+
     def test_response(self):
         """Test the list response, we don't want public threads in the list."""
         self._thread_factory(note=True, perms=['public'])
