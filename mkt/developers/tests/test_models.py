@@ -9,11 +9,10 @@ import mkt
 import mkt.site.tests
 from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
 from mkt.developers.models import (ActivityLog, AddonPaymentAccount,
-                                   CantCancel, PaymentAccount, PreloadTestPlan,
+                                   CantCancel, PaymentAccount,
                                    SolitudeSeller)
 from mkt.developers.providers import get_provider
 from mkt.site.fixtures import fixture
-from mkt.site.utils import app_factory
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp
 
@@ -214,15 +213,3 @@ class TestPaymentAccount(Patcher, mkt.site.tests.TestCase):
 
         self.bango_patcher.api.by_url(res.uri).patch.assert_called_with(
             data={'vendorName': 'new vendor name'})
-
-
-class TestPreloadTestPlan(mkt.site.tests.TestCase):
-
-    def setUp(self):
-        self.app = app_factory()
-        self.preload = self.app.preloadtestplan_set.create(filename='test.pdf')
-
-    def test_delete_cascade(self):
-        eq_(self.preload.addon, self.app)
-        self.app.delete()
-        eq_(PreloadTestPlan.objects.count(), 0)

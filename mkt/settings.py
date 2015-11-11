@@ -979,13 +979,6 @@ PRE_GENERATE_APKS = False
 PRE_GENERATE_APK_URL = (
     'https://apk-controller.dev.mozaws.net/application.apk')
 
-
-PREINSTALL_TEST_PLAN_URL = 'docs/app-test-template/v2'
-PREINSTALL_TEST_PLAN_PATH = os.path.join(
-    MEDIA_ROOT, PREINSTALL_TEST_PLAN_URL + '/en-US.xlsx')
-PREINSTALL_TEST_PLAN_LATEST = datetime.datetime.fromtimestamp(
-    os.stat(PREINSTALL_TEST_PLAN_PATH).st_mtime)
-
 # Number of days the webpay product icon is valid for.
 # After this period, the icon will be re-fetched from its external URL.
 # If you change this value, update the docs:

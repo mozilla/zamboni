@@ -68,11 +68,6 @@ app_detail_patterns = patterns(
     url('^content_ratings/edit$', views.content_ratings_edit,
         name='mkt.developers.apps.ratings_edit'),
 
-    url('^status/preload$', views.preload_home,
-        name='mkt.developers.apps.preload_home'),
-    url('^status/preload/submit$', views.preload_submit,
-        name='mkt.developers.apps.preload_submit'),
-
     # TODO: '^versions/$'
     url('^versions/(?P<version_id>\d+)$', views.version_edit,
         name='mkt.developers.apps.versions.edit'),

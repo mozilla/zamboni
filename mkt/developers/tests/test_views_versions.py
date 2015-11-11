@@ -1,4 +1,3 @@
-import datetime
 import os
 
 from django.conf import settings
@@ -11,14 +10,13 @@ import mkt
 import mkt.site.tests
 from mkt.comm.models import CommunicationNote
 from mkt.constants.applications import DEVICE_TYPES
-from mkt.developers.models import ActivityLog, AppLog, PreloadTestPlan
-from mkt.developers.views import preload_submit, status
+from mkt.developers.models import ActivityLog, AppLog
 from mkt.files.models import File
 from mkt.reviewers.models import EscalationQueue
 from mkt.site.fixtures import fixture
 from mkt.site.storage_utils import (copy_stored_file, local_storage,
                                     private_storage, storage_is_remote)
-from mkt.site.tests import req_factory_factory, user_factory
+from mkt.site.tests import user_factory
 from mkt.site.utils import app_factory, make_rated, version_factory
 from mkt.submit.tests.test_views import BasePackagedAppTest
 from mkt.users.models import UserProfile
@@ -570,152 +568,3 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         eq_(app.versions.count(), v_count + 1)
         eq_(app.status, mkt.STATUS_BLOCKED)
         eq_(app.versions.latest().files.latest().status, mkt.STATUS_BLOCKED)
-
-
-class TestPreloadSubmit(mkt.site.tests.TestCase):
-    fixtures = fixture('group_admin', 'user_admin', 'user_admin_group',
-                       'webapp_337141')
-
-    def setUp(self):
-        self.create_switch('preload-apps')
-        self.user = UserProfile.objects.get(email='admin@mozilla.com')
-        self.login(self.user)
-
-        self.webapp = Webapp.objects.get(id=337141)
-        self.url = self.webapp.get_dev_url('versions')
-        self.home_url = self.webapp.get_dev_url('preload_home')
-        self.submit_url = self.webapp.get_dev_url('preload_submit')
-
-        path = os.path.dirname(os.path.abspath(__file__))
-        self.test_pdf = path + '/files/test.pdf'
-        self.test_xls = path + '/files/test.xls'
-
-    def _submit_pdf(self):
-        f = open(self.test_pdf, 'r')
-        req = req_factory_factory(self.submit_url, user=self.user, post=True,
-                                  data={'agree': True, 'test_plan': f})
-        return preload_submit(req, self.webapp.app_slug)
-
-    def test_get_200(self):
-        eq_(self.client.get(self.home_url).status_code, 200)
-        eq_(self.client.get(self.submit_url).status_code, 200)
-
-    @mock.patch('mkt.developers.views.save_test_plan')
-    @mock.patch('mkt.developers.views.messages')
-    def test_preload_on_status_page(self, noop1, noop2):
-        req = req_factory_factory(self.url, user=self.user)
-        r = status(req, self.webapp.app_slug)
-        doc = pq(r.content)
-        eq_(doc('#preload .listing-footer a').attr('href'),
-            self.webapp.get_dev_url('preload_home'))
-        assert doc('#preload .not-submitted')
-
-        self._submit_pdf()
-
-        req = req_factory_factory(self.url, user=self.user)
-        r = status(req, self.webapp.app_slug)
-        doc = pq(r.content)
-        eq_(doc('#preload .listing-footer a').attr('href'),
-            self.webapp.get_dev_url('preload_submit'))
-        assert doc('#preload .submitted')
-
-    def _assert_submit(self, endswith, content_type, save_mock):
-        test_plan = PreloadTestPlan.objects.get()
-        eq_(test_plan.addon, self.webapp)
-        assert test_plan.filename.startswith('test_plan_')
-        assert test_plan.filename.endswith(endswith)
-        self.assertCloseToNow(test_plan.last_submission)
-
-        eq_(save_mock.call_args[0][0].content_type, content_type)
-        assert save_mock.call_args[0][1].startswith('test_plan')
-        eq_(save_mock.call_args[0][2], self.webapp)
-
-    @mock.patch('mkt.developers.views.save_test_plan')
-    @mock.patch('mkt.developers.views.messages')
-    def test_submit_pdf(self, noop, save_mock):
-        r = self._submit_pdf()
-        self.assert3xx(r, self.url)
-        self._assert_submit('pdf', 'application/pdf', save_mock)
-
-    @mock.patch('mkt.developers.views.save_test_plan')
-    @mock.patch('mkt.developers.views.messages')
-    def test_submit_xls(self, noop, save_mock):
-        f = open(self.test_xls, 'r')
-        req = req_factory_factory(self.submit_url, user=self.user, post=True,
-                                  data={'agree': True, 'test_plan': f})
-        r = preload_submit(req, self.webapp.app_slug)
-        self.assert3xx(r, self.url)
-        self._assert_submit('xls', 'application/vnd.ms-excel', save_mock)
-
-    @mock.patch('mkt.developers.views.save_test_plan')
-    @mock.patch('mkt.developers.views.messages')
-    def test_submit_bad_file(self, noop, save_mock):
-        f = open(os.path.abspath(__file__), 'r')
-        req = req_factory_factory(self.submit_url, user=self.user, post=True,
-                                  data={'agree': True, 'test_plan': f})
-        r = preload_submit(req, self.webapp.app_slug)
-        eq_(r.status_code, 200)
-        eq_(PreloadTestPlan.objects.count(), 0)
-        assert not save_mock.called
-
-        assert ('Invalid file type' in
-                pq(r.content)('.test_plan .errorlist').text())
-
-    @mock.patch('mkt.developers.views.save_test_plan')
-    @mock.patch('mkt.developers.views.messages')
-    def test_submit_no_file(self, noop, save_mock):
-        req = req_factory_factory(self.submit_url, user=self.user, post=True,
-                                  data={'agree': True})
-        r = preload_submit(req, self.webapp.app_slug)
-        eq_(r.status_code, 200)
-        eq_(PreloadTestPlan.objects.count(), 0)
-        assert not save_mock.called
-
-        assert 'required' in pq(r.content)('.test_plan .errorlist').text()
-
-    @mock.patch('mkt.developers.views.save_test_plan')
-    @mock.patch('mkt.developers.views.messages')
-    def test_submit_no_agree(self, noop, save_mock):
-        f = open(self.test_xls, 'r')
-        req = req_factory_factory(self.submit_url, user=self.user, post=True,
-                                  data={'test_plan': f})
-        r = preload_submit(req, self.webapp.app_slug)
-        eq_(r.status_code, 200)
-        eq_(PreloadTestPlan.objects.count(), 0)
-        assert not save_mock.called
-
-        assert 'required' in pq(r.content)('.agree .errorlist').text()
-
-    @mock.patch('mkt.developers.views.save_test_plan')
-    @mock.patch('mkt.developers.views.messages')
-    def test_submit_multiple_status(self, noop, save_mock):
-        f = open(self.test_xls, 'r')
-        req = req_factory_factory(self.submit_url, user=self.user, post=True,
-                                  data={'test_plan': f, 'agree': True})
-        preload_submit(req, self.webapp.app_slug)
-        self._submit_pdf()
-
-        eq_(PreloadTestPlan.objects.count(), 2)
-        xls = PreloadTestPlan.objects.get(filename__contains='xls')
-        pdf = PreloadTestPlan.objects.get(filename__contains='pdf')
-        eq_(xls.status, mkt.STATUS_DISABLED)
-        eq_(pdf.status, mkt.STATUS_PUBLIC)
-
-        # Check the link points to most recent one.
-        req = req_factory_factory(self.url, user=self.user)
-        r = status(req, self.webapp.app_slug)
-        doc = pq(r.content)
-        eq_(doc('.test-plan-download').attr('href').split('?')[0],
-            pdf.preload_test_plan_url.split('?')[0])
-
-    @mock.patch.object(settings, 'PREINSTALL_TEST_PLAN_LATEST',
-                       datetime.datetime.now() + datetime.timedelta(days=1))
-    @mock.patch('mkt.developers.views.save_test_plan')
-    @mock.patch('mkt.developers.views.messages')
-    def test_outdated(self, noop, save_mock):
-        self._submit_pdf()
-
-        req = req_factory_factory(self.url, user=self.user)
-        r = status(req, self.webapp.app_slug)
-        doc = pq(r.content)
-        assert doc('.outdated')

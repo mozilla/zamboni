@@ -1,8 +1,6 @@
 import json
-import mimetypes
 import os
 import sys
-import time
 import traceback
 from collections import defaultdict
 from datetime import datetime
@@ -41,12 +39,11 @@ from mkt.developers.forms import (
     APIConsumerForm, AppFormBasic, AppFormDetails, AppFormMedia,
     AppFormSupport, AppFormTechnical, AppVersionForm, CategoryForm,
     ContentRatingForm, IARCGetAppInfoForm, MOTDForm, NewPackagedAppForm,
-    PreloadTestPlanForm, PreviewFormSet, TransactionFilterForm, trap_duplicate)
-from mkt.developers.models import AppLog, PreloadTestPlan
+    PreviewFormSet, TransactionFilterForm, trap_duplicate)
+from mkt.developers.models import AppLog
 from mkt.developers.serializers import ContentRatingSerializer
-from mkt.developers.tasks import (
-    fetch_manifest, file_validator, run_validator,
-    save_test_plan, validator)
+from mkt.developers.tasks import (fetch_manifest, file_validator,
+                                  run_validator, validator)
 from mkt.developers.utils import (
     check_upload, escalate_prerelease_permissions, handle_vip)
 from mkt.files.models import File, FileUpload
@@ -280,19 +277,6 @@ def status(request, addon_id, addon):
         # This contains the rejection reason and timestamp.
         ctx['rejection'] = entry and entry.activity_log
 
-    if waffle.switch_is_active('preload-apps'):
-        test_plan = PreloadTestPlan.objects.filter(
-            addon=addon, status=mkt.STATUS_PUBLIC)
-        if test_plan.exists():
-            test_plan = test_plan[0]
-            if (test_plan.last_submission <
-                    settings.PREINSTALL_TEST_PLAN_LATEST):
-                ctx['outdated_test_plan'] = True
-            ctx['next_step_suffix'] = 'submit'
-        else:
-            ctx['next_step_suffix'] = 'home'
-        ctx['test_plan'] = test_plan
-
     return render(request, 'developers/apps/status.html', ctx)
 
 
@@ -395,55 +379,6 @@ def content_ratings_edit(request, addon_id, addon):
                    'form': form,
                    'company': addon.latest_version.developer_name,
                    'now': datetime.now().strftime('%Y-%m-%d %H:%M:%S')})
-
-
-@waffle_switch('preload-apps')
-@dev_required
-def preload_home(request, addon_id, addon):
-    """
-    Gives information on the preload process, links to test plan template.
-    """
-    return render(request, 'developers/apps/preload/home.html',
-                  {'addon': addon})
-
-
-@waffle_switch('preload-apps')
-@dev_required(owner_for_post=True)
-def preload_submit(request, addon_id, addon):
-    if request.method == 'POST':
-        form = PreloadTestPlanForm(request.POST, request.FILES)
-        if form.is_valid():
-            # Save test plan file.
-            test_plan = request.FILES['test_plan']
-
-            # Figure the type to save it as (cleaned as pdf/xls from the form).
-            filetype = mimetypes.guess_type(test_plan.name)[0]
-            if 'pdf' in filetype:
-                filename = 'test_plan_%s.pdf'
-            else:
-                filename = 'test_plan_%s.xls'
-
-            # Timestamp.
-            filename = filename % str(time.time()).split('.')[0]
-            save_test_plan(test_plan, filename, addon)
-
-            # Log test plan.
-            PreloadTestPlan.objects.filter(addon=addon).update(
-                status=mkt.STATUS_DISABLED
-            )
-            PreloadTestPlan.objects.create(addon=addon, filename=filename)
-
-            messages.success(
-                request,
-                _('Application for preload successfully submitted.'))
-            return redirect(addon.get_dev_url('versions'))
-        else:
-            messages.error(request, _('There was an error with the form.'))
-    else:
-        form = PreloadTestPlanForm()
-
-    return render(request, 'developers/apps/preload/submit.html',
-                  {'addon': addon, 'form': form})
 
 
 @dev_required
