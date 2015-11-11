@@ -277,7 +277,7 @@ def _review(request, addon, version):
     all_forms = [form, attachment_formset, testedon_formset]
 
     if version:
-        features_list = [unicode(f) for f in version.features.to_list()]
+        features_list = version.features.to_names()
         appfeatures_form = AppFeaturesForm(data=postdata,
                                            instance=version.features)
         all_forms.append(appfeatures_form)
@@ -293,10 +293,6 @@ def _review(request, addon, version):
         if form.cleaned_data.get('action') == 'public':
             old_types = set(o.id for o in addon.device_types)
             new_types = set(form.cleaned_data.get('device_override'))
-
-            old_features = set(features_list)
-            new_features = set(unicode(f) for f
-                               in appfeatures_form.instance.to_list())
 
             if old_types != new_types:
                 # The reviewer overrode the device types. We need to not
@@ -325,7 +321,7 @@ def _review(request, addon, version):
                 log_reviewer_action(addon, request.user, msg,
                                     mkt.LOG.REVIEW_DEVICE_OVERRIDE)
 
-            if old_features != new_features:
+            if appfeatures_form.changed_data:
                 # The reviewer overrode the requirements. We need to not
                 # publish this app immediately.
                 if addon.publish_type == mkt.PUBLISH_IMMEDIATE:
@@ -334,8 +330,8 @@ def _review(request, addon, version):
                 appfeatures_form.save(mark_for_rereview=False)
 
                 # Log that the reviewer changed the minimum requirements.
-                added_features = new_features - old_features
-                removed_features = old_features - new_features
+                added_features, removed_features = (appfeatures_form
+                                                    .get_changed_features())
 
                 fmt = ', '.join(
                       [_(u'Added {0}').format(f) for f in added_features] +

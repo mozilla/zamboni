@@ -53,6 +53,7 @@ from mkt.submit.tests.test_views import BasePackagedAppTest, SetupFilesMixin
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
+from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import AddonDeviceType, Webapp
 from mkt.webapps.tasks import unindex_webapps
 from mkt.websites.utils import website_factory
@@ -419,7 +420,7 @@ class XSSMixin(object):
         a.name = '<script>alert("xss")</script>'
         a.save()
         if self.uses_es():
-            self.reindex(Webapp)
+            self.refresh(doctypes=('homescreen', 'webapp'))
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         tbody = pq(res.content)('#addon-queue tbody').html()
@@ -582,8 +583,10 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
     def test_homescreen_count(self):
         Tag(tag_text='homescreen').save_tag(self.apps[1])
+        self.apps[1].save()
         if self.uses_es():
-            self.reindex(Webapp)
+            WebappIndexer.unindex(self.apps[1].id)
+            self.refresh(('homescreen', 'webapp'))
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
@@ -714,7 +717,7 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         self.apps[2].update(created=self.days_ago(11))
 
         if self.uses_es():
-            self.reindex(Webapp)
+            self.refresh(doctypes=('homescreen', 'webapp'))
 
         self.url = reverse('reviewers.apps.queue_rereview')
 
@@ -962,8 +965,10 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
 
     def test_homescreen(self):
         Tag(tag_text='homescreen').save_tag(self.apps[1])
+        self.apps[1].save()
+        WebappIndexer.unindex(self.apps[1].id)
         if self.uses_es():
-            self.reindex(Webapp)
+            self.refresh(doctypes=('homescreen', 'webapp'))
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
@@ -1117,7 +1122,7 @@ class TestUpdateQueueES(mkt.site.tests.ESTestCase, TestUpdateQueue):
     def setUp(self):
         super(TestUpdateQueueES, self).setUp()
         self.create_switch('reviewer-tools-elasticsearch')
-        self.reindex(Webapp)
+        self.refresh(doctypes=('homescreen', 'webapp'))
 
 
 @mock.patch('mkt.versions.models.Version.is_privileged', False)
@@ -1493,13 +1498,37 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     def test_pending_to_public_w_requirements_overrides(self, storefront_mock):
         data = {'action': 'public', 'comments': 'something',
-                'has_sms': True}
+                'has_packaged_apps': True}
         data.update(self._attachment_management_form(num=0))
         data.update(self._testedon_management_form())
-        assert not self.app.latest_version.features.has_sms
+        assert not self.app.latest_version.features.has_packaged_apps
         self.post(data)
         app = self.get_app()
-        assert app.latest_version.features.has_sms
+        assert app.latest_version.features.has_packaged_apps
+        # Since features have been changed by the reviewer, the app should not
+        # be immediately published.
+        eq_(app.publish_type, mkt.PUBLISH_PRIVATE)
+        eq_(app.status, mkt.STATUS_APPROVED)
+        self._check_log(mkt.LOG.REVIEW_FEATURES_OVERRIDE)
+
+        # A reviewer changing features shouldn't generate a re-review.
+        eq_(RereviewQueue.objects.count(), 0)
+
+        assert not storefront_mock.called
+
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    def test_pending_to_public_w_requirements_removed(self, storefront_mock):
+        self.app.latest_version.features.update(has_packaged_apps=True)
+        data = {'action': 'public', 'comments': 'something',
+                'has_packaged_apps': False}
+        data.update(self._attachment_management_form(num=0))
+        data.update(self._testedon_management_form())
+        assert self.app.latest_version.features.has_packaged_apps
+        self.post(data)
+        app = self.get_app()
+        assert not app.latest_version.features.has_packaged_apps
+        # Since features have been changed by the reviewer, the app should not
+        # be immediately published.
         eq_(app.publish_type, mkt.PUBLISH_PRIVATE)
         eq_(app.status, mkt.STATUS_APPROVED)
         self._check_log(mkt.LOG.REVIEW_FEATURES_OVERRIDE)
@@ -1512,26 +1541,26 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
     def test_pending_to_reject_w_requirements_overrides(self):
         # Rejecting an app doesn't let you override features requirements.
         data = {'action': 'reject', 'comments': 'something',
-                'has_sms': True}
+                'has_packaged_apps': True}
         data.update(self._attachment_management_form(num=0))
         data.update(self._testedon_management_form())
-        assert not self.app.latest_version.features.has_sms
+        assert not self.app.latest_version.features.has_packaged_apps
         self.post(data)
         app = self.get_app()
-        assert not app.latest_version.features.has_sms
+        assert not app.latest_version.features.has_packaged_apps
         eq_(app.publish_type, mkt.PUBLISH_IMMEDIATE)
         eq_(app.status, mkt.STATUS_REJECTED)
 
     def test_pending_to_reject_w_requirements_overrides_nothing_changed(self):
-        self.version.features.update(has_sms=True)
+        self.version.features.update(has_packaged_apps=True)
         data = {'action': 'public', 'comments': 'something',
-                'has_sms': True}
+                'has_packaged_apps': True}
         data.update(self._attachment_management_form(num=0))
         data.update(self._testedon_management_form())
-        assert self.app.latest_version.features.has_sms
+        assert self.app.latest_version.features.has_packaged_apps
         self.post(data)
         app = self.get_app()
-        assert app.latest_version.features.has_sms
+        assert app.latest_version.features.has_packaged_apps
         eq_(app.publish_type, mkt.PUBLISH_IMMEDIATE)
         eq_(app.status, mkt.STATUS_PUBLIC)
         action_id = mkt.LOG.REVIEW_FEATURES_OVERRIDE.id

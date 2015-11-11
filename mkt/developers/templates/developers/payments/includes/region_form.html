@@ -14,15 +14,6 @@
 {% if not is_paid and region_form.special_regions and waffle.flag('special-regions') %}
   {% include 'developers/payments/includes/regions_disabled.html' %}
 {% endif %}
-{% if region_form.low_memory_regions %}
-  <p class="note restricted disabled-regions">
-    <a href="https://developer.mozilla.org/Apps/Build/Performance/Apps_for_low-memory_Firefox_OS_devices" target="_blank">
-      {{ _('Learn about low-memory devices.') }}
-    </a>
-    {{ _('You must <a href="{status_page}">request a review</a> to have your app shown on low-memory devices.')
-       |fe(status_page=url('mkt.developers.apps.versions', addon.app_slug) + '#low-memory-devices') }}
-  </p>
-{% endif %}
 <div class="other-regions{{ ' restricted' if not is_paid }}">
   {% include 'developers/payments/includes/regions_other.html' %}
 </div>

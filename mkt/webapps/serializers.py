@@ -15,8 +15,8 @@ from mkt.api.fields import (ESTranslationSerializerField, LargeTextField,
                             TranslationSerializerField)
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.constants.categories import CATEGORY_CHOICES
-from mkt.constants.features import FeatureProfile
 from mkt.constants.payments import PROVIDER_BANGO
+from mkt.features.utils import load_feature_profile
 from mkt.prices.models import AddonPremium, Price
 from mkt.search.serializers import BaseESSerializer, es_to_datetime
 from mkt.site.helpers import absolutify
@@ -48,8 +48,7 @@ class AppFeaturesSerializer(serializers.ModelSerializer):
 
     def to_native(self, obj):
         ret = super(AppFeaturesSerializer, self).to_native(obj)
-        profile = FeatureProfile.from_signature(obj.to_signature())
-        ret['required'] = profile.to_list()
+        ret['required'] = obj.to_list()
         return ret
 
 
@@ -78,6 +77,8 @@ class AppSerializer(serializers.ModelSerializer):
     device_types = SemiSerializerMethodField('get_device_types')
     description = TranslationSerializerField(required=False)
     homepage = TranslationSerializerField(required=False)
+    feature_compatibility = serializers.SerializerMethodField(
+        'get_feature_compatibility')
     file_size = serializers.IntegerField(source='file_size', read_only=True)
     icons = serializers.SerializerMethodField('get_icons')
     id = serializers.IntegerField(source='pk', required=False)
@@ -130,15 +131,16 @@ class AppSerializer(serializers.ModelSerializer):
         fields = [
             'app_type', 'author', 'banner_message', 'banner_regions',
             'categories', 'content_ratings', 'created', 'current_version',
-            'default_locale', 'description', 'device_types', 'file_size',
-            'homepage', 'hosted_url', 'icons', 'id', 'is_disabled',
-            'is_homescreen', 'is_offline', 'is_packaged', 'last_updated',
-            'manifest_url', 'name', 'package_path', 'payment_account',
-            'payment_required', 'premium_type', 'previews', 'price',
-            'price_locale', 'privacy_policy', 'promo_imgs', 'public_stats',
-            'release_notes', 'ratings', 'regions', 'resource_uri', 'slug',
-            'status', 'support_email', 'support_url', 'supported_locales',
-            'tags', 'upsell', 'upsold', 'user', 'versions'
+            'default_locale', 'description', 'device_types',
+            'feature_compatibility', 'file_size', 'homepage', 'hosted_url',
+            'icons', 'id', 'is_disabled', 'is_homescreen', 'is_offline',
+            'is_packaged', 'last_updated', 'manifest_url', 'name',
+            'package_path', 'payment_account', 'payment_required',
+            'premium_type', 'previews', 'price', 'price_locale',
+            'privacy_policy', 'promo_imgs', 'public_stats', 'release_notes',
+            'ratings', 'regions', 'resource_uri', 'slug', 'status',
+            'support_email', 'support_url', 'supported_locales', 'tags',
+            'upsell', 'upsold', 'user', 'versions'
         ]
 
     def _get_region_id(self):
@@ -177,6 +179,17 @@ class AppSerializer(serializers.ModelSerializer):
     def get_icons(self, app):
         return dict([(icon_size, app.get_icon_url(icon_size))
                      for icon_size in mkt.CONTENT_ICON_SIZES])
+
+    def get_feature_compatibility(self, app):
+        request = self.context['request']
+        if not hasattr(request, 'feature_profile'):
+            load_feature_profile(request)
+        if request.feature_profile is None:
+            # No profile information sent, we can't return compatibility,
+            # return null.
+            return None
+        app_features = app.current_version.features.to_list()
+        return request.feature_profile.has_features(app_features)
 
     def get_payment_account(self, app):
         # Avoid a query for payment_account if the app is not premium.
@@ -505,6 +518,13 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
                                   for key in
                                   obj.es_data.get('interactive_elements')]
         }
+
+    def get_feature_compatibility(self, app):
+        # We're supposed to be filtering out incompatible apps anyway, so don't
+        # bother calculating feature compatibility: if an app is there, it's
+        # either compatible or the client overrode this by asking to see apps
+        # for a different platform.
+        return None
 
     def get_versions(self, obj):
         return dict((v['version'], v['resource_uri'])

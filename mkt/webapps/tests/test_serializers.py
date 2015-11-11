@@ -11,20 +11,101 @@ from nose.tools import eq_, ok_
 
 import mkt
 import mkt.site.tests
-from mkt.constants import ratingsbodies, regions
-from mkt.constants.payments import PROVIDER_REFERENCE
+from mkt.api.tests.test_oauth import BaseOAuth
+from mkt.constants import APP_FEATURES, ratingsbodies, regions
+from mkt.constants.features import FeatureProfile
+from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
 from mkt.constants.regions import RESTOFWORLD
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
                                    SolitudeSeller)
 from mkt.prices.models import PriceCurrency
 from mkt.regions.middleware import RegionMiddleware
 from mkt.site.fixtures import fixture
+from mkt.site.tests import user_factory
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import AddonDeviceType, Installed, Preview, Webapp
-from mkt.webapps.serializers import (AppSerializer, ESAppSerializer,
+from mkt.webapps.serializers import (AppFeaturesSerializer, AppSerializer,
+                                     ESAppSerializer, SimpleAppSerializer,
                                      SimpleESAppSerializer)
+
+
+class TestAppFeaturesSerializer(BaseOAuth):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.features = Webapp.objects.get(pk=337141).latest_version.features
+        self.request = RequestFactory().get('/')
+        self.request.user = AnonymousUser()
+
+    def get_native(self, **kwargs):
+        self.features.update(**kwargs)
+        return AppFeaturesSerializer().to_native(self.features)
+
+    def test_no_features(self):
+        native = self.get_native()
+        ok_(not native['required'])
+
+    def test_one_feature(self):
+        native = self.get_native(has_pay=True)
+        self.assertSetEqual(native['required'], ['pay'])
+
+    def test_all_features(self):
+        data = dict(('has_' + f.lower(), True) for f in APP_FEATURES)
+        native = self.get_native(**data)
+        self.assertSetEqual(native['required'],
+                            [f.lower() for f in APP_FEATURES])
+
+
+class TestSimpleAppSerializer(mkt.site.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        self.webapp = Webapp.objects.get(pk=337141)
+        self.request = RequestFactory().get('/')
+        self.request.user = AnonymousUser()
+
+    def app(self):
+        return AppSerializer(self.webapp,
+                             context={'request': self.request})
+
+    def simple_app(self):
+        return SimpleAppSerializer(self.webapp,
+                                   context={'request': self.request})
+
+    def add_pay_account(self, provider=PROVIDER_BANGO):
+        user = user_factory()
+        acct = PaymentAccount.objects.create(
+            solitude_seller=SolitudeSeller.objects.create(user=user),
+            provider=provider, user=user)
+        AddonPaymentAccount.objects.create(addon=self.webapp,
+                                           payment_account=acct)
+        return acct
+
+    def test_regions_present(self):
+        # Regression test for bug 964802.
+        data = self.simple_app().data
+        ok_('regions' in data)
+        eq_(len(data['regions']), len(self.webapp.get_regions()))
+
+    def test_no_payment_account_when_not_premium(self):
+        eq_(self.app().data['payment_account'], None)
+
+    def test_no_payment_account(self):
+        self.make_premium(self.webapp)
+        eq_(self.app().data['payment_account'], None)
+
+    def test_no_bango_account(self):
+        self.make_premium(self.webapp)
+        self.add_pay_account(provider=PROVIDER_REFERENCE)
+        eq_(self.app().data['payment_account'], None)
+
+    def test_payment_account(self):
+        self.make_premium(self.webapp)
+        acct = self.add_pay_account()
+        eq_(self.app().data['payment_account'],
+            reverse('payment-account-detail', args=[acct.pk]))
 
 
 class TestAppSerializer(mkt.site.tests.TestCase):
@@ -258,6 +339,28 @@ class TestAppSerializer(mkt.site.tests.TestCase):
 
         res = self.serialize(self.app)
         eq_(res['upsell'], False)
+
+    def test_feature_compatibility_true(self):
+        self.app.current_version.features.update(has_apps=True, has_nfc=True)
+        feature_profile = FeatureProfile(apps=True, nfc=True, mobileid=True)
+        self.request = RequestFactory().get(
+            '/?dev=firefoxos&pro=%s' % feature_profile.to_signature())
+        res = self.serialize(self.app)
+        eq_(res['feature_compatibility'], True)
+
+    def test_feature_compatibility_false(self):
+        self.app.current_version.features.update(has_apps=True, has_nfc=True)
+        feature_profile = FeatureProfile(apps=False, nfc=True, mobileid=True)
+        self.request = RequestFactory().get(
+            '/?dev=firefoxos&pro=%s' % feature_profile.to_signature())
+        res = self.serialize(self.app)
+        eq_(res['feature_compatibility'], False)
+
+    def test_feature_compatibility_unknown(self):
+        self.app.current_version.features.update(has_apps=True, has_nfc=True)
+        self.request = RequestFactory().get('/?dev=firefoxos')
+        res = self.serialize(self.app)
+        eq_(res['feature_compatibility'], None)
 
 
 class TestAppSerializerPrices(mkt.site.tests.TestCase):
@@ -676,6 +779,19 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
         app['group_translations'] = [{'lang': 'en-US', 'string': 'My Group'}]
         res = ESAppSerializer(app, context={'request': self.request})
         eq_(res.data['group'], {'en-US': 'My Group'})
+
+    def test_feature_compatibility_always_none(self):
+        # ES is already filtering by feature profile for us, so it does not
+        # make much sense to check for feature compatibility in ES serializer.
+        self.app.current_version.features.update(has_apps=True, has_nfc=True)
+        self.reindex(Webapp)
+        feature_profile = FeatureProfile(apps=False, nfc=True, mobileid=True)
+        self.request = RequestFactory().get(
+            '/?dev=firefoxos&pro=%s' % feature_profile.to_signature())
+        self.request.REGION = mkt.regions.USA
+        self.request.user = self.profile
+        res = self.serialize()
+        eq_(res['feature_compatibility'], None)
 
 
 class TestSimpleESAppSerializer(mkt.site.tests.ESTestCase):

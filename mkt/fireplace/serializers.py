@@ -27,13 +27,13 @@ class FireplaceAppSerializer(BaseFireplaceAppSerializer, SimpleAppSerializer):
     class Meta(SimpleAppSerializer.Meta):
         fields = ['author', 'banner_message', 'banner_regions', 'categories',
                   'content_ratings', 'current_version', 'description',
-                  'device_types', 'file_size', 'homepage', 'hosted_url',
-                  'icons', 'id', 'is_offline', 'is_packaged', 'last_updated',
-                  'manifest_url', 'name', 'payment_required', 'premium_type',
-                  'previews', 'price', 'price_locale', 'privacy_policy',
-                  'promo_imgs', 'public_stats', 'release_notes', 'ratings',
-                  'slug', 'status', 'support_email', 'support_url', 'tags',
-                  'upsell', 'user']
+                  'device_types', 'feature_compatibility', 'file_size',
+                  'homepage', 'hosted_url', 'icons', 'id', 'is_offline',
+                  'is_packaged', 'last_updated', 'manifest_url', 'name',
+                  'payment_required', 'premium_type', 'previews', 'price',
+                  'price_locale', 'privacy_policy', 'promo_imgs',
+                  'public_stats', 'release_notes', 'ratings', 'slug', 'status',
+                  'support_email', 'support_url', 'tags', 'upsell', 'user']
         exclude = []
 
 

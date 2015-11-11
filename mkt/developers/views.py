@@ -137,8 +137,7 @@ def edit(request, addon_id, addon):
         'version': addon.current_version or addon.latest_version
     }
     if not addon.is_packaged and data['version']:
-        data['feature_list'] = [unicode(f) for f in
-                                data['version'].features.to_list()]
+        data['feature_list'] = data['version'].features.to_names()
     if acl.action_allowed(request, 'Apps', 'Configure'):
         data['admin_settings_form'] = forms.AdminSettingsForm(instance=addon,
                                                               request=request)
@@ -259,10 +258,7 @@ def status(request, addon_id, addon):
         'addon': addon,
         'appeal_form': appeal_form,
         'is_tarako': addon.tags.filter(tag_text=QUEUE_TARAKO).exists(),
-        'tarako_review': addon.additionalreview_set
-                              .latest_for_queue(QUEUE_TARAKO),
         'publish_form': publish_form,
-        'QUEUE_TARAKO': QUEUE_TARAKO,
         'upload_form': upload_form,
     }
 
@@ -485,7 +481,7 @@ def version_edit(request, addon_id, addon, version_id):
         context.update({
             'appfeatures_form': appfeatures_form,
             'appfeatures': appfeatures,
-            'feature_list': [unicode(f) for f in appfeatures.to_list()]
+            'feature_list': appfeatures.to_names(),
         })
 
     return render(request, 'developers/apps/version_edit.html', context)
@@ -914,8 +910,8 @@ def addons_section(request, addon_id, addon, section, editable=False):
     if appfeatures_form and appfeatures:
         data.update({
             'appfeatures': appfeatures,
-            'feature_list': [unicode(f) for f in appfeatures.to_list()],
-            'appfeatures_form': appfeatures_form
+            'feature_list': appfeatures.to_names(),
+            'appfeatures_form': appfeatures_form,
         })
 
     return render(request, 'developers/apps/edit/%s.html' % section, data)

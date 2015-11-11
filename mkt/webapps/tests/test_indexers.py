@@ -10,12 +10,12 @@ from mkt.constants.applications import DEVICE_TYPES
 from mkt.reviewers.models import EscalationQueue, RereviewQueue
 from mkt.search.utils import BOOST_MULTIPLIER_FOR_PUBLIC_CONTENT, get_boost
 from mkt.site.fixtures import fixture
-from mkt.site.tests import ESTestCase, TestCase
+from mkt.site.tests import ESTestCase, TestCase, app_factory
 from mkt.site.utils import version_factory
 from mkt.tags.models import Tag
 from mkt.translations.utils import to_language
 from mkt.users.models import UserProfile
-from mkt.webapps.indexers import WebappIndexer
+from mkt.webapps.indexers import HomescreenIndexer, WebappIndexer
 from mkt.webapps.models import AddonDeviceType, ContentRating, Webapp
 
 
@@ -32,6 +32,16 @@ class TestWebappIndexer(TestCase):
     def test_index(self):
         with self.settings(ES_INDEXES={'webapp': 'apps'}):
             eq_(WebappIndexer.get_index(), 'apps')
+
+    def test_indexable(self):
+        homescreen = app_factory(name=u'Elegant Waffle',
+                                 description=u'homescreen runner',
+                                 created=self.days_ago(5),
+                                 manifest_url='http://h.testmanifest.com')
+        Tag(tag_text='homescreen').save_tag(homescreen)
+        homescreen.save()
+        q = WebappIndexer.get_indexable()
+        eq_(list(q), [self.app])
 
     def test_model(self):
         eq_(WebappIndexer.get_model(), Webapp)
@@ -78,7 +88,6 @@ class TestWebappIndexer(TestCase):
         eq_(doc['status'], obj.status)
         eq_(doc['trending'], 0)
         eq_(doc['is_escalated'], False)
-        eq_(doc['is_homescreen'], False)
         eq_(doc['latest_version']['status'], mkt.STATUS_PUBLIC)
         eq_(doc['latest_version']['has_editor_comment'], False)
         eq_(doc['latest_version']['has_info_request'], False)
@@ -147,11 +156,6 @@ class TestWebappIndexer(TestCase):
         obj, doc = self._get_doc()
         eq_(doc['is_rereviewed'], True)
         self.assertCloseToNow(doc['rereview_date'])
-
-    def test_extract_is_homescreen(self):
-        Tag(tag_text='homescreen').save_tag(self.app)
-        obj, doc = self._get_doc()
-        ok_(doc['is_homescreen'])
 
     def test_extract_is_priority(self):
         self.app.update(priority_review=True)
@@ -261,6 +265,34 @@ class TestWebappIndexer(TestCase):
         eq_(doc['trending_42'], 50.0)
         # Adolescent regions trending value is not stored.
         ok_('trending_2' not in doc)
+
+
+class TestHomescreenIndexer(TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def test_mapping_type_name(self):
+        eq_(HomescreenIndexer.get_mapping_type_name(), 'homescreen')
+
+    def test_index(self):
+        with self.settings(ES_INDEXES={'homescreen': 'homescreens'}):
+            eq_(HomescreenIndexer.get_index(), 'homescreens')
+
+    def test_model(self):
+        eq_(HomescreenIndexer.get_model(), Webapp)
+
+    def test_mapping(self):
+        mapping = HomescreenIndexer.get_mapping()
+        eq_(mapping.keys(), ['homescreen'])
+
+    def test_indexable(self):
+        homescreen = app_factory(name=u'Elegant Waffle',
+                                 description=u'homescreen runner',
+                                 created=self.days_ago(5),
+                                 manifest_url='http://h.testmanifest.com')
+        Tag(tag_text='homescreen').save_tag(homescreen)
+        homescreen.save()
+        q = HomescreenIndexer.get_indexable()
+        eq_(list(q), [homescreen])
 
 
 class TestExcludedFields(ESTestCase):

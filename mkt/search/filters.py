@@ -8,7 +8,7 @@ from rest_framework.filters import BaseFilterBackend
 import mkt
 from mkt.api.base import form_errors, get_region_from_request
 from mkt.constants.applications import get_device_id
-from mkt.features.utils import get_feature_profile
+from mkt.features.utils import load_feature_profile
 
 
 class SearchQueryFilter(BaseFilterBackend):
@@ -298,10 +298,12 @@ class ProfileFilter(BaseFilterBackend):
 
     """
     def filter_queryset(self, request, queryset, view):
-        profile = get_feature_profile(request)
-        if profile:
+        if not hasattr(request, 'feature_profile'):
+            load_feature_profile(request)
+        if request.feature_profile:
             must_not = []
-            for k in profile.to_kwargs(prefix='features.has_').keys():
+            for k in request.feature_profile.to_kwargs(
+                    prefix='features.has_').keys():
                 must_not.append(F('term', **{k: True}))
             if must_not:
                 return queryset.filter(Bool(must_not=must_not))

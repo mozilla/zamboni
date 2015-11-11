@@ -5,6 +5,7 @@ from django.core.exceptions import ValidationError
 from django.core.urlresolvers import NoReverseMatch
 from django.test.utils import override_settings
 
+import mock
 from nose.tools import eq_, ok_
 
 import mkt
@@ -15,7 +16,8 @@ from mkt.comm.models import (CommAttachment, CommunicationNote,
 from mkt.comm.tests.test_views import CommTestMixin
 from mkt.constants import comm as const
 from mkt.site.fixtures import fixture
-from mkt.site.tests import TestCase, extension_factory, user_factory
+from mkt.site.tests import (TestCase, app_factory, extension_factory,
+                            user_factory)
 from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
 
@@ -294,3 +296,98 @@ class TestCommAttachment(TestCase, CommTestMixin):
             self.attachment2.get_absolute_url()
         except NoReverseMatch:
             assert False, 'CommAttachment.get_absolute_url NoReverseMatch'
+
+
+class TestUserHasPermNoteExtensions(TestCase):
+
+    def setUp(self):
+        super(TestUserHasPermNoteExtensions, self).setUp()
+        self.extension = extension_factory()
+        self.developer = user_factory()
+        self.developer.extension_set.add(self.extension)
+        self.reviewer = user_factory()
+        self.grant_permission(self.reviewer, 'ContentTools: AddonReview')
+        self.thread = CommunicationThread.objects.create(
+            _extension=self.extension,
+            _extension_version=self.extension.latest_version)
+
+    @mock.patch('mkt.comm.models.acl.check_reviewer')
+    def test_rev_can_see_dev(self, check_reviewer_mock):
+        check_reviewer_mock.return_value = True
+        note = self.thread.notes.create(author=self.developer, body='abc',
+                                        note_type=const.DEVELOPER_COMMENT)
+        ok_(user_has_perm_note(note, self.reviewer, request=True))
+
+    def test_dev_can_see_rev(self):
+        note = self.thread.notes.create(
+            author=self.reviewer, body='abc',
+            note_type=const.REVIEWER_PUBLIC_COMMENT)
+        ok_(user_has_perm_note(note, self.developer, request=True))
+
+    def test_dev_can_see_dev(self):
+        note = self.thread.notes.create(
+            author=self.developer, body='abc',
+            note_type=const.DEVELOPER_COMMENT)
+        ok_(user_has_perm_note(note, self.developer, request=True))
+
+    def test_dev_can_see_if_perm(self):
+        note = self.thread.notes.create(
+            author=self.developer, body='abc',
+            note_type=const.REVIEWER_COMMENT,
+            read_permission_developer=True)
+        ok_(user_has_perm_note(note, self.developer, request=True))
+
+    def test_dev_cannot_see_internal_rev(self):
+        developer2 = user_factory()
+        developer2.extension_set.add(self.extension)
+        note = self.thread.notes.create(
+            author=self.reviewer, body='abc',
+            note_type=const.REVIEWER_COMMENT)
+        ok_(not user_has_perm_note(note, self.developer, request=True))
+
+
+class TestUserHasPermNoteApps(TestCase):
+
+    def setUp(self):
+        super(TestUserHasPermNoteApps, self).setUp()
+        self.app = app_factory()
+        self.developer = user_factory()
+        self.developer.addonuser_set.create(addon=self.app)
+        self.reviewer = user_factory()
+        self.grant_permission(self.reviewer, 'Apps', 'Review')
+        self.thread = CommunicationThread.objects.create(
+            _addon=self.app, _version=self.app.latest_version)
+
+    @mock.patch('mkt.comm.models.acl.check_reviewer')
+    def test_rev_can_see_dev(self, check_reviewer_mock):
+        check_reviewer_mock.return_value = True
+        note = self.thread.notes.create(author=self.developer, body='abc',
+                                        note_type=const.DEVELOPER_COMMENT)
+        ok_(user_has_perm_note(note, self.reviewer, request=True))
+
+    def test_dev_can_see_rev(self):
+        note = self.thread.notes.create(
+            author=self.reviewer, body='abc',
+            note_type=const.REVIEWER_PUBLIC_COMMENT)
+        ok_(user_has_perm_note(note, self.developer, request=True))
+
+    def test_dev_can_see_dev(self):
+        developer2 = user_factory()
+        developer2.addonuser_set.create(addon=self.app)
+        note = self.thread.notes.create(
+            author=self.developer, body='abc',
+            note_type=const.DEVELOPER_COMMENT)
+        ok_(user_has_perm_note(note, developer2, request=True))
+
+    def test_dev_can_see_if_perm(self):
+        note = self.thread.notes.create(
+            author=self.developer, body='abc',
+            note_type=const.REVIEWER_COMMENT,
+            read_permission_developer=True)
+        ok_(user_has_perm_note(note, self.developer, request=True))
+
+    def test_dev_cannot_see_internal_rev(self):
+        note = self.thread.notes.create(
+            author=self.reviewer, body='abc',
+            note_type=const.REVIEWER_COMMENT)
+        ok_(not user_has_perm_note(note, self.developer, request=True))
