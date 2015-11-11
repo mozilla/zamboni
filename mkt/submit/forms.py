@@ -107,6 +107,8 @@ class DeviceTypeForm(happyforms.Form):
             source = self._get_combined()
 
         platforms = {'firefoxos': mkt.DEVICE_GAIA,
+                     'firefoxos+mobile': mkt.DEVICE_GAIA,
+                     'firefoxos+tv': mkt.DEVICE_TV,
                      'desktop': mkt.DEVICE_DESKTOP,
                      'android-mobile': mkt.DEVICE_MOBILE,
                      'android-tablet': mkt.DEVICE_TABLET}

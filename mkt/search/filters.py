@@ -259,6 +259,7 @@ class DeviceTypeFilter(BaseFilterBackend):
 
         device_id = get_device_id(request)
         data = {
+            'tv': getattr(request, 'TV', False),
             'gaia': getattr(request, 'GAIA', False),
             'mobile': getattr(request, 'MOBILE', False),
             'tablet': getattr(request, 'TABLET', False),
