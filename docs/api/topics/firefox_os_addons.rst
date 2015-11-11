@@ -120,11 +120,14 @@ Update
 .. http:patch:: /api/v2/extensions/extension/(int:id)|(string:slug)/
 
     .. note:: Requires authentication and ownership of the Add-on.
+    .. warning:: Changes to the slug will be ignored when the slug is also
+        used in the URL. To be able to change the slug of an Add-on, you *must*
+        use the id in the URL.
 
     Update some properties of an add-on.
 
     :param int id: The add-on id
-    :param string slug: The add-on slug
+    :param string slug: The add-on slug.
 
     :reqjson boolean disabled: Boolean indicating whether the developer has disabled
         their add-on or not.
