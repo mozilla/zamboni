@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-10-14 13:42-0700\n"
-"PO-Revision-Date: 2015-05-16 07:49+0000\n"
-"Last-Translator: Ayan <ayay700@gmail.com>\n"
+"PO-Revision-Date: 2015-09-12 21:20+0000\n"
+"Last-Translator: Biraj <brnet00@gmail.com>\n"
 "Language-Team: Bengali\n"
 "Language: bn_IN\n"
 "MIME-Version: 1.0\n"
@@ -12,11 +12,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1431762542.0\n"
+"X-POOTLE-MTIME: 1442092812.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
-msgstr ""
+msgstr "অবমাননা প্রতিবেদন এর অনুসন্ধান চাই: %s"
 
 #: mkt/abuse/forms.py:78 mkt/abuse/forms.py:92 mkt/ratings/forms.py:67
 msgid "Skip for now"
@@ -24,11 +24,11 @@ msgstr "এখনকার জন্য এড়িয়ে যাওয়া হো�
 
 #: mkt/abuse/forms.py:79 mkt/abuse/forms.py:93
 msgid "Mark all reports Read"
-msgstr ""
+msgstr "সমস্ত রিপোর্ট পড়া হয়ে গেছে চিহ্নিত কর"
 
 #: mkt/abuse/forms.py:80
 msgid "Flag for re-review"
-msgstr ""
+msgstr "আর এক বার দেখার জন্য নিশানা দাও"
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -1243,11 +1243,11 @@ msgstr "টারাকো অ্যাপ রিভিউ"
 
 #: mkt/constants/base.py:251
 msgid "App Abuse Report Read"
-msgstr ""
+msgstr "অ্যাপ অসম্মানজনিত প্রতিবেদন পড়া হয়ে গেছে"
 
 #: mkt/constants/base.py:252
 msgid "Website Abuse Report Read"
-msgstr ""
+msgstr "ওয়েবসাইট এর অসম্মানজনিত প্রতিবেদন পড়া হয়ে গেছে"
 
 #: mkt/constants/base.py:286
 msgid "Level 1"
@@ -1275,19 +1275,19 @@ msgstr "লেভেল ৬"
 
 #: mkt/constants/base.py:292
 msgid "Level 7"
-msgstr ""
+msgstr "স্তর 7"
 
 #: mkt/constants/base.py:293
 msgid "Level 8"
-msgstr ""
+msgstr "স্তর 8"
 
 #: mkt/constants/base.py:294
 msgid "Level 9"
-msgstr ""
+msgstr "স্তর 9"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
-msgstr ""
+msgstr "বই এবং কমিক্স"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
@@ -1303,11 +1303,11 @@ msgstr "বিনোদন"
 
 #: mkt/constants/categories.py:9
 msgid "Food & Drink"
-msgstr ""
+msgstr "খাবার এবং পানীয়"
 
 #: mkt/constants/categories.py:10
 msgid "Kids"
-msgstr ""
+msgstr "বাচ্চারা"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:46
 msgid "Games"
@@ -1319,11 +1319,11 @@ msgstr "স্বাস্থ্য এবং ফিটনেস"
 
 #: mkt/constants/categories.py:13
 msgid "Humor"
-msgstr ""
+msgstr "উৎফুল্ল"
 
 #: mkt/constants/categories.py:14
 msgid "Internet"
-msgstr ""
+msgstr "ইন্টারনেট"
 
 #: mkt/constants/categories.py:15 mkt/constants/categories.py:47
 msgid "Lifestyle"
@@ -1339,11 +1339,11 @@ msgstr "সঙ্গীত"
 
 #: mkt/constants/categories.py:18
 msgid "News"
-msgstr ""
+msgstr "সংবাদ"
 
 #: mkt/constants/categories.py:19
 msgid "Personalization"
-msgstr ""
+msgstr "ব্যাক্তিগতকরন"
 
 #: mkt/constants/categories.py:20
 msgid "Photo & Video"
@@ -1359,7 +1359,7 @@ msgstr "উল্লেখ"
 
 #: mkt/constants/categories.py:23
 msgid "Science & Tech"
-msgstr ""
+msgstr "বিজ্ঞান এবং প্রযুক্তি"
 
 #: mkt/constants/categories.py:24
 msgid "Shopping"
@@ -1383,7 +1383,7 @@ msgstr "ইউটিলিটি"
 
 #: mkt/constants/categories.py:29
 msgid "Weather"
-msgstr ""
+msgstr "আবহাত্তয়া"
 
 #: mkt/constants/categories.py:45 mkt/ecosystem/templates/ecosystem/macros.html:134 mkt/site/context_processors.py:48
 msgid "Tools"
@@ -2082,15 +2082,15 @@ msgstr ""
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
-msgstr ""
+msgstr "সেন্ট মার্টিন (ফরাসি অংশ)"
 
 #: mkt/constants/regions.py:212
 msgid "Macedonia, the former Yugoslav Republic of"
-msgstr ""
+msgstr "ম্যাসাডোনিয়া, সাবেক যুগোস্লাভ প্রজাতন্ত্র"
 
 #: mkt/constants/regions.py:251
 msgid "Palestine, State of"
-msgstr ""
+msgstr "প্যালেস্টাইন, রাজ্য"
 
 #: mkt/constants/regions.py:256
 msgid "Russia"
@@ -2102,7 +2102,7 @@ msgstr "সেনেগাল"
 
 #: mkt/constants/regions.py:263
 msgid "Saint Helena, Ascension and Tristan da Cunha"
-msgstr ""
+msgstr "সেন্ট হেলেনা, অ্যাসেনশন ও ত্রিস্তান দা কুনহা"
 
 #: mkt/constants/regions.py:295
 msgid "Taiwan"
@@ -2114,7 +2114,7 @@ msgstr "তানজানিয়া"
 
 #: mkt/constants/regions.py:303
 msgid "Holy See"
-msgstr ""
+msgstr "সুদৃষ্টিতে দেখা"
 
 #: mkt/constants/regions.py:305
 msgid "Venezuela"
@@ -2226,7 +2226,7 @@ msgstr "জিপ ফাইল থেকে ম্যানিফেস্ট �
 
 #: mkt/developers/forms.py:532
 msgid "Hosted URL:"
-msgstr ""
+msgstr "হোস্টেড URL:"
 
 #: mkt/developers/forms.py:533
 msgid "A URL to where your app is hosted on the web, if it exists. This allows users to try out your app before installing it."
@@ -2677,7 +2677,7 @@ msgstr "প্রিভিউ চালু করা যায়নি।"
 
 #: mkt/developers/utils.py:107
 msgid "Promo image could not be opened."
-msgstr ""
+msgstr "প্রচার চিত্র খোলা যায়নি।"
 
 #: mkt/developers/utils.py:114
 msgid "Icons must be at least 128px by 128px."
@@ -3638,6 +3638,10 @@ msgid ""
 "The app name is one of the fields used to return search results in the Firefox Marketplace. The app name also appears on the app’s detail page. Be sure you’ve included a descriptive name in your "
 "app manifest. If you want to change the app name, you’ll need to do that in your app manifest."
 msgstr ""
+"অ্যাপ-এর বিবরণ একটি ক্ষেত্র যেটি আনুসন্ধানের ফলাফল বার করে Firefox "
+"মার্কেটপ্লেস-এ। অ্যাপ-এর বর্ণনা অ্যাপ বিবরণের পেজেও থাকে। অ্যাপ-এর "
+"ম্যানিফেস্ট ফাইলেঅ্যাপ-এর বর্ণনা আবশ্যই দেবেন। আপনি যদি আপনার অ্যাপ-এর নাম "
+"পালটাতে চান, আপনি পালটাতে পারেন অ্যাপটির মানিফেস্ট ফাইল থেকে।"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:36 mkt/reviewers/templates/reviewers/includes/details.html:40 mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
 msgid "Developer Name"
@@ -3707,6 +3711,9 @@ msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
 "accurately represents your app."
 msgstr ""
+"অ্যাপ-এর বিবরণ একটি ক্ষেত্র যেটি আনুসন্ধানের ফলাফল বার করে Firefox "
+"মার্কেটপ্লেস-এ। অ্যাপ-এর বর্ণনা অ্যাপ বিবরণের পেজেও থাকে। অ্যাপ-এর বর্ণনা "
+"আবশ্যই দেবেন, যা আপনার অ্যাপটির সম্পর্কে বিবরণ দেবে।"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:141 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Search Keywords"
@@ -4128,6 +4135,14 @@ msgid ""
 "us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
 "servers where they will be reviewed by interested phone operators. If you have further questions, you can <a href=\"%(support_url)s\"> contact us</a>."
 msgstr ""
+"আপনি আপনার অ্যাপ আপ্লোড করতে পারেন যাতে সেই অ্যাপটি<strong>FirefoxOS "
+"ডিভাইসের সাথে প়িলোডেড </strong>থাকে বিভিন্ন অপারেটরের মাধ্যমে l প্রিলডিংএর "
+"জন্য অ্যাপ্লাই করতে হলে আপনি নীচ থেকে আমাদের টেম্পলেট ডাউনলোড করতে পারেন, "
+"টেস্ট ও টেম্পলেট ভর্তি করতে পারেনপারেন এবং আপনার ফলাফল আপ্লোড করতে পারেন <a "
+"href=\"%(submit_url)s\">অ্যাপ প্রিলোড সাবমিশন ফর্ম থেকে</a>l আমরা আপনার ফলাফল "
+"আমাদের সারভারে রাখব যেখানে আপনার অ্যাপটি বিভিন্ন ফোন অপারেটররা রিভিউ করবেনl "
+"বিস্তারিত প্রশ্নের জন্য <a href=\"%(support_url)s\">যোগাযোগ করুন</a>l "
+"               "
 
 #: mkt/developers/templates/developers/apps/preload/submit.html:17
 msgid "Preloaded App Terms and Conditions"
@@ -4252,6 +4267,9 @@ msgstr[1] "<b>আনুমানিক অপেক্ষা সময়:</b> %
 #: mkt/developers/templates/developers/includes/macros.html:109
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can <a href=\"%(support_url)s\">contact us</a> to check the status."
 msgstr ""
+"বেশিরভাগ অ্যাপ-এর রিভিউ এক সপ্তাহের মধ্যে হয়ে যায়। আপনার রিভিউটি যদি এর থেকে "
+"বেশি সময় নেয়, আপনি <a href=\"%(support_url)s\">আমাদের সঙ্গে যোগাযোগ</a> করতে "
+"পারেন আপনার স্ট্যাটাস দেখার জন্য।"
 
 #: mkt/developers/templates/developers/includes/macros.html:119
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
@@ -4345,6 +4363,8 @@ msgstr "ইন-অ্যাপ পেমেন্ট চাবি আপনা�
 #: mkt/developers/templates/developers/payments/in-app-payments.html:53
 msgid "Note: If you're wanting to provide in-app products to Firefox for Desktop users then please use in-app products."
 msgstr ""
+"নোট: আপনি যদি Firefox for Desktop-এ ইন-অ্যাপ প্রোডাক্ট প্রদান করতে চান তাহলে "
+"অনুগ্রহ করে ইন-অ্যাপ প্রোডাক্ট ব্যবহার করুন।"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:60
 msgid "Configure In-App Keys"
@@ -5840,7 +5860,7 @@ msgstr "ইতিহাস রিভিউ করুন"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:45
 msgid "Communication Dashboard"
-msgstr ""
+msgstr "যোগাযোগের ড্যাশবোর্ড"
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:4
 msgid "Account Summary"
@@ -6211,7 +6231,7 @@ msgstr "মধ্যমানের রিভিউগুলি ({0})"
 #: mkt/reviewers/helpers.py:130
 msgctxt "abuse"
 msgid "Abuse Reports ({0})"
-msgstr ""
+msgstr "অবৈধ রিপোর্ট ({0})"
 
 #: mkt/reviewers/helpers.py:137
 msgctxt "abusewebsites"
@@ -6349,7 +6369,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(reporter)s %(date)s-তে [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
 msgid "Additional Queues"
@@ -6787,15 +6807,15 @@ msgstr "আরও..."
 
 #: mkt/reviewers/templates/reviewers/includes/paginator_history.html:3
 msgid "Older versions"
-msgstr ""
+msgstr "পুরোনো সংস্করণ"
 
 #: mkt/reviewers/templates/reviewers/includes/paginator_history.html:6
 msgid "Newer versions"
-msgstr ""
+msgstr "নতুন সংস্করণ"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "Process"
-msgstr ""
+msgstr "প্রসেস"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:14 mkt/reviewers/templates/reviewers/includes/queue_abuse.html:55
 msgid "Actions:"
@@ -6812,6 +6832,8 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:34
 msgid "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s [%(ip_address)s]</span>"
 msgstr ""
+"<span class=\"submitted-by\">জমা হয়েছে %(user)s দ্বারা %(date)s তারিখে [%"
+"(ip_address)s]</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:40
 msgid "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" target=\"_blank\" href=\"%(translate_url)s\">translate</a>"
@@ -6819,7 +6841,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:62
 msgid "All abuse reports read. Good work!"
-msgstr ""
+msgstr "সমস্ত অবৈধ রিপোর্ট পড়া হয়েছে। ভালো কাজ!"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5 mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
 msgid "Process Reviews"
@@ -6883,11 +6905,11 @@ msgstr "অ্যাপ ইতিহাস এবং হেলিপ লোড �
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:78
 msgid "Next Comments"
-msgstr ""
+msgstr "পরবর্তী কমেন্টসমূহ"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:79
 msgid "Previous Comments"
-msgstr ""
+msgstr "আগের কমেন্টসমূহ"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:6 mkt/site/templates/site/impala_paginator.html:16
 msgid "Jump to first page"
@@ -7396,7 +7418,7 @@ msgstr "অনেক বেশি সংখ্যক অপব্যবহার
 
 #: mkt/site/log.py:440
 msgid "High Abuse Reports"
-msgstr ""
+msgstr "{addon} বাড়ানো হয়েছে উচ্চ সংখ্যায় ফেরত আবেদনের জন্য।"
 
 #: mkt/site/log.py:447
 msgid "{addon} escalated because of high number of refund requests."
@@ -7602,7 +7624,7 @@ msgstr ""
 
 #: mkt/site/log.py:705
 msgid "{user} marked read {report} for {addon}."
-msgstr ""
+msgstr "{user} পড়া হয়েছে দাগ দিয়েছে {report} {addon}-এর জন্য।"
 
 #: mkt/site/log.py:713
 msgid "Abuse report {report} for {website} read."
@@ -7767,7 +7789,7 @@ msgstr "আপনার অ্যাপের ফ্ল্যাশ সাপো
 
 #: mkt/submit/forms.py:333
 msgid "Your comments for reviewers:"
-msgstr ""
+msgstr "রিভিউয়ারদের জন্য আপনার কমেন্টসমূহ:"
 
 #: mkt/submit/forms.py:335
 msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
@@ -8152,11 +8174,11 @@ msgstr "ওই ইমেইল ঠিকানার সাথে কোনো �
 
 #: mkt/users/views.py:87
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "নেটিভ FxA যাচাইকরণের ব্যার্থতা।"
 
 #: mkt/users/views.py:111
 msgid "Please use the verified email for this account."
-msgstr ""
+msgstr "এই অ্যাকাউন্টের জন্য যাচিত ইমেইল ব্যবহার করুন।"
 
 #: mkt/webapps/models.py:199
 msgid "Listed"
