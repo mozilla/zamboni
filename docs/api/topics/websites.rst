@@ -54,6 +54,7 @@ Website
           "title": {
             "en-US": "Example site title"
           },
+          "tv_url": null,
           "url": "http://example.url/"
         }
 
@@ -74,6 +75,8 @@ Website
     :type id: int
     :param mobile_url: The site's mobile-specific URL, if it exists.
     :type mobile_url: string|null
+    :param tv_url: The site's TV-specific URL, if it exists.
+    :type tv_url: string|null
     :param name: The site's name, as used on its detail page in Marketplace.
     :type name: string|object
     :param short_name: A shorter representation of the site's name, to be used in the
