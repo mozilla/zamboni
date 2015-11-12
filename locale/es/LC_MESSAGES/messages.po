@@ -6282,7 +6282,7 @@ msgstr "Revisión procesada correctamente."
 
 #: mkt/reviewers/templates/reviewers/abuse.html:9
 msgid "Abuse Reports for {item} ({num})"
-msgstr "Reportes de abuso para {item} ({num)}"
+msgstr "Reportes de abuso para {item} ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"

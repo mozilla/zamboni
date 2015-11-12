@@ -4116,13 +4116,13 @@ msgstr "বৈশিষ্ট্যসমূহ:"
 
 #: mkt/developers/templates/developers/includes/macros.html:96
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr "<b>সারির অবস্থান:</b> %(total)সমূহের %(pos)সমূহ"
+msgstr "<b>সারির অবস্থান:</b> %(total)sসমূহের %(pos)sসমূহ"
 
 #: mkt/developers/templates/developers/includes/macros.html:103
 msgid "<b>Estimated waiting time:</b> %(num)s working day"
 msgid_plural "<b>Estimated waiting time:</b> %(num)s working days"
-msgstr[0] "<b>আনুমানিক অপেক্ষা সময়:</b> %(num)সমূহ কাজের দিন"
-msgstr[1] "<b>আনুমানিক অপেক্ষা সময়:</b> %(num)সমূহ কাজের দিনসমূহ"
+msgstr[0] "<b>আনুমানিক অপেক্ষা সময়:</b> %(num)sসমূহ কাজের দিন"
+msgstr[1] "<b>আনুমানিক অপেক্ষা সময়:</b> %(num)sসমূহ কাজের দিনসমূহ"
 
 #: mkt/developers/templates/developers/includes/macros.html:109
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can <a href=\"%(support_url)s\">contact us</a> to check the status."
@@ -7273,7 +7273,7 @@ msgstr "অনেক বেশি সংখ্যক অপব্যবহার
 
 #: mkt/site/log.py:440
 msgid "High Abuse Reports"
-msgstr "{addon} বাড়ানো হয়েছে উচ্চ সংখ্যায় ফেরত আবেদনের জন্য।"
+msgstr ""
 
 #: mkt/site/log.py:447
 msgid "{addon} escalated because of high number of refund requests."
@@ -7915,7 +7915,7 @@ msgstr "লোকালাইজ করুন: <a id=\"change-locale\" href=\"#\
 
 #: mkt/translations/templates/translations/trans-menu.html:16 mkt/translations/templates/translations/trans-menu.html:29
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr "%(title)সমূহ <em>&middot; %(lang)সমূহ</em>"
+msgstr "%(title)sসমূহ <em>&middot; %(lang)sসমূহ</em>"
 
 #: mkt/translations/templates/translations/trans-menu.html:20
 msgid "Existing Locales"

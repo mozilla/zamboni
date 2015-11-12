@@ -5528,7 +5528,7 @@ msgstr "Zasady"
 
 #: mkt/lookup/templates/lookup/group_summary.html:24
 msgid "Notes"
-msgstr "{n} informacje"
+msgstr ""
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
@@ -6100,7 +6100,7 @@ msgstr "Moderowane opinie ({0})"
 #: mkt/reviewers/helpers.py:136
 msgctxt "abuse"
 msgid "Abuse Reports ({0})"
-msgstr "Raporty o nadużyciach (0})"
+msgstr "Raporty o nadużyciach ({0})"
 
 #: mkt/reviewers/helpers.py:143
 msgctxt "abusewebsites"
