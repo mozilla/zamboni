@@ -42,8 +42,9 @@ class WebsiteForm(TranslationFormMixin, happyforms.ModelForm):
     class Meta(object):
         model = Website
         fields = ('categories', 'description', 'devices', 'is_disabled',
-                  'keywords', 'mobile_url', 'name', 'preferred_regions',
-                  'short_name', 'status', 'title', 'url')
+                  'keywords', 'mobile_url', 'name',
+                  'preferred_regions', 'short_name', 'status', 'title',
+                  'tv_url', 'url')
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')

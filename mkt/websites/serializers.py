@@ -26,7 +26,7 @@ class WebsiteSerializer(serializers.ModelSerializer):
         model = Website
         fields = ['categories', 'description', 'device_types', 'icons', 'id',
                   'keywords', 'mobile_url', 'name', 'promo_imgs', 'short_name',
-                  'title', 'url']
+                  'title', 'tv_url', 'url']
 
     def get_icons(self, obj):
         return {icon_size: obj.get_icon_url(icon_size)
@@ -50,7 +50,7 @@ class ESWebsiteSerializer(BaseESSerializer, WebsiteSerializer):
         # Set basic attributes on the fake instance using the data from ES.
         self._attach_fields(
             obj, data, ('default_locale', 'icon_hash', 'mobile_url',
-                        'promo_img_hash', 'url'))
+                        'promo_img_hash', 'tv_url', 'url'))
 
         # Set attributes with names that don't exactly match the one on the
         # model.

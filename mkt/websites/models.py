@@ -126,6 +126,9 @@ class Website(ModelBase):
     # The Website mobile-specific URL, if one exists.
     mobile_url = models.URLField(max_length=255, blank=True, null=True)
 
+    # The Website TV-specific URL, if one exists.
+    tv_url = models.URLField(max_length=255, blank=True, null=True)
+
     # The <title> for the Website, used in search, not exposed to the frontend.
     title = TranslatedField()
 
