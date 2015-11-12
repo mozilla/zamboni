@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-09-21 09:48-0700\n"
-"PO-Revision-Date: 2014-09-27 23:39+0200\n"
-"Last-Translator: Ricardo <rpmdisguise-otros@yahoo.es>\n"
+"PO-Revision-Date: 2015-11-09 14:26+0000\n"
+"Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -254,7 +254,7 @@ msgstr ""
 
 #: media/js/devreg/lookup-tool.js:84
 msgid "Could not add group \"{0}\""
-msgstr ""
+msgstr "No se ha podido agregar el grupo \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:108
 msgid "Group membership \"{0}\" removed"
@@ -262,7 +262,7 @@ msgstr ""
 
 #: media/js/devreg/lookup-tool.js:114
 msgid "Could not remove group \"{0}\""
-msgstr ""
+msgstr "No se ha podido eliminar el grupo \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:183
 msgid "Show All Results"
@@ -499,7 +499,7 @@ msgstr "El recibo no fue comprobado por la app."
 
 #: media/js/devreg/reviewers/editors.js:241
 msgid "{name} was viewing this app first."
-msgstr ""
+msgstr "{name} estuvo viendo esta aplicación primero."
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"
