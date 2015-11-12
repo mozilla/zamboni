@@ -13,7 +13,7 @@ from django.utils import translation
 from mpconstants.mozilla_languages import LANGUAGES
 
 from mkt.constants.applications import (DEVICE_GAIA, DEVICE_MOBILE,
-                                        DEVICE_TABLET)
+                                        DEVICE_TABLET, DEVICE_TV)
 from mkt.constants.base import STATUS_PUBLIC
 from mkt.constants.categories import CATEGORY_CHOICES_DICT
 from mkt.constants.regions import REGIONS_CHOICES_ID_DICT, REGIONS_DICT
@@ -174,12 +174,11 @@ class Command(BaseCommand):
             instance.keywords.add(tag)
 
     def set_url(self, instance, row):
-        # Ultimately, we don't care whether the website has a mobile specific
-        # URL, is responsive, etc: If it has a desktop-specific URL and a
-        # mobile URL set, then set both accordingly, otherwise just set
-        # url.
+        # 'url' field will be set to a device-specific url in priority order
+        # 'desktop', 'mobile', 'tv'.
         desktop_url = self.clean_string(row['Desktop URL']).lower()
         mobile_url = self.clean_string(row['Mobile URL']).lower()
+        tv_url = self.clean_string(row['TV URL']).lower()
         try:
             self.validate_url(desktop_url)
         except ValidationError:
@@ -192,14 +191,26 @@ class Command(BaseCommand):
             raise ParsingError(
                 u'Website %s has invalid Mobile URL %s'
                 % (row['Unique Moz ID'], mobile_url))
-        if desktop_url and mobile_url:
-            instance.url = desktop_url
-            instance.mobile_url = mobile_url
-        elif mobile_url:
-            instance.url = mobile_url
-        else:
+        try:
+            self.validate_url(tv_url)
+        except ValidationError:
+            raise ParsingError(
+                u'Website %s has invalid TV URL %s'
+                % (row['Unique Moz ID'], tv_url))
+
+        if not any([desktop_url, mobile_url, tv_url]):
             raise ParsingError(
                 u'Website %s has no URL ?!' % row['Unique Moz ID'])
+
+        instance.mobile_url = mobile_url
+        instance.tv_url = tv_url
+
+        if desktop_url:
+            instance.url = desktop_url
+        elif mobile_url:
+            instance.url = mobile_url
+        elif tv_url:
+            instance.url = tv_url
 
     def set_icon(self, instance, row):
         icon_url = self.clean_string(row['Icon url'])
@@ -283,7 +294,6 @@ class Command(BaseCommand):
 
     def create_instances(self, data):
         created_count = 0
-        devices = [DEVICE_GAIA.id, DEVICE_MOBILE.id, DEVICE_TABLET.id]
         for i, row in enumerate(data):
             if (i + 1) % 100 == 0:
                 print 'Processing row %d... (%d websites created)' % (
@@ -312,6 +322,12 @@ class Command(BaseCommand):
 
             with atomic():
                 try:
+                    devices = []
+                    if row['Mobile URL']:
+                        devices += [DEVICE_GAIA.id, DEVICE_MOBILE.id,
+                                    DEVICE_TABLET.id]
+                    if row['TV URL']:
+                        devices.append(DEVICE_TV.id)
                     website = Website(moz_id=id_, status=STATUS_PUBLIC,
                                       devices=devices)
                     self.set_default_locale(website, row)
