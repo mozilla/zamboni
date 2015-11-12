@@ -8,7 +8,7 @@ from mkt.api.base import SubRouterWithFormat
 from mkt.api.v1.urls import urlpatterns as v1_urls
 from mkt.api.views import endpoint_removed
 from mkt.comm.views import (CommAppListView, CommExtensionListView,
-                            ThreadViewSetV2)
+                            NoteListView, ThreadViewSetV2)
 from mkt.extensions.urls import urlpatterns as extensions_urlpatterns
 from mkt.games.views import DailyGamesView
 from mkt.langpacks.views import LangPackViewSet
@@ -77,6 +77,7 @@ urlpatterns = patterns(
         OpenMobileACLSearchView.as_view(),
         name='openmobile_acl-search-api'),
 
+    url(r'^comm/notes/$', NoteListView.as_view(), name='comm-note-list-all'),
     url(r'^comm/app/%s' % mkt.APP_SLUG,
         CommAppListView.as_view({'get': 'list'}), name='comm-app-list'),
     url(r'^comm/extension/%s' % mkt.APP_SLUG,

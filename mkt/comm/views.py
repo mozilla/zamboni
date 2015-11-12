@@ -9,6 +9,7 @@ from rest_framework.decorators import (api_view, authentication_classes,
                                        permission_classes)
 from rest_framework.exceptions import ParseError
 from rest_framework.filters import OrderingFilter
+from rest_framework.generics import ListAPIView
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    ListModelMixin, RetrieveModelMixin)
 from rest_framework.parsers import FormParser, JSONParser
@@ -23,6 +24,8 @@ from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView, SilentListModelMixin
+from mkt.api.permissions import AnyOf, GroupPermission
+from mkt.comm.filters import NoteContentFilter, NoteContentTypeFilter
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread, CommunicationThreadCC,
                              user_has_perm_app)
@@ -187,6 +190,22 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
         return Response(
             NoteSerializer(note, context={'request': request}).data,
             status=status.HTTP_201_CREATED)
+
+
+class NoteListView(ListAPIView, MarketplaceView):
+    serializer_class = NoteSerializer
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+    permission_classes = [AnyOf(
+        GroupPermission('Apps', 'Review'),
+        GroupPermission('ContentTools', 'AddonReview')
+    )]
+    filter_backends = (NoteContentFilter, NoteContentTypeFilter,
+                       OrderingFilter,)
+    cors_allowed_methods = ['get']
+
+    def get_queryset(self):
+        return CommunicationNote.objects.with_perms(self.request.user)
 
 
 class AttachmentViewSet(CreateModelMixin, CommViewSet):

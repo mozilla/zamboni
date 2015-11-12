@@ -448,10 +448,81 @@ class TestNote(NoteSetupMixin):
         self.assertCORS(res, 'get', 'post', 'patch')
 
 
+class TestNoteListView(RestOAuth):
+    fixtures = fixture('user_2519',)
+
+    def setUp(self):
+        super(TestNoteListView, self).setUp()
+        self.extension = extension_factory()
+        self.extension_author = user_factory(email='exman@author.com')
+        self.extension_thread = self.extension.threads.create(
+            _extension_version=self.extension.latest_version)
+        self.extension_note = self.extension_thread.notes.create(
+            author=self.extension_author, body='extension note')
+
+        self.app = app_factory()
+        self.app_author = user_factory(email='rappa@author.com')
+        self.app_thread = self.app.threads.create(
+            _version=self.app.current_version)
+        self.app_note = self.app_thread.notes.create(
+            author=self.app_author, body='webapp note')
+
+        self.url = reverse('api-v2:comm-note-list-all')
+
+    def _grant_perms(self):
+        self.grant_permission(self.profile, 'Apps:Review')
+        self.grant_permission(self.profile, 'ContentTools:AddonReview')
+
+    def test_no_perm(self):
+        res = self.client.get(self.url)
+        eq_(res.status_code, 403)
+
+    def test_list(self):
+        self._grant_perms()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(len(res.json['objects']), 2)
+
+    def test_filter_doc_type(self):
+        self._grant_perms()
+        res = self.client.get(self.url, {'doc_type': 'extension'})
+        eq_(len(res.json['objects']), 1)
+        eq_(res.json['objects'][0]['body'], 'extension note')
+
+        res = self.client.get(self.url, {'doc_type': 'webapp'})
+        eq_(len(res.json['objects']), 1)
+        eq_(res.json['objects'][0]['body'], 'webapp note')
+
+    def test_filter_body(self):
+        self._grant_perms()
+        res = self.client.get(self.url, {'q': 'squanchy'})
+        eq_(len(res.json['objects']), 0)
+
+        res = self.client.get(self.url, {'q': 'note'})
+        eq_(len(res.json['objects']), 2)
+
+        res = self.client.get(self.url, {'q': 'webapp'})
+        eq_(len(res.json['objects']), 1)
+
+        res = self.client.get(self.url, {'q': 'extension'})
+        eq_(len(res.json['objects']), 1)
+
+    def test_filter_author(self):
+        self._grant_perms()
+        res = self.client.get(self.url, {'q': 'author.com'})
+        eq_(len(res.json['objects']), 2)
+
+        res = self.client.get(self.url, {'q': 'exman'})
+        eq_(len(res.json['objects']), 1)
+
+        res = self.client.get(self.url, {'q': 'rappa'})
+        eq_(len(res.json['objects']), 1)
+
+
 class TestNoteExtension(RestOAuth, CommTestMixin, AttachmentManagementMixin):
+    """Test note stuff works with Firefox OS add-ons as well."""
     fixtures = fixture('user_2519', 'user_support_staff')
 
-    """Test note stuff works with Firefox OS add-ons as well."""
     def setUp(self):
         # Keep self.addon name to work with _thread_factory().
         super(TestNoteExtension, self).setUp()
