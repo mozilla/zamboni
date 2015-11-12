@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-21 09:48-0700\n"
+"POT-Creation-Date: 2015-11-12 10:27-0700\n"
 "PO-Revision-Date: 2015-07-29 21:10+0000\n"
 "Last-Translator: umesh <umeshsnwl@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "अपलोड हो रहा है {0}"
 msgid "Error with {0}"
 msgstr "{0} के साथ त्रुटि"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:203
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "आपका एप्प {0} त्रुटि के साथ मान्यकरण असफल रहा."
@@ -76,7 +76,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;और {0} ज्यादा"
 msgstr[1] "&hellip;और {0} ज्यादा"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
 msgid "See full validation report"
 msgstr "पूर्ण मान्यकरण रिपोर्ट देखे"
 
@@ -139,51 +139,43 @@ msgstr "एप्प स्थापना पर आंतरिक सर्�
 msgid "Install failed. Please try again later."
 msgstr "स्थापना विफल रहा. बाद में पुन: प्रयास करें."
 
-#: media/js/devreg/devhub.js:213
+#: media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "आपका एप्प {0} त्रुटि और {1} सन्देश के साथ मान्यकरण असफल रहा."
 msgstr[1] "आपका एप्प {0} त्रुटियों और {1} संदेशो के साथ मान्यकरण असफल रहा."
 
-#: media/js/devreg/devhub.js:227
+#: media/js/devreg/devhub.js:222
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "आपका एप्प शुन्य त्रुटियों और {0} सन्देश के साथ मान्यकरण पारित किया."
 msgstr[1] "आपका एप्प शुन्य त्रुटियों और {0} संदेशो के साथ मान्यकरण पारित किया."
 
-#: media/js/devreg/devhub.js:232
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors or messages."
 msgstr "आपका एप्प बिना कोई त्रुटि या सन्देश के मान्यकरण सफल रहा."
 
-#: media/js/devreg/devhub.js:447
+#: media/js/devreg/devhub.js:442
 msgid "Changes Saved"
 msgstr "परिवर्तन सहेजे गए"
 
-#: media/js/devreg/devhub.js:463
+#: media/js/devreg/devhub.js:458
 msgid "Enter a new team member's email address"
 msgstr "एक नई टीम के सदस्य का ईमेल पता दर्ज करें"
 
-#: media/js/devreg/devhub.js:476
+#: media/js/devreg/devhub.js:471
 msgid "Manifest refreshed"
 msgstr "मेनिफेस्ट ताज़ा कर दिया गया "
 
-#: media/js/devreg/devhub.js:481
+#: media/js/devreg/devhub.js:476
 msgid "Could not refresh manifest. Try again later."
 msgstr "प्रकट ताज़ा नहीं कर सका. बाद में पुन: प्रयास करें."
 
-#: media/js/devreg/devhub.js:662
+#: media/js/devreg/devhub.js:657
 msgid "There was an error uploading your file."
 msgstr "आपकी फ़ाइल अपलोड करने में त्रुटि हुई."
 
-#: media/js/devreg/devhub.js:945
-msgid "Learn more"
-msgstr "अधिक जानें"
-
-#: media/js/devreg/devhub.js:949
-msgid "Example"
-msgstr "उदाहरण"
-
-#: media/js/devreg/devhub.js:1218
+#: media/js/devreg/devhub.js:1140
 msgid "Image changes being processed"
 msgstr "छवि परिवर्तन संसाधित किया जा रहा हैं"
 
@@ -377,10 +369,6 @@ msgstr "<b>{0}</b> के लिए एप्प्स खोजें"
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "<b>{0}</b> के लिए ऐड-ओंस खोजें"
-
-#: media/js/devreg/tarako.js:35
-msgid "Something went wrong. Please try again."
-msgstr "कुछ गलत हो गया. कृपया पुन: प्रयास करें."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-21 09:48-0700\n"
+"POT-Creation-Date: 2015-11-12 10:27-0700\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -62,7 +62,7 @@ msgstr "Uploading {0}"
 msgid "Error with {0}"
 msgstr "Error with {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:203
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Your app failed validation with {0} error."
@@ -74,7 +74,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;and {0} more"
 msgstr[1] "&hellip;and {0} more"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
 msgid "See full validation report"
 msgstr "See full validation report"
 
@@ -137,51 +137,43 @@ msgstr "Internal server error on app installation."
 msgid "Install failed. Please try again later."
 msgstr "Install failed. Please try again later."
 
-#: media/js/devreg/devhub.js:213
+#: media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Your app failed validation with {0} error and {1} message(s)."
 msgstr[1] "Your app failed validation with {0} errors and {1} message(s)."
 
-#: media/js/devreg/devhub.js:227
+#: media/js/devreg/devhub.js:222
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Your app passed validation with no errors and {0} message."
 msgstr[1] "Your app passed validation with no errors and {0} messages."
 
-#: media/js/devreg/devhub.js:232
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors or messages."
 msgstr "Your app passed validation with no errors or messages."
 
-#: media/js/devreg/devhub.js:447
+#: media/js/devreg/devhub.js:442
 msgid "Changes Saved"
 msgstr "Changes Saved"
 
-#: media/js/devreg/devhub.js:463
+#: media/js/devreg/devhub.js:458
 msgid "Enter a new team member's email address"
 msgstr "Enter a new team member's email address"
 
-#: media/js/devreg/devhub.js:476
+#: media/js/devreg/devhub.js:471
 msgid "Manifest refreshed"
 msgstr "Manifest refreshed"
 
-#: media/js/devreg/devhub.js:481
+#: media/js/devreg/devhub.js:476
 msgid "Could not refresh manifest. Try again later."
 msgstr "Could not refresh manifest. Try again later."
 
-#: media/js/devreg/devhub.js:662
+#: media/js/devreg/devhub.js:657
 msgid "There was an error uploading your file."
 msgstr "There was an error uploading your file."
 
-#: media/js/devreg/devhub.js:945
-msgid "Learn more"
-msgstr "Learn more"
-
-#: media/js/devreg/devhub.js:949
-msgid "Example"
-msgstr "Example"
-
-#: media/js/devreg/devhub.js:1218
+#: media/js/devreg/devhub.js:1140
 msgid "Image changes being processed"
 msgstr "Image changes being processed"
 
@@ -373,10 +365,6 @@ msgstr "Search apps for <b>{0}</b>"
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Search add-ons for <b>{0}</b>"
-
-#: media/js/devreg/tarako.js:35
-msgid "Something went wrong. Please try again."
-msgstr "Something went wrong. Please try again."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-21 09:48-0700\n"
+"POT-Creation-Date: 2015-11-12 10:27-0700\n"
 "PO-Revision-Date: 2015-09-28 17:35+0000\n"
 "Last-Translator: Michal <michal.stanke@mikk.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -64,7 +64,7 @@ msgstr "Probíhá nahrávání {0}"
 msgid "Error with {0}"
 msgstr "Chyba s {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:203
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Kontrola vaší aplikace skončila s {0} chybou."
@@ -78,7 +78,7 @@ msgstr[0] "&hellip;a {0} další"
 msgstr[1] "&hellip;a {0} další"
 msgstr[2] "&hellip;a {0} další"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
 msgid "See full validation report"
 msgstr "Zobrazit podrobný report"
 
@@ -142,53 +142,45 @@ msgstr "Při instalaci aplikace nastala interní chyba serveru."
 msgid "Install failed. Please try again later."
 msgstr "Instalace selhala. Zkuste to prosím později."
 
-#: media/js/devreg/devhub.js:213
+#: media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "U vaší aplikace selhala kontrola s {0} chybou. Počet zpráv: {1}"
 msgstr[1] "U vaší aplikace selhala kontrola s {0} chybami. Počet zpráv: {1}"
 msgstr[2] "U vaší aplikace selhala kontrola s {0} chybami. Počet zpráv: {1}"
 
-#: media/js/devreg/devhub.js:227
+#: media/js/devreg/devhub.js:222
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Vaše aplikace prošla kontrolou bez chyby a {0} informační zprávou."
 msgstr[1] "Vaše aplikace prošla kontrolou bez chyby a {0} informačními zprávami."
 msgstr[2] "Vaše aplikace prošla kontrolou bez chyby a {0} informačními zprávami."
 
-#: media/js/devreg/devhub.js:232
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors or messages."
 msgstr "Vaše aplikace prošla kontrolou bez chyb či informačních zpráv."
 
-#: media/js/devreg/devhub.js:447
+#: media/js/devreg/devhub.js:442
 msgid "Changes Saved"
 msgstr "Změny uloženy"
 
-#: media/js/devreg/devhub.js:463
+#: media/js/devreg/devhub.js:458
 msgid "Enter a new team member's email address"
 msgstr "Vložte e-mailovou adresu nového člena týmu"
 
-#: media/js/devreg/devhub.js:476
+#: media/js/devreg/devhub.js:471
 msgid "Manifest refreshed"
 msgstr "Manifest obnoven"
 
-#: media/js/devreg/devhub.js:481
+#: media/js/devreg/devhub.js:476
 msgid "Could not refresh manifest. Try again later."
 msgstr "Obnovení manifestu se nezdařilo. Zkuste to znovu později."
 
-#: media/js/devreg/devhub.js:662
+#: media/js/devreg/devhub.js:657
 msgid "There was an error uploading your file."
 msgstr "Při nahrávání vašeho souboru se vyskytl problém."
 
-#: media/js/devreg/devhub.js:945
-msgid "Learn more"
-msgstr "Dozvědět se více"
-
-#: media/js/devreg/devhub.js:949
-msgid "Example"
-msgstr "Příklad"
-
-#: media/js/devreg/devhub.js:1218
+#: media/js/devreg/devhub.js:1140
 msgid "Image changes being processed"
 msgstr "Jsou prováděny změny obrázku"
 
@@ -381,10 +373,6 @@ msgstr "Vyhledávání aplikací pro <b>{0}</b>"
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Vyhledávání doplňků pro <b>{0}</b>"
-
-#: media/js/devreg/tarako.js:35
-msgid "Something went wrong. Please try again."
-msgstr "Nastala chyba. Zkuste to znovu."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89

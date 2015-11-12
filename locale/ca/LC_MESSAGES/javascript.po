@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-21 09:48-0700\n"
+"POT-Creation-Date: 2015-11-12 10:27-0700\n"
 "PO-Revision-Date: 2012-06-22 09:07+0200\n"
 "Last-Translator: Toni <toniher@softcatala.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,7 +63,7 @@ msgstr "S'està pujant {0}"
 msgid "Error with {0}"
 msgstr "Error amb {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:203
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Ha fallat la validació de la vostra aplicació amb {0} error."
@@ -75,7 +75,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;i {0} altres"
 msgstr[1] "&hellip;i {0} altres"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
 msgid "See full validation report"
 msgstr "Consulteu l'informe de validació complet"
 
@@ -138,51 +138,43 @@ msgstr ""
 msgid "Install failed. Please try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:213
+#: media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] ""
 msgstr[1] ""
 
-#: media/js/devreg/devhub.js:227
+#: media/js/devreg/devhub.js:222
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "La vostra aplicació ha passat la validació sense cap error i {0} missatge."
 msgstr[1] "La vostra aplicació ha passat la validació sense cap error i {0} missatges."
 
-#: media/js/devreg/devhub.js:232
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors or messages."
 msgstr "La vostra aplicació ha passat la validació sense cap error o missatges."
 
-#: media/js/devreg/devhub.js:447
+#: media/js/devreg/devhub.js:442
 msgid "Changes Saved"
 msgstr "S'han desat els canvis"
 
-#: media/js/devreg/devhub.js:463
+#: media/js/devreg/devhub.js:458
 msgid "Enter a new team member's email address"
 msgstr ""
 
-#: media/js/devreg/devhub.js:476
+#: media/js/devreg/devhub.js:471
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:481
+#: media/js/devreg/devhub.js:476
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:662
+#: media/js/devreg/devhub.js:657
 msgid "There was an error uploading your file."
 msgstr "S'ha produït un error en pujar el fitxer."
 
-#: media/js/devreg/devhub.js:945
-msgid "Learn more"
-msgstr "Més informació"
-
-#: media/js/devreg/devhub.js:949
-msgid "Example"
-msgstr "Exemple"
-
-#: media/js/devreg/devhub.js:1218
+#: media/js/devreg/devhub.js:1140
 msgid "Image changes being processed"
 msgstr "S'estan processant els canvis a la imatge"
 
@@ -374,10 +366,6 @@ msgstr "Cerca aplicacions que continguen <b>{0}</b>"
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Cerca complements que continguen <b>{0}</b>"
-
-#: media/js/devreg/tarako.js:35
-msgid "Something went wrong. Please try again."
-msgstr ""
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89

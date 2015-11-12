@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-21 09:48-0700\n"
+"POT-Creation-Date: 2015-11-12 10:27-0700\n"
 "PO-Revision-Date: 2014-09-05 18:44+0000\n"
 "Last-Translator: Belayet <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "আপলোড হচ্ছে {0}"
 msgid "Error with {0}"
 msgstr "{0} টি ত্রুটি"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:203
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "আপনার অ্যাপ্লিকেশন {0} ত্রুটি সাথে বৈধতা ব্যর্থ হয়েছে। "
@@ -76,7 +76,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;and {0} আরো"
 msgstr[1] "&hellip;and {0} আরো"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
 msgid "See full validation report"
 msgstr "বৈধতার সম্পূর্ণ প্রতিবেদন দেখুন"
 
@@ -139,51 +139,43 @@ msgstr "অ্যাপ ইনস্টলেশনের সময় অভ্য
 msgid "Install failed. Please try again later."
 msgstr "ইনস্টল ব্যর্থ হয়েছে। দয়া করে কিছুক্ষণ পরে আবার চেষ্টা করুন।"
 
-#: media/js/devreg/devhub.js:213
+#: media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "আপনার অ্যাপ {0} ত্রুটি এবং {1} বার্তা যাচাইকরণ ব্যর্থ হয়েছে।"
 msgstr[1] "আপনার অ্যাপ {0} ত্রুটি এবং {1} বার্তা যাচাইকরণ ব্যর্থ হয়েছে।"
 
-#: media/js/devreg/devhub.js:227
+#: media/js/devreg/devhub.js:222
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "আপনার অ্যাপ কোনো ত্রুটি এবং {0} বার্তা ছাড়াই বৈধতা পাস করেছে।"
 msgstr[1] "আপনার অ্যাপ কোনো ত্রুটি এবং {0} বার্তা ছাড়াই বৈধতা পাস করেছে।"
 
-#: media/js/devreg/devhub.js:232
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors or messages."
 msgstr "আপনার অ্যাপ কোন ত্রুটি বা বার্তা ছাড়াই বৈধতা পাস করেছে।"
 
-#: media/js/devreg/devhub.js:447
+#: media/js/devreg/devhub.js:442
 msgid "Changes Saved"
 msgstr "পরিবর্তন সংরক্ষিত"
 
-#: media/js/devreg/devhub.js:463
+#: media/js/devreg/devhub.js:458
 msgid "Enter a new team member's email address"
 msgstr "দলের নতুন সদস্যের ইমেইল এড্রেস প্রবেশ করান"
 
-#: media/js/devreg/devhub.js:476
+#: media/js/devreg/devhub.js:471
 msgid "Manifest refreshed"
 msgstr "ম্যানিফেস্ট রিফ্রেশ হয়েছে"
 
-#: media/js/devreg/devhub.js:481
+#: media/js/devreg/devhub.js:476
 msgid "Could not refresh manifest. Try again later."
 msgstr "ম্যানিফেস্ট রিফ্রেশ করা যায় নি। কিছুক্ষন পর আবার চেষ্টা করুন।"
 
-#: media/js/devreg/devhub.js:662
+#: media/js/devreg/devhub.js:657
 msgid "There was an error uploading your file."
 msgstr "আপনার ফাইল আপলোড করার সময় একটু ত্রুটি পাওয়া গেছে।"
 
-#: media/js/devreg/devhub.js:945
-msgid "Learn more"
-msgstr "বিস্তারিত জানুন"
-
-#: media/js/devreg/devhub.js:949
-msgid "Example"
-msgstr "উদাহরণ"
-
-#: media/js/devreg/devhub.js:1218
+#: media/js/devreg/devhub.js:1140
 msgid "Image changes being processed"
 msgstr "ছবির পরিবর্তন প্রক্রিয়াধীন"
 
@@ -375,10 +367,6 @@ msgstr "<b>{0}</b> এর জন্য অ্যাপ খুঁজুন"
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "<b>{0}</b> এর জন্য অ্যাড-অন খুঁজুন"
-
-#: media/js/devreg/tarako.js:35
-msgid "Something went wrong. Please try again."
-msgstr "কোন সমস্যা হয়েছে। আবার চেষ্টা করুন।"
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89

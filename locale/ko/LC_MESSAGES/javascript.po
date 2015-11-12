@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-21 09:48-0700\n"
+"POT-Creation-Date: 2015-11-12 10:27-0700\n"
 "PO-Revision-Date: 2015-10-12 02:30+0000\n"
 "Last-Translator: r4k0nb4k0n <chj6097@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "{0} 업로드 중"
 msgid "Error with {0}"
 msgstr "오류 {0}개"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:203
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "{0}개의 오류로 인해 앱 검사 시험을 통과하지 못했습니다."
@@ -74,7 +74,7 @@ msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;추가 오류 {0}개"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
 msgid "See full validation report"
 msgstr "전체 검사 보고서 보기"
 
@@ -136,49 +136,41 @@ msgstr "앱 설치중 내부 서버 오류가 발생했습니다."
 msgid "Install failed. Please try again later."
 msgstr "설치를 할 수 없습니다. 나중에 다시 시도해 주세요."
 
-#: media/js/devreg/devhub.js:213
+#: media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "앱이 {0}개의 오류와 {1}개의 메세지로 인해 유효성 검사를 통과하지 못했습니다."
 
-#: media/js/devreg/devhub.js:227
+#: media/js/devreg/devhub.js:222
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "앱이 오류 없이 메시지 {0}개와 함께 유효성 검사를 통과했습니다."
 
-#: media/js/devreg/devhub.js:232
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors or messages."
 msgstr "앱이 아무런 오류나 메시지 없이 유효성 검사를 통과했습니다."
 
-#: media/js/devreg/devhub.js:447
+#: media/js/devreg/devhub.js:442
 msgid "Changes Saved"
 msgstr "변경 사항이 저장되었습니다"
 
-#: media/js/devreg/devhub.js:463
+#: media/js/devreg/devhub.js:458
 msgid "Enter a new team member's email address"
 msgstr "새 팀 멤버의 이메일 주소를 입력하세요"
 
-#: media/js/devreg/devhub.js:476
+#: media/js/devreg/devhub.js:471
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:481
+#: media/js/devreg/devhub.js:476
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:662
+#: media/js/devreg/devhub.js:657
 msgid "There was an error uploading your file."
 msgstr "파일을 업로드하는 과정에서 오류가 발생했습니다."
 
-#: media/js/devreg/devhub.js:945
-msgid "Learn more"
-msgstr "자세히 알아보기"
-
-#: media/js/devreg/devhub.js:949
-msgid "Example"
-msgstr "예"
-
-#: media/js/devreg/devhub.js:1218
+#: media/js/devreg/devhub.js:1140
 msgid "Image changes being processed"
 msgstr "이미지 변경이 처리되었습니다"
 
@@ -369,10 +361,6 @@ msgstr "<b>{0}</b> 앱 검색"
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "<b>{0}</b> 부가 기능 검색"
-
-#: media/js/devreg/tarako.js:35
-msgid "Something went wrong. Please try again."
-msgstr "뭔가 잘못되었네요. 다시 시도해주세요."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89

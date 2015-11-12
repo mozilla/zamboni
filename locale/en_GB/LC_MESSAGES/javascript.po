@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-14 13:42-0700\n"
+"POT-Creation-Date: 2015-11-12 10:27-0700\n"
 "PO-Revision-Date: 2015-09-21 22:09+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,8 +31,7 @@ msgstr "Images must be either PNG or JPG."
 msgid "Videos must be in WebM."
 msgstr "Videos must be in WebM."
 
-#: media/js/common/upload-image.js:129
-#: media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "There was a problem contacting the server."
 
@@ -66,7 +65,7 @@ msgstr "Uploading {0}"
 msgid "Error with {0}"
 msgstr "Error with {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:203
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Your app failed validation with {0} error."
@@ -78,8 +77,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;and {0} more"
 msgstr[1] "&hellip;and {0} more"
 
-#: media/js/common/upload-packaged-app.js:199
-#: media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
 msgid "See full validation report"
 msgstr "See full validation report"
 
@@ -142,51 +140,43 @@ msgstr "Internal server error on app installation."
 msgid "Install failed. Please try again later."
 msgstr "Install failed. Please try again later."
 
-#: media/js/devreg/devhub.js:213
+#: media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Your app failed validation with {0} error and {1} message(s)."
 msgstr[1] "Your app failed validation with {0} errors and {1} message(s)."
 
-#: media/js/devreg/devhub.js:227
+#: media/js/devreg/devhub.js:222
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "Your app passed validation with no errors and {0} message."
 msgstr[1] "Your app passed validation with no errors and {0} messages."
 
-#: media/js/devreg/devhub.js:232
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors or messages."
 msgstr "Your app passed validation with no errors or messages."
 
-#: media/js/devreg/devhub.js:447
+#: media/js/devreg/devhub.js:442
 msgid "Changes Saved"
 msgstr "Changes Saved"
 
-#: media/js/devreg/devhub.js:463
+#: media/js/devreg/devhub.js:458
 msgid "Enter a new team member's email address"
 msgstr "Enter a new team member's email address"
 
-#: media/js/devreg/devhub.js:476
+#: media/js/devreg/devhub.js:471
 msgid "Manifest refreshed"
 msgstr "Manifest refreshed"
 
-#: media/js/devreg/devhub.js:481
+#: media/js/devreg/devhub.js:476
 msgid "Could not refresh manifest. Try again later."
 msgstr "Could not refresh manifest. Try again later."
 
-#: media/js/devreg/devhub.js:662
+#: media/js/devreg/devhub.js:657
 msgid "There was an error uploading your file."
 msgstr "There was an error uploading your file."
 
-#: media/js/devreg/devhub.js:945
-msgid "Learn more"
-msgstr "Learn more"
-
-#: media/js/devreg/devhub.js:949
-msgid "Example"
-msgstr "Example"
-
-#: media/js/devreg/devhub.js:1218
+#: media/js/devreg/devhub.js:1140
 msgid "Image changes being processed"
 msgstr "Image changes being processed"
 
@@ -211,24 +201,16 @@ msgid "Disabled"
 msgstr "Disabled"
 
 #: media/js/devreg/init.js:35
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"This feature is temporarily disabled while we perform web site maintenance. "
-"Please check back a little later."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "This feature is temporarily disabled while we perform web site maintenance. Please check back a little later."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "Remove this localisation"
 
 #: media/js/devreg/login.js:126
-msgid ""
-"Persona login failed. Maybe you don't have an account under that email "
-"address?"
-msgstr ""
-"Persona login failed. Maybe you don't have an account under that email "
-"address?"
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgstr "Persona login failed. Maybe you don't have an account under that email address?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
@@ -349,37 +331,21 @@ msgstr "Detected: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following apps. Applications without a payment account will no longer be "
-"available for sale."
-msgid_plural ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following app. Applications without a payment account will no longer be "
-"available for sale."
-msgstr[0] ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following apps. Applications without a payment account will no longer be "
-"available for sale."
-msgstr[1] ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following app. Applications without a payment account will no longer be "
-"available for sale."
+msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
+msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
+msgstr[0] "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
+msgstr[1] "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
 msgstr "{appName} payment accounts:"
 
-#: media/js/devreg/payments-manage.js:112
-#: media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191
-#: media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85
-#: media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Error"
 
-#: media/js/devreg/payments-manage.js:113
-#: media/js/devreg/payments-manage.js:176
+#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
 msgstr "There was a problem contacting the payment server."
 
@@ -402,10 +368,6 @@ msgstr "Search apps for <b>{0}</b>"
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Search add-ons for <b>{0}</b>"
-
-#: media/js/devreg/tarako.js:35
-msgid "Something went wrong. Please try again."
-msgstr "Something went wrong. Please try again."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -570,13 +532,11 @@ msgstr "Free"
 msgid "Any"
 msgstr "Any"
 
-#: media/js/devreg/reviewers/reviewers.js:246
-#: media/js/devreg/reviewers/reviewers.js:297
+#: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
 msgstr "Approved app: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:249
-#: media/js/devreg/reviewers/reviewers.js:300
+#: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
 msgstr "Rejected app: {app}"
 
@@ -597,15 +557,10 @@ msgid "Error failing app: {app}"
 msgstr "Error failing app: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
-msgid ""
-"Sorry! We had an error fetching the review history. Please try logging in "
-"again.<p>"
-msgstr ""
-"Sorry! We had an error fetching the review history. Please try logging in "
-"again.<p>"
+msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
+msgstr "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on
-#. Feburary 18th 2014 12:12 pm").
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr "By {0} on {1}"

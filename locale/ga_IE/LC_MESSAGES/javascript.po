@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-21 09:48-0700\n"
+"POT-Creation-Date: 2015-11-12 10:27-0700\n"
 "PO-Revision-Date: 2008-04-08 00:00-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -62,7 +62,7 @@ msgstr "{0} á uasluchtú"
 msgid "Error with {0}"
 msgstr "Earráid le {0}"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:203
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "Níor éirigh le d'aip sa bhailíochtú; bhí {0} earráid ann."
@@ -80,7 +80,7 @@ msgstr[2] "&hellip;agus {0} cinn eile"
 msgstr[3] "&hellip;agus {0} gcinn eile"
 msgstr[4] "&hellip;agus {0} ceann eile"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
 msgid "See full validation report"
 msgstr "Tuairisc iomlán ón bhailíochtóir"
 
@@ -146,7 +146,7 @@ msgstr "Earráid inmheánach fhreastalaí agus an aip á suiteáil."
 msgid "Install failed. Please try again later."
 msgstr "Theip ar shuiteáil. Bain triail eile as ar ball."
 
-#: media/js/devreg/devhub.js:213
+#: media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "Theip ar d'aip sa bhailíochtú le {0} earráid agus {1} teachtaireacht."
@@ -155,7 +155,7 @@ msgstr[2] "Theip ar d'aip sa bhailíochtú le {0} earráid agus {1} teachtaireac
 msgstr[3] "Theip ar d'aip sa bhailíochtú le {0} n-earráid agus {1} teachtaireacht."
 msgstr[4] "Theip ar d'aip sa bhailíochtú le {0} earráid agus {1} teachtaireacht."
 
-#: media/js/devreg/devhub.js:227
+#: media/js/devreg/devhub.js:222
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} teachtaireacht."
@@ -164,39 +164,31 @@ msgstr[2] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} theacht
 msgstr[3] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} dteachtaireacht."
 msgstr[4] "D'éirigh le d'aip sa bhailíochtú gan earráidí ach le {0} teachtaireacht."
 
-#: media/js/devreg/devhub.js:232
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors or messages."
 msgstr "D'éirigh le d'aip sa bhailíochtú gan earráidí gan rabhaidh."
 
-#: media/js/devreg/devhub.js:447
+#: media/js/devreg/devhub.js:442
 msgid "Changes Saved"
 msgstr "Sábháladh na hAthruithe"
 
-#: media/js/devreg/devhub.js:463
+#: media/js/devreg/devhub.js:458
 msgid "Enter a new team member's email address"
 msgstr "Cuir seoladh ríomhphoist an bhaill nua isteach"
 
-#: media/js/devreg/devhub.js:476
+#: media/js/devreg/devhub.js:471
 msgid "Manifest refreshed"
 msgstr "Nuashonraíodh an lastliosta"
 
-#: media/js/devreg/devhub.js:481
+#: media/js/devreg/devhub.js:476
 msgid "Could not refresh manifest. Try again later."
 msgstr "Níorbh fhéidir an lastliosta a nuashonrú. Bain triail eile as ar ball."
 
-#: media/js/devreg/devhub.js:662
+#: media/js/devreg/devhub.js:657
 msgid "There was an error uploading your file."
 msgstr "Tharla earráid agus do chomhad á uasluchtú."
 
-#: media/js/devreg/devhub.js:945
-msgid "Learn more"
-msgstr "Tuilleadh eolais"
-
-#: media/js/devreg/devhub.js:949
-msgid "Example"
-msgstr "Sampla"
-
-#: media/js/devreg/devhub.js:1218
+#: media/js/devreg/devhub.js:1140
 msgid "Image changes being processed"
 msgstr "Athruithe san íomhá á bpróiseáil"
 
@@ -391,10 +383,6 @@ msgstr "Déan cuardach ar <b>{0}</b> sna haipeanna"
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Déan cuardach ar <b>{0}</b> sna breiseáin"
-
-#: media/js/devreg/tarako.js:35
-msgid "Something went wrong. Please try again."
-msgstr "Tharla earráid. Déan iarracht eile."
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89

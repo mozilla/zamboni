@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-21 09:48-0700\n"
+"POT-Creation-Date: 2015-11-12 10:27-0700\n"
 "PO-Revision-Date: 2015-10-14 21:48+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -31,8 +31,7 @@ msgstr "图像必须是 PNG 或者 JPG 格式。"
 msgid "Videos must be in WebM."
 msgstr "视频必须是 WebM 格式。"
 
-#: media/js/common/upload-image.js:129
-#: media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "连接服务器时发生错误。"
 
@@ -66,7 +65,7 @@ msgstr "正在上传 {0}"
 msgid "Error with {0}"
 msgstr "{0} 发生错误"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:203
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "您的应用验证失败，有 {0} 个错误。"
@@ -76,8 +75,7 @@ msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;还有 {0} 个"
 
-#: media/js/common/upload-packaged-app.js:199
-#: media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
 msgid "See full validation report"
 msgstr "查看完整的验证报告"
 
@@ -139,49 +137,41 @@ msgstr "应用安装时发生内部服务器错误。"
 msgid "Install failed. Please try again later."
 msgstr "安装失败。请稍后重试。"
 
-#: media/js/devreg/devhub.js:213
+#: media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "您的应用程序验证失败，有 {0} 个错误以及 {1} 条信息。"
 
-#: media/js/devreg/devhub.js:227
+#: media/js/devreg/devhub.js:222
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "您的应用通过了验证，没有错误，{0} 个信息。"
 
-#: media/js/devreg/devhub.js:232
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors or messages."
 msgstr "您的应用通过了验证，没有错误或信息。"
 
-#: media/js/devreg/devhub.js:447
+#: media/js/devreg/devhub.js:442
 msgid "Changes Saved"
 msgstr "更改已保存"
 
-#: media/js/devreg/devhub.js:463
+#: media/js/devreg/devhub.js:458
 msgid "Enter a new team member's email address"
 msgstr "输入新的团队成员的电子邮件地址"
 
-#: media/js/devreg/devhub.js:476
+#: media/js/devreg/devhub.js:471
 msgid "Manifest refreshed"
 msgstr "清单已刷新"
 
-#: media/js/devreg/devhub.js:481
+#: media/js/devreg/devhub.js:476
 msgid "Could not refresh manifest. Try again later."
 msgstr "无法刷新清单。请稍后再试。"
 
-#: media/js/devreg/devhub.js:662
+#: media/js/devreg/devhub.js:657
 msgid "There was an error uploading your file."
 msgstr "上传您的文件时发生错误。"
 
-#: media/js/devreg/devhub.js:945
-msgid "Learn more"
-msgstr "详细了解"
-
-#: media/js/devreg/devhub.js:949
-msgid "Example"
-msgstr "示例"
-
-#: media/js/devreg/devhub.js:1218
+#: media/js/devreg/devhub.js:1140
 msgid "Image changes being processed"
 msgstr "正在处理图像更改"
 
@@ -206,9 +196,7 @@ msgid "Disabled"
 msgstr "已禁用"
 
 #: media/js/devreg/init.js:35
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "我们正在进行网站维护，此功能暂时无法使用。请您稍候再试。"
 
 #: media/js/devreg/l10n.js:45
@@ -216,9 +204,7 @@ msgid "Remove this localization"
 msgstr "移除此本地化"
 
 #: media/js/devreg/login.js:126
-msgid ""
-"Persona login failed. Maybe you don't have an account under that email "
-"address?"
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
 msgstr "Persona 登录失败。或许您并没有这个邮件地址下的账户？"
 
 #: media/js/devreg/login.js:131
@@ -340,30 +326,20 @@ msgstr "已删除：{0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following apps. Applications without a payment account will no longer be "
-"available for sale."
-msgid_plural ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following app. Applications without a payment account will no longer be "
-"available for sale."
+msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
+msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
 msgstr[0] "删除付款账户 \"{0}\" 将会从下面的应用中移除付款账号。没有付款账号的应用程序不能再进行销售。"
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
 msgstr "{appName} 付款账户："
 
-#: media/js/devreg/payments-manage.js:112
-#: media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191
-#: media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85
-#: media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "错误"
 
-#: media/js/devreg/payments-manage.js:113
-#: media/js/devreg/payments-manage.js:176
+#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
 msgstr "联系支付服务器时遇到问题。"
 
@@ -386,10 +362,6 @@ msgstr "搜索包含关键字 <b>{0}</b> 的应用"
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "搜索包含关键字 <b>{0}</b> 的附加组件"
-
-#: media/js/devreg/tarako.js:35
-msgid "Something went wrong. Please try again."
-msgstr "某些东西出错了。请再试一次。"
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
@@ -551,13 +523,11 @@ msgstr "免费版"
 msgid "Any"
 msgstr "一切"
 
-#: media/js/devreg/reviewers/reviewers.js:246
-#: media/js/devreg/reviewers/reviewers.js:297
+#: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
 msgstr "已审核应用：{app}"
 
-#: media/js/devreg/reviewers/reviewers.js:249
-#: media/js/devreg/reviewers/reviewers.js:300
+#: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
 msgstr "已拒绝应用：{app}"
 
@@ -578,13 +548,10 @@ msgid "Error failing app: {app}"
 msgstr "失败时出错的应用：{app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
-msgid ""
-"Sorry! We had an error fetching the review history. Please try logging in "
-"again.<p>"
+msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr "抱歉，获取审核记录时出错。请尝试重新登录。<p>"
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on
-#. Feburary 18th 2014 12:12 pm").
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr "由 {0} 于 {1}"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-21 09:48-0700\n"
+"POT-Creation-Date: 2015-11-12 10:27-0700\n"
 "PO-Revision-Date: 2014-06-26 21:25+0000\n"
 "Last-Translator: Aman <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,7 @@ msgstr "{0} ਅੱਪਲੋਡ ਜਾਰੀ"
 msgid "Error with {0}"
 msgstr "{0} ਨਾਲ ਗਲਤੀ"
 
-#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:208
+#: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:203
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
 msgstr[0] "ਤੁਹਾਡੀ ਐਪ ਪ੍ਰਮਾਣਿਕਤਾ ਅਸਫਲ ਨਾਲ {0} ਗਲਤੀ।"
@@ -76,7 +76,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;ਅਤੇ {0} ਹੋਰ"
 msgstr[1] "&hellip;ਅਤੇ {0} ਹੋਰ"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:170
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
 msgid "See full validation report"
 msgstr "ਪੂਰੀ ਪ੍ਰਮਾਣਿਕਤਾ ਦੀ ਰਿਪੋਰਟ ਵੇਖੋ"
 
@@ -139,51 +139,43 @@ msgstr "ਐਪ ਇੰਸਟਾਲ ਉੱਤੇ ਅੰਦਰੂਨੀ ਸਰਵ�
 msgid "Install failed. Please try again later."
 msgstr "ਇੰਸਟਾਲ ਅਸਫਲ। ਬਾਅਦ ਵਿੱਚ ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ ਜੀ।"
 
-#: media/js/devreg/devhub.js:213
+#: media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
 msgstr[0] "ਤੁਹਾਡਾ ਐਪ {0} ਗਲਤੀ ਨਾਲ ਪ੍ਰਮਾਣਕਿਤਾ ਅਸਫਲ ਅਤੇ {0} ਸੁਨੇਹਾ (s)।"
 msgstr[1] "ਤੁਹਾਡਾ ਐਪ {0} ਗਲਤੀਆਂ ਨਾਲ ਪ੍ਰਮਾਣਕਿਤਾ ਅਸਫਲ ਅਤੇ {0} ਸੁਨੇਹਾ (s)।"
 
-#: media/js/devreg/devhub.js:227
+#: media/js/devreg/devhub.js:222
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
 msgstr[0] "ਤੁਹਾਡਾ ਐਪ ਬਿਨਾਂ ਗਲਤੀ ਅਤੇ {0} ਸੁਨੇਹੇ ਨਾਲ ਪ੍ਰਮਾਣਿਤ ਲਈ ਪਾਸ ਹੋ ਗਿਆ।"
 msgstr[1] "ਤੁਹਾਡਾ ਐਪ ਬਿਨਾਂ ਗਲਤੀ ਅਤੇ {0} ਸੁਨੇਹਿਆਂ ਨਾਲ ਪ੍ਰਮਾਣਿਤ ਲਈ ਪਾਸ ਹੋ ਗਿਆ।"
 
-#: media/js/devreg/devhub.js:232
+#: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors or messages."
 msgstr "ਤੁਹਾਡਾ ਐਪ ਬਿਨਾਂ ਗਲਤੀ ਅਤੇ ਚੇਤਾਵਨੀ ਦੇ ਨਾਲ ਪ੍ਰਮਾਣਿਤ ਹੋਣ ਫੇਲ੍ਹ ਹੈ।"
 
-#: media/js/devreg/devhub.js:447
+#: media/js/devreg/devhub.js:442
 msgid "Changes Saved"
 msgstr "ਬਦਲਾਅ ਸੰਭਾਲਿਆ"
 
-#: media/js/devreg/devhub.js:463
+#: media/js/devreg/devhub.js:458
 msgid "Enter a new team member's email address"
 msgstr "ਨਵੇਂ ਟੀਮ ਮੈਂਬਰ ਦਾ ਈਮੇਲ ਸਿਰਨਾਵਾਂ ਦਿਓ"
 
-#: media/js/devreg/devhub.js:476
+#: media/js/devreg/devhub.js:471
 msgid "Manifest refreshed"
 msgstr ""
 
-#: media/js/devreg/devhub.js:481
+#: media/js/devreg/devhub.js:476
 msgid "Could not refresh manifest. Try again later."
 msgstr ""
 
-#: media/js/devreg/devhub.js:662
+#: media/js/devreg/devhub.js:657
 msgid "There was an error uploading your file."
 msgstr "ਤੁਹਾਡੇ ਫਾਈਲ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ।"
 
-#: media/js/devreg/devhub.js:945
-msgid "Learn more"
-msgstr "ਹੋਰ ਜਾਣੋ"
-
-#: media/js/devreg/devhub.js:949
-msgid "Example"
-msgstr "ਨਮੂਨਾ"
-
-#: media/js/devreg/devhub.js:1218
+#: media/js/devreg/devhub.js:1140
 msgid "Image changes being processed"
 msgstr "ਚਿਤਰ ਬਦਲਾਅ ਉੱਤੇ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
@@ -375,10 +367,6 @@ msgstr "<b>{0}</b> ਲਈ ਐਪ ਲੱਭੋ"
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "<b>{0}</b> ਲਈ ਐਡ-ਆਨ ਲੱਭੋ"
-
-#: media/js/devreg/tarako.js:35
-msgid "Something went wrong. Please try again."
-msgstr ""
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89

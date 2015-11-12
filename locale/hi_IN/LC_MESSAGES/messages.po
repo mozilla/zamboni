@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-14 13:42-0700\n"
+"POT-Creation-Date: 2015-11-12 10:27-0700\n"
 "PO-Revision-Date: 2015-09-05 08:46+0000\n"
 "Last-Translator: Priyank <priyank01agarwal@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,11 +46,12 @@ msgstr "{lang_code} भाषा कोड अमान्य है."
 msgid "Unknown"
 msgstr "अनजान"
 
-#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/reviewers/forms.py:212 mkt/submit/forms.py:330
+#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/developers/templates/developers/apps/edit/technical.html:68 mkt/reviewers/forms.py:212 mkt/submit/forms.py:335
 msgid "Yes"
 msgstr "हाँ"
 
-#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/lookup/templates/lookup/user_summary.html:78 mkt/reviewers/forms.py:213 mkt/submit/forms.py:331
+#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/developers/templates/developers/apps/edit/technical.html:70 mkt/lookup/templates/lookup/user_summary.html:78 mkt/reviewers/forms.py:213
+#: mkt/submit/forms.py:336
 msgid "No"
 msgstr "नहीं"
 
@@ -74,7 +75,7 @@ msgstr "%s संस्करण उपलब्ध नहीं हैं"
 msgid "Attachment:"
 msgstr "संलग्नक:"
 
-#: mkt/comm/forms.py:52 mkt/submit/forms.py:280
+#: mkt/comm/forms.py:52 mkt/submit/forms.py:285
 msgid "Description:"
 msgstr "विवरण:"
 
@@ -115,7 +116,7 @@ msgstr "प्रयोगकर्ता"
 msgid "Reviewer"
 msgstr "समीक्षक"
 
-#: mkt/constants/apps.py:11 mkt/constants/base.py:146 mkt/developers/templates/developers/apps/owner.html:91 mkt/operators/templates/operators/preloads.html:15 mkt/users/notifications.py:157
+#: mkt/constants/apps.py:11 mkt/constants/base.py:146 mkt/developers/templates/developers/apps/owner.html:91 mkt/users/notifications.py:157
 msgid "Developer"
 msgstr "डेवलपर"
 
@@ -1143,7 +1144,7 @@ msgstr "बाज़ार से प्रतिबंधित"
 msgid "Deleted"
 msgstr "हटाए गए"
 
-#: mkt/constants/base.py:32 mkt/constants/comm.py:47 mkt/reviewers/helpers.py:192 mkt/site/log.py:176
+#: mkt/constants/base.py:32 mkt/constants/comm.py:47 mkt/reviewers/helpers.py:197 mkt/site/log.py:176
 msgid "Rejected"
 msgstr "अस्वीकृत"
 
@@ -1895,6 +1896,14 @@ msgstr "NFC"
 msgid "The app requires access to the Near Field Communication (NFC) API."
 msgstr "एप्लिकेशन को नियर फील्ड कम्युनिकेशन ( एनएफसी ) एपीआई के लिए उपयोग की आवश्यकता है."
 
+#: mkt/constants/features.py:357
+msgid "UDP Sockets"
+msgstr ""
+
+#: mkt/constants/features.py:358
+msgid "The app requires the platform to allow opening raw UDP sockets."
+msgstr ""
+
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
 msgstr "शुल्कवापसी"
@@ -2130,11 +2139,11 @@ msgstr "पैकेज्ड"
 msgid "Agreement"
 msgstr "समझौता"
 
-#: mkt/constants/submit.py:6 mkt/developers/templates/developers/apps/preload/submit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:121
+#: mkt/constants/submit.py:6 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:121
 msgid "Submit"
 msgstr "जमा"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1446
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1450
 msgid "Details"
 msgstr "विवरण    "
 
@@ -2158,259 +2167,237 @@ msgstr "साझा खाता नहीं हटाया जा सकत�
 msgid "Content rating changed to Adult."
 msgstr "अंतर्वस्तु मूल्यांकन वयस्क में परिवर्तित."
 
-#: mkt/developers/forms.py:64
+#: mkt/developers/forms.py:63
 msgid "You cannot select {region}."
 msgstr "आप चुन नहीं सकते {region}."
 
-#: mkt/developers/forms.py:122
+#: mkt/developers/forms.py:121
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr "दल के समस्त सदस्यों का डेवलपर समझौते को पढ़ना एवं स्वीकृत करना अनिवार्य."
 
-#: mkt/developers/forms.py:153
+#: mkt/developers/forms.py:152
 msgid "Must have at least one owner."
 msgstr "न्यूनातिन्यून एक मालिक होना अनिवार्य."
 
-#: mkt/developers/forms.py:156
+#: mkt/developers/forms.py:155
 msgid "At least one team member must be listed."
 msgstr "न्यूनातिन्यून दल के एक सदस्य का सूचीबद्ध अनिवार्य."
 
-#: mkt/developers/forms.py:160
+#: mkt/developers/forms.py:159
 msgid "A team member can only be listed once."
 msgstr "एक टीम का सदस्य केवल एक ही बार सूचीबद्ध किया जा सकता है.                "
 
-#: mkt/developers/forms.py:187
+#: mkt/developers/forms.py:186
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
 msgstr "उफ़, ऐसा प्रतीत हो रहा है कि आप %s के लिए मेनीफिस्ट पहले ही जमा कर चुके हैं, जोकि वर्तमान में सार्वजनिक है. <a href=\"%s\">ऐप्प पुनः शुरू करें</a>"
 
-#: mkt/developers/forms.py:191
+#: mkt/developers/forms.py:190
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
 msgstr "उफ, ऐसा प्रतीत हो रहा है कि आप %s के लिए मेनीफिस्ट पहले ही जमा कर चुके हैं, जोकि वर्तमान में सार्वजनिक है <a href=\"%s\">ऐप्प संपादित करें</a>"
 
-#: mkt/developers/forms.py:195
+#: mkt/developers/forms.py:194
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
 msgstr "उफ़, ऐसा प्रतीत हो रहा है कि आप %s के लिए मेनीफिस्ट पहले ही जमा कर चुके हैं, जोकि अपूर्ण है। <a href=\"%s\">ऐप्प पुनः शुरू करें</a>"
 
-#: mkt/developers/forms.py:199
+#: mkt/developers/forms.py:198
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
 msgstr "उफ़, ऐसा प्रतीत हो रहा है कि आप %s के लिए मेनीफिस्ट पहले ही जमा कर चुके हैं, जोकि वर्तमान में अस्वीकृत है। <a href=\"%s\">ऐप्प संपादित करें</a>"
 
-#: mkt/developers/forms.py:203
+#: mkt/developers/forms.py:202
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
 msgstr "उफ़, ऐसा प्रतीत हो रहा है कि आप %s के लिए मेनीफिस्ट पहले ही जमा कर चुके हैं, जोकि वर्तमान में बाज़ार में प्रतिबंधित है। <a href=\"%s\">ऐप्प संपादित करें</a>"
 
-#: mkt/developers/forms.py:207
+#: mkt/developers/forms.py:206
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
 msgstr "उफ़, ऐसा प्रतीत हो रहा है कि आप %s के लिए मेनीफिस्ट पहले ही जमा कर चुके हैं, जोकि वर्तमान में निर्योग्य है। <a href=\"%s\">ऐप्प संपादित करें</a>"
 
-#: mkt/developers/forms.py:222
+#: mkt/developers/forms.py:221
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "एक ऐप्प पहले से ही इस डोमेन पर मौजूद है; केवल एक ऐप्प प्रति डोमेन की अनुमति है।"
 
-#: mkt/developers/forms.py:337 mkt/websites/forms.py:80
+#: mkt/developers/forms.py:336 mkt/websites/forms.py:80
 msgid "Invalid region(s) selected."
 msgstr "अमान्य क्षेत्र चयनित।"
 
-#: mkt/developers/forms.py:398 mkt/webapps/models.py:1355
+#: mkt/developers/forms.py:397 mkt/webapps/models.py:1359
 msgid "You must upload at least one screenshot or video."
 msgstr "आपको कम से कम एक स्क्रीनशॉट या विडियो अपलोड करना होगा।"
 
-#: mkt/developers/forms.py:439
+#: mkt/developers/forms.py:438
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr "प्रस्तुत करने के लिए पैकेज्ड एप्प बहुत बड़ी है. पैकेज %s की तुलना में कम होना चाहिए."
 
-#: mkt/developers/forms.py:462
+#: mkt/developers/forms.py:461
 msgid "Error extracting manifest from zip file."
 msgstr "ज़िप फ़ाइल से व्यक्त करने में त्रुटि."
 
-#: mkt/developers/forms.py:532
+#: mkt/developers/forms.py:531
 msgid "Hosted URL:"
 msgstr "मेजबानी यूआरएल:"
 
-#: mkt/developers/forms.py:533
+#: mkt/developers/forms.py:532
 msgid "A URL to where your app is hosted on the web, if it exists. This allows users to try out your app before installing it."
 msgstr "जिस यूआरएल के नाम पर वेब मैं एप्प स्थापित की गई है, यदि वह अस्तित्व मैं है. इससे उपभोगकर्ता अप्प को स्थापित करने से पहले ही उसका उपयोग कर पायेंगे."
 
-#: mkt/developers/forms.py:538
+#: mkt/developers/forms.py:537
 msgid "Provide a detailed description of your app"
 msgstr "अपने ऐप्प का विस्तृत विवरण प्रदान करेंं"
 
-#: mkt/developers/forms.py:539
+#: mkt/developers/forms.py:538
 msgid "This description will appear on the details page."
 msgstr "यह विवरण विवरण पृष्ठ पर दिखाई देगा."
 
-#: mkt/developers/forms.py:542 mkt/submit/forms.py:288
+#: mkt/developers/forms.py:541 mkt/submit/forms.py:293
 msgid "Search Keywords:"
 msgstr "संकेतशब्द खोजें:"
 
-#: mkt/developers/forms.py:544 mkt/developers/templates/developers/apps/edit/basic.html:143 mkt/submit/forms.py:290
+#: mkt/developers/forms.py:543 mkt/developers/templates/developers/apps/edit/basic.html:143 mkt/submit/forms.py:295
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
 msgstr "खोज कीवर्ड फ़ायरफ़ॉक्स बाज़ार में खोज परिणामों को वापस लाने के लिए उपयोग किया जाता है. सही रूप में आपके एप्लिकेशन को प्रतिबिंबित करने वाले एक कीवर्ड को शामिल करना न भूलें."
 
-#: mkt/developers/forms.py:599 mkt/submit/forms.py:374
+#: mkt/developers/forms.py:598 mkt/submit/forms.py:379
 msgid "This slug is already in use. Please choose another."
 msgstr "यह स्लग पहले से ही उपयोग में है. कृपया दूसरा चुनें."
 
-#: mkt/developers/forms.py:602 mkt/submit/forms.py:378
+#: mkt/developers/forms.py:601 mkt/submit/forms.py:383
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "यह स्लग \"% s \" नहीं हो सकता. कृपया दूसरा चुनें."
 
-#: mkt/developers/forms.py:630
+#: mkt/developers/forms.py:629
 msgid "Manifest URL changed from {before_url} to {after_url}"
 msgstr "मैनिफ़ेस्ट का यूआरएल {before_url} से {after_url} मैं परिवर्तित हो गया है"
 
-#: mkt/developers/forms.py:667
+#: mkt/developers/forms.py:666
 msgid "Please specify your app's Privacy Policy"
 msgstr "कृपया अपनी गोपनीयता नीति का वर्णन करें"
 
-#: mkt/developers/forms.py:688
+#: mkt/developers/forms.py:687
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr "अपनी स्थानीय भाषा को रूपान्तरित करने से पहले आपके पास सामान भाषा मैं नाम तथा विवरण होना अनिवार्य है. आप %s को चूक रहे हैं."
 
-#: mkt/developers/forms.py:747 mkt/submit/templates/submit/details.html:125
+#: mkt/developers/forms.py:746 mkt/submit/templates/submit/details.html:125
 msgid "You must provide either a website, an email, or both."
 msgstr "आप या तो वेबसाइट या ईमेल या दोनों उपलब्ध करायें."
 
-#: mkt/developers/forms.py:772
+#: mkt/developers/forms.py:771
 msgid "Your comments"
 msgstr "आपकी टिप्पणियाँ"
 
-#: mkt/developers/forms.py:799
+#: mkt/developers/forms.py:798
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr "<b>प्रकाशित</b>: बाज़ार में सभी को दृश्य और खोज परीणामों तथा सूची पृष्ठों में शामिल"
 
-#: mkt/developers/forms.py:803
+#: mkt/developers/forms.py:802
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
 msgstr "<b>असूचीबद्ध</b>: केवल यूआरएल जानने वाले लोगो को ही दृश्य हो तथा खोज परिणामों तथा सूचीबद्ध पृष्ठों पर आकृत न हो."
 
-#: mkt/developers/forms.py:819
+#: mkt/developers/forms.py:818
 msgid "App Visibility:"
 msgstr "एप्प दृश्यता :"
 
-#: mkt/developers/forms.py:821
+#: mkt/developers/forms.py:820
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
 msgstr "<b>मेरे समूह तक ही सीमित हो</b>: केवल समूह के सदस्यों को ही दृष्य हो."
 
-#: mkt/developers/forms.py:867
+#: mkt/developers/forms.py:866
 msgid "Choose the regions your app will be listed in:"
 msgstr "उन क्षेत्रों को चुनिए जिन पर आपकी एप्लीकेशन सूचीबद्ध होगी:"
 
-#: mkt/developers/forms.py:869 mkt/developers/forms.py:970
+#: mkt/developers/forms.py:868 mkt/developers/forms.py:969
 msgid "You must select at least one region."
 msgstr "आपका न्यूनातिन्यून एक क्षेत्र चुनना अनिवार्य."
 
-#: mkt/developers/forms.py:874
+#: mkt/developers/forms.py:873
 msgid "Enable new regions"
 msgstr "नए क्षेत्रों को सक्रिय करें"
 
-#: mkt/developers/forms.py:877
+#: mkt/developers/forms.py:876
 msgid "Make my app available in most regions"
 msgstr "अधिकांश क्षेत्रों में मेरे अनुप्रयोग उपलब्ध करायें"
 
-#: mkt/developers/forms.py:878
+#: mkt/developers/forms.py:877
 msgid "Choose where my app is made available"
 msgstr "चुनें कि कहाँ मेरा एप्प उपलब्ध कराया जाए"
 
-#: mkt/developers/forms.py:1031 mkt/developers/templates/developers/apps/edit/basic.html:189 mkt/lookup/templates/lookup/website_edit.html:76 mkt/lookup/templates/lookup/website_summary.html:44
+#: mkt/developers/forms.py:1030 mkt/developers/templates/developers/apps/edit/basic.html:189 mkt/lookup/templates/lookup/website_edit.html:76 mkt/lookup/templates/lookup/website_summary.html:44
 #: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:101 mkt/websites/forms.py:23
 msgid "Categories"
 msgstr "श्रेणियाँ"
 
 #. L10n: {0} is the number of categories.
-#: mkt/developers/forms.py:1056 mkt/webapps/serializers.py:276 mkt/websites/forms.py:61
+#: mkt/developers/forms.py:1055 mkt/webapps/serializers.py:293 mkt/websites/forms.py:61
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "आपके पास केवल {0}श्रेणी हो सकती हैं."
 msgstr[1] "आपके पास केवल {0}श्रेणियाँ हो सकती हैं."
 
-#: mkt/developers/forms.py:1070
+#: mkt/developers/forms.py:1069
 msgid "Agree"
 msgstr "सहमत"
 
-#: mkt/developers/forms.py:1087
+#: mkt/developers/forms.py:1086
 msgid "Please enter a valid email address."
 msgstr "कृपया वैध ईमेल पता दर्ज करें."
 
-#: mkt/developers/forms.py:1090
+#: mkt/developers/forms.py:1089
 msgid "Your email address"
 msgstr "आपका ईमेल पता"
 
-#: mkt/developers/forms.py:1093
+#: mkt/developers/forms.py:1092
 msgid "Text"
 msgstr "मूलपाठ"
 
-#: mkt/developers/forms.py:1097
+#: mkt/developers/forms.py:1096
 msgid "You must agree to the Privacy Policy."
 msgstr "आपका गोपनीयता नीति से सहमत होना अनिवार्य."
 
-#: mkt/developers/forms.py:1098 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:1097 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "देश"
 
-#: mkt/developers/forms.py:1132 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27 mkt/operators/templates/operators/preloads.html:14
+#: mkt/developers/forms.py:1131 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:21 mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:18
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:20 mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
 msgstr "एप्प"
 
-#: mkt/developers/forms.py:1134
+#: mkt/developers/forms.py:1133
 msgid "Transaction Type"
 msgstr "लेन-देन का प्रकार"
 
-#: mkt/developers/forms.py:1137 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
+#: mkt/developers/forms.py:1136 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
 msgid "Transaction ID"
 msgstr "लेन-देन आईडी"
 
-#: mkt/developers/forms.py:1143
+#: mkt/developers/forms.py:1142
 msgid "From"
 msgstr "द्वारा"
 
-#: mkt/developers/forms.py:1146
+#: mkt/developers/forms.py:1145
 msgid "To"
 msgstr "को"
 
-#: mkt/developers/forms.py:1157
+#: mkt/developers/forms.py:1156
 msgid "Web site"
 msgstr "वेबसाइट"
 
-#: mkt/developers/forms.py:1158
+#: mkt/developers/forms.py:1157
 msgid "Command line"
 msgstr "कमाण्ड लाइन"
 
-#: mkt/developers/forms.py:1179
+#: mkt/developers/forms.py:1178
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr "इसे मेरी एप्लीकेशन का सक्रिय संस्करण बनायें जब यह पूर्ण रूप से समीक्षित तथा मंजूर कर दी गई हो ."
 
-#: mkt/developers/forms.py:1206
-msgid ""
-"Please consider my app as a candidate to be pre-loaded on a Firefox OS device. I agree to the terms and conditions outlined above. I understand that this document is not a commitment to pre-load my "
-"app."
-msgstr "कृपया मेरी एप्लीकेशन को एक उम्मीदवार ही मानें जो कि आपके फॉयरफॉक्स ओस उपकरण मैं पहले से लोड है. मैं ऊपर निर्देशित सभी नियम व शर्तों से सहमत हूँ. मैं समझता हूँ कि यह दस्तावेज़ एप्लीकेशन को पहले से लोड करने की प्रतिबद्धता नहीं है."
-
-#: mkt/developers/forms.py:1213
-msgid "Upload Your Test Plan (.pdf, .xls under 2.5MB)"
-msgstr "अपनी परीक्षण योजना अपलोड कीजिए(.pdf, .xls 2.5 MB से कम)"
-
-#: mkt/developers/forms.py:1229
-msgid "Test plan required."
-msgstr "इम्तहान योजना आवश्यक."
-
-#: mkt/developers/forms.py:1236
-msgid "File too large. Keep size under %s. Current size %s."
-msgstr "फाइल बहुत बड़ी है। आकार %s से नीचे रखें। मोजूदा आकार %s है।"
-
-#: mkt/developers/forms.py:1242
-msgid "Invalid file type {0}. Only {1} files are supported."
-msgstr "अमान्य फाइल प्रकार {0}। केवल {1} फाइलें समर्थित हैं।"
-
-#: mkt/developers/forms.py:1266
+#: mkt/developers/forms.py:1218
 msgid "Please enter a valid submission ID."
 msgstr "कृपया एक वैध निवेदन आईडी दर्ज कीजिए."
 
-#: mkt/developers/forms.py:1282
+#: mkt/developers/forms.py:1234
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr "यह आईएआरसी प्रमाणपत्र पहले से ही किसी अन्य अनुप्रयोग के लिए इस्तेमाल किया जा चुका है. कृपया एक नया आईएआरसी रेटिंग प्रमाण पत्र बनाने की कृपा कीजिए."
 
-#: mkt/developers/forms.py:1317 mkt/developers/forms.py:1329
+#: mkt/developers/forms.py:1269 mkt/developers/forms.py:1281
 msgid "Invalid submission ID or security code."
 msgstr "जमा किया पहचान पत्र अथवा सुरक्षा कूट अमान्य."
 
@@ -2591,15 +2578,15 @@ msgid "My Submissions"
 msgstr "मेरे द्वारा जमा"
 
 #. L10n: {0} is the name of the account.
-#: mkt/developers/models.py:135
+#: mkt/developers/models.py:133
 msgid "Donate to {0}"
 msgstr "दान करें {0}"
 
-#: mkt/developers/models.py:493
+#: mkt/developers/models.py:456
 msgid "Review"
 msgstr "निरीक्षण"
 
-#: mkt/developers/models.py:496 mkt/developers/templates/developers/apps/version_edit.html:4
+#: mkt/developers/models.py:459 mkt/developers/templates/developers/apps/version_edit.html:4
 msgid "Version {0}"
 msgstr "संस्करण {0}"
 
@@ -2607,35 +2594,35 @@ msgstr "संस्करण {0}"
 msgid "Reference Implementation"
 msgstr "संदर्भ कार्यान्वित"
 
-#: mkt/developers/tasks.py:471
+#: mkt/developers/tasks.py:475
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "इस यूआरएल से कुछ प्रदर्शित नहीं हुआ. कृपया यूआरएल को जाँचे व फिर से प्रयास करें."
 
-#: mkt/developers/tasks.py:477
+#: mkt/developers/tasks.py:481
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr ""
 
-#: mkt/developers/tasks.py:486
+#: mkt/developers/tasks.py:490
 msgid "Your manifest must be less than %s bytes."
 msgstr "आपकी सूची %s बाइट से कम होनी चाहिए."
 
-#: mkt/developers/tasks.py:494
+#: mkt/developers/tasks.py:498
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "आपकी घोषणा फ़ाइल वैध UTF-8 के रूप में एन्कोड नहीं की गई थी."
 
-#: mkt/developers/tasks.py:505
+#: mkt/developers/tasks.py:509
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr ""
 
-#: mkt/developers/tasks.py:536 mkt/developers/tasks.py:542 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:540 mkt/developers/tasks.py:546 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "एवं"
 
-#: mkt/developers/tasks.py:556
+#: mkt/developers/tasks.py:560
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "{region} क्षेत्र फ़ायरफ़ॉक्स बाज़ार में जोड़ दिया गया है"
 
-#: mkt/developers/tasks.py:560
+#: mkt/developers/tasks.py:564
 msgid "New regions added to the Firefox Marketplace"
 msgstr "नए क्षेत्रों को फ़ायरफ़ॉक्स बाज़ार में जोड़ दिया गया है"
 
@@ -2689,91 +2676,83 @@ msgstr "प्रतीक वर्ग के आकर मैं होने 
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "एप्लीकेशन का पूर्वावलोकन आकार कम से कम {0}px से {1}px या {1}px से {0}px होना चाहिए."
 
-#: mkt/developers/views.py:153
+#: mkt/developers/views.py:149
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "भुकतान वाली ऍप्लिकेशन्स को नहीं हटाया जा सकता. एप्लीकेशन को हटाने के बजाय निष्क्रिय करें."
 
-#: mkt/developers/views.py:163
+#: mkt/developers/views.py:159
 msgid "App deleted."
 msgstr "एप्लीकेशन हटा दी गई है."
 
-#: mkt/developers/views.py:168
+#: mkt/developers/views.py:164
 msgid "Password was incorrect. App was not deleted."
 msgstr " पासवर्ड अशुद्ध था. एप्लीकेशन नहीं हट सकी."
 
-#: mkt/developers/views.py:212
+#: mkt/developers/views.py:208
 msgid "App successfully resubmitted."
 msgstr ""
 
-#: mkt/developers/views.py:245
+#: mkt/developers/views.py:241
 msgid "New version successfully added."
 msgstr ""
 
-#: mkt/developers/views.py:309 mkt/developers/views.py:571 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:449 mkt/reviewers/views.py:711
+#: mkt/developers/views.py:289 mkt/developers/views.py:502 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:449 mkt/reviewers/views.py:730
 msgid "Changes successfully saved."
 msgstr ""
 
-#: mkt/developers/views.py:316
+#: mkt/developers/views.py:296
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr ""
 
-#: mkt/developers/views.py:318
+#: mkt/developers/views.py:298
 msgid "Content ratings successfully saved."
 msgstr "सामग्री की रेटिंग सफलतापूर्वक संचित कर ली गई है."
 
-#: mkt/developers/views.py:442
-msgid "Application for preload successfully submitted."
-msgstr "प्रीलोड के लिए आवेदन सफलतापूर्वक पेश किया."
-
-#: mkt/developers/views.py:445
-msgid "There was an error with the form."
-msgstr "वहाँ प्रपत्र के साथ एक त्रुटि हुई."
-
-#: mkt/developers/views.py:475
+#: mkt/developers/views.py:406
 msgid "Version successfully edited."
 msgstr "संस्करण सफलतापूर्वक संशोधित."
 
-#: mkt/developers/views.py:510
+#: mkt/developers/views.py:441
 msgid "Version successfully made active."
 msgstr "संस्करण सफलतापूर्वक सक्रिय हुआ."
 
-#: mkt/developers/views.py:524
+#: mkt/developers/views.py:455
 msgid "Version \"{0}\" deleted."
 msgstr "संस्करण \"{0}\" नष्ट."
 
-#: mkt/developers/views.py:659
+#: mkt/developers/views.py:590
 msgid "There was an error with the submission."
 msgstr "पेश करने के साथ कोई त्रुटि थी."
 
-#: mkt/developers/views.py:701
+#: mkt/developers/views.py:632
 msgid "An error occurred validating the manifest."
 msgstr ""
 
-#: mkt/developers/views.py:955
+#: mkt/developers/views.py:886
 msgid "There was an error uploading your preview."
 msgstr ""
 
-#: mkt/developers/views.py:1006
+#: mkt/developers/views.py:937
 msgid "Terms of service accepted."
 msgstr "सेवा की शर्तें स्वीकृत."
 
-#: mkt/developers/views.py:1022
+#: mkt/developers/views.py:953
 msgid "Users with the admin role cannot use the API."
 msgstr "व्यवस्थापक भूमिका रखने वाले उपयोगकर्ता एपीआई का उपयोग नहीं कर सकते हैं."
 
-#: mkt/developers/views.py:1031
+#: mkt/developers/views.py:962
 msgid "No such API key."
 msgstr "ऐसी कोई एपीआई कुंजी नहीं."
 
-#: mkt/developers/views.py:1037
+#: mkt/developers/views.py:968
 msgid "New API key generated."
 msgstr "नयी एपीआई कुंजी उत्पादित."
 
-#: mkt/developers/views.py:1055
+#: mkt/developers/views.py:986
 msgid "Created blocklisted version."
 msgstr "अवरोधित सूची का संस्करण तैयार है."
 
-#: mkt/developers/views.py:1057
+#: mkt/developers/views.py:988
 msgid "App already blocklisted."
 msgstr "एप्लीकेशन पहले से ही अवरोधित सूची मैं है."
 
@@ -3149,7 +3128,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/owner.html:58 mkt/developers/templates/developers/apps/version_edit.html:72 mkt/developers/templates/developers/apps/edit/admin.html:170
 #: mkt/developers/templates/developers/apps/edit/basic.html:211 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62
-#: mkt/developers/templates/developers/apps/edit/technical.html:97 mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/payments/premium.html:75
+#: mkt/developers/templates/developers/apps/edit/technical.html:108 mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/payments/premium.html:75
 #: mkt/developers/templates/developers/payments/premium.html:104 mkt/developers/templates/developers/payments/premium.html:162 mkt/developers/templates/developers/payments/premium.html:272
 #: mkt/developers/templates/developers/payments/premium.html:286 mkt/developers/templates/developers/payments/premium.html:325 mkt/lookup/templates/lookup/website_edit.html:113
 #: mkt/translations/templates/translations/trans-menu.html:48
@@ -3192,11 +3171,10 @@ msgid "Status & Versions"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
-#: mkt/developers/templates/developers/apps/preload/home.html:3 mkt/developers/templates/developers/apps/preload/submit.html:3 mkt/developers/templates/developers/includes/addons_edit_nav.html:8
-#: mkt/developers/templates/developers/payments/in-app-products.html:52 mkt/lookup/forms.py:71 mkt/lookup/forms.py:76 mkt/lookup/templates/lookup/app_summary.html:61
-#: mkt/lookup/templates/lookup/app_summary.html:156 mkt/lookup/templates/lookup/website_edit.html:97 mkt/lookup/templates/lookup/website_summary.html:52 mkt/reviewers/forms.py:186
-#: mkt/reviewers/forms.py:235 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
-#: mkt/reviewers/templates/reviewers/includes/search_results.html:8
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:8 mkt/developers/templates/developers/payments/in-app-products.html:52 mkt/lookup/forms.py:71 mkt/lookup/forms.py:76
+#: mkt/lookup/templates/lookup/app_summary.html:61 mkt/lookup/templates/lookup/app_summary.html:156 mkt/lookup/templates/lookup/website_edit.html:97
+#: mkt/lookup/templates/lookup/website_summary.html:52 mkt/reviewers/forms.py:186 mkt/reviewers/forms.py:235 mkt/reviewers/templates/reviewers/review.html:29
+#: mkt/reviewers/templates/reviewers/includes/details.html:21 mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
 msgstr ""
 
@@ -3318,7 +3296,7 @@ msgstr ""
 msgid "Disabled"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:228 mkt/ecosystem/templates/ecosystem/publish_badges.html:45 mkt/operators/templates/operators/preloads.html:47
+#: mkt/developers/templates/developers/apps/status.html:228 mkt/ecosystem/templates/ecosystem/publish_badges.html:45
 msgid "Download"
 msgstr ""
 
@@ -3343,194 +3321,114 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:286 mkt/developers/templates/developers/apps/status.html:510
+#: mkt/developers/templates/developers/apps/status.html:287
 msgid "Low-Memory Devices"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:291
-msgid "Your app is shown on low-memory devices."
+#: mkt/developers/templates/developers/apps/status.html:290
+msgid ""
+"Your app is shown on <a href=\"https://developer.mozilla.org/Apps/Build/Performance/Apps_for_low-memory_Firefox_OS_devices\" target=\"_blank\">low-memory devices</a>. If you want to stop showing "
+"your app on low-memory devices <a href=\"%(support_url)s\">contact us</a>."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:293
-msgid "Your app is not shown on low-memory devices."
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:299
-msgid "You have not requested a low-memory review."
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:303
-msgid "Your app is awaiting review."
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:305
-msgid "Our review on {review_date} found that your app supports low-memory devices."
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:308
-msgid "Our review on {review_date} found that your app does not support low-memory devices."
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:311
-msgid "You requested a review on {request_date}."
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:318
-msgid "Your app is not enabled in any regions with low-memory devices."
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:319
-msgid "You can update your regions on the <a href=\"{compatibility_page}\">compatibility page</a>."
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:326
-msgid "If your app works on low-memory devices then you can request a review to be shown on low-memory devices."
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:329 mkt/developers/templates/developers/payments/includes/region_form.html:20
-msgid "Learn about low-memory devices."
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:335 mkt/developers/templates/developers/apps/status.html:517
-msgid "Do not show my app on low-memory devices"
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:345
-msgid "Request a low-memory review"
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:354
-msgid "Pre-Installed App Status"
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:360
-msgid "<strong class=\"submitted\">Application Submitted</strong> on %(last_submission)s"
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:364
-msgid "Not Submitted"
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:368
-msgid "New version of the test plan available"
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:373
-msgid "View your most recently submitted test plan"
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:377
-msgid "<a href=\"%(lnk_url)s\">Update your test plan</a>"
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:381
-msgid "<a href=\"%(lnk_url)s\">Learn how</a> to get your app pre-installed on Firefox OS devices"
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:393 mkt/developers/templates/developers/apps/status.html:411
+#: mkt/developers/templates/developers/apps/status.html:302 mkt/developers/templates/developers/apps/status.html:320
 msgid "List App"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:393 mkt/developers/templates/developers/apps/status.html:414 mkt/developers/templates/developers/apps/status.html:474
-#: mkt/developers/templates/developers/apps/status.html:479
+#: mkt/developers/templates/developers/apps/status.html:302 mkt/developers/templates/developers/apps/status.html:323 mkt/developers/templates/developers/apps/status.html:383
+#: mkt/developers/templates/developers/apps/status.html:388
 msgid "Delist App"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:397
+#: mkt/developers/templates/developers/apps/status.html:306
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:402
+#: mkt/developers/templates/developers/apps/status.html:311
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:422 mkt/developers/templates/developers/apps/status.html:433 mkt/developers/templates/developers/apps/listing/delete_form.html:9
+#: mkt/developers/templates/developers/apps/status.html:331 mkt/developers/templates/developers/apps/status.html:342 mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
 msgid "Delete App"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:427
+#: mkt/developers/templates/developers/apps/status.html:336
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:440
+#: mkt/developers/templates/developers/apps/status.html:349
 msgid "Blocklist App"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:446
+#: mkt/developers/templates/developers/apps/status.html:355
 msgid ""
 "Blocklisting an app will upgrade the users to a special version which will make the app unusable on their Firefox OS devices. This will also remove this app from public pages until a new version is "
 "submitted and approved. These changes cannot be undone. Please proceed with caution."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:455
+#: mkt/developers/templates/developers/apps/status.html:364
 msgid "Blocklist"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:476
+#: mkt/developers/templates/developers/apps/status.html:385
 msgid "Are you sure you wish to delist your app?"
 msgstr ""
 
 #. This 'or' goes between two choices in a dialog.
-#: mkt/developers/templates/developers/apps/status.html:480 mkt/developers/templates/developers/apps/status.html:502 mkt/developers/templates/developers/apps/status.html:519
-#: mkt/developers/templates/developers/apps/version_edit.html:72 mkt/developers/templates/developers/apps/edit/admin.html:170 mkt/developers/templates/developers/apps/edit/basic.html:211
-#: mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62 mkt/developers/templates/developers/apps/edit/technical.html:97
-#: mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/apps/listing/delete_form.html:23
-#: mkt/developers/templates/developers/payments/includes/accept_terms.html:11 mkt/developers/templates/developers/payments/includes/account_list.html:67
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:141 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:126 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:29
-#: mkt/lookup/templates/lookup/website_edit.html:113 mkt/submit/templates/submit/done.html:48 mkt/translations/templates/translations/trans-menu.html:50
-#: mkt/translations/templates/translations/trans-menu.html:62
+#: mkt/developers/templates/developers/apps/status.html:389 mkt/developers/templates/developers/apps/status.html:411 mkt/developers/templates/developers/apps/version_edit.html:72
+#: mkt/developers/templates/developers/apps/edit/admin.html:170 mkt/developers/templates/developers/apps/edit/basic.html:211 mkt/developers/templates/developers/apps/edit/details.html:79
+#: mkt/developers/templates/developers/apps/edit/support.html:62 mkt/developers/templates/developers/apps/edit/technical.html:108 mkt/developers/templates/developers/apps/forms_shared/media.html:164
+#: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/payments/includes/accept_terms.html:11
+#: mkt/developers/templates/developers/payments/includes/account_list.html:67 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:141
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:126
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:29 mkt/lookup/templates/lookup/website_edit.html:113 mkt/submit/templates/submit/done.html:48
+#: mkt/translations/templates/translations/trans-menu.html:50 mkt/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:480 mkt/developers/templates/developers/apps/status.html:502 mkt/developers/templates/developers/apps/status.html:520
-#: mkt/developers/templates/developers/apps/version_edit.html:73 mkt/developers/templates/developers/apps/edit/admin.html:172 mkt/developers/templates/developers/apps/edit/basic.html:213
-#: mkt/developers/templates/developers/apps/edit/details.html:81 mkt/developers/templates/developers/apps/edit/support.html:64 mkt/developers/templates/developers/apps/edit/technical.html:99
-#: mkt/developers/templates/developers/apps/forms_shared/media.html:166 mkt/developers/templates/developers/apps/listing/delete_form.html:23
-#: mkt/developers/templates/developers/apps/listing/delete_form.html:27 mkt/developers/templates/developers/payments/includes/accept_terms.html:12
-#: mkt/developers/templates/developers/payments/includes/account_list.html:68 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:142
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:29 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:127
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:30 mkt/lookup/templates/lookup/user_summary.html:136 mkt/lookup/templates/lookup/user_summary.html:139
-#: mkt/lookup/templates/lookup/website_edit.html:114 mkt/reviewers/templates/reviewers/includes/macros.html:31 mkt/translations/templates/translations/trans-menu.html:50
-#: mkt/translations/templates/translations/trans-menu.html:62
+#: mkt/developers/templates/developers/apps/status.html:389 mkt/developers/templates/developers/apps/status.html:411 mkt/developers/templates/developers/apps/version_edit.html:73
+#: mkt/developers/templates/developers/apps/edit/admin.html:172 mkt/developers/templates/developers/apps/edit/basic.html:213 mkt/developers/templates/developers/apps/edit/details.html:81
+#: mkt/developers/templates/developers/apps/edit/support.html:64 mkt/developers/templates/developers/apps/edit/technical.html:110 mkt/developers/templates/developers/apps/forms_shared/media.html:166
+#: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/apps/listing/delete_form.html:27
+#: mkt/developers/templates/developers/payments/includes/accept_terms.html:12 mkt/developers/templates/developers/payments/includes/account_list.html:68
+#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:142 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:29
+#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:127 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:30
+#: mkt/lookup/templates/lookup/user_summary.html:136 mkt/lookup/templates/lookup/user_summary.html:139 mkt/lookup/templates/lookup/website_edit.html:114
+#: mkt/reviewers/templates/reviewers/includes/macros.html:31 mkt/translations/templates/translations/trans-menu.html:50 mkt/translations/templates/translations/trans-menu.html:62
 msgid "Cancel"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:490
+#: mkt/developers/templates/developers/apps/status.html:399
 msgid "Delete Version &quot;{version}&quot;"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:491
+#: mkt/developers/templates/developers/apps/status.html:400
 msgid "Deleting the only version will result in the following:"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:493
+#: mkt/developers/templates/developers/apps/status.html:402
 msgid "the app status will be marked as &quot;incomplete&quot;"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:494
+#: mkt/developers/templates/developers/apps/status.html:403
 msgid "the app will be removed from our review queue"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:495
+#: mkt/developers/templates/developers/apps/status.html:404
 msgid "the app will not be listed in our public pages"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:497
+#: mkt/developers/templates/developers/apps/status.html:406
 msgid "These changes cannot be undone."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:498
+#: mkt/developers/templates/developers/apps/status.html:407
 msgid "Are you sure you wish to delete this version?"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/status.html:501
+#: mkt/developers/templates/developers/apps/status.html:410
 msgid "Delete Version"
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/status.html:512
-msgid "Are you sure you want to stop showing your app on low-memory devices?"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/version_edit.html:25 mkt/reviewers/templates/reviewers/includes/review_history.html:57
@@ -3550,11 +3448,11 @@ msgstr ""
 msgid "Optionally, enter any information that may be useful to the Reviewer reviewing this app, such as test account information."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/version_edit.html:53 mkt/developers/templates/developers/apps/edit/technical.html:65
+#: mkt/developers/templates/developers/apps/version_edit.html:53 mkt/developers/templates/developers/apps/edit/technical.html:76
 msgid "Minimum Requirements"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/version_edit.html:54 mkt/developers/templates/developers/apps/edit/technical.html:66
+#: mkt/developers/templates/developers/apps/version_edit.html:54 mkt/developers/templates/developers/apps/edit/technical.html:77
 msgid "Device features required for this app to function."
 msgstr ""
 
@@ -3690,7 +3588,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:121 mkt/submit/forms.py:281
+#: mkt/developers/templates/developers/apps/edit/basic.html:121 mkt/submit/forms.py:286
 msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
 "accurately represents your app."
@@ -3833,15 +3731,23 @@ msgstr ""
 msgid "No, this app's stats are not publicly viewable."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:76
+#: mkt/developers/templates/developers/apps/edit/technical.html:64
+msgid "Homescreen?"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/edit/technical.html:65
+msgid "Whether this app is a homescreen for Firefox OS."
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/edit/technical.html:87
 msgid "This app does not require any device features"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:84
+#: mkt/developers/templates/developers/apps/edit/technical.html:95
 msgid "GUID"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:86
+#: mkt/developers/templates/developers/apps/edit/technical.html:97
 msgid "Internal identifier for this app on the Firefox Marketplace."
 msgstr ""
 
@@ -4033,7 +3939,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1453
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1457
 msgid "Content Ratings"
 msgstr ""
 
@@ -4088,37 +3994,6 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/items.html:60
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/preload/home.html:10 mkt/developers/templates/developers/apps/preload/submit.html:10
-msgid "Preloaded"
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/preload/home.html:16
-msgid "Preloaded App"
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/preload/home.html:22
-msgid "Download the test plan"
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/preload/home.html:26
-msgid "Testing Finished?"
-msgstr "परीक्षण पूर्ण हुआ ?"
-
-#: mkt/developers/templates/developers/apps/preload/home.html:31 mkt/developers/templates/developers/apps/preload/submit.html:39
-msgid "Submit your app for preload"
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/preload/home_help.html:1
-msgid ""
-"You can submit your app to be considered for being <strong>preloaded and shipped with FirefoxOS devices</strong> by phone operators. To opt-in for preloading, you may download a test template from "
-"us below, test your app, fill out the template, and upload your results back to us from the <a href=\"%(submit_url)s\">app preload submission form</a>. We will store your test results on our "
-"servers where they will be reviewed by interested phone operators. If you have further questions, you can <a href=\"%(support_url)s\"> contact us</a>."
-msgstr ""
-
-#: mkt/developers/templates/developers/apps/preload/submit.html:17
-msgid "Preloaded App Terms and Conditions"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
@@ -4607,14 +4482,6 @@ msgstr "अनुमोदक खाता रूपांतर करें"
 msgid "Regions that require extra consideration:"
 msgstr "क्षेत्र जिन्हें जरूरी है अतिरिक्त मान:"
 
-#: mkt/developers/templates/developers/payments/includes/region_form.html:22
-msgid "You must <a href=\"{status_page}\">request a review</a> to have your app shown on low-memory devices."
-msgstr "आपको आवश्यक है <a href=\"{status_page}\">एक निरीक्षण अनुरोध</a> अपनी एप्प कम मेमोरी वाले यंत्रों पर दिखाई देने के लिए."
-
-#: mkt/developers/templates/developers/payments/includes/region_form_list.html:18
-msgid "low-memory devices"
-msgstr "कम मेमोरी वाले यंत्र"
-
 #: mkt/developers/templates/developers/payments/includes/regions_disabled.html:3
 msgid "Learn why some regions are restricted."
 msgstr "जानें क्यों कुछ क्षेत्र निषिद्ध हैं."
@@ -4861,7 +4728,7 @@ msgid "Developing Game Apps"
 msgstr "खेल एप्पस् बनाना"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:119 mkt/lookup/templates/lookup/user_summary.html:56 mkt/lookup/templates/lookup/user_summary.html:60
-#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1459
+#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1463
 msgid "Payments"
 msgstr "भुगतान"
 
@@ -5069,99 +4936,123 @@ msgstr ""
 msgid "Mozilla Web apps (Brazilian Portuguese)"
 msgstr ""
 
-#: mkt/extensions/models.py:431
+#: mkt/extensions/models.py:525
 msgid "Version number must be higher than the latest version uploaded for this Add-on, which is \"%s\"."
 msgstr ""
 
-#: mkt/extensions/models.py:442
+#: mkt/extensions/models.py:536
 msgid "An Add-on with this version number already exists."
 msgstr ""
 
-#: mkt/extensions/validation.py:22
+#: mkt/extensions/validation.py:24
 msgid "The `author` property must be a string."
 msgstr ""
 
-#: mkt/extensions/validation.py:23
+#: mkt/extensions/validation.py:25
 msgid "The `author` property cannot be longer than 128 characters."
 msgstr ""
 
-#: mkt/extensions/validation.py:25
+#: mkt/extensions/validation.py:27
 msgid "The `author` property must be at least 1 character long and can not consist of only whitespace characters."
 msgstr ""
 
-#: mkt/extensions/validation.py:28
+#: mkt/extensions/validation.py:30
 msgid "The file sent has an unsupported content-type"
 msgstr ""
 
-#: mkt/extensions/validation.py:30
+#: mkt/extensions/validation.py:32
 msgid "The `description` property must be a string."
 msgstr ""
 
-#: mkt/extensions/validation.py:32
+#: mkt/extensions/validation.py:34
 msgid "The `description` property cannot be longer than 132 characters."
 msgstr ""
 
-#: mkt/extensions/validation.py:35
-msgid "'manifest.json' in the archive is not a valid JSON file."
-msgstr ""
-
-#: mkt/extensions/validation.py:38
-msgid "'manifest.json' in the archive is not encoded in UTF-8."
+#: mkt/extensions/validation.py:37
+msgid "The icon file `%(icon_path)s` is not the specified dimensions of %(icon_size)s x %(icon_size)s as defined in the manifest."
 msgstr ""
 
 #: mkt/extensions/validation.py:40
-msgid "The file sent is not a valid ZIP file."
-msgstr ""
-
-#: mkt/extensions/validation.py:41
-msgid "There is no `name` property in the manifest."
-msgstr ""
-
-#: mkt/extensions/validation.py:42
-msgid "The `name` property must be a string."
+msgid "The icon file `%(icon_path)s` is referenced in the manifest but does not exist in the ZIP file."
 msgstr ""
 
 #: mkt/extensions/validation.py:43
-msgid "The `name` property cannot be longer than 45 characters."
+msgid "If defining `icons`, you must include a 128x128 variant."
 msgstr ""
 
-#: mkt/extensions/validation.py:46
-msgid "The `name` property must be at least 1 character long and can not consist of only whitespace characters."
+#: mkt/extensions/validation.py:45
+msgid "The icon file `%s` is not a valid PNG."
+msgstr ""
+
+#: mkt/extensions/validation.py:47
+msgid "The icon file `%(icon_path)s` is not square."
 msgstr ""
 
 #: mkt/extensions/validation.py:49
-msgid "The archive does not contain a 'manifest.json' file."
+msgid "The manifest contains an invalid icon size: %(icon_size)s"
 msgstr ""
 
-#: mkt/extensions/validation.py:52
-msgid "There is no `version` property in the manifest."
+#: mkt/extensions/validation.py:51
+msgid "'manifest.json' in the archive is not a valid JSON file."
 msgstr ""
 
 #: mkt/extensions/validation.py:54
+msgid "'manifest.json' in the archive is not encoded in UTF-8."
+msgstr ""
+
+#: mkt/extensions/validation.py:56
+msgid "The file sent is not a valid ZIP file."
+msgstr ""
+
+#: mkt/extensions/validation.py:57
+msgid "There is no `name` property in the manifest."
+msgstr ""
+
+#: mkt/extensions/validation.py:58
+msgid "The `name` property must be a string."
+msgstr ""
+
+#: mkt/extensions/validation.py:59
+msgid "The `name` property cannot be longer than 45 characters."
+msgstr ""
+
+#: mkt/extensions/validation.py:62
+msgid "The `name` property must be at least 1 character long and can not consist of only whitespace characters."
+msgstr ""
+
+#: mkt/extensions/validation.py:65
+msgid "The archive does not contain a 'manifest.json' file."
+msgstr ""
+
+#: mkt/extensions/validation.py:68
+msgid "There is no `version` property in the manifest."
+msgstr ""
+
+#: mkt/extensions/validation.py:70
 msgid "The `version` property must be a string."
 msgstr ""
 
-#: mkt/extensions/validation.py:55
+#: mkt/extensions/validation.py:71
 msgid "The `version` property must be a string containing one to four dot-separated integers each between 0 and 65535."
 msgstr ""
 
-#: mkt/extensions/views.py:55
+#: mkt/extensions/views.py:56
 msgid "No validation_id specified."
 msgstr ""
 
-#: mkt/extensions/views.py:60
+#: mkt/extensions/views.py:61
 msgid "No such upload."
 msgstr ""
 
-#: mkt/extensions/views.py:63
+#: mkt/extensions/views.py:64
 msgid "The specified upload has not passed validation."
 msgstr ""
 
-#: mkt/extensions/views.py:102
+#: mkt/extensions/views.py:103
 msgid "Missing file in request."
 msgstr ""
 
-#: mkt/extensions/views.py:214
+#: mkt/extensions/views.py:247
 msgid "Modifying or submitting versions is forbidden for disabled Add-ons."
 msgstr ""
 
@@ -5234,19 +5125,19 @@ msgstr ""
 msgid "Developer name is required in the manifest in order to display it on the app's listing."
 msgstr ""
 
-#: mkt/files/utils.py:191
+#: mkt/files/utils.py:192
 msgid "Invalid file name in archive: {0}"
 msgstr ""
 
-#: mkt/files/utils.py:199
+#: mkt/files/utils.py:200
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
-#: mkt/files/utils.py:207
-msgid "Total size of files exeeding limit in archive: {0}"
+#: mkt/files/utils.py:208
+msgid "Total size of files exceeding limit in archive: {0}"
 msgstr ""
 
-#: mkt/files/utils.py:238
+#: mkt/files/utils.py:239
 msgid "Invalid archive."
 msgstr ""
 
@@ -5872,35 +5763,6 @@ msgstr ""
 msgid "Operator Dashboard"
 msgstr ""
 
-#: mkt/operators/templates/operators/base.html:12
-msgid "<small>Operator</small> Dashboard"
-msgstr ""
-
-#: mkt/operators/templates/operators/preloads.html:4 mkt/operators/templates/operators/preloads.html:8
-msgid "Preload Candidates"
-msgstr ""
-
-#: mkt/operators/templates/operators/preloads.html:16
-msgid "Category"
-msgstr ""
-
-#: mkt/operators/templates/operators/preloads.html:17
-msgid "Preload Opt-in"
-msgstr ""
-
-#: mkt/operators/templates/operators/preloads.html:18
-msgid "Test Plan"
-msgstr ""
-
-#. {0} and {1} are category names.
-#: mkt/operators/templates/operators/preloads.html:39
-msgid "{0}, {1}"
-msgstr ""
-
-#: mkt/operators/templates/operators/preloads.html:52
-msgid "No preload candidates found"
-msgstr ""
-
 #. L10n: %s is the name of the price tier, eg: 10.
 #: mkt/prices/models.py:77
 msgid "Tier %s"
@@ -6114,7 +5976,7 @@ msgstr ""
 msgid "Device"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:38 mkt/reviewers/helpers.py:68 mkt/site/context_processors.py:70
+#: mkt/reviewers/helpers.py:38 mkt/reviewers/helpers.py:69 mkt/site/context_processors.py:70
 msgid "Reviewer Tools"
 msgstr ""
 
@@ -6134,7 +5996,7 @@ msgstr ""
 msgid "Escalations"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:46 mkt/reviewers/helpers.py:159
+#: mkt/reviewers/helpers.py:46 mkt/reviewers/helpers.py:164
 msgid "Moderated Reviews"
 msgstr ""
 
@@ -6146,134 +6008,143 @@ msgstr ""
 msgid "Reviewing"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:51 mkt/reviewers/templates/reviewers/queue_region.html:7
+#: mkt/reviewers/helpers.py:50
+msgid "Homescreens"
+msgstr ""
+
+#: mkt/reviewers/helpers.py:52 mkt/reviewers/templates/reviewers/queue_region.html:7
 msgid "Regional Queues"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:90
+#: mkt/reviewers/helpers.py:91
 msgctxt "pending"
 msgid "Apps ({0})"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:93
+#: mkt/reviewers/helpers.py:94
 msgctxt "rereview"
 msgid "Re-reviews ({0})"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:97
+#: mkt/reviewers/helpers.py:98
 msgctxt "updates"
 msgid "Updates ({0})"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:101
+#: mkt/reviewers/helpers.py:102
 msgctxt "escalated"
 msgid "Escalations ({0})"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:105
+#: mkt/reviewers/helpers.py:106
 msgid "Reviewing ({0})"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:111
+#: mkt/reviewers/helpers.py:112
 msgid "China ({0})"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:116
+#: mkt/reviewers/helpers.py:117
 msgid "Tarako ({0})"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:123
+#: mkt/reviewers/helpers.py:120
+msgctxt "homescreen"
+msgid "Homescreens ({0})"
+msgstr ""
+
+#: mkt/reviewers/helpers.py:129
 msgctxt "moderated"
 msgid "Moderated Reviews ({0})"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:130
+#: mkt/reviewers/helpers.py:136
 msgctxt "abuse"
 msgid "Abuse Reports ({0})"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:137
+#: mkt/reviewers/helpers.py:143
 msgctxt "abusewebsites"
 msgid "Website Abuse Reports ({0})"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:154
+#: mkt/reviewers/helpers.py:159
 msgid "Reviews"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:196
+#: mkt/reviewers/helpers.py:201
 msgid "Rejected or Unreviewed"
 msgstr ""
 
-#: mkt/reviewers/utils.py:399 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
+#: mkt/reviewers/utils.py:401 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
 msgstr ""
 
-#: mkt/reviewers/utils.py:400
+#: mkt/reviewers/utils.py:402
 msgid "This will approve the app and allow the author(s) to publish it."
 msgstr ""
 
-#: mkt/reviewers/utils.py:404 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
+#: mkt/reviewers/utils.py:406 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
 msgstr ""
 
-#: mkt/reviewers/utils.py:406
+#: mkt/reviewers/utils.py:408
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
 msgstr ""
 
-#: mkt/reviewers/utils.py:411
+#: mkt/reviewers/utils.py:413
 msgid "Message developer"
 msgstr ""
 
-#: mkt/reviewers/utils.py:413
+#: mkt/reviewers/utils.py:415
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
 msgstr ""
 
-#: mkt/reviewers/utils.py:418
+#: mkt/reviewers/utils.py:420
 msgid "Escalate"
 msgstr ""
 
-#: mkt/reviewers/utils.py:420
+#: mkt/reviewers/utils.py:422
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
 msgstr ""
 
-#: mkt/reviewers/utils.py:425
+#: mkt/reviewers/utils.py:427
 msgid "Private comment"
 msgstr ""
 
-#: mkt/reviewers/utils.py:427
+#: mkt/reviewers/utils.py:429
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
 msgstr ""
 
-#: mkt/reviewers/utils.py:433
+#: mkt/reviewers/utils.py:435
 msgid "Request Re-review"
 msgstr ""
 
-#: mkt/reviewers/utils.py:435
-msgid "Add this app to the re-review queue. Any comments here won't be visible to the author(s), and no notification will be sent tothem."
-msgstr ""
-
-#: mkt/reviewers/utils.py:441
-msgid "Clear Escalation"
+#: mkt/reviewers/utils.py:437
+msgid "Add this app to the re-review queue. Any comments here won't be visible to the author(s), and no notification will be sent to them."
 msgstr ""
 
 #: mkt/reviewers/utils.py:443
+msgid "Clear Escalation"
+msgstr ""
+
+#: mkt/reviewers/utils.py:445
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 msgstr ""
 
-#: mkt/reviewers/utils.py:448
+#: mkt/reviewers/utils.py:450
 msgid "Clear Re-review"
 msgstr ""
 
-#: mkt/reviewers/utils.py:450
+#: mkt/reviewers/utils.py:452
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 msgstr ""
 
-#: mkt/reviewers/utils.py:455
+#: mkt/reviewers/utils.py:457
 msgid "Ban app"
 msgstr ""
 
-#: mkt/reviewers/utils.py:457
+#: mkt/reviewers/utils.py:459
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
 
@@ -6289,36 +6160,36 @@ msgstr ""
 msgid "Overdue (Over 10 days)"
 msgstr ""
 
-#: mkt/reviewers/views.py:254
+#: mkt/reviewers/views.py:257
 msgid "Self-reviews are not allowed."
 msgstr ""
 
-#: mkt/reviewers/views.py:260
+#: mkt/reviewers/views.py:263
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr ""
 
-#: mkt/reviewers/views.py:313 mkt/reviewers/views.py:338 mkt/submit/forms.py:33 mkt/submit/forms.py:43
+#: mkt/reviewers/views.py:312 mkt/reviewers/views.py:337 mkt/submit/forms.py:32 mkt/submit/forms.py:42
 msgid "Added {0}"
 msgstr ""
 
-#: mkt/reviewers/views.py:316 mkt/reviewers/views.py:339 mkt/submit/forms.py:35 mkt/submit/forms.py:44
+#: mkt/reviewers/views.py:315 mkt/reviewers/views.py:338 mkt/submit/forms.py:34 mkt/submit/forms.py:43
 msgid "Removed {0}"
 msgstr ""
 
-#: mkt/reviewers/views.py:319
+#: mkt/reviewers/views.py:318
 msgid "Device(s) changed by reviewer: {0}"
 msgstr ""
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:341
+#: mkt/reviewers/views.py:340
 msgid "Requirements changed by reviewer: {0}"
 msgstr ""
 
-#: mkt/reviewers/views.py:370
+#: mkt/reviewers/views.py:369
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr ""
 
-#: mkt/reviewers/views.py:372
+#: mkt/reviewers/views.py:371
 msgid "Review successfully processed."
 msgstr ""
 
@@ -6418,31 +6289,37 @@ msgid_plural "{num} Update Reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mkt/reviewers/templates/reviewers/home.html:41
+#: mkt/reviewers/templates/reviewers/home.html:39
+msgid "{num} Homescreen Review"
+msgid_plural "{num} Homescreen Reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#: mkt/reviewers/templates/reviewers/home.html:48
 msgid "{c} unreviewed app submission this week."
 msgid_plural "{c} unreviewed app submissions this week."
 msgstr[0] ""
 msgstr[1] ""
 
-#: mkt/reviewers/templates/reviewers/home.html:46
+#: mkt/reviewers/templates/reviewers/home.html:53
 msgid "Current waiting times:"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/home.html:54
+#: mkt/reviewers/templates/reviewers/home.html:61
 msgid "{0} app"
 msgid_plural "{0} apps"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mkt/reviewers/templates/reviewers/home.html:55
+#: mkt/reviewers/templates/reviewers/home.html:62
 msgid "{0}%"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/home.html:70
+#: mkt/reviewers/templates/reviewers/home.html:77
 msgid "Total Reviews"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/home.html:71
+#: mkt/reviewers/templates/reviewers/home.html:78
 msgid "Reviews This Month"
 msgstr ""
 
@@ -7655,28 +7532,28 @@ msgstr "सप्ताह"
 msgid "Quarter"
 msgstr "चौथाई"
 
-#: mkt/submit/forms.py:32
+#: mkt/submit/forms.py:31
 msgid "Device(s) changed: {0}"
 msgstr ""
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/submit/forms.py:42
+#: mkt/submit/forms.py:41
 msgid "Requirements changed: {0}"
 msgstr ""
 
-#: mkt/submit/forms.py:50
+#: mkt/submit/forms.py:49
 msgid "Cannot be free and paid."
 msgstr ""
 
-#: mkt/submit/forms.py:51
+#: mkt/submit/forms.py:50
 msgid "Please select a device."
 msgstr "कृपया एक उपकरण चुनें ।"
 
-#: mkt/submit/forms.py:129
+#: mkt/submit/forms.py:128
 msgid "Agree and Continue"
 msgstr "सहमत व जारी रखें"
 
-#: mkt/submit/forms.py:156 mkt/submit/forms.py:230
+#: mkt/submit/forms.py:155 mkt/submit/forms.py:233
 msgid "There was an error with your upload. Please try again."
 msgstr "आपके अपलोड के साथ कुछ त्रुटि है । कृपया पुनः प्रयास करें ।"
 
@@ -7688,70 +7565,74 @@ msgstr "वर्जन %s पहले से मौजूद है ।"
 msgid "Changes to \"origin\" are not allowed."
 msgstr "\"मूल\" में बदलाव की अनुमति नहीं है ।"
 
-#: mkt/submit/forms.py:225
+#: mkt/submit/forms.py:227
 msgid "User submitting validation does not match."
 msgstr ""
 
-#: mkt/submit/forms.py:270
+#: mkt/submit/forms.py:228
+msgid "Homescreens can only be submitted for Firefox OS."
+msgstr ""
+
+#: mkt/submit/forms.py:275
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
 msgstr "मेरे एप्प को प्रकाशित करें और बाज़ारस्थान में इसे सभी के लिए दृष्य करें तथा इसे खोज परिणाम में सम्मिलित करेंं ।"
 
-#: mkt/submit/forms.py:273
+#: mkt/submit/forms.py:278
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr "मेरे एप्प को प्रकाशित करें । मंजूर होने के बाद मुझे सूचित करे और मैं एप्प दृष्यता को समायोजित करुँगा ।"
 
-#: mkt/submit/forms.py:295
+#: mkt/submit/forms.py:300
 msgid "Privacy Policy:"
 msgstr "गोपनीयता नीति"
 
-#: mkt/submit/forms.py:297
+#: mkt/submit/forms.py:302
 msgid ""
 "A privacy policy explains how you handle data received through your app. For example: what data do you receive? How do you use it? Who do you share it with? Do you receive personal information? Do "
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above. If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
 
-#: mkt/submit/forms.py:308
+#: mkt/submit/forms.py:313
 msgid "Homepage:"
 msgstr "मुखपृष्ठ :"
 
-#: mkt/submit/forms.py:310
+#: mkt/submit/forms.py:315
 msgid "If your app has another homepage, enter its address here."
 msgstr "अगर आपके एप्प का कोइ दूसरा मुखपृष्ठ हो, तो यहाँ उसका पता लिखें ।"
 
-#: mkt/submit/forms.py:313
+#: mkt/submit/forms.py:318
 msgid "Website:"
 msgstr "वेबसाइट :"
 
-#: mkt/submit/forms.py:315
+#: mkt/submit/forms.py:320
 msgid "If your app has a support website or forum, enter its address here."
 msgstr "अगर आपके पास कोइ समर्थन वेबसाइट या गोष्ठी है, तो उसका पता यहाँ लिखें ।"
 
-#: mkt/submit/forms.py:319
+#: mkt/submit/forms.py:324
 msgid "Email:"
 msgstr "ईमेल :"
 
-#: mkt/submit/forms.py:321
+#: mkt/submit/forms.py:326
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
 msgstr "यह ईमेल पता बाज़ारस्थान पर सार्वजनिक रूप से सूचीबद्ध किया जायेगा तथा अंत उपयोगकर्ताओं द्वारा आपसे समर्थन मुद्दों पर संपर्क के लिए प्रयोग होगा । यह ईमेल पता आपके एप्प विवरण पृष्ठ पर सार्वजनिक रूप से सूचीबद्ध किया जायेगा ।"
 
-#: mkt/submit/forms.py:327
+#: mkt/submit/forms.py:332
 msgid "Does your app require Flash support?"
 msgstr "क्या आपका एप्प फ्लैश समर्थन की अपेक्षा करता है ।"
 
-#: mkt/submit/forms.py:333
+#: mkt/submit/forms.py:338
 msgid "Your comments for reviewers:"
 msgstr ""
 
-#: mkt/submit/forms.py:335
+#: mkt/submit/forms.py:340
 msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
 msgstr ""
 
-#: mkt/submit/forms.py:340
+#: mkt/submit/forms.py:345
 msgid "Once your app is approved, choose a publishing option:"
 msgstr ""
 
-#: mkt/submit/forms.py:344
+#: mkt/submit/forms.py:349
 msgid "My app works without an Internet connection."
 msgstr ""
 
@@ -7919,7 +7800,7 @@ msgstr ""
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr ""
 
-#: mkt/submit/tests/test_forms.py:321
+#: mkt/submit/tests/test_forms.py:342
 msgid "Héllo"
 msgstr ""
 
@@ -8126,62 +8007,62 @@ msgstr ""
 msgid "Listed"
 msgstr ""
 
-#: mkt/webapps/models.py:1346
+#: mkt/webapps/models.py:1350
 msgid "You must provide a support email or URL."
 msgstr ""
 
-#: mkt/webapps/models.py:1348
+#: mkt/webapps/models.py:1352
 msgid "You must provide an app name."
 msgstr ""
 
-#: mkt/webapps/models.py:1350
+#: mkt/webapps/models.py:1354
 msgid "You must provide at least one device type."
 msgstr ""
 
-#: mkt/webapps/models.py:1353
+#: mkt/webapps/models.py:1357
 msgid "You must provide at least one category."
 msgstr ""
 
-#: mkt/webapps/models.py:1420
+#: mkt/webapps/models.py:1424
 msgid "You must set up content ratings."
 msgstr ""
 
-#: mkt/webapps/models.py:1422
+#: mkt/webapps/models.py:1426
 msgid "You must set up a payment account."
 msgstr ""
 
-#: mkt/webapps/models.py:1447
+#: mkt/webapps/models.py:1451
 msgid "This app's submission process has not been fully completed."
 msgstr ""
 
-#: mkt/webapps/models.py:1454
+#: mkt/webapps/models.py:1458
 msgid "This app needs to get a content rating."
 msgstr ""
 
-#: mkt/webapps/models.py:1460
+#: mkt/webapps/models.py:1464
 msgid "This app needs a payment account set up."
 msgstr ""
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2721
+#: mkt/webapps/models.py:2684
 msgid "awaiting approval"
 msgstr ""
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2723
+#: mkt/webapps/models.py:2686
 msgid "rejected"
 msgstr ""
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2725
+#: mkt/webapps/models.py:2688
 msgid "requires additional review"
 msgstr ""
 
-#: mkt/webapps/models.py:2776
+#: mkt/webapps/models.py:2739
 msgid "{region} approval status"
 msgstr ""
 
-#: mkt/webapps/models.py:2785
+#: mkt/webapps/models.py:2748
 msgid "{region} nomination date"
 msgstr ""
 
