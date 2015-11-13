@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:27-0700\n"
-"PO-Revision-Date: 2015-11-13 16:21+0000\n"
+"PO-Revision-Date: 2015-11-13 16:33+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -6034,22 +6034,24 @@ msgid ""
 "The icon file `%(icon_path)s` is referenced in the manifest but does not "
 "exist in the ZIP file."
 msgstr ""
+"Na symbolowu dataju %(icon_path)s so w manifesće poćahuje, ale njeeksistuje "
+"w ZIP-dataji."
 
 #: mkt/extensions/validation.py:43
 msgid "If defining `icons`, you must include a 128x128 variant."
-msgstr ""
+msgstr "Jeli symbole definujeće, dyrbiće wulkosć 128x128 wužiwać."
 
 #: mkt/extensions/validation.py:45
 msgid "The icon file `%s` is not a valid PNG."
-msgstr ""
+msgstr "Symbolowa dataja %s płaćiwa PNG-dataja njeje."
 
 #: mkt/extensions/validation.py:47
 msgid "The icon file `%(icon_path)s` is not square."
-msgstr ""
+msgstr "Symbolowa dataja %(icon_path)s kwadratiska njeje."
 
 #: mkt/extensions/validation.py:49
 msgid "The manifest contains an invalid icon size: %(icon_size)s"
-msgstr ""
+msgstr "Manifest njepłaćiwu symbolowu wulkosć wobsahuje: %(icon_size)s"
 
 #: mkt/extensions/validation.py:51
 msgid "'manifest.json' in the archive is not a valid JSON file."
@@ -6224,7 +6226,7 @@ msgstr "Dataja překročuje wulkostny limit w archiwje: {0}"
 
 #: mkt/files/utils.py:208
 msgid "Total size of files exceeding limit in archive: {0}"
-msgstr ""
+msgstr "Wulkosć datajow dohromady limit w archiwje překročuje: {0}"
 
 #: mkt/files/utils.py:239
 msgid "Invalid archive."
@@ -7205,7 +7207,7 @@ msgstr "Přepruwować"
 
 #: mkt/reviewers/helpers.py:50
 msgid "Homescreens"
-msgstr ""
+msgstr "Startowe wobrazowki"
 
 #: mkt/reviewers/helpers.py:52
 #: mkt/reviewers/templates/reviewers/queue_region.html:7
@@ -7247,7 +7249,7 @@ msgstr "Tarako ({0})"
 #: mkt/reviewers/helpers.py:120
 msgctxt "homescreen"
 msgid "Homescreens ({0})"
-msgstr ""
+msgstr "Startowe wobrazowki ({0})"
 
 #: mkt/reviewers/helpers.py:129
 msgctxt "moderated"
@@ -7341,6 +7343,8 @@ msgid ""
 "Add this app to the re-review queue. Any comments here won't be visible to "
 "the author(s), and no notification will be sent to them."
 msgstr ""
+"Přidajće tute nałoženje čakanskemu rynkej za nowe přepruwowanje. Komentary "
+"njebudu tu widźomne za awtorow, a žana zdźělenka so na nich sćele."
 
 #: mkt/reviewers/utils.py:443
 msgid "Clear Escalation"
@@ -7548,10 +7552,10 @@ msgstr[3] "{num} aktualizaciskich přepruwowanjow"
 #: mkt/reviewers/templates/reviewers/home.html:39
 msgid "{num} Homescreen Review"
 msgid_plural "{num} Homescreen Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "{num} přepruwowanje startoweje wobrazowki"
+msgstr[1] "{num} přepruwowani startoweje wobrazowki"
+msgstr[2] "{num} přepruwowanja startoweje wobrazowki"
+msgstr[3] "{num} přepruwowanjow startoweje wobrazowki"
 
 #: mkt/reviewers/templates/reviewers/home.html:48
 msgid "{c} unreviewed app submission this week."
@@ -8922,7 +8926,7 @@ msgstr "Wužiwar, kotryž přepruwowanje posrědkuje, jenak njeje."
 
 #: mkt/submit/forms.py:228
 msgid "Homescreens can only be submitted for Firefox OS."
-msgstr ""
+msgstr "Startowe wobrazowki dadźa so jenož za Firefox OS wotpósłać."
 
 #: mkt/submit/forms.py:275
 msgid ""
