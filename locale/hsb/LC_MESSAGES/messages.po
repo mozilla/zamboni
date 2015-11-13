@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:27-0700\n"
-"PO-Revision-Date: 2015-11-13 16:33+0000\n"
+"PO-Revision-Date: 2015-11-13 20:07+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -8926,7 +8926,7 @@ msgstr "Wužiwar, kotryž přepruwowanje posrědkuje, jenak njeje."
 
 #: mkt/submit/forms.py:228
 msgid "Homescreens can only be submitted for Firefox OS."
-msgstr "Startowe wobrazowki dadźa so jenož za Firefox OS wotpósłać."
+msgstr "Startowe wobrazowki dadźa so jenož za Firefox OS zapodać."
 
 #: mkt/submit/forms.py:275
 msgid ""
