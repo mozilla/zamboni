@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:27-0700\n"
-"PO-Revision-Date: 2015-10-16 12:09+0000\n"
+"PO-Revision-Date: 2015-11-13 14:56+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1444997367.0\n"
+"X-POOTLE-MTIME: 1447426603.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -1907,11 +1907,13 @@ msgstr "De app vereist toegang tot de Near Field Communication (NFC)-API."
 
 #: mkt/constants/features.py:357
 msgid "UDP Sockets"
-msgstr ""
+msgstr "UDP-sockets"
 
 #: mkt/constants/features.py:358
 msgid "The app requires the platform to allow opening raw UDP sockets."
 msgstr ""
+"De app vereist dat het openen van raw UDP-sockets door het platform is "
+"toegestaan."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -3346,6 +3348,11 @@ msgid ""
 "Your app is shown on <a href=\"https://developer.mozilla.org/Apps/Build/Performance/Apps_for_low-memory_Firefox_OS_devices\" target=\"_blank\">low-memory devices</a>. If you want to stop showing "
 "your app on low-memory devices <a href=\"%(support_url)s\">contact us</a>."
 msgstr ""
+"Uw app is zichtbaar op <a "
+"href=\"https://developer.mozilla.org/Apps/Build/Performance/Apps_for_low-"
+"memory_Firefox_OS_devices\" target=\"_blank\">apparaten met weinig "
+"geheugen</a>. Als u uw app niet meer op apparaten met weinig geheugen wilt "
+"laten weergeven, <a href=\"%(support_url)s\">neem dan contact op</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:302 mkt/developers/templates/developers/apps/status.html:320
 msgid "List App"
@@ -3459,8 +3466,9 @@ msgstr "Versieopmerkingen"
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Apps Manager when updating."
 msgstr ""
-"Informatie over wijzigingen in deze uitgave, nieuwe functies, bekende bugs en andere nuttige informatie specifiek voor deze uitgave/versie. Deze informatie wordt ook weergegeven in de Appsbeheerder "
-"bij bijwerken."
+"Informatie over wijzigingen in deze uitgave, nieuwe functies, bekende bugs "
+"en andere specifiek voor deze uitgave/versie nuttige informatie. Deze "
+"informatie wordt ook weergegeven in de App-beheerder bij het bijwerken."
 
 #: mkt/developers/templates/developers/apps/version_edit.html:40
 msgid "Notes for Reviewers"
@@ -3763,11 +3771,11 @@ msgstr "Nee, de statistieken van deze app zijn niet openbaar."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:64
 msgid "Homescreen?"
-msgstr ""
+msgstr "Startscherm?"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:65
 msgid "Whether this app is a homescreen for Firefox OS."
-msgstr ""
+msgstr "Of deze app een startscherm is voor Firefox OS."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:87
 msgid "This app does not require any device features"
@@ -5016,26 +5024,31 @@ msgstr "De eigenschap ‘description’ kan niet langer zijn dan 132 tekens."
 #: mkt/extensions/validation.py:37
 msgid "The icon file `%(icon_path)s` is not the specified dimensions of %(icon_size)s x %(icon_size)s as defined in the manifest."
 msgstr ""
+"Het pictogrambestand ‘%(icon_path)s’ heeft niet de gespecificeerde "
+"afmetingen van %(icon_size)s x %(icon_size)s, zoals gedefinieerd in het "
+"manifest."
 
 #: mkt/extensions/validation.py:40
 msgid "The icon file `%(icon_path)s` is referenced in the manifest but does not exist in the ZIP file."
 msgstr ""
+"In het manifest wordt naar het pictogrambestand ‘%(icon_path)s’ verwezen, "
+"maar dit bestaat niet in het zip-bestand."
 
 #: mkt/extensions/validation.py:43
 msgid "If defining `icons`, you must include a 128x128 variant."
-msgstr ""
+msgstr "Bij het definiëren van ‘icons’ moet u een 128x128-variant opnemen."
 
 #: mkt/extensions/validation.py:45
 msgid "The icon file `%s` is not a valid PNG."
-msgstr ""
+msgstr "Het pictogrambestand ‘%s’ is geen geldige PNG."
 
 #: mkt/extensions/validation.py:47
 msgid "The icon file `%(icon_path)s` is not square."
-msgstr ""
+msgstr "Het pictogrambestand ‘%(icon_path)s’ is niet vierkant."
 
 #: mkt/extensions/validation.py:49
 msgid "The manifest contains an invalid icon size: %(icon_size)s"
-msgstr ""
+msgstr "Het manifest bevat een ongeldige pictogramgrootte: %(icon_size)s"
 
 #: mkt/extensions/validation.py:51
 msgid "'manifest.json' in the archive is not a valid JSON file."
@@ -5047,7 +5060,7 @@ msgstr "‘manifest.json’ in het archief is niet in UTF-8 gecodeerd."
 
 #: mkt/extensions/validation.py:56
 msgid "The file sent is not a valid ZIP file."
-msgstr "Het verzonden bestand is geen geldig ZIP-bestand."
+msgstr "Het verzonden bestand is geen geldig zip-bestand."
 
 #: mkt/extensions/validation.py:57
 msgid "There is no `name` property in the manifest."
@@ -5180,7 +5193,7 @@ msgstr "Te groot bestand in archief: {0}"
 
 #: mkt/files/utils.py:208
 msgid "Total size of files exceeding limit in archive: {0}"
-msgstr ""
+msgstr "Totale grootte van bestanden die limiet in archief overschrijden: {0}"
 
 #: mkt/files/utils.py:239
 msgid "Invalid archive."
@@ -6058,7 +6071,7 @@ msgstr "Beoordeling"
 
 #: mkt/reviewers/helpers.py:50
 msgid "Homescreens"
-msgstr ""
+msgstr "Startschermen"
 
 #: mkt/reviewers/helpers.py:52 mkt/reviewers/templates/reviewers/queue_region.html:7
 msgid "Regional Queues"
@@ -6099,7 +6112,7 @@ msgstr "Tarako ({0})"
 #: mkt/reviewers/helpers.py:120
 msgctxt "homescreen"
 msgid "Homescreens ({0})"
-msgstr ""
+msgstr "Startschermen ({0})"
 
 #: mkt/reviewers/helpers.py:129
 msgctxt "moderated"
@@ -6171,6 +6184,9 @@ msgstr "Herbeoordeling aanvragen"
 #: mkt/reviewers/utils.py:437
 msgid "Add this app to the re-review queue. Any comments here won't be visible to the author(s), and no notification will be sent to them."
 msgstr ""
+"Voeg deze app aan de wachtrij voor herbeoordeling toe. Opmerkingen hier zijn "
+"niet zichtbaar voor de schrijver(s), en er wordt geen melding naar hen "
+"verstuurd."
 
 #: mkt/reviewers/utils.py:443
 msgid "Clear Escalation"
@@ -6340,8 +6356,8 @@ msgstr[1] "{num} updatebeoordelingen"
 #: mkt/reviewers/templates/reviewers/home.html:39
 msgid "{num} Homescreen Review"
 msgid_plural "{num} Homescreen Reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} startschermbeoordeling"
+msgstr[1] "{num} startschermbeoordelingen"
 
 #: mkt/reviewers/templates/reviewers/home.html:48
 msgid "{c} unreviewed app submission this week."
@@ -7622,7 +7638,7 @@ msgstr "De gebruiker die de validatie indient komt niet overeen."
 
 #: mkt/submit/forms.py:228
 msgid "Homescreens can only be submitted for Firefox OS."
-msgstr ""
+msgstr "Startschermen kunnen alleen voor Firefox OS worden ingediend."
 
 #: mkt/submit/forms.py:275
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
