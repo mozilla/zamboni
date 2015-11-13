@@ -89,8 +89,7 @@ class TestPermission(RestOAuth):
         self.assertSetEqual(
             ['admin', 'developer', 'localizer', 'lookup', 'curator',
              'reviewer', 'webpay', 'website_submitter', 'stats',
-             'revenue_stats', 'content_tools_login',
-             'content_tools_addon_submit', 'content_tools_addon_review'],
+             'revenue_stats', 'content_tools_addon_review'],
             res.json['permissions'].keys()
         )
         ok_(not all(res.json['permissions'].values()))
@@ -434,12 +433,6 @@ class TestLoginHandler(TestCase):
 
     def test_login_new_user_success(self):
         data = self._test_login()
-
-        # TODO: we want to remove these permissions entirely, but for now we
-        # just grant them to everybody.
-        del data['permissions']['content_tools_login']
-        del data['permissions']['content_tools_addon_submit']
-
         ok_(not any(data['permissions'].values()))
 
     def test_login_existing_user_success(self):
@@ -462,8 +455,6 @@ class TestLoginHandler(TestCase):
              'website_submitter': False,
              'stats': False,
              'revenue_stats': False,
-             'content_tools_login': True,
-             'content_tools_addon_submit': True,
              'content_tools_addon_review': False})
         eq_(data['apps']['installed'], [])
         eq_(data['apps']['purchased'], [])
@@ -549,11 +540,6 @@ class TestFxaLoginHandler(TestCase):
         eq_(UserProfile.objects.count(), 0)
         data = self._test_login()
 
-        # TODO: we want to remove these permissions entirely, but for now we
-        # just grant them to everybody.
-        del data['permissions']['content_tools_login']
-        del data['permissions']['content_tools_addon_submit']
-
         ok_(not any(data['permissions'].values()))
         profile = UserProfile.objects.get()
         eq_(profile.email, 'cvan@mozilla.com')
@@ -582,8 +568,6 @@ class TestFxaLoginHandler(TestCase):
              'website_submitter': False,
              'stats': False,
              'revenue_stats': False,
-             'content_tools_login': True,
-             'content_tools_addon_submit': True,
              'content_tools_addon_review': False})
         eq_(data['apps']['installed'], [])
         eq_(data['apps']['purchased'], [])

@@ -1,4 +1,4 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -31,7 +31,8 @@ msgstr "Слике морају бити PNG или JPG формата."
 msgid "Videos must be in WebM."
 msgstr "Видео снимци морају бити у WebM формату."
 
-#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Дошло је до проблема при контактирању сервера."
 
@@ -79,7 +80,8 @@ msgstr[0] "&hellip;и још {0}"
 msgstr[1] "&hellip;и још {0}"
 msgstr[2] "&hellip;и још {0}"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
+#: media/js/common/upload-packaged-app.js:199
+#: media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
 msgid "See full validation report"
 msgstr "Погледајте потпуни извештај прегледа"
 
@@ -206,20 +208,29 @@ msgid "Disabled"
 msgstr "Онемогућено"
 
 #: media/js/devreg/init.js:35
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Ова могућност је привремено онемогућена док обављамо одржавања сајта. Молимо пробајте мало касније."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Ова могућност је привремено онемогућена док обављамо одржавања сајта. Молимо"
+" пробајте мало касније."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "Уклони ову локализацију"
 
 #: media/js/devreg/login.js:126
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Пријава путем Persona система је неуспешна. Можда немате налог под том адресом е-поште?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Пријава путем Persona система је неуспешна. Можда немате налог под том "
+"адресом е-поште?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
-msgstr "Пријава путем Persona система је неуспешна. Дошло је до грешке на серверу."
+msgstr ""
+"Пријава путем Persona система је неуспешна. Дошло је до грешке на серверу."
 
 #: media/js/devreg/lookup-tool.js:39
 msgid "Status successfully changed to \"{0}\""
@@ -311,7 +322,9 @@ msgstr "HEBIC Грчке/Код банке Индонезије"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "Код банке Уједињеног Краљевства/Ирске или префикс новозеландског налога или Аустралијски BSB код"
+msgstr ""
+"Код банке Уједињеног Краљевства/Ирске или префикс новозеландског налога или "
+"Аустралијски BSB код"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -336,22 +349,41 @@ msgstr "Откривено: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
-msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] "Брисањем налога за плаћање \"{0}\", оно ће бити уклоњено са следећих апликација. Апликације без платног налога више неће бити доступне за продају."
-msgstr[1] "Брисањем налога за плаћање \"{0}\", оно ће бити уклоњено са следеће апликације. Апликације без платног налога више неће бити доступне за продају."
-msgstr[2] "Брисањем налога за плаћање \"{0}\", оно ће бити уклоњено са следеће апликације. Апликације без платног налога више неће бити доступне за продају."
+msgid ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following apps. Applications without a payment account will no longer be "
+"available for sale."
+msgid_plural ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
+msgstr[0] ""
+"Брисањем налога за плаћање \"{0}\", оно ће бити уклоњено са следећих "
+"апликација. Апликације без платног налога више неће бити доступне за "
+"продају."
+msgstr[1] ""
+"Брисањем налога за плаћање \"{0}\", оно ће бити уклоњено са следеће "
+"апликације. Апликације без платног налога више неће бити доступне за "
+"продају."
+msgstr[2] ""
+"Брисањем налога за плаћање \"{0}\", оно ће бити уклоњено са следеће "
+"апликације. Апликације без платног налога више неће бити доступне за "
+"продају."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
 msgstr "{appName} налози за плаћање:"
 
-#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:112
+#: media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Грешка"
 
-#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
+#: media/js/devreg/payments-manage.js:113
+#: media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
 msgstr "Дошло је до грешке приликом контактирања сервера за плаћање."
 
@@ -541,11 +573,13 @@ msgstr "Бесплатно"
 msgid "Any"
 msgstr "Било коју"
 
-#: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
+#: media/js/devreg/reviewers/reviewers.js:246
+#: media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
 msgstr "Одобрена апликација: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
+#: media/js/devreg/reviewers/reviewers.js:249
+#: media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
 msgstr "Одбијена апликација: {app}"
 
@@ -566,10 +600,15 @@ msgid "Error failing app: {app}"
 msgstr "Error failing апликација: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
-msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr "Извињавамо се! Имали смо грешку при преузимању историје прегледа. Покушајте поново да се пријавите.<p>"
+msgid ""
+"Sorry! We had an error fetching the review history. Please try logging in "
+"again.<p>"
+msgstr ""
+"Извињавамо се! Имали смо грешку при преузимању историје прегледа. Покушајте "
+"поново да се пријавите.<p>"
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on
+#. Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr "По {0} на {1}"
