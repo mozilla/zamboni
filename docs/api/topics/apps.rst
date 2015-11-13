@@ -207,8 +207,7 @@ App
     :type description: string|object
     :param device_types: An array of strings representing the devices the app
         is marked as compatible with. Currently available devices names are
-       ``desktop``, ``android-mobile``, ``android-tablet``, ``firefoxos``,
-       ``firefoxos+tv``.
+        ``desktop``, ``android-mobile``, ``android-tablet``, ``firefoxos``.
     :type device_types: array
     :param feature_compatibility: Boolean indicating whether the app's current
         version is compatible with the

@@ -169,10 +169,9 @@ class DeviceDetectionMiddleware(object):
     def process_request(self, request):
         dev = request.GET.get('dev')
         if dev:
-            request.MOBILE = dev == 'android'
-            request.GAIA = dev in ['firefoxos', 'firefoxos+mobile']
-            request.TV = dev == 'firefoxos+tv'
-            request.TABLET = dev == 'desktop'
+            setattr(request, 'MOBILE', dev == 'android')
+            setattr(request, 'GAIA', dev == 'firefoxos')
+            setattr(request, 'TABLET', dev == 'desktop')
             return
 
         # TODO: These are deprecated, remove them. Update the docs (and API
