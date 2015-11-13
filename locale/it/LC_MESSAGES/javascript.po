@@ -31,7 +31,8 @@ msgstr "Le icone devono essere in formato PNG o JPG."
 msgid "Videos must be in WebM."
 msgstr "I video devono essere in formato WebM."
 
-#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Si è verificato un problema con la connessione al server."
 
@@ -77,7 +78,8 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;e {0} altro"
 msgstr[1] "&hellip;e altri {0}"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
+#: media/js/common/upload-packaged-app.js:199
+#: media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
 msgid "See full validation report"
 msgstr "Visualizza rapporto completo della validazione"
 
@@ -101,8 +103,10 @@ msgstr "Validazione di {0} completata"
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] "L’app ha superato il processo di validazione senza errori e con {0} avviso."
-msgstr[1] "L’app ha superato il processo di validazione senza errori e con {0} avvisi."
+msgstr[0] ""
+"L’app ha superato il processo di validazione senza errori e con {0} avviso."
+msgstr[1] ""
+"L’app ha superato il processo di validazione senza errori e con {0} avvisi."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
@@ -134,7 +138,9 @@ msgstr "Errore interno del server."
 
 #: media/js/devreg/apps.js:103
 msgid "Internal server error on app installation."
-msgstr "Si è verificato un errore interno del server durante l’installazione dell’app."
+msgstr ""
+"Si è verificato un errore interno del server durante l’installazione "
+"dell’app."
 
 #: media/js/devreg/apps.js:106
 msgid "Install failed. Please try again later."
@@ -143,18 +149,26 @@ msgstr "Installazione non riuscita. Riprovare più tardi."
 #: media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "È fallito il processo di validazione dell’app con {0} errore e {1} messaggio."
-msgstr[1] "È fallito il processo di validazione dell’app con {0} errori e {1} messaggi."
+msgstr[0] ""
+"È fallito il processo di validazione dell’app con {0} errore e {1} "
+"messaggio."
+msgstr[1] ""
+"È fallito il processo di validazione dell’app con {0} errori e {1} messaggi."
 
 #: media/js/devreg/devhub.js:222
 msgid "Your app passed validation with no errors and {0} message."
 msgid_plural "Your app passed validation with no errors and {0} messages."
-msgstr[0] "L’app ha superato il processo di validazione senza errori e con {0} messaggio."
-msgstr[1] "L’app ha superato il processo di validazione senza errori e con {0} messaggi."
+msgstr[0] ""
+"L’app ha superato il processo di validazione senza errori e con {0} "
+"messaggio."
+msgstr[1] ""
+"L’app ha superato il processo di validazione senza errori e con {0} "
+"messaggi."
 
 #: media/js/devreg/devhub.js:227
 msgid "Your app passed validation with no errors or messages."
-msgstr "L’app ha superato il processo di validazione senza errori e senza avvisi."
+msgstr ""
+"L’app ha superato il processo di validazione senza errori e senza avvisi."
 
 #: media/js/devreg/devhub.js:442
 msgid "Changes Saved"
@@ -182,7 +196,9 @@ msgstr "Elaborazione delle modifiche alle immagini in corso"
 
 #: media/js/devreg/ecosystem.js:26
 msgid "This video requires a browser with support for open video "
-msgstr "Per visualizzare questo video è necessario un browser che supporti i formati video aperti"
+msgstr ""
+"Per visualizzare questo video è necessario un browser che supporti i formati"
+" video aperti"
 
 #: media/js/devreg/ecosystem.js:27
 msgid "or the <a href=\"http://www.adobe.com/go/getflashplayer\">Adobe "
@@ -201,20 +217,30 @@ msgid "Disabled"
 msgstr "Non attiva"
 
 #: media/js/devreg/init.js:35
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Questa funzione è momentaneamente disattivata per dei lavori di manutenzione. Riprovare più tardi."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Questa funzione è momentaneamente disattivata per dei lavori di "
+"manutenzione. Riprovare più tardi."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "Elimina questa localizzazione"
 
 #: media/js/devreg/login.js:126
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Identificazione con Persona non riuscita. Sei sicuro di aver registrato un account con questo indirizzo email?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Identificazione con Persona non riuscita. Sei sicuro di aver registrato un "
+"account con questo indirizzo email?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
-msgstr "Identificazione con Persona non riuscita. Si è verificato un errore col server."
+msgstr ""
+"Identificazione con Persona non riuscita. Si è verificato un errore col "
+"server."
 
 #: media/js/devreg/lookup-tool.js:39
 msgid "Status successfully changed to \"{0}\""
@@ -294,7 +320,9 @@ msgstr "Codice bancario olandese o statunitense (Sort Code)"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
-msgstr "Codice bancario canadese (numero di transito) o tedesco (codice di avviamento)"
+msgstr ""
+"Codice bancario canadese (numero di transito) o tedesco (codice di "
+"avviamento)"
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
@@ -306,7 +334,9 @@ msgstr "Codice bancario greco (EBIC) o indonesiano"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "Codice bancario irlandese, inglese (Sort Code), neozelandese (prefisso del conto) o australiano (codice BSB)"
+msgstr ""
+"Codice bancario irlandese, inglese (Sort Code), neozelandese (prefisso del "
+"conto) o australiano (codice BSB)"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -331,23 +361,40 @@ msgstr "Rilevata: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
-msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] "Eliminare l’account pagamenti “{0}” comporterà la sua rimozione dalle seguenti app. Le app non associate a un account pagamenti non sono disponibili per l’acquisto."
-msgstr[1] "Eliminare l’account pagamenti “{0}” comporterà la sua rimozione dalla seguente app. Le app non associate a un account pagamenti non sono disponibili per l’acquisto."
+msgid ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following apps. Applications without a payment account will no longer be "
+"available for sale."
+msgid_plural ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
+msgstr[0] ""
+"Eliminare l’account pagamenti “{0}” comporterà la sua rimozione dalle "
+"seguenti app. Le app non associate a un account pagamenti non sono "
+"disponibili per l’acquisto."
+msgstr[1] ""
+"Eliminare l’account pagamenti “{0}” comporterà la sua rimozione dalla "
+"seguente app. Le app non associate a un account pagamenti non sono "
+"disponibili per l’acquisto."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
 msgstr "Account pagamenti per {appName}:"
 
-#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:112
+#: media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Errore"
 
-#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
+#: media/js/devreg/payments-manage.js:113
+#: media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
-msgstr "Si è verificato un errore durante la connessione al server per i pagamenti."
+msgstr ""
+"Si è verificato un errore durante la connessione al server per i pagamenti."
 
 #: media/js/devreg/payments-manage.js:143
 msgid "Authentication error"
@@ -532,21 +579,26 @@ msgstr "Gratuita"
 msgid "Any"
 msgstr "Qualsiasi"
 
-#: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
+#: media/js/devreg/reviewers/reviewers.js:246
+#: media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
 msgstr "App approvata: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
+#: media/js/devreg/reviewers/reviewers.js:249
+#: media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
 msgstr "App rifiutata: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:255
 msgid "Error approving app: {app}"
-msgstr "Si è verificato un errore durante il processo di approvazione dell’app: {app}"
+msgstr ""
+"Si è verificato un errore durante il processo di approvazione dell’app: "
+"{app}"
 
 #: media/js/devreg/reviewers/reviewers.js:256
 msgid "Error rejecting app: {app}"
-msgstr "Si è verificato un errore durante il processo di rifiuto dell’app: {app}"
+msgstr ""
+"Si è verificato un errore durante il processo di rifiuto dell’app: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:307
 msgid "Error passing app: {app}"
@@ -557,10 +609,15 @@ msgid "Error failing app: {app}"
 msgstr "Errore durante il rifiuto dell’app: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
-msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr "Spiacenti, si è verificato un errore durante il recupero dello storico revisioni. Riprova effettuando nuovamente l’accesso.<p>"
+msgid ""
+"Sorry! We had an error fetching the review history. Please try logging in "
+"again.<p>"
+msgstr ""
+"Spiacenti, si è verificato un errore durante il recupero dello storico "
+"revisioni. Riprova effettuando nuovamente l’accesso.<p>"
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on
+#. Feburary 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr "di {0} il {1}"
