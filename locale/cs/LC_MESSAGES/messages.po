@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:27-0700\n"
-"PO-Revision-Date: 2015-10-16 21:27+0000\n"
-"Last-Translator: Michal <michal.stanke@mikk.cz>\n"
+"PO-Revision-Date: 2015-11-14 22:05+0000\n"
+"Last-Translator: Tomáš <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1445030861.0\n"
+"X-POOTLE-MTIME: 1447538714.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -1908,7 +1908,7 @@ msgstr "Aplikace vyžaduje přístup k Near Field Communication (NFC) API."
 
 #: mkt/constants/features.py:357
 msgid "UDP Sockets"
-msgstr ""
+msgstr "UDP sockety"
 
 #: mkt/constants/features.py:358
 msgid "The app requires the platform to allow opening raw UDP sockets."
@@ -3347,6 +3347,11 @@ msgid ""
 "Your app is shown on <a href=\"https://developer.mozilla.org/Apps/Build/Performance/Apps_for_low-memory_Firefox_OS_devices\" target=\"_blank\">low-memory devices</a>. If you want to stop showing "
 "your app on low-memory devices <a href=\"%(support_url)s\">contact us</a>."
 msgstr ""
+"Aplikace je zobrazována na <a "
+"href=\"https://developer.mozilla.org/Apps/Build/Performance/Apps_for_low-"
+"memory_Firefox_OS_devices\" target=\"_blank\">zařízeních s malým množstvím "
+"paměti</a>. Chcete-li ji na zařízeních s malým množstvím paměti přestat "
+"zobrazovat, <a href=\"%(support_url)s\">kontaktujte nás</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:302 mkt/developers/templates/developers/apps/status.html:320
 msgid "List App"
@@ -3762,11 +3767,11 @@ msgstr "Ne, statistiky této aplikace nejsou veřejně zobrazitelné."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:64
 msgid "Homescreen?"
-msgstr ""
+msgstr "Domovská obrazovka?"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:65
 msgid "Whether this app is a homescreen for Firefox OS."
-msgstr ""
+msgstr "Je-li aplikace domovskou obrazovkou pro Firefox OS."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:87
 msgid "This app does not require any device features"
@@ -5013,26 +5018,31 @@ msgstr "Hodnota `description` nesmí být delší než 132 znaků."
 #: mkt/extensions/validation.py:37
 msgid "The icon file `%(icon_path)s` is not the specified dimensions of %(icon_size)s x %(icon_size)s as defined in the manifest."
 msgstr ""
+"Soubor ikony `%(icon_path)s` není ve velikosti %(icon_size)s x %(icon_size)s "
+"specifikované v manifestu."
 
 #: mkt/extensions/validation.py:40
 msgid "The icon file `%(icon_path)s` is referenced in the manifest but does not exist in the ZIP file."
 msgstr ""
+"Na soubor ikony `%(icon_path)s` je odkazováno v manifestu, ale v ZIP souboru "
+"není přiložen."
 
 #: mkt/extensions/validation.py:43
 msgid "If defining `icons`, you must include a 128x128 variant."
 msgstr ""
+"Specifikujete-li položku `icons`, musíte zahrnout také variantu 128x128."
 
 #: mkt/extensions/validation.py:45
 msgid "The icon file `%s` is not a valid PNG."
-msgstr ""
+msgstr "Soubor s ikonou `%s` není validní PNG soubor."
 
 #: mkt/extensions/validation.py:47
 msgid "The icon file `%(icon_path)s` is not square."
-msgstr ""
+msgstr "Soubor s ikonou `%(icon_path)s` není čtvercový."
 
 #: mkt/extensions/validation.py:49
 msgid "The manifest contains an invalid icon size: %(icon_size)s"
-msgstr ""
+msgstr "Manifest obsahuje neplatnou hodnotu velikosti ikony : %(icon_size)s"
 
 #: mkt/extensions/validation.py:51
 msgid "'manifest.json' in the archive is not a valid JSON file."
@@ -5177,7 +5187,7 @@ msgstr "Překročena velikost souboru v archivu: {0}"
 
 #: mkt/files/utils.py:208
 msgid "Total size of files exceeding limit in archive: {0}"
-msgstr ""
+msgstr "Celková velikost souborů převyšujících velikostní limit archivu: {0}"
 
 #: mkt/files/utils.py:239
 msgid "Invalid archive."
@@ -6054,7 +6064,7 @@ msgstr "Probíhající kontrola"
 
 #: mkt/reviewers/helpers.py:50
 msgid "Homescreens"
-msgstr ""
+msgstr "Domovské obrazovky"
 
 #: mkt/reviewers/helpers.py:52 mkt/reviewers/templates/reviewers/queue_region.html:7
 msgid "Regional Queues"
@@ -6095,7 +6105,7 @@ msgstr "Tarako ({0})"
 #: mkt/reviewers/helpers.py:120
 msgctxt "homescreen"
 msgid "Homescreens ({0})"
-msgstr ""
+msgstr "Domovské obrazovky ({0})"
 
 #: mkt/reviewers/helpers.py:129
 msgctxt "moderated"
