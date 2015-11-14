@@ -29,15 +29,7 @@ class DEVICE_GAIA(object):
     api_name = 'firefoxos'
 
 
-class DEVICE_TV(object):
-    id = 5
-    name = _(u'Firefox OS TV')
-    class_name = 'firefoxos+tv'
-    api_name = 'firefoxos+tv'
-
-
-DEVICE_TYPE_LIST = [DEVICE_DESKTOP, DEVICE_MOBILE, DEVICE_TABLET, DEVICE_GAIA,
-                    DEVICE_TV]
+DEVICE_TYPE_LIST = [DEVICE_DESKTOP, DEVICE_MOBILE, DEVICE_TABLET, DEVICE_GAIA]
 DEVICE_TYPES = dict((d.id, d) for d in DEVICE_TYPE_LIST)
 REVERSE_DEVICE_LOOKUP = dict((d.id, d.api_name) for d in DEVICE_TYPE_LIST)
 DEVICE_LOOKUP = dict((d.api_name, d) for d in DEVICE_TYPE_LIST)
@@ -49,8 +41,6 @@ DEVICE_CHOICES_IDS = {
     'mobile': DEVICE_MOBILE.id,
     'tablet': DEVICE_TABLET.id,
     'firefoxos': DEVICE_GAIA.id,
-    'firefoxos+mobile': DEVICE_GAIA.id,
-    'firefoxos+tv': DEVICE_TV.id,
 }
 
 

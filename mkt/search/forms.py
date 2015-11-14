@@ -45,7 +45,6 @@ DEV_CHOICES = [
     ('desktop', _lazy(u'Desktop')),
     ('android', _lazy(u'Android')),
     ('firefoxos', _lazy(u'Firefox OS')),
-    ('firefoxos+tv', _lazy(u'Firefox OS TV')),
 ]
 
 # Device type choice, only enabled for Android for the moment, see clean()

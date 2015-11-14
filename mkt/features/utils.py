@@ -11,8 +11,7 @@ def load_feature_profile(request):
     if hasattr(request, 'feature_profile'):
         return
     profile = None
-    if request.GET.get('dev') in ('firefoxos', 'firefoxos+mobile',
-                                  'firefoxos+tv', 'android'):
+    if request.GET.get('dev') in ('firefoxos', 'android'):
         sig = request.GET.get('pro')
         if sig:
             try:
