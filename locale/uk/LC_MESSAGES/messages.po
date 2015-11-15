@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:27-0700\n"
-"PO-Revision-Date: 2015-09-12 13:03+0000\n"
-"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
+"PO-Revision-Date: 2015-11-15 13:39+0000\n"
+"Last-Translator: Nikita Sidorenko <n.sidorenko@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -4178,7 +4178,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:95
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:97
 msgid "Internal identifier for this app on the Firefox Marketplace."
@@ -4256,7 +4256,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:5
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:31
 msgid "General Tests"
-msgstr ""
+msgstr "Загальні тести"
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:9
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:45
@@ -4266,7 +4266,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:13
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:58
 msgid "Content Tests"
-msgstr ""
+msgstr "Тести вмісту"
 
 #. abbreviation of 'previous'
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:27
@@ -4300,7 +4300,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:1
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:1
 msgid "Actions"
-msgstr ""
+msgstr "Дії"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:7
 msgid "Resume the submission process for this add-on."
@@ -4309,7 +4309,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:8
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:10
 msgid "Resume"
-msgstr ""
+msgstr "Продовжити"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:14
 msgid "Delete this add-on."
@@ -4330,7 +4330,7 @@ msgstr "Нова версія"
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:43
 #: mkt/site/templates/site/paginator.html:3
 msgid "More"
-msgstr ""
+msgstr "Більше"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:46
 msgid "Team Members & License"
@@ -4414,7 +4414,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:99
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:33
 msgid "Messages"
-msgstr ""
+msgstr "Повідомлення"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:103
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:34
@@ -4425,7 +4425,7 @@ msgstr "Статистика"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:109
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:39
 msgid "Transactions"
-msgstr ""
+msgstr "Транзакції"
 
 #. {0} is a date.
 #: mkt/developers/templates/developers/apps/listing/items.html:17
