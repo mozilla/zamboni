@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:27-0700\n"
-"PO-Revision-Date: 2015-11-13 19:36+0000\n"
-"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
+"PO-Revision-Date: 2015-11-14 23:51+0000\n"
+"Last-Translator: Rodrigo Padula <rodrigopadula@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -3849,6 +3849,11 @@ msgid ""
 " want to stop showing your app on low-memory devices <a "
 "href=\"%(support_url)s\">contact us</a>."
 msgstr ""
+"Seu aplicativo é apresentado em <a "
+"href=\"https://developer.mozilla.org/Apps/Build/Performance/Apps_for_low-"
+"memory_Firefox_OS_devices\" target=\"_blank\">dispositivos com pouca "
+"memória</a>. Se quiser parar de apresentar seu aplicativo em dispositivos "
+"com pouca memória, <a href=\"%(support_url)s\">contate-nos</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:302
 #: mkt/developers/templates/developers/apps/status.html:320
@@ -7616,7 +7621,7 @@ msgstr[1] "{num} Revisões de atualização"
 #: mkt/reviewers/templates/reviewers/home.html:39
 msgid "{num} Homescreen Review"
 msgid_plural "{num} Homescreen Reviews"
-msgstr[0] ""
+msgstr[0] "{num} revisão de tela inicial"
 msgstr[1] ""
 
 #: mkt/reviewers/templates/reviewers/home.html:48
