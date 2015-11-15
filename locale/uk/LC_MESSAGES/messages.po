@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:27-0700\n"
-"PO-Revision-Date: 2015-11-15 13:39+0000\n"
+"PO-Revision-Date: 2015-11-15 14:14+0000\n"
 "Last-Translator: Nikita Sidorenko <n.sidorenko@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4430,11 +4430,11 @@ msgstr "Транзакції"
 #. {0} is a date.
 #: mkt/developers/templates/developers/apps/listing/items.html:17
 msgid "Created:"
-msgstr ""
+msgstr "Створено:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:21
 msgid "Status:"
-msgstr ""
+msgstr "Статус:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:33
 msgid "Packaged App Version:"
@@ -4446,7 +4446,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/items.html:47
 msgid "Price:"
-msgstr ""
+msgstr "Ціна:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:50
 msgid "Set up Payment Account"
@@ -4540,7 +4540,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24
 #: mkt/developers/templates/developers/payments/premium.html:230
 msgid "Region"
-msgstr ""
+msgstr "Регіон"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
 msgid "Rating Category"
@@ -4562,7 +4562,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:25
 msgid "Compatibility"
-msgstr ""
+msgstr "Сумісність"
 
 #. {0} is a list of HTML tags.
 #: mkt/developers/templates/developers/includes/macros.html:6
@@ -4585,7 +4585,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:80
 msgid "Categories:"
-msgstr ""
+msgstr "Категорії:"
 
 #: mkt/developers/templates/developers/includes/macros.html:96
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
@@ -4613,7 +4613,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/includes/macros.html:125
 msgid "View all"
-msgstr ""
+msgstr "Переглянути все"
 
 #: mkt/developers/templates/developers/includes/macros.html:126
 msgid "Hide all"
@@ -4803,7 +4803,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:144
 msgid "Countries"
-msgstr ""
+msgstr "Країни"
 
 #: mkt/developers/templates/developers/payments/premium.html:159
 msgid "Add, manage or view transactions for your payment accounts"
@@ -4836,7 +4836,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:207
 msgid "Regions"
-msgstr ""
+msgstr "Регіони"
 
 #: mkt/developers/templates/developers/payments/premium.html:213
 msgid "Available Regions"
@@ -4876,7 +4876,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:256
 msgid "Other regions"
-msgstr ""
+msgstr "Інші регіони"
 
 #: mkt/developers/templates/developers/payments/premium.html:258
 msgid ""
@@ -4905,11 +4905,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:317
 msgid "No free apps"
-msgstr ""
+msgstr "Немає безкоштовних програм"
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:4
 msgid "Terms of Agreement"
-msgstr ""
+msgstr "Умови угоди"
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:9
 msgid "Agree to the Terms"
@@ -4917,12 +4917,12 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:13
 msgid "Provider"
-msgstr ""
+msgstr "Постачальник"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:14
 #: mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Modify"
-msgstr ""
+msgstr "Змінити"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:16
 #: mkt/developers/templates/developers/payments/includes/account_list.html:52
@@ -4984,7 +4984,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:42
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:36
 msgid "Optional"
-msgstr ""
+msgstr "Необов'язково"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:109
 msgid "Name of registered company or individual."
@@ -5028,7 +5028,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
-msgstr ""
+msgstr "Оновити обліковий запис"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
@@ -5082,7 +5082,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/landing.html:14
 #: mkt/ecosystem/templates/ecosystem/macros.html:6
 msgid "Design"
-msgstr ""
+msgstr "Дизайн"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:20
 #: mkt/ecosystem/templates/ecosystem/landing.html:23
@@ -5106,7 +5106,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/landing.html:31
 #: mkt/ecosystem/templates/ecosystem/macros.html:25
 msgid "Build"
-msgstr ""
+msgstr "Збірка"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:37
 #: mkt/ecosystem/templates/ecosystem/landing.html:40
@@ -5118,7 +5118,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/landing.html:42
 #: mkt/ecosystem/templates/ecosystem/macros.html:151
 msgid "Firefox OS Simulator"
-msgstr ""
+msgstr "Firefox OS симулятор"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:45
 #: mkt/ecosystem/templates/ecosystem/landing.html:44
@@ -5131,7 +5131,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/macros.html:162
 #: mkt/submit/templates/submit/next_steps.html:42
 msgid "Publish"
-msgstr ""
+msgstr "Опублікувати"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:54
 #: mkt/ecosystem/templates/ecosystem/landing.html:57
@@ -5283,7 +5283,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:279
 msgid "Sign me up!"
-msgstr ""
+msgstr "Підписатись!"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:33
 msgid "Intro to Open Web Apps"
@@ -5345,7 +5345,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26
 #: mkt/webapps/models.py:1463
 msgid "Payments"
-msgstr ""
+msgstr "Платежі"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:139
 msgid "App Generator"
@@ -5357,7 +5357,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:147
 msgid "App Manager"
-msgstr ""
+msgstr "Менеджер програм"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:155
 msgid "Firefox Developer Tools"
@@ -5462,11 +5462,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:118
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:121
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:123
 msgid "Firefox Marketplace YouTube channel"
@@ -5485,7 +5485,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
-msgstr ""
+msgstr "Рекомендації"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:26
 msgid "You may not alter the badge in any way"
@@ -5510,15 +5510,15 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Grey"
-msgstr ""
+msgstr "Сірий"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Black"
-msgstr ""
+msgstr "Чорний"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:58
 msgid "Logo"
-msgstr ""
+msgstr "Логотип"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:60
 msgid ""
@@ -5813,11 +5813,11 @@ msgstr ""
 
 #: mkt/files/views.py:45
 msgid "Back to review"
-msgstr ""
+msgstr "Назад до огляду"
 
 #: mkt/files/views.py:50
 msgid "Back to app"
-msgstr ""
+msgstr "Повернутись до програми"
 
 #: mkt/files/templates/fileviewer/file.html:2
 msgid "Download {0}"
@@ -5855,7 +5855,7 @@ msgstr ""
 
 #: mkt/files/templates/fileviewer/viewer.html:45
 msgid "Files:"
-msgstr ""
+msgstr "Файли:"
 
 #: mkt/files/templates/fileviewer/viewer.html:48
 msgid "Deleted files:"
