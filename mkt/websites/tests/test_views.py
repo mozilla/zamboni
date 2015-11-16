@@ -64,6 +64,7 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         eq_(data['icons']['128'], self.website.get_icon_url(128))
         ok_(data['icons']['128'].endswith('?modified=fakehash'))
         eq_(sorted(int(k) for k in data['icons'].keys()), CONTENT_ICON_SIZES)
+        ok_(not data['tv_featured'])
         eq_(data['tv_url'], self.website.tv_url)
         eq_(data['name'], {'en-US': self.website.name})
         eq_(data['short_name'], {'en-US': self.website.short_name})

@@ -792,6 +792,16 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
         res = self.serialize()
         eq_(res['feature_compatibility'], None)
 
+    def test_no_tv_featured(self):
+        res = self.serialize()
+        eq_(res['tv_featured'], False)
+
+    def test_tv_featured(self):
+        Tag(tag_text='featured-tv').save_tag(self.app)
+        self.reindex(Webapp)
+        res = self.serialize()
+        eq_(res['tv_featured'], True)
+
 
 class TestSimpleESAppSerializer(mkt.site.tests.ESTestCase):
     fixtures = fixture('webapp_337141')

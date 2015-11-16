@@ -30,7 +30,7 @@ FIREPLACE_APP_EXCLUDED_FIELDS = (
     'absolute_url', 'app_type', 'created', 'default_locale', 'payment_account',
     'regions', 'resource_uri', 'supported_locales', 'upsold', 'versions')
 
-FIREPLACE_WEBSITE_EXCLUDED_FIELDS = ('title', )
+FIREPLACE_WEBSITE_EXCLUDED_FIELDS = ('title', 'tv_url')
 
 
 def assert_fireplace_app(data):
