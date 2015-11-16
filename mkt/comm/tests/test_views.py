@@ -473,6 +473,10 @@ class TestNoteListView(RestOAuth):
         self.grant_permission(self.profile, 'Apps:Review')
         self.grant_permission(self.profile, 'ContentTools:AddonReview')
 
+    def test_cors(self):
+        res = self.client.get(self.url)
+        self.assertCORS(res, 'get')
+
     def test_no_perm(self):
         res = self.client.get(self.url)
         eq_(res.status_code, 403)
