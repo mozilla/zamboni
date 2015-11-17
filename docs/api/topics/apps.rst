@@ -114,6 +114,10 @@ App
             "price": null,
             "price_locale": null,
             "privacy_policy": "/api/v2/apps/app/24/privacy/",
+            "promo_imgs": {
+                "320": "/tmp/img/uploads/webapp_promo_imgs/0/31-320.png?modified=1362762723",
+                "640": "/tmp/img/uploads/webapp_promo_imgs/0/31-640.png?modified=1362762723",
+             },
             "public_stats": false,
             "ratings": {
                 "average": 0.0,
@@ -276,6 +280,9 @@ App
     :type price_locale: string|null
     :param privacy_policy: The path to the privacy policy resource.
     :type privacy_policy: string
+    :param promo_imgs:  An object containing information about app promo images.
+        The keys represent image sizes, the values the corresponding URLs.
+    :type promo_imgs: object
     :param ratings: An object holding basic information about the app ratings.
     :type ratings: object
     :param ratings.average: The average rating.
