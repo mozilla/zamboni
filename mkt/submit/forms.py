@@ -323,12 +323,6 @@ class AppDetailsBasicForm(AppSupportFormMixin, TranslationFormMixin,
             u'and used by end users to contact you with support issues. This '
             u'email address will be listed publicly on your app details page.'
             ))
-    flash = forms.TypedChoiceField(
-        label=_lazy(u'Does your app require Flash support?'),
-        required=False, coerce=lambda x: bool(int(x)),
-        initial=0, widget=forms.RadioSelect,
-        choices=((1, _lazy(u'Yes')),
-                 (0, _lazy(u'No'))))
     notes = forms.CharField(
         label=_lazy(u'Your comments for reviewers:'), required=False,
         widget=forms.Textarea(attrs={'rows': 2}),
@@ -389,10 +383,6 @@ class AppDetailsBasicForm(AppSupportFormMixin, TranslationFormMixin,
                              self.request.user, self.data['notes'],
                              note_type=comm.SUBMISSION)
         self.instance = super(AppDetailsBasicForm, self).save(commit=True)
-        uses_flash = self.cleaned_data.get('flash')
-        af = self.instance.get_latest_file()
-        if af is not None:
-            af.update(uses_flash=bool(uses_flash))
 
         for tag_text in self.cleaned_data['tags']:
             Tag(tag_text=tag_text).save_tag(self.instance)

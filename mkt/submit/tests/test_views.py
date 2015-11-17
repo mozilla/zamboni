@@ -683,7 +683,6 @@ class TestDetails(TestSubmit):
             'support_url': 'http://www.goodreads.com/user_challenges/351558',
             'support_email': 'krupa+to+the+rescue@goodreads.com',
             'categories': [self.cat1],
-            'flash': '1',
             'publish_type': mkt.PUBLISH_IMMEDIATE,
             'notes': 'yes'
         }
@@ -707,14 +706,11 @@ class TestDetails(TestSubmit):
             'app_slug': 'testname',
             'description': 'desc',
             'privacy_policy': 'XXX &lt;script&gt;alert("xss")&lt;/script&gt;',
-            'uses_flash': True,
             'publish_type': mkt.PUBLISH_IMMEDIATE,
         }
         if expected:
             expected_data.update(expected)
 
-        uses_flash = expected_data.pop('uses_flash')
-        eq_(addon.latest_version.all_files[0].uses_flash, uses_flash)
         self.assertSetEqual(addon.device_types, self.device_types)
 
         for field, expected in expected_data.iteritems():

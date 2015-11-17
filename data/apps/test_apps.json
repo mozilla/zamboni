@@ -1,6 +1,6 @@
 [{"type": "hosted", "status": "public", "homepage": "http://example.com",
   "support_url": "http://support.mozilla.org/", "is_offline": true,
-  "uses_flash": true, "video_files": ["images/redpanda.webm"], "popularity": 10},
+  "video_files": ["images/redpanda.webm"], "popularity": 10},
  {"type": "hosted", "status": "pending"},
  {"type": "hosted", "status": "waiting"},
  {"type": "hosted", "status": "rejected"},

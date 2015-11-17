@@ -133,13 +133,12 @@ def generate_ratings(app, num):
 
 def generate_hosted_app(name, categories, developer_name,
                         privacy_policy=None, device_types=(), status=4,
-                        rated=True, uses_flash=False, default_locale='en-US',
-                        **spec):
+                        rated=True, default_locale='en-US', **spec):
     generated_url = 'http://%s.testmanifest.com/fake-data/manifest.webapp' % (
         slugify(name),)
     a = app_factory(categories=categories, name=name, complete=False,
                     privacy_policy=spec.get('privacy_policy'),
-                    file_kw={'status': status, 'uses_flash': uses_flash},
+                    file_kw={'status': status},
                     default_locale=default_locale, rated=rated,
                     manifest_url=spec.get('manifest_url', generated_url))
     if device_types:
@@ -226,7 +225,7 @@ def generate_packaged_app(namedict, apptype, categories, developer_name,
                           privacy_policy=None, device_types=(),
                           permissions=(), versions=(),
                           default_locale='en-US', package_file=None,
-                          status=4, uses_flash=False, **kw):
+                          status=4, **kw):
     now = datetime.datetime.now()
     app = app_factory(categories=categories, name=namedict[default_locale],
                       complete=False, rated=True, is_packaged=True,
@@ -235,7 +234,7 @@ def generate_packaged_app(namedict, apptype, categories, developer_name,
                           'version': '1.0',
                           'reviewed': now if status >= 4 else None,
                           '_developer_name': developer_name},
-                      file_kw={'status': status, 'uses_flash': uses_flash})
+                      file_kw={'status': status})
     if device_types:
         for dt in device_types:
             app.addondevicetype_set.create(device_type=DEVICE_CHOICES_IDS[dt])
@@ -380,9 +379,9 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                            privacy_policy='Fake privacy policy',
                            premium_type='free', description=None,
                            default_locale='en-US', rereview=False,
-                           uses_flash=False, special_regions={},
-                           inapp_id=None, inapp_secret=None,
-                           popularity=0, tarako=False, **spec):
+                           special_regions={}, inapp_id=None,
+                           inapp_secret=None, popularity=0, tarako=False,
+                           **spec):
     status = STATUS_CHOICES_API_LOOKUP[status]
     names = generate_localized_names(name, locale_names)
     if type == 'hosted':

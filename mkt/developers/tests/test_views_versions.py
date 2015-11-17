@@ -370,7 +370,7 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         res = self.client.post(self.delete_url, {'version_id': version.pk},
                                follow=True)
         assert not Version.objects.filter(pk=version.pk).exists()
-        # Check xss in success flash message.
+        # Check xss in success notification message.
         assert '<script>alert(' not in res.content
         assert '&lt;script&gt;alert(' in res.content
 

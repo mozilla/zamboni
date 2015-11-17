@@ -851,17 +851,6 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             if res:
                 return res[0]
 
-    @property
-    def uses_flash(self):
-        """
-        Convenience property until more sophisticated per-version
-        checking is done for packaged apps.
-        """
-        f = self.get_latest_file()
-        if not f:
-            return False
-        return f.uses_flash
-
     def in_escalation_queue(self):
         return self.escalationqueue_set.exists()
 

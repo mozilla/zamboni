@@ -284,14 +284,6 @@ class TestApiReviewerSearch(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 1)
 
-    def test_no_flash_filtering(self):
-        self.webapp.latest_version.all_files[0].update(uses_flash=True)
-        self.webapp.save()
-        self.refresh('webapp')
-        res = self.client.get(self.url, {'dev': 'firefoxos'})
-        eq_(res.status_code, 200)
-        eq_(len(res.json['objects']), 1)
-
     def test_no_premium_filtering(self):
         self.webapp.addondevicetype_set.create(
             device_type=mkt.DEVICE_MOBILE.id)
