@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:27-0700\n"
-"PO-Revision-Date: 2015-11-17 07:11+0000\n"
+"PO-Revision-Date: 2015-11-17 07:19+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -8464,7 +8464,7 @@ msgstr ""
 
 #: mkt/submit/forms.py:324
 msgid "Email:"
-msgstr ""
+msgstr "Ел. пошта:"
 
 #: mkt/submit/forms.py:326
 msgid ""
@@ -8542,6 +8542,9 @@ msgid ""
 "Screenshots proportional to 320px by 480px are optimal. WebM supported for "
 "video."
 msgstr ""
+"Підтримуються PNG і JPG. Знімки екрану повинні бути розміром щонайменше "
+"320px на 480px. Оптимальними є знімки екрану пропорційні 320px на 480px. "
+"WebM підтримується для відео."
 
 #: mkt/submit/templates/submit/done.html:3
 msgid "Finished!"
@@ -8980,7 +8983,7 @@ msgstr "{region} дата висунення"
 
 #: mkt/webapps/tasks.py:145
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
-msgstr ""
+msgstr "Проблема з вашим застосунком \"{app}\" на Firefox Marketplace"
 
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:2
 msgid "Sort by:"
