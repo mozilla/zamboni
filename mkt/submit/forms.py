@@ -105,12 +105,7 @@ class DeviceTypeForm(happyforms.Form):
         """Returns a device based on the requested free or paid."""
         if source is None:
             source = self._get_combined()
-
-        platforms = {'firefoxos': mkt.DEVICE_GAIA,
-                     'desktop': mkt.DEVICE_DESKTOP,
-                     'android-mobile': mkt.DEVICE_MOBILE,
-                     'android-tablet': mkt.DEVICE_TABLET}
-        return map(platforms.get, source)
+        return map(mkt.DEVICE_LOOKUP.get, source)
 
     def is_paid(self):
         return bool(self.cleaned_data.get('paid_platforms', False))

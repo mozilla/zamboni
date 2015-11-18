@@ -612,6 +612,16 @@ class TestSearchView(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['slug'], self.webapp.app_slug)
 
+    def test_device_tv(self):
+        AddonDeviceType.objects.create(
+            addon=self.webapp, device_type=DEVICE_CHOICES_IDS['firefoxos-tv'])
+        self.reindex(Webapp)
+        res = self.anon.get(self.url, data={'dev': 'firefoxos-tv'})
+        eq_(res.status_code, 200)
+        obj = res.json['objects'][0]
+        eq_(obj['slug'], self.webapp.app_slug)
+        eq_(obj['device_types'], ['firefoxos-tv'])
+
     def test_no_flash_on_firefoxos(self):
         AddonDeviceType.objects.create(
             addon=self.webapp, device_type=DEVICE_CHOICES_IDS['firefoxos'])
