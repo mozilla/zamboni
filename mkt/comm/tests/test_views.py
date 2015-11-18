@@ -453,14 +453,14 @@ class TestNoteListView(RestOAuth):
 
     def setUp(self):
         super(TestNoteListView, self).setUp()
-        self.extension = extension_factory()
+        self.extension = extension_factory(name='yip')
         self.extension_author = user_factory(email='exman@author.com')
         self.extension_thread = self.extension.threads.create(
             _extension_version=self.extension.latest_version)
         self.extension_note = self.extension_thread.notes.create(
             author=self.extension_author, body='extension note')
 
-        self.app = app_factory()
+        self.app = app_factory(name='yip', app_slug='yip')
         self.app_author = user_factory(email='rappa@author.com')
         self.app_thread = self.app.threads.create(
             _version=self.app.current_version)
@@ -488,6 +488,14 @@ class TestNoteListView(RestOAuth):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         eq_(len(res.json['objects']), 2)
+
+    def test_obj_meta(self):
+        self._grant_perms()
+        res = self.client.get(self.url)
+        for obj in res.json['objects']:
+            ok_('64' in obj['obj_meta']['icon'])
+            eq_(obj['obj_meta']['name'], 'yip')
+            eq_(obj['obj_meta']['slug'], 'yip')
 
     def test_filter_doc_type(self):
         self._grant_perms()

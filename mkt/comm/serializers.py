@@ -60,6 +60,30 @@ class NoteSerializer(ModelSerializer):
                   'body', 'note_type', 'thread')
 
 
+class NoteForListSerializer(NoteSerializer):
+    obj_meta = SerializerMethodField('get_obj_meta')
+
+    def get_obj_meta(self, note):
+        # grep: comm-content-type.
+        obj = note.thread.obj
+        if obj.__class__ == Webapp:
+            return {
+                'icon': obj.get_icon_url(64),
+                'name': obj.name,
+                'slug': obj.app_slug
+            }
+        else:
+            return {
+                'icon': obj.get_icon_url(64),
+                'name': obj.name,
+                'slug': obj.slug
+            }
+
+    class Meta(NoteSerializer.Meta):
+        fields = ('id', 'created', 'attachments', 'author', 'author_meta',
+                  'body', 'note_type', 'obj_meta', 'thread')
+
+
 class CommAppSerializer(ModelSerializer):
     name = CharField()
     review_url = SerializerMethodField('get_review_url')
