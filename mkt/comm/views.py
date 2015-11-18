@@ -192,7 +192,7 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
             status=status.HTTP_201_CREATED)
 
 
-class NoteListView(ListAPIView, MarketplaceView, CORSMixin):
+class NoteListView(CORSMixin, ListAPIView, MarketplaceView):
     serializer_class = NoteSerializer
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication]
