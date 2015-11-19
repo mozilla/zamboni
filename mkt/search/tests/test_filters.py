@@ -274,14 +274,12 @@ class TestDeviceTypeFilter(FilterTestsBase):
     def test_mobile(self):
         self.req.MOBILE = True
         qs = self._filter(self.req)
-        ok_({'term': {'uses_flash': True}}
-            in qs['query']['filtered']['filter']['bool']['must_not'])
+        ok_('filtered' not in qs['query'].keys())
 
     def test_gaia(self):
         self.req.GAIA = True
         qs = self._filter(self.req)
-        ok_({'term': {'uses_flash': True}}
-            in qs['query']['filtered']['filter']['bool']['must_not'])
+        ok_('filtered' not in qs['query'].keys())
 
     def test_tablet(self):
         self.req.TABLET = True
