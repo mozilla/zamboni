@@ -1153,27 +1153,6 @@ class TestEditTechnical(TestEdit):
     def test_form_url(self):
         self.check_form_url('technical')
 
-    def test_toggle_flash(self):
-        # Turn flash on.
-        r = self.client.post(self.edit_url, formset(**{'flash': 'on'}))
-        self.assertNoFormErrors(r)
-        self.latest_file.reload()
-        self.compare({'uses_flash': True}, instance=self.latest_file)
-
-        # And off.
-        r = self.client.post(self.edit_url, formset(**{'flash': ''}))
-        self.latest_file.reload()
-        self.compare({'uses_flash': False}, instance=self.latest_file)
-
-    def test_toggle_flash_rejected(self):
-        # Reject the app.
-        app = self.get_webapp()
-        app.update(status=mkt.STATUS_REJECTED)
-        app.versions.latest().all_files[0].update(status=mkt.STATUS_DISABLED)
-        app.update_version()
-
-        self.test_toggle_flash()
-
     def test_public_stats(self):
         o = ActivityLog.objects
         eq_(o.count(), 0)

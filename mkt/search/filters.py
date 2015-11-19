@@ -258,19 +258,9 @@ class DeviceTypeFilter(BaseFilterBackend):
     def filter_queryset(self, request, queryset, view):
 
         device_id = get_device_id(request)
-        data = {
-            'gaia': getattr(request, 'GAIA', False),
-            'mobile': getattr(request, 'MOBILE', False),
-            'tablet': getattr(request, 'TABLET', False),
-        }
-        flash_incompatible = data['mobile'] or data['gaia']
-
         if device_id:
             queryset = queryset.filter(
                 Bool(must=[F('term', device=device_id)]))
-        if flash_incompatible:
-            queryset = queryset.filter(
-                Bool(must_not=[F('term', uses_flash=True)]))
 
         return queryset
 

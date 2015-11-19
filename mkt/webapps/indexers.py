@@ -202,7 +202,6 @@ class WebappIndexer(BaseIndexer):
                             'region_exclusions': {'type': 'short'},
                         }
                     },
-                    'uses_flash': {'type': 'boolean'},
                     'versions': {
                         'type': 'object',
                         'properties': {
@@ -261,7 +260,7 @@ class WebappIndexer(BaseIndexer):
         attrs = ('app_slug', 'bayesian_rating', 'created', 'default_locale',
                  'guid', 'hosted_url', 'icon_hash', 'id', 'is_disabled',
                  'is_offline', 'file_size', 'last_updated', 'modified',
-                 'premium_type', 'promo_img_hash', 'status', 'uses_flash')
+                 'premium_type', 'promo_img_hash', 'status')
         d = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
         d['app_type'] = obj.app_type_id

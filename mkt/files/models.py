@@ -43,8 +43,6 @@ class File(OnChangeMixin, ModelBase):
                                               db_index=True)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
     reviewed = models.DateTimeField(null=True)
-    # Whether a webapp uses flash or not.
-    uses_flash = models.BooleanField(default=False, db_index=True)
 
     class Meta(ModelBase.Meta):
         db_table = 'files'

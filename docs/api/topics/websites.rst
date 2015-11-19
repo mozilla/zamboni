@@ -48,6 +48,10 @@ Website
           "name": {
             "en-US": "Example site name"
           },
+         "promo_imgs": {
+             "320": "https://marketplace-dev-cdn.allizom.org/website_promo_imgs/0/31-320.png?modified=1362762723",
+             "640": "https://marketplace-dev-cdn.allizom.org/website_promo_imgs/0/31-640.png?modified=1362762723",
+          },
           "short_name": {
             "en-US": "Example"
           },
@@ -75,6 +79,10 @@ Website
     :type id: int
     :param mobile_url: The site's mobile-specific URL, if it exists.
     :type mobile_url: string|null
+    :param promo_imgs: An object containing information about site promo
+        images. The keys represent image sizes, the values the corresponding
+        URLs.
+    :type promo_imgs: object
     :param tv_url: The site's TV-specific URL, if it exists.
     :type tv_url: string|null
     :param name: The site's name, as used on its detail page in Marketplace.

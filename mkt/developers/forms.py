@@ -372,11 +372,6 @@ class AdminSettingsForm(PreviewForm):
         geodata.banner_message = self.cleaned_data.get('banner_message')
         geodata.save()
 
-        uses_flash = self.cleaned_data.get('flash')
-        af = addon.get_latest_file()
-        if af is not None:
-            af.update(uses_flash=bool(uses_flash))
-
         index_webapps.delay([addon.id])
 
         return addon
@@ -1107,24 +1102,11 @@ class DevNewsletterForm(happyforms.Form):
 
 
 class AppFormTechnical(AddonFormBase):
-    flash = forms.BooleanField(required=False)
     is_offline = forms.BooleanField(required=False)
 
     class Meta:
         model = Webapp
         fields = ('is_offline', 'public_stats',)
-
-    def __init__(self, *args, **kw):
-        super(AppFormTechnical, self).__init__(*args, **kw)
-        if self.version.all_files:
-            self.initial['flash'] = self.version.all_files[0].uses_flash
-
-    def save(self, addon, commit=False):
-        uses_flash = self.cleaned_data.get('flash')
-        self.instance = super(AppFormTechnical, self).save(commit=True)
-        if self.version.all_files:
-            self.version.all_files[0].update(uses_flash=bool(uses_flash))
-        return self.instance
 
 
 class TransactionFilterForm(happyforms.Form):
