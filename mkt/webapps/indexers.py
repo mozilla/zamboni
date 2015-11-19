@@ -91,7 +91,6 @@ class WebappIndexer(BaseIndexer):
                                     'analyzer': 'exact_lowercase'},
                         },
                     },
-                    'banner_regions': cls.string_not_indexed(),
                     'bayesian_rating': {'type': 'float', 'doc_values': True},
                     'category': cls.string_not_analyzed(),
                     'content_descriptors': cls.string_not_indexed(),
@@ -221,9 +220,8 @@ class WebappIndexer(BaseIndexer):
 
         # Add fields that we expect to return all translations.
         cls.attach_translation_mappings(
-            mapping, ('banner_message', 'description', 'homepage',
-                      'name', 'release_notes', 'support_email',
-                      'support_url'))
+            mapping, ('description', 'homepage', 'name', 'release_notes',
+                      'support_email', 'support_url'))
 
         # Add language-specific analyzers.
         cls.attach_language_specific_analyzers(
@@ -248,7 +246,6 @@ class WebappIndexer(BaseIndexer):
 
         latest_version = obj.latest_version
         version = obj.current_version
-        geodata = obj.geodata
         features = (version.features.to_dict()
                     if version else AppFeatures().to_dict())
 
@@ -265,7 +262,6 @@ class WebappIndexer(BaseIndexer):
 
         d['app_type'] = obj.app_type_id
         d['author'] = obj.developer_name
-        d['banner_regions'] = geodata.banner_regions_slugs()
         d['category'] = obj.categories if obj.categories else []
         d['content_ratings'] = (obj.get_content_ratings_by_body(es=True) or
                                 None)
@@ -378,8 +374,6 @@ class WebappIndexer(BaseIndexer):
                 version, 'release_notes', db_field='releasenotes_id'))
         else:
             d['release_notes_translations'] = None
-        attach_trans_dict(geodata._meta.model, [geodata])
-        d.update(cls.extract_field_translations(geodata, 'banner_message'))
 
         # Add boost, popularity, trending values.
         d.update(cls.extract_popularity_trending_boost(obj))

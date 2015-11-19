@@ -286,9 +286,6 @@ class AdminSettingsForm(PreviewForm):
                                            required=False)
     vip_app = forms.BooleanField(required=False)
     priority_review = forms.BooleanField(required=False)
-    banner_regions = JSONMultipleChoiceField(
-        required=False, choices=mkt.regions.REGIONS_CHOICES_NAME)
-    banner_message = TransField(required=False)
 
     class Meta:
         model = Preview
@@ -318,24 +315,12 @@ class AdminSettingsForm(PreviewForm):
         if self.instance:
             self.initial['mozilla_contact'] = addon.mozilla_contact
 
-        self.initial['banner_regions'] = addon.geodata.banner_regions or []
-        self.initial['banner_message'] = addon.geodata.banner_message_id
-
     @property
     def regions_by_id(self):
         return mkt.regions.REGIONS_CHOICES_ID_DICT
 
     def clean_position(self):
         return -1
-
-    def clean_banner_regions(self):
-        try:
-            regions = map(int, self.cleaned_data.get('banner_regions'))
-        except (TypeError, ValueError):
-            # input data is not a list or data contains non-integers.
-            raise forms.ValidationError(_('Invalid region(s) selected.'))
-
-        return list(regions)
 
     def clean_mozilla_contact(self):
         contact = self.cleaned_data.get('mozilla_contact')
@@ -366,12 +351,6 @@ class AdminSettingsForm(PreviewForm):
             updates['priority_review'] = self.cleaned_data.get(
                 'priority_review')
         addon.update(**updates)
-
-        geodata = addon.geodata
-        geodata.banner_regions = self.cleaned_data.get('banner_regions')
-        geodata.banner_message = self.cleaned_data.get('banner_message')
-        geodata.save()
-
         index_webapps.delay([addon.id])
 
         return addon

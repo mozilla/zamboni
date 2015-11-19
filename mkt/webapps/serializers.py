@@ -63,10 +63,6 @@ class AppSerializer(serializers.ModelSerializer):
     app_type = serializers.ChoiceField(
         choices=mkt.ADDON_WEBAPP_TYPES_LOOKUP.items(), read_only=True)
     author = serializers.CharField(source='developer_name', read_only=True)
-    banner_message = TranslationSerializerField(
-        read_only=True,
-        source='geodata.banner_message')
-    banner_regions = serializers.Field(source='geodata.banner_regions_slugs')
     categories = ListField(serializers.ChoiceField(choices=CATEGORY_CHOICES),
                            required=True)
     content_ratings = serializers.SerializerMethodField('get_content_ratings')
@@ -129,9 +125,8 @@ class AppSerializer(serializers.ModelSerializer):
     class Meta:
         model = Webapp
         fields = [
-            'app_type', 'author', 'banner_message', 'banner_regions',
-            'categories', 'content_ratings', 'created', 'current_version',
-            'default_locale', 'description', 'device_types',
+            'app_type', 'author', 'categories', 'content_ratings', 'created',
+            'current_version', 'default_locale', 'description', 'device_types',
             'feature_compatibility', 'file_size', 'homepage', 'hosted_url',
             'icons', 'id', 'is_disabled', 'is_homescreen', 'is_offline',
             'is_packaged', 'last_updated', 'manifest_url', 'name',
@@ -463,7 +458,6 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
             self._attach_translations(obj, data, ('group',))  # Feed group.
         else:
             obj.group_translations = None
-        self._attach_translations(obj._geodata, data, ('banner_message',))
 
         # Release notes target and source name differ (ES stores it as
         # release_notes but the db field we are emulating is called

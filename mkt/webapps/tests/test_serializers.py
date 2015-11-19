@@ -467,7 +467,6 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
             'absolute_url': 'http://testserver/app/something-something/',
             'app_type': 'hosted',
             'author': 'Mozilla Tester',
-            'banner_regions': [],
             'categories': ['books', 'social'],
             'created': self.app.created,
             'current_version': '1.0',

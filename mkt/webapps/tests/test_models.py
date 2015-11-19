@@ -2463,14 +2463,6 @@ class TestGeodata(mkt.site.tests.WebappTestCase):
         eq_(self.geo.region_cn_status, status)
         eq_(self.geo.reload().region_cn_status, status)
 
-    def test_banner_regions_names(self):
-        eq_(self.geo.banner_regions, {})
-        eq_(self.geo.banner_regions_names(), [])
-
-        self.geo.update(
-            banner_regions=[mkt.regions.GBR.id, mkt.regions.CHN.id])
-        eq_(self.geo.banner_regions_names(), [u'China', u'United Kingdom'])
-
 
 @mock.patch.object(settings, 'PRE_GENERATE_APKS', True)
 @mock.patch('mkt.webapps.tasks.pre_generate_apk')
