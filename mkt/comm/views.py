@@ -32,8 +32,9 @@ from mkt.comm.models import (CommAttachment, CommunicationNote,
 from mkt.comm.permissions import (AttachmentPermission,
                                   EmailCreationPermission, NotePermission,
                                   ThreadPermission)
-from mkt.comm.serializers import (NoteSerializer, ThreadSerializer,
-                                  ThreadSerializerV2, ThreadSimpleSerializer)
+from mkt.comm.serializers import (NoteSerializer, NoteForListSerializer,
+                                  ThreadSerializer, ThreadSerializerV2,
+                                  ThreadSimpleSerializer)
 from mkt.comm.tasks import consume_email
 from mkt.comm.utils import create_attachments, create_comm_note
 from mkt.site.utils import get_file_response
@@ -193,7 +194,7 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
 
 
 class NoteListView(CORSMixin, ListAPIView, MarketplaceView):
-    serializer_class = NoteSerializer
+    serializer_class = NoteForListSerializer
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication]
     permission_classes = [AnyOf(

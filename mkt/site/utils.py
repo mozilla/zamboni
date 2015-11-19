@@ -577,7 +577,10 @@ def app_factory(status=mkt.STATUS_PUBLIC, version_kw={}, file_kw={}, **kw):
 
 def extension_factory(status=mkt.STATUS_PUBLIC, **kw):
     from mkt.extensions.models import Extension
-    name = u'Extension %s' % unicode(uuid.uuid4()).replace('-', '')
+    name = kw.get('name',
+                  u'Extension %s' % unicode(uuid.uuid4()).replace('-', ''))
+    if 'name' in kw:
+        del kw['name']
 
     extension = Extension.objects.create(
         name=name, slug=name.replace(' ', '-').lower()[:30], **kw)
