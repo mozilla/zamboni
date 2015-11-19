@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:27-0700\n"
-"PO-Revision-Date: 2015-11-19 19:49+0000\n"
+"PO-Revision-Date: 2015-11-19 19:52+0000\n"
 "Last-Translator: Tomáš <zelitomas@gmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1447962599.0\n"
+"X-POOTLE-MTIME: 1447962727.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -6179,6 +6179,8 @@ msgstr "Požádat o opětovnou kontrolu"
 #: mkt/reviewers/utils.py:437
 msgid "Add this app to the re-review queue. Any comments here won't be visible to the author(s), and no notification will be sent to them."
 msgstr ""
+"Tato aplikace je ve frontě pro opětovnou kontrolu. Žádné komentáře nebudou "
+"pro autory viditelné, ani jim nebude zasláno oznámení."
 
 #: mkt/reviewers/utils.py:443
 msgid "Clear Escalation"
