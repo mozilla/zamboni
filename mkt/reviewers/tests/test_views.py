@@ -572,6 +572,7 @@ class TestAppQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         eq_(r.context['pager'].number, 1)
 
     def test_queue_count(self):
+        self.refresh(doctypes=('webapp', 'homescreen'))
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
         doc = pq(r.content)
