@@ -3,7 +3,7 @@ from django.core.management.base import BaseCommand
 from mkt.feed.models import (FeedApp, FeedCollection, FeedCollectionMembership,
                              FeedShelf, FeedShelfMembership)
 from mkt.versions.models import Version
-from mkt.webapps.models import Geodata, Webapp
+from mkt.webapps.models import Webapp
 from mkt.site.tasks import update_translations
 from mkt.site.utils import chunked
 
@@ -37,8 +37,6 @@ class Command(BaseCommand):
             Webapp.objects.values_list('description', flat=True))
         ids.extend(
             Webapp.objects.values_list('privacy_policy', flat=True))
-        ids.extend(
-            Geodata.objects.values_list('banner_message', flat=True))
 
         # Filter out any None's.
         ids = filter(None, ids)

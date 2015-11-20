@@ -678,18 +678,6 @@ class TestAppDetail(RestOAuth):
         data = json.loads(res.content)
         eq_(data['tags'], ['example1', 'example2'])
 
-    def test_banner_message(self):
-        geodata = self.app.geodata
-        geodata.banner_regions = [mkt.regions.BRA.id, mkt.regions.ARG.id]
-        geodata.banner_message = u'Hello!'
-        geodata.save()
-        res = self.client.get(self.get_url + '?lang=en')
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        eq_(data['banner_message'], unicode(geodata.banner_message))
-        eq_(data['banner_regions'], [mkt.regions.ARG.slug,
-                                     mkt.regions.BRA.slug])
-
 
 class TestCategoryHandler(RestOAuth):
 

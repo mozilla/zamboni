@@ -22,7 +22,6 @@ from mkt.site.storage_utils import (copy_stored_file, local_storage,
 from mkt.site.tests.test_utils_ import get_image_path
 from mkt.site.utils import app_factory, version_factory
 from mkt.tags.models import Tag
-from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Geodata, IARCInfo, Webapp
 
@@ -841,54 +840,6 @@ class TestAdminSettingsForm(TestAdmin):
         assert form.is_valid(), form.errors
         form.save(self.webapp)
         index_webapps_mock.assert_called_with([self.webapp.id])
-
-    def test_banner_message(self):
-        self.data.update({
-            'banner_message_en-us': u'Oh Hai.',
-            'banner_message_es': u'¿Dónde está la biblioteca?',
-        })
-        form = forms.AdminSettingsForm(self.data, **self.kwargs)
-        assert form.is_valid(), form.errors
-        form.save(self.webapp)
-
-        geodata = self.webapp.geodata.reload()
-        trans_id = geodata.banner_message_id
-        eq_(geodata.banner_message, self.data['banner_message_en-us'])
-        eq_(unicode(Translation.objects.get(id=trans_id, locale='es')),
-            self.data['banner_message_es'])
-        eq_(unicode(Translation.objects.get(id=trans_id, locale='en-us')),
-            self.data['banner_message_en-us'])
-
-    def test_banner_regions_garbage(self):
-        self.data.update({
-            'banner_regions': ['LOL']
-        })
-        form = forms.AdminSettingsForm(self.data, **self.kwargs)
-        assert not form.is_valid(), form.errors
-
-    def test_banner_regions_valid(self):  # Use strings
-        self.data.update({
-            'banner_regions': [unicode(mkt.regions.BRA.id),
-                               mkt.regions.ESP.id]
-        })
-        self.webapp.geodata.update(banner_regions=[mkt.regions.SRB.id])
-        form = forms.AdminSettingsForm(self.data, **self.kwargs)
-        eq_(form.initial['banner_regions'], [mkt.regions.SRB.id])
-        assert form.is_valid(), form.errors
-        eq_(form.cleaned_data['banner_regions'], [mkt.regions.BRA.id,
-                                                  mkt.regions.ESP.id])
-        form.save(self.webapp)
-        geodata = self.webapp.geodata.reload()
-        eq_(geodata.banner_regions, [mkt.regions.BRA.id, mkt.regions.ESP.id])
-
-    def test_banner_regions_initial(self):
-        form = forms.AdminSettingsForm(self.data, **self.kwargs)
-        eq_(self.webapp.geodata.banner_regions, {})
-        eq_(form.initial['banner_regions'], [])
-
-        self.webapp.geodata.update(banner_regions=[])
-        form = forms.AdminSettingsForm(self.data, **self.kwargs)
-        eq_(form.initial['banner_regions'], [])
 
 
 class TestIARCGetAppInfoForm(mkt.site.tests.WebappTestCase):

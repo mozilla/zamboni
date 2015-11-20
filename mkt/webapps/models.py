@@ -2622,8 +2622,6 @@ class Geodata(ModelBase):
     addon = models.OneToOneField(Webapp, related_name='_geodata')
     restricted = models.BooleanField(default=False)
     popular_region = models.CharField(max_length=10, null=True)
-    banner_regions = RegionListField(default=None, null=True)
-    banner_message = PurifiedField()
     # Exclude apps with USK_RATING_REFUSED in Germany.
     region_de_usk_exclude = models.BooleanField(default=False)
 
@@ -2676,18 +2674,6 @@ class Geodata(ModelBase):
             # L10n: An app requires additional review for a particular region.
             'unavailable': _('requires additional review')
         }
-
-    def banner_regions_names(self):
-        if self.banner_regions is None:
-            return []
-        return sorted(unicode(mkt.regions.REGIONS_CHOICES_ID_DICT.get(k).name)
-                      for k in self.banner_regions)
-
-    def banner_regions_slugs(self):
-        if self.banner_regions is None:
-            return []
-        return sorted(unicode(mkt.regions.REGIONS_CHOICES_ID_DICT.get(k).slug)
-                      for k in self.banner_regions)
 
     def get_nominated_date(self, region):
         """
