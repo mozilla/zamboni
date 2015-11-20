@@ -40,6 +40,7 @@ class AppSerializerTestsMixin(object):
 
 class AppSerializerTests(AppSerializerTestsMixin, TestCase):
     def refresh(self, _):
+        # Only needed for ES tests, so no-op here.
         pass
 
 
@@ -78,6 +79,7 @@ class WebsiteSerializerTestsMixin(object):
 class WebsiteSerializerTests(WebsiteSerializerTestsMixin, TestCase):
 
     def refresh(self, _):
+        # Only needed for ES tests, so no-op here.
         pass
 
 
