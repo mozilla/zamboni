@@ -67,7 +67,7 @@ class CreateExtensionMixin(object):
             # We are creating a new ExtensionVersion.
             params = {'parent': self.get_extension_object()}
         else:
-            # We are creating a new Extension
+            # We are creating a new Extension.
             params = {'user': request.user}
 
         # self.model.from_upload() will raise ParseError if appropriate.
@@ -102,15 +102,11 @@ class ValidationViewSet(SubmitValidationViewSet):
         if not file_obj:
             raise exceptions.ParseError(_('Missing file in request.'))
 
-        # Will raise ParseError exceptions if appropriate.
-        ExtensionValidator(file_obj).validate()
-
         user = request.user if request.user.is_authenticated() else None
+        # ExtensionValidator will raise ParseError exceptions if appropriate.
+        ExtensionValidator(file_obj).validate()
         upload = FileUpload.from_post(
             file_obj, file_obj.name, file_obj.size, user=user)
-        # FIXME: spawn validate task that does the real validation checks.
-        # Right now we cheat and just set the upload as valid and processed
-        # directly.
         upload.update(valid=True)
         serializer = self.get_serializer(upload)
         return Response(serializer.data, status=status.HTTP_202_ACCEPTED)

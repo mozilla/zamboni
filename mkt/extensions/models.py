@@ -228,6 +228,16 @@ class Extension(ModelBase):
         manifest_contents = cls.extract_and_validate_upload(upload)
         data = cls.extract_manifest_fields(manifest_contents)
 
+        # Check for name collision in the same locale for the same user.
+        default_language = data['default_language']
+        name = data['name'][default_language]
+        if user.extension_set.without_deleted().filter(
+                name__locale=default_language,
+                name__localized_string=name).exists():
+            raise ParseError(_(
+                u'An Add-on with the same name already exists in your '
+                u'submissions.'))
+
         # Build a new instance.
         instance = cls.objects.create(**data)
 
