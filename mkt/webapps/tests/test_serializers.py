@@ -238,7 +238,6 @@ class TestAppSerializer(mkt.site.tests.TestCase):
             ratingsbodies.CLASSIND: ratingsbodies.CLASSIND_18,
             ratingsbodies.GENERIC: ratingsbodies.GENERIC_18,
         })
-        self.refresh('webapp')
 
         res = self.serialize(self.app)
         eq_(res['content_ratings']['body'], 'generic')
