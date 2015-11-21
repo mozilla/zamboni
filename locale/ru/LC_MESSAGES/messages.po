@@ -10,16 +10,17 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:27-0700\n"
-"PO-Revision-Date: 2015-10-24 12:57+0000\n"
-"Last-Translator: Alexander <unghost@mozilla-russia.org>\n"
+"PO-Revision-Date: 2015-11-21 17:41+0000\n"
+"Last-Translator: Vladimir <waldemar.yan@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1445691455.0\n"
+"X-POOTLE-MTIME: 1448127683.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -46,9 +47,8 @@ msgid "The field must have a length of at least {num} characters."
 msgstr "Поле должно иметь длину не менее {num} символов."
 
 #: mkt/api/fields.py:91
-#, fuzzy
 msgid "The language code {lang_code} is invalid."
-msgstr "Неверный код подтверждения"
+msgstr "Код языка {lang_code} неверный."
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:211
 msgid "Unknown"
@@ -373,7 +373,7 @@ msgstr "Чехия"
 
 #: mkt/constants/bango.py:79 mkt/constants/regions.py:131
 msgid "Denmark"
-msgstr ""
+msgstr "Дания"
 
 #: mkt/constants/bango.py:80 mkt/constants/regions.py:129
 msgid "Djibouti"
@@ -1292,19 +1292,19 @@ msgstr "Уровень 6"
 
 #: mkt/constants/base.py:292
 msgid "Level 7"
-msgstr ""
+msgstr "Уровень 7"
 
 #: mkt/constants/base.py:293
 msgid "Level 8"
-msgstr ""
+msgstr "Уровень 8"
 
 #: mkt/constants/base.py:294
 msgid "Level 9"
-msgstr ""
+msgstr "Уровень 9"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
-msgstr ""
+msgstr "Книги и Комиксы"
 
 #: mkt/constants/categories.py:6
 msgid "Business"
@@ -1320,11 +1320,11 @@ msgstr "Развлечения"
 
 #: mkt/constants/categories.py:9
 msgid "Food & Drink"
-msgstr ""
+msgstr "Еда и Напитки"
 
 #: mkt/constants/categories.py:10
 msgid "Kids"
-msgstr ""
+msgstr "Дети"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:46
 msgid "Games"
@@ -1336,11 +1336,11 @@ msgstr "Здоровье и фитнесс"
 
 #: mkt/constants/categories.py:13
 msgid "Humor"
-msgstr ""
+msgstr "Юмор"
 
 #: mkt/constants/categories.py:14
 msgid "Internet"
-msgstr ""
+msgstr "Интернет"
 
 #: mkt/constants/categories.py:15 mkt/constants/categories.py:47
 msgid "Lifestyle"
@@ -1356,11 +1356,11 @@ msgstr "Музыка"
 
 #: mkt/constants/categories.py:18
 msgid "News"
-msgstr ""
+msgstr "Новости"
 
 #: mkt/constants/categories.py:19
 msgid "Personalization"
-msgstr ""
+msgstr "Персонализация"
 
 #: mkt/constants/categories.py:20
 msgid "Photo & Video"
@@ -1376,7 +1376,7 @@ msgstr "Ссылки"
 
 #: mkt/constants/categories.py:23
 msgid "Science & Tech"
-msgstr ""
+msgstr "Наука и Технологии"
 
 #: mkt/constants/categories.py:24
 msgid "Shopping"
@@ -1400,7 +1400,7 @@ msgstr "Утилиты"
 
 #: mkt/constants/categories.py:29
 msgid "Weather"
-msgstr ""
+msgstr "Погода"
 
 #: mkt/constants/categories.py:45 mkt/ecosystem/templates/ecosystem/macros.html:134 mkt/site/context_processors.py:48
 msgid "Tools"
