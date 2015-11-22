@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:27-0700\n"
-"PO-Revision-Date: 2015-11-17 07:19+0000\n"
+"PO-Revision-Date: 2015-11-22 13:08+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1684,7 +1684,7 @@ msgstr ""
 
 #: mkt/constants/features.py:120
 msgid "Screen Orientation"
-msgstr ""
+msgstr "Орієнтація екрана"
 
 #: mkt/constants/features.py:121
 msgid ""
@@ -1719,7 +1719,7 @@ msgstr ""
 
 #: mkt/constants/features.py:148
 msgid "Touch"
-msgstr ""
+msgstr "Дотик"
 
 #: mkt/constants/features.py:149
 msgid ""
@@ -1966,7 +1966,7 @@ msgstr ""
 
 #: mkt/constants/features.py:331
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "Додаток вимагає пристрою мати принаймні 512 Мб RAM."
 
 #: mkt/constants/features.py:336
 msgid "1GB RAM Device"
@@ -1974,7 +1974,7 @@ msgstr ""
 
 #: mkt/constants/features.py:337
 msgid "The app requires the device to have at least 1GB RAM."
-msgstr ""
+msgstr "Додаток вимагає пристрою мати принаймні 1 ГБ RAM."
 
 #: mkt/constants/features.py:342
 msgid "NFC"
@@ -1986,7 +1986,7 @@ msgstr ""
 
 #: mkt/constants/features.py:357
 msgid "UDP Sockets"
-msgstr ""
+msgstr "Сокети UDP"
 
 #: mkt/constants/features.py:358
 msgid "The app requires the platform to allow opening raw UDP sockets."
@@ -2018,7 +2018,7 @@ msgstr "Очікується"
 
 #: mkt/constants/payments.py:69
 msgid "Approved Instantly"
-msgstr ""
+msgstr "Затверджено миттєво"
 
 #: mkt/constants/payments.py:72
 msgid "Declined"
@@ -2026,7 +2026,7 @@ msgstr "Відхилено"
 
 #: mkt/constants/payments.py:75 mkt/constants/payments.py:121
 msgid "Failed"
-msgstr ""
+msgstr "Невдача"
 
 #: mkt/constants/payments.py:79 mkt/constants/payments.py:80
 msgid "The payment was received, but not completed."
@@ -2065,7 +2065,7 @@ msgstr "Windows, Mac і Linux"
 #: mkt/constants/platforms.py:43 mkt/constants/platforms.py:47
 #: mkt/ecosystem/templates/ecosystem/partners.html:95
 msgid "Android smartphones"
-msgstr ""
+msgstr "Android смартфони"
 
 #: mkt/constants/platforms.py:44 mkt/constants/platforms.py:48
 msgid "Tablets"
@@ -2082,11 +2082,11 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:8
 msgid "Rating Rejected"
-msgstr ""
+msgstr "Оцінка відхилена"
 
 #: mkt/constants/ratingsbodies.py:9
 msgid "Rating Pending"
-msgstr ""
+msgstr "Оцінка очікується"
 
 #: mkt/constants/ratingsbodies.py:91
 msgid "Department of Justice, Rating, Titles and Qualification"
@@ -2102,7 +2102,7 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:207
 msgid "Everyone"
-msgstr ""
+msgstr "Будь-хто"
 
 #: mkt/constants/ratingsbodies.py:214
 msgid "Everyone 10+"
@@ -2110,7 +2110,7 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:221
 msgid "Teen"
-msgstr ""
+msgstr "Для підлітків"
 
 #: mkt/constants/ratingsbodies.py:228
 msgid "Mature 17+"
@@ -2156,7 +2156,7 @@ msgstr ""
 
 #: mkt/constants/regions.py:120
 msgid "Cabo Verde"
-msgstr ""
+msgstr "Кабо-Верде"
 
 #: mkt/constants/regions.py:153
 msgid "Guinea-Conakry"
@@ -2222,17 +2222,17 @@ msgstr "Венесуела"
 #: mkt/developers/templates/developers/validate_app.html:16
 #: mkt/search/forms.py:29 mkt/submit/templates/submit/manifest.html:49
 msgid "Hosted"
-msgstr ""
+msgstr "Розміщено"
 
 #: mkt/constants/reviewers.py:8
 #: mkt/developers/templates/developers/validate_app.html:54
 #: mkt/search/forms.py:30 mkt/submit/templates/submit/manifest.html:83
 msgid "Packaged"
-msgstr ""
+msgstr "Запаковано"
 
 #: mkt/constants/submit.py:5
 msgid "Agreement"
-msgstr ""
+msgstr "Угода"
 
 #: mkt/constants/submit.py:6
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:121
@@ -2248,11 +2248,11 @@ msgstr "Подробиці"
 
 #: mkt/constants/submit.py:8 mkt/submit/templates/submit/next_steps.html:3
 msgid "Next Steps"
-msgstr ""
+msgstr "Наступні кроки"
 
 #: mkt/detail/templates/detail/helpers/device_list.html:10
 msgid "(Unsupported)"
-msgstr ""
+msgstr "(Не підтримується)"
 
 #: mkt/developers/api_payments.py:104
 msgid "Could not connect to payment server."
@@ -2402,7 +2402,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:771
 msgid "Your comments"
-msgstr ""
+msgstr "Ваші коментарі"
 
 #: mkt/developers/forms.py:798
 msgid ""
@@ -4690,7 +4690,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:22
 msgid "Recommended"
-msgstr ""
+msgstr "Рекомендовані"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:29
 msgid ""
@@ -4726,7 +4726,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:27
 msgid "Enable"
-msgstr ""
+msgstr "Увімкнути"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid ""
@@ -4913,7 +4913,7 @@ msgstr "Умови угоди"
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:9
 msgid "Agree to the Terms"
-msgstr ""
+msgstr "Погодитися з умовами"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:13
 msgid "Provider"
@@ -5067,7 +5067,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/regions_toggle.html:6
 msgid "Select All"
-msgstr ""
+msgstr "Вибрати все"
 
 #: mkt/ecosystem/views.py:53
 msgid "Thank you for subscribing!"
@@ -5506,7 +5506,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
-msgstr ""
+msgstr "Помаранчевий"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Grey"
@@ -5809,7 +5809,7 @@ msgstr ""
 
 #: mkt/files/utils.py:239
 msgid "Invalid archive."
-msgstr ""
+msgstr "Некоректний архів."
 
 #: mkt/files/views.py:45
 msgid "Back to review"
@@ -6010,7 +6010,7 @@ msgstr ""
 #: mkt/lookup/templates/lookup/helpers/app_header.html:22
 #: mkt/lookup/templates/lookup/helpers/user_header.html:18
 msgid "Activity"
-msgstr ""
+msgstr "Діяльність"
 
 #: mkt/lookup/templates/lookup/app_activity.html:18
 #: mkt/lookup/templates/lookup/app_activity.html:38
