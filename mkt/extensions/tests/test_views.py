@@ -48,6 +48,8 @@ class TestExtensionValidationViewSet(MktPaths, RestOAuth):
                                    content_type='application/zip', **headers)
         eq_(response.status_code, 202)
         data = response.json
+        eq_(data['valid'], True)
+        eq_(data['processed'], True)
         upload = FileUpload.objects.get(pk=data['id'])
         expected_hash = hashlib.sha256(contents).hexdigest()
         eq_(upload.valid, True)  # We directly set uploads as valid atm.
@@ -180,7 +182,11 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
         }))
         eq_(response.status_code, 403)
 
-    def test_create_logged_in(self):
+    def _test_success(self):
+        def expected_icon_path(size):
+            return os.path.join(extension.get_icon_dir(),
+                                '%s-%s.png' % (extension.pk, size))
+
         upload = self.get_upload(
             abspath=self.packaged_app_path('extension.zip'), user=self.user)
         eq_(upload.valid, True)
@@ -204,8 +210,6 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
         eq_(data['name'], {'en-GB': u'My Lîttle Extension'})
         eq_(data['slug'], u'my-lîttle-extension')
         eq_(data['status'], 'pending')
-        eq_(Extension.objects.without_deleted().count(), 1)
-        eq_(ExtensionVersion.objects.without_deleted().count(), 1)
         extension = Extension.objects.without_deleted().get(pk=data['id'])
         eq_(extension.default_language, 'en-GB')
         eq_(extension.description, u'A Dummÿ Extension')
@@ -215,25 +219,25 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
         eq_(data['uuid'], extension.uuid)
         eq_(extension.status, STATUS_PENDING)
         eq_(list(extension.authors.all()), [self.user])
-
-        def expected_icon_path(size):
-            return os.path.join(extension.get_icon_dir(),
-                                '%s-%s.png' % (extension.pk, size))
-
         ok_(private_storage.exists(expected_icon_path(128)))
         ok_(private_storage.exists(expected_icon_path(64)))
         ok_(extension.icon_hash)
-
         note = extension.threads.get().notes.get()
         eq_(note.body, u'add-on has arrivedÄ')
         eq_(note.note_type, comm.SUBMISSION)
+        return extension
+
+    def test_create_logged_in(self):
+        self._test_success()
+        eq_(Extension.objects.without_deleted().count(), 1)
+        eq_(ExtensionVersion.objects.without_deleted().count(), 1)
 
     def test_create_logged_in_with_lang(self):
         upload = self.get_upload(
             abspath=self.packaged_app_path('extension.zip'), user=self.user)
         eq_(upload.valid, True)
         response = self.client.post(self.list_url, json.dumps({
-            'lang': 'es',
+            'lang': 'es',  # Ignored. Only the lang inside the package matters.
             'validation_id': upload.pk
         }))
         eq_(response.status_code, 201)
@@ -247,6 +251,22 @@ class TestExtensionViewSetPost(UploadTest, RestOAuth):
         eq_(extension.default_language, 'en-GB')
         eq_(extension.description.locale, 'en-gb')
         eq_(extension.name.locale, 'en-gb')
+
+    def test_create_logged_in_name_already_exists(self):
+        # "My Lîttle Extension" is the name inside the test package. That
+        # name is in en-GB language.
+        self.user.extension_set.create(
+            default_language='en-GB',
+            name={'en-GB': u'My Lîttle Extension'}, slug='dummy-addon')
+        eq_(Extension.objects.count(), 1)
+        upload = self.get_upload(
+            abspath=self.packaged_app_path('extension.zip'), user=self.user)
+        eq_(upload.valid, True)
+        response = self.client.post(self.list_url, json.dumps({
+            'validation_id': upload.pk
+        }))
+        eq_(response.status_code, 400)
+        eq_(Extension.objects.count(), 1)
 
     def test_create_upload_has_no_user(self):
         upload = self.get_upload(

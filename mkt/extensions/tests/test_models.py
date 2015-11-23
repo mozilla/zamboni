@@ -103,6 +103,53 @@ class TestExtensionUpload(UploadCreationMixin, UploadTest):
         eq_(fetch_icon_mock.delay.call_args_list[0][0],
             (extension.pk, version.pk))
 
+    def test_upload_name_already_exists(self):
+        # "My Lîttle Extension" is the name inside the test package. That
+        # name is in en-GB language.
+        self.user.extension_set.create(
+            default_language='en-GB',
+            name={'en-gb': u'My Lîttle Extension'}, slug='other-dummy-addon')
+        upload = self.upload('extension')
+        with self.assertRaises(ParseError):
+            Extension.from_upload(upload, user=self.user)
+
+    def test_upload_name_already_exists_deleted(self):
+        # "My Lîttle Extension" is the name inside the test package. That
+        # name is in en-GB language.
+        self.user.extension_set.create(
+            default_language='en-GB', deleted=True,
+            name={'en-GB': u'My Lîttle Extension'}, slug='other-dummy-addon')
+        eq_(Extension.objects.count(), 1)
+        upload = self.upload('extension')
+        extension = Extension.from_upload(upload, user=self.user)
+        ok_(extension.pk)
+        eq_(Extension.objects.count(), 2)
+
+    def test_upload_name_already_exists_different_locale(self):
+        # "My Lîttle Extension" is the name inside the test package. That
+        # name is in en-GB language, so for this test, use a different one.
+        self.user.extension_set.create(
+            default_language='en-US',
+            name={'en-US': u'My Lîttle Extension'}, slug='other-dummy-addon')
+        eq_(Extension.objects.count(), 1)
+        upload = self.upload('extension')
+        extension = Extension.from_upload(upload, user=self.user)
+        ok_(extension.pk)
+        eq_(Extension.objects.count(), 2)
+
+    def test_upload_name_already_exists_different_user(self):
+        # "My Lîttle Extension" is the name inside the test package. That
+        # name is in en-GB language.
+        second_user = UserProfile.objects.create()
+        second_user.extension_set.create(
+            default_language='en-GB',
+            name={'en-GB': u'My Lîttle Extension'}, slug='other-dummy-addon')
+        eq_(Extension.objects.count(), 1)
+        upload = self.upload('extension')
+        extension = Extension.from_upload(upload, user=self.user)
+        ok_(extension.pk)
+        eq_(Extension.objects.count(), 2)
+
     @mock.patch('mkt.extensions.models.ExtensionValidator.validate_json')
     def test_upload_no_version(self, validate_mock):
         validate_mock.return_value = {'name': 'lol'}
