@@ -74,6 +74,7 @@ class WebsiteIndexer(BaseIndexer):
                     # mobile- or tv-specific URL.
                     'mobile_url': cls.string_not_indexed(),
                     'tv_url': cls.string_not_indexed(),
+                    'tv_featured': {'type': 'boolean'},
                     'modified': {'type': 'date', 'format': 'dateOptionalTime'},
                     'name': {
                         'type': 'string',
@@ -144,6 +145,8 @@ class WebsiteIndexer(BaseIndexer):
         doc['name_sort'] = unicode(obj.name).lower()
         doc['preferred_regions'] = obj.preferred_regions or []
         doc['tags'] = getattr(obj, 'keywords_list', [])
+        doc['tv_featured'] = obj.keywords.filter(
+            tag_text='featured-tv').exists()
         doc['url_tokenized'] = cls.strip_url(obj.url)
 
         # For now, websites are not reviewed, since we're manually injecting

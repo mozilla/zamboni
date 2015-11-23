@@ -50,6 +50,7 @@ services.register(r'price-currency', PriceCurrencyViewSet,
 urlpatterns = patterns(
     '',
     url('', include('mkt.fireplace.urls')),
+    url('', include('mkt.tvplace.urls')),
     url(r'^apps/', include(apps.urls)),
     url(r'^apps/app/', include(subapps.urls)),
     url(r'^apps/search/featured/$', FeaturedSearchView.as_view(),

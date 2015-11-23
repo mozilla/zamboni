@@ -165,6 +165,7 @@ INSTALLED_APPS = (
     'mkt.stats',
     'mkt.submit',
     'mkt.tags',
+    'mkt.tvplace',
     'mkt.users',
     'mkt.versions',
     'mkt.webapps',

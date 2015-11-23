@@ -485,7 +485,7 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
 
     def get_content_ratings(self, obj):
         body = (mkt.regions.REGION_TO_RATINGS_BODY().get(
-            self.context['request'].REGION.slug, 'generic'))
+            self._get_region_slug(), 'generic'))
         prefix = 'has_%s' % body
 
         # Backwards incompat with old index.

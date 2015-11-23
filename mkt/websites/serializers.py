@@ -26,7 +26,7 @@ class WebsiteSerializer(serializers.ModelSerializer):
         model = Website
         fields = ['categories', 'description', 'device_types', 'icons', 'id',
                   'keywords', 'mobile_url', 'name', 'promo_imgs', 'short_name',
-                  'title', 'tv_url', 'url']
+                  'title', 'url']
 
     def get_icons(self, obj):
         return {icon_size: obj.get_icon_url(icon_size)

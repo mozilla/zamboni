@@ -191,6 +191,7 @@ class WebappIndexer(BaseIndexer):
                     'status': {'type': 'byte'},
                     'supported_locales': cls.string_not_analyzed(),
                     'tags': cls.string_not_analyzed(),
+                    'tv_featured': {'type': 'boolean'},
                     'upsell': {
                         'type': 'object',
                         'properties': {
@@ -341,6 +342,8 @@ class WebappIndexer(BaseIndexer):
         d['supported_locales'] = list(set(supported_locales))
 
         d['tags'] = getattr(obj, 'tags_list', [])
+        d['tv_featured'] = obj.tags.filter(
+            tag_text='featured-tv').exists()
 
         if obj.upsell and obj.upsell.premium.is_published():
             upsell_obj = obj.upsell.premium

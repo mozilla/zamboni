@@ -161,7 +161,10 @@ class Command(BaseCommand):
                 u'Website %s has invalid keywords: %s'
                 % (row['Unique Moz ID'], keywords))
         max_len = Tag._meta.get_field('tag_text').max_length
-        for keyword in set(keywords.split(',')):
+        row_keywords = set(keywords.split(','))
+        if row['TV Featured']:
+            row_keywords.add('featured-tv')
+        for keyword in row_keywords:
             keyword = keyword.strip()
             if len(keyword) > max_len:
                 raise ParsingError(
