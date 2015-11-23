@@ -260,6 +260,7 @@ class CommunicationThreadCC(ModelBase):
 class CommunicationNoteManager(models.Manager):
 
     def with_perms(self, profile, thread=None):
+        """Warning: very slow, dangerous to apply on unfiltered querysets."""
         qs = self.all()
         if thread:
             qs = self.filter(thread=thread)

@@ -206,7 +206,9 @@ class NoteListView(CORSMixin, ListAPIView, MarketplaceView):
     cors_allowed_methods = ['get']
 
     def get_queryset(self):
-        return CommunicationNote.objects.with_perms(self.request.user)
+        return (CommunicationNote.objects.all()
+                                 .select_related('thread', 'author')
+                                 .prefetch_related('attachments'))
 
 
 class AttachmentViewSet(CreateModelMixin, CommViewSet):
