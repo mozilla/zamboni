@@ -4,6 +4,8 @@ from mkt.abuse.models import AbuseReport
 from mkt.account.serializers import UserSerializer
 from mkt.api.fields import SlugOrPrimaryKeyRelatedField, SplitField
 from mkt.api.serializers import PotatoCaptchaSerializer
+from mkt.extensions.models import Extension
+from mkt.extensions.serializers import ExtensionSerializer
 from mkt.webapps.models import Webapp
 from mkt.webapps.serializers import SimpleAppSerializer
 from mkt.websites.serializers import WebsiteSerializer
@@ -52,3 +54,14 @@ class WebsiteAbuseSerializer(BaseAbuseSerializer):
 
     class Meta(BaseAbuseSerializer.Meta):
         fields = BaseAbuseSerializer.Meta.fields + ('website',)
+
+
+class ExtensionAbuseSerializer(BaseAbuseSerializer):
+    extension = SplitField(
+        SlugOrPrimaryKeyRelatedField(
+            source='extension', slug_field='slug',
+            queryset=Extension.objects.without_deleted().public()),
+        ExtensionSerializer())
+
+    class Meta(BaseAbuseSerializer.Meta):
+        fields = BaseAbuseSerializer.Meta.fields + ('extension',)

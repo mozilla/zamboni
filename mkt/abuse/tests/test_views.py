@@ -1,13 +1,16 @@
+# -*- coding: utf-8 -*-
 import json
-import urllib
 
 from django.core import mail
 from django.core.urlresolvers import reverse
+from django.utils.http import urlencode
 
 from nose.tools import eq_
 
 from mkt.abuse.models import AbuseReport
 from mkt.api.tests.test_oauth import RestOAuth
+from mkt.constants.base import STATUS_PUBLIC
+from mkt.extensions.models import Extension
 from mkt.site.fixtures import fixture
 from mkt.webapps.models import Webapp
 from mkt.users.models import UserProfile
@@ -44,7 +47,7 @@ class AbuseResourceTests(object):
             post_data.update(data)
 
         client = self.anon if anonymous else self.client
-        res = client.post(self.list_url, data=urllib.urlencode(post_data),
+        res = client.post(self.list_url, data=urlencode(post_data),
                           content_type='application/x-www-form-urlencoded',
                           **self.headers)
         try:
@@ -74,6 +77,9 @@ class AbuseResourceTests(object):
         if 'website' in fields:
             eq_(int(data.pop('website')['id']), self.website.pk)
             del fields['website']
+        if 'extension' in fields:
+            eq_(int(data.pop('extension')['id']), self.extension.pk)
+            del fields['extension']
 
         for name in fields.keys():
             eq_(fields[name], data[name])
@@ -170,3 +176,35 @@ class TestWebsiteAbuseResource(AbuseResourceTests, BaseTestAbuseResource,
         res, data = self._call(data={'website': self.website.pk + 42})
         eq_(400, res.status_code)
         assert 'does not exist' in data['website'][0]
+
+
+class TestExtensionAbuseResource(AbuseResourceTests, BaseTestAbuseResource,
+                                 RestOAuth):
+    resource_name = 'extension'
+
+    def setUp(self):
+        super(TestExtensionAbuseResource, self).setUp()
+        self.extension = Extension.objects.create(
+            name=u'Test Êxtension')
+        self.extension.update(status=STATUS_PUBLIC)
+        self.default_data = {
+            'text': 'Lies! This extension is an add-on!',
+            'sprout': 'potato',
+            'extension': self.extension.pk
+        }
+
+    def test_invalid_extension(self):
+        res, data = self._call(data={'extension': -1})
+        eq_(400, res.status_code)
+        assert 'does not exist' in data['extension'][0]
+
+    def test_deleted_extension(self):
+        data = {'extension': self.extension.slug}
+        self.extension.delete()
+        res, data = self._call(data=data)
+        eq_(400, res.status_code)
+        assert 'does not exist' in data['extension'][0]
+
+    def test_slug_extension(self):
+        res, data = self._call(data={'extension': self.extension.slug})
+        eq_(201, res.status_code)

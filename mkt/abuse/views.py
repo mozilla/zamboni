@@ -2,7 +2,9 @@ from rest_framework import generics, viewsets
 from rest_framework.permissions import AllowAny
 from rest_framework.throttling import UserRateThrottle
 
-from mkt.abuse.serializers import (AppAbuseSerializer, UserAbuseSerializer,
+from mkt.abuse.serializers import (AppAbuseSerializer,
+                                   ExtensionAbuseSerializer,
+                                   UserAbuseSerializer,
                                    WebsiteAbuseSerializer)
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestAnonymousAuthentication,
@@ -40,3 +42,7 @@ class UserAbuseViewSet(BaseAbuseViewSet):
 
 class WebsiteAbuseViewSet(BaseAbuseViewSet):
     serializer_class = WebsiteAbuseSerializer
+
+
+class ExtensionAbuseViewSet(BaseAbuseViewSet):
+    serializer_class = ExtensionAbuseSerializer

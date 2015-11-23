@@ -264,6 +264,9 @@ class Extension(ModelBase):
     def get_indexer(cls):
         return ExtensionIndexer
 
+    def get_url_path(self):
+        return reverse('extension.detail', kwargs={'app_slug': self.slug})
+
     @property
     def icon_type(self):
         return 'png' if self.icon_hash else ''

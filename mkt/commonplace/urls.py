@@ -38,6 +38,11 @@ fireplace_website_patterns = patterns(
     fireplace_route('', 'website.detail'),
 )
 
+fireplace_extension_patterns = patterns(
+    '',
+    fireplace_route('', 'extension.detail'),
+)
+
 urlpatterns = patterns(
     '',
     # Fireplace:
@@ -48,6 +53,7 @@ urlpatterns = patterns(
         name='commonplace.fxa_authorize'),
     (r'^app/%s/' % mkt.APP_SLUG, include(fireplace_app_patterns)),
     (r'^website/(?P<pk>\d+)', include(fireplace_website_patterns)),
+    (r'^addon/%s/' % mkt.APP_SLUG, include(fireplace_extension_patterns)),
     url(r'^iframe-install.html/?$', views.iframe_install,
         name='commonplace.iframe-install'),
     url(r'^potatolytics.html$', views.potatolytics,
