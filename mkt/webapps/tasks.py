@@ -23,13 +23,12 @@ from tower import ugettext as _
 
 import mkt
 from lib.post_request_task.task import task as post_request_task
-from mkt.abuse.models import AbuseReport
 from mkt.constants.regions import RESTOFWORLD
-from mkt.developers.models import ActivityLog, AppLog
+from mkt.developers.models import ActivityLog
 from mkt.developers.tasks import _fetch_manifest, validator
 from mkt.files.models import FileUpload
-from mkt.reviewers.models import EscalationQueue, RereviewQueue
-from mkt.site.decorators import set_task_user, use_master
+from mkt.reviewers.models import RereviewQueue
+from mkt.site.decorators import use_master
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail_jinja
 from mkt.site.storage_utils import (copy_stored_file, local_storage,
@@ -641,39 +640,3 @@ def delete_logs(items, **kw):
                   % (len(items), delete_logs.rate_limit))
     ActivityLog.objects.filter(pk__in=items).exclude(
         action__in=mkt.LOG_KEEP).delete()
-
-
-@task
-@set_task_user
-def find_abuse_escalations(addon_id, **kw):
-    weekago = datetime.date.today() - datetime.timedelta(days=7)
-    add_to_queue = True
-
-    for abuse in AbuseReport.recent_high_abuse_reports(1, weekago, addon_id):
-        if EscalationQueue.objects.filter(addon=abuse.addon).exists():
-            # App is already in the queue, no need to re-add it.
-            task_log.info(u'[app:%s] High abuse reports, but already '
-                          u'escalated' % abuse.addon)
-            add_to_queue = False
-
-        # We have an abuse report... has it been detected and dealt with?
-        logs = (AppLog.objects.filter(
-            activity_log__action=mkt.LOG.ESCALATED_HIGH_ABUSE.id,
-            addon=abuse.addon).order_by('-created'))
-        if logs:
-            abuse_since_log = AbuseReport.recent_high_abuse_reports(
-                1, logs[0].created, addon_id)
-            # If no abuse reports have happened since the last logged abuse
-            # report, do not add to queue.
-            if not abuse_since_log:
-                task_log.info(u'[app:%s] High abuse reports, but none since '
-                              u'last escalation' % abuse.addon)
-                continue
-
-        # If we haven't bailed out yet, escalate this app.
-        msg = u'High number of abuse reports detected'
-        if add_to_queue:
-            EscalationQueue.objects.create(addon=abuse.addon)
-        mkt.log(mkt.LOG.ESCALATED_HIGH_ABUSE, abuse.addon,
-                abuse.addon.current_version, details={'comments': msg})
-        task_log.info(u'[app:%s] %s' % (abuse.addon, msg))
