@@ -8,7 +8,7 @@ def add_iarc_waffle(apps, schema_editor):
     # We can't import the Switch model directly as it may be a newer
     # version than this migration expects. We use the historical version.
     Switch = apps.get_model('waffle', 'Switch')
-    Switch.objects.create(created=datetime.datetime.now(), name='iarc-upgrade')
+    Switch.objects.create(created=datetime.datetime.now(), name='iarc-upgrade-v2')
 
 
 class Migration(migrations.Migration):

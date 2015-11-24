@@ -8,6 +8,7 @@ from django.apps import apps
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
+from uuidfield.fields import UUIDField
 
 import commonware.log
 import jinja2
@@ -487,3 +488,11 @@ class ActivityLog(ModelBase):
 
     def __html__(self):
         return self
+
+
+class IARCRequest(ModelBase):
+    app = models.OneToOneField(Webapp, related_name='iarc_request')
+    uuid = UUIDField(auto=True, editable=False)
+
+    class Meta:
+        db_table = 'iarc_request'

@@ -25,6 +25,7 @@ import mkt.site.tests
 from lib.iarc.utils import get_iarc_app_title
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.developers import tasks
+from mkt.developers.models import IARCRequest
 from mkt.developers.views import (_filter_transactions, _get_transactions,
                                   _ratings_success_msg, _submission_msgs,
                                   content_ratings, content_ratings_edit)
@@ -1399,6 +1400,62 @@ class TestContentRatings(mkt.site.tests.TestCase):
         doc = pq(r.content)
         eq_(doc('#id_submission_id').attr('value'), '1234')
         eq_(doc('#id_security_code').attr('value'), 'abcd')
+
+
+class TestContentRatingsV2(mkt.site.tests.TestCase):
+    fixtures = fixture('user_admin', 'user_admin_group', 'group_admin')
+
+    def setUp(self):
+        self.app = app_factory()
+        self.app.latest_version.update(
+            _developer_name='Lex Luthor <lex@kryptonite.org>')
+        self.user = UserProfile.objects.get()
+        self.url = reverse('mkt.developers.apps.ratings',
+                           args=[self.app.app_slug])
+        self.req = mkt.site.tests.req_factory_factory(self.url, user=self.user)
+        self.req.session = mock.MagicMock()
+        self.create_switch('iarc-upgrade-v2')
+
+    @override_settings(IARC_V2_SUBMISSION_ENDPOINT='https://yo.lo',
+                       IARC_V2_STOREFRONT_ID='abc', IARC_PLATFORM='Firefox')
+    def test_edit_form(self):
+        self.req._messages = default_storage(self.req)
+        r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
+        doc = pq(r.content)
+
+        # Check the form action.
+        form = doc('#ratings-edit form')[0]
+        eq_(form.action, 'https://yo.lo')
+
+        # Check the hidden form values.
+        values = dict(form.form_values())
+        eq_(values['StoreID'], 'abc')
+
+    def test_creates_store_request_id(self):
+        self.req._messages = default_storage(self.req)
+        with self.assertRaises(IARCRequest.DoesNotExist):
+            self.app.iarc_request
+
+        r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
+        doc = pq(r.content)
+
+        # Check the form action.
+        form = doc('#ratings-edit form')[0]
+        values = dict(form.form_values())
+        eq_(values['StoreRequestID'],
+            IARCRequest.objects.get(app=self.app).uuid)
+
+    def test_uses_store_request_id(self):
+        self.req._messages = default_storage(self.req)
+        IARCRequest.objects.create(app=self.app, uuid='abcd-1234')
+
+        r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
+        doc = pq(r.content)
+
+        # Check the form action.
+        form = doc('#ratings-edit form')[0]
+        values = dict(form.form_values())
+        eq_(values['StoreRequestID'], 'abcd-1234')
 
 
 class TestContentRatingsSuccessMsg(mkt.site.tests.TestCase):
