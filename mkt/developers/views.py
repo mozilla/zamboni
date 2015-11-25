@@ -2,8 +2,9 @@ import json
 import os
 import sys
 import traceback
+import uuid
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django import forms as django_forms
 from django import http
@@ -40,7 +41,7 @@ from mkt.developers.forms import (
     AppFormSupport, AppFormTechnical, AppVersionForm, CategoryForm,
     ContentRatingForm, IARCGetAppInfoForm, MOTDForm, NewPackagedAppForm,
     PreviewFormSet, TransactionFilterForm, trap_duplicate)
-from mkt.developers.models import AppLog
+from mkt.developers.models import AppLog, IARCRequest
 from mkt.developers.serializers import ContentRatingSerializer
 from mkt.developers.tasks import (fetch_manifest, file_validator,
                                   run_validator, validator)
@@ -373,12 +374,31 @@ def content_ratings_edit(request, addon_id, addon):
     }
     request.session.modified = True
 
-    return render(request, 'developers/apps/ratings/ratings_edit.html',
-                  {'addon': addon,
-                   'app_name': get_iarc_app_title(addon),
-                   'form': form,
-                   'company': addon.latest_version.developer_name,
-                   'now': datetime.now().strftime('%Y-%m-%d %H:%M:%S')})
+    ctx = {
+        'addon': addon,
+        'app_name': get_iarc_app_title(addon),
+        'form': form,
+        'company': addon.latest_version.developer_name,
+        'now': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    }
+
+    if waffle.switch_is_active('iarc-upgrade-v2'):
+        try:
+            iarc_request = addon.iarc_request
+            outdated = (datetime.now() - iarc_request.created >
+                        timedelta(hours=1))
+            if outdated:
+                # IARC request outdated. Re-create.
+                iarc_request.delete()
+                iarc_request = IARCRequest.objects.create(
+                    app=addon, uuid=uuid.uuid4())
+        except IARCRequest.DoesNotExist:
+            # No IARC request exists. Create.
+            iarc_request = IARCRequest.objects.create(
+                app=addon, uuid=uuid.uuid4())
+        ctx['iarc_request_id'] = iarc_request.uuid
+
+    return render(request, 'developers/apps/ratings/ratings_edit.html', ctx)
 
 
 @dev_required

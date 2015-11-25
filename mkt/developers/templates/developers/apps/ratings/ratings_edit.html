@@ -51,21 +51,36 @@
             You can keep trying or try again later.
           {% endtrans %}
         </p>
-        <form id="iarc" method="post" action="{{ settings.IARC_SUBMISSION_ENDPOINT }}" target="IARCForm">
-          <input type="hidden" name="email" value="{{ request.user.email }}">
-          <input type="hidden" name="company" value="{{ company }}">
-          <input type="hidden" name="appname" value="{{ app_name }}">
-          <input type="hidden" name="platform" value="{{ settings.IARC_PLATFORM }}">
-          <input type="hidden" name="storefront" value="{{ settings.IARC_STOREFRONT_ID }}">
-          <input type="hidden" name="token" value="{{ addon.iarc_token() }}">
-          <input type="hidden" name="pingbackurl" value="{{ url('content-ratings-pingback', addon.app_slug)|absolutify }}">
-          <p class="listing-footer">
-            <button type="submit" class="create-iarc-rating button"
-                    data-api-url="{{ url('content-ratings-list', addon.app_slug)|urlparams(since=now) }}"
-                    data-redirect-url="{{ addon.get_dev_url('ratings') }}">
-              {{ _('Create an IARC Ratings Certificate') }}</button>
-          </p>
-        </form>
+        {% if waffle.switch('iarc-upgrade-v2') %}
+          <form id="iarc" method="post" action="{{ settings.IARC_V2_SUBMISSION_ENDPOINT }}"
+                target="IARCForm">
+            <input type="hidden" name="StoreID" value="{{ settings.IARC_V2_STOREFRONT_ID }}">
+            <input type="hidden" name="StoreRequestID" value="{{ iarc_request_id }}">
+            <input type="hidden" name="LanguageID" value="{{ request.LANG }}">
+            <p class="listing-footer">
+              <button type="submit" class="create-iarc-rating button"
+                      data-api-url="{{ url('content-ratings-list', addon.app_slug)|urlparams(since=now) }}"
+                      data-redirect-url="{{ addon.get_dev_url('ratings') }}">
+                {{ _('Create an IARC Ratings Certificate') }}</button>
+            </p>
+          </form>
+        {% else %}
+          <form id="iarc" method="post" action="{{ settings.IARC_SUBMISSION_ENDPOINT }}" target="IARCForm">
+            <input type="hidden" name="email" value="{{ request.user.email }}">
+            <input type="hidden" name="company" value="{{ company }}">
+            <input type="hidden" name="appname" value="{{ app_name }}">
+            <input type="hidden" name="platform" value="{{ settings.IARC_PLATFORM }}">
+            <input type="hidden" name="storefront" value="{{ settings.IARC_STOREFRONT_ID }}">
+            <input type="hidden" name="token" value="{{ addon.iarc_token() }}">
+            <input type="hidden" name="pingbackurl" value="{{ url('content-ratings-pingback', addon.app_slug)|absolutify }}">
+            <p class="listing-footer">
+              <button type="submit" class="create-iarc-rating button"
+                      data-api-url="{{ url('content-ratings-list', addon.app_slug)|urlparams(since=now) }}"
+                      data-redirect-url="{{ addon.get_dev_url('ratings') }}">
+                {{ _('Create an IARC Ratings Certificate') }}</button>
+            </p>
+          </form>
+        {% endif %}
       </div>
     </section>
 
