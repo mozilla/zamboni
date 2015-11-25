@@ -19,7 +19,7 @@ RUN yum install -y redis \
     supervisor && yum clean all
 
 COPY requirements /srv/zamboni/requirements
-RUN pip install --no-deps -r /srv/zamboni/requirements/test.txt --find-links https://pyrepo.addons.mozilla.org/
+RUN pip install --no-deps -r /srv/zamboni/requirements/test.txt --find-links https://pyrepo.stage.mozaws.net/
 
 COPY . /srv/zamboni
 RUN cd /srv/zamboni && git show -s --pretty="format:%h" > git-rev.txt
