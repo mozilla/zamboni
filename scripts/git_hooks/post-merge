@@ -7,5 +7,5 @@
 
 if [ $(git diff HEAD@{1} HEAD --name-only | grep 'requirements/' -c) -ne 0 ]
 then
-	$VIRTUAL_ENV/bin/pip install -U --exists-action=w --no-deps --download-cache=/tmp/pip-cache -r requirements/dev.txt -f https://pyrepo.addons.mozilla.org/
+	$VIRTUAL_ENV/bin/pip install -U --exists-action=w --no-deps --download-cache=/tmp/pip-cache -r requirements/dev.txt -f https://pyrepo.stage.mozaws.net/
 fi
