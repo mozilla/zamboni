@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:27-0700\n"
-"PO-Revision-Date: 2015-11-28 16:58+0000\n"
+"PO-Revision-Date: 2015-11-28 17:04+0000\n"
 "Last-Translator: bychek.ru <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1448729918.0\n"
+"X-POOTLE-MTIME: 1448730254.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -5002,9 +5002,8 @@ msgid "Android Tablets"
 msgstr "Планшеты Android"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:111
-#, fuzzy
 msgid "You + Mozilla = Awesome"
-msgstr "Это весело и захватывающе и вы просто великолепны!"
+msgstr "Вы + Mozilla = Круто"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:112
 msgid "Stay connected."
@@ -5023,23 +5022,20 @@ msgid "YouTube"
 msgstr "YouTube"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:123
-#, fuzzy
 msgid "Firefox Marketplace YouTube channel"
-msgstr "Магазин Firefox"
+msgstr "YouTube канал Firefox Marketplace"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:4
-#, fuzzy
 msgid "Badges, banners, and icons"
-msgstr "Значки"
+msgstr "Значки, баннеры и иконки"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:17
 msgid "\"Get it in the Firefox Marketplace\" are badges that you can use on your web site and promotional materials to point to your products on the Firefox Marketplace."
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
-#, fuzzy
 msgid "Guidelines"
-msgstr "Руководства по UI"
+msgstr "Руководства"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:26
 msgid "You may not alter the badge in any way"
@@ -5122,9 +5118,8 @@ msgid "Mozilla Web apps (English)"
 msgstr "Веб-приложения Mozilla (Английский)"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:76
-#, fuzzy
 msgid "Mozilla Web apps (Brazilian Portuguese)"
-msgstr "Веб-приложения Mozilla (Английский)"
+msgstr "Веб-приложения Mozilla (Бразильский Португальский)"
 
 #: mkt/extensions/models.py:525
 msgid "Version number must be higher than the latest version uploaded for this Add-on, which is \"%s\"."
@@ -5259,9 +5254,8 @@ msgid "Image from %(url)s could not be parsed"
 msgstr ""
 
 #: mkt/files/forms.py:94
-#, fuzzy
 msgid "Cannot diff a version against itself"
-msgstr "Нельзя сделать diff версии против самой себя"
+msgstr "Нельзя сравнить версию саму с собой"
 
 #: mkt/files/helpers.py:171
 msgid "That file no longer exists."
@@ -5463,14 +5457,12 @@ msgid "Your language pack version must be different to the one you are replacing
 msgstr ""
 
 #: mkt/lookup/forms.py:41 mkt/lookup/templates/lookup/transaction_summary.html:11
-#, fuzzy
 msgid "Transaction Lookup"
-msgstr "Поиск"
+msgstr "Поиск транзакций"
 
 #: mkt/lookup/forms.py:49
-#, fuzzy
 msgid "Process a manual refund"
-msgstr "Возмещение"
+msgstr "Обработать ручное возмещение"
 
 #: mkt/lookup/forms.py:52
 msgid "Enter refund details to refund transaction"
@@ -5551,9 +5543,8 @@ msgid "View"
 msgstr "Просмотреть"
 
 #: mkt/lookup/templates/lookup/app_summary.html:47 mkt/reviewers/templates/reviewers/includes/details.html:13 mkt/reviewers/templates/reviewers/includes/mobile_details.html:45
-#, fuzzy
 msgid "Privileged Packaged app"
-msgstr "Привилегированное приложение"
+msgstr "Привилегированное упакованное приложение"
 
 #: mkt/lookup/templates/lookup/app_summary.html:49 mkt/reviewers/templates/reviewers/includes/details.html:15 mkt/reviewers/templates/reviewers/includes/mobile_details.html:47
 msgid "Packaged app"
@@ -5573,14 +5564,12 @@ msgid "OK"
 msgstr "OK"
 
 #: mkt/lookup/templates/lookup/app_summary.html:78
-#, fuzzy
 msgid "Review Prioritized"
-msgstr "Рецензировать"
+msgstr "Проверить приоритетное"
 
 #: mkt/lookup/templates/lookup/app_summary.html:80
-#, fuzzy
 msgid "Prioritize Review?"
-msgstr "Рецензировать"
+msgstr "Поставить приоритет проверки?"
 
 #: mkt/lookup/templates/lookup/app_summary.html:84
 #, fuzzy
@@ -5598,19 +5587,16 @@ msgid "Tarako not enabled"
 msgstr "{addon} включено."
 
 #: mkt/lookup/templates/lookup/app_summary.html:91
-#, fuzzy
 msgid "Review not requested"
-msgstr "Запрошена рецензия"
+msgstr "Проверка не запрошена"
 
 #: mkt/lookup/templates/lookup/app_summary.html:94
-#, fuzzy
 msgid "Review pending"
-msgstr "Ожидает выбора типа проверки"
+msgstr "Ожидает проверки"
 
 #: mkt/lookup/templates/lookup/app_summary.html:96
-#, fuzzy
 msgid "Review failed"
-msgstr "Операция сообщения об отзыве не удалась"
+msgstr "Проверка не пройдена"
 
 #: mkt/lookup/templates/lookup/app_summary.html:101 mkt/reviewers/helpers.py:47 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/includes/details.html:113
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:104
@@ -5718,9 +5704,8 @@ msgid "Price Tier"
 msgstr "Уровень цены"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:33
-#, fuzzy
 msgid "Related Transaction"
-msgstr "ID транзакции"
+msgstr "Связанная транзакция"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:42
 msgid "Payment provider information"
@@ -5747,9 +5732,8 @@ msgid "Currently unable to retrieve refund status."
 msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:92
-#, fuzzy
 msgid "Refund Status"
-msgstr "Возмещение"
+msgstr "Статус возмещения"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:93
 msgid "Unrequested"
@@ -5760,9 +5744,8 @@ msgid "If a manual refund has been processed by the payment provider, check this
 msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:111
-#, fuzzy
 msgid "Refund this transaction"
-msgstr "Возмещение"
+msgstr "Возместить эту транзакцию"
 
 #: mkt/lookup/templates/lookup/user_activity.html:10
 msgid "Account Activity results for"
@@ -5858,9 +5841,8 @@ msgid "Are you sure you wish to delete this user?"
 msgstr "Вы уверены, что хотите удалить этого пользователя?"
 
 #: mkt/lookup/templates/lookup/user_summary.html:142
-#, fuzzy
 msgid "This user has already been deleted."
-msgstr "Приложение было удалено."
+msgstr "Этот пользователь уже был удален."
 
 #: mkt/lookup/templates/lookup/user_summary.html:144
 msgid "Deleted by"
@@ -6114,9 +6096,8 @@ msgid "Deleted reviews"
 msgstr ""
 
 #: mkt/reviewers/forms.py:34 mkt/search/forms.py:44
-#, fuzzy
 msgid "Any Device"
-msgstr "Любой тип устройства"
+msgstr "Любое устройство"
 
 #: mkt/reviewers/forms.py:40 mkt/reviewers/forms.py:65
 msgid "View entries between"
@@ -6175,14 +6156,12 @@ msgid "Choose a canned response..."
 msgstr "Выберите стандартный ответ..."
 
 #: mkt/reviewers/forms.py:189
-#, fuzzy
 msgid "Has Editor Comment"
-msgstr "дополнение, проверяющий или комментарий"
+msgstr "Есть комментарий редактора"
 
 #: mkt/reviewers/forms.py:193
-#, fuzzy
 msgid "More Info Requested"
-msgstr "Запрошено больше информации: {0}"
+msgstr "Запрошено больше информации"
 
 #: mkt/reviewers/forms.py:201
 #, fuzzy
@@ -6230,9 +6209,8 @@ msgid "Homescreens"
 msgstr ""
 
 #: mkt/reviewers/helpers.py:52 mkt/reviewers/templates/reviewers/queue_region.html:7
-#, fuzzy
 msgid "Regional Queues"
-msgstr "Очереди"
+msgstr "Региональные очереди"
 
 #: mkt/reviewers/helpers.py:91
 msgctxt "pending"
@@ -6360,9 +6338,8 @@ msgid "Clear this app from the re-review queue. The author(s) will get no email 
 msgstr ""
 
 #: mkt/reviewers/utils.py:457
-#, fuzzy
 msgid "Ban app"
-msgstr "Забанить"
+msgstr "Заблокировать приложение"
 
 #: mkt/reviewers/utils.py:459
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
@@ -6397,9 +6374,8 @@ msgid "Removed {0}"
 msgstr "Удалено {0}"
 
 #: mkt/reviewers/views.py:318
-#, fuzzy
 msgid "Device(s) changed by reviewer: {0}"
-msgstr "Устройство изменено проверяющим"
+msgstr "Устройство(а) изменено редактором: {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/reviewers/views.py:340
@@ -6423,14 +6399,12 @@ msgid "%(reporter)s on %(date)s [%(ip_address)s]"
 msgstr ""
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
-#, fuzzy
 msgid "Additional Queues"
-msgstr "Очереди"
+msgstr "Дополнительные очереди"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:11
-#, fuzzy
 msgid "{queue} Review Queue"
-msgstr "Очередь"
+msgstr "{queue} очередь проверок"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:22
 msgid "Pass"
@@ -6446,9 +6420,8 @@ msgid "There are currently no items of this type to review."
 msgstr "В настоящее время для данного типа очередь проверки пуста."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
-#, fuzzy
 msgid "You are currently not reviewing any apps."
-msgstr "Сейчас у вас нет ни одного счёта для платежей."
+msgstr "Сейчас вы не проверяете ни одного приложения."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:22 mkt/reviewers/templates/reviewers/queue.html:32 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:23
 #: mkt/reviewers/templates/reviewers/includes/details.html:127 mkt/reviewers/templates/reviewers/includes/mobile_details.html:138 mkt/reviewers/templates/reviewers/includes/search_results.html:7
@@ -6457,9 +6430,8 @@ msgstr "Флаги"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:23 mkt/reviewers/templates/reviewers/queue.html:34 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:25
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:6
-#, fuzzy
 msgid "Devices"
-msgstr "Устройства разработчика"
+msgstr "Устройства"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:34 mkt/reviewers/templates/reviewers/includes/macros.html:87
 msgid "Packaged App"
@@ -6494,9 +6466,8 @@ msgid "Logs"
 msgstr "Логи"
 
 #: mkt/reviewers/templates/reviewers/base_minimal.html:19
-#, fuzzy
 msgid "Back to Reviewer Tools"
-msgstr "Инструменты рецензента"
+msgstr "Назад к инструментам редактора"
 
 #: mkt/reviewers/templates/reviewers/home.html:18
 msgid "{num} Pending App Review"
@@ -6656,9 +6627,8 @@ msgid "Update message of the day"
 msgstr "Обновить послание дня"
 
 #: mkt/reviewers/templates/reviewers/performance.html:3
-#, fuzzy
 msgid "Reviewer Scores for {0}"
-msgstr "Требования изменены проверяющим: {0}"
+msgstr "Очки редактора за {0}"
 
 #: mkt/reviewers/templates/reviewers/performance.html:20
 #, fuzzy
@@ -6666,9 +6636,8 @@ msgid "All-time Point Breakdown"
 msgstr "Точечная разбивка по типу за всё время"
 
 #: mkt/reviewers/templates/reviewers/performance.html:25
-#, fuzzy
 msgid "Points"
-msgstr "Всего очков"
+msgstr "Очки"
 
 #: mkt/reviewers/templates/reviewers/performance.html:30 mkt/stats/forms.py:11
 msgid "Month"
@@ -6700,9 +6669,8 @@ msgid "Reviewers' Guide"
 msgstr "Руководство редактора"
 
 #: mkt/reviewers/templates/reviewers/queue_region.html:11
-#, fuzzy
 msgid "{region} Review Queue"
-msgstr "Регион:"
+msgstr "{region} очередь проверок"
 
 #: mkt/reviewers/templates/reviewers/review.html:20
 msgid "by"
@@ -6788,18 +6756,16 @@ msgid "Attachments"
 msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:28
-#, fuzzy
 msgid "This version has not been reviewed"
-msgstr "Эта версия не была проверена."
+msgstr "Эта версия не была проверена"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:7
 msgid "ID"
 msgstr "ID"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:46 mkt/reviewers/templates/reviewers/includes/mobile_details.html:111
-#, fuzzy
 msgid "Device Types"
-msgstr "Устройство"
+msgstr "Типы устройств"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:58 mkt/reviewers/templates/reviewers/includes/mobile_details.html:123
 msgid "View Privacy Policy"
@@ -6823,9 +6789,8 @@ msgid "Ratings"
 msgstr "Рейтинги"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:94 mkt/reviewers/templates/reviewers/includes/mobile_details.html:83
-#, fuzzy
 msgid "This app has not yet been rated"
-msgstr "Это приложение не было проверено."
+msgstr "Это приложение ещё не было оценено"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:97 mkt/reviewers/templates/reviewers/includes/mobile_details.html:86
 msgid "Updated"
@@ -6870,9 +6835,8 @@ msgid "<strong>IDN domain!</strong> punycode version: %(punycode_app_domain)s"
 msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:82
-#, fuzzy
 msgid "Priority Review Needed"
-msgstr "Требуется рецензия"
+msgstr "Требуется приоритетная проверка"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:89
 msgid "Privileged App"
@@ -7031,9 +6995,8 @@ msgid "Top Reviewers (past 7 days)"
 msgstr "Топ редакторов (последние 7 дней)"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:47
-#, fuzzy
 msgid "No top reviewers yet."
-msgstr "Пока нет топа рецензентов."
+msgstr "Пока нет топа редакторов."
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:53
 msgid "All Time"
@@ -7069,9 +7032,8 @@ msgid "Newest"
 msgstr "Новейшие"
 
 #: mkt/search/forms.py:20
-#, fuzzy
 msgid "Reviewed"
-msgstr "Отрецензировано:"
+msgstr "Проверено"
 
 #: mkt/search/forms.py:22
 msgid "Trending"
@@ -7082,9 +7044,8 @@ msgid "Any App Type"
 msgstr "Любой тип приложения"
 
 #: mkt/search/forms.py:31
-#, fuzzy
 msgid "Privileged packaged app"
-msgstr "Привилегированное приложение"
+msgstr "Привилегированное запакованное приложение"
 
 #: mkt/search/forms.py:36
 msgid "Free with In-app"
@@ -7458,9 +7419,8 @@ msgid "{addon} manifest updated."
 msgstr "манифест {addon} обновлён."
 
 #: mkt/site/log.py:374
-#, fuzzy
 msgid "{addon} {version} approved but private."
-msgstr "{addon} {version} одобрено."
+msgstr "{addon} {version} одобрено, но частное."
 
 #: mkt/site/log.py:383
 msgid "{addon} purchased."
@@ -7500,14 +7460,12 @@ msgid "Escalation cleared for {addon}."
 msgstr "Эскалация для {addon} очищена."
 
 #: mkt/site/log.py:431
-#, fuzzy
 msgid "{addon} banned."
-msgstr "Забаненные пользователи"
+msgstr "{addon} заблокировано."
 
 #: mkt/site/log.py:432
-#, fuzzy
 msgid "App banned"
-msgstr "Забаненные пользователи"
+msgstr "Заблокированные приложения"
 
 #: mkt/site/log.py:439
 msgid "{addon} escalated because of high number of abuse reports."
@@ -7569,19 +7527,16 @@ msgid "{addon} re-review because of new device(s) added."
 msgstr "Повторная проверка {addon} из-за добавления новых(ого) устройств(а)."
 
 #: mkt/site/log.py:496
-#, fuzzy
 msgid "Device(s) Added"
-msgstr "Устройство добавлено"
+msgstr "Устройство(а) добавлено(ы)"
 
 #: mkt/site/log.py:503
-#, fuzzy
 msgid "{addon} device support manually changed by reviewer."
-msgstr "Поддержка {addon} устройств вручную изменена проверяющим."
+msgstr "Поддержка устройств в {addon} вручную изменена редактором."
 
 #: mkt/site/log.py:504
-#, fuzzy
 msgid "Device(s) Changed by Reviewer"
-msgstr "Устройство изменено проверяющим"
+msgstr "Устройство(а) изменено(ы) редактором"
 
 #: mkt/site/log.py:511
 msgid "{addon} resubmitted for review."
@@ -7702,9 +7657,8 @@ msgid "{addon} content rating changed to Adult."
 msgstr "рейтинг содержимого {addon} изменён на Взрослый."
 
 #: mkt/site/log.py:676
-#, fuzzy
 msgid "{addon} content rating changed."
-msgstr "Рейтинг содержания {addon} изменился."
+msgstr "Рейтинг контента {addon} изменился."
 
 #: mkt/site/log.py:681
 msgid "Priority review requested for {addon}."
@@ -7803,9 +7757,8 @@ msgid "Quarter"
 msgstr "Квартал"
 
 #: mkt/submit/forms.py:31
-#, fuzzy
 msgid "Device(s) changed: {0}"
-msgstr "Устройство изменено проверяющим"
+msgstr "Устройство(а) изменено(ы): {0}"
 
 #. L10n: {0} is the list of requirements changes.
 #: mkt/submit/forms.py:41
@@ -7817,9 +7770,8 @@ msgid "Cannot be free and paid."
 msgstr "Не может быть бесплатным и платным."
 
 #: mkt/submit/forms.py:50
-#, fuzzy
 msgid "Please select a device."
-msgstr "Пожалуйста, выберите..."
+msgstr "Пожалуйста, выберите устройство."
 
 #: mkt/submit/forms.py:128
 msgid "Agree and Continue"
@@ -7830,9 +7782,8 @@ msgid "There was an error with your upload. Please try again."
 msgstr "В процессе вашей загрузки произошла ошибка. Пожалуйста, попробуйте снова."
 
 #: mkt/submit/forms.py:191
-#, fuzzy
 msgid "Version %s already exists."
-msgstr "Версия %s уже существует"
+msgstr "Версия %s уже существует."
 
 #: mkt/submit/forms.py:202
 #, fuzzy
