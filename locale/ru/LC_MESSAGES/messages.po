@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:27-0700\n"
-"PO-Revision-Date: 2015-11-28 17:04+0000\n"
+"PO-Revision-Date: 2015-11-28 17:06+0000\n"
 "Last-Translator: bychek.ru <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1448730254.0\n"
+"X-POOTLE-MTIME: 1448730381.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -7822,9 +7822,10 @@ msgid "Homepage:"
 msgstr "Домашняя страница:"
 
 #: mkt/submit/forms.py:315
-#, fuzzy
 msgid "If your app has another homepage, enter its address here."
-msgstr "Если у вашего приложения есть другая домашняя страница, введите здесь её адрес. Если ваш сайт переведен на другие языки, для этого поля можно добавить несколько переводов."
+msgstr ""
+"Если у вашего приложения есть другая домашняя страница, введите здесь её "
+"адрес."
 
 #: mkt/submit/forms.py:318
 msgid "Website:"
@@ -7948,14 +7949,12 @@ msgid "Almost There!"
 msgstr "Почти здесь!"
 
 #: mkt/submit/templates/submit/next_steps.html:27
-#, fuzzy
 msgid "Submit App Manifest"
-msgstr "Представить URL манифеста вашего приложения"
+msgstr "Загрузить манифест приложения"
 
 #: mkt/submit/templates/submit/next_steps.html:28
-#, fuzzy
 msgid "Enter App Details"
-msgstr "Информация о приложении"
+msgstr "Ввести информацию о приложении"
 
 #: mkt/submit/templates/submit/next_steps.html:30
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
@@ -7966,9 +7965,8 @@ msgid "<span>Set up <a href=\"%(pay_url)s\">Payments</a></span>"
 msgstr "<span>Настройте <a href=\"%(pay_url)s\">Платежи</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:41
-#, fuzzy
 msgid "Wait for Review"
-msgstr "Добавить отзыв на {0}"
+msgstr "Ожидание проверки"
 
 #: mkt/submit/templates/submit/next_steps.html:45
 msgid "At any point, you can"
@@ -8012,9 +8010,8 @@ msgid "<strong>What's next:</strong> Publish Your App"
 msgstr "<strong>Что далее:</strong> Опубликуйте ваше приложение"
 
 #: mkt/submit/templates/submit/terms.html:14
-#, fuzzy
 msgid "Marketplace Developer Program"
-msgstr "Программа разработчика"
+msgstr "Программа разработчика Marketplace"
 
 #: mkt/submit/templates/submit/terms.html:16
 msgid ""
@@ -8023,14 +8020,16 @@ msgid ""
 msgstr ""
 
 #: mkt/submit/templates/submit/terms.html:24
-#, fuzzy
 msgid "To begin, please read and accept our <strong>Developer Agreement</strong>:"
-msgstr "Когда вы будете готовы начать, пожалуйста прочтите и примите наше <strong>Соглашение Разработчика</strong>:"
+msgstr ""
+"Для начала, пожалуйста, прочитайте и примите наше <strong>Соглашение "
+"Разработчика</strong>:"
 
 #: mkt/submit/templates/submit/terms.html:47
-#, fuzzy
 msgid "Mozilla may email me with relevant App Developer news and surveys"
-msgstr "Mozilla хочет связаться со мной по поводу новостей и опросов для Разработчиков Приложений"
+msgstr ""
+"Mozilla может связываться со мной по поводу новостей и опросов для "
+"разработчиков приложений"
 
 #: mkt/submit/tests/test_forms.py:342
 msgid "Héllo"
@@ -8256,23 +8255,20 @@ msgid "You must provide an app name."
 msgstr "Вы должны указать имя приложения."
 
 #: mkt/webapps/models.py:1354
-#, fuzzy
 msgid "You must provide at least one device type."
-msgstr "Вы должны указать по меньшей мере одно."
+msgstr "Вы должны указать по меньшей мере один тип устройства."
 
 #: mkt/webapps/models.py:1357
 msgid "You must provide at least one category."
 msgstr "Вы должны указать не менее одной категории."
 
 #: mkt/webapps/models.py:1424
-#, fuzzy
 msgid "You must set up content ratings."
-msgstr "Настроить рейтинги содержимого"
+msgstr "Вы должны указать рейтинги содержимого."
 
 #: mkt/webapps/models.py:1426
-#, fuzzy
 msgid "You must set up a payment account."
-msgstr "Настроить счёт для платежей"
+msgstr "Вы должны указать платежный аккаунт."
 
 #: mkt/webapps/models.py:1451
 msgid "This app's submission process has not been fully completed."
@@ -8283,9 +8279,8 @@ msgid "This app needs to get a content rating."
 msgstr ""
 
 #: mkt/webapps/models.py:1464
-#, fuzzy
 msgid "This app needs a payment account set up."
-msgstr "Настроить счёт для платежей"
+msgstr "Этому приложению нужен платёжный аккаунт."
 
 #. L10n: An app is awaiting approval for a particular region.
 #: mkt/webapps/models.py:2684
@@ -8311,9 +8306,8 @@ msgid "{region} nomination date"
 msgstr "{region} дата номинации"
 
 #: mkt/webapps/tasks.py:145
-#, fuzzy
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
-msgstr "Приложение отключено в Магазине Firefox."
+msgstr "Проблема с вашим приложением \"{app}\" на Firefox Marketplace"
 
 #: mkt/webapps/templates/webapps/impala/listing/sorter.html:2
 msgid "Sort by:"
