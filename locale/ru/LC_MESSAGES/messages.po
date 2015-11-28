@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:27-0700\n"
-"PO-Revision-Date: 2015-11-21 17:41+0000\n"
-"Last-Translator: Vladimir <waldemar.yan@gmail.com>\n"
+"PO-Revision-Date: 2015-11-28 16:16+0000\n"
+"Last-Translator: bychek.ru <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1448127683.0\n"
+"X-POOTLE-MTIME: 1448727390.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -32,11 +32,11 @@ msgstr "Пока пропустить"
 
 #: mkt/abuse/forms.py:79 mkt/abuse/forms.py:93
 msgid "Mark all reports Read"
-msgstr ""
+msgstr "Отметить всё отчеты прочитанными"
 
 #: mkt/abuse/forms.py:80
 msgid "Flag for re-review"
-msgstr ""
+msgstr "Отметить для перепроверки"
 
 #: mkt/api/fields.py:22
 msgid "Select a valid choice. %(value)s is not one of the available choices."
@@ -68,14 +68,12 @@ msgid "Form could not be submitted."
 msgstr "Форма не может быть отправлена."
 
 #: mkt/comm/forms.py:28
-#, fuzzy
 msgid "Note body is empty."
-msgstr "Пустая заметка"
+msgstr "Пустая заметка."
 
 #: mkt/comm/forms.py:32
-#, fuzzy
 msgid "Invalid note type."
-msgstr "Вид"
+msgstr "Некорректный тип заметки."
 
 #: mkt/comm/forms.py:47
 msgid "Version %s does not exist"
@@ -1148,9 +1146,8 @@ msgid "Published"
 msgstr "Опубликовано"
 
 #: mkt/constants/base.py:30
-#, fuzzy
 msgid "Banned from Marketplace"
-msgstr "Загрузка приложений из Marketplace"
+msgstr "Удалено из Marketplace"
 
 #: mkt/constants/base.py:31 mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Deleted"
@@ -1161,9 +1158,8 @@ msgid "Rejected"
 msgstr "Отклонено"
 
 #: mkt/constants/base.py:35 mkt/constants/comm.py:53 mkt/site/log.py:375
-#, fuzzy
 msgid "Approved but private"
-msgstr "приватный"
+msgstr "Утвержденное, но личное"
 
 #: mkt/constants/base.py:36
 msgid "Blocked"
@@ -1231,7 +1227,7 @@ msgstr "Проверка упакованного приложения"
 
 #: mkt/constants/base.py:244
 msgid "Privileged App Review"
-msgstr ""
+msgstr "Привилегированная проверка приложения"
 
 #: mkt/constants/base.py:245
 msgid "Web App Re-review"
@@ -1246,9 +1242,8 @@ msgid "Updated Privileged App Review"
 msgstr ""
 
 #: mkt/constants/base.py:248
-#, fuzzy
 msgid "Moderated App Review"
-msgstr "Проверка модерируемого дополнения "
+msgstr "Проверка модерируемого приложения"
 
 #: mkt/constants/base.py:249
 msgid "App Review Moderation Reverted"
@@ -1411,13 +1406,12 @@ msgid "No action"
 msgstr "Нет действий"
 
 #: mkt/constants/comm.py:48
-#, fuzzy
 msgid "Banned"
-msgstr "Забаненные пользователи"
+msgstr "Заблокировано"
 
 #: mkt/constants/comm.py:49
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Комментарий проверяющего"
 
 #: mkt/constants/comm.py:50 mkt/reviewers/forms.py:197 mkt/site/log.py:196
 msgid "Escalated"
@@ -1425,7 +1419,7 @@ msgstr "Отправлено наверх"
 
 #: mkt/constants/comm.py:51
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "Комментарий частного проверяющего"
 
 #: mkt/constants/comm.py:52
 msgid "App resubmission"
@@ -1464,34 +1458,32 @@ msgid "Requirement(s) changed by reviewer"
 msgstr "Требование(я) изменено(ы) проверяющим."
 
 #: mkt/constants/comm.py:62
-#, fuzzy
 msgid "Rereview due to Manifest Change"
-msgstr "Изменение манифеста"
+msgstr "Проверка из-за изменения манифеста"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "Проверка из-за изменения URL манифеста"
 
 #: mkt/constants/comm.py:64
 msgid "Rereview due to Premium Type Upgrade"
-msgstr ""
+msgstr "Проверка из-за обновления до премиум типа"
 
 #: mkt/constants/comm.py:65
 msgid "Rereview due to Devices Added"
-msgstr ""
+msgstr "Проверка из-за добавления устройств"
 
 #: mkt/constants/comm.py:66
 msgid "Rereview due to Requirements Change"
-msgstr ""
+msgstr "Проверка из-за изменения разрешений"
 
 #: mkt/constants/comm.py:67
-#, fuzzy
 msgid "Rereview due to Adult Content Rating"
-msgstr "Рейтинг содержимого {addon} изменён на Взрослый."
+msgstr "Проверка из-за установки возрастного ограничения"
 
 #: mkt/constants/comm.py:68
 msgid "Manual re-review requested"
-msgstr ""
+msgstr "Запрошена ручная проверка"
 
 #: mkt/constants/comm.py:69
 msgid "Escalation due to VIP App"
@@ -1502,19 +1494,16 @@ msgid "Escalation due to Prelease App"
 msgstr ""
 
 #: mkt/constants/comm.py:71
-#, fuzzy
 msgid "Priority review requested"
-msgstr "Запрошена рецензия"
+msgstr "Запрошена приоритетная проверка"
 
 #: mkt/constants/comm.py:72
-#, fuzzy
 msgid "Additional review passed"
-msgstr "требует дополнительной проверки"
+msgstr "Дополнительная проверка пройдена"
 
 #: mkt/constants/comm.py:73
-#, fuzzy
 msgid "Additional review failed"
-msgstr "Операция сообщения об отзыве не удалась"
+msgstr "Дополнительная проверка не удалась"
 
 #: mkt/constants/comm.py:74
 msgid "Version notes for reviewer"
@@ -1535,24 +1524,26 @@ msgstr "API управления приложениями"
 #: mkt/constants/features.py:21
 msgid "The app requires the `navigator.mozApps` API to install and manage other apps."
 msgstr ""
+"Приложение требует `navigator.mozApps` API для установки и управления "
+"другими приложениями."
 
 #: mkt/constants/features.py:26
-#, fuzzy
 msgid "Packaged Apps Install API"
-msgstr "Не удалось установить упакованные приложения"
+msgstr "API установки запакованных приложений"
 
 #: mkt/constants/features.py:27
 msgid "The app requires the `navigator.mozApps.installPackage` API to install other packaged apps."
 msgstr ""
+"Приложение требует `navigator.mozApps.installPackage` API для установки "
+"других приложений."
 
 #: mkt/constants/features.py:33
 msgid "Web Payment"
 msgstr "Веб-платёж"
 
 #: mkt/constants/features.py:34
-#, fuzzy
 msgid "The app requires the `navigator.mozApps` API."
-msgstr "API управления приложениями"
+msgstr "Приложение требует `navigator.mozApps` API."
 
 #: mkt/constants/features.py:38
 msgid "Web Activities"
@@ -1560,7 +1551,7 @@ msgstr "Веб-активности"
 
 #: mkt/constants/features.py:39
 msgid "The app requires Web Activities (the `MozActivity` API)."
-msgstr ""
+msgstr "Приложение требует Web Activities (`MozActivity` API)."
 
 #: mkt/constants/features.py:44
 msgid "Ambient Light Sensor"
@@ -1576,30 +1567,27 @@ msgstr "Архив"
 
 #: mkt/constants/features.py:51
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "Приложение требует `ArchiveReader` API."
 
 #: mkt/constants/features.py:55
 msgid "Battery"
 msgstr "Батарея"
 
 #: mkt/constants/features.py:56
-#, fuzzy
 msgid "The app requires the `navigator.battery` API."
-msgstr "API управления приложениями"
+msgstr "Приложение требует `navigator.battery` API."
 
 #: mkt/constants/features.py:61
-#, fuzzy
 msgid "The app requires the `navigator.mozBluetooth` API."
-msgstr "API управления приложениями"
+msgstr "Приложение требует `navigator.mozBluetooth` API."
 
 #: mkt/constants/features.py:66
 msgid "Contacts"
 msgstr "Контакты"
 
 #: mkt/constants/features.py:67
-#, fuzzy
 msgid "The app requires the `navigator.mozContacts` API."
-msgstr "API управления приложениями"
+msgstr "Приложение требует `navigator.mozContacts` API."
 
 #: mkt/constants/features.py:72
 msgid "Device Storage"
@@ -1608,10 +1596,12 @@ msgstr "Хранилище устройства"
 #: mkt/constants/features.py:73
 msgid "The app requires the Device Storage API to access files on the filesystem."
 msgstr ""
+"Приложение требует Device Storage API для доступа к файлам из файловой "
+"системы."
 
 #: mkt/constants/features.py:79
 msgid "The app requires the platform to support IndexedDB."
-msgstr ""
+msgstr "Приложению требуется платформа, поддерживающая IndexedDB."
 
 #: mkt/constants/features.py:84
 msgid "Geolocation"
@@ -1620,6 +1610,7 @@ msgstr "Геолокация"
 #: mkt/constants/features.py:85
 msgid "The app requires the platform to support the `navigator.geolocation` API."
 msgstr ""
+"Приложение требует платформу, поддерживающую `navigator.geolocation` API."
 
 #: mkt/constants/features.py:90
 msgid "Idle"
@@ -1627,7 +1618,7 @@ msgstr ""
 
 #: mkt/constants/features.py:91
 msgid "The app requires the platform to support the `addIdleObserver` API."
-msgstr ""
+msgstr "Приложению нужна платформа, поддерживающая `addIdleObserver` API."
 
 #: mkt/constants/features.py:96
 msgid "Network Information"
@@ -1636,15 +1627,16 @@ msgstr "Информация сети"
 #: mkt/constants/features.py:97
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
 msgstr ""
+"Приложению нужна возможность получения информации о сетевом соединении "
+"(`navigator.mozConnection` API)."
 
 #: mkt/constants/features.py:103
 msgid "Network Stats"
 msgstr "Статистика сети"
 
 #: mkt/constants/features.py:104
-#, fuzzy
 msgid "The app requires the `navigator.mozNetworkStats` API."
-msgstr "API управления приложениями"
+msgstr "Приложение требует `navigator.mozNetworkStats` API."
 
 #: mkt/constants/features.py:109
 msgid "Proximity"
@@ -1659,9 +1651,8 @@ msgid "Simple Push"
 msgstr "Простое проталкивание"
 
 #: mkt/constants/features.py:116
-#, fuzzy
 msgid "The app requires the `navigator.mozPush` API."
-msgstr "API управления приложениями"
+msgstr "Приложение требует `navigator.mozPush` API."
 
 #: mkt/constants/features.py:120
 msgid "Screen Orientation"
@@ -1669,16 +1660,15 @@ msgstr "Ориентация экрана"
 
 #: mkt/constants/features.py:121
 msgid "The app requires the platform to support the `ondeviceorientation` API."
-msgstr ""
+msgstr "Приложению нужна платформа, поддерживающая `ondeviceorientation` API."
 
 #: mkt/constants/features.py:126
 msgid "Time/Clock"
 msgstr "Время/Часы"
 
 #: mkt/constants/features.py:127
-#, fuzzy
 msgid "The app requires the `navigator.mozTime` API."
-msgstr "API управления приложениями"
+msgstr "Приложение требует `navigator.mozTime` API."
 
 #: mkt/constants/features.py:131
 msgid "Vibration"
@@ -1687,15 +1677,16 @@ msgstr "Вибрация"
 #: mkt/constants/features.py:132
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
 msgstr ""
+"Приложение требует устройство, поддерживающее вибрацию (`navigator.vibrate` "
+"API)."
 
 #: mkt/constants/features.py:138
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
-msgstr ""
+msgstr "Приложение требует `navigator.mozFM` или `navigator.mozFMRadio` API."
 
 #: mkt/constants/features.py:144
-#, fuzzy
 msgid "The app requires the `navigator.mozSms` API."
-msgstr "API управления приложениями"
+msgstr "Приложение требует `navigator.mozSms` API."
 
 #: mkt/constants/features.py:148
 msgid "Touch"
@@ -1718,6 +1709,7 @@ msgstr ""
 #: mkt/constants/features.py:166
 msgid "The app requires that the platform can decode and play MP3 files."
 msgstr ""
+"Приложение требует платформу, которая может декодировать и играть MP3 файлы."
 
 #: mkt/constants/features.py:171
 msgid "Audio"
@@ -1725,7 +1717,7 @@ msgstr "Аудио"
 
 #: mkt/constants/features.py:172
 msgid "The app requires that the platform supports the HTML5 audio API."
-msgstr ""
+msgstr "Приложение требует платформу, поддерживающую HTML5 аудио API."
 
 #: mkt/constants/features.py:177
 msgid "Web Audio"
@@ -1734,14 +1726,20 @@ msgstr "Веб-аудио"
 #: mkt/constants/features.py:178
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
 msgstr ""
+"Приложение требует платформу, поддерживающую Web Audio API "
+"(`window.AudioContext`)."
 
 #: mkt/constants/features.py:184
 msgid "The app requires that the platform can decode and play H.264 video files."
 msgstr ""
+"Приложение требует платформу, которая может декодировать и играть H.264 "
+"видео файлы."
 
 #: mkt/constants/features.py:190
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
 msgstr ""
+"Приложения требует платформу, которая может декодировать и играть WebM видео "
+"файлы (VP8)."
 
 #: mkt/constants/features.py:195
 msgid "Full Screen"
@@ -1750,14 +1748,18 @@ msgstr "Полный экран"
 #: mkt/constants/features.py:196
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
 msgstr ""
+"Приложение требует Full Screen API (`requestFullScreen` или "
+"`mozRequestFullScreen`)."
 
 #: mkt/constants/features.py:202
 msgid "Gamepad"
-msgstr ""
+msgstr "Геймпад"
 
 #: mkt/constants/features.py:203
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
 msgstr ""
+"Приложение требует от платформы поддержки gamepad API "
+"(`navigator.getGamepads`)."
 
 #: mkt/constants/features.py:208
 msgid "Quota Management"
@@ -1774,6 +1776,8 @@ msgstr "Камера"
 #: mkt/constants/features.py:218
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
 msgstr ""
+"Приложение требует разрешение доступа к видео с камеры через объект "
+"LocalMediaStream."
 
 #: mkt/constants/features.py:224
 msgid "Microphone"
@@ -1781,7 +1785,7 @@ msgstr "Микрофон"
 
 #: mkt/constants/features.py:225
 msgid "The app requires the platform to allow access to audio from the device microphone."
-msgstr ""
+msgstr "Приложение требует доступ к аудио с микрофона."
 
 #: mkt/constants/features.py:230
 msgid "Screen Capture"
@@ -1789,7 +1793,7 @@ msgstr "Снимок экрана"
 
 #: mkt/constants/features.py:231
 msgid "The app requires the platform to allow access to the device screen for capture."
-msgstr ""
+msgstr "Приложение требует доступа к экрану устройства для захвата."
 
 #: mkt/constants/features.py:237
 msgid "WebRTC MediaStream"
@@ -1816,22 +1820,20 @@ msgid "The app requires the platform to allow communication of streaming data be
 msgstr ""
 
 #: mkt/constants/features.py:258
-#, fuzzy
 msgid "Web Speech Synthesis"
-msgstr "Язык вражды"
+msgstr "Веб-Синтез речи"
 
 #: mkt/constants/features.py:259
 msgid "The app requires the platform to allow the use of text-to-speech."
-msgstr ""
+msgstr "Приложение требует разрешения преобразования текста в речь."
 
 #: mkt/constants/features.py:264
-#, fuzzy
 msgid "Web Speech Recognition"
-msgstr "Язык вражды"
+msgstr "Веб распознавание речи"
 
 #: mkt/constants/features.py:265
 msgid "The app requires the platform to allow the use of speech-to-text."
-msgstr ""
+msgstr "Приложение требует разрешения преобразования речи в текст."
 
 #: mkt/constants/features.py:270
 msgid "Pointer Lock"
@@ -1840,6 +1842,8 @@ msgstr "Pointer Lock"
 #: mkt/constants/features.py:271
 msgid "The app requires the platform to provide additional information and control about the pointer."
 msgstr ""
+"Приложение требует предоставления дополнительной информации и "
+"контролирования курсора."
 
 #: mkt/constants/features.py:277
 msgid "Notifications"
@@ -1871,7 +1875,7 @@ msgstr "TCP сокеты"
 
 #: mkt/constants/features.py:300
 msgid "The app requires the platform to allow opening raw TCP sockets."
-msgstr ""
+msgstr "Приложение требует разрешить открытие TCP сокетов."
 
 #: mkt/constants/features.py:305
 msgid "Third-Party Keyboard Support"
@@ -1879,64 +1883,65 @@ msgstr "Поддержка сторонних клавиатур"
 
 #: mkt/constants/features.py:306
 msgid "The app requires the platform to support third-party keyboards."
-msgstr ""
+msgstr "Приложение требует поддержку сторонних клавиатур."
 
 #: mkt/constants/features.py:311
-#, fuzzy
 msgid "Multiple Network Information"
-msgstr "Информация сети"
+msgstr "Информация о множестве сетевых соединений"
 
 #: mkt/constants/features.py:312
 msgid "The app requires the ability to get information about multiple network connections."
 msgstr ""
+"Приложение требует возможность получения информации о множественных сетевых "
+"соединениях."
 
 #: mkt/constants/features.py:318
 msgid "Mobile ID"
-msgstr ""
+msgstr "Мобильный ID"
 
 #: mkt/constants/features.py:319
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
-msgstr ""
+msgstr "Приложение требует доступ к `navigator.getMobileIdAssertion` API."
 
 #: mkt/constants/features.py:324
 msgid "Asm.js Precompilation"
-msgstr ""
+msgstr "Прекомпиляция Asm.js"
 
 #: mkt/constants/features.py:325
 msgid "The app requires the device to support precompilation of asm.js code."
-msgstr ""
+msgstr "Приложение требует от устройства поддержку прекомпиляции asm.js кода."
 
 #: mkt/constants/features.py:330
 msgid "512MB RAM Device"
-msgstr ""
+msgstr "Устройство с 512МБ ОЗУ"
 
 #: mkt/constants/features.py:331
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "Приложение требует устройства с минимум 512МБ ОЗУ."
 
 #: mkt/constants/features.py:336
 msgid "1GB RAM Device"
-msgstr ""
+msgstr "Устройство с 1ГБ ОЗУ"
 
 #: mkt/constants/features.py:337
 msgid "The app requires the device to have at least 1GB RAM."
-msgstr ""
+msgstr "Приложение требует устройства с минимум 1ГБ ОЗУ."
 
 #: mkt/constants/features.py:342
 msgid "NFC"
-msgstr ""
+msgstr "NFC"
 
 #: mkt/constants/features.py:343
 msgid "The app requires access to the Near Field Communication (NFC) API."
-msgstr ""
+msgstr "Приложение требует доступ к Near Field Communication (NFC) API."
 
 #: mkt/constants/features.py:357
 msgid "UDP Sockets"
-msgstr ""
+msgstr "UDP сокеты"
 
 #: mkt/constants/features.py:358
 msgid "The app requires the platform to allow opening raw UDP sockets."
-msgstr ""
+msgstr "Приложение требует разрешения открытия UDP сокетов."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -1975,9 +1980,8 @@ msgid "Failed"
 msgstr "Не удалось"
 
 #: mkt/constants/payments.py:79 mkt/constants/payments.py:80
-#, fuzzy
 msgid "The payment was received, but not completed."
-msgstr "Платёж был принят, но не завершен и на данный момент находится в процессе ожидания"
+msgstr "Платёж был принят, но не завершен."
 
 #: mkt/constants/payments.py:81
 msgid "The payment failed."
@@ -2012,9 +2016,8 @@ msgid "Android smartphones"
 msgstr "Смартфоны Android"
 
 #: mkt/constants/platforms.py:44 mkt/constants/platforms.py:48
-#, fuzzy
 msgid "Tablets"
-msgstr "Планшеты Android"
+msgstr "Планшеты"
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "For all ages"
@@ -2090,71 +2093,71 @@ msgstr "Остальной мир"
 
 #: mkt/constants/regions.py:89
 msgid "Bonaire, Sint Eustatius and Saba"
-msgstr ""
+msgstr "Бонэйр, Синт-Эстатиус и Саба"
 
 #: mkt/constants/regions.py:100
 msgid "Bolivia, Plurinational State of"
-msgstr ""
+msgstr "Многонациональное государство Боливия"
 
 #: mkt/constants/regions.py:115
 msgid "Congo, Democratic Republic of the"
-msgstr ""
+msgstr "Демократическая республика Конго"
 
 #: mkt/constants/regions.py:120
 msgid "Cabo Verde"
-msgstr ""
+msgstr "Кабо-Верде"
 
 #: mkt/constants/regions.py:153
 msgid "Guinea-Conakry"
-msgstr ""
+msgstr "Гвинея Конакри"
 
 #: mkt/constants/regions.py:166
 msgid "Heard Island and McDonald Islands"
-msgstr ""
+msgstr "Остров Херд и острова Макдональд"
 
 #: mkt/constants/regions.py:192
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "Лаосская Народно-Демократическая Республика"
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
-msgstr ""
+msgstr "Ливия"
 
 #: mkt/constants/regions.py:197
 msgid "Liechtenstein"
-msgstr ""
+msgstr "Лихтенштейн"
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
-msgstr ""
+msgstr "Сен-Мартен (часть Франции)"
 
 #: mkt/constants/regions.py:212
 msgid "Macedonia, the former Yugoslav Republic of"
-msgstr ""
+msgstr "Македония"
 
 #: mkt/constants/regions.py:251
 msgid "Palestine, State of"
-msgstr ""
+msgstr "Государство Палестина"
 
 #: mkt/constants/regions.py:256
 msgid "Russia"
-msgstr ""
+msgstr "Россия"
 
 #: mkt/constants/regions.py:260
 msgid "Senegal"
-msgstr ""
+msgstr "Сенегал"
 
 #: mkt/constants/regions.py:263
 msgid "Saint Helena, Ascension and Tristan da Cunha"
-msgstr ""
+msgstr "Святой Елены, Вознесения и Тристан-да-Кунья"
 
 #: mkt/constants/regions.py:295
 msgid "Taiwan"
-msgstr ""
+msgstr "Тайвань"
 
 #: mkt/constants/regions.py:296
 msgid "Tanzania"
-msgstr ""
+msgstr "Танзания"
 
 #: mkt/constants/regions.py:303
 msgid "Holy See"
@@ -2193,18 +2196,16 @@ msgid "(Unsupported)"
 msgstr "(Неподдерживается)"
 
 #: mkt/developers/api_payments.py:104
-#, fuzzy
 msgid "Could not connect to payment server."
-msgstr "Возникла проблема при связи с сервером платежей."
+msgstr "Не удалось соединиться с сервером платежей."
 
 #: mkt/developers/api_payments.py:128
 msgid "Cannot delete shared account"
 msgstr "Не могу удалить совместный счёт"
 
 #: mkt/developers/cron.py:128
-#, fuzzy
 msgid "Content rating changed to Adult."
-msgstr "Рейтинг содержимого {addon} изменён на Взрослый."
+msgstr "Рейтинг содержимого изменён на Взрослый."
 
 #: mkt/developers/forms.py:63
 msgid "You cannot select {region}."
@@ -2213,6 +2214,8 @@ msgstr "Вы не можете выбрать {region}."
 #: mkt/developers/forms.py:121
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr ""
+"Все участники команды должны прочитать и согласиться с соглашением "
+"разработчика."
 
 #: mkt/developers/forms.py:152
 msgid "Must have at least one owner."
@@ -2903,9 +2906,8 @@ msgid "You currently do not have an API key."
 msgstr "Сейчас у вас нет ключа API."
 
 #: mkt/developers/templates/developers/api.html:90
-#, fuzzy
 msgid "OAuth Example"
-msgstr "Требуется OAuth"
+msgstr "OAuth пример"
 
 #: mkt/developers/templates/developers/api.html:92
 msgid "<p>Example using a Python library for the command-line on Mac OS X/Linux using your OAuth credentials:</p>"
@@ -2915,11 +2917,13 @@ msgstr ""
 #: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> before your app can be reviewed or published."
 msgstr ""
+"Вы должны установить <a href=\"%(next_url)s\">%(next_step_name)s</a> до того, "
+"как ваше приложение будет проверено и опубликовано."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings').
 #: mkt/developers/templates/developers/base_impala.html:32
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
-msgstr ""
+msgstr "Вы должны установить <a href=\"%(next_url)s\">%(next_step_name)s</a>."
 
 #: mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:13 mkt/ecosystem/templates/ecosystem/landing.html:171
 #: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:302
@@ -2944,9 +2948,8 @@ msgid "Message of the Day"
 msgstr "Сообщение дня"
 
 #: mkt/developers/templates/developers/motd.html:11
-#, fuzzy
 msgid "Update Message of the Day"
-msgstr "Обновить послание дня"
+msgstr "Обновить сообщение дня"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:32 mkt/reviewers/templates/reviewers/motd.html:15
 #: mkt/reviewers/templates/reviewers/review.html:218
@@ -2971,7 +2974,7 @@ msgstr "Авторизовать доступ"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:10
 msgid "%(app_name)s would like access to your Marketplace account."
-msgstr ""
+msgstr "%(app_name)s хочет получить доступ к вашему аккаунту Marketplace."
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
@@ -3012,6 +3015,9 @@ msgstr "Некоторые функции временно отключены, �
 #: mkt/developers/templates/developers/skeleton_impala.html:98 templates/base.html:104
 msgid "The Terms of Service have changed since you last agreed to them. Please read and agree to the <a href=\"%(url)s\">new terms</a>."
 msgstr ""
+"Условия использования изменились с того времени, когда вы с ними "
+"соглашались. Пожалуйста, прочитайте и согласитесь с <a href=\"%(url)s\">новыми "
+"правилами</a>."
 
 #: mkt/developers/templates/developers/skeleton_impala.html:125 templates/base.html:131
 msgid "Please sign in"
@@ -3020,6 +3026,8 @@ msgstr "Пожалуйста, войдите"
 #: mkt/developers/templates/developers/skeleton_impala.html:127 templates/base.html:133
 msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
 msgstr ""
+"Просто войдите или зарегистрируйтесь ниже с помощью <a href=\"%"
+"(url)s\">Firefox Accounts</a>."
 
 #: mkt/developers/templates/developers/terms.html:3 mkt/templates/mkt/account-links.html:9
 msgid "Terms and Conditions"
@@ -3035,7 +3043,7 @@ msgstr "Дополнительные политики магазина"
 
 #: mkt/developers/templates/developers/terms.html:34
 msgid "You have already agreed to this developer agreement."
-msgstr ""
+msgstr "Вы уже согласились с этим соглашением разработчика."
 
 #: mkt/developers/templates/developers/testing.html:8 mkt/developers/templates/developers/validate_app.html:9 mkt/developers/templates/developers/payments/in-app-keys.html:9
 #: mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_manifest.html:8
@@ -3045,6 +3053,8 @@ msgstr "Тестирование"
 #: mkt/developers/templates/developers/testing.html:14
 msgid "Use these tools for testing your apps prior to submission to the Firefox Marketplace."
 msgstr ""
+"Используйте эти инструменты для тестирования ваших приложений до загрузки на "
+"Firefox Marketplace."
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
@@ -3063,7 +3073,7 @@ msgstr[2] "найдено {num} транзакций"
 
 #: mkt/developers/templates/developers/transactions.html:35
 msgid "Your apps currently have no transactions."
-msgstr ""
+msgstr "У ваших приложений сейчас нет транзакций."
 
 #: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:153 mkt/lookup/templates/lookup/transaction_summary.html:21
 #: mkt/reviewers/templates/reviewers/logs.html:16 mkt/reviewers/templates/reviewers/moderatelog.html:16
@@ -3098,10 +3108,15 @@ msgstr "Валидировать"
 #: mkt/developers/templates/developers/validate_app.html:35 mkt/submit/templates/submit/manifest.html:67
 msgid "<strong>Don't forget a protocol!</strong> Try adding either <a href=\"#\">%(http)s</a> or <a href=\"#\">%(https)s</a>."
 msgstr ""
+"<strong>Не забывайте протокол!</strong> Попробуйте добавить либо <a "
+"href=\"#\">%(http)s</a>, либо <a href=\"#\">%(https)s</a>."
 
 #: mkt/developers/templates/developers/validate_app.html:43 mkt/submit/templates/submit/manifest.html:75
 msgid "Manifest URLs must start with a protocol (for example, <code>http://</code> or <code>https://</code>) and typically use the <code>.webapp</code> extension."
 msgstr ""
+"URL манифеста должен начинаться с протокола (например, <code>http://</code> "
+"или <code>https://</code>) и обычно использовать расширение "
+"<code>.webapp</code>."
 
 #: mkt/developers/templates/developers/validate_app.html:61 mkt/submit/templates/submit/manifest.html:117
 msgid "Learn more about submitting an app."
