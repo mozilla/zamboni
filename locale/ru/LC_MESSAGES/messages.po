@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:27-0700\n"
-"PO-Revision-Date: 2015-11-28 16:42+0000\n"
+"PO-Revision-Date: 2015-11-28 16:58+0000\n"
 "Last-Translator: bychek.ru <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.0\n"
-"X-POOTLE-MTIME: 1448728946.0\n"
+"X-POOTLE-MTIME: 1448729918.0\n"
 
 #: mkt/abuse/forms.py:70
 msgid "Abuse reports needing investigation: %s"
@@ -3553,7 +3553,7 @@ msgstr " приложение будет удалено из нашей очер
 
 #: mkt/developers/templates/developers/apps/status.html:404
 msgid "the app will not be listed in our public pages"
-msgstr ""
+msgstr "приложение не будет показано в списках на публичных страницах"
 
 #: mkt/developers/templates/developers/apps/status.html:406
 msgid "These changes cannot be undone."
@@ -3592,7 +3592,7 @@ msgstr "Минимальные требования"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:54 mkt/developers/templates/developers/apps/edit/technical.html:77
 msgid "Device features required for this app to function."
-msgstr ""
+msgstr "Возможности устройств, требуемые для функционирования этого приложения."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:54
 msgid "Add a Promo"
@@ -3608,11 +3608,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:75
 msgid "Enter email addresses, separated by commas"
-msgstr ""
+msgstr "Введите адреса электронной почты, разделенные запятыми"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:90
 msgid "Mozilla VIP App"
-msgstr ""
+msgstr "Mozilla VIP приложение"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:92
 msgid "Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?"
@@ -3624,35 +3624,36 @@ msgid "Use sparingly"
 msgstr "Использование алкоголя"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
-#, fuzzy
 msgid "Priority review needed"
-msgstr "Требуется рецензия"
+msgstr "Необходима приоритетная проверка"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "The app will be treated as a priority and placed the top of the review queue"
 msgstr ""
+"Приложение будет рассмотрено как приоритетное и перемещено в верх очереди "
+"проверок"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:111
 msgid "This will persist until first approval"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:126
-#, fuzzy
 msgid "Banner message"
-msgstr "Сообщение"
+msgstr "Сообщение баннера"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:128
 msgid "Exclusive message shown on the listing page, only in the selected regions."
 msgstr ""
+"Эксклюзивное сообщение, показываемое на странице, только в выбранных "
+"регионах."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:146
-#, fuzzy
 msgid "Regions to show banner in"
-msgstr "Регионы"
+msgstr "Регионы для показа баннера"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:148
 msgid "Regions that the banner message will be shown in."
-msgstr ""
+msgstr "Регионы, в которых показывается сообщение баннера."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:7
 msgid "Basic Information"
@@ -3675,7 +3676,7 @@ msgstr "Имя разработчика"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:38
 msgid "This field can only be edited by updating it in the manifest."
-msgstr ""
+msgstr "Это поле может быть изменено только обновлением его в манифесте."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:48 mkt/submit/templates/submit/details.html:72
 msgid "App URL"
@@ -3696,7 +3697,7 @@ msgstr "API URL"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:69
 msgid "The URL for accessing this app using the Marketplace API"
-msgstr ""
+msgstr "URL для доступа к этому приложению с использованием Marketplace API"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:73
 msgid "View API documentation"
@@ -3793,7 +3794,7 @@ msgstr "Сведения о стране и языке для {0}"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:18
 msgid "Edit country on the Compatibility Page"
-msgstr ""
+msgstr "Изменить страну на странице совместимости"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:24
 msgid "Language"
@@ -3805,7 +3806,7 @@ msgstr "по умолчанию"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:31
 msgid "Edit language in your app manifest file"
-msgstr ""
+msgstr "Изменить язык в манифесте вашего приложения"
 
 #: mkt/developers/templates/developers/apps/edit/media.html:3
 msgid "Media"
@@ -3849,14 +3850,18 @@ msgstr "Использует Flash"
 #: mkt/developers/templates/developers/apps/edit/technical.html:21
 msgid "If your app uses Flash, it will be hidden from the Marketplace on devices without Flash support."
 msgstr ""
+"Если ваше приложение использует Flash, оно будет скрыто из Marketplace на "
+"устройствах, не поддерживающих Flash."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Works Offline"
-msgstr ""
+msgstr "Работает оффлайн"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:38
 msgid "If your app works without an Internet connection then we will list that your app &quot;Works Offline&quot;."
 msgstr ""
+"Если ваше приложение работает без соединения с интернетом, мы добавим ваше "
+"приложение в список &quot;Работает оффлайн&quot;."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:52
 msgid "Public Stats?"
@@ -3876,15 +3881,15 @@ msgstr "Нет, статистика этого приложения не дос
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:64
 msgid "Homescreen?"
-msgstr ""
+msgstr "Домашний экран?"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:65
 msgid "Whether this app is a homescreen for Firefox OS."
-msgstr ""
+msgstr "Если это приложение для домашнего экрана на Firefox OS."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:87
 msgid "This app does not require any device features"
-msgstr ""
+msgstr "Приложение не требует никаких разрешений"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:95
 msgid "GUID"
@@ -3892,7 +3897,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:97
 msgid "Internal identifier for this app on the Firefox Marketplace."
-msgstr ""
+msgstr "Внутренний индентификатор этого приложения на Firefox Marketplace."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
@@ -3916,6 +3921,7 @@ msgstr "128x128px"
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:35
 msgid "Used on the search pages, browse pages, and homepage."
 msgstr ""
+"Используется на страницах поиска, просмотре страниц и домашней странице."
 
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:44
@@ -3941,7 +3947,7 @@ msgstr "Загрузить другую иконку..."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:75
 msgid "PNG and JPG supported. Icons must be at least 128px by 128px."
-msgstr ""
+msgstr "Поддерживаются PNG и JPG. Иконки должны бы как минимум 128px*128px."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:96
 msgid "Screenshots or Videos"
@@ -3958,6 +3964,8 @@ msgstr "Добавить скриншот или видео..."
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:143
 msgid "Screenshots and videos must be at least 320px by 480px. Media proportional to 320px by 480px is optimal. Video must be encoded as WebM."
 msgstr ""
+"Скриншоты и видео должны быть как минимум 320px*480px. Пропорции 320px*480px "
+"оптимальны. Видео должно быть кодировано в WebM."
 
 #: mkt/developers/templates/developers/apps/includes/validation_test_results.html:5 mkt/developers/templates/developers/apps/includes/validation_test_results.html:31
 msgid "General Tests"
@@ -3993,9 +4001,8 @@ msgid "Are you sure you wish to delete your app?"
 msgstr "Вы уверены, что хотите удалить ваше приложение?"
 
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:16
-#, fuzzy
 msgid "Please tell us why you are deleting your app"
-msgstr "Пожалуйста, расскажите нам, почему вы удаляете вашу тему:"
+msgstr "Пожалуйста, расскажите нам, почему вы удаляете ваше приложение"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:1 mkt/developers/templates/developers/apps/listing/item_actions_app.html:1
 msgid "Actions"
@@ -4047,18 +4054,16 @@ msgid "Resume the submission process for this app."
 msgstr "Возобновить процесс отправки для этого приложения."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:17
-#, fuzzy
 msgid "Get content ratings for the app."
-msgstr "Рейтинг контента"
+msgstr "Узнать рейтинг контента приложения."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:18
 msgid "Set Up Content Ratings"
 msgstr "Настроить рейтинги содержимого"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:25
-#, fuzzy
 msgid "Provide payment information for the app."
-msgstr "Предоставьте подробное описание вашего приложения"
+msgstr "Предоставьте описание оплаты вашего приложения."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:26 mkt/submit/templates/submit/done.html:47
 msgid "Set Up Payments"
@@ -4069,9 +4074,8 @@ msgid "Delete this app."
 msgstr "Удалить это приложение."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
-#, fuzzy
 msgid "Edit details for this app's listing page."
-msgstr "Редактировать информацию о странице этого приложения.  "
+msgstr "Редактировать информацию о странице этого приложения."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:53
 msgid "Add a new version of the packaged app."
@@ -4138,18 +4142,16 @@ msgid "Set up Payment Account"
 msgstr "Настроить счёт для платежей"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:55
-#, fuzzy
 msgid "Change Devices"
-msgstr "Устройства разработчика"
+msgstr "Изменить устройства"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:60
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
-msgstr ""
+msgstr "<a href=\"%(rating_url)s\">Установить рейтинг контента</a>"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
-#, fuzzy
 msgid "Get My App Rated"
-msgstr "Приложение пока не оценено"
+msgstr "Получить оценку моего приложения"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:26
 msgid ""
@@ -4168,15 +4170,16 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
 msgstr ""
+"Извините, произошла ошибка обработки рейтинга контента на нашей стороне. Вы "
+"можете продолжать пытаться или повторить попытку позже."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:66
 msgid "Create an IARC Ratings Certificate"
-msgstr ""
+msgstr "Создать сертификат рейтингов IARC"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:73
-#, fuzzy
 msgid "Already Have Your App Rated?"
-msgstr "Пока не оценено App"
+msgstr "Уже оценили ваше приложение?"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
@@ -4259,13 +4262,16 @@ msgstr "<b>Позиция в очереди:</b> %(pos)s из %(total)s"
 #: mkt/developers/templates/developers/includes/macros.html:103
 msgid "<b>Estimated waiting time:</b> %(num)s working day"
 msgid_plural "<b>Estimated waiting time:</b> %(num)s working days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<b>Приблизительное время ожидания:</b> %(num)s рабочий день"
+msgstr[1] "<b>Приблизительное время ожидания:</b> %(num)s рабочих дня"
+msgstr[2] "<b>Приблизительное время ожидания:</b> %(num)s рабочих дней"
 
 #: mkt/developers/templates/developers/includes/macros.html:109
 msgid "Most apps are reviewed in about a week. If your review has taken longer than this, you can <a href=\"%(support_url)s\">contact us</a> to check the status."
 msgstr ""
+"Большинство приложений проверяется в течение недели. Если ваша проверка "
+"заняла больше времени, вы можете <a href=\"%(support_url)s\">связаться с "
+"нами</a>, чтобы проверить состояние."
 
 #: mkt/developers/templates/developers/includes/macros.html:119
 msgid "Check the boxes of the features that your app requires to function properly. Your app will be hidden from users whose devices don't support it."
@@ -4288,13 +4294,15 @@ msgid "Test In-App Payments"
 msgstr "Тестировать платежи в приложении"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:4
-#, fuzzy
 msgid "In-App Payments Keys"
-msgstr "Платежи в приложении"
+msgstr "Ключи оплаты в приложении"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
 msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
 msgstr ""
+"Firefox Marketplace позволяет принимать платежи в приложении. <a "
+"href=\"{guide}\">Руководство платежей внутри приложения</a> объясняет, как "
+"настроить ваше приложение для платежей с параметрами ниже."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:31 mkt/developers/templates/developers/payments/in-app-keys.html:29
 msgid "Application Key"
@@ -4318,86 +4326,94 @@ msgid "Reset secret"
 msgstr "Сбросить секрет"
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:17
-#, fuzzy
 msgid "Learn more about <b>in-app payments</b> on MDN."
-msgstr "Узнайте больше об <b>упакованных приложениях</b> на MDN."
+msgstr "Узнайте больше о <b>платежах в приложениях</b> на MDN."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:20
 msgid ""
 "The following key/secret will only allow you to simulate in-app payments while you develop your app. To generate a key for real in-app payments you must <a href=\"%(submit)s\">submit</a> your app, "
 "set up your payment credentials, and generate a new key specifically for that app."
 msgstr ""
+"Следующий ключ/секрет позволит вам симулировать платежи в приложении, пока "
+"вы его разрабатываете. Для создания ключа для реальных платежей в "
+"приложении, вы должны <a href=\"%(submit)s\">отправить</a> ваше приложение, "
+"установить ваше платежные реквизиты и создать новый ключ специально для "
+"этого приложения."
 
 #: mkt/developers/templates/developers/payments/in-app-keys.html:51
 msgid "Generate Keys"
 msgstr "Сгенерировать ключи"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:22 mkt/developers/templates/developers/payments/in-app-products.html:4
-#, fuzzy
 msgid "In-App Products"
-msgstr "Продукты"
+msgstr "Продукты приложения"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:22
 msgid "Recommended"
-msgstr ""
+msgstr "Рекомендованные"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:29
 msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
 msgstr ""
+"Продукты приложения позволяют вам принимать платежи в вашем приложении и "
+"упрощают процесс, разрешая вам создавать и управлять вашими продуктами на "
+"Firefox Marketplace Developer Hub."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:34
-#, fuzzy
 msgid "Configure In-App Products"
-msgstr "Продукты"
+msgstr "Настроить продукты приложения"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:40
-#, fuzzy
 msgid "In-App Keys"
-msgstr "Сгенерировать ключи"
+msgstr "Ключи приложения"
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:47
 msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
 msgstr ""
+"Платежные ключи в приложении позволяют вам принимать платежи в вашем "
+"приложении с любой суммой. Вы несете ответственность за определение и "
+"управление продуктами."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:53
 msgid "Note: If you're wanting to provide in-app products to Firefox for Desktop users then please use in-app products."
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:60
-#, fuzzy
 msgid "Configure In-App Keys"
-msgstr "Сгенерировать ключи"
+msgstr "Настроить ключи приложения"
 
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:27
-#, fuzzy
 msgid "Enable"
-msgstr "Включить дополнение"
+msgstr "Включить"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:30
 msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
 msgstr ""
+"Эта функция находится в активной разработке. Пожалуйста, загляните в <a "
+"target=\"_blank\" href=\"%(doc_link)s\">документацию</a> для дополнительной "
+"информации."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:35
 msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
 msgstr ""
+"Если вы нашли проблему, пожалуйста, <a target=\"_blank\" href=\"%"
+"(bug_link)s\">сообщите об ошибке</a>."
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:48
 msgid "Icon"
 msgstr "Значок"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:50
-#, fuzzy
 msgid "Price Point"
-msgstr "Стандартная цена неизвестна или недействительна."
+msgstr "Максимальная цена"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:51
 msgid "Product ID"
 msgstr "ID продукта"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:63
-#, fuzzy
 msgid "Add a product"
-msgstr "Продукт:"
+msgstr "Добавить продукт"
 
 #: mkt/developers/templates/developers/payments/premium.html:57
 msgid "App Compatibility"
@@ -4409,7 +4425,7 @@ msgstr "Изменить на бесплатное"
 
 #: mkt/developers/templates/developers/payments/premium.html:87
 msgid "Paid mode requires that your app only supports:"
-msgstr ""
+msgstr "Платежный режим требует, чтобы ваше приложение поддерживало только:"
 
 #: mkt/developers/templates/developers/payments/premium.html:88 mkt/developers/templates/developers/payments/premium.html:90 mkt/submit/templates/submit/manifest.html:38
 msgid "Paid / In-app"
@@ -4436,13 +4452,12 @@ msgid "Your app is currently incomplete. Select a payment account and price poin
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:144
-#, fuzzy
 msgid "Countries"
-msgstr "Цены и страны"
+msgstr "Страны"
 
 #: mkt/developers/templates/developers/payments/premium.html:159
 msgid "Add, manage or view transactions for your payment accounts"
-msgstr ""
+msgstr "Добавление, управление и просмотр транзакций ваших платёжных аккаунтов"
 
 #: mkt/developers/templates/developers/payments/premium.html:169
 msgid "Prices and Countries"
@@ -4456,6 +4471,7 @@ msgstr "Цена"
 #: mkt/developers/templates/developers/payments/premium.html:185
 msgid "Does your app use Mozilla's in-app payments platform?"
 msgstr ""
+"Использует ли ваше приложение платформу платежей внутри приложения Mozilla?"
 
 #: mkt/developers/templates/developers/payments/premium.html:195
 msgid "A server error occurred. Please try again later."
@@ -4476,15 +4492,16 @@ msgstr "Доступные регионы"
 #: mkt/developers/templates/developers/payments/premium.html:218
 msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
 msgstr ""
+"Проверьте <a href=\"%(status_url)s\" target=\"_blank\">страницу статуса</a>, "
+"чтобы увидеть в каких странах сейчас включены продажи."
 
 #: mkt/developers/templates/developers/payments/premium.html:225
 msgid "Your app will be available in the following selected regions:"
-msgstr ""
+msgstr "Ваше приложение будет доступно в следующих выбранных регионах:"
 
 #: mkt/developers/templates/developers/payments/premium.html:231
-#, fuzzy
 msgid "Retail price"
-msgstr "Цена"
+msgstr "Розничная цена"
 
 #: mkt/developers/templates/developers/payments/premium.html:232
 msgid "local currency"
@@ -4497,6 +4514,8 @@ msgstr "Метод биллинга"
 #: mkt/developers/templates/developers/payments/premium.html:244
 msgid "Add a payment account to enable your app for sale in more regions"
 msgstr ""
+"Добавить платёжный аккаунт, чтобы включить продажи вашего приложения в "
+"большем числе регионов"
 
 #: mkt/developers/templates/developers/payments/premium.html:248
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
@@ -4552,23 +4571,20 @@ msgid "View transactions"
 msgstr "Просмотр транзакций"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
-#, fuzzy
 msgid "Add a {provider} account"
-msgstr "Провайдер"
+msgstr "Добавить аккаунт {provider}"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Accept Terms of Service"
 msgstr "Принять условия службы"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:60
-#, fuzzy
 msgid "Confirm deletion of payment account"
-msgstr "Подтверждение удаления учётной записи"
+msgstr "Подтвердите удаление платёжного аккаунта"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:66
-#, fuzzy
 msgid "Delete Payment Account"
-msgstr "Счёт для платежа"
+msgstr "Удалить платёжный аккаунт"
 
 #: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
 msgid "The current payment account was associated with the app by an app owner."
@@ -4687,9 +4703,8 @@ msgid "Design"
 msgstr "Дизайн"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:20 mkt/ecosystem/templates/ecosystem/landing.html:23 mkt/ecosystem/templates/ecosystem/macros.html:10
-#, fuzzy
 msgid "Concept: A Great App"
-msgstr "Прил."
+msgstr "Концепция: Крутое приложение"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:24 mkt/ecosystem/templates/ecosystem/landing.html:25 mkt/ecosystem/templates/ecosystem/macros.html:14
 msgid "Design Fundamentals"
@@ -4733,9 +4748,8 @@ msgid "Packaged Apps"
 msgstr "Упакованные приложения"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:197
-#, fuzzy
 msgid "Badges, Banners, and Icons"
-msgstr "Значки"
+msgstr "Значки, баннеры и иконки"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
@@ -4758,9 +4772,8 @@ msgid "Do you have an app ready for liftoff?"
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:76
-#, fuzzy
 msgid "Submit your app to the Marketplace"
-msgstr "Шаг 2. Ссылка на ваше приложение"
+msgstr "Загрузите ваше приложение на Marketplace"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:115
 msgid "Join the community"
@@ -4775,9 +4788,8 @@ msgid "Are you a Web Company, Third-Party Service, or OEM looking to partner wit
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
-#, fuzzy
 msgid "The Mozilla apps platform"
-msgstr "Веб-приложения Mozilla (Английский)"
+msgstr "Платформа приложений Mozilla"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:134
 msgid ""
@@ -4893,9 +4905,8 @@ msgid "For Current Mobile Developers"
 msgstr "Для существующих мобильных разработчиков"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:121
-#, fuzzy
 msgid "Using Apps Offline"
-msgstr "Работает без Интернета"
+msgstr "Использование приложений оффлайн"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:125
 msgid "Developing Game Apps"
@@ -4915,9 +4926,8 @@ msgid "App Validator"
 msgstr "Валидатор приложения"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:147
-#, fuzzy
 msgid "App Manager"
-msgstr "Прил."
+msgstr "Менеджер приложения"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:155
 msgid "Firefox Developer Tools"
@@ -4928,9 +4938,8 @@ msgid "Marketplace Submission"
 msgstr "Отправка в Магазин"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:170
-#, fuzzy
 msgid "Marketplace Review Criteria"
-msgstr "Marketplace"
+msgstr "Критерии проверки Marketplace"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:189
 msgid "Payments Status"
@@ -4973,9 +4982,8 @@ msgid "<strong>A Massive Audience</strong> &ndash; over 450 million users call F
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:68
-#, fuzzy
 msgid "Join the biggest and the best"
-msgstr "Присоединиться к сообществу"
+msgstr "Присоединиться к крупнейшему и лучшему"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:70
 msgid "The world's most popular brands and all your favorite apps are building their experience on Firefox Marketplace."
