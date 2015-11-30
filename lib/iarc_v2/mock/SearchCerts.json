@@ -1,0 +1,181 @@
+{
+  "MatchFound": true,
+  "CertID": "adb3261b-c657-4fd2-a057-bc9f85310b80",
+  "ProductName": "Product Name",
+  "RatingList": [
+    {
+      "RatingID": "c852e8ef-f5e1-439b-8d93-4006892a8a11",
+      "RatingAuthorityID": 7,
+      "RatingAuthorityShortText": "ACB",
+      "RatingLogicVersion": "6.3",
+      "AgeRatingID": 56,
+      "AgeRatingText": "Not Applicable",
+      "AgeRatingShortText": "N/A",
+      "NumericLevel": 7,
+      "DateCreated": "2015-09-03T18:00:36.747Z",
+      "DescriptorList": [],
+      "InteractiveElementList": [
+        {
+          "InteractiveElementID": 11,
+          "InteractiveElementText": "IE_UsersInteract"
+        },
+        {
+          "InteractiveElementID": 13,
+          "InteractiveElementText": "IE_SharesLocation"
+        },
+        {
+          "InteractiveElementID": 16,
+          "InteractiveElementText": "IE_DigitalPurchases"
+        }
+      ]
+    },
+    {
+      "RatingID": "fc39530c-7fe7-4cf5-9773-26e11d41df85",
+      "RatingAuthorityID": 4,
+      "RatingAuthorityShortText": "ClassInd",
+      "RatingLogicVersion": "6.3",
+      "AgeRatingID": 13,
+      "AgeRatingText": "12+",
+      "AgeRatingShortText": "12",
+      "NumericLevel": 3,
+      "DateCreated": "2015-09-03T18:00:36.747Z",
+      "DescriptorList": [
+        {
+          "DescriptorID": 69,
+          "DisplayOrder": 10,
+          "DescriptorText": "ClassInd_LinguagemImpropria"
+        }
+      ],
+      "InteractiveElementList": [
+        {
+          "InteractiveElementID": 11,
+          "InteractiveElementText": "IE_UsersInteract"
+        },
+        {
+          "InteractiveElementID": 13,
+          "InteractiveElementText": "IE_SharesLocation"
+        },
+        {
+          "InteractiveElementID": 16,
+          "InteractiveElementText": "IE_DigitalPurchases"
+        }
+      ]
+    },
+    {
+      "RatingID": "e8e94453-7d1a-447f-9046-ed394dcfba13",
+      "RatingAuthorityID": 1,
+      "RatingAuthorityShortText": "ESRB",
+      "RatingLogicVersion": "6.3",
+      "AgeRatingID": 3,
+      "AgeRatingText": "Teen",
+      "AgeRatingShortText": "T",
+      "NumericLevel": 3,
+      "DateCreated": "2015-09-03T18:00:36.747Z",
+      "DescriptorList": [],
+      "InteractiveElementList": [
+        {
+          "InteractiveElementID": 11,
+          "InteractiveElementText": "IE_UsersInteract"
+        },
+        {
+          "InteractiveElementID": 13,
+          "InteractiveElementText": "IE_SharesLocation"
+        },
+        {
+          "InteractiveElementID": 16,
+          "InteractiveElementText": "IE_DigitalPurchases"
+        }
+      ]
+    },
+    {
+      "RatingID": "f0f0fdd8-6684-40ec-92b2-277dc710a0b7",
+      "RatingAuthorityID": 3,
+      "RatingAuthorityShortText": "PEGI",
+      "RatingLogicVersion": "6.3",
+      "AgeRatingID": 55,
+      "AgeRatingText": "!",
+      "AgeRatingShortText": "EXC",
+      "NumericLevel": 3,
+      "DateCreated": "2015-09-03T18:00:36.747Z",
+      "DescriptorList": [
+        {
+          "DescriptorID": 230,
+          "DisplayOrder": 1,
+          "DescriptorText": "PEGI_ParentalGuidanceRecommended"
+        }
+      ],
+      "InteractiveElementList": [
+        {
+          "InteractiveElementID": 11,
+          "InteractiveElementText": "IE_UsersInteract"
+        },
+        {
+          "InteractiveElementID": 13,
+          "InteractiveElementText": "IE_SharesLocation"
+        },
+        {
+          "InteractiveElementID": 16,
+          "InteractiveElementText": "IE_DigitalPurchases"
+        }
+      ]
+    },
+    {
+      "RatingID": "4585b836-32ab-402d-bd0b-f5d1f8b186f3",
+      "RatingAuthorityID": 5,
+      "RatingAuthorityShortText": "USK",
+      "RatingLogicVersion": "6.3",
+      "AgeRatingID": 24,
+      "AgeRatingText": "12+",
+      "AgeRatingShortText": "12",
+      "NumericLevel": 3,
+      "DateCreated": "2015-09-03T18:00:36.747Z",
+      "DescriptorList": [],
+      "InteractiveElementList": [
+        {
+          "InteractiveElementID": 11,
+          "InteractiveElementText": "IE_UsersInteract"
+        },
+        {
+          "InteractiveElementID": 13,
+          "InteractiveElementText": "IE_SharesLocation"
+        },
+        {
+          "InteractiveElementID": 16,
+          "InteractiveElementText": "IE_DigitalPurchases"
+        }
+      ]
+    },
+    {
+      "RatingID": "e7611f40-9330-4719-aa10-902ecbaf1aa4",
+      "RatingAuthorityID": 6,
+      "RatingAuthorityShortText": "Generic",
+      "RatingLogicVersion": "6.3",
+      "AgeRatingID": 8,
+      "AgeRatingText": "12",
+      "AgeRatingShortText": "12",
+      "NumericLevel": 3,
+      "DateCreated": "2015-09-03T18:00:36.747Z",
+      "DescriptorList": [
+        {
+          "DescriptorID": 230,
+          "DisplayOrder": 1,
+          "DescriptorText": "PEGI_ParentalGuidanceRecommended"
+        }
+      ],
+      "InteractiveElementList": [
+        {
+          "InteractiveElementID": 11,
+          "InteractiveElementText": "IE_UsersInteract"
+        },
+        {
+          "InteractiveElementID": 13,
+          "InteractiveElementText": "IE_SharesLocation"
+        },
+        {
+          "InteractiveElementID": 16,
+          "InteractiveElementText": "IE_DigitalPurchases"
+        }
+      ]
+    }
+  ]
+}
