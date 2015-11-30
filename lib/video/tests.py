@@ -173,7 +173,6 @@ class TestTask(mkt.site.tests.TestCase):
 
     def setUp(self):
         super(TestTask, self).setUp()
-        waffle.models.Switch.objects.create(name='video-encode', active=True)
         self.app = Webapp.objects.get(pk=337141)
         self.preview = Preview.objects.create(
             addon=self.app, thumbnail_path=tempfile.mkstemp()[1],
