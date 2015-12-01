@@ -19,6 +19,7 @@ from django.dispatch import receiver
 from django.utils.translation import trans_real as translation
 
 import commonware.log
+import waffle
 from cache_nuggets.lib import memoize, memoize_key
 from django_extensions.db.fields.json import JSONField
 from jingo.helpers import urlparams
@@ -32,8 +33,12 @@ from lib.iarc.client import get_iarc_client
 from lib.iarc.utils import get_iarc_app_title, render_xml
 from lib.utils import static_url
 from mkt.access import acl
-from mkt.constants import APP_FEATURES, apps, iarc_mappings
+from mkt.constants import APP_FEATURES, apps
 from mkt.constants.applications import DEVICE_TYPES
+from mkt.constants.iarc_mappings import (HUMAN_READABLE_DESCS_AND_INTERACTIVES,
+                                         REVERSE_DESCS, REVERSE_DESCS_V2,
+                                         REVERSE_INTERACTIVES,
+                                         REVERSE_INTERACTIVES_V2)
 from mkt.constants.payments import PROVIDER_CHOICES
 from mkt.constants.regions import RESTOFWORLD
 from mkt.files.models import File, nfd_str
@@ -2061,7 +2066,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         data -- list of database flags ('has_usk_lang')
         """
         create_kwargs = {}
-        for db_flag in mkt.constants.iarc_mappings.REVERSE_DESCS.keys():
+        for db_flag in set(REVERSE_DESCS.keys() + REVERSE_DESCS_V2.keys()):
             create_kwargs[db_flag] = db_flag in data
 
         instance, created = RatingDescriptors.objects.get_or_create(
@@ -2078,13 +2083,14 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         data -- list of database flags ('has_users_interact')
         """
         create_kwargs = {}
-        for db_flag in mkt.constants.iarc_mappings.REVERSE_INTERACTIVES.keys():
+        for db_flag in set(REVERSE_INTERACTIVES.keys() +
+                           REVERSE_INTERACTIVES_V2.keys()):
             create_kwargs[db_flag] = db_flag in data
 
-        ri, created = RatingInteractives.objects.get_or_create(
+        instance, created = RatingInteractives.objects.get_or_create(
             addon=self, defaults=create_kwargs)
         if not created:
-            ri.update(**create_kwargs)
+            instance.update(**create_kwargs)
 
     def set_iarc_storefront_data(self, disable=False):
         """Send app data to IARC for them to verify."""
@@ -2512,15 +2518,20 @@ class RatingDescriptors(ModelBase, DynamicBoolFieldsMixin):
     def iarc_deserialize(self, body=None):
         """Map our descriptor strings back to the IARC ones (comma-sep.)."""
         keys = self.to_keys()
-        # FIXME: convert IARC v2 constants to text.
+        if waffle.switch_is_active('iarc-upgrade-v2'):
+            reverse_descriptors = REVERSE_DESCS_V2
+        else:
+            reverse_descriptors = REVERSE_DESCS
         if body:
             keys = [key for key in keys if body.iarc_name.lower() in key]
-        return ', '.join(iarc_mappings.REVERSE_DESCS.get(desc) for desc
+        return ', '.join(reverse_descriptors.get(desc) for desc
                          in keys)
 
 # Add a dynamic field to `RatingDescriptors` model for each rating descriptor.
-for db_flag, desc in mkt.iarc_mappings.REVERSE_DESCS.items():
-    field = models.BooleanField(default=False, help_text=desc)
+for db_flag in set(REVERSE_DESCS.keys() + REVERSE_DESCS_V2.keys()):
+    field = models.BooleanField(
+        default=False,
+        help_text=HUMAN_READABLE_DESCS_AND_INTERACTIVES[db_flag])
     field.contribute_to_class(RatingDescriptors, db_flag)
 
 
@@ -2540,15 +2551,21 @@ class RatingInteractives(ModelBase, DynamicBoolFieldsMixin):
         return u'%s: %s' % (self.id, self.addon.name)
 
     def iarc_deserialize(self):
-        # FIXME: convert IARC v2 constants to text.
         """Map our descriptor strings back to the IARC ones (comma-sep.)."""
-        return ', '.join(iarc_mappings.REVERSE_INTERACTIVES.get(inter)
+        if waffle.switch_is_active('iarc-upgrade-v2'):
+            reverse_interactives = REVERSE_INTERACTIVES_V2
+        else:
+            reverse_interactives = REVERSE_INTERACTIVES
+        return ', '.join(reverse_interactives.get(inter)
                          for inter in self.to_keys())
 
 
 # Add a dynamic field to `RatingInteractives` model for each rating descriptor.
-for interactive, db_flag in mkt.iarc_mappings.INTERACTIVES.items():
-    field = models.BooleanField(default=False, help_text=interactive)
+for db_flag in set(REVERSE_INTERACTIVES.keys() +
+                   REVERSE_INTERACTIVES_V2.keys()):
+    field = models.BooleanField(
+        default=False,
+        help_text=HUMAN_READABLE_DESCS_AND_INTERACTIVES[db_flag])
     field.contribute_to_class(RatingInteractives, db_flag)
 
 

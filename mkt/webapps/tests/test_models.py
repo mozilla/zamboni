@@ -29,8 +29,8 @@ import mkt
 from lib.utils import static_url
 from mkt.constants import apps, MANIFEST_CONTENT_TYPE
 from mkt.constants.applications import DEVICE_TYPES
-from mkt.constants.iarc_mappings import (DESCS, INTERACTIVES, REVERSE_DESCS,
-                                         REVERSE_INTERACTIVES)
+from mkt.constants.iarc_mappings import (DESCS, INTERACTIVES,
+                                         REVERSE_DESCS, REVERSE_INTERACTIVES)
 from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
 from mkt.constants.regions import RESTOFWORLD
 from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
@@ -2281,15 +2281,30 @@ class TestRatingDescriptors(mkt.site.tests.TestCase):
 
     def test_reverse_desc_mapping(self):
         descs = RatingDescriptors.objects.create(addon=app_factory())
-        for desc in descs._fields():
-            eq_(type(REVERSE_DESCS.get(desc)), unicode, desc)
+        for field in descs._fields():
+            ok_(isinstance(REVERSE_DESCS.get(field), basestring))
 
     def test_iarc_deserialize(self):
         descs = RatingDescriptors.objects.create(
-            addon=app_factory(), has_esrb_blood=True, has_pegi_scary=True)
+            addon=app_factory(), has_esrb_blood=True, has_pegi_scary=True,
+            has_classind_drugs_legal=True)
         self.assertSetEqual(descs.iarc_deserialize().split(', '),
-                            ['Blood', 'Fear'])
-        eq_(descs.iarc_deserialize(body=mkt.ratingsbodies.ESRB), 'Blood')
+                            [u'Blood', u'Drogas L\xedcitas', u'Fear'])
+        eq_(descs.iarc_deserialize(body=mkt.ratingsbodies.ESRB), u'Blood')
+        eq_(descs.iarc_deserialize(
+            body=mkt.ratingsbodies.CLASSIND), u'Drogas L\xedcitas')
+
+    def test_iarc_deserialize_v2(self):
+        self.create_switch('iarc-upgrade-v2')
+        descs = RatingDescriptors.objects.create(
+            addon=app_factory(), has_esrb_blood=True, has_pegi_scary=True,
+            has_classind_drugs_legal=True)
+        self.assertSetEqual(descs.iarc_deserialize().split(', '),
+                            [u'ClassInd_DrogasLicitas', u'PEGI_Fear',
+                             u'ESRB_Blood'])
+        eq_(descs.iarc_deserialize(body=mkt.ratingsbodies.ESRB), u'ESRB_Blood')
+        eq_(descs.iarc_deserialize(
+            body=mkt.ratingsbodies.CLASSIND), u'ClassInd_DrogasLicitas')
 
 
 class TestRatingInteractives(mkt.site.tests.TestCase):
@@ -2304,8 +2319,8 @@ class TestRatingInteractives(mkt.site.tests.TestCase):
 
     def test_reverse_interactives_mapping(self):
         interactives = RatingInteractives.objects.create(addon=app_factory())
-        for interactive_field in interactives._fields():
-            assert REVERSE_INTERACTIVES.get(interactive_field)
+        for field in interactives._fields():
+            ok_(isinstance(REVERSE_INTERACTIVES.get(field), basestring), field)
 
     def test_iarc_deserialize(self):
         interactives = RatingInteractives.objects.create(
@@ -2313,6 +2328,14 @@ class TestRatingInteractives(mkt.site.tests.TestCase):
         self.assertSetEqual(
             interactives.iarc_deserialize().split(', '),
             ['Shares Info', 'Users Interact'])
+
+    def test_iarc_deserialize_v2(self):
+        self.create_switch('iarc-upgrade-v2')
+        interactives = RatingInteractives.objects.create(
+            addon=app_factory(), has_users_interact=True, has_shares_info=True)
+        self.assertSetEqual(
+            interactives.iarc_deserialize().split(', '),
+            ['IE_SharesInfo', 'IE_UsersInteract'])
 
 
 class TestManifestUpload(BaseUploadTest, mkt.site.tests.TestCase):
