@@ -64,8 +64,10 @@ RATINGS = {
 # WARNING: When adding a new rating descriptor here also include a migration.
 #          All descriptor keys must be prefixed by the rating body (e.g. USK_).
 #
-# These are used to dynamically generate the field list for the
-# RatingDescriptors Django model in mkt.webapps.models.
+# Together with DESCS_V2 below these are used to dynamically generate the field
+# list for the RatingDescriptors Django model in mkt.webapps.models.
+# (The model has both v1 and v2 keys, and it's fine, the extra keys are
+#  simply irrelevant depending on the version).
 DESCS = {
     ratingsbodies.CLASSIND.id: {
         u'Atos Crim\xEDnosos': 'has_classind_criminal_acts',
@@ -189,14 +191,152 @@ DESCS = {
     },
 }
 
-# Change {body: {'key': 'val'}} to {'val': 'key'}.
-REVERSE_DESCS_BY_BODY = [
-    dict([(unicode(v), unicode(k)) for k, v in body_mapping.iteritems()])
-    for body, body_mapping in DESCS.iteritems()]
-REVERSE_DESCS = {}
-for mapping in REVERSE_DESCS_BY_BODY:
-    REVERSE_DESCS.update(mapping)
+# WARNING: When adding a new rating descriptor here also include a migration.
+#          All descriptor keys must be prefixed by the rating body (e.g. USK_).
+#
+# Together with DESCS above these are used to dynamically generate the field
+# list for the RatingDescriptors Django model in mkt.webapps.models.
+# (The model has both v1 and v2 keys, and it's fine, the extra keys are
+#  simply irrelevant depending on the version).
+DESCS_V2 = {
+    ratingsbodies.CLASSIND.id: {
+        'ClassInd_AtosCriminosos': 'has_classind_criminal_acts',
+        'ClassInd_ConteudoImpactante': 'has_classind_shocking',
+        'ClassInd_ConteudoSexual': 'has_classind_sex_content',
+        'ClassInd_Drogas': 'has_classind_drugs',
+        'ClassInd_DrogasIlicitas': 'has_classind_drugs_illegal',
+        'ClassInd_DrogasLicitas': 'has_classind_drugs_legal',
+        'ClassInd_LinguagemImpropria': 'has_classind_lang',
+        'ClassInd_Naohainadequacoes': '',  # No descriptors.
+        'ClassInd_Nudez': 'has_classind_nudity',
+        'ClassInd_Sexo': 'has_classind_sex',
+        'ClassInd_SexoExplicito': 'has_classind_sex_explicit',
+        'ClassInd_Violencia': 'has_classind_violence',
+        'ClassInd_ViolenciaExtrema': 'has_classind_violence_extreme',
+    },
 
+    ratingsbodies.ESRB.id: {
+        'ESRB_AlcoholandTobaccoReference': 'has_esrb_alcohol_tobacco_ref',
+        'ESRB_AlcoholReference': 'has_esrb_alcohol_tobacco_ref',
+        'ESRB_AnimatedBlood': 'has_esrb_animated_blood',
+        'ESRB_Blood': 'has_esrb_blood',
+        'ESRB_BloodandGore': 'has_esrb_blood_gore',
+        'ESRB_CartoonViolence': 'has_esrb_cartoon_violence',
+        'ESRB_ComicMischief': 'has_esrb_comic_mischief',
+        'ESRB_CrudeHumor': 'has_esrb_crude_humor',
+        'ESRB_DiverseContentDiscretionAdvised': '',
+        'ESRB_DrugAlcoholandTobaccoReference':
+            'has_esrb_drug_alcohol_tobacco_ref',
+        'ESRB_DrugandAlcoholReference': 'has_esrb_drug_alcohol_ref',
+        'ESRB_DrugandTobaccoReference': 'has_esrb_drug_tobacco_ref',
+        'ESRB_DrugReference': 'has_esrb_drug_ref',
+        'ESRB_FantasyViolence': 'has_esrb_fantasy_violence',
+        'ESRB_IntenseViolence': 'has_esrb_intense_violence',
+        'ESRB_Language': 'has_esrb_lang',
+        'ESRB_Lyrics': 'has_esrb_lyrics',
+        'ESRB_MatureHumor': 'has_esrb_mature_humor',
+        'ESRB_MildBlood': 'has_esrb_mild_blood',
+        'ESRB_MildCartoonViolence': 'has_esrb_mild_cartoon_violence',
+        'ESRB_MildFantasyViolence': 'has_esrb_mild_fantasy_violence',
+        'ESRB_MildLanguage': 'has_esrb_mild_lang',
+        'ESRB_MildLyrics': 'has_esrb_mild_lyrics',
+        'ESRB_MildSexualContent': 'has_esrb_mild_sexual_content',
+        'ESRB_MildSexualThemes': 'has_esrb_mild_sexual_themes',
+        'ESRB_MildSuggestiveThemes': 'has_esrb_mild_suggestive_themes',
+        'ESRB_MildViolence': 'has_esrb_mild_violence',
+        'ESRB_NoDescriptors': '',  # No Descriptors.
+        'ESRB_Nudity': 'has_esrb_nudity',
+        'ESRB_PartialNudity': 'has_esrb_partial_nudity',
+        'ESRB_RealGambling': 'has_esrb_real_gambling',
+        'ESRB_SexualContent': 'has_esrb_sex_content',
+        'ESRB_SexualThemes': 'has_esrb_sex_themes',
+        'ESRB_SexualViolence': 'has_esrb_sex_violence',
+        'ESRB_SimulatedGambling': 'has_esrb_sim_gambling',
+        'ESRB_StrongLanguage': 'has_esrb_strong_lang',
+        'ESRB_StrongLyrics': 'has_esrb_strong_lyrics',
+        'ESRB_StrongSexualContent': 'has_esrb_strong_sex_content',
+        'ESRB_SuggestiveThemes': 'has_esrb_suggestive',
+        'ESRB_TobaccoReference': 'has_esrb_tobacco_ref',
+        'ESRB_UseofAlcohol': 'has_esrb_alcohol_use',
+        'ESRB_UseofAlcoholandTobacco': 'has_esrb_alcohol_tobacco_use',
+        'ESRB_UseofDrugs': 'has_esrb_drug_use',
+        'ESRB_UseofDrugsAlcoholandTobacco':
+            'has_esrb_drug_alcohol_tobacco_use',
+        'ESRB_UseofDrugsandAlcohol': 'has_esrb_drug_alcohol_use',
+        'ESRB_UseofDrugsandTobacco': 'has_esrb_drug_tobacco_use',
+        'ESRB_UseofTobacco': 'has_esrb_tobacco_use',
+        'ESRB_Violence': 'has_esrb_violence',
+        'ESRB_ViolentReferences': 'has_esrb_violence_ref',
+    },
+
+    ratingsbodies.GENERIC.id: {
+        # Yes, "Generic" seems to be using PEGI descriptors for some reason.
+        'PEGI_Discrimination': 'has_generic_discrimination',
+        'PEGI_Drugs': 'has_generic_drugs',
+        'PEGI_Fear': 'has_generic_scary',
+        'PEGI_Gambling': 'has_generic_gambling',
+        'PEGI_Language': 'has_generic_lang',
+        'PEGI_Online': 'has_generic_online',
+        'PEGI_Sex': 'has_generic_sex_content',
+        'PEGI_Violence': 'has_generic_violence',
+    },
+
+    ratingsbodies.PEGI.id: {
+        'PEGI_CriminalTechniqueInstructions': '',
+        'PEGI_Discrimination': 'has_pegi_discrimination',
+        'PEGI_Drugs': 'has_pegi_drugs',
+        'PEGI_ExtremeViolence': '',
+        'PEGI_Fear': 'has_pegi_scary',
+        'PEGI_Gambling': 'has_pegi_gambling',
+        'PEGI_Horror': 'has_pegi_horror',
+        'PEGI_ImpliedViolence': '',
+        'PEGI_Language': 'has_pegi_lang',
+        'PEGI_MildSwearing': '',
+        'PEGI_MildViolence': '',
+        'PEGI_ModerateViolence': '',
+        'PEGI_NoDescriptors': '',  # No descriptors.
+        'PEGI_Online': 'has_pegi_online',
+        'PEGI_ParentalGuidanceRecommended': '',
+        'PEGI_Sex': 'has_pegi_sex_content',
+        'PEGI_SexualInnuendo': '',
+        'PEGI_SexualViolence': '',
+        'PEGI_StrongLanguage': '',
+        'PEGI_StrongViolence': '',
+        'PEGI_UseofAlcoholTobacco': '',
+        'PEGI_Violence': 'has_pegi_violence',
+    },
+
+    ratingsbodies.USK.id: {
+        'USK_AbstrakteGewalt': 'has_usk_abstract_violence',
+        'USK_Alkoholkonsum': 'has_usk_alcohol',
+        'USK_AndeutungenSexuellerGewalt': 'has_usk_sex_violence_ref',
+        'USK_AngstigendeInhalte': 'has_usk_scary',
+        'USK_Diskriminierung': 'has_usk_discrimination',
+        'USK_Drogenkonsum': 'has_usk_drug_use',
+        'USK_ExpliziteGewalt': 'has_usk_explicit_violence',
+        'USK_ExpliziteSprache': 'has_usk_lang',
+        'USK_GelegentlichesFluchen': 'has_usk_some_swearing',
+        'USK_Gewalt': 'has_usk_violence',
+        'USK_GruselHorror': 'has_usk_horror',
+        'USK_NacktheitErotik': 'has_usk_nudity',
+        'USK_NoDescriptors': '',    # No Descriptors.
+        'USK_SelteneSchreckmomente': 'has_usk_some_scares',
+        'USK_SexErotik': 'has_usk_sex_content',  # 'Erotik/Sexuelle Inhalte'.
+        'USK_SexuelleAndeutungen': 'has_usk_sex_ref',
+        'USK_SexuelleGewalt': 'has_usk_sex_violence',
+        'USK_ShopStreamingService': '',
+        'USK_Tabakkonsum': 'has_usk_tobacco',
+    }
+
+}
+
+# Change {body: {'key': 'val'}} to {'val': 'key'}, combining v1 and v2 dicts.
+_REVERSE_DESCS_BY_BODY = [
+    {unicode(v): unicode(k) for k, v in body_mapping.items() if v}
+    for body, body_mapping in DESCS_V2.items() + DESCS.items()]
+REVERSE_DESCS = {}
+for mapping in _REVERSE_DESCS_BY_BODY:
+    REVERSE_DESCS.update(mapping)
 
 # WARNING: When adding a new interactive element here also include a migration.
 #
@@ -209,5 +349,12 @@ INTERACTIVES = {
     'Digital Purchases': 'has_digital_purchases',
 }
 
-REVERSE_INTERACTIVES = dict(
-    (v, k) for k, v in INTERACTIVES.iteritems())
+INTERACTIVES_V2 = {
+    'IE_UsersInteract': 'has_users_interact',
+    'IE_SharesInfo': 'has_shares_info',
+    'IE_SharesLocation': 'has_shares_location',
+    'IE_DigitalPurchases': 'has_digital_purchases',
+}
+
+REVERSE_INTERACTIVES = {v: k for k, v
+                        in INTERACTIVES_V2.items() + INTERACTIVES.items()}

@@ -2061,15 +2061,14 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         data -- list of database flags ('has_usk_lang')
         """
         create_kwargs = {}
-        for body in mkt.iarc_mappings.DESCS:
-            for desc, db_flag in mkt.iarc_mappings.DESCS[body].items():
-                create_kwargs[db_flag] = db_flag in data
+        for db_flag in mkt.constants.iarc_mappings.REVERSE_DESCS.keys():
+            create_kwargs[db_flag] = db_flag in data
 
-        rd, created = RatingDescriptors.objects.get_or_create(
+        instance, created = RatingDescriptors.objects.get_or_create(
             addon=self, defaults=create_kwargs)
         if not created:
-            rd.update(modified=datetime.datetime.now(),
-                      **create_kwargs)
+            instance.update(modified=datetime.datetime.now(),
+                            **create_kwargs)
 
     @use_master
     def set_interactives(self, data):
@@ -2079,7 +2078,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         data -- list of database flags ('has_users_interact')
         """
         create_kwargs = {}
-        for interactive, db_flag in mkt.iarc_mappings.INTERACTIVES.items():
+        for db_flag in mkt.constants.iarc_mappings.REVERSE_INTERACTIVES.keys():
             create_kwargs[db_flag] = db_flag in data
 
         ri, created = RatingInteractives.objects.get_or_create(
@@ -2513,6 +2512,7 @@ class RatingDescriptors(ModelBase, DynamicBoolFieldsMixin):
     def iarc_deserialize(self, body=None):
         """Map our descriptor strings back to the IARC ones (comma-sep.)."""
         keys = self.to_keys()
+        # FIXME: convert IARC v2 constants to text.
         if body:
             keys = [key for key in keys if body.iarc_name.lower() in key]
         return ', '.join(iarc_mappings.REVERSE_DESCS.get(desc) for desc
@@ -2540,6 +2540,7 @@ class RatingInteractives(ModelBase, DynamicBoolFieldsMixin):
         return u'%s: %s' % (self.id, self.addon.name)
 
     def iarc_deserialize(self):
+        # FIXME: convert IARC v2 constants to text.
         """Map our descriptor strings back to the IARC ones (comma-sep.)."""
         return ', '.join(iarc_mappings.REVERSE_INTERACTIVES.get(inter)
                          for inter in self.to_keys())
