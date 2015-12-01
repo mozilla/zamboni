@@ -6,7 +6,7 @@ from django.conf import settings
 from django.test import TestCase
 from nose.tools import eq_, ok_
 
-from lib.iarc_v2.client import get_rating_changes, search_certs, update_certs
+from lib.iarc_v2.client import get_rating_changes, search_certs, _update_certs
 
 
 mock_root = os.path.join(settings.ROOT, 'lib', 'iarc_v2', 'mock')
@@ -54,5 +54,5 @@ class TestUpdateCerts(TestCase):
     @mock.patch('lib.iarc_v2.client.requests.post')
     def test_basic(self, req_mock):
         req_mock.return_value = _get_response('UpdateCerts')
-        res = update_certs('abc', 'action')
+        res = _update_certs('abc', 'action')
         eq_(res['ResultList'][0]['ResultCode'], 'Success')

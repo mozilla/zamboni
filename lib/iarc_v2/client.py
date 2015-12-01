@@ -34,6 +34,14 @@ def get_rating_changes():
         return requests.get(url).json()
 
 
+def publish_cert(cert_id):
+    _update_certs(cert_id, 'Publish')
+
+
+def remove_cert(cert_id):
+    _update_certs(cert_id, 'RemoveProduct')
+
+
 def search_certs(uuid):
     """SearchCerts for complete data on a single certificate."""
     if settings.IARC_V2_MOCK:
@@ -43,13 +51,13 @@ def search_certs(uuid):
         return requests.get(url, {'CertID': uuid}).json()
 
 
-def update_certs(cert_uuid, action):
+def _update_certs(cert_id, action):
     """
     UpdateCerts to tell IARC when we publish or unpublish a product.
     Endpoint can handle batch updates, but we only need one at a time.
 
     Arguments:
-    cert_uuid -- Globally unique ID for certificate.
+    cert_id -- Globally unique ID for certificate.
     action -- One of [InvalidateCert, RemoveProduct, UpdateStoreAttributes,
                       Publish].
 
@@ -64,7 +72,7 @@ def update_certs(cert_uuid, action):
     else:
         url = urljoin(settings.IARC_V2_SERVICE_ENDPOINT, 'UpdateCerts', {
             'UpdateList': [{
-                'CertID': cert_uuid,
+                'CertID': cert_id,
                 'Action': action
             }]
         })

@@ -6,7 +6,7 @@ from uuid import UUID
 
 
 import mkt.site.tests
-from lib.iarc.serializers import IARCV2RatingListSerializer
+from lib.iarc_v2.serializers import IARCV2RatingListSerializer
 from mkt.constants import ratingsbodies
 from mkt.constants.applications import DEVICE_GAIA
 from mkt.constants.base import STATUS_NULL, STATUS_PENDING
