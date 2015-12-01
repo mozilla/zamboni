@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-11-12 10:27-0700\n"
-"PO-Revision-Date: 2015-12-01 01:11+0000\n"
+"PO-Revision-Date: 2015-12-01 01:49+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -1872,7 +1872,7 @@ msgstr "Web スピーチ合成"
 
 #: mkt/constants/features.py:259
 msgid "The app requires the platform to allow the use of text-to-speech."
-msgstr "このアプリは、テキストの読み上げに対応したプラットフォームを必要とします。"
+msgstr "このアプリは、テキストの読み上げ (TTS) に対応したプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:264
 msgid "Web Speech Recognition"
@@ -1880,7 +1880,7 @@ msgstr "Web スピーチ認識"
 
 #: mkt/constants/features.py:265
 msgid "The app requires the platform to allow the use of speech-to-text."
-msgstr "このアプリは、音声のテキスト変換に対応したプラットフォームを必要とします。"
+msgstr "このアプリは、音声のテキスト変換 (STT) に対応したプラットフォームを必要とします。"
 
 #: mkt/constants/features.py:270
 msgid "Pointer Lock"
@@ -2260,7 +2260,7 @@ msgstr "(非対応)"
 
 #: mkt/developers/api_payments.py:104
 msgid "Could not connect to payment server."
-msgstr "決済サーバへ接続できませんでした。"
+msgstr "決済サーバに接続できませんでした。"
 
 #: mkt/developers/api_payments.py:128
 msgid "Cannot delete shared account"
@@ -2578,7 +2578,7 @@ msgstr "すべての課金方式に対応"
 
 #: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
-msgstr "アプリが無料の場合、アプリ内課金を有効化する必要があります"
+msgstr "アプリが無料の場合、アプリ内課金を有効にする必要があります"
 
 #: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
@@ -2587,7 +2587,7 @@ msgstr "選択肢が正しくありません"
 #: mkt/developers/forms_payments.py:326
 #: mkt/developers/templates/developers/payments/premium.html:301
 msgid "This is a paid upgrade of"
-msgstr "これはこのアプリの有料アップグレードです:"
+msgstr "これは次のアプリの有料アップグレードです:"
 
 #: mkt/developers/forms_payments.py:327
 msgid "Not an upgrade"
@@ -2909,7 +2909,7 @@ msgstr "プレビューのアップロード中に問題が発生しました。
 
 #: mkt/developers/views.py:937
 msgid "Terms of service accepted."
-msgstr "利用規約が同意されました。"
+msgstr "利用規約が受諾されました。"
 
 #: mkt/developers/views.py:953
 msgid "Users with the admin role cannot use the API."
@@ -2945,7 +2945,7 @@ msgstr "クレジットカード"
 
 #: mkt/developers/views_payments.py:177
 msgid "Carrier"
-msgstr "キャリア"
+msgstr "通信事業者"
 
 #: mkt/developers/views_payments.py:329
 msgid "A server error occurred when retrieving the application key."
@@ -3844,7 +3844,7 @@ msgstr "バージョンを削除"
 #: mkt/developers/templates/developers/apps/version_edit.html:25
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:57
 msgid "Version Notes"
-msgstr "リリースノート"
+msgstr "バージョンノート"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:26
 msgid ""
@@ -4231,7 +4231,7 @@ msgstr "ホームスクリーン？"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:65
 msgid "Whether this app is a homescreen for Firefox OS."
-msgstr "このアプリが Firefox OS 向けのホームスクリーンかどうか。"
+msgstr "このアプリが Firefox OS 向けのホーム画面かどうか。"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:87
 msgid "This app does not require any device features"
@@ -4883,7 +4883,7 @@ msgstr "決済用アカウント"
 msgid ""
 "Your app is currently incomplete. Select a payment account and price point "
 "to restore it."
-msgstr "このアプリは現在不完全です。決済用アカウントと価格帯を選択して元の状態に戻しましょう。"
+msgstr "このアプリは現在不完全です。決済用アカウントと価格帯を選択して元の状態に戻してください。"
 
 #: mkt/developers/templates/developers/payments/premium.html:144
 msgid "Countries"
@@ -4978,13 +4978,13 @@ msgstr "対応地域と公開設定"
 
 #: mkt/developers/templates/developers/payments/premium.html:293
 msgid "Promote as upgrade to free version"
-msgstr "無料バージョンへのアップグレードとして宣伝"
+msgstr "無料バージョンにアップグレード版として宣伝"
 
 #: mkt/developers/templates/developers/payments/premium.html:302
 msgid ""
 "If you have a free app, you can link and promote your premium app next to "
 "the free version here."
-msgstr "アプリの無料版がある場合は、それを関連付けることで、この有料版を無料版と並べて宣伝できます。"
+msgstr "アプリの無料版がある場合は、この有料アプリへのリンクを無料アプリのページに並べて表示し、宣伝することができます。"
 
 #: mkt/developers/templates/developers/payments/premium.html:310
 msgid ""
@@ -5278,7 +5278,7 @@ msgstr "アプリを Marketplace へ登録"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:115
 msgid "Join the community"
-msgstr "コミュニティへ参加"
+msgstr "コミュニティに参加"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:117
 msgid "Look who's already here"
