@@ -4,12 +4,13 @@ import json
 import requests
 from urlparse import urljoin
 
+import commonware.log
 from django.conf import settings
 
-import commonware.log
+from lib.iarc_v2.serializers import IARCV2RatingListSerializer
 
 
-log = commonware.log.getLogger('z.iarc.v2')
+log = commonware.log.getLogger('z.iarc_v2')
 
 
 def get_rating_changes():
@@ -44,11 +45,13 @@ def remove_cert(cert_id):
 
 def search_certs(uuid):
     """SearchCerts for complete data on a single certificate."""
+    data = None
     if settings.IARC_V2_MOCK:
-        return json.loads(file('./mock/SearchCerts.json').read())
+        data = json.loads(file('./mock/SearchCerts.json').read())
     else:
         url = urljoin(settings.IARC_V2_SERVICE_ENDPOINT, 'SearchCerts')
-        return requests.get(url, {'CertID': uuid}).json()
+        data = requests.get(url, {'CertID': uuid}).json()
+    return IARCV2RatingListSerializer(data=data).data
 
 
 def _update_certs(cert_id, action):
