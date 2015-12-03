@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2015-12-03 02:28+0000\n"
-"Last-Translator: Marco Aurélio <ouesten@me.com>\n"
+"PO-Revision-Date: 2015-12-03 19:52+0000\n"
+"Last-Translator: Rodrigo Padula <rodrigopadula@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -5994,7 +5994,7 @@ msgstr "Mozilla Web apps (em Português Brasileiro)"
 
 #: mkt/extensions/models.py:237
 msgid "An Add-on with the same name already exists in your submissions."
-msgstr ""
+msgstr "Um complemento com o mesmo nome já existe em suas submissões."
 
 #: mkt/extensions/models.py:538
 msgid ""
