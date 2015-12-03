@@ -191,6 +191,13 @@ DESCS = {
     },
 }
 
+# Change {body: {'key': 'val'}} to {'val': 'key'}. Used to deserialize our
+# data back to IARC.
+REVERSE_DESCS = {}
+for mapping in [{unicode(v): unicode(k) for k, v in body_mapping.items() if v}
+                for body, body_mapping in DESCS.items()]:
+    REVERSE_DESCS.update(mapping)
+
 # WARNING: When adding a new rating descriptor here also include a migration.
 #          All descriptor keys must be prefixed by the rating body (e.g. USK_).
 #
@@ -327,16 +334,15 @@ DESCS_V2 = {
         'USK_ShopStreamingService': '',
         'USK_Tabakkonsum': 'has_usk_tobacco',
     }
-
 }
 
-# Change {body: {'key': 'val'}} to {'val': 'key'}, combining v1 and v2 dicts.
-_REVERSE_DESCS_BY_BODY = [
-    {unicode(v): unicode(k) for k, v in body_mapping.items() if v}
-    for body, body_mapping in DESCS_V2.items() + DESCS.items()]
-REVERSE_DESCS = {}
-for mapping in _REVERSE_DESCS_BY_BODY:
-    REVERSE_DESCS.update(mapping)
+# Change {body: {'key': 'val'}} to {'val': 'key'}. Used to deserialize our
+# data back to IARC.
+REVERSE_DESCS_V2 = {}
+for mapping in [{unicode(v): unicode(k) for k, v in body_mapping.items() if v}
+                for body, body_mapping in DESCS_V2.items()]:
+    REVERSE_DESCS_V2.update(mapping)
+
 
 # WARNING: When adding a new interactive element here also include a migration.
 #
@@ -349,6 +355,8 @@ INTERACTIVES = {
     'Digital Purchases': 'has_digital_purchases',
 }
 
+REVERSE_INTERACTIVES = {v: k for k, v in INTERACTIVES.items()}
+
 INTERACTIVES_V2 = {
     'IE_UsersInteract': 'has_users_interact',
     'IE_SharesInfo': 'has_shares_info',
@@ -356,5 +364,11 @@ INTERACTIVES_V2 = {
     'IE_DigitalPurchases': 'has_digital_purchases',
 }
 
-REVERSE_INTERACTIVES = {v: k for k, v
-                        in INTERACTIVES_V2.items() + INTERACTIVES.items()}
+REVERSE_INTERACTIVES_V2 = {v: k for k, v in INTERACTIVES_V2.items()}
+
+# Human readable text for descriptors and interactives should not be translated
+# by us, the rating bodies are very specific about the texts. Instead, we use
+# the V1 descriptors and interactives, since V1 used text instead of constants.
+# When we phase out v1, we'll just add a dict of strings here instead.
+HUMAN_READABLE_DESCS_AND_INTERACTIVES = dict(
+    REVERSE_DESCS.items() + REVERSE_INTERACTIVES.items())

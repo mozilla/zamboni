@@ -15,6 +15,7 @@ from mkt.api.fields import (ESTranslationSerializerField, LargeTextField,
                             TranslationSerializerField)
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.constants.categories import CATEGORY_CHOICES
+from mkt.constants.iarc_mappings import HUMAN_READABLE_DESCS_AND_INTERACTIVES
 from mkt.constants.payments import PROVIDER_BANGO
 from mkt.features.utils import load_feature_profile
 from mkt.prices.models import AddonPremium, Price
@@ -159,14 +160,14 @@ class AppSerializer(serializers.ModelSerializer):
                 app.rating_descriptors.to_keys_by_body(body)
                 if hasattr(app, 'rating_descriptors') else []),
             'descriptors_text': (
-                [mkt.iarc_mappings.REVERSE_DESCS[key] for key in
-                 app.rating_descriptors.to_keys_by_body(body)]
+                [HUMAN_READABLE_DESCS_AND_INTERACTIVES[key]
+                 for key in app.rating_descriptors.to_keys_by_body(body)]
                 if hasattr(app, 'rating_descriptors') else []),
             'interactives': (
                 app.rating_interactives.to_keys()
                 if hasattr(app, 'rating_interactives') else []),
             'interactives_text': (
-                [mkt.iarc_mappings.REVERSE_INTERACTIVES[key] for key in
+                [HUMAN_READABLE_DESCS_AND_INTERACTIVES[key] for key in
                  app.rating_interactives.to_keys()]
                 if hasattr(app, 'rating_interactives') else []),
         }
@@ -504,13 +505,14 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
             'descriptors': [key for key in
                             obj.es_data.get('content_descriptors', [])
                             if prefix in key],
-            'descriptors_text': [mkt.iarc_mappings.REVERSE_DESCS[key] for key
+            'descriptors_text': [HUMAN_READABLE_DESCS_AND_INTERACTIVES[key]
+                                 for key
                                  in obj.es_data.get('content_descriptors')
                                  if prefix in key],
             'interactives': obj.es_data.get('interactive_elements', []),
-            'interactives_text': [mkt.iarc_mappings.REVERSE_INTERACTIVES[key]
-                                  for key in
-                                  obj.es_data.get('interactive_elements')]
+            'interactives_text': [HUMAN_READABLE_DESCS_AND_INTERACTIVES[key]
+                                  for key
+                                  in obj.es_data.get('interactive_elements')]
         }
 
     def get_feature_compatibility(self, app):

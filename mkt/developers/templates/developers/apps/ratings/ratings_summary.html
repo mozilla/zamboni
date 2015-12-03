@@ -40,10 +40,10 @@
                   {% set desc_icon = body.label in desc_icons and desc_icons[body.label][descriptor] %}
                   {% if desc_icon %}
                     <img src="{{ media(desc_icon) }}" class="icon"
-                         title="{{ mkt.iarc_mappings.REVERSE_DESCS[descriptor] }}">
+                         title="{{ mkt.iarc_mappings.HUMAN_READABLE_DESCS_AND_INTERACTIVES[descriptor] }}">
                   {% else %}
                     <span class="dot-sep descriptor">
-                      {{ mkt.iarc_mappings.REVERSE_DESCS[descriptor] }}
+                      {{ mkt.iarc_mappings.HUMAN_READABLE_DESCS_AND_INTERACTIVES[descriptor] }}
                     </span>
                   {% endif %}
                 {% else %}
@@ -62,7 +62,7 @@
           <div class="names">
             {% for interactive in interactives %}
               <span class="dot-sep interactive">
-                {{ mkt.iarc_mappings.REVERSE_INTERACTIVES[interactive] }}
+                {{ mkt.iarc_mappings.HUMAN_READABLE_DESCS_AND_INTERACTIVES[interactive] }}
               </span>
             {% endfor %}
           </div>
@@ -70,7 +70,7 @@
           {% for interactive in interactives %}
             {% if inter_icons[interactive] %}
               <img src="{{ media(inter_icons[interactive]) }}" class="icon"
-                   title="{{ mkt.iarc_mappings.REVERSE_INTERACTIVES[interactive] }}">
+                   title="{{ mkt.iarc_mappings.HUMAN_READABLE_DESCS_AND_INTERACTIVES[interactive] }}">
             {% endif %}
           {% endfor %}
         </div>
