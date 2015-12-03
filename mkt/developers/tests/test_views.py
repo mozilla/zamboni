@@ -4,6 +4,7 @@ import json
 import os
 import tempfile
 from contextlib import contextmanager
+from uuid import UUID
 
 from django.conf import settings
 from django.contrib.messages.storage import default_storage
@@ -1443,11 +1444,14 @@ class TestContentRatingsV2(mkt.site.tests.TestCase):
         form = doc('#ratings-edit form')[0]
         values = dict(form.form_values())
         eq_(values['StoreRequestID'],
-            IARCRequest.objects.get(app=self.app).uuid)
+            unicode(UUID(IARCRequest.objects.get(app=self.app).uuid)))
+        ok_(IARCRequest.objects.filter(
+            uuid=UUID(values['StoreRequestID']).hex).exists())
 
     def test_uses_store_request_id(self):
         self.req._messages = default_storage(self.req)
-        IARCRequest.objects.create(app=self.app, uuid='abcd-1234')
+        IARCRequest.objects.create(
+            app=self.app, uuid=UUID('515d56bbaf074be58748f0c8728ddc1d'))
 
         r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
         doc = pq(r.content)
@@ -1455,7 +1459,7 @@ class TestContentRatingsV2(mkt.site.tests.TestCase):
         # Check the form action.
         form = doc('#ratings-edit form')[0]
         values = dict(form.form_values())
-        eq_(values['StoreRequestID'], 'abcd-1234')
+        eq_(values['StoreRequestID'], '515d56bb-af07-4be5-8748-f0c8728ddc1d')
 
 
 class TestContentRatingsSuccessMsg(mkt.site.tests.TestCase):

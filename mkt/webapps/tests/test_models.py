@@ -56,8 +56,8 @@ from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import (AddonDeviceType, AddonExcludedRegion,
                                 AddonUpsell, AppFeatures, AppManifest,
                                 BlockedSlug, ContentRating, Geodata,
-                                get_excluded_in, IARCInfo, Installed, Preview,
-                                RatingDescriptors, RatingInteractives,
+                                get_excluded_in, IARCCert, IARCInfo, Installed,
+                                Preview, RatingDescriptors, RatingInteractives,
                                 version_changed, Webapp)
 from mkt.webapps.signals import version_changed as version_changed_signal
 
@@ -2096,6 +2096,27 @@ class TestIARCInfo(mkt.site.tests.WebappTestCase):
                                 security_code='s3kr3t')
         eq_(self.app.iarc_info.submission_id, 1)
         eq_(self.app.iarc_info.security_code, 's3kr3t')
+
+
+class TestIARCCert(mkt.site.tests.WebappTestCase):
+    def test_no_cert(self):
+        with self.assertRaises(IARCCert.DoesNotExist):
+            self.app.iarc_cert
+
+    def test_set_iarc_certificate_string(self):
+        cert_id = uuid.uuid4()
+        self.app.set_iarc_certificate(unicode(cert_id))
+        eq_(uuid.UUID(self.app.iarc_cert.cert_id), cert_id)
+
+    def test_set_iarc_certificate_uuid(self):
+        cert_id = uuid.uuid4()
+        self.app.set_iarc_certificate(cert_id)
+        eq_(uuid.UUID(self.app.iarc_cert.cert_id), cert_id)
+
+    def test_set_iarc_certificate_hexstring(self):
+        cert_id = uuid.uuid4()
+        self.app.set_iarc_certificate(cert_id.hex)
+        eq_(uuid.UUID(self.app.iarc_cert.cert_id), cert_id)
 
 
 class TestQueue(mkt.site.tests.WebappTestCase):
