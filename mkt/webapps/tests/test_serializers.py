@@ -362,6 +362,14 @@ class TestAppSerializer(mkt.site.tests.TestCase):
         res = self.serialize(self.app)
         eq_(res['feature_compatibility'], None)
 
+    def test_feature_compatibility_no_current_version(self):
+        self.app._current_version = None
+        feature_profile = FeatureProfile(apps=True, nfc=True, mobileid=True)
+        self.request = RequestFactory().get(
+            '/?dev=firefoxos&pro=%s' % feature_profile.to_signature())
+        res = self.serialize(self.app)
+        eq_(res['feature_compatibility'], None)
+
 
 class TestAppSerializerPrices(mkt.site.tests.TestCase):
     fixtures = fixture('user_2519')

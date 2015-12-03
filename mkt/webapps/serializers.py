@@ -179,9 +179,9 @@ class AppSerializer(serializers.ModelSerializer):
         request = self.context['request']
         if not hasattr(request, 'feature_profile'):
             load_feature_profile(request)
-        if request.feature_profile is None:
-            # No profile information sent, we can't return compatibility,
-            # return null.
+        if request.feature_profile is None or app.current_version is None:
+            # No profile information sent, or we don't have a current version,
+            # we can't return compatibility, return null.
             return None
         app_features = app.current_version.features.to_list()
         return request.feature_profile.has_features(app_features)
