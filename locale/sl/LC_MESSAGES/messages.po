@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2015-12-04 07:51+0000\n"
+"PO-Revision-Date: 2015-12-04 13:35+0000\n"
 "Last-Translator: Goran Kohek <goran.kohek@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1271,7 +1271,7 @@ msgstr "Moderirani pregled aplikacije"
 
 #: mkt/constants/base.py:249
 msgid "App Review Moderation Reverted"
-msgstr ""
+msgstr "Referenca"
 
 #: mkt/constants/base.py:250
 msgid "Tarako App Review"
