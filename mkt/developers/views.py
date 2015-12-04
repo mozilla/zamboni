@@ -20,7 +20,9 @@ from django.views.decorators.http import require_POST
 import commonware.log
 import waffle
 from rest_framework import status as http_status
-from rest_framework.generics import CreateAPIView, ListAPIView
+from rest_framework.exceptions import ParseError
+from rest_framework.generics import CreateAPIView, GenericAPIView, ListAPIView
+from rest_framework.mixins import UpdateModelMixin
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
@@ -29,6 +31,7 @@ from waffle.decorators import waffle_switch
 
 import mkt
 import lib.iarc
+from lib.iarc.serializers import IARCV2RatingListSerializer
 from lib.iarc.utils import get_iarc_app_title
 from mkt.access import acl
 from mkt.api.base import CORSMixin, SlugOrIdMixin
@@ -396,7 +399,7 @@ def content_ratings_edit(request, addon_id, addon):
             # No IARC request exists. Create.
             iarc_request = IARCRequest.objects.create(
                 app=addon, uuid=uuid.uuid4())
-        ctx['iarc_request_id'] = iarc_request.uuid
+        ctx['iarc_request_id'] = unicode(uuid.UUID(iarc_request.uuid))
 
     return render(request, 'developers/apps/ratings/ratings_edit.html', ctx)
 
@@ -1173,3 +1176,33 @@ class ContentRatingsPingback(CORSMixin, SlugOrIdMixin, CreateAPIView):
             return False
 
         return True
+
+
+class ContentRatingsPingbackV2(CORSMixin, UpdateModelMixin, GenericAPIView):
+    """Pingback API for IARC v2.
+
+    Should conform to the PushCert API spec. Assumes that the RatingList is
+    always sent with PushCert, so we don't need to call SearchCert afterwards
+    to get the ratings."""
+    cors_allowed_methods = ['post']
+    permission_classes = (AllowAny,)
+    queryset = IARCRequest.objects.all()
+    serializer_class = IARCV2RatingListSerializer
+    lookup_field = 'uuid'
+
+    def get_object(self, queryset=None):
+        request = self.request
+        try:
+            self.kwargs[self.lookup_field] = request.DATA['StoreRequestID']
+        except KeyError:
+            raise ParseError('Need a StoreRequestID')
+        return super(ContentRatingsPingbackV2, self).get_object().app
+
+    def post(self, request, *args, **kwargs):
+        # IARC sends a POST, but what we really want is to update some data,
+        # passing an object to the serializer. So we implement post() to match
+        # the HTTP verb but really have it call update() behind the scenes.
+        #
+        # FIXME: add a call to search cert in pre_save(), making sure the
+        # ratings match the cert id being received.
+        return self.update(request, *args, **kwargs)

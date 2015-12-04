@@ -26,6 +26,7 @@ from jingo.helpers import urlparams
 from jinja2.filters import do_dictsort
 from tower import ugettext as _
 from tower import ugettext_lazy as _lazy
+from uuidfield.fields import UUIDField
 
 import mkt
 from lib.crypto import packaged
@@ -1994,7 +1995,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
     def set_iarc_info(self, submission_id, security_code):
         """
-        Sets the iarc_info for this app.
+        Sets the iarc_info for this app (IARC v1 only).
         """
         data = {'submission_id': submission_id,
                 'security_code': security_code}
@@ -2002,6 +2003,17 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             addon=self, defaults=data)
         if not created:
             info.update(**data)
+
+    def set_iarc_certificate(self, cert_id):
+        if isinstance(cert_id, basestring):
+            # Make sure that when storing cert ids, we use UUID objects.
+            cert_id = uuid.UUID(cert_id)
+        defaults = {'cert_id': cert_id}
+        cert, created = IARCCert.objects.safer_get_or_create(
+            app=self, defaults=defaults)
+        if not created:
+            cert.update(**defaults)
+        return cert
 
     @use_master
     def set_content_ratings(self, data):
@@ -2423,6 +2435,21 @@ class IARCInfo(ModelBase):
 
     def __unicode__(self):
         return u'app:%s' % self.addon.app_slug
+
+
+class IARCCert(ModelBase):
+    """
+    IARC Certificate info for an app (IARC v2).
+    """
+    app = models.OneToOneField(Webapp, related_name='iarc_cert')
+    cert_id = UUIDField(auto=True, editable=False)
+
+    def __unicode__(self):
+        return u'IARC Cert %s for app %s' % (
+            uuid.UUID(self.cert_id), self.app)
+
+    class Meta:
+        db_table = 'webapps_iarc_cert'
 
 
 class ContentRating(ModelBase):

@@ -1,8 +1,14 @@
+from uuid import UUID
+
+import commonware
 from rest_framework.exceptions import ParseError
 
 from mkt.constants.iarc_mappings import (BODIES, DESCS_V2, INTERACTIVES_V2,
                                          RATINGS)
 from mkt.site.utils import cached_property
+
+
+log = commonware.log.getLogger('lib.iarc.serializers')
 
 
 class IARCV2RatingListSerializer(object):
@@ -13,13 +19,15 @@ class IARCV2RatingListSerializer(object):
     has to deal with several instances for each model, and we don't care about
     serializing back to json."""
 
-    def __init__(self, instance=None, data=None):
-        self.instance = instance
+    def __init__(self, instance=None, data=None, **kwargs):
+        self.object = instance
         self.data = data
+        self.errors = {}
 
     @cached_property
     def validated_data(self):
         validated_data = {
+            'cert_id': None,
             'descriptors': set(),
             'interactives': set(),
             'ratings': {},
@@ -27,7 +35,22 @@ class IARCV2RatingListSerializer(object):
         }
         rating_list = self.data.get('RatingList')
         if not rating_list:
+            self.errors['RatingList'] = 'This field is required.'
             return None
+
+        cert_id = self.data.get('CertID')
+        if not cert_id:
+            self.errors['CertID'] = 'This field is required.'
+            return None
+
+        try:
+            validated_data['cert_id'] = UUID(cert_id)
+        except ValueError as e:
+            self.errors['CertID'] = e.message
+            return None
+
+        # FIXME: if we have AlreadyExists info, and the Cert does not match,
+        # what shall we do ?
 
         for raw_info in rating_list:
             body = BODIES.get(raw_info['RatingAuthorityShortText'].lower())
@@ -52,15 +75,18 @@ class IARCV2RatingListSerializer(object):
         return validated_data
 
     def is_valid(self):
-        return bool(self.validated_data)
+        return bool(self.validated_data) and not bool(self.errors)
 
-    def save(self):
-        if not self.instance:
-            raise ValueError('Can not save without an instance.')
+    def save(self, force_update=False):
+        if not self.object:
+            raise ValueError('Can not save without an object.')
 
         if not self.is_valid():
             raise ParseError('Can not save with invalid data.')
 
-        self.instance.set_descriptors(self.validated_data['descriptors'])
-        self.instance.set_interactives(self.validated_data['interactives'])
-        self.instance.set_content_ratings(self.validated_data['ratings'])
+        self.object.set_iarc_certificate(self.validated_data['cert_id'])
+        self.object.set_descriptors(self.validated_data['descriptors'])
+        self.object.set_interactives(self.validated_data['interactives'])
+        self.object.set_content_ratings(self.validated_data['ratings'])
+        # App status should automatically be updated if necessary when saving
+        # the content_ratings instance.
