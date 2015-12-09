@@ -28,7 +28,7 @@ Search
 Multi Search
 ============
 
-.. http:get:: /api/v2/fireplace/multi-search/
+.. http:get:: /api/v2/tv/multi-search/
 
     A copy of :ref:`the multi-search API <multi-search-api>`. Like the App API
     above, the response only contains the specific subset of fields TVs
