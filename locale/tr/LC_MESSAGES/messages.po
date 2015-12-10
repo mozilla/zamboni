@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2015-12-04 08:52+0000\n"
+"PO-Revision-Date: 2015-12-10 18:38+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -189,11 +189,11 @@ msgstr "Arjantin"
 
 #: mkt/constants/bango.py:30 mkt/constants/regions.py:78
 msgid "Armenia"
-msgstr ""
+msgstr "Ermenistan"
 
 #: mkt/constants/bango.py:31 mkt/constants/regions.py:69
 msgid "Aruba"
-msgstr ""
+msgstr "Aruba"
 
 #: mkt/constants/bango.py:32 mkt/constants/regions.py:83
 msgid "Australia"
@@ -201,7 +201,7 @@ msgstr "Avustralya"
 
 #: mkt/constants/bango.py:33 mkt/constants/regions.py:84
 msgid "Austria"
-msgstr ""
+msgstr "Avusturya"
 
 #: mkt/constants/bango.py:34 mkt/constants/regions.py:85
 msgid "Azerbaijan"
@@ -209,11 +209,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:35 mkt/constants/regions.py:94
 msgid "Bahamas"
-msgstr ""
+msgstr "Bahamalar"
 
 #: mkt/constants/bango.py:36 mkt/constants/regions.py:93
 msgid "Bahrain"
-msgstr ""
+msgstr "Bahreyn"
 
 #: mkt/constants/bango.py:37 mkt/constants/regions.py:91
 msgid "Bangladesh"
@@ -221,11 +221,11 @@ msgstr "Bangladeş"
 
 #: mkt/constants/bango.py:38 mkt/constants/regions.py:102
 msgid "Barbados"
-msgstr ""
+msgstr "Barbados"
 
 #: mkt/constants/bango.py:39 mkt/constants/regions.py:97
 msgid "Belarus"
-msgstr ""
+msgstr "Beyaz Rusya"
 
 #: mkt/constants/bango.py:40 mkt/constants/regions.py:87
 msgid "Belgium"
@@ -233,23 +233,23 @@ msgstr "Belçika"
 
 #: mkt/constants/bango.py:41 mkt/constants/regions.py:98
 msgid "Belize"
-msgstr ""
+msgstr "Belize"
 
 #: mkt/constants/bango.py:42 mkt/constants/regions.py:88
 msgid "Benin"
-msgstr ""
+msgstr "Benin"
 
 #: mkt/constants/bango.py:43 mkt/constants/regions.py:99
 msgid "Bermuda"
-msgstr ""
+msgstr "Bermuda"
 
 #: mkt/constants/bango.py:44 mkt/constants/regions.py:104
 msgid "Bhutan"
-msgstr ""
+msgstr "Butan"
 
 #: mkt/constants/bango.py:45
 msgid "Bolivia"
-msgstr ""
+msgstr "Bolivya"
 
 #: mkt/constants/bango.py:46
 msgid "Bonaire, Saint Eustatius and Saba"
@@ -265,7 +265,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:49 mkt/constants/regions.py:105
 msgid "Bouvet Island"
-msgstr ""
+msgstr "Bouvet Adası"
 
 #: mkt/constants/bango.py:50 mkt/constants/ratingsbodies.py:90
 #: mkt/constants/regions.py:101
@@ -286,15 +286,15 @@ msgstr "Bulgaristan"
 
 #: mkt/constants/bango.py:54 mkt/constants/regions.py:90
 msgid "Burkina Faso"
-msgstr ""
+msgstr "Burkina Faso"
 
 #: mkt/constants/bango.py:55 mkt/constants/regions.py:86
 msgid "Burundi"
-msgstr ""
+msgstr "Burundi"
 
 #: mkt/constants/bango.py:56 mkt/constants/regions.py:187
 msgid "Cambodia"
-msgstr ""
+msgstr "Kamboçya"
 
 #: mkt/constants/bango.py:57 mkt/constants/regions.py:114
 msgid "Cameroon"
@@ -330,7 +330,7 @@ msgstr "Çin"
 
 #: mkt/constants/bango.py:65 mkt/constants/regions.py:124
 msgid "Christmas Island"
-msgstr ""
+msgstr "Christmas Adası"
 
 #: mkt/constants/bango.py:66 mkt/constants/regions.py:109
 msgid "Cocos (Keeling) Islands"
@@ -346,15 +346,15 @@ msgstr ""
 
 #: mkt/constants/bango.py:69 mkt/constants/regions.py:116
 msgid "Congo"
-msgstr ""
+msgstr "Kongo"
 
 #: mkt/constants/bango.py:70
 msgid "Congo, Democratic Republic"
-msgstr ""
+msgstr "Demokratik Kongo Cumhuriyeti"
 
 #: mkt/constants/bango.py:71 mkt/constants/regions.py:117
 msgid "Cook Islands"
-msgstr ""
+msgstr "Cook Adaları"
 
 #: mkt/constants/bango.py:72 mkt/constants/regions.py:121
 msgid "Costa Rica"
@@ -366,7 +366,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:74 mkt/constants/regions.py:168
 msgid "Croatia"
-msgstr ""
+msgstr "Hırvatistan"
 
 #: mkt/constants/bango.py:75 mkt/constants/regions.py:122
 msgid "Cuba"
@@ -426,7 +426,7 @@ msgstr "Estonya"
 
 #: mkt/constants/bango.py:89 mkt/constants/regions.py:140
 msgid "Ethiopia"
-msgstr ""
+msgstr "Etiyopya"
 
 #: mkt/constants/bango.py:90 mkt/constants/regions.py:143
 msgid "Falkland Islands (Malvinas)"
@@ -434,11 +434,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:91 mkt/constants/regions.py:145
 msgid "Faroe Islands"
-msgstr ""
+msgstr "Faroe Adaları"
 
 #: mkt/constants/bango.py:92 mkt/constants/regions.py:142
 msgid "Fiji"
-msgstr ""
+msgstr "Fiji"
 
 #: mkt/constants/bango.py:93 mkt/constants/regions.py:141
 msgid "Finland"
@@ -466,11 +466,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:99 mkt/constants/regions.py:155
 msgid "Gambia"
-msgstr ""
+msgstr "Gambiya"
 
 #: mkt/constants/bango.py:100 mkt/constants/regions.py:149
 msgid "Georgia"
-msgstr ""
+msgstr "Gürcistan"
 
 #: mkt/constants/bango.py:101 mkt/constants/ratingsbodies.py:197
 #: mkt/constants/regions.py:128
@@ -491,11 +491,11 @@ msgstr "Yunanistan"
 
 #: mkt/constants/bango.py:105 mkt/constants/regions.py:160
 msgid "Greenland"
-msgstr ""
+msgstr "Grönland"
 
 #: mkt/constants/bango.py:106 mkt/constants/regions.py:159
 msgid "Grenada"
-msgstr ""
+msgstr "Grenada"
 
 #: mkt/constants/bango.py:107 mkt/constants/regions.py:154
 msgid "Guadeloupe"
@@ -507,7 +507,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:109 mkt/constants/regions.py:161
 msgid "Guatemala"
-msgstr ""
+msgstr "Guatemala"
 
 #: mkt/constants/bango.py:110 mkt/constants/regions.py:150
 msgid "Guernsey"
@@ -539,11 +539,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:117 mkt/constants/regions.py:167
 msgid "Honduras"
-msgstr ""
+msgstr "Honduras"
 
 #: mkt/constants/bango.py:118 mkt/constants/regions.py:165
 msgid "Hong Kong"
-msgstr ""
+msgstr "Hong Kong"
 
 #: mkt/constants/bango.py:119 mkt/constants/regions.py:170
 msgid "Hungary"
@@ -551,7 +551,7 @@ msgstr "Macaristan"
 
 #: mkt/constants/bango.py:120 mkt/constants/regions.py:177
 msgid "Iceland"
-msgstr ""
+msgstr "İzlanda"
 
 #: mkt/constants/bango.py:121 mkt/constants/regions.py:173
 msgid "India"
@@ -639,7 +639,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:142 mkt/constants/regions.py:202
 msgid "Latvia"
-msgstr ""
+msgstr "Letonya"
 
 #: mkt/constants/bango.py:143 mkt/constants/regions.py:193
 msgid "Lebanon"
@@ -663,7 +663,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:148 mkt/constants/regions.py:200
 msgid "Lithuania"
-msgstr ""
+msgstr "Litvanya"
 
 #: mkt/constants/bango.py:149 mkt/constants/regions.py:201
 msgid "Luxembourg"
@@ -739,11 +739,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:167 mkt/constants/regions.py:217
 msgid "Mongolia"
-msgstr ""
+msgstr "Moğolistan"
 
 #: mkt/constants/bango.py:168 mkt/constants/regions.py:216
 msgid "Montenegro"
-msgstr ""
+msgstr "Karadağ"
 
 #: mkt/constants/bango.py:169 mkt/constants/regions.py:221
 msgid "Montserrat"
@@ -751,7 +751,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:170 mkt/constants/regions.py:205
 msgid "Morocco"
-msgstr ""
+msgstr "Fas"
 
 #: mkt/constants/bango.py:171 mkt/constants/regions.py:219
 msgid "Mozambique"
@@ -759,11 +759,11 @@ msgstr "Mozambik"
 
 #: mkt/constants/bango.py:172 mkt/constants/regions.py:215
 msgid "Myanmar"
-msgstr ""
+msgstr "Myanmar"
 
 #: mkt/constants/bango.py:173 mkt/constants/regions.py:227
 msgid "Namibia"
-msgstr ""
+msgstr "Namibya"
 
 #: mkt/constants/bango.py:174 mkt/constants/regions.py:237
 msgid "Nauru"
@@ -783,19 +783,19 @@ msgstr ""
 
 #: mkt/constants/bango.py:178 mkt/constants/regions.py:238
 msgid "New Zealand"
-msgstr ""
+msgstr "Yeni Zelanda"
 
 #: mkt/constants/bango.py:179 mkt/constants/regions.py:232
 msgid "Nicaragua"
-msgstr ""
+msgstr "Nikaragua"
 
 #: mkt/constants/bango.py:180 mkt/constants/regions.py:229
 msgid "Niger"
-msgstr ""
+msgstr "Nijer"
 
 #: mkt/constants/bango.py:181 mkt/constants/regions.py:231
 msgid "Nigeria"
-msgstr ""
+msgstr "Nijerya"
 
 #: mkt/constants/bango.py:182 mkt/constants/regions.py:233
 msgid "Niue"
@@ -803,7 +803,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:183 mkt/constants/regions.py:230
 msgid "Norfolk Island"
-msgstr ""
+msgstr "Norfolk Adası"
 
 #: mkt/constants/bango.py:184 mkt/constants/regions.py:218
 msgid "Northern Mariana Islands"
@@ -815,7 +815,7 @@ msgstr "Norveç"
 
 #: mkt/constants/bango.py:186 mkt/constants/regions.py:239
 msgid "Oman"
-msgstr ""
+msgstr "Umman"
 
 #: mkt/constants/bango.py:187 mkt/constants/regions.py:240
 msgid "Pakistan"
@@ -827,7 +827,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:189
 msgid "Palestinian Territory, Occupied"
-msgstr ""
+msgstr "Filistin"
 
 #: mkt/constants/bango.py:190 mkt/constants/regions.py:241
 msgid "Panama"
@@ -835,7 +835,7 @@ msgstr "Panama"
 
 #: mkt/constants/bango.py:191 mkt/constants/regions.py:246
 msgid "Papua New Guinea"
-msgstr ""
+msgstr "Papua Yeni Gine"
 
 #: mkt/constants/bango.py:192 mkt/constants/regions.py:250
 msgid "Paraguay"
@@ -855,11 +855,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:196 mkt/constants/regions.py:247
 msgid "Poland"
-msgstr ""
+msgstr "Polonya"
 
 #: mkt/constants/bango.py:197 mkt/constants/regions.py:249
 msgid "Portugal"
-msgstr ""
+msgstr "Portekiz"
 
 #: mkt/constants/bango.py:198 mkt/constants/regions.py:248
 msgid "Puerto Rico"
@@ -915,11 +915,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:211 mkt/constants/regions.py:311
 msgid "Samoa"
-msgstr ""
+msgstr "Samoa"
 
 #: mkt/constants/bango.py:212 mkt/constants/regions.py:268
 msgid "San Marino"
-msgstr ""
+msgstr "San Marino"
 
 #: mkt/constants/bango.py:213 mkt/constants/regions.py:273
 msgid "Sao Tome and Principe"
@@ -927,19 +927,19 @@ msgstr ""
 
 #: mkt/constants/bango.py:214 mkt/constants/regions.py:258
 msgid "Saudi Arabia"
-msgstr ""
+msgstr "Suudi Arabistan"
 
 #: mkt/constants/bango.py:215
 msgid "Senega"
-msgstr ""
+msgstr "Senegal"
 
 #: mkt/constants/bango.py:216 mkt/constants/regions.py:271
 msgid "Serbia"
-msgstr ""
+msgstr "Sırbistan"
 
 #: mkt/constants/bango.py:217
 msgid "Serbia and Montenegro"
-msgstr ""
+msgstr "Sırbistan-Karadağ"
 
 #: mkt/constants/bango.py:218 mkt/constants/regions.py:280
 msgid "Seychelles"
@@ -951,7 +951,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:220 mkt/constants/regions.py:261
 msgid "Singapore"
-msgstr ""
+msgstr "Singapur"
 
 #: mkt/constants/bango.py:221 mkt/constants/regions.py:279
 msgid "Sint Maarten (Dutch part)"
@@ -959,23 +959,23 @@ msgstr ""
 
 #: mkt/constants/bango.py:222 mkt/constants/regions.py:275
 msgid "Slovakia"
-msgstr ""
+msgstr "Slovakya"
 
 #: mkt/constants/bango.py:223 mkt/constants/regions.py:276
 msgid "Slovenia"
-msgstr ""
+msgstr "Slovenya"
 
 #: mkt/constants/bango.py:224 mkt/constants/regions.py:265
 msgid "Solomon Islands"
-msgstr ""
+msgstr "Solomon Adaları"
 
 #: mkt/constants/bango.py:225 mkt/constants/regions.py:269
 msgid "Somalia"
-msgstr ""
+msgstr "Somali"
 
 #: mkt/constants/bango.py:226 mkt/constants/regions.py:313
 msgid "South Africa"
-msgstr ""
+msgstr "Güney Afrika"
 
 #: mkt/constants/bango.py:227 mkt/constants/regions.py:262
 msgid "South Georgia and the South Sandwich Islands"
@@ -983,19 +983,19 @@ msgstr ""
 
 #: mkt/constants/bango.py:228 mkt/constants/regions.py:272
 msgid "South Sudan"
-msgstr ""
+msgstr "Güney Sudan"
 
 #: mkt/constants/bango.py:229 mkt/constants/regions.py:138
 msgid "Spain"
-msgstr ""
+msgstr "İspanya"
 
 #: mkt/constants/bango.py:230 mkt/constants/regions.py:198
 msgid "Sri Lanka"
-msgstr ""
+msgstr "Sri Lanka"
 
 #: mkt/constants/bango.py:231 mkt/constants/regions.py:259
 msgid "Sudan"
-msgstr ""
+msgstr "Sudan"
 
 #: mkt/constants/bango.py:232 mkt/constants/regions.py:274
 msgid "Suriname"
@@ -1011,19 +1011,19 @@ msgstr ""
 
 #: mkt/constants/bango.py:235 mkt/constants/regions.py:277
 msgid "Sweden"
-msgstr ""
+msgstr "İsveç"
 
 #: mkt/constants/bango.py:236 mkt/constants/regions.py:110
 msgid "Switzerland"
-msgstr ""
+msgstr "İsviçre"
 
 #: mkt/constants/bango.py:237 mkt/constants/regions.py:281
 msgid "Syrian Arab Republic"
-msgstr ""
+msgstr "Suriye"
 
 #: mkt/constants/bango.py:238
 msgid "Taiwan, Province of China"
-msgstr ""
+msgstr "Tayvan"
 
 #: mkt/constants/bango.py:239 mkt/constants/regions.py:286
 msgid "Tajikistan"
@@ -1035,7 +1035,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:241 mkt/constants/regions.py:285
 msgid "Thailand"
-msgstr ""
+msgstr "Tayland"
 
 #: mkt/constants/bango.py:242 mkt/constants/regions.py:289
 msgid "Timor-Leste"
@@ -1055,47 +1055,47 @@ msgstr ""
 
 #: mkt/constants/bango.py:246 mkt/constants/regions.py:291
 msgid "Trinidad and Tobago"
-msgstr ""
+msgstr "Trinidad ve Tobago"
 
 #: mkt/constants/bango.py:247 mkt/constants/regions.py:292
 msgid "Tunisia"
-msgstr ""
+msgstr "Tunus"
 
 #: mkt/constants/bango.py:248 mkt/constants/regions.py:293
 msgid "Turkey"
-msgstr ""
+msgstr "Türkiye"
 
 #: mkt/constants/bango.py:249 mkt/constants/regions.py:288
 msgid "Turkmenistan"
-msgstr ""
+msgstr "Türkmenistan"
 
 #: mkt/constants/bango.py:250 mkt/constants/regions.py:282
 msgid "Turks and Caicos Islands"
-msgstr ""
+msgstr "Turks ve Caicos Adaları"
 
 #: mkt/constants/bango.py:251 mkt/constants/regions.py:294
 msgid "Tuvalu"
-msgstr ""
+msgstr "Tuvalu"
 
 #: mkt/constants/bango.py:252 mkt/constants/regions.py:297
 msgid "Uganda"
-msgstr ""
+msgstr "Uganda"
 
 #: mkt/constants/bango.py:253 mkt/constants/regions.py:298
 msgid "Ukraine"
-msgstr ""
+msgstr "Ukranya"
 
 #: mkt/constants/bango.py:254 mkt/constants/regions.py:76
 msgid "United Arab Emirates"
-msgstr ""
+msgstr "Birlieşik Arap Emirlikleri"
 
 #: mkt/constants/bango.py:255 mkt/constants/regions.py:148
 msgid "United Kingdom"
-msgstr ""
+msgstr "İngiltere"
 
 #: mkt/constants/bango.py:256 mkt/constants/regions.py:301
 msgid "United States"
-msgstr ""
+msgstr "Amerika Birleşik Devletleri"
 
 #: mkt/constants/bango.py:257 mkt/constants/regions.py:299
 msgid "United States Minor Outlying Islands"
@@ -1103,15 +1103,15 @@ msgstr ""
 
 #: mkt/constants/bango.py:258 mkt/constants/regions.py:300
 msgid "Uruguay"
-msgstr ""
+msgstr "Uruguay"
 
 #: mkt/constants/bango.py:259 mkt/constants/regions.py:302
 msgid "Uzbekistan"
-msgstr ""
+msgstr "Özbekistan"
 
 #: mkt/constants/bango.py:260 mkt/constants/regions.py:309
 msgid "Vanuatu"
-msgstr ""
+msgstr "Vanuatu"
 
 #: mkt/constants/bango.py:261
 msgid "Venezuela, Bolivarian Republic of"
@@ -1139,11 +1139,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:267 mkt/constants/regions.py:312
 msgid "Yemen"
-msgstr ""
+msgstr "Yemen"
 
 #: mkt/constants/bango.py:268 mkt/constants/regions.py:314
 msgid "Zambia"
-msgstr ""
+msgstr "Zambiya"
 
 #: mkt/constants/bango.py:269 mkt/constants/regions.py:315
 msgid "Zimbabwe"
@@ -1168,7 +1168,7 @@ msgstr ""
 #: mkt/constants/base.py:31
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Deleted"
-msgstr ""
+msgstr "Silindi"
 
 #: mkt/constants/base.py:32 mkt/constants/comm.py:47
 #: mkt/reviewers/helpers.py:197 mkt/site/log.py:176
@@ -1181,15 +1181,15 @@ msgstr ""
 
 #: mkt/constants/base.py:36
 msgid "Blocked"
-msgstr ""
+msgstr "Engellendi"
 
 #: mkt/constants/base.py:37
 msgid "Unlisted"
-msgstr ""
+msgstr "Liste dışı"
 
 #: mkt/constants/base.py:43
 msgid "Obsolete"
-msgstr ""
+msgstr "Eski"
 
 #: mkt/constants/base.py:44 mkt/constants/comm.py:46
 #: mkt/constants/payments.py:66 mkt/site/log.py:155
@@ -1289,39 +1289,39 @@ msgstr ""
 
 #: mkt/constants/base.py:286
 msgid "Level 1"
-msgstr ""
+msgstr "Seviye 1"
 
 #: mkt/constants/base.py:287
 msgid "Level 2"
-msgstr ""
+msgstr "Seviye 2"
 
 #: mkt/constants/base.py:288
 msgid "Level 3"
-msgstr ""
+msgstr "Seviye 3"
 
 #: mkt/constants/base.py:289
 msgid "Level 4"
-msgstr ""
+msgstr "Seviye 4"
 
 #: mkt/constants/base.py:290
 msgid "Level 5"
-msgstr ""
+msgstr "Seviye 5"
 
 #: mkt/constants/base.py:291
 msgid "Level 6"
-msgstr ""
+msgstr "Seviye 6"
 
 #: mkt/constants/base.py:292
 msgid "Level 7"
-msgstr ""
+msgstr "Seviye 7"
 
 #: mkt/constants/base.py:293
 msgid "Level 8"
-msgstr ""
+msgstr "Seviye 8"
 
 #: mkt/constants/base.py:294
 msgid "Level 9"
-msgstr ""
+msgstr "Seviye 9"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
@@ -1329,15 +1329,15 @@ msgstr ""
 
 #: mkt/constants/categories.py:6
 msgid "Business"
-msgstr ""
+msgstr "İş"
 
 #: mkt/constants/categories.py:7
 msgid "Education"
-msgstr ""
+msgstr "Eğitim"
 
 #: mkt/constants/categories.py:8
 msgid "Entertainment"
-msgstr ""
+msgstr "Eğlence"
 
 #: mkt/constants/categories.py:9
 msgid "Food & Drink"
@@ -1345,11 +1345,11 @@ msgstr ""
 
 #: mkt/constants/categories.py:10
 msgid "Kids"
-msgstr ""
+msgstr "Çocuklar"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:46
 msgid "Games"
-msgstr ""
+msgstr "Oyunlar"
 
 #: mkt/constants/categories.py:12
 msgid "Health & Fitness"
@@ -1357,11 +1357,11 @@ msgstr ""
 
 #: mkt/constants/categories.py:13
 msgid "Humor"
-msgstr ""
+msgstr "Mizah"
 
 #: mkt/constants/categories.py:14
 msgid "Internet"
-msgstr ""
+msgstr "İnternet"
 
 #: mkt/constants/categories.py:15 mkt/constants/categories.py:47
 msgid "Lifestyle"
@@ -1373,15 +1373,15 @@ msgstr ""
 
 #: mkt/constants/categories.py:17
 msgid "Music"
-msgstr ""
+msgstr "Müzik"
 
 #: mkt/constants/categories.py:18
 msgid "News"
-msgstr ""
+msgstr "Haber"
 
 #: mkt/constants/categories.py:19
 msgid "Personalization"
-msgstr ""
+msgstr "Kişiselleştirme"
 
 #: mkt/constants/categories.py:20
 msgid "Photo & Video"
@@ -1401,23 +1401,23 @@ msgstr ""
 
 #: mkt/constants/categories.py:24
 msgid "Shopping"
-msgstr ""
+msgstr "Alışveriş"
 
 #: mkt/constants/categories.py:25
 msgid "Social"
-msgstr ""
+msgstr "Sosyal"
 
 #: mkt/constants/categories.py:26
 msgid "Sports"
-msgstr ""
+msgstr "Spor"
 
 #: mkt/constants/categories.py:27
 msgid "Travel"
-msgstr ""
+msgstr "Seyahat"
 
 #: mkt/constants/categories.py:28
 msgid "Utilities"
-msgstr ""
+msgstr "Araçlar"
 
 #: mkt/constants/categories.py:29
 msgid "Weather"
@@ -1431,7 +1431,7 @@ msgstr "Araçlar"
 
 #: mkt/constants/comm.py:45
 msgid "No action"
-msgstr ""
+msgstr "Eylem yok"
 
 #: mkt/constants/comm.py:48
 msgid "Banned"
@@ -1599,7 +1599,7 @@ msgstr ""
 
 #: mkt/constants/features.py:55
 msgid "Battery"
-msgstr ""
+msgstr "Pil"
 
 #: mkt/constants/features.py:56
 msgid "The app requires the `navigator.battery` API."
@@ -1700,7 +1700,7 @@ msgstr ""
 
 #: mkt/constants/features.py:131
 msgid "Vibration"
-msgstr ""
+msgstr "Titreşim"
 
 #: mkt/constants/features.py:132
 msgid ""
@@ -1718,7 +1718,7 @@ msgstr ""
 
 #: mkt/constants/features.py:148
 msgid "Touch"
-msgstr ""
+msgstr "Dokunma"
 
 #: mkt/constants/features.py:149
 msgid ""
@@ -1743,7 +1743,7 @@ msgstr ""
 
 #: mkt/constants/features.py:171
 msgid "Audio"
-msgstr ""
+msgstr "Ses"
 
 #: mkt/constants/features.py:172
 msgid "The app requires that the platform supports the HTML5 audio API."
@@ -1772,7 +1772,7 @@ msgstr ""
 
 #: mkt/constants/features.py:195
 msgid "Full Screen"
-msgstr ""
+msgstr "Tam ekran"
 
 #: mkt/constants/features.py:196
 msgid ""
@@ -1803,7 +1803,7 @@ msgstr ""
 
 #: mkt/constants/features.py:217
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: mkt/constants/features.py:218
 msgid ""
@@ -1813,7 +1813,7 @@ msgstr ""
 
 #: mkt/constants/features.py:224
 msgid "Microphone"
-msgstr ""
+msgstr "Mikrofon"
 
 #: mkt/constants/features.py:225
 msgid ""
@@ -1823,7 +1823,7 @@ msgstr ""
 
 #: mkt/constants/features.py:230
 msgid "Screen Capture"
-msgstr ""
+msgstr "Ekran görüntüsü"
 
 #: mkt/constants/features.py:231
 msgid ""
@@ -2131,7 +2131,7 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:294
 msgid "Europe"
-msgstr ""
+msgstr "Avrupa"
 
 #: mkt/constants/ratingsbodies.py:295
 msgid "Pan European Game Information"
@@ -2171,11 +2171,11 @@ msgstr ""
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
-msgstr ""
+msgstr "Libya"
 
 #: mkt/constants/regions.py:197
 msgid "Liechtenstein"
-msgstr ""
+msgstr "Lihtenştayn"
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
@@ -2191,11 +2191,11 @@ msgstr ""
 
 #: mkt/constants/regions.py:256
 msgid "Russia"
-msgstr ""
+msgstr "Rusya"
 
 #: mkt/constants/regions.py:260
 msgid "Senegal"
-msgstr ""
+msgstr "Senegal"
 
 #: mkt/constants/regions.py:263
 msgid "Saint Helena, Ascension and Tristan da Cunha"
@@ -2772,7 +2772,7 @@ msgstr ""
 #: mkt/developers/tasks.py:540 mkt/developers/tasks.py:546
 #: mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
-msgstr ""
+msgstr "ve"
 
 #: mkt/developers/tasks.py:560
 msgid "{region} region added to the Firefox Marketplace"
@@ -3004,7 +3004,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:59
 msgid "Key"
-msgstr ""
+msgstr "Anahtar"
 
 #: mkt/developers/templates/developers/api.html:62
 msgid "Secret"
@@ -3056,11 +3056,11 @@ msgstr ""
 #: mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:302
 #: mkt/zadmin/templates/admin/base.html:19 templates/base.html:13
 msgid "Firefox Marketplace"
-msgstr ""
+msgstr "Firefox Marketplace"
 
 #: mkt/developers/templates/developers/login.html:9
 msgid "Sign in"
-msgstr ""
+msgstr "Oturum aç"
 
 #: mkt/developers/templates/developers/login.html:10
 msgid "You must sign in to proceed."
@@ -3075,7 +3075,7 @@ msgstr ""
 #: mkt/developers/templates/developers/motd.html:3
 #: mkt/reviewers/templates/reviewers/motd.html:4
 msgid "Message of the Day"
-msgstr ""
+msgstr "Günün mesajı"
 
 #: mkt/developers/templates/developers/motd.html:11
 msgid "Update Message of the Day"
@@ -3122,7 +3122,7 @@ msgstr ""
 #: mkt/developers/templates/developers/skeleton_impala.html:54
 #: templates/base.html:55
 msgid "Firefox Marketplace Developers"
-msgstr ""
+msgstr "Firefox Marketplace Geliştiricileri"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:59
 #: templates/base.html:60
@@ -3142,12 +3142,12 @@ msgstr ""
 #: mkt/developers/templates/developers/skeleton_impala.html:68
 #: mkt/templates/mkt/header.html:28 templates/base.html:74
 msgid "Sign In"
-msgstr ""
+msgstr "Oturum aç"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:75
 #: mkt/templates/mkt/header.html:21 templates/base.html:81
 msgid "Settings"
-msgstr ""
+msgstr "Ayarlar"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:92
 #: mkt/zadmin/templates/admin/base.html:49 templates/base.html:98
@@ -3242,7 +3242,7 @@ msgstr "Date"
 #: mkt/reviewers/templates/reviewers/includes/details.html:9
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:41
 msgid "Type"
-msgstr ""
+msgstr "Tür"
 
 #: mkt/developers/templates/developers/transactions.html:45
 msgid "Currency"
@@ -6375,7 +6375,7 @@ msgstr ""
 #: mkt/lookup/templates/lookup/website_summary.html:16
 #: mkt/websites/forms.py:38
 msgid "Title"
-msgstr ""
+msgstr "Başlık"
 
 #: mkt/lookup/templates/lookup/website_edit.html:48
 #: mkt/lookup/templates/lookup/website_summary.html:28
@@ -6386,12 +6386,12 @@ msgstr ""
 #: mkt/lookup/templates/lookup/website_edit.html:55
 #: mkt/lookup/templates/lookup/website_summary.html:32
 msgid "Mobile URL"
-msgstr ""
+msgstr "Mobil URL"
 
 #: mkt/lookup/templates/lookup/website_edit.html:62
 #: mkt/lookup/templates/lookup/website_summary.html:36
 msgid "TV URL"
-msgstr ""
+msgstr "TV URL"
 
 #: mkt/lookup/templates/lookup/website_edit.html:70
 #: mkt/lookup/templates/lookup/website_summary.html:40
@@ -6734,7 +6734,7 @@ msgstr ""
 
 #: mkt/reviewers/helpers.py:43
 msgid "Updates"
-msgstr ""
+msgstr "Güncellemeler"
 
 #: mkt/reviewers/helpers.py:44
 msgid "Escalations"
@@ -6764,7 +6764,7 @@ msgstr ""
 #: mkt/reviewers/helpers.py:91
 msgctxt "pending"
 msgid "Apps ({0})"
-msgstr ""
+msgstr "Uygulamalar ({0})"
 
 #: mkt/reviewers/helpers.py:94
 msgctxt "rereview"
@@ -6774,7 +6774,7 @@ msgstr ""
 #: mkt/reviewers/helpers.py:98
 msgctxt "updates"
 msgid "Updates ({0})"
-msgstr ""
+msgstr "Güncellemeler ({0})"
 
 #: mkt/reviewers/helpers.py:102
 msgctxt "escalated"
@@ -7218,11 +7218,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/performance.html:30 mkt/stats/forms.py:11
 msgid "Month"
-msgstr ""
+msgstr "Ay"
 
 #: mkt/reviewers/templates/reviewers/performance.html:34 mkt/stats/forms.py:13
 msgid "Year"
-msgstr ""
+msgstr "Yıl"
 
 #: mkt/reviewers/templates/reviewers/performance.html:38
 msgid "All-Time"
@@ -7401,7 +7401,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:142
 msgid "Images"
-msgstr ""
+msgstr "Resimler"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:152
 msgid "More about this app"
@@ -7505,7 +7505,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:33
 msgid "translate"
-msgstr ""
+msgstr "çevir"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:42
 msgid ""
