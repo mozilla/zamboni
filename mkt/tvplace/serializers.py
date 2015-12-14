@@ -10,11 +10,10 @@ class TVAppSerializer(SimpleAppSerializer):
         fields = ['author', 'categories',
                   'content_ratings', 'current_version', 'description',
                   'file_size', 'homepage', 'hosted_url', 'icons', 'id',
-                  'last_updated', 'manifest_url', 'name', 'previews',
-                  'privacy_policy', 'promo_imgs', 'public_stats',
-                  'release_notes', 'ratings', 'slug', 'status',
-                  'support_email', 'support_url', 'tags',
-                  'tv_featured', 'user']
+                  'last_updated', 'manifest_url', 'name', 'privacy_policy',
+                  'promo_imgs', 'public_stats', 'release_notes',
+                  'ratings', 'slug', 'status', 'support_email', 'support_url',
+                  'tags', 'tv_featured', 'user']
         exclude = []
 
     def get_tv_featured(self, obj):
