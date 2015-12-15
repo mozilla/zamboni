@@ -20,13 +20,14 @@ class WebsiteSerializer(serializers.ModelSerializer):
     name = TranslationSerializerField()
     promo_imgs = serializers.SerializerMethodField('get_promo_imgs')
     short_name = TranslationSerializerField()
+    developer_name = TranslationSerializerField(required=False)
     title = TranslationSerializerField()
 
     class Meta:
         model = Website
-        fields = ['categories', 'description', 'device_types', 'icons', 'id',
-                  'keywords', 'mobile_url', 'name', 'promo_imgs', 'short_name',
-                  'title', 'url']
+        fields = ['categories', 'description', 'device_types',
+                  'developer_name', 'icons', 'id', 'keywords', 'mobile_url',
+                  'name', 'promo_imgs', 'short_name', 'title', 'url']
 
     def get_icons(self, obj):
         return {icon_size: obj.get_icon_url(icon_size)
@@ -66,7 +67,8 @@ class ESWebsiteSerializer(BaseESSerializer, WebsiteSerializer):
         # Attach translations for all translated attributes. obj.default_locale
         # should be set first for this to work.
         self._attach_translations(
-            obj, data, ('description', 'name', 'short_name', 'title'))
+            obj, data, ('description', 'developer_name', 'name', 'short_name',
+                        'title'))
 
         # Some methods might need the raw data from ES, put it on obj.
         obj.es_data = data

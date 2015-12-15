@@ -137,6 +137,9 @@ class Website(ModelBase):
     name = TranslatedField()
     short_name = TranslatedField()
 
+    # Developer name (only used for TV)
+    developer_name = TranslatedField(null=True)
+
     # Description.
     description = TranslatedField()
 
