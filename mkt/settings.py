@@ -832,7 +832,6 @@ IARC_PRIVACY_URL = ('https://www.globalratings.com'
                     '/IARCPRODClient/privacypolicy.aspx')
 IARC_TOS_URL = 'https://www.globalratings.com/IARCPRODClient/termsofuse.aspx'
 
-IARC_V2_MOCK = False
 IARC_V2_SERVICE_ENDPOINT = 'https://iarcdemo.azurewebsites.net/api/'
 IARC_V2_STOREFRONT_ID = ''  # Private.
 IARC_V2_SUBMISSION_ENDPOINT = 'https://iarcdemo.azurewebsites.net/'

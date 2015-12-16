@@ -31,8 +31,8 @@ from waffle.decorators import waffle_switch
 
 import mkt
 import lib.iarc
-from lib.iarc.serializers import IARCV2RatingListSerializer
 from lib.iarc.utils import get_iarc_app_title
+from lib.iarc_v2.serializers import IARCV2RatingListSerializer
 from mkt.access import acl
 from mkt.api.base import CORSMixin, SlugOrIdMixin
 from mkt.api.models import Access
@@ -1203,6 +1203,7 @@ class ContentRatingsPingbackV2(CORSMixin, UpdateModelMixin, GenericAPIView):
         # passing an object to the serializer. So we implement post() to match
         # the HTTP verb but really have it call update() behind the scenes.
         #
-        # FIXME: add a call to search cert in pre_save(), making sure the
-        # ratings match the cert id being received.
+        # FIXME: correctly implement PushCert Response. For StoreProductID and
+        # StoreDeveloperID we could use the app uuid. Check what do to with
+        # StatusCode.
         return self.update(request, *args, **kwargs)
