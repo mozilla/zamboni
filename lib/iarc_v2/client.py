@@ -43,14 +43,14 @@ def remove_cert(cert_id):
     _update_certs(cert_id, 'RemoveProduct')
 
 
-def search_certs(uuid):
+def search_certs(cert_id):
     """SearchCerts for complete data on a single certificate."""
     data = None
     if settings.IARC_V2_MOCK:
         data = json.loads(file('./mock/SearchCerts.json').read())
     else:
         url = urljoin(settings.IARC_V2_SERVICE_ENDPOINT, 'SearchCerts')
-        data = requests.get(url, {'CertID': uuid}).json()
+        data = requests.get(url, {'CertID': cert_id}).json()
     return IARCV2RatingListSerializer(data=data).data
 
 
