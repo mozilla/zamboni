@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2015-12-17 18:18+0000\n"
+"PO-Revision-Date: 2015-12-17 18:45+0000\n"
 "Last-Translator: AmadejHP <amadejhp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1741,7 +1741,7 @@ msgstr ""
 
 #: mkt/constants/features.py:155
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr ""
+msgstr "Velikost zaslona prilagojena za telefon (qHD)"
 
 #: mkt/constants/features.py:156
 msgid ""
@@ -1749,6 +1749,10 @@ msgid ""
 " resolution). This option indicates that the app will be unusable on larger "
 "displays (e.g., tablets, desktop, large or high-DPI phones)."
 msgstr ""
+"Aplikacija zahteva platformo, da lahko prikazuje zaslon v velikosti primerni"
+" za telefon (qHD kvaliteta). Ta možnost prikazuje, da bo aplikacija "
+"neuporabna na večjih zaslonih (npr.: tablični računalniki, namizje, večji "
+"ali DPI telefoni)."
 
 #: mkt/constants/features.py:166
 msgid "The app requires that the platform can decode and play MP3 files."
@@ -1771,6 +1775,8 @@ msgid ""
 "The app requires that the platform supports the Web Audio API "
 "(`window.AudioContext`)."
 msgstr ""
+"Aplikacija zahteva, da platforma podpira API spletni zvok (`okno.Zvočna "
+"vsebina`)."
 
 #: mkt/constants/features.py:184
 msgid ""
@@ -1817,6 +1823,9 @@ msgid ""
 "above the normally allowed limits for an app (`window.StorageInfo` or "
 "`window.persistentStorage`)."
 msgstr ""
+"Aplikacija zahteva dovoljenje da poveča limit podatkov nad ponavadi "
+"dovoljeno mejo za eno aplikacijo (`okno.Podatkovne informacije` ali "
+"`okno.persistentStorage`)."
 
 #: mkt/constants/features.py:217
 msgid "Camera"
@@ -1964,7 +1973,7 @@ msgstr "Aplikacija zahteva informacije o večih mrežnih povezavah."
 
 #: mkt/constants/features.py:318
 msgid "Mobile ID"
-msgstr ""
+msgstr "Mobilna identiteta"
 
 #: mkt/constants/features.py:319
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
@@ -1980,23 +1989,23 @@ msgstr ""
 
 #: mkt/constants/features.py:330
 msgid "512MB RAM Device"
-msgstr ""
+msgstr "Naprava z 512 MB RAM-a"
 
 #: mkt/constants/features.py:331
 msgid "The app requires the device to have at least 512MB RAM."
-msgstr ""
+msgstr "Aplikacija zahteva, da ima naprava vsaj 512 MB RAM-a."
 
 #: mkt/constants/features.py:336
 msgid "1GB RAM Device"
-msgstr ""
+msgstr "Naprava z 1 GB RAM-a"
 
 #: mkt/constants/features.py:337
 msgid "The app requires the device to have at least 1GB RAM."
-msgstr ""
+msgstr "Aplikacija zahteva napravo z vsaj 1 GB RAM-a."
 
 #: mkt/constants/features.py:342
 msgid "NFC"
-msgstr ""
+msgstr "NFC"
 
 #: mkt/constants/features.py:343
 msgid "The app requires access to the Near Field Communication (NFC) API."
