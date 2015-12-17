@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2015-12-04 13:35+0000\n"
-"Last-Translator: Goran Kohek <goran.kohek@gmail.com>\n"
+"PO-Revision-Date: 2015-12-17 18:18+0000\n"
+"Last-Translator: AmadejHP <amadejhp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -1279,11 +1279,11 @@ msgstr ""
 
 #: mkt/constants/base.py:251
 msgid "App Abuse Report Read"
-msgstr ""
+msgstr "Preberi poročilo o zlorabi aplikacije"
 
 #: mkt/constants/base.py:252
 msgid "Website Abuse Report Read"
-msgstr ""
+msgstr "Preberi poročilo o zlorabi spletne strani"
 
 #: mkt/constants/base.py:286
 msgid "Level 1"
@@ -1391,7 +1391,7 @@ msgstr "Storilnost"
 
 #: mkt/constants/categories.py:22
 msgid "Reference"
-msgstr ""
+msgstr "Reference"
 
 #: mkt/constants/categories.py:23
 msgid "Science & Tech"
@@ -1573,7 +1573,7 @@ msgstr "Spletno plačilo"
 
 #: mkt/constants/features.py:34
 msgid "The app requires the `navigator.mozApps` API."
-msgstr ""
+msgstr "Aplikacija zahteva API `navigator.mozApps."
 
 #: mkt/constants/features.py:38
 msgid "Web Activities"
@@ -1581,7 +1581,7 @@ msgstr "Spletne aktivnosti"
 
 #: mkt/constants/features.py:39
 msgid "The app requires Web Activities (the `MozActivity` API)."
-msgstr ""
+msgstr "Aplikacija potrebuje spletne aktivnosti (MozActivity API)."
 
 #: mkt/constants/features.py:44
 msgid "Ambient Light Sensor"
@@ -1590,6 +1590,8 @@ msgstr "Čutilo za okolno svetlobo"
 #: mkt/constants/features.py:45
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
 msgstr ""
+"Aplikacija zahteva senzor za zaznavanje osvetlitve okolja (API "
+"`ondevicelight`)."
 
 #: mkt/constants/features.py:50
 msgid "Archive"
@@ -1597,7 +1599,7 @@ msgstr "Arhiv"
 
 #: mkt/constants/features.py:51
 msgid "The app requires the `ArchiveReader` API."
-msgstr ""
+msgstr "Aplikacija zahteva API `ArchiveReader`."
 
 #: mkt/constants/features.py:55
 msgid "Battery"
@@ -1605,11 +1607,11 @@ msgstr "Baterija"
 
 #: mkt/constants/features.py:56
 msgid "The app requires the `navigator.battery` API."
-msgstr ""
+msgstr "Aplikacija zahteva API `navigator.battery."
 
 #: mkt/constants/features.py:61
 msgid "The app requires the `navigator.mozBluetooth` API."
-msgstr ""
+msgstr "Aplikacija zahteva API `navigator.mozBluetooth`."
 
 #: mkt/constants/features.py:66
 msgid "Contacts"
@@ -1627,6 +1629,8 @@ msgstr "Skladišče na napravi"
 msgid ""
 "The app requires the Device Storage API to access files on the filesystem."
 msgstr ""
+"Aplikacija zahteva API shrambo podatkov v napravi za dostop do datotek na "
+"datotečnem sistemu."
 
 #: mkt/constants/features.py:79
 msgid "The app requires the platform to support IndexedDB."
