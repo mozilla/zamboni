@@ -2006,7 +2006,10 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
     def set_iarc_certificate(self, cert_id):
         if isinstance(cert_id, basestring):
-            # Make sure that when storing cert ids, we use UUID objects.
+            # Our UUIDField store values as strings, and would happily try to
+            # save a string with separators if we don't do anything. It knows
+            # how to convert UUID objects though, so let's pass that when we
+            # have a string to make sure it's stored properly.
             cert_id = uuid.UUID(cert_id)
         defaults = {'cert_id': cert_id}
         cert, created = IARCCert.objects.safer_get_or_create(
