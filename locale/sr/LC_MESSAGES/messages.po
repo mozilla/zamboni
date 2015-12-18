@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2015-12-13 21:28+0000\n"
+"PO-Revision-Date: 2015-12-18 17:07+0000\n"
 "Last-Translator: Vanja Tumbas <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -2043,11 +2043,11 @@ msgstr "Ова апликација захтева Near Field Communication (NFC
 
 #: mkt/constants/features.py:357
 msgid "UDP Sockets"
-msgstr ""
+msgstr "UDP сокети"
 
 #: mkt/constants/features.py:358
 msgid "The app requires the platform to allow opening raw UDP sockets."
-msgstr ""
+msgstr "Апликација захтева платформу која дозвољава отварање UDP сокета."
 
 #: mkt/constants/payments.py:40 mkt/constants/payments.py:48
 msgid "Chargeback"
@@ -3817,6 +3817,11 @@ msgid ""
 " want to stop showing your app on low-memory devices <a "
 "href=\"%(support_url)s\">contact us</a>."
 msgstr ""
+"Апликација је приказана на <a "
+"href=\"https://developer.mozilla.org/Apps/Build/Performance/Apps_for_low-"
+"memory_Firefox_OS_devices\" target=\"_blank\">уређајима са мало "
+"меморије</a>. Ако желите да престанете да је приказујете на уређајима са "
+"мало меморије <a href=\"%(support_url)s\">контактирајте нас</a>."
 
 #: mkt/developers/templates/developers/apps/status.html:302
 #: mkt/developers/templates/developers/apps/status.html:320
@@ -4361,7 +4366,7 @@ msgstr "Почетни екран?"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:48
 msgid "Whether this app is a homescreen for Firefox OS."
-msgstr ""
+msgstr "Било да је ова апликација почетни екран за Firefox OS."
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:70
 msgid "This app does not require any device features"
@@ -5923,7 +5928,7 @@ msgstr "Mozilla Web апликације (бразилски португалс�
 
 #: mkt/extensions/models.py:237
 msgid "An Add-on with the same name already exists in your submissions."
-msgstr ""
+msgstr "Додатак са истим именом већ постоји."
 
 #: mkt/extensions/models.py:538
 msgid ""
@@ -6045,11 +6050,11 @@ msgstr ""
 
 #: mkt/extensions/views.py:56
 msgid "No validation_id specified."
-msgstr ""
+msgstr "Није дефинисан validation_id."
 
 #: mkt/extensions/views.py:61
 msgid "No such upload."
-msgstr ""
+msgstr "Нема таквог отпремање."
 
 #: mkt/extensions/views.py:64
 msgid "The specified upload has not passed validation."
@@ -6345,7 +6350,7 @@ msgstr "Разлози за брисање"
 
 #: mkt/lookup/forms.py:81
 msgid "Promo Image"
-msgstr ""
+msgstr "Слика промоције"
 
 #: mkt/lookup/forms.py:82
 msgid "Minimum size: {0}x{1}"
@@ -6570,7 +6575,7 @@ msgstr "Белешке"
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
-msgstr ""
+msgstr "Ограничено (API промене нису могуће)"
 
 #: mkt/lookup/templates/lookup/group_summary.html:30
 msgid "Group Members"
@@ -6778,7 +6783,7 @@ msgstr "Мобилни URL"
 #: mkt/lookup/templates/lookup/website_edit.html:62
 #: mkt/lookup/templates/lookup/website_summary.html:36
 msgid "TV URL"
-msgstr ""
+msgstr "TV URL"
 
 #: mkt/lookup/templates/lookup/website_edit.html:70
 #: mkt/lookup/templates/lookup/website_summary.html:40
@@ -6832,7 +6837,7 @@ msgstr "Налог је избрисан"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:3
 msgid "Website Summary for"
-msgstr ""
+msgstr "Опис веб сајта за"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:5
 msgid "Edit Website"
@@ -6857,11 +6862,11 @@ msgstr "Претражи"
 
 #: mkt/lookup/templates/lookup/includes/group_search.html:4
 msgid "Group Lookup"
-msgstr ""
+msgstr "Тражење групе"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
-msgstr ""
+msgstr "Сними промотивну слику"
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
@@ -6873,7 +6878,7 @@ msgstr "Претрага налога"
 
 #: mkt/lookup/templates/lookup/includes/website_search.html:5
 msgid "Website Lookup"
-msgstr ""
+msgstr "Тражење веб сајта"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
@@ -7082,7 +7087,7 @@ msgstr "Занемаривање типа уређаја:"
 
 #: mkt/reviewers/forms.py:126
 msgid "Nominate this app to be featured."
-msgstr ""
+msgstr "Номинирај ову апликацију да буде истакнута."
 
 #: mkt/reviewers/forms.py:133
 msgid "Choose a canned response..."
@@ -7132,7 +7137,7 @@ msgstr "Уређене рецензије"
 
 #: mkt/reviewers/helpers.py:48
 msgid "Website Abuse Reports"
-msgstr ""
+msgstr "Пријаве злоупотребе сајта"
 
 #: mkt/reviewers/helpers.py:49
 msgid "Reviewing"
@@ -7192,12 +7197,12 @@ msgstr "Уређених рецензија ({0})"
 #: mkt/reviewers/helpers.py:136
 msgctxt "abuse"
 msgid "Abuse Reports ({0})"
-msgstr ""
+msgstr "Пријаве злоупотребе ({0})"
 
 #: mkt/reviewers/helpers.py:143
 msgctxt "abusewebsites"
 msgid "Website Abuse Reports ({0})"
-msgstr ""
+msgstr "Пријаве злоупотребе сајта ({0})"
 
 #: mkt/reviewers/helpers.py:159
 msgid "Reviews"
@@ -7358,7 +7363,7 @@ msgstr "Предглед успешно обрађен."
 
 #: mkt/reviewers/templates/reviewers/abuse.html:9
 msgid "Abuse Reports for {item} ({num})"
-msgstr ""
+msgstr "Пријаве злоупотребе за {item} ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
@@ -7474,9 +7479,9 @@ msgstr[2] "{num} ажурираних прегледа"
 #: mkt/reviewers/templates/reviewers/home.html:39
 msgid "{num} Homescreen Review"
 msgid_plural "{num} Homescreen Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{num} преглед почетног екрана"
+msgstr[1] "{num} прегледа почетног екрана"
+msgstr[2] "{num} прегледа почетног екрана"
 
 #: mkt/reviewers/templates/reviewers/home.html:48
 msgid "{c} unreviewed app submission this week."
@@ -7554,7 +7559,7 @@ msgstr "Ни један преглед није пронађен у овом в�
 #: mkt/reviewers/templates/reviewers/moderatelog.html:4
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:5
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Контролисан дневник прегледа"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:31
 msgid "More details."
@@ -7598,7 +7603,7 @@ msgstr "Тренутни статус рецензије"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Alive"
-msgstr ""
+msgstr "Жив"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:40
 msgid "Undelete"
@@ -7877,6 +7882,7 @@ msgstr "Прегледај страницу"
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
 msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
 msgstr ""
+"<a href=\"%(abuses_url)s\">Све пријаве злоупотребе (%(abuses_count)s)</a>]"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:34
 msgid ""
@@ -7896,7 +7902,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:62
 msgid "All abuse reports read. Good work!"
-msgstr ""
+msgstr "Све пријаве злоупотребе прочитане. Добро урађено!"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
@@ -8697,19 +8703,19 @@ msgstr "{addon} {version} није прошао {queue} преглед."
 
 #: mkt/site/log.py:704
 msgid "Abuse report {report} for {addon} read."
-msgstr ""
+msgstr "Пријава злоупотребе {report} за {addon} је прочитана."
 
 #: mkt/site/log.py:705
 msgid "{user} marked read {report} for {addon}."
-msgstr ""
+msgstr "{user} је означио {report} као прочитано за {addon}."
 
 #: mkt/site/log.py:713
 msgid "Abuse report {report} for {website} read."
-msgstr ""
+msgstr "Пријава злоупотребе {report} за {website} је прочитана."
 
 #: mkt/site/log.py:714
 msgid "{user} marked read {report} for {website}."
-msgstr ""
+msgstr "{user} је означио {report} као прочитано за {website}."
 
 #: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
@@ -8825,7 +8831,7 @@ msgstr "Подношење валидације корисника се не п�
 
 #: mkt/submit/forms.py:223
 msgid "Homescreens can only be submitted for Firefox OS."
-msgstr ""
+msgstr "Почетни екрани могу бити поднети само за Firefox OS."
 
 #: mkt/submit/forms.py:270
 msgid ""
@@ -9379,7 +9385,7 @@ msgstr ""
 
 #: mkt/users/views.py:87
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "Нативна FxA аутентификација је неуспешна."
 
 #: mkt/users/views.py:111
 msgid "Please use the verified email for this account."
@@ -9467,7 +9473,7 @@ msgstr "Неважећи регион(s) су изабрани."
 
 #: mkt/websites/forms.py:90
 msgid "Invalid device(s) selected."
-msgstr ""
+msgstr "Одабрани су неисправни уређаји."
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"
