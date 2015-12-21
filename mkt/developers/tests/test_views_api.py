@@ -15,6 +15,7 @@ from mkt.api.models import Access
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.developers.models import IARCRequest
 from mkt.site.fixtures import fixture
+from mkt.site.helpers import absolutify
 from mkt.site.tests import TestCase
 from mkt.site.utils import app_factory
 from mkt.webapps.models import ContentRating, Geodata
@@ -325,6 +326,7 @@ class TestContentRatingPingbackV2(RestOAuth):
     def setUp(self):
         super(TestContentRatingPingbackV2, self).setUp()
         self.app = app_factory(status=mkt.STATUS_NULL)
+        self.app.addonuser_set.create(user=self.profile)
         self.url = reverse('content-ratings-pingback-v2')
 
     def test_has_cors(self):
@@ -334,20 +336,23 @@ class TestContentRatingPingbackV2(RestOAuth):
     def test_post_no_store_request_id(self):
         res = self.anon.post(self.url, data=json.dumps({}))
         eq_(res.status_code, 400)
-        eq_(res.data, {'detail': 'Need a StoreRequestID'})
+        eq_(res.data, {'detail': 'Need a StoreRequestID',
+                       'StatusCode': 'InvalidRequest'})
 
     def test_post_store_request_id_not_found(self):
         res = self.anon.post(self.url, data=json.dumps(
             {'StoreRequestID': unicode(uuid.uuid4())}))
         eq_(res.status_code, 404)
-        eq_(res.data, {'detail': 'Not found'})
+        eq_(res.data, {'detail': 'Not found', 'StatusCode': 'InvalidRequest'})
 
     def test_post_error(self):
         request = IARCRequest.objects.create(app=self.app)
         res = self.anon.post(self.url, data=json.dumps(
             {'StoreRequestID': request.uuid}))
         eq_(res.status_code, 400)
-        eq_(res.data, {'RatingList': 'This field is required.'})
+        eq_(res.data,
+            {'RatingList': 'This field is required.',
+             'StatusCode': 'InvalidRequest'})
 
     def test_post_success(self):
         request = IARCRequest.objects.create(app=self.app)
@@ -374,6 +379,16 @@ class TestContentRatingPingbackV2(RestOAuth):
         eq_(self.app.is_fully_complete(), False)  # Missing ratings.
         res = self.anon.post(self.url, data=json.dumps(data))
         eq_(res.status_code, 200)
+        eq_(res.data,
+            {'StoreProductID': self.app.guid,
+             'StoreProductURL': absolutify(self.app.get_url_path()),
+             'EmailAddress': self.profile.email,
+             'CompanyName': u'',
+             'StoreDeveloperID': self.app.pk,
+             'StatusCode': 'Success',
+             'DeveloperEmail': self.profile.email,
+             'Publish': False,
+             'ProductName': self.app.name})
         self.app.reload()
         eq_(self.app.status, mkt.STATUS_PENDING)
         eq_(self.app.is_fully_complete(), True)
