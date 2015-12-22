@@ -10,7 +10,6 @@ from mkt.api.views import endpoint_removed
 from mkt.comm.views import (CommAppListView, CommExtensionListView,
                             NoteListView, ThreadViewSetV2)
 from mkt.extensions.urls import urlpatterns as extensions_urlpatterns
-from mkt.games.views import DailyGamesView
 from mkt.langpacks.views import LangPackViewSet
 from mkt.operators.views import OperatorPermissionViewSet
 from mkt.latecustomization.views import LateCustomizationViewSet
@@ -106,8 +105,6 @@ urlpatterns = patterns(
         views.FeedElementGetView.as_view(), name='feed.feed_element_get'),
     url(r'^transonic/feed/(?P<item_type>[\w]+)/$',
         views.FeedElementListView.as_view(), name='feed.feed_element_list'),
-
-    url(r'^games/daily/$', DailyGamesView.as_view(), name='games.daily'),
 
     url(r'^langpacks', include(langpacks.urls)),
     url(r'^late-customization', include(latecustomization.urls)),
