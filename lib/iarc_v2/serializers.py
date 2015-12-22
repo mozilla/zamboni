@@ -90,3 +90,4 @@ class IARCV2RatingListSerializer(object):
         self.object.set_content_ratings(self.validated_data['ratings'])
         # App status should automatically be updated if necessary when saving
         # the content_ratings instance.
+        return self.object

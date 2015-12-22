@@ -25,6 +25,7 @@ from rest_framework.generics import CreateAPIView, GenericAPIView, ListAPIView
 from rest_framework.mixins import UpdateModelMixin
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from rest_framework.status import is_success
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from tower import ugettext as _
 from waffle.decorators import waffle_switch
@@ -32,6 +33,7 @@ from waffle.decorators import waffle_switch
 import mkt
 import lib.iarc
 from lib.iarc.utils import get_iarc_app_title
+from lib.iarc_v2.client import app_data as iarc_app_data
 from lib.iarc_v2.serializers import IARCV2RatingListSerializer
 from mkt.access import acl
 from mkt.api.base import CORSMixin, SlugOrIdMixin
@@ -1198,12 +1200,23 @@ class ContentRatingsPingbackV2(CORSMixin, UpdateModelMixin, GenericAPIView):
             raise ParseError('Need a StoreRequestID')
         return super(ContentRatingsPingbackV2, self).get_object().app
 
+    def finalize_response(self, request, response, *args, **kwargs):
+        """Alter response to conform to IARC spec (which is not REST)."""
+        if is_success(response.status_code):
+            # Override data, because IARC wants a specific response and does
+            # not care about our serialized data.
+            response.data = iarc_app_data(self.object)
+            # FIXME: not sure what StatusCode value to use when everything is
+            # OK. The spec says it's not nullable and only gives 2 possible
+            # values, to use when something goes wrong.
+            response.data['StatusCode'] = 'Success'
+        else:
+            response.data['StatusCode'] = 'InvalidRequest'
+        return super(ContentRatingsPingbackV2, self).finalize_response(
+            request, response, *args, **kwargs)
+
     def post(self, request, *args, **kwargs):
         # IARC sends a POST, but what we really want is to update some data,
         # passing an object to the serializer. So we implement post() to match
         # the HTTP verb but really have it call update() behind the scenes.
-        #
-        # FIXME: correctly implement PushCert Response. For StoreProductID and
-        # StoreDeveloperID we could use the app uuid. Check what do to with
-        # StatusCode.
         return self.update(request, *args, **kwargs)
