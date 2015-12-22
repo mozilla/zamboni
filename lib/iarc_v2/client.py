@@ -55,7 +55,7 @@ def get_rating_changes():
     start_date = datetime.datetime.utcnow()
     end_date = start_date - datetime.timedelta(days=1)
     url = urljoin(settings.IARC_V2_SERVICE_ENDPOINT, 'GetRatingChanges')
-    data = requests.get(url, json={
+    data = requests.post(url, json={
         'StartDate': start_date.strftime('%Y-%m-%d'),
         'EndDate': end_date.strftime('%Y-%m-%d'),
         'MaxRows': 500,  # Limit.
@@ -94,7 +94,7 @@ def search_and_attach_cert(app, cert_id):
 def _search_cert(app, cert_id):
     """Ask IARC for information about a cert."""
     url = urljoin(settings.IARC_V2_SERVICE_ENDPOINT, 'SearchCerts')
-    data = requests.get(url, json={'CertID': unicode(UUID(cert_id))}).json()
+    data = requests.post(url, json={'CertID': unicode(UUID(cert_id))}).json()
     # We don't care about MatchFound, serializer won't find the right fields
     # if no match is found.
     serializer = IARCV2RatingListSerializer(instance=app, data=data)
