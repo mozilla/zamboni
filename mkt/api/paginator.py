@@ -62,7 +62,9 @@ class ESPaginator(Paginator):
 
 class CustomPagination(pagination.LimitOffsetPagination):
     """
-    Paginator for DRF API views.
+    Paginator for DRF API views. Marketplace API was defined using limit/offset
+    pagination before DRF was adopted, this class preserves its legacy
+    behaviour.
     """
     count_override = 0
 

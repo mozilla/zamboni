@@ -56,8 +56,8 @@ class FeedbackSerializer(PotatoCaptchaSerializer):
     user = fields.ReadOnlyField(required=False)
     platform = fields.CharField(required=False, allow_null=True)
 
-    def validate(self, attrs):
-        attrs = super(FeedbackSerializer, self).validate(attrs)
+    def to_representation(self, attrs):
+        attrs = super(FeedbackSerializer, self).to_representation(attrs)
         if not attrs.get('platform'):
             attrs['platform'] = self.request.GET.get('dev', '')
         if self.request.user.is_authenticated():
