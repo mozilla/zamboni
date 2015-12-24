@@ -15,7 +15,6 @@ import mkt
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView
-from mkt.api.paginator import ESPaginator
 from mkt.api.permissions import AnyOf, GroupPermission
 from mkt.extensions import indexers as e_indexers
 from mkt.extensions.serializers import ESExtensionSerializer
@@ -52,7 +51,6 @@ class SearchView(CORSMixin, MarketplaceView, ListAPIView):
 
     serializer_class = ESAppSerializer
     form_class = ApiSearchForm
-    paginator_class = ESPaginator
 
     def get_queryset(self):
         return indexers.WebappIndexer.search()

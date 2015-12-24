@@ -34,6 +34,7 @@ from rest_framework.viewsets import GenericViewSet
 import mkt
 from lib.metrics import record_action
 from mkt.access.models import Group, GroupUser
+from mkt.api.paginator import CustomPagination
 from mkt.users.models import UserProfile
 from mkt.users.views import browserid_authenticate
 
@@ -80,6 +81,7 @@ class InstalledViewSet(CORSMixin, MarketplaceView, ListModelMixin,
     cors_allowed_methods = ['get']
     serializer_class = SimpleAppSerializer
     permission_classes = [AllowSelf]
+    pagination_class = CustomPagination
     authentication_classes = [RestOAuthAuthentication,
                               RestSharedSecretAuthentication]
 

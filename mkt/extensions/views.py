@@ -25,7 +25,6 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.permissions import (AllowReadOnlyIfPublic, AnyOf, ByHttpMethod,
                                  GroupPermission)
-from mkt.api.paginator import ESPaginator
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.apps import MANIFEST_CONTENT_TYPE
@@ -173,7 +172,6 @@ class ExtensionSearchView(CORSMixin, MarketplaceView, ListAPIView):
     filter_backends = [ExtensionSearchFormFilter, PublicContentFilter,
                        SearchQueryFilter, SortingFilter]
     serializer_class = ESExtensionSerializer
-    paginator_class = ESPaginator
     form_class = ExtensionSearchForm
 
     def get_queryset(self):

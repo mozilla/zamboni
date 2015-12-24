@@ -89,13 +89,15 @@ class CustomPagination(pagination.LimitOffsetPagination):
             return None
 
         self.offset = self.get_offset(request)
-        self.count = self.count_override or pagination._get_count(queryset)
-        self.request = request
-        if self.count > self.limit and self.template is not None:
-            self.display_page_controls = True
         page = queryset[self.offset:self.offset + self.limit]
         if isinstance(page, Search):
             page = page.execute()
+            self.count = page.hits.total
+        else:
+            self.count = self.count_override or pagination._get_count(queryset)
+        self.request = request
+        if self.count > self.limit and self.template is not None:
+            self.display_page_controls = True
         return list(page)
 
 
