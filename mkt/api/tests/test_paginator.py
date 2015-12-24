@@ -32,7 +32,7 @@ class TestSearchPaginator(ESTestCase):
         es.search = orig_search
 
 
-class TestMetaSerializer(TestCase):
+class TestPaginatorMeta(TestCase):
     def setUp(self):
         self.url = '/api/whatever'
         self.paginator = CustomPagination()
