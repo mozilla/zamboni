@@ -46,7 +46,6 @@ django-secure==1.0.1
 django-statsd-mozilla==0.3.10
 django-storages-redux==1.2.3
 django-waffle==0.10
-drf-compound-fields==0.2.2
 drf-nested-routers==0.10.0
 easy-thumbnails==2.2
 elasticsearch==1.4.0

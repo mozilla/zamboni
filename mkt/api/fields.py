@@ -413,7 +413,8 @@ class SemiSerializerMethodField(serializers.SerializerMethodField):
     need to handle unserialization manually.
     """
     def __init__(self, method_name=None, **kwargs):
-        # Intentionally skipping SerializerMethodField.__init__.
+        # Intentionally skipping SerializerMethodField.__init__, since it sets
+        # the field to be read-only.
         self.method_name = method_name
         serializers.Field.__init__(self, **kwargs)
 

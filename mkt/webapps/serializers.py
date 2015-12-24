@@ -338,6 +338,7 @@ class AppSerializer(BaseAppSerializer):
             current_upsell.delete()
 
     def save_price(self, obj, price):
+        # Only valid for premium apps; don't call this on free ones.
         valid_prices = Price.objects.exclude(
             price='0.00').values_list('price', flat=True)
         if not (price and Decimal(price) in valid_prices):
@@ -361,7 +362,7 @@ class AppSerializer(BaseAppSerializer):
         return device_types
 
     def validate_price(self, price):
-            return {'price': price}
+        return {'price': price}
 
     def update(self, instance, attrs):
         extras = []
