@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2015-12-24 13:19+0000\n"
+"PO-Revision-Date: 2015-12-24 18:13+0000\n"
 "Last-Translator: Ernest <echolite221@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -8500,7 +8500,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/details.html:50
 msgid "Open details page"
-msgstr ""
+msgstr "Відкрити сторінку з подробицями"
 
 #: mkt/submit/templates/submit/details.html:124
 msgid "Support Information:"
@@ -8895,6 +8895,8 @@ msgstr ""
 #: mkt/users/views.py:111
 msgid "Please use the verified email for this account."
 msgstr ""
+"Будь ласка, використовуйте для цього облікового запису перевірену електронну"
+" пошту."
 
 #: mkt/webapps/models.py:199
 msgid "Listed"
@@ -8973,7 +8975,7 @@ msgstr "Створено"
 
 #: mkt/websites/forms.py:81
 msgid "Invalid region(s) selected."
-msgstr ""
+msgstr "Обрано неприпустимий(і) регіон(и)."
 
 #: mkt/websites/forms.py:90
 msgid "Invalid device(s) selected."
