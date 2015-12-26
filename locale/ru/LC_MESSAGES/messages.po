@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2015-12-26 17:21+0000\n"
+"PO-Revision-Date: 2015-12-26 17:43+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -2327,14 +2327,12 @@ msgid "Must have at least one owner."
 msgstr "Должно иметь по меньшей мере одного владельца."
 
 #: mkt/developers/forms.py:155
-#, fuzzy
 msgid "At least one team member must be listed."
-msgstr "Должен быть указан по меньшей мере один автор."
+msgstr "Должен быть указан по меньшей мере один член команды."
 
 #: mkt/developers/forms.py:159
-#, fuzzy
 msgid "A team member can only be listed once."
-msgstr "Автор может только быть указан только один раз."
+msgstr "Член команды может только быть указан только один раз."
 
 #: mkt/developers/forms.py:186
 msgid ""
@@ -2628,9 +2626,8 @@ msgid "Free (with in-app payments)"
 msgstr "Бесплатные (с платежами в приложении)"
 
 #: mkt/developers/forms_payments.py:122
-#, fuzzy
 msgid "Promotional Pricing"
-msgstr "Шаг 2. Цена и доступность"
+msgstr "Рекламные цены"
 
 #: mkt/developers/forms_payments.py:135
 msgid "Only supports carrier billing"
@@ -2744,9 +2741,8 @@ msgid "Bank City/Municipality"
 msgstr "Город банка/Муниципалитет"
 
 #: mkt/developers/forms_payments.py:420
-#, fuzzy
 msgid "Bank State/Province/Region"
-msgstr "Область/Край/Регион"
+msgstr "Область/Край/Регион Банка"
 
 #: mkt/developers/forms_payments.py:422
 msgid "Bank Zip/Postal Code"
@@ -3035,9 +3031,8 @@ msgid "Key and secret were created successfully."
 msgstr "Ключ и секрет были успешно созданы."
 
 #: mkt/developers/views_payments.py:366
-#, fuzzy
 msgid "Your app is not configured for in-app payments."
-msgstr "В настоящее время ваше приложение не принимает платежи."
+msgstr "Ваше приложение не настроено для платежей в приложении."
 
 #: mkt/developers/views_payments.py:369
 msgid "No payment account for this app."
@@ -4019,9 +4014,8 @@ msgstr ""
 "Mozilla или старшими проверяющими приложений?"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:93
-#, fuzzy
 msgid "Use sparingly"
-msgstr "Использование алкоголя"
+msgstr "Используйте экономно"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:108
 msgid "Priority review needed"
@@ -4278,13 +4272,12 @@ msgid "Website"
 msgstr "Веб-сайт"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:43
-#, fuzzy
 msgid ""
 "If your app has a support website or forum, enter its address here. If your "
 "website is localized into other languages, multiple translations of this "
 "field can be added."
 msgstr ""
-"Если у вашего дополнения есть сайт или форум поддержки, введите здесь его "
+"Если у вашего приложения есть сайт или форум поддержки, введите здесь его "
 "адрес. Если ваш сайт переведен на другие языки, для этого поля можно "
 "добавить несколько переводов."
 
@@ -5235,9 +5228,8 @@ msgid "Please wait while we contact the payment server."
 msgstr "Пожалуйста подождите, пока мы соединяемся с платёжным сервером."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
-#, fuzzy
 msgid "Add Reference Account"
-msgstr "Ссылки"
+msgstr "Добавление референсного аккаунта"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:5
 msgid "Modify Bango Account"
@@ -5253,9 +5245,8 @@ msgid "Update Account"
 msgstr "Обновить учётную запись"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
-#, fuzzy
 msgid "Modify Reference Account"
-msgstr "Изменить учётную запись Bango"
+msgstr "Изменение референсного аккаунта"
 
 #: mkt/developers/templates/developers/payments/includes/region_form.html:3
 msgid "Regions that require extra consideration:"
@@ -5366,9 +5357,8 @@ msgstr "Опубликовать"
 #: mkt/ecosystem/templates/ecosystem/base.html:54
 #: mkt/ecosystem/templates/ecosystem/landing.html:57
 #: mkt/ecosystem/templates/ecosystem/macros.html:175
-#, fuzzy
 msgid "Deploying Your App"
-msgstr "Ссылка на ваше приложение"
+msgstr "Развертывание вашего приложения"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:58
 #: mkt/ecosystem/templates/ecosystem/landing.html:59
@@ -5537,9 +5527,8 @@ msgid "Chrono"
 msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:65
-#, fuzzy
 msgid "Face Value"
-msgstr "Значение"
+msgstr "Номинальная стоимость"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:73
 msgid "Podcasts"
@@ -6076,12 +6065,10 @@ msgstr ""
 "листинге приложения."
 
 #: mkt/files/utils.py:192
-#, fuzzy
 msgid "Invalid file name in archive: {0}"
 msgstr "Недопустимое имя файла в архиве: {0}"
 
 #: mkt/files/utils.py:200
-#, fuzzy
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Размер файла в архиве превышает лимит: {0}"
 
@@ -6278,7 +6265,6 @@ msgid "Minimum size: {0}x{1}"
 msgstr "Минимальный размер: {0}x{1}"
 
 #: mkt/lookup/views.py:201
-#, fuzzy
 msgid "A refund has already been processed."
 msgstr "Возмещение уже обработано."
 
@@ -6905,9 +6891,8 @@ msgid "Invalid test receipt"
 msgstr "Некорректная тестовая квитанция"
 
 #: mkt/receipts/forms.py:22
-#, fuzzy
 msgid "Refunded test receipt"
-msgstr "Тестовая квитанция"
+msgstr "Тестовая квитанция возмещения"
 
 #: mkt/receipts/views.py:86 mkt/receipts/views.py:177
 msgid "There was a problem installing the app."
@@ -7059,7 +7044,7 @@ msgstr "Модерируемые проверки"
 
 #: mkt/reviewers/helpers.py:48
 msgid "Website Abuse Reports"
-msgstr ""
+msgstr "Сообщения о жалобах на веб-сайт"
 
 #: mkt/reviewers/helpers.py:49
 msgid "Reviewing"
@@ -7067,7 +7052,7 @@ msgstr "Проверка"
 
 #: mkt/reviewers/helpers.py:50
 msgid "Homescreens"
-msgstr ""
+msgstr "Домашние экраны"
 
 #: mkt/reviewers/helpers.py:52
 #: mkt/reviewers/templates/reviewers/queue_region.html:7
@@ -7109,7 +7094,7 @@ msgstr "Tarako ({0})"
 #: mkt/reviewers/helpers.py:120
 msgctxt "homescreen"
 msgid "Homescreens ({0})"
-msgstr ""
+msgstr "Домашние экраны ({0})"
 
 #: mkt/reviewers/helpers.py:129
 msgctxt "moderated"
@@ -7119,12 +7104,12 @@ msgstr "Модерируемые отзывы ({0})"
 #: mkt/reviewers/helpers.py:136
 msgctxt "abuse"
 msgid "Abuse Reports ({0})"
-msgstr ""
+msgstr "Сообщения о жалобах ({0})"
 
 #: mkt/reviewers/helpers.py:143
 msgctxt "abusewebsites"
 msgid "Website Abuse Reports ({0})"
-msgstr ""
+msgstr "Сообщения о жалобах на веб-сайт ({0})"
 
 #: mkt/reviewers/helpers.py:159
 msgid "Reviews"
@@ -7142,7 +7127,7 @@ msgstr "Одобрить"
 
 #: mkt/reviewers/utils.py:402
 msgid "This will approve the app and allow the author(s) to publish it."
-msgstr ""
+msgstr "Это одобрит приложение и позволит автору(ам) опубликовать его."
 
 #: mkt/reviewers/utils.py:406
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49
@@ -7155,16 +7140,20 @@ msgid ""
 "This will reject the app, remove it from the review queue and un-publish it "
 "if already published."
 msgstr ""
+"Это отклонит приложение, удалит его из очереди проверок и снимет с "
+"публикации, если оно уже было опубликовано."
 
 #: mkt/reviewers/utils.py:413
 msgid "Message developer"
-msgstr ""
+msgstr "Написать разработчику"
 
 #: mkt/reviewers/utils.py:415
 msgid ""
 "This will send the author(s) - and other thread subscribers - a message. "
 "This will not change the app's status."
 msgstr ""
+"Это отправит автору(ам) - и другим подписчикам ветки - сообщение. Это не "
+"изменит статус приложения."
 
 #: mkt/reviewers/utils.py:420
 msgid "Escalate"
@@ -7175,10 +7164,12 @@ msgid ""
 "Flag this app for an admin to review. The comments are sent to the admins, "
 "not the author(s)."
 msgstr ""
+"Отметить это приложение для проверки администратором. Комментарии отправятся"
+" администраторам, но не автору(ам)."
 
 #: mkt/reviewers/utils.py:427
 msgid "Private comment"
-msgstr ""
+msgstr "Приватный комментарий"
 
 #: mkt/reviewers/utils.py:429
 msgid ""
@@ -7190,13 +7181,15 @@ msgstr ""
 
 #: mkt/reviewers/utils.py:435
 msgid "Request Re-review"
-msgstr ""
+msgstr "Запросить перепроверку"
 
 #: mkt/reviewers/utils.py:437
 msgid ""
 "Add this app to the re-review queue. Any comments here won't be visible to "
 "the author(s), and no notification will be sent to them."
 msgstr ""
+"Добавить это приложение в очередь на перепроверку. Любые комментарии здесь "
+"не будут показываться автору(ам) и они не получат уведомлений."
 
 #: mkt/reviewers/utils.py:443
 msgid "Clear Escalation"
@@ -7227,6 +7220,9 @@ msgid ""
 "Ban the app from Marketplace. Similar to Reject but the author(s) can't "
 "resubmit. To only be used in extreme cases."
 msgstr ""
+"Заблокировать это приложение на Marketplace. Похоже на отказ, но автор(ы) не"
+" сможет(ут) его отправить заново. Использовать только в экстремальных "
+"случаях."
 
 #: mkt/reviewers/views.py:139
 msgid "New Apps (Under 5 days)"
@@ -7247,6 +7243,7 @@ msgstr "Самопроверка не разрешена."
 #: mkt/reviewers/views.py:263
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr ""
+"Только старшие проверяющие могут проверять заблокированные приложения."
 
 #: mkt/reviewers/views.py:312 mkt/reviewers/views.py:337
 #: mkt/submit/forms.py:32 mkt/submit/forms.py:42
@@ -7269,7 +7266,7 @@ msgstr "Требования изменены проверяющим: {0}"
 
 #: mkt/reviewers/views.py:369
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
-msgstr ""
+msgstr "\"{0}\" успешно обработано (+{1} очков, {2} всего)."
 
 #: mkt/reviewers/views.py:371
 msgid "Review successfully processed."
@@ -7277,11 +7274,11 @@ msgstr "Проверка успешно обработана."
 
 #: mkt/reviewers/templates/reviewers/abuse.html:9
 msgid "Abuse Reports for {item} ({num})"
-msgstr ""
+msgstr "Отчёты по жалобам для {item} ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(reporter)s %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
 msgid "Additional Queues"
@@ -7383,19 +7380,18 @@ msgstr[1] "{num} Повторные проверки"
 msgstr[2] "{num} Повторных проверок"
 
 #: mkt/reviewers/templates/reviewers/home.html:32
-#, fuzzy
 msgid "{num} Update Review"
 msgid_plural "{num} Update Reviews"
-msgstr[0] "Полная проверка ({num})"
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{num} проверка из-за обновления"
+msgstr[1] "{num} проверки из-за обновления"
+msgstr[2] "{num} проверок из-за обновления"
 
 #: mkt/reviewers/templates/reviewers/home.html:39
 msgid "{num} Homescreen Review"
 msgid_plural "{num} Homescreen Reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{num} проверка домашнего экрана"
+msgstr[1] "{num} проверки домашнего экрана"
+msgstr[2] "{num} проверок домашнего экрана"
 
 #: mkt/reviewers/templates/reviewers/home.html:48
 msgid "{c} unreviewed app submission this week."
@@ -7473,15 +7469,15 @@ msgstr "Отзывы за этот период не найдены."
 #: mkt/reviewers/templates/reviewers/moderatelog.html:4
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:5
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Модерируемый журнал проверок"
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:31
 msgid "More details."
-msgstr ""
+msgstr "Больше деталей."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:40
 msgid "No events found for this period."
-msgstr ""
+msgstr "Не найдено событий за этот период."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:6
 msgid "Log Details"
@@ -7493,19 +7489,19 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:16
 msgid "Moderation date"
-msgstr ""
+msgstr "Дата проверки"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:18
 msgid "App title"
-msgstr ""
+msgstr "Заголовок приложения"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:20
 msgid "Review title"
-msgstr ""
+msgstr "Заголовок проверки"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:22
 msgid "Review text"
-msgstr ""
+msgstr "Текст проверки"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
 msgid "Review was flagged prior to moderation."
@@ -7513,7 +7509,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:32
 msgid "Current review status"
-msgstr ""
+msgstr "Текущий статус проверки"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Alive"
@@ -7630,11 +7626,11 @@ msgstr "Вставить стандартный ответ..."
 
 #: mkt/reviewers/templates/reviewers/review.html:133
 msgid "Tested on:"
-msgstr ""
+msgstr "Протестировано на:"
 
 #: mkt/reviewers/templates/reviewers/review.html:159
 msgid "Add device"
-msgstr ""
+msgstr "Добавить устройство"
 
 #: mkt/reviewers/templates/reviewers/review.html:176
 msgid "Browse"
@@ -7661,7 +7657,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:9
 msgid "Attachments"
-msgstr ""
+msgstr "Вложения"
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:28
 msgid "This version has not been reviewed"
@@ -7717,7 +7713,7 @@ msgstr "Рейтинг"
 #: mkt/reviewers/templates/reviewers/includes/details.html:129
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:141
 msgid "Region Availability"
-msgstr ""
+msgstr "Доступность в регионах"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:132
 msgid "Show less"
@@ -7762,12 +7758,8 @@ msgid "Premium with In-App"
 msgstr "Премиум с платежами в приложении"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:99
-#, fuzzy
 msgid "Free with In-App"
-msgstr ""
-"Если у вас есть бесплатное приложение, вы можете рекламировать ваше премиум-"
-"приложение через это бесплатное приложение. Сейчас у вас нет бесплатных "
-"приложений."
+msgstr "Бесплатное с платежами в приложении"
 
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:20
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:31
@@ -7777,45 +7769,51 @@ msgstr "ещё..."
 
 #: mkt/reviewers/templates/reviewers/includes/paginator_history.html:3
 msgid "Older versions"
-msgstr ""
+msgstr "Более старые версии"
 
 #: mkt/reviewers/templates/reviewers/includes/paginator_history.html:6
 msgid "Newer versions"
-msgstr ""
+msgstr "Более новые версии"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "Process"
-msgstr ""
+msgstr "Обработать"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:14
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:55
 msgid "Actions:"
-msgstr ""
+msgstr "Действия:"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "Review page"
-msgstr ""
+msgstr "Страница проверок"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
 msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
 msgstr ""
+"<a href=\"%(abuses_url)s\">Все сообщения о нарушениях "
+"(%(abuses_count)s)</a>]"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:34
 msgid ""
 "<span class=\"submitted-by\">Submitted by %(user)s on %(date)s "
 "[%(ip_address)s]</span>"
 msgstr ""
+"<span class=\"submitted-by\">Опубликовано %(user)s %(date)s "
+"[%(ip_address)s]</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:40
 msgid ""
 "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" "
 "target=\"_blank\" href=\"%(translate_url)s\">translate</a>"
 msgstr ""
+"- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" "
+"target=\"_blank\" href=\"%(translate_url)s\">перевести</a>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:62
 msgid "All abuse reports read. Good work!"
-msgstr ""
+msgstr "Все сообщения о нарушениях прочитаны. Хорошая работа!"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:5
 #: mkt/reviewers/templates/reviewers/includes/queue_moderation.html:65
@@ -7866,6 +7864,8 @@ msgid ""
 "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span "
 "class=\"light\">&middot; %(version_status)s</span>"
 msgstr ""
+"Версия %(version)s &middot; %(developer_name)s &middot; %(created)s <span "
+"class=\"light\">&middot; %(version_status)s</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:28
 msgid "Files in this version:"
@@ -7886,15 +7886,15 @@ msgstr "Сравнить"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:70
 msgid "Loading App History &hellip;"
-msgstr ""
+msgstr "Загрузка истории приложения &hellip;"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:78
 msgid "Next Comments"
-msgstr ""
+msgstr "Следующие комментарии"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:79
 msgid "Previous Comments"
-msgstr ""
+msgstr "Предыдущие комментарии"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:6
 #: mkt/site/templates/site/impala_paginator.html:16
@@ -7980,7 +7980,7 @@ msgstr "Проверено"
 
 #: mkt/search/forms.py:22
 msgid "Trending"
-msgstr ""
+msgstr "Популярные"
 
 #: mkt/search/forms.py:28
 msgid "Any App Type"
@@ -8042,11 +8042,11 @@ msgstr "Тип приложения"
 
 #: mkt/search/forms.py:159
 msgid "Installs allowed from"
-msgstr ""
+msgstr "Установки разрешённые из"
 
 #: mkt/search/forms.py:160
 msgid "Everywhere"
-msgstr ""
+msgstr "Отовсюду"
 
 #: mkt/search/forms.py:162
 #, fuzzy
@@ -8059,7 +8059,7 @@ msgstr "Поддерживаемые языки"
 
 #: mkt/search/forms.py:165
 msgid "Author name"
-msgstr ""
+msgstr "Имя автора"
 
 #: mkt/search/forms.py:166
 msgid "Tags"
@@ -8113,7 +8113,7 @@ msgstr "Как только оно будет одобрено."
 
 #: mkt/site/forms.py:10
 msgid "Not until I manually make it public."
-msgstr ""
+msgstr "Нет, пока вручную не сделаю его открытым."
 
 #: mkt/site/helpers.py:160
 msgid "Home"
@@ -8333,11 +8333,11 @@ msgstr "{user} одобрил {review} для {addon}."
 
 #: mkt/site/log.py:335
 msgid "Review {review} for {addon} deleted."
-msgstr ""
+msgstr "Проверка {review} для {addon} удалена."
 
 #: mkt/site/log.py:336
 msgid "{user} deleted {review} for {addon}."
-msgstr ""
+msgstr "{user} удалил {review} для {addon}."
 
 #: mkt/site/log.py:343
 msgid "Application max version for {version} updated."
@@ -8396,9 +8396,8 @@ msgid "Account updated."
 msgstr "Аккаунт обновлён."
 
 #: mkt/site/log.py:418
-#, fuzzy
 msgid "Valid receipt was checked for {addon}."
-msgstr "Квитанция была проверена приложением."
+msgstr "Корректность квитанции была проверена для {addon}."
 
 #: mkt/site/log.py:423
 msgid "Escalation cleared for {addon}."
@@ -8426,9 +8425,8 @@ msgstr ""
 "{addon} эскалировано из-за большого числа запросов на возврат средств."
 
 #: mkt/site/log.py:448
-#, fuzzy
 msgid "High Refund Requests"
-msgstr "Эскалация из-за большого числа запросов на возмещение"
+msgstr "Большое число запросов на возмещение"
 
 #: mkt/site/log.py:455
 msgid "{addon} re-reviewed because of manifest change."
@@ -8440,7 +8438,7 @@ msgstr "Изменение манифеста"
 
 #: mkt/site/log.py:463
 msgid "{addon} re-reviewed because app upgraded premium type."
-msgstr ""
+msgstr "{addon} перепроверено из-за обновления приложения до премиум типа."
 
 #: mkt/site/log.py:464
 msgid "Premium Type Upgrade"
@@ -8459,16 +8457,14 @@ msgid "Reviewer escalation"
 msgstr "Эскалация проверки"
 
 #: mkt/site/log.py:488
-#, fuzzy
 msgid "Video removed from {addon} because of a problem with the video."
-msgstr "Из {addon} удалено видео из-за проблемы с видео."
+msgstr "Видео удалено из {addon} из-за проблемы с видео."
 
 #: mkt/site/log.py:490
 msgid "Video removed"
 msgstr "Видео удалено"
 
 #: mkt/site/log.py:495
-#, fuzzy
 msgid "{addon} re-review because of new device(s) added."
 msgstr "Повторная проверка {addon} из-за добавления новых(ого) устройств(а)."
 
@@ -8522,11 +8518,11 @@ msgstr ""
 
 #: mkt/site/log.py:552
 msgid "{addon} manually flagged for re-review."
-msgstr ""
+msgstr "{addon} вручную отмечено для перепроверки."
 
 #: mkt/site/log.py:553
 msgid "Manual re-review"
-msgstr ""
+msgstr "Ручная перепроверка"
 
 #: mkt/site/log.py:570
 msgid "Created: {0}."
@@ -8625,19 +8621,19 @@ msgstr "{addon} {version} не прошёл в очередь проверки {
 
 #: mkt/site/log.py:704
 msgid "Abuse report {report} for {addon} read."
-msgstr ""
+msgstr "Сообщение о нарушении {report} для {addon} прочитано."
 
 #: mkt/site/log.py:705
 msgid "{user} marked read {report} for {addon}."
-msgstr ""
+msgstr "{user} отметил прочитанным {report} для {addon}."
 
 #: mkt/site/log.py:713
 msgid "Abuse report {report} for {website} read."
-msgstr ""
+msgstr "Сообщение о нарушении {report} для {website} прочитано."
 
 #: mkt/site/log.py:714
 msgid "{user} marked read {report} for {website}."
-msgstr ""
+msgstr "{user} отметил прочитанным {report} для {website}."
 
 #: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
@@ -8649,7 +8645,7 @@ msgstr "Ой! Не разрешено."
 
 #: mkt/site/templates/site/403.html:9
 msgid "You tried to do something that you weren't allowed to."
-msgstr ""
+msgstr "Вы пытались сделать что-то, что не разрешено."
 
 #: mkt/site/templates/site/403.html:11
 msgid "Try going back to the previous page, refreshing and trying again."
@@ -8670,16 +8666,21 @@ msgid ""
 "The page or file you requested wasn't found on our site. It's possible that "
 "you clicked a link that's out of date, or typed in the address incorrectly."
 msgstr ""
+"Страница или файл, что вы запрашиваете, не были найдены на нашем сайте. Это "
+"возможно из-за того, что вы щёлкнули по устаревшей ссылке или некорректно "
+"ввели адрес."
 
 #: mkt/site/templates/site/404.html:16
 msgid "If you typed in the address, please double check the spelling."
-msgstr ""
+msgstr "Если вы набрали адрес, пожалуйста, повторно проверьте орфографию."
 
 #: mkt/site/templates/site/404.html:19
 msgid ""
 "Visit the <a class=\"sync\" href=\"%(home)s\">Firefox Marketplace front "
 "page</a>."
 msgstr ""
+"Посетите <a class=\"sync\" href=\"%(home)s\">главную страницу Firefox "
+"Marketplace</a>."
 
 #: mkt/site/templates/site/500.html:4
 msgid "Server Error"
@@ -8691,11 +8692,11 @@ msgstr "Ой! У нас произошла ошибка."
 
 #: mkt/site/templates/site/500.html:10
 msgid "We'll get to fixing that soon."
-msgstr ""
+msgstr "Мы собираемся скоро это исправить."
 
 #: mkt/site/templates/site/500.html:12
 msgid "You can try refreshing the page, or try again later."
-msgstr ""
+msgstr "Вы можете попробовать обновить страницу или попробовать позже."
 
 #: mkt/stats/forms.py:9
 msgid "Day"
@@ -8740,9 +8741,8 @@ msgid "Version %s already exists."
 msgstr "Версия %s уже существует."
 
 #: mkt/submit/forms.py:197
-#, fuzzy
 msgid "Changes to \"origin\" are not allowed."
-msgstr "Не разрешено"
+msgstr "Изменения в \"origin\" не разрешены."
 
 #: mkt/submit/forms.py:222
 msgid "User submitting validation does not match."
@@ -8757,6 +8757,8 @@ msgid ""
 "Publish my app and make it visible to everyone in the Marketplace and "
 "include it in search results."
 msgstr ""
+"Опубликовать моё приложение, сделать его видимым каждому на Marketplace и "
+"включить в поисковые результаты."
 
 #: mkt/submit/forms.py:273
 msgid ""
@@ -8791,15 +8793,16 @@ msgstr ""
 
 #: mkt/submit/forms.py:313
 msgid "Website:"
-msgstr ""
+msgstr "Веб-сайт:"
 
 #: mkt/submit/forms.py:315
 msgid "If your app has a support website or forum, enter its address here."
 msgstr ""
+"Если у вашего приложения есть сайт или форум, введите его адрес здесь."
 
 #: mkt/submit/forms.py:319
 msgid "Email:"
-msgstr ""
+msgstr "Адрес электронной почты:"
 
 #: mkt/submit/forms.py:321
 msgid ""
@@ -8810,7 +8813,7 @@ msgstr ""
 
 #: mkt/submit/forms.py:327
 msgid "Your comments for reviewers:"
-msgstr ""
+msgstr "Ваши комментарии для проверяющих:"
 
 #: mkt/submit/forms.py:329
 msgid ""
@@ -8821,10 +8824,11 @@ msgstr ""
 #: mkt/submit/forms.py:334
 msgid "Once your app is approved, choose a publishing option:"
 msgstr ""
+"Как только ваше приложение будет одобрено, выберите, как его опубликовать:"
 
 #: mkt/submit/forms.py:338
 msgid "My app works without an Internet connection."
-msgstr ""
+msgstr "Моё приложение работает без соединения с Интернетом."
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -8857,7 +8861,7 @@ msgstr "Открыть страницу со сведениями"
 
 #: mkt/submit/templates/submit/details.html:124
 msgid "Support Information:"
-msgstr ""
+msgstr "Информация по поддержке:"
 
 #: mkt/submit/templates/submit/details.html:133
 msgid "Screenshot or video of your app:"
@@ -8939,7 +8943,7 @@ msgstr "Ввести информацию о приложении"
 
 #: mkt/submit/templates/submit/next_steps.html:30
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
-msgstr ""
+msgstr "<span>Установите <a href=\"%(rating_url)s\">рейтинг контента</a></span>"
 
 #: mkt/submit/templates/submit/next_steps.html:36
 msgid "<span>Set up <a href=\"%(pay_url)s\">Payments</a></span>"
@@ -8968,12 +8972,16 @@ msgid ""
 "Request that your app be shown on low-memory devices on <a "
 "href=\"%(status_url)s\">Status &amp; Versions</a>"
 msgstr ""
+"Запросить, чтобы ваше приложение отображалось на устройствах с небольшим "
+"количеством памяти, можно на <a href=\"%(status_url)s\">Статус и версии</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:64
 msgid ""
 "Request that your app be shown on low-memory devices on <a "
 "href=\"%(status_url)s\">Status</a>"
 msgstr ""
+"Запросить, чтобы ваше приложение отображалось на устройствах с небольшим "
+"количеством памяти, можно на <a href=\"%(status_url)s\">статус</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:74
 msgid ""
@@ -9233,7 +9241,6 @@ msgstr ""
 "Разработчиков Приложений"
 
 #: mkt/users/notifications.py:150
-#, fuzzy
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
 msgstr ""
 "Mozilla хочет связаться со мной по поводу новых регионов, добавленных на "
@@ -9266,6 +9273,8 @@ msgstr ""
 #: mkt/users/views.py:111
 msgid "Please use the verified email for this account."
 msgstr ""
+"Пожалуйста, используйте подтверждённый адрес электронной почты для этого "
+"аккаунта."
 
 # Column name in a table.
 #: mkt/webapps/models.py:199
@@ -9274,7 +9283,7 @@ msgstr "В списке"
 
 #: mkt/webapps/models.py:1339
 msgid "You must provide a support email or URL."
-msgstr ""
+msgstr "Вы должны предоставить URL или адрес электронной почты поддержки."
 
 #: mkt/webapps/models.py:1341
 msgid "You must provide an app name."
@@ -9302,7 +9311,7 @@ msgstr ""
 
 #: mkt/webapps/models.py:1447
 msgid "This app needs to get a content rating."
-msgstr ""
+msgstr "Приложению нужно проставить рейтинг контента."
 
 #: mkt/webapps/models.py:1453
 msgid "This app needs a payment account set up."
@@ -9349,7 +9358,7 @@ msgstr "Выбран некорректный регион(ы)."
 
 #: mkt/websites/forms.py:90
 msgid "Invalid device(s) selected."
-msgstr ""
+msgstr "Выбрано некорректное устройство(а)."
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"
@@ -9357,7 +9366,7 @@ msgstr "Выйти"
 
 #: templates/base.html:72
 msgid "Register"
-msgstr ""
+msgstr "Зарегистрировать"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
