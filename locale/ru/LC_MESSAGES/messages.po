@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2015-12-17 18:06+0000\n"
+"PO-Revision-Date: 2015-12-17 18:30+0000\n"
 "Last-Translator: bychek.ru <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -134,7 +134,7 @@ msgstr "Firefox OS"
 
 #: mkt/constants/applications.py:34 mkt/search/forms.py:48
 msgid "Firefox OS TV"
-msgstr ""
+msgstr "Firefox OS TV"
 
 #: mkt/constants/apps.py:9
 msgid "User"
@@ -1283,11 +1283,11 @@ msgstr ""
 
 #: mkt/constants/base.py:250
 msgid "Tarako App Review"
-msgstr ""
+msgstr "Проверка приложений Tarako"
 
 #: mkt/constants/base.py:251
 msgid "App Abuse Report Read"
-msgstr ""
+msgstr "Отчёт о нарушениях приложения прочитан"
 
 #: mkt/constants/base.py:252
 msgid "Website Abuse Report Read"
@@ -1541,11 +1541,11 @@ msgstr "Дополнительная проверка не удалась"
 
 #: mkt/constants/comm.py:74
 msgid "Version notes for reviewer"
-msgstr ""
+msgstr "Замечания по версии для проверяющего"
 
 #: mkt/constants/comm.py:75
 msgid "Public reviewer comment"
-msgstr ""
+msgstr "Публичный комментарий проверяющего"
 
 #: mkt/constants/comm.py:76 mkt/site/log.py:545
 msgid "Abuse reports investigation"
@@ -1593,11 +1593,11 @@ msgstr "Приложение требует Web Activities (`MozActivity` API)."
 
 #: mkt/constants/features.py:44
 msgid "Ambient Light Sensor"
-msgstr ""
+msgstr "Датчик освещенности"
 
 #: mkt/constants/features.py:45
 msgid "The app requires an ambient light sensor (the `ondevicelight` API)."
-msgstr ""
+msgstr "Приложению требуется датчик освещенности (`ondevicelight` API)."
 
 #: mkt/constants/features.py:50
 msgid "Archive"
@@ -1686,7 +1686,7 @@ msgstr "Близость"
 
 #: mkt/constants/features.py:110
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
-msgstr ""
+msgstr "Приложению требуется датчик приближения (`ondeviceproximity` API)."
 
 #: mkt/constants/features.py:115
 msgid "Simple Push"
@@ -1742,10 +1742,12 @@ msgid ""
 "The app requires the platform to support touch events. This option indicates"
 " that the app will not function when used with a mouse."
 msgstr ""
+"Приложение требует поддержки событий прикосновения. Эта опция указывает, что"
+" приложение не будет работать при использовании мыши."
 
 #: mkt/constants/features.py:155
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr ""
+msgstr "Дисплеи размера смартфона (qHD)"
 
 #: mkt/constants/features.py:156
 msgid ""
