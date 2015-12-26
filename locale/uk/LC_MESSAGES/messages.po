@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2015-12-24 18:13+0000\n"
+"PO-Revision-Date: 2015-12-25 14:00+0000\n"
 "Last-Translator: Ernest <echolite221@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2843,7 +2843,7 @@ msgstr ""
 
 #: mkt/developers/views.py:160
 msgid "App deleted."
-msgstr ""
+msgstr "Застосунок видалено."
 
 #: mkt/developers/views.py:165
 msgid "Password was incorrect. App was not deleted."
@@ -2883,7 +2883,7 @@ msgstr ""
 
 #: mkt/developers/views.py:475
 msgid "Version \"{0}\" deleted."
-msgstr ""
+msgstr "Версію \"{0}\" видалено."
 
 #: mkt/developers/views.py:610
 msgid "There was an error with the submission."
@@ -4002,7 +4002,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/details.html:5
 msgid "App Details"
-msgstr ""
+msgstr "Відомості про застосунок"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:17
 #: mkt/reviewers/templates/reviewers/includes/details.html:42
@@ -4110,7 +4110,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:19
 msgid "Works Offline"
-msgstr ""
+msgstr "Автономна робота"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:21
 msgid ""
