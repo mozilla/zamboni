@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2015-12-27 10:47+0000\n"
+"PO-Revision-Date: 2015-12-27 15:17+0000\n"
 "Last-Translator: Marko Andrejić <marko.andrejic93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
@@ -6630,12 +6630,17 @@ msgid ""
 "href=\"mailto:%(bango_support)s\">Bango support</a> with the following "
 "information."
 msgstr ""
+"Ова уплата је извршена преко Bango-а. За више информација контактирајте <a "
+"href=\"mailto:%(bango_support)s\">Bango подршку</a> са следећим "
+"информацијама."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:59
 msgid ""
 "This payment was made through the <b>reference implementation</b>. It wasn't"
 " a real transaction."
 msgstr ""
+"Ова уплата је извршена преко <b>референтне имплементације</b>. То није била "
+"права трансакција."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:87
 msgid "Refund information"
@@ -7264,6 +7269,8 @@ msgid ""
 "This will send the author(s) - and other thread subscribers - a message. "
 "This will not change the app's status."
 msgstr ""
+"Ово ће аутору/има и другим претплатницима послати поруку. Ово неће променити"
+" статус апликације."
 
 #: mkt/reviewers/utils.py:420
 msgid "Escalate"
@@ -7286,16 +7293,20 @@ msgid ""
 "Make a private reviewer comment on this app. The message won't be visible to"
 " the author(s), and no notification will be sent them."
 msgstr ""
+"Напишите приватну рецензију ове апликације. Порука неће бити видљива "
+"аутору/има и обавештење им неће бити послато."
 
 #: mkt/reviewers/utils.py:435
 msgid "Request Re-review"
-msgstr ""
+msgstr "Захтевај преглед"
 
 #: mkt/reviewers/utils.py:437
 msgid ""
 "Add this app to the re-review queue. Any comments here won't be visible to "
 "the author(s), and no notification will be sent to them."
 msgstr ""
+"Додајте ову апликацију у ред за поновно прегледање. Коментари овде неће бити"
+" видљиви аутору/има и обавештење им неће бити послатао"
 
 #: mkt/reviewers/utils.py:443
 msgid "Clear Escalation"
@@ -7614,7 +7625,7 @@ msgstr "Текст рецензије"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
 msgid "Review was flagged prior to moderation."
-msgstr ""
+msgstr "Преглед је био обележен пре уређења."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:32
 msgid "Current review status"
@@ -8616,15 +8627,15 @@ msgstr "Ауто-ескалација пре излажења"
 
 #: mkt/site/log.py:543
 msgid "{addon} re-reviewed because abuse reports need investigation."
-msgstr ""
+msgstr "{addon} је поново прегледан збо пријаве злоупотребе."
 
 #: mkt/site/log.py:552
 msgid "{addon} manually flagged for re-review."
-msgstr ""
+msgstr "{addon} је ручно означен за преглед."
 
 #: mkt/site/log.py:553
 msgid "Manual re-review"
-msgstr ""
+msgstr "Ручно прегледање"
 
 #: mkt/site/log.py:570
 msgid "Created: {0}."
