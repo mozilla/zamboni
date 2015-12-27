@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2015-12-18 17:07+0000\n"
-"Last-Translator: Vanja Tumbas <tumbas93@gmail.com>\n"
+"PO-Revision-Date: 2015-12-27 10:47+0000\n"
+"Last-Translator: Marko Andrejić <marko.andrejic93@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -4082,6 +4082,11 @@ msgid ""
 "sure you’ve included a descriptive name in your app manifest. If you want to"
 " change the app name, you’ll need to do that in your app manifest."
 msgstr ""
+"Име апликација је једна од информација која се користи за претрагу на "
+"Firefox Marketplace-у. Назив апликација се такође појављује у детаљима "
+"странице апликације. Будите сигурни да сте укључили описно име у свом "
+"манифесту апликације. Ако желите да промените име апликације, мораћете то да"
+" урадите у манифесту ваше апликације."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:36
 #: mkt/reviewers/templates/reviewers/includes/details.html:40
@@ -4179,6 +4184,10 @@ msgid ""
 "detail page. Be sure to include a description that accurately represents "
 "your app."
 msgstr ""
+"Опис апликација је једна од информација која се користи за претрагу на "
+"Firefox Marketplace-у. Опис апликација се такође појављује у детаљима "
+"странице апликације. Будите сигурни да садржи опис који тачно представља "
+"вашу апликацију."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:141
 #: mkt/reviewers/templates/reviewers/includes/details.html:63
@@ -4963,6 +4972,8 @@ msgid ""
 "Note: If you're wanting to provide in-app products to Firefox for Desktop "
 "users then please use in-app products."
 msgstr ""
+"Напомена: Ако корисницима Firefox-а желите да пружите производ унутар "
+"апликације, онда користите производ унутар апликације."
 
 #: mkt/developers/templates/developers/payments/in-app-payments.html:60
 msgid "Configure In-App Keys"
@@ -5335,6 +5346,8 @@ msgid ""
 "(Subject to payments being available in that region for the selected price "
 "point or \"Rest of World\" being selected as a payment option)."
 msgstr ""
+"(Предмет плаћања који је доступан у том региону за изабрану цену или \"Rest "
+"of World\" који је изабран као опција плаћања)."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
@@ -5975,28 +5988,32 @@ msgid ""
 "The icon file `%(icon_path)s` is not the specified dimensions of "
 "%(icon_size)s x %(icon_size)s as defined in the manifest."
 msgstr ""
+"Иконица датотеке `%(icon_path)s` нема димензије %(icon_size)s %(icon_size)s "
+"x %(icon_size)s као што је дефинисано у манифесту. "
 
 #: mkt/extensions/validation.py:40
 msgid ""
 "The icon file `%(icon_path)s` is referenced in the manifest but does not "
 "exist in the ZIP file."
 msgstr ""
+"Иконица датотеке `%(icon_path)s` је наведена у манифесту али не постоји у "
+"ZIP датотеци."
 
 #: mkt/extensions/validation.py:43
 msgid "If defining `icons`, you must include a 128x128 variant."
-msgstr ""
+msgstr "Ако дефинишете `иконе`, морате убацити 128x128 варијанту."
 
 #: mkt/extensions/validation.py:45
 msgid "The icon file `%s` is not a valid PNG."
-msgstr ""
+msgstr "PNG иконица датотеке `%s` није валидна."
 
 #: mkt/extensions/validation.py:47
 msgid "The icon file `%(icon_path)s` is not square."
-msgstr ""
+msgstr "Иконица датотеке `%(icon_path)s` није квадратног облика."
 
 #: mkt/extensions/validation.py:49
 msgid "The manifest contains an invalid icon size: %(icon_size)s"
-msgstr ""
+msgstr "Манифест садржи неподржавајућу величину иконице: %(icon_size)s"
 
 #: mkt/extensions/validation.py:51
 msgid "'manifest.json' in the archive is not a valid JSON file."
@@ -6036,17 +6053,19 @@ msgstr "Архива не садржи 'manifest.json' датотеку."
 
 #: mkt/extensions/validation.py:68
 msgid "There is no `version` property in the manifest."
-msgstr ""
+msgstr "Не постоји `верзија` у манифесту."
 
 #: mkt/extensions/validation.py:70
 msgid "The `version` property must be a string."
-msgstr ""
+msgstr "`верзија` мора бити стринг."
 
 #: mkt/extensions/validation.py:71
 msgid ""
 "The `version` property must be a string containing one to four dot-separated"
 " integers each between 0 and 65535."
 msgstr ""
+"`верзија`мора бити стринг који садржи од један до четири тачком одвојених "
+"целих броје између 0 и 65535."
 
 #: mkt/extensions/views.py:56
 msgid "No validation_id specified."
@@ -6058,7 +6077,7 @@ msgstr "Нема таквог отпремање."
 
 #: mkt/extensions/views.py:64
 msgid "The specified upload has not passed validation."
-msgstr ""
+msgstr "Отпремање није прошло валидацију."
 
 #: mkt/extensions/views.py:103
 msgid "Missing file in request."
@@ -6066,7 +6085,7 @@ msgstr "Недостаје датотека у захтеву."
 
 #: mkt/extensions/views.py:243
 msgid "Modifying or submitting versions is forbidden for disabled Add-ons."
-msgstr ""
+msgstr "Измена или пријављивање верзија је забрањено за онемогућене додатке."
 
 #: mkt/feed/fields.py:186
 msgid "Invalid URL %(url)s"
@@ -6167,7 +6186,7 @@ msgstr "Датотека прелази ограничење величине у
 
 #: mkt/files/utils.py:208
 msgid "Total size of files exceeding limit in archive: {0}"
-msgstr ""
+msgstr "Укупна величина датотека преко границе у архиви: {0}"
 
 #: mkt/files/utils.py:239
 msgid "Invalid archive."
