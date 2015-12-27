@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2015-12-25 14:00+0000\n"
-"Last-Translator: Ernest <echolite221@gmail.com>\n"
+"PO-Revision-Date: 2015-12-27 09:10+0000\n"
+"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -134,7 +134,7 @@ msgstr "Firefox OS"
 
 #: mkt/constants/applications.py:34 mkt/search/forms.py:48
 msgid "Firefox OS TV"
-msgstr ""
+msgstr "Firefox OS Телебачення"
 
 #: mkt/constants/apps.py:9
 msgid "User"
@@ -1241,7 +1241,7 @@ msgstr "Безкоштовно з платежами у програмі"
 
 #: mkt/constants/base.py:177
 msgid "I'll use my own system for in-app payments"
-msgstr ""
+msgstr "Я буду використовувати власну систему для платежів у програмі"
 
 #: mkt/constants/base.py:241
 msgid "Manual Reviewer Points"
@@ -1253,11 +1253,11 @@ msgstr "Перегляд веб-застосунку"
 
 #: mkt/constants/base.py:243
 msgid "Packaged App Review"
-msgstr ""
+msgstr "Перевірка запакованої програми"
 
 #: mkt/constants/base.py:244
 msgid "Privileged App Review"
-msgstr ""
+msgstr "Привілейована перевірка програми"
 
 #: mkt/constants/base.py:245
 msgid "Web App Re-review"
@@ -1671,7 +1671,7 @@ msgstr ""
 
 #: mkt/constants/features.py:109
 msgid "Proximity"
-msgstr ""
+msgstr "Близькість"
 
 #: mkt/constants/features.py:110
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
@@ -1751,7 +1751,7 @@ msgstr "Аудіо"
 
 #: mkt/constants/features.py:172
 msgid "The app requires that the platform supports the HTML5 audio API."
-msgstr ""
+msgstr "Програма вимагає платформу, яка підтримує HTML5 аудіо API."
 
 #: mkt/constants/features.py:177
 msgid "Web Audio"
@@ -1883,7 +1883,7 @@ msgstr ""
 
 #: mkt/constants/features.py:270
 msgid "Pointer Lock"
-msgstr ""
+msgstr "Блокувати вказівник"
 
 #: mkt/constants/features.py:271
 msgid ""
@@ -1973,7 +1973,7 @@ msgstr "Додаток вимагає пристрою мати принаймн
 
 #: mkt/constants/features.py:336
 msgid "1GB RAM Device"
-msgstr ""
+msgstr "Пристрій з 1 ГБ ОЗП"
 
 #: mkt/constants/features.py:337
 msgid "The app requires the device to have at least 1GB RAM."
@@ -1985,7 +1985,7 @@ msgstr "NFC"
 
 #: mkt/constants/features.py:343
 msgid "The app requires access to the Near Field Communication (NFC) API."
-msgstr ""
+msgstr "Програма потребує доступу до Near Field Communication (NFC) API."
 
 #: mkt/constants/features.py:357
 msgid "UDP Sockets"
@@ -2013,7 +2013,7 @@ msgstr "Повернути гроші"
 
 #: mkt/constants/payments.py:44
 msgid "Voluntary"
-msgstr ""
+msgstr "Добровільно"
 
 #: mkt/constants/payments.py:63 mkt/constants/payments.py:119
 msgid "Pending"
@@ -2041,7 +2041,7 @@ msgstr "Платіж не пройшов."
 
 #: mkt/constants/payments.py:82
 msgid "The reversal failed."
-msgstr ""
+msgstr "Збій скасування."
 
 #: mkt/constants/payments.py:83
 msgid ""
@@ -2127,7 +2127,7 @@ msgstr "Тільки для дорослих від 18+"
 #. L10n: North and South American, but not Brazil.
 #: mkt/constants/ratingsbodies.py:249
 msgid "All Americas except Brazil"
-msgstr ""
+msgstr "Вся Америка, за винятком Бразилії"
 
 #: mkt/constants/ratingsbodies.py:250
 msgid "Entertainment Software Rating Board"
@@ -2271,7 +2271,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:63
 msgid "You cannot select {region}."
-msgstr ""
+msgstr "Ви не можете вибрати {region}."
 
 #: mkt/developers/forms.py:121
 msgid "All team members must have read and agreed to the developer agreement."
@@ -2363,7 +2363,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:515 mkt/submit/forms.py:288
 msgid "Search Keywords:"
-msgstr ""
+msgstr "Ключові слова пошуку:"
 
 #: mkt/developers/forms.py:517
 #: mkt/developers/templates/developers/apps/edit/basic.html:143
@@ -2417,7 +2417,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:792
 msgid "App Visibility:"
-msgstr ""
+msgstr "Видимість програми:"
 
 #: mkt/developers/forms.py:794
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
@@ -2480,7 +2480,7 @@ msgstr "Текст"
 
 #: mkt/developers/forms.py:1070
 msgid "You must agree to the Privacy Policy."
-msgstr ""
+msgstr "Ви повинні погодитися з політикою приватності."
 
 #: mkt/developers/forms.py:1071 mkt/developers/forms_payments.py:397
 #: mkt/developers/templates/developers/apps/edit/language.html:9
@@ -2546,7 +2546,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:57
 msgid "App Price"
-msgstr ""
+msgstr "Ціна програми"
 
 #: mkt/developers/forms_payments.py:110
 msgid "Free (with in-app payments)"
@@ -2789,7 +2789,7 @@ msgstr ""
 
 #: mkt/developers/utils.py:60
 msgid "Video support not enabled."
-msgstr ""
+msgstr "Підтримка відео не увімкнена."
 
 #: mkt/developers/utils.py:73
 msgid "Icons must be either PNG or JPG."
@@ -2813,7 +2813,7 @@ msgstr ""
 
 #: mkt/developers/utils.py:103
 msgid "Icon could not be opened."
-msgstr ""
+msgstr "Не вдалося відкрити піктограму."
 
 #: mkt/developers/utils.py:105
 msgid "Preview could not be opened."
@@ -2843,7 +2843,7 @@ msgstr ""
 
 #: mkt/developers/views.py:160
 msgid "App deleted."
-msgstr "Застосунок видалено."
+msgstr "Програму видалено."
 
 #: mkt/developers/views.py:165
 msgid "Password was incorrect. App was not deleted."
@@ -3904,7 +3904,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/edit/basic.html:48
 #: mkt/submit/templates/submit/details.html:72
 msgid "App URL"
-msgstr ""
+msgstr "URL програми"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:49
 #: mkt/submit/templates/submit/details.html:74
@@ -4002,7 +4002,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/details.html:5
 msgid "App Details"
-msgstr "Відомості про застосунок"
+msgstr "Інформація про програму"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:17
 #: mkt/reviewers/templates/reviewers/includes/details.html:42
@@ -4110,7 +4110,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:19
 msgid "Works Offline"
-msgstr "Автономна робота"
+msgstr "Працює поза мережею"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:21
 msgid ""
@@ -4217,7 +4217,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:139
 #: mkt/submit/templates/submit/details.html:169
 msgid "Add a Screenshot or Video..."
-msgstr ""
+msgstr "Додати знімок екрану або відео..."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:143
 msgid ""
@@ -4342,7 +4342,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35
 msgid "Delete this app."
-msgstr ""
+msgstr "Видалити цю програму."
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
 msgid "Edit details for this app's listing page."
@@ -4492,7 +4492,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:120
 msgid "Security Code"
-msgstr ""
+msgstr "Код безпеки"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:127
 msgid ""
@@ -5288,7 +5288,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:97
 msgid "General Notes"
-msgstr ""
+msgstr "Загальні зауваження"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:109
 msgid "Intro to Manifests"
@@ -7704,7 +7704,7 @@ msgstr ""
 
 #: mkt/search/forms.py:162
 msgid "Works offline"
-msgstr ""
+msgstr "Працює поза мережею"
 
 #: mkt/search/forms.py:164
 msgid "Supported languages"
@@ -8152,7 +8152,7 @@ msgstr ""
 
 #: mkt/site/log.py:528
 msgid "Manifest URL Change"
-msgstr ""
+msgstr "Зміна URL маніфесту"
 
 #: mkt/site/log.py:535
 msgid "{addon} auto-escalated because its a prerelease app."
@@ -8176,7 +8176,7 @@ msgstr ""
 
 #: mkt/site/log.py:570
 msgid "Created: {0}."
-msgstr ""
+msgstr "Створено: {0}."
 
 #: mkt/site/log.py:576
 msgid "Edited field: {2} set to: {0}."
@@ -8184,7 +8184,7 @@ msgstr ""
 
 #: mkt/site/log.py:582
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Видалено: {1}."
 
 #: mkt/site/log.py:588
 msgid "User {user} edited, reason: {1}"
@@ -8475,7 +8475,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
-msgstr "Редагувати подробиці про застосунок"
+msgstr "Змінити інформацію про програму"
 
 #: mkt/submit/templates/submit/details.html:16
 #: mkt/submit/templates/submit/done.html:8
@@ -8585,7 +8585,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:28
 msgid "Enter App Details"
-msgstr ""
+msgstr "Ввести інформацію про програму"
 
 #: mkt/submit/templates/submit/next_steps.html:30
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
