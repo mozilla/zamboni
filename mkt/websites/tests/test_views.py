@@ -112,6 +112,28 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         obj = res.json['objects'][0]
         eq_(obj['id'], self.website.pk)
 
+    def test_q_num_requests(self):
+        es = Website.get_indexer().get_es()
+        orig_search = es.search
+        es.counter = 0
+
+        def monkey_search(*args, **kwargs):
+            es.counter += 1
+            return orig_search(*args, **kwargs)
+
+        es.search = monkey_search
+
+        with self.assertNumQueries(0):
+            res = self.anon.get(self.url, data={'q': 'something'})
+        eq_(res.status_code, 200)
+        eq_(res.json['meta']['total_count'], 1)
+        eq_(len(res.json['objects']), 1)
+
+        # Verify only one search call was made.
+        eq_(es.counter, 1)
+
+        es.search = orig_search
+
     def test_q_relevancy(self):
         # Add 2 websites - the last one has 'something' appearing in both its
         # title and its description, so it should be booster and appear higher

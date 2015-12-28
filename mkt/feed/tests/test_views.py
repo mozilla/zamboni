@@ -1651,6 +1651,29 @@ class TestFeedView(BaseTestFeedESView, BaseTestFeedItemViewSet):
         eq_(res.status_code, 200)
         eq_(len(data['objects']), 1)
 
+    def test_q_num_requests(self):
+        self.feed_factory()
+        es = FeedItem.get_indexer().get_es()
+        orig_search = es.search
+        es.counter = 0
+
+        def monkey_search(*args, **kwargs):
+            es.counter += 1
+            return orig_search(*args, **kwargs)
+
+        es.search = monkey_search
+
+        res, data = self._get()
+        eq_(res.status_code, 200)
+        eq_(res.json['meta']['total_count'], 4)
+        eq_(len(res.json['objects']), 4)
+
+        # FeedView._get does four ES hits: feed items, feed elements, apps, and
+        # featured websites.
+        eq_(es.counter, 4)
+
+        es.search = orig_search
+
 
 class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
     fixtures = BaseTestFeedItemViewSet.fixtures + FeedTestMixin.fixtures
