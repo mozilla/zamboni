@@ -235,7 +235,7 @@ def devhub_verify(request, status):
                          RestSharedSecretAuthentication])
 @permission_classes([IsAuthenticated])
 def install(request):
-    form = forms.ReceiptForm(request.DATA)
+    form = forms.ReceiptForm(request.data)
 
     if not form.is_valid():
         return Response({'error_message': form.errors}, status=400)
@@ -291,7 +291,7 @@ def install_record(obj, request, install_type):
                headers=('content-type', 'accept', 'x-fxpay-version'))
 @permission_classes((AllowAny,))
 def test_receipt(request):
-    form = forms.TestInstall(request.DATA)
+    form = forms.TestInstall(request.data)
     if not form.is_valid():
         return Response({'error_message': form.errors}, status=400)
 

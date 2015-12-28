@@ -107,7 +107,7 @@ class MonolithView(CORSMixin, MarketplaceView, ListAPIView):
     serializer_class = MonolithSerializer
 
     def get_queryset(self):
-        form = MonolithForm(self.request.QUERY_PARAMS)
+        form = MonolithForm(self.request.query_params)
         if not form.is_valid():
             return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
 

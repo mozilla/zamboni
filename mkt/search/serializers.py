@@ -65,34 +65,13 @@ class BaseESSerializer(serializers.ModelSerializer):
         for key, field in fields.items():
             if isinstance(field, TranslationSerializerField):
                 fields[key] = ESTranslationSerializerField(source=field.source)
-                fields[key].initialize(parent=self, field_name=key)
         return fields
 
-    @property
-    def data(self):
-        """
-        Returns the serialized data on the serializer.
-        """
-        if self._data is None:
-            if self.many:
-                self._data = [self.to_native(item) for item in self.object]
-            else:
-                self._data = self.to_native(self.object)
-        return self._data
-
-    def field_to_native(self, obj, field_name):
-        # DRF's field_to_native calls .all(), which we want to avoid, so we
-        # provide a simplified version that doesn't and just iterates on the
-        # object list.
-        if hasattr(obj, 'object_list'):
-            return [self.to_native(item) for item in obj.object_list]
-        return super(BaseESSerializer, self).field_to_native(obj, field_name)
-
-    def to_native(self, data):
+    def to_representation(self, data):
         data = (data._source if hasattr(data, '_source') else
                 data.get('_source', data))
         obj = self.fake_object(data)
-        return super(BaseESSerializer, self).to_native(obj)
+        return super(BaseESSerializer, self).to_representation(obj)
 
     def fake_object(self, data):
         """
@@ -122,13 +101,13 @@ class BaseESSerializer(serializers.ModelSerializer):
 
 
 class DynamicSearchSerializer(serializers.Serializer):
-    def __init__(self, **kwargs):
-        super(DynamicSearchSerializer, self).__init__(**kwargs)
+    def __init__(self, *a, **kwargs):
+        super(DynamicSearchSerializer, self).__init__(*a, **kwargs)
         serializer_classes = self.context.get('serializer_classes', {})
         self.serializers = {k: v(context=self.context)
                             for k, v in serializer_classes.items()}
 
-    def to_native(self, obj):
+    def to_representation(self, obj):
         """
         Dynamically serialize obj using serializers passed through the context,
         depending on the doc_type of the obj.
@@ -141,7 +120,7 @@ class DynamicSearchSerializer(serializers.Serializer):
 
         serializer = self.serializers.get(doc_type)
         if serializer is None:
-            return super(DynamicSearchSerializer, self).to_native(obj)
-        data = serializer.to_native(obj)
+            return super(DynamicSearchSerializer, self).to_representation(obj)
+        data = serializer.to_representation(obj)
         data['doc_type'] = doc_type
         return data

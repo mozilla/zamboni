@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from decimal import Decimal
 
 from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
@@ -41,7 +40,7 @@ class TestAppFeaturesSerializer(BaseOAuth):
 
     def get_native(self, **kwargs):
         self.features.update(**kwargs)
-        return AppFeaturesSerializer().to_native(self.features)
+        return AppFeaturesSerializer().to_representation(self.features)
 
     def test_no_features(self):
         native = self.get_native()
@@ -391,21 +390,21 @@ class TestAppSerializerPrices(mkt.site.tests.TestCase):
     def test_some_price(self):
         self.make_premium(self.app, price='0.99')
         res = self.serialize(self.app, region=regions.USA)
-        eq_(res['price'], Decimal('0.99'))
+        eq_(res['price'], '0.99')
         eq_(res['price_locale'], '$0.99')
         eq_(res['payment_required'], True)
 
     def test_no_charge(self):
         self.make_premium(self.app, price='0.00')
         res = self.serialize(self.app, region=regions.USA)
-        eq_(res['price'], Decimal('0.00'))
+        eq_(res['price'], '0.00')
         eq_(res['price_locale'], '$0.00')
         eq_(res['payment_required'], False)
 
     def test_fallback(self):
         self.make_premium(self.app, price='0.99')
         res = self.serialize(self.app, region=regions.POL)
-        eq_(res['price'], Decimal('0.99'))
+        eq_(res['price'], '0.99')
         eq_(res['price_locale'], '$0.99')
         eq_(res['payment_required'], True)
 
@@ -425,7 +424,7 @@ class TestAppSerializerPrices(mkt.site.tests.TestCase):
 
         with self.activate(locale='fr'):
             res = self.serialize(self.app, region=regions.POL)
-            eq_(res['price'], Decimal('5.01'))
+            eq_(res['price'], '5.01')
             eq_(res['price_locale'], u'5,01\xa0PLN')
 
     def test_missing_price(self):
@@ -449,7 +448,8 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
         self.request.user = self.profile
         self.app = Webapp.objects.get(pk=337141)
         self.version = self.app.current_version
-        self.app.update(categories=['books', 'social'])
+        self.app.update(categories=['books', 'social'],
+                        privacy_policy='long complicated text')
         Preview.objects.all().delete()
         self.preview = Preview.objects.create(filetype='image/png',
                                               addon=self.app, position=0)
@@ -647,7 +647,7 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
         self.refresh('webapp')
 
         res = self.serialize()
-        eq_(res['price'], Decimal('1.00'))
+        eq_(res['price'], '1.00')
         eq_(res['price_locale'], '$1.00')
         eq_(res['payment_required'], True)
 

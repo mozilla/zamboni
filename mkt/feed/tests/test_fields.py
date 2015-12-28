@@ -1,14 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
 
-from django.core.files.base import File
-from rest_framework.exceptions import ParseError
-
-import mock
 from nose.tools import eq_, ok_
 
 import mkt.site.tests
-from mkt.feed.fields import AppESField, ImageURLField
+from mkt.feed.fields import AppESField
 
 
 TEST_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -23,7 +19,7 @@ class TestAppESField(mkt.site.tests.ESTestCase):
         field = AppESField(source='app')
         field.context = {'app_map': app_map,
                          'request': mkt.site.tests.req_factory_factory('')}
-        data = field.to_native(app.id)
+        data = field.to_representation(app.id)
 
         eq_(data['id'], app.id)
         eq_(data['slug'], app.app_slug)
@@ -36,7 +32,7 @@ class TestAppESField(mkt.site.tests.ESTestCase):
         field = AppESField(many=True)
         field.context = {'app_map': app_map,
                          'request': mkt.site.tests.req_factory_factory('')}
-        data = field.to_native([app.id for app in apps])
+        data = field.to_representation([app.id for app in apps])
 
         eq_(len(data), 2)
         eq_(data[0]['id'], apps[0].id)
@@ -49,13 +45,13 @@ class TestAppESField(mkt.site.tests.ESTestCase):
         field = AppESField(many=True, limit=1)
         field.context = {'app_map': app_map,
                          'request': mkt.site.tests.req_factory_factory('')}
-        data = field.to_native([app.id for app in apps])
+        data = field.to_representation([app.id for app in apps])
 
         eq_(len(data), 1)
         eq_(data[0]['id'], apps[0].id)
 
         field.limit = 0
-        data = field.to_native([app.id for app in apps])
+        data = field.to_representation([app.id for app in apps])
         eq_(len(data), 0)
 
     def test_no_exist(self):
@@ -67,7 +63,7 @@ class TestAppESField(mkt.site.tests.ESTestCase):
         field = AppESField()
         field.context = {'app_map': {},
                          'request': mkt.site.tests.req_factory_factory('')}
-        data = field.to_native(app.id)
+        data = field.to_representation(app.id)
         ok_(not data)
 
     def test_multi_no_exist(self):
@@ -82,46 +78,7 @@ class TestAppESField(mkt.site.tests.ESTestCase):
         field = AppESField(many=True)
         field.context = {'app_map': app_map,
                          'request': mkt.site.tests.req_factory_factory('')}
-        data = field.to_native([app.id for app in apps])
+        data = field.to_representation([app.id for app in apps])
 
         eq_(len(data), 1)
         eq_(data[0]['id'], apps[0].id)
-
-
-class TestImageURLField(mkt.site.tests.TestCase):
-
-    @mock.patch('mkt.feed.fields.requests.get')
-    def test_basic(self, download_mock):
-        res_mock = mock.Mock()
-        res_mock.status_code = 200
-        res_mock.content = open(
-            os.path.join(FILES_DIR, 'bacon.jpg'), 'r').read()
-        download_mock.return_value = res_mock
-
-        img, hash_ = ImageURLField().from_native('http://ngokevin.com')  # SEO.
-        assert isinstance(img, File)
-        assert isinstance(hash_, str)
-
-    @mock.patch('mkt.feed.fields.requests.get')
-    def test_404(self, download_mock):
-        res_mock = mock.Mock()
-        res_mock.status_code = 404
-        res_mock.content = ''
-        download_mock.return_value = res_mock
-
-        with self.assertRaises(ParseError):
-            img, hash_ = ImageURLField().from_native('http://ngokevin.com')
-
-    def test_invalid_url(self):
-        with self.assertRaises(ParseError):
-            img, hash_ = ImageURLField().from_native('@#$%^&*()_')
-
-    @mock.patch('mkt.feed.fields.requests.get')
-    def test_invalid_image(self, download_mock):
-        res_mock = mock.Mock()
-        res_mock.status_code = 200
-        res_mock.content = 'dalskdjasldkas'
-        download_mock.return_value = res_mock
-
-        with self.assertRaises(ParseError):
-            img, hash_ = ImageURLField().from_native('http://ngokevin.com')

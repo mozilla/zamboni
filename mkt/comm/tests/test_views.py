@@ -1,3 +1,4 @@
+import StringIO
 import json
 import os
 
@@ -726,11 +727,16 @@ class TestAttachments(NoteSetupMixin):
 class TestEmailApi(RestOAuth):
 
     def get_request(self, data=None):
+        data = data or {}
+        datastr = json.dumps(data)
         req = req_factory_factory(reverse('post-email-api'), self.profile)
         req.META['REMOTE_ADDR'] = '10.10.10.10'
         req.META['HTTP_POSTFIX_AUTH_TOKEN'] = 'something'
-        req.POST = data or {}
+        req.META['CONTENT_LENGTH'] = len(datastr)
+        req.META['CONTENT_TYPE'] = 'application/json'
+        req.POST = data
         req.method = 'POST'
+        req._stream = StringIO.StringIO(datastr)
         return req
 
     def test_basic(self):

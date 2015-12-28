@@ -1,6 +1,17 @@
+import StringIO
 from datetime import datetime
+import hashlib
+import uuid
+
+import requests
+from PIL import Image
+from rest_framework import exceptions
+
+from tower import ugettext as _
+
 
 from django.conf import settings
+from django.core.files.base import File
 from django.db.models import Q
 from django.db.transaction import non_atomic_requests
 from django.utils.datastructures import MultiValueDictKeyError
@@ -12,12 +23,12 @@ from django_statsd.clients import statsd
 from elasticsearch_dsl import filter as es_filter
 from elasticsearch_dsl import function as es_function
 from elasticsearch_dsl import query, Search, SF
-from PIL import Image
+
 from rest_framework import generics, response, status, viewsets
 from rest_framework.exceptions import ParseError, PermissionDenied
 from rest_framework.filters import BaseFilterBackend, OrderingFilter
 from rest_framework.response import Response
-from rest_framework.serializers import Serializer, ValidationError
+from rest_framework.serializers import ImageField, Serializer, ValidationError
 from rest_framework.views import APIView
 
 import mkt
@@ -27,7 +38,6 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
                                     RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
-from mkt.api.paginator import ESPaginator
 from mkt.api.permissions import AllowReadOnly, AnyOf, GroupPermission
 from mkt.constants.carriers import CARRIER_MAP
 from mkt.constants.regions import REGIONS_DICT
@@ -43,7 +53,6 @@ from mkt.webapps.models import Webapp
 from mkt.websites.indexers import WebsiteIndexer
 from mkt.websites.serializers import ESWebsiteSerializer
 
-from .fields import DataURLImageField, ImageURLField
 from .models import FeedApp, FeedBrand, FeedCollection, FeedItem, FeedShelf
 from .permissions import FeedPermission
 from .serializers import (FeedAppESSerializer, FeedAppSerializer,
@@ -54,6 +63,57 @@ from .serializers import (FeedAppESSerializer, FeedAppSerializer,
 
 
 log = commonware.log.getLogger('z.feed')
+
+
+def image_from_string(content):
+    f = StringIO.StringIO(content)
+    f.size = len(content)
+    tmp = File(f, name=uuid.uuid4().hex)
+    hash_ = hashlib.md5(content).hexdigest()[:8]
+    return ImageField().to_internal_value(tmp), hash_
+
+
+def image_from_data_url(data):
+    if data.startswith('"') and data.endswith('"'):
+        # Strip quotes if necessary.
+        data = data[1:-1]
+    if not data.startswith('data:'):
+        raise ValidationError('Not a data URI.')
+
+    metadata, encoded = data.rsplit(',', 1)
+    parts = metadata.rsplit(';', 1)
+    if parts[-1] == 'base64':
+        content = encoded.decode('base64')
+        return image_from_string(content)
+    else:
+        raise ValidationError('Not a base64 data URI.')
+
+
+def image_from_url(image_url):
+    try:
+        res = requests.get(
+            image_url,
+            headers={'User-Agent': settings.MARKETPLACE_USER_AGENT})
+    except:
+        raise exceptions.ParseError(
+            _('Invalid URL %(url)s').format(url=image_url))
+
+    # Check response code from image download.
+    if res.status_code != 200:
+        raise exceptions.ParseError(
+            _('Error downloading image from %(url)s').format(
+                url=image_url))
+
+    # Validate the image.
+    try:
+        Image.open(StringIO.StringIO(res.content))
+    except IOError:
+        raise exceptions.ParseError(
+            _('Image from %(url)s could not be parsed').format(
+                url=image_url))
+
+    # Encode image to base64.
+    return image_from_string(res.content)
 
 
 class ImageURLUploadMixin(viewsets.ModelViewSet):
@@ -67,30 +127,33 @@ class ImageURLUploadMixin(viewsets.ModelViewSet):
     check. The tuples are the names of the the image form name, the hash field,
     and a suffix to append to the image file name::
 
-        image_fields = ('background_image_upload_url', 'image_hash', '')
+        image_fields = ('background_image', 'image_hash', '')
 
     """
 
-    def pre_save(self, obj):
+    def perform_create(self, serializer):
         """Download and validate image URL."""
+        imgs = []
         for image_field, hash_field, suffix in self.image_fields:
-            if self.request.DATA.get(image_field):
-                img, hash_ = ImageURLField().from_native(
-                    self.request.DATA[image_field])
+            if serializer.validated_data.get(image_field):
+                img_url = serializer.validated_data[image_field]
+                img, hash_ = image_from_url(img_url)
                 # Store img for `post_save` where we have access to the pk so
                 # we can save img in appropriate directory.
-                setattr(obj, '_%s' % image_field, img)
-                setattr(obj, hash_field, hash_)
-            elif hasattr(obj, 'type') and obj.type == feed.COLLECTION_PROMO:
+                imgs.append((suffix, img, hash_))
+                serializer.validated_data[hash_field] = hash_
+            elif ((serializer.validated_data.get('type') or
+                  (serializer.instance and
+                   getattr(serializer.instance, 'type', None))) ==
+                  feed.COLLECTION_PROMO):
                 # Remove background images for promo collections.
-                setattr(obj, hash_field, None)
+                serializer.validated_data[hash_field] = None
+            if image_field in serializer.validated_data:
+                del serializer.validated_data[image_field]
 
-        return super(ImageURLUploadMixin, self).pre_save(obj)
+        obj = serializer.save()
 
-    def post_save(self, obj, created=True):
-        """Store image that we attached to the obj in pre_save."""
-        for image_field, hash_field, suffix in self.image_fields:
-            image = getattr(obj, '_%s' % image_field, None)
+        for suffix, image, hash_ in imgs:
             if image:
                 i = Image.open(image)
                 path = obj.image_path(suffix)
@@ -98,7 +161,8 @@ class ImageURLUploadMixin(viewsets.ModelViewSet):
                     i.save(f, 'png')
                 pngcrush_image.delay(path, set_modified_on=[obj])
 
-        return super(ImageURLUploadMixin, self).post_save(obj, created)
+    def perform_update(self, serializer):
+        self.perform_create(serializer)
 
 
 class GroupedAppsViewSetMixin(object):
@@ -136,13 +200,13 @@ class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     exceptions = {
         'doesnt_exist': 'One or more of the specified `apps` do not exist.'
     }
-    image_fields = (('background_image_upload_url', 'image_hash', ''),)
+    image_fields = (('background_image', 'image_hash', ''),)
 
     def list(self, request, *args, **kwargs):
         page = self.paginate_queryset(
             self.filter_queryset(self.get_queryset()))
-        serializer = self.get_pagination_serializer(page)
-        return response.Response(serializer.data)
+        serializer = self.get_serializer(page, many=True)
+        return self.get_paginated_response(serializer.data)
 
     def set_apps(self, obj, apps):
         if apps:
@@ -152,14 +216,11 @@ class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
                 raise ParseError(detail=self.exceptions['doesnt_exist'])
 
     def create(self, request, *args, **kwargs):
-        apps = request.DATA.pop('apps', [])
-        serializer = self.get_serializer(data=request.DATA,
-                                         files=request.FILES)
+        apps = request.data.pop('apps', [])
+        serializer = self.get_serializer(data=request.data)
         if serializer.is_valid():
-            self.pre_save(serializer.object)
-            self.object = serializer.save(force_insert=True)
-            self.set_apps(self.object, apps)
-            self.post_save(self.object, created=True)
+            self.perform_create(serializer)
+            self.set_apps(serializer.instance, apps)
             headers = self.get_success_headers(serializer.data)
             return response.Response(serializer.data,
                                      status=status.HTTP_201_CREATED,
@@ -168,7 +229,7 @@ class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
                                  status=status.HTTP_400_BAD_REQUEST)
 
     def update(self, request, *args, **kwargs):
-        apps = request.DATA.pop('apps', [])
+        apps = request.data.pop('apps', [])
         self.set_apps(self.get_object(), apps)
         ret = super(BaseFeedCollectionViewSet, self).update(
             request, *args, **kwargs)
@@ -177,7 +238,7 @@ class BaseFeedCollectionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
 
 class RegionCarrierFilter(BaseFilterBackend):
     def filter_queryset(self, request, qs, view):
-        q = request.QUERY_PARAMS
+        q = request.query_params
 
         # Filter for only the region if specified.
         if q.get('region') and q.get('region') in mkt.regions.REGIONS_DICT:
@@ -232,12 +293,12 @@ class FeedBuilderView(CORSMixin, APIView):
         }
         """
         regions = [mkt.regions.REGIONS_DICT[region].id
-                   for region in request.DATA.keys()]
+                   for region in request.data.keys()]
         FeedItem.objects.filter(
             carrier=None, region__in=regions).delete()
 
         feed_items = []
-        for region, feed_elements in request.DATA.items():
+        for region, feed_elements in request.data.items():
             for order, feed_element in enumerate(feed_elements):
                 try:
                     item_type, item_id = feed_element
@@ -280,13 +341,13 @@ class FeedAppViewSet(CORSMixin, MarketplaceView, SlugOrIdMixin,
     cors_allowed_methods = ('get', 'delete', 'post', 'put', 'patch')
     serializer_class = FeedAppSerializer
 
-    image_fields = (('background_image_upload_url', 'image_hash', ''),)
+    image_fields = (('background_image', 'image_hash', ''),)
 
     def list(self, request, *args, **kwargs):
         page = self.paginate_queryset(
             self.filter_queryset(self.get_queryset()))
-        serializer = self.get_pagination_serializer(page)
-        return response.Response(serializer.data)
+        serializer = self.get_serializer(page, many=True)
+        return self.get_paginated_response(serializer.data)
 
 
 class FeedBrandViewSet(BaseFeedCollectionViewSet):
@@ -325,7 +386,7 @@ class FeedShelfPermissionMixin(object):
         ensure that it works if passed either rest_framework's Request class
         or Django's WSGIRequest class.
         """
-        return (self.request.DATA if hasattr(self.request, 'DATA') else
+        return (self.request.data if hasattr(self.request, 'data') else
                 self.request.POST)
 
     def is_admin(self, user):
@@ -373,8 +434,8 @@ class FeedShelfViewSet(GroupedAppsViewSetMixin, FeedShelfPermissionMixin,
     permission_classes = []
 
     image_fields = (
-        ('background_image_upload_url', 'image_hash', ''),
-        ('background_image_landing_upload_url', 'image_landing_hash',
+        ('background_image', 'image_hash', ''),
+        ('background_image_landing', 'image_landing_hash',
          '_landing'),
     )
 
@@ -529,7 +590,7 @@ class CollectionImageViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     def update(self, request, *args, **kwargs):
         obj = self.get_object()
         try:
-            img, hash_ = DataURLImageField().from_native(request.read())
+            img, hash_ = image_from_data_url(request.read())
         except ValidationError:
             return Response(status=status.HTTP_400_BAD_REQUEST)
         i = Image.open(img)
@@ -622,7 +683,7 @@ class BaseFeedESView(CORSMixin, APIView):
         Returns an app_map for serializer context.
         """
         sq = WebappIndexer.search()
-        if request.QUERY_PARAMS.get('filtering', '1') == '1':
+        if request.query_params.get('filtering', '1') == '1':
             # With filtering (default).
             for backend in self.filter_backends:
                 sq = backend().filter_queryset(request, sq, self)
@@ -655,7 +716,7 @@ class BaseFeedESView(CORSMixin, APIView):
             # Handle edge case where the ES index might get stale.
             return None
 
-        if request.QUERY_PARAMS.get('filtering', '1') == '0':
+        if request.query_params.get('filtering', '1') == '0':
             # Without filtering
             return feed_element
 
@@ -746,7 +807,6 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
     """
     authentication_classes = []
     cors_allowed_methods = ('get',)
-    paginator_class = ESPaginator
     permission_classes = []
 
     def get_es_feed_query(self, sq, region=mkt.regions.RESTOFWORLD.id,
@@ -881,7 +941,7 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
             region = request.REGION.id
         # Parse carrier.
         carrier = None
-        q = request.QUERY_PARAMS
+        q = request.query_params
         if q.get('carrier') and q['carrier'] in mkt.carriers.CARRIER_MAP:
             carrier = mkt.carriers.CARRIER_MAP[q['carrier']].id
 
@@ -898,8 +958,7 @@ class FeedView(MarketplaceView, BaseFeedESView, generics.GenericAPIView):
                                            kwargs)
 
         # Build the meta object.
-        meta = mkt.api.paginator.CustomPaginationSerializer(
-            feed_items, context={'request': request}).data['meta']
+        meta = (self.paginator.get_paginated_response(feed_items).data['meta'])
 
         # Set up serializer context.
         feed_element_map = {
@@ -1008,7 +1067,6 @@ class FeedElementListView(BaseFeedESView, MarketplaceView,
                               RestSharedSecretAuthentication]
     permission_classes = [GroupPermission('Feed', 'Curate')]
     cors_allowed_methods = ('get',)
-    paginator_class = ESPaginator
 
     def get_recent_feed_elements(self, sq):
         """Matches all sorted by recent."""
@@ -1028,8 +1086,8 @@ class FeedElementListView(BaseFeedESView, MarketplaceView,
 
         # Deserialize. Manually use pagination serializer because this view
         # uses multiple serializers.
-        meta = mkt.api.paginator.CustomPaginationSerializer(
-            feed_elements, context={'request': request}).data['meta']
+        meta = (self.paginator
+                .get_paginated_response(feed_elements).data['meta'])
         objects = self.SERIALIZERS[item_type](feed_elements, context={
             'app_map': self.get_apps(request,
                                      self.get_app_ids_all(feed_elements)),

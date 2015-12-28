@@ -1,3 +1,5 @@
+from django import forms
+
 from rest_framework import serializers
 from rest_framework.exceptions import ParseError
 
@@ -10,11 +12,11 @@ from mkt.langpacks.models import LangPack
 class LangPackUploadSerializer(serializers.Serializer):
     upload = serializers.CharField(required=True)
 
-    def validate_upload(self, attrs, source):
+    def validate_upload(self, uuid):
         request = self.context['request']
 
         try:
-            upload = FileUpload.objects.get(uuid=attrs[source],
+            upload = FileUpload.objects.get(uuid=uuid,
                                             user=request.user)
         except FileUpload.DoesNotExist:
             raise serializers.ValidationError('No upload found.')
@@ -22,28 +24,30 @@ class LangPackUploadSerializer(serializers.Serializer):
             raise serializers.ValidationError('Upload not valid.')
 
         # Override upload field with our FileUpload instance.
-        attrs[source] = upload
-        return attrs
+        return upload
 
     @property
     def data(self):
-        return LangPackSerializer(self.object).data
+        return LangPackSerializer(instance=self.instance).data
 
-    def save(self, **kwargs):
-        # Never let save() happen here - We do it earlier, when restoring the
-        # object - That's how the from_upload() static method on the model
-        # works.
-        return self.object
-
-    def restore_object(self, attrs, instance=None):
+    def validate(self, data):
         try:
-            return LangPack.from_upload(attrs['upload'], instance=instance)
-        except serializers.ValidationError, e:
-            raise ParseError(e.messages)
+            self.instance = LangPack.from_upload(data['upload'],
+                                                 instance=self.instance)
+        except forms.ValidationError, e:
+            exc = ParseError()
+            exc.detail = {u'detail': e.messages}
+            raise exc
         except SigningError, e:
             # A SigningError could mean the package is corrupted but it often
             # means something is wrong on our end, so return a 503.
-            raise ServiceUnavailable([e.message])
+            raise ServiceUnavailable({u'detail': [e.message]})
+        return data
+
+    def save(self, **kwargs):
+        # No save needed, we called LangPack.from_upload() in the validate
+        # step.
+        pass
 
 
 class LangPackSerializer(serializers.ModelSerializer):

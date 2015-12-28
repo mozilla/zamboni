@@ -8,6 +8,7 @@ from datetime import datetime
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import reverse
+from django.db import transaction
 from django.test.utils import override_settings
 
 from nose.tools import eq_, ok_
@@ -659,17 +660,17 @@ class TestExtensionViewSetPatchPut(RestOAuth):
         eq_(self.extension.slug, u'lolé')
 
     def test_patch_with_rights_with_slug(self):
-        # Changes to the slug are ignored if you used the slug in the URL.
+        # Changes to the slug are made even if you used the slug in the URL.
         self.url = reverse('api-v2:extension-detail',
                            kwargs={'pk': self.extension.slug})
         self.extension.authors.add(self.user)
         response = self.client.patch(self.url, json.dumps({'slug': u'làlé'}))
         eq_(response.status_code, 200)
-        eq_(response.json['slug'], u'mŷ-extension')
+        eq_(response.json['slug'], u'làlé')
         eq_(response.json['disabled'], False)
         self.extension.reload()
         eq_(self.extension.disabled, False)
-        eq_(self.extension.slug, u'mŷ-extension')
+        eq_(self.extension.slug, u'làlé')
 
     def test_patch_slug_not_available(self):
         Extension.objects.create(slug=u'sorrŷ-already-taken')
@@ -786,6 +787,28 @@ class TestExtensionSearchView(RestOAuth, ESTestCase):
         eq_(len(objs), 1)
         eq_(objs[0]['id'], self.extension2.pk)
 
+    def test_q_num_requests(self):
+        es = Extension.get_indexer().get_es()
+        orig_search = es.search
+        es.counter = 0
+
+        def monkey_search(*args, **kwargs):
+            es.counter += 1
+            return orig_search(*args, **kwargs)
+
+        es.search = monkey_search
+
+        with self.assertNumQueries(0):
+            res = self.anon.get(self.url, data={'q': 'extension'})
+        eq_(res.status_code, 200)
+        eq_(res.json['meta']['total_count'], 1)
+        eq_(len(res.json['objects']), 1)
+
+        # Verify only one search call was made.
+        eq_(es.counter, 1)
+
+        es.search = orig_search
+
     def test_query_sort_reviewed(self):
         self.extension2 = Extension.objects.create(name=u'Superb Extensiôn')
         self.version2 = ExtensionVersion.objects.create(
@@ -899,7 +922,8 @@ class TestReviewerExtensionSearchView(RestOAuth, ESTestCase):
         self._allowed_verbs(self.url, ['get'])
 
     def test_has_cors(self):
-        self.assertCORS(self.anon.get(self.url), 'get')
+        with transaction.atomic():
+            self.assertCORS(self.anon.get(self.url), 'get')
 
     def test_basic(self):
         response = self.client.get(self.url)
@@ -907,13 +931,15 @@ class TestReviewerExtensionSearchView(RestOAuth, ESTestCase):
         eq_(len(response.json['objects']), 1)
 
     def test_anon(self):
-        response = self.anon.get(self.url)
-        eq_(response.status_code, 403)
+        with transaction.atomic():
+            response = self.anon.get(self.url)
+            eq_(response.status_code, 403)
 
     def test_user_no_perm(self):
-        self.user.groups.all().delete()
-        response = self.client.get(self.url)
-        eq_(response.status_code, 403)
+        with transaction.atomic():
+            self.user.groups.all().delete()
+            response = self.client.get(self.url)
+            eq_(response.status_code, 403)
 
     def test_list(self):
         self.extension2 = Extension.objects.create(name=u'Mŷ Second Extension')

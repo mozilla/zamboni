@@ -1,6 +1,7 @@
 import json
 
 from django.core.urlresolvers import reverse
+from django.db import transaction
 
 import responses
 from nose.tools import eq_, ok_
@@ -78,9 +79,10 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         eq_(len(response.json['objects']), 2)
 
     def test_wrong_category(self):
-        res = self.anon.get(self.url, data={'cat': self.category + 'xq'})
-        eq_(res.status_code, 400)
-        eq_(res['Content-Type'], 'application/json')
+        with transaction.atomic():
+            res = self.anon.get(self.url, data={'cat': self.category + 'xq'})
+            eq_(res.status_code, 400)
+            eq_(res['Content-Type'], 'application/json; charset=utf-8')
 
     def test_right_category_but_not_present(self):
         self.category = 'travel'
@@ -109,6 +111,28 @@ class TestWebsiteESView(RestOAuth, ESTestCase):
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]
         eq_(obj['id'], self.website.pk)
+
+    def test_q_num_requests(self):
+        es = Website.get_indexer().get_es()
+        orig_search = es.search
+        es.counter = 0
+
+        def monkey_search(*args, **kwargs):
+            es.counter += 1
+            return orig_search(*args, **kwargs)
+
+        es.search = monkey_search
+
+        with self.assertNumQueries(0):
+            res = self.anon.get(self.url, data={'q': 'something'})
+        eq_(res.status_code, 200)
+        eq_(res.json['meta']['total_count'], 1)
+        eq_(len(res.json['objects']), 1)
+
+        # Verify only one search call was made.
+        eq_(es.counter, 1)
+
+        es.search = orig_search
 
     def test_q_relevancy(self):
         # Add 2 websites - the last one has 'something' appearing in both its
@@ -243,9 +267,11 @@ class TestReviewerSearch(RestOAuth, ESTestCase):
         super(TestReviewerSearch, self).tearDown()
 
     def test_access(self):
-        eq_(self.anon.get(self.url).status_code, 403)
+        with transaction.atomic():
+            eq_(self.anon.get(self.url).status_code, 403)
         self.remove_permission(self.user, 'Apps:Review')
-        eq_(self.client.get(self.url).status_code, 403)
+        with transaction.atomic():
+            eq_(self.client.get(self.url).status_code, 403)
 
     def test_verbs(self):
         self._allowed_verbs(self.url, ['get'])

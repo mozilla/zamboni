@@ -25,7 +25,6 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
 from mkt.api.permissions import (AllowReadOnlyIfPublic, AnyOf, ByHttpMethod,
                                  GroupPermission)
-from mkt.api.paginator import ESPaginator
 from mkt.comm.utils import create_comm_note
 from mkt.constants import comm
 from mkt.constants.apps import MANIFEST_CONTENT_TYPE
@@ -51,7 +50,7 @@ log = commonware.log.getLogger('extensions.views')
 
 class CreateExtensionMixin(object):
     def create(self, request, *args, **kwargs):
-        upload_pk = request.DATA.get('validation_id', '')
+        upload_pk = request.data.get('validation_id', '')
         if not upload_pk:
             raise exceptions.ParseError(_('No validation_id specified.'))
 
@@ -77,11 +76,11 @@ class CreateExtensionMixin(object):
         # TODO: change create_comm_note to just take a version.
         if 'extension_pk' in self.kwargs:
             create_comm_note(obj.extension, obj, request.user,
-                             request.DATA.get('message', ''),
+                             request.data.get('message', ''),
                              note_type=comm.SUBMISSION)
         else:
             create_comm_note(obj, obj.latest_version, request.user,
-                             request.DATA.get('message', ''),
+                             request.data.get('message', ''),
                              note_type=comm.SUBMISSION)
 
         serializer = self.get_serializer(obj)
@@ -173,7 +172,6 @@ class ExtensionSearchView(CORSMixin, MarketplaceView, ListAPIView):
     filter_backends = [ExtensionSearchFormFilter, PublicContentFilter,
                        SearchQueryFilter, SortingFilter]
     serializer_class = ESExtensionSerializer
-    paginator_class = ESPaginator
     form_class = ExtensionSearchForm
 
     def get_queryset(self):
@@ -208,8 +206,8 @@ class ReviewerExtensionViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     def updates(self, *args, **kwargs):
         qs = self.get_queryset()
         page = self.paginate_queryset(qs)
-        serializer = self.get_pagination_serializer(page)
-        return Response(serializer.data)
+        serializer = self.get_serializer(page, many=True)
+        return self.get_paginated_response(serializer.data)
 
 
 class ReviewerExtensionSearchView(ExtensionSearchView):
@@ -282,7 +280,7 @@ class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
         obj = self.get_object()
         obj.publish()
         create_comm_note(obj.extension, obj, request.user,
-                         request.DATA.get('message', ''),
+                         request.data.get('message', ''),
                          note_type=comm.APPROVAL)
         return Response(status=status.HTTP_202_ACCEPTED)
 
@@ -294,7 +292,7 @@ class ExtensionVersionViewSet(CORSMixin, MarketplaceView, CreateExtensionMixin,
         obj = self.get_object()
         obj.reject()
         create_comm_note(obj.extension, obj, request.user,
-                         request.DATA.get('message', ''),
+                         request.data.get('message', ''),
                          note_type=comm.REJECTION)
         return Response(status=status.HTTP_202_ACCEPTED)
 

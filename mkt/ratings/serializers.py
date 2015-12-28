@@ -22,13 +22,14 @@ class RatingSerializer(serializers.ModelSerializer):
                                             read_only=True, source='addon'))
     body = serializers.CharField()
     user = UserSerializer(read_only=True)
+    rating = serializers.IntegerField(min_value=1, max_value=5)
     report_spam = serializers.SerializerMethodField('get_report_spam_link')
     resource_uri = serializers.HyperlinkedIdentityField(
         view_name='ratings-detail')
-    is_author = serializers.SerializerMethodField('get_is_author')
-    has_flagged = serializers.SerializerMethodField('get_has_flagged')
+    is_author = serializers.SerializerMethodField()
+    has_flagged = serializers.SerializerMethodField()
     version = SimpleVersionSerializer(read_only=True)
-    lang = serializers.SerializerMethodField('get_lang')
+    lang = serializers.SerializerMethodField()
 
     class Meta:
         model = Review
@@ -54,14 +55,14 @@ class RatingSerializer(serializers.ModelSerializer):
             # Don't let users modify 'app' field at edit time
             self.fields['app'].read_only = True
 
-    def to_native(self, obj):
+    def to_representation(self, obj):
         # When we have an `app` set on the serializer, we know it's because the
         # view was filtering on this app, so we can safely overwrite the
         # `addon` property on the instance with it, saving some costly queries.
         app = getattr(self, 'app', None)
         if app is not None:
             obj.addon = app
-        return super(RatingSerializer, self).to_native(obj)
+        return super(RatingSerializer, self).to_representation(obj)
 
     def get_report_spam_link(self, obj):
         return reverse('ratings-flag', kwargs={'pk': obj.pk})
@@ -80,7 +81,7 @@ class RatingSerializer(serializers.ModelSerializer):
             return obj.lang
 
     def validate(self, attrs):
-        if not getattr(self, 'object'):
+        if self.instance is None:
             # If we are creating a rating, then we need to do various checks on
             # the app. Because these checks need the version as well, we have
             # to do them here and not in validate_app().
@@ -129,33 +130,16 @@ class RatingSerializer(serializers.ModelSerializer):
 
         return attrs
 
-    def validate_app(self, attrs, source):
+    def validate_app(self, app):
         # Don't allow users to change the app on an existing rating.
-        if getattr(self, 'object'):
-            attrs[source] = self.object.addon
-        return attrs
-
-    def validate_rating(self, attrs, source):
-        # Don't allow user to submit rating outside the range
-        valid_ratings = [1, 2, 3, 4, 5]
-
-        # ensure rating key is present
-        if source not in attrs:
-            raise serializers.ValidationError("Rating key is required")
-
-        value = attrs[source]
-        rating = int(value) if value else value
-
-        # ensure rating is in desired range
-        if rating not in valid_ratings:
-            raise serializers.ValidationError("Rating must be between 1-5")
-
-        return attrs
+        if self.instance is not None:
+            return self.instance.addon
+        return app
 
 
 class RatingFlagSerializer(serializers.ModelSerializer):
-    user = serializers.Field()
-    review_id = serializers.Field()
+    user = serializers.CharField(required=False)
+    review_id = serializers.IntegerField(required=False)
 
     class Meta:
         model = ReviewFlag

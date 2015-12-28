@@ -3,16 +3,16 @@ from django.core import validators
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models
 from django.db.models.fields import BLANK_CHOICE_DASH
+from django.utils.encoding import smart_text
 from django.utils.translation import ugettext_lazy as _
 
 from rest_framework import fields, serializers
-from rest_framework.compat import smart_text
 
 from mkt.submit.helpers import string_to_translatedfield_value
 from mkt.translations.utils import to_language
 
 
-class MultiSlugChoiceField(fields.WritableField):
+class MultiSlugChoiceField(fields.Field):
     """
     Like SlugChoiceField but accepts a list of values rather a single one.
     """
@@ -36,16 +36,6 @@ class MultiSlugChoiceField(fields.WritableField):
         if not self.required:
             self.choices = BLANK_CHOICE_DASH + self.choices
 
-    def validate(self, value):
-        """
-        Validates that the input is in self.choices.
-        """
-        super(MultiSlugChoiceField, self).validate(value)
-        for v in value:
-            if not self.valid_value(v):
-                raise ValidationError(self.error_messages['invalid_choice'] % {
-                    'value': v})
-
     def valid_value(self, value):
         """
         Check to see if the provided value is a valid choice.
@@ -61,13 +51,17 @@ class MultiSlugChoiceField(fields.WritableField):
                     return True
         return False
 
-    def from_native(self, value):
+    def to_internal_value(self, value):
         if value in validators.EMPTY_VALUES:
             return None
-        return super(MultiSlugChoiceField, self).from_native(value)
+        for v in value:
+            if not self.valid_value(v):
+                raise ValidationError(self.error_messages['invalid_choice'] % {
+                    'value': v})
+        return super(MultiSlugChoiceField, self).to_internal_value(value)
 
 
-class TranslationSerializerField(fields.WritableField):
+class TranslationSerializerField(fields.Field):
     """
     Django-rest-framework custom serializer field for our TranslatedFields.
 
@@ -93,18 +87,8 @@ class TranslationSerializerField(fields.WritableField):
 
     def __init__(self, *args, **kwargs):
         self.min_length = kwargs.pop('min_length', None)
-
         super(TranslationSerializerField, self).__init__(*args, **kwargs)
-        # Default to return all translations for each field.
         self.requested_language = None
-
-    def initialize(self, parent, field_name):
-        super(TranslationSerializerField, self).initialize(parent, field_name)
-        request = self.context.get('request', None)
-        if request and request.method == 'GET' and 'lang' in request.GET:
-            # A specific language was requested, we will only return one
-            # translation per field.
-            self.requested_language = request.GET['lang']
 
     def fetch_all_translations(self, obj, source, field):
         translations = field.__class__.objects.filter(
@@ -112,37 +96,39 @@ class TranslationSerializerField(fields.WritableField):
         return dict((to_language(trans.locale), unicode(trans))
                     for trans in translations) if translations else None
 
-    def fetch_single_translation(self, obj, source, field):
+    def fetch_single_translation(self, obj, source, field, requested_language):
         return unicode(field) if field else None
 
-    def field_to_native(self, obj, field_name):
-        source = self.source or field_name
-        value = obj
-        for component in source.split('.'):
-            value = fields.get_component(value, component)
-            if value is None:
-                break
-
-        field = value
-        if field is None:
+    def get_attribute(self, obj, requested_language=None):
+        source = self.source or self.field_name
+        field = fields.get_attribute(obj, source.split('.'))
+        if not field:
             return None
-        if self.requested_language:
-            return self.fetch_single_translation(obj, source, field)
+        request = self.context.get('request', None)
+        if requested_language is None:
+            if request and request.method == 'GET' and 'lang' in request.GET:
+                requested_language = request.GET['lang']
+        if requested_language:
+            return self.fetch_single_translation(obj, source, field,
+                                                 requested_language)
         else:
             return self.fetch_all_translations(obj, source, field)
 
-    def from_native(self, data):
+    def to_representation(self, val):
+        return val
+
+    def to_internal_value(self, data):
         if isinstance(data, basestring):
+            self.validate(data)
             return data.strip()
         elif isinstance(data, dict):
+            self.validate(data)
             for key, value in data.items():
                 data[key] = value and value.strip()
             return data
-        data = super(TranslationSerializerField, self).from_native(data)
         return unicode(data)
 
     def validate(self, value):
-        super(TranslationSerializerField, self).validate(value)
         value_too_short = True
 
         if isinstance(value, basestring):
@@ -169,11 +155,17 @@ class ESTranslationSerializerField(TranslationSerializerField):
     built from ES data that we previously attached on the object.
     """
     suffix = '_translations'
+    _source = None
 
-    def __init__(self, *args, **kwargs):
-        if kwargs.get('source'):
-            kwargs['source'] = '%s%s' % (kwargs['source'], self.suffix)
-        super(ESTranslationSerializerField, self).__init__(*args, **kwargs)
+    def get_source(self):
+        if self._source is None:
+            return None
+        return self._source + self.suffix
+
+    def set_source(self, val):
+        self._source = val
+
+    source = property(get_source, set_source)
 
     @classmethod
     def attach_translations(cls, obj, data, source_name, target_name=None):
@@ -200,25 +192,17 @@ class ESTranslationSerializerField(TranslationSerializerField):
     def fetch_all_translations(self, obj, source, field):
         return field or None
 
-    def fetch_single_translation(self, obj, source, field):
+    def fetch_single_translation(self, obj, source, field, requested_language):
         translations = self.fetch_all_translations(obj, source, field) or {}
-
-        return (translations.get(self.requested_language) or
+        return (translations.get(requested_language) or
                 translations.get(getattr(obj, 'default_locale', None)) or
                 translations.get(getattr(obj, 'default_language', None)) or
                 translations.get(settings.LANGUAGE_CODE) or None)
 
-    def field_to_native(self, obj, field_name):
-        if field_name:
-            field_name = '%s%s' % (field_name, self.suffix)
-        return super(ESTranslationSerializerField, self).field_to_native(
-            obj, field_name)
-
 
 class GuessLanguageTranslationField(TranslationSerializerField):
-    def field_from_native(self, data, files, field_name, into):
-        value = data.get(field_name)
-        into[field_name] = string_to_translatedfield_value(value)
+    def to_internal_value(self, obj):
+        return string_to_translatedfield_value(obj)
 
 
 class SplitField(fields.Field):
@@ -235,19 +219,13 @@ class SplitField(fields.Field):
     def __init__(self, input, output, **kwargs):
         self.input = input
         self.output = output
-        self.source = input.source
-        self._read_only = False
-        self.required = True
+        kwargs['required'] = input.required
+        fields.Field.__init__(self, source=input.source, **kwargs)
 
-    def initialize(self, parent, field_name):
-        """
-        Update the context of the input and output fields to match the context
-        of this field.
-        """
-        super(SplitField, self).initialize(parent, field_name)
-        for field in [self.input, self.output]:
-            if hasattr(field, 'context'):
-                field.context.update(self.context)
+    def bind(self, field_name, parent):
+        fields.Field.bind(self, field_name, parent)
+        self.input.bind(field_name, parent)
+        self.output.bind(field_name, parent)
 
     def get_read_only(self):
         return self._read_only
@@ -259,13 +237,17 @@ class SplitField(fields.Field):
 
     read_only = property(get_read_only, set_read_only)
 
-    def field_from_native(self, data, files, field_name, into):
-        self.input.initialize(parent=self.parent, field_name=field_name)
-        self.input.field_from_native(data, files, field_name, into)
+    def get_value(self, data):
+        return self.input.get_value(data)
 
-    def field_to_native(self, obj, field_name):
-        self.output.initialize(parent=self.parent, field_name=field_name)
-        return self.output.field_to_native(obj, field_name)
+    def to_internal_value(self, value):
+        return self.input.to_internal_value(value)
+
+    def get_attribute(self, obj):
+        return self.output.get_attribute(obj)
+
+    def to_representation(self, value):
+        return self.output.to_representation(value)
 
 
 class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
@@ -274,8 +256,6 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
     `render_as` argument (either "pk" or "slug") to indicate how to
     serialize.
     """
-    default_error_messages = (serializers.SlugRelatedField
-                              .default_error_messages)
     read_only = False
 
     def __init__(self, *args, **kwargs):
@@ -287,13 +267,13 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
         super(SlugOrPrimaryKeyRelatedField, self).__init__(
             *args, **kwargs)
 
-    def to_native(self, obj):
+    def to_representation(self, obj):
         if self.render_as == 'slug':
             return getattr(obj, self.slug_field)
         else:
             return obj.pk
 
-    def from_native(self, data):
+    def to_internal_value(self, data):
         if self.queryset is None:
             raise Exception('Writable related fields must include a '
                             '`queryset` argument')
@@ -304,8 +284,8 @@ class SlugOrPrimaryKeyRelatedField(serializers.RelatedField):
             try:
                 return self.queryset.get(**{self.slug_field: data})
             except ObjectDoesNotExist:
-                msg = self.error_messages['does_not_exist'] % (
-                    'pk_or_slug', smart_text(data))
+                msg = (_('Invalid pk or slug "%s" - object does not exist') %
+                       smart_text(data))
                 raise ValidationError(msg)
 
 
@@ -323,19 +303,19 @@ class ReverseChoiceField(serializers.ChoiceField):
                                           in self.choices_dict.items())
         return super(ReverseChoiceField, self).__init__(*args, **kwargs)
 
-    def to_native(self, value):
+    def to_representation(self, value):
         """
         Convert "actual" value to "human-readable" when serializing.
         """
         value = self.choices_dict.get(value, None)
-        return super(ReverseChoiceField, self).to_native(value)
+        return super(ReverseChoiceField, self).to_representation(value)
 
-    def from_native(self, value):
+    def to_internal_value(self, value):
         """
         Convert "human-readable" value to "actual" when de-serializing.
         """
         value = self.reversed_choices_dict.get(value, None)
-        return super(ReverseChoiceField, self).from_native(value)
+        return super(ReverseChoiceField, self).to_internal_value(value)
 
 
 class SlugChoiceField(serializers.ChoiceField):
@@ -371,19 +351,19 @@ class SlugChoiceField(serializers.ChoiceField):
                            for v, n in self.choices]
         return data
 
-    def to_native(self, value):
-        if value != self.empty:
+    def to_representation(self, value):
+        if value is not fields.empty:
             choice = self.ids_choices_dict.get(value, None)
             if choice is not None:
                 value = choice.slug
-        return super(SlugChoiceField, self).to_native(value)
+        return super(SlugChoiceField, self).to_representation(value)
 
-    def from_native(self, value):
+    def to_internal_value(self, value):
         if isinstance(value, basestring):
             choice = self.choices_dict.get(value, None)
             if choice is not None:
                 value = choice.id
-        return super(SlugChoiceField, self).from_native(value)
+        return super(SlugChoiceField, self).to_internal_value(value)
 
 
 class UnicodeChoiceField(serializers.ChoiceField):
@@ -399,19 +379,18 @@ class UnicodeChoiceField(serializers.ChoiceField):
 
 
 class SlugModelChoiceField(serializers.PrimaryKeyRelatedField):
-    def field_to_native(self, obj, field_name):
-        attr = self.source or field_name
-        value = getattr(obj, attr)
+    def get_attribute(self, obj):
+        value = getattr(obj, self.source)
         return getattr(value, 'slug', None)
 
-    def from_native(self, data):
+    def to_internal_value(self, data):
         if isinstance(data, basestring):
             try:
                 data = self.queryset.only('pk').get(slug=data).pk
             except ObjectDoesNotExist:
                 msg = self.error_messages['does_not_exist'] % smart_text(data)
                 raise serializers.ValidationError(msg)
-        return super(SlugModelChoiceField, self).from_native(data)
+        return super(SlugModelChoiceField, self).to_internal_value(data)
 
 
 class LargeTextField(serializers.HyperlinkedRelatedField):
@@ -420,10 +399,11 @@ class LargeTextField(serializers.HyperlinkedRelatedField):
     a link to a separate resource. Used for text too long for common
     inclusion in a resource.
     """
-    def field_to_native(self, obj, field_name):
-        return self.to_native(obj)
 
-    def from_native(self, value):
+    def get_attribute(self, obj):
+        return obj
+
+    def to_internal_value(self, value):
         return value
 
 
@@ -432,8 +412,14 @@ class SemiSerializerMethodField(serializers.SerializerMethodField):
     Used for fields serialized with a method on the serializer but who
     need to handle unserialization manually.
     """
-    def field_from_native(self, data, files, field_name, into):
-        into[field_name] = data.get(field_name, None)
+    def __init__(self, method_name=None, **kwargs):
+        # Intentionally skipping SerializerMethodField.__init__, since it sets
+        # the field to be read-only.
+        self.method_name = method_name
+        serializers.Field.__init__(self, **kwargs)
+
+    def to_internal_value(self, data):
+        return data
 
 
 class IntegerRangeField(models.IntegerField):

@@ -10,6 +10,6 @@ class AppFeaturesSerializer(serializers.ModelSerializer):
         fields = []
         depth = 0
 
-    def to_native(self, obj):
+    def to_representation(self, obj):
         return [f.replace('has_', '') for f in obj._fields()
                 if getattr(obj, f) and f.startswith('has_')]

@@ -256,6 +256,7 @@ class ValidationViewSet(CORSMixin, mixins.CreateModelMixin,
                               RestAnonymousAuthentication]
     permission_classes = [AllowAny]
     model = FileUpload
+    queryset = FileUpload.objects.all()
     serializer_class = FileUploadSerializer
 
     @use_master
@@ -267,7 +268,7 @@ class ValidationViewSet(CORSMixin, mixins.CreateModelMixin,
 
         Doesn't rely on any serializer, just forms.
         """
-        data = self.request.DATA
+        data = self.request.data
         packaged = 'upload' in data
         form = (NewPackagedForm(data) if packaged
                 else NewManifestForm(data))
@@ -335,7 +336,7 @@ class PreviewViewSet(CORSMixin, MarketplaceView, mixins.RetrieveModelMixin,
         """
         app = kwargs['app']
 
-        data_form = PreviewJSONForm(request.DATA)
+        data_form = PreviewJSONForm(request.data)
         if not data_form.is_valid():
             return Response(data_form.errors, status=HTTP_400_BAD_REQUEST)
 

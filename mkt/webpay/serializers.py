@@ -5,7 +5,7 @@ from mkt.webpay.models import ProductIcon
 
 
 class ProductIconSerializer(serializers.ModelSerializer):
-    url = serializers.SerializerMethodField('get_url')
+    url = serializers.SerializerMethodField()
 
     def get_url(self, obj):
         if not obj.pk:

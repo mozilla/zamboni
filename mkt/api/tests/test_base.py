@@ -49,7 +49,7 @@ class TestEncoding(RestOAuth):
         # cheat and return json content without even looking at the Accept
         # header (see mkt.api.renderers and settings).
         eq_(r.status_code, 200)
-        eq_(r['content-type'], 'application/json')
+        eq_(r['content-type'], 'application/json; charset=utf-8')
 
     @patch.object(AppViewSet, 'create')
     def test_form_encoded(self, create_mock):
@@ -57,7 +57,7 @@ class TestEncoding(RestOAuth):
         self.client.post(reverse('app-list'),
                          data='foo=bar',
                          content_type='application/x-www-form-urlencoded')
-        eq_(create_mock.call_args[0][0].DATA['foo'], 'bar')
+        eq_(create_mock.call_args[0][0].data['foo'], 'bar')
 
 
 class TestCORSWrapper(TestCase):
@@ -102,9 +102,9 @@ class TestSubRouterWithFormat(TestCase):
             {'name': 'bar-list', 'pattern': '^(?P<pk>[^/.]+)/foo/$'},
             {'name': 'bar-detail', 'pattern': '^(?P<pk>[^/.]+)/foo/$'},
             {'name': 'bar-list',
-             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)$'},
+             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)/?$'},
             {'name': 'bar-detail',
-             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)$'},
+             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)/?$'},
         ]
         actual = [{
             'name': url.name, 'pattern': url.regex.pattern
@@ -119,9 +119,9 @@ class TestSubRouterWithFormat(TestCase):
             {'name': 'bar-list', 'pattern': '^(?P<pk>[^/.]+)/foo$'},
             {'name': 'bar-detail', 'pattern': '^(?P<pk>[^/.]+)/foo$'},
             {'name': 'bar-list',
-             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)$'},
+             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)/?$'},
             {'name': 'bar-detail',
-             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)$'},
+             'pattern': '^(?P<pk>[^/.]+)/foo\\.(?P<format>[a-z0-9]+)/?$'},
         ]
         actual = [{
             'name': url.name, 'pattern': url.regex.pattern

@@ -1,4 +1,3 @@
-from drf_compound_fields.fields import ListField
 from rest_framework import serializers
 
 import mkt
@@ -11,14 +10,15 @@ from mkt.websites.models import Website, WebsiteSubmission
 
 
 class WebsiteSerializer(serializers.ModelSerializer):
-    categories = ListField(serializers.CharField())
+    categories = serializers.ListField(child=serializers.CharField())
     description = TranslationSerializerField()
-    device_types = ListField(serializers.CharField(), source='device_names')
-    icons = serializers.SerializerMethodField('get_icons')
+    device_types = serializers.ListField(serializers.CharField(),
+                                         source='device_names')
+    icons = serializers.SerializerMethodField()
     id = serializers.IntegerField(source='pk')
-    keywords = serializers.SerializerMethodField('get_keywords')
+    keywords = serializers.SerializerMethodField()
     name = TranslationSerializerField()
-    promo_imgs = serializers.SerializerMethodField('get_promo_imgs')
+    promo_imgs = serializers.SerializerMethodField()
     short_name = TranslationSerializerField()
     developer_name = TranslationSerializerField(required=False)
     title = TranslationSerializerField()
@@ -83,12 +83,13 @@ class ReviewerESWebsiteSerializer(ESWebsiteSerializer):
 
 
 class PublicWebsiteSubmissionSerializer(serializers.ModelSerializer):
-    categories = ListField(serializers.CharField())
+    categories = serializers.ListField(child=serializers.CharField())
     description = GuessLanguageTranslationField()
     id = serializers.IntegerField(source='pk', required=False)
-    keywords = ListField(serializers.CharField())
+    keywords = serializers.ListField(child=serializers.CharField())
     name = GuessLanguageTranslationField()
-    preferred_regions = ListField(serializers.CharField(), required=False)
+    preferred_regions = serializers.ListField(
+        child=serializers.CharField(), required=False)
     works_well = serializers.IntegerField()
 
     class Meta:

@@ -6,12 +6,12 @@ from cStringIO import StringIO
 import mock
 from nose.tools import eq_
 from PIL import Image
-from rest_framework.exceptions import ParseError
 from zipfile import BadZipfile, ZipFile
 
 from django.core.files.uploadedfile import TemporaryUploadedFile
 from django.forms import ValidationError
 
+from mkt.api.exceptions import ParseError
 from mkt.files.utils import SafeUnzip
 from mkt.site.tests import TestCase
 from mkt.extensions.validation import ExtensionValidator
@@ -50,10 +50,10 @@ class TestExtensionValidator(TestCase):
             if kwargs:
                 expected_message = expected_message % kwargs
             eq_(e.__class__, ParseError)
-            eq_(e.detail['key'], key)
-            eq_(e.detail['message'], expected_message)
+            eq_(e.detail['detail']['key'], key)
+            eq_(e.detail['detail']['message'], expected_message)
             if kwargs:
-                eq_(e.detail['params'], kwargs)
+                eq_(e.detail['detail']['params'], kwargs)
         else:
             self.fail('Does not raise a ParseError.')
 

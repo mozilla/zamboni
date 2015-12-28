@@ -309,7 +309,6 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         res = self.client.put(self.get_url, data=json.dumps(self.base_data()))
         app = app.reload()
         version = app.current_version
-
         eq_(res.status_code, 202)
         res = self.client.get(self.get_url + '?lang=en')
         eq_(res.status_code, 200)
@@ -1002,16 +1001,16 @@ class TestLargeTextField(TestCase):
 
     def test_receive(self):
         data = 'privacy policy text'
-        into = {}
-        field = LargeTextField(view_name='app-privacy-policy-detail')
+        field = LargeTextField(view_name='app-privacy-policy-detail',
+                               queryset=Webapp.objects)
         field.context = {'request': self.request}
-        field.field_from_native({'field_name': data}, None, 'field_name', into)
-        eq_(into['field_name'], data)
+        eq_(field.to_internal_value(data), data)
 
     def test_send(self):
         app = Webapp.objects.get(pk=337141)
         app.privacy_policy = 'privacy policy text'
-        field = LargeTextField(view_name='app-privacy-policy-detail')
+        field = LargeTextField(view_name='app-privacy-policy-detail',
+                               queryset=Webapp.objects)
         field.context = {'request': self.request}
-        url = field.field_to_native(app, None)
+        url = field.to_representation(app)
         self.assertApiUrlEqual(url, '/apps/app/337141/privacy/')

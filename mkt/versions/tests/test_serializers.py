@@ -19,7 +19,7 @@ class TestVersionSerializer(TestCase):
         if not obj:
             obj = self.app.current_version
         obj.update(**kwargs)
-        return self.serializer.to_native(obj)
+        return self.serializer.to_representation(obj)
 
     def test_renamed_fields(self):
         native = self.native()

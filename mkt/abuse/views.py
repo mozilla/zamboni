@@ -28,8 +28,8 @@ class BaseAbuseViewSet(CORSMixin, generics.CreateAPIView,
                               RestAnonymousAuthentication]
     permission_classes = (AllowAny,)
 
-    def post_save(self, obj, created=False):
-        obj.send()
+    def perform_create(self, serializer):
+        serializer.save().send()
 
 
 class AppAbuseViewSet(BaseAbuseViewSet):

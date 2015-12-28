@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core.signals import got_request_exception
 
 from rest_framework import status
-from rest_framework.exceptions import APIException
+from rest_framework.exceptions import APIException, ParseError as DRFParseError
 from rest_framework.response import Response
 from rest_framework.views import exception_handler
 
@@ -35,7 +35,7 @@ class ServiceUnavailable(APIException):
         self.detail = detail or self.default_detail
 
 
-def custom_exception_handler(exc):
+def custom_exception_handler(exc, context=None):
     """
     Custom exception handler for DRF, which doesn't provide one for HTTP
     responses like tastypie does.
@@ -46,7 +46,7 @@ def custom_exception_handler(exc):
 
     # Call REST framework's default exception handler first,
     # to get the standard error response.
-    response = exception_handler(exc)
+    response = exception_handler(exc, context)
 
     # If the response is None, then DRF didn't handle the exception and we
     # should do it ourselves.
@@ -80,4 +80,9 @@ class HttpLegallyUnavailable(APIException):
     default_detail = 'Legally unavailable.'
 
     def __init__(self, detail=None):
-        self.detail = detail or self.default_detail
+        self.detail = {'detail': detail or self.default_detail}
+
+
+class ParseError(DRFParseError):
+    def __init__(self, detail):
+        self.detail = {u'detail': detail or self.default_detail}

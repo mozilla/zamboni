@@ -24,7 +24,7 @@ class MktFilterBackend(DjangoFilterBackend):
         """
         filter_class = self.get_filter_class(view, queryset)
         filter_munge = getattr(view, 'filter_munge', ())
-        params = self.munge_params(filter_munge, request.QUERY_PARAMS.copy())
+        params = self.munge_params(filter_munge, request.query_params.copy())
         if filter_class:
             return filter_class(params, queryset=queryset).qs
 

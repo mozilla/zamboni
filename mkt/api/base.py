@@ -11,6 +11,8 @@ from rest_framework.response import Response
 from rest_framework.urlpatterns import format_suffix_patterns
 
 import mkt
+from mkt.api.paginator import CustomPagination, PageNumberPagination
+
 
 log = commonware.log.getLogger('z.api')
 
@@ -43,7 +45,9 @@ def _collect_form_errors(forms):
 
 def form_errors(forms):
     errors = _collect_form_errors(forms)
-    raise ParseError(errors)
+    exc = ParseError()
+    exc.detail = {'detail': errors}
+    raise exc
 
 
 def get_region_from_request(request):
@@ -130,26 +134,24 @@ class MarketplaceView(object):
       pagination handler. It does tastypie-like offset pagination instead of
       the default page mechanism.
     """
+    pagination_class = CustomPagination
+
     def handle_exception(self, exc):
         exc._request = self.request._request
         exc._klass = self.__class__
         return super(MarketplaceView, self).handle_exception(exc)
 
-    def paginate_queryset(self, queryset, page_size=None):
-        page = self.request.QUERY_PARAMS.get(self.page_kwarg)
-        offset = self.request.QUERY_PARAMS.get('offset')
+    def paginate_queryset(self, queryset):
+        page = self.request.query_params.get('page')
+        offset = self.request.query_params.get('offset')
 
-        # If 'offset' (tastypie-style pagination) parameter is present and
-        # 'page' isn't, use offset to find which page to use.
-        if page is None and offset is not None:
-            try:
-                page_number = int(offset) / self.get_paginate_by() + 1
-                self.kwargs[self.page_kwarg] = page_number
-            except ValueError:
-                pass  # Swallow and ignore invalid input.
+        # If 'offset' (tastypie-style pagination) parameter isn't present and
+        # 'page' is, use page numbers instead.
+        if page is not None and offset is None:
+            self._paginator = PageNumberPagination()
 
-        return super(MarketplaceView, self).paginate_queryset(
-            queryset, page_size=page_size)
+        return self.paginator.paginate_queryset(
+            queryset, self.request, view=self)
 
     def get_region_from_request(self, request):
         """
@@ -234,7 +236,7 @@ class SlugOrIdMixin(object):
     `self.slug_field`.
     """
 
-    def get_object(self, queryset=None):
+    def get_object(self):
         pk = self.kwargs.get('pk')
         if pk and not pk.isdigit():
             # If the `pk` contains anything other than a digit, it's a `slug`.
@@ -243,7 +245,7 @@ class SlugOrIdMixin(object):
                 'pk': None,
                 self.lookup_field: self.kwargs['pk']
             })
-        return super(SlugOrIdMixin, self).get_object(queryset=queryset)
+        return super(SlugOrIdMixin, self).get_object()
 
 
 class SilentListModelMixin(ListModelMixin):

@@ -1,7 +1,7 @@
 from uuid import UUID
 
 import commonware
-from rest_framework.exceptions import ParseError
+from rest_framework.exceptions import ParseError, ValidationError
 
 from mkt.constants.iarc_mappings import (BODIES, DESCS_V2, INTERACTIVES_V2,
                                          RATINGS)
@@ -74,8 +74,11 @@ class IARCV2RatingListSerializer(object):
 
         return validated_data
 
-    def is_valid(self):
-        return bool(self.validated_data) and not bool(self.errors)
+    def is_valid(self, raise_exception=False):
+        valid = bool(self.validated_data) and not bool(self.errors)
+        if raise_exception and not valid:
+            raise ValidationError(self.errors)
+        return valid
 
     def save(self, force_update=False):
         if not self.object:

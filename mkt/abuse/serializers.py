@@ -8,18 +8,22 @@ from mkt.extensions.models import Extension
 from mkt.extensions.serializers import ExtensionSerializer
 from mkt.webapps.models import Webapp
 from mkt.webapps.serializers import SimpleAppSerializer
+from mkt.websites.models import Website
 from mkt.websites.serializers import WebsiteSerializer
+from mkt.users.models import UserProfile
 
 
 class BaseAbuseSerializer(PotatoCaptchaSerializer,
                           serializers.ModelSerializer):
     text = serializers.CharField(source='message')
-    reporter = SplitField(serializers.PrimaryKeyRelatedField(required=False),
-                          UserSerializer())
+    reporter = SplitField(
+        serializers.PrimaryKeyRelatedField(
+            required=False, queryset=UserProfile.objects),
+        UserSerializer())
 
     class Meta:
         model = AbuseReport
-        fields = ('text', 'reporter')
+        fields = ('text', 'reporter', 'tuber', 'sprout')
 
     def validate(self, attrs):
         request = self.context['request']
@@ -32,7 +36,9 @@ class BaseAbuseSerializer(PotatoCaptchaSerializer,
 
 
 class UserAbuseSerializer(BaseAbuseSerializer):
-    user = SplitField(serializers.PrimaryKeyRelatedField(), UserSerializer())
+    user = SplitField(
+        serializers.PrimaryKeyRelatedField(queryset=UserProfile.objects),
+        UserSerializer())
 
     class Meta(BaseAbuseSerializer.Meta):
         fields = BaseAbuseSerializer.Meta.fields + ('user',)
@@ -49,8 +55,9 @@ class AppAbuseSerializer(BaseAbuseSerializer):
 
 
 class WebsiteAbuseSerializer(BaseAbuseSerializer):
-    website = SplitField(serializers.PrimaryKeyRelatedField(),
-                         WebsiteSerializer())
+    website = SplitField(
+        serializers.PrimaryKeyRelatedField(queryset=Website.objects),
+        WebsiteSerializer())
 
     class Meta(BaseAbuseSerializer.Meta):
         fields = BaseAbuseSerializer.Meta.fields + ('website',)
@@ -59,7 +66,7 @@ class WebsiteAbuseSerializer(BaseAbuseSerializer):
 class ExtensionAbuseSerializer(BaseAbuseSerializer):
     extension = SplitField(
         SlugOrPrimaryKeyRelatedField(
-            source='extension', slug_field='slug',
+            slug_field='slug',
             queryset=Extension.objects.without_deleted().public()),
         ExtensionSerializer())
 

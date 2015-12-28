@@ -10,6 +10,7 @@ class SuccinctJSONRenderer(JSONRenderer):
     """
     JSONRenderer subclass that strips spaces from the output.
     """
+    charset = 'utf-8'
 
     def render(self, data, accepted_media_type=None, renderer_context=None):
         renderer_context = renderer_context or {}

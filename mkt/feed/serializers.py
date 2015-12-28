@@ -3,6 +3,7 @@ from django.utils.text import slugify
 
 from mpconstants import collection_colors
 from rest_framework import relations, serializers
+from rest_framework.exceptions import ValidationError
 from rest_framework.reverse import reverse
 
 import mkt.carriers
@@ -17,6 +18,7 @@ from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.regions import REGIONS_CHOICES_ID_DICT
 from mkt.search.serializers import BaseESSerializer
 from mkt.submit.serializers import FeedPreviewESSerializer
+from mkt.webapps.models import Preview, Webapp
 from mkt.webapps.serializers import AppSerializer
 
 from . import constants
@@ -33,10 +35,8 @@ class ValidateSlugMixin(object):
     safer.
     """
 
-    def validate_slug(self, attrs, source):
-        if source in attrs:
-            attrs[source] = slugify(unicode(attrs[source]))
-        return attrs
+    def validate_slug(self, value):
+        return slugify(unicode(value))
 
 
 class BaseFeedCollectionSerializer(ValidateSlugMixin, URLSerializerMixin,
@@ -44,12 +44,13 @@ class BaseFeedCollectionSerializer(ValidateSlugMixin, URLSerializerMixin,
     """
     Base serializer for subclasses of BaseFeedCollection.
     """
-    apps = FeedCollectionMembershipField(many=True, source='apps')
+    apps = FeedCollectionMembershipField(many=True, queryset=Webapp.objects,
+                                         required=False)
     slug = serializers.CharField(required=False)
 
     # Search-specific.
-    app_count = serializers.SerializerMethodField('get_app_count')
-    preview_icon = serializers.SerializerMethodField('get_preview_icon')
+    app_count = serializers.SerializerMethodField()
+    preview_icon = serializers.SerializerMethodField()
 
     def get_app_count(self, obj):
         return obj.apps().count()
@@ -68,7 +69,7 @@ class BaseFeedCollectionESSerializer(BaseESSerializer):
     representation.
     """
     apps = AppESField(source='_app_ids', many=True)
-    app_count = serializers.SerializerMethodField('get_app_count')
+    app_count = serializers.SerializerMethodField()
 
     def get_apps(self, obj):
         """
@@ -80,48 +81,60 @@ class BaseFeedCollectionESSerializer(BaseESSerializer):
         """
         app_field = AppESHomeField(many=True)
         app_field.context = self.context
-        return app_field.to_native(obj._app_ids)
+        return app_field.to_representation(obj._app_ids)
 
     def get_app_count(self, obj):
         return len(self.get_apps(obj))
 
 
-class FeedImageField(serializers.HyperlinkedRelatedField):
-    read_only = True
+class FeedImageField(serializers.Field):
     hash_field = 'image_hash'
+    view_name = 'api-v2:feed-app-image-detail'
 
-    def get_url(self, obj, view_name, request, format):
-        if getattr(obj, self.hash_field, None):
+    def get_value(self, data):
+        return data.get(self.field_name + '_upload_url')
+
+    def to_internal_value(self, data):
+        return data
+
+    def get_attribute(self, obj):
+        return (getattr(obj, self.hash_field), obj.pk)
+
+    def to_representation(self, (hash_, pk)):
+        if hash_:
             # Always prefix with STATIC_URL to return images from our CDN.
             prefix = settings.STATIC_URL.strip('/')
+            request = self.context.get('request', None)
+            url = reverse(self.view_name, kwargs={'pk': pk},
+                          request=request, format='png')
             # Always append image_hash so that we can send far-future expires.
-            suffix = '?%s' % getattr(obj, self.hash_field)
-            url = reverse(view_name, kwargs={'pk': obj.pk}, request=request,
-                          format=format)
-            return '%s%s%s' % (prefix, url, suffix)
+            return '%s%s?%s' % (prefix, url, hash_)
         else:
             return None
 
 
 class FeedLandingImageField(FeedImageField):
-    read_only = True
+    view_name = 'api-v2:feed-shelf-landing-image-detail'
     hash_field = 'image_landing_hash'
 
 
 class FeedAppSerializer(ValidateSlugMixin, URLSerializerMixin,
                         serializers.ModelSerializer):
     """
-    A serializer for the FeedApp class, which highlights a single app and some
+     A serializer for the FeedApp class, which highlights a single app and some
     additional metadata (e.g. a review or a screenshot).
     """
-    app = SplitField(relations.PrimaryKeyRelatedField(required=True),
+    app = SplitField(relations.PrimaryKeyRelatedField(required=True,
+                                                      queryset=Webapp.objects),
                      AppSerializer())
-    background_image = FeedImageField(
-        source='*', view_name='api-v2:feed-app-image-detail', format='png')
+    background_image = FeedImageField(allow_null=True)
     description = TranslationSerializerField(required=False)
-    preview = SplitField(relations.PrimaryKeyRelatedField(required=False),
-                         FeedPreviewESSerializer())
-    pullquote_rating = serializers.IntegerField(required=False)
+    preview = SplitField(
+        relations.PrimaryKeyRelatedField(required=False,
+                                         queryset=Preview.objects),
+        FeedPreviewESSerializer())
+    pullquote_rating = serializers.IntegerField(required=False, max_value=5,
+                                                min_value=1)
     pullquote_text = TranslationSerializerField(required=False)
 
     class Meta:
@@ -132,14 +145,25 @@ class FeedAppSerializer(ValidateSlugMixin, URLSerializerMixin,
         model = FeedApp
         url_basename = 'feedapps'
 
+    def validate(self, attrs):
+        """
+        Require `pullquote_text` if `pullquote_rating` or
+        `pullquote_attribution` are set.
+        """
+        if (not attrs.get('pullquote_text') and
+            (attrs.get('pullquote_rating') or
+             attrs.get('pullquote_attribution'))):
+            raise ValidationError('Pullquote text required if rating or '
+                                  'attribution is defined.')
+        return attrs
+
 
 class FeedAppESSerializer(FeedAppSerializer, BaseESSerializer):
     """
     A serializer for the FeedApp class that serializes ES representation.
     """
     app = AppESField(source='_app_id')
-    background_image = FeedImageField(
-        source='*', view_name='api-v2:feed-app-image-detail', format='png')
+    background_image = FeedImageField(allow_null=True)
     description = ESTranslationSerializerField(required=False)
     preview = FeedPreviewESSerializer(source='_preview')
     pullquote_text = ESTranslationSerializerField(required=False)
@@ -209,13 +233,11 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
     A serializer for the FeedCollection class.
     """
     type = serializers.ChoiceField(choices=constants.COLLECTION_TYPE_CHOICES)
-    background_image = FeedImageField(
-        source='*', view_name='api-v2:feed-collection-image-detail',
-        format='png')
+    background_image = FeedImageField(allow_null=True)
     color = serializers.CharField(max_length=20, required=False)
     description = TranslationSerializerField(required=False)
     name = TranslationSerializerField()
-    apps = serializers.SerializerMethodField('get_apps')
+    apps = serializers.SerializerMethodField()
 
     # Deprecated.
     background_color = serializers.CharField(max_length=7, required=False)
@@ -226,9 +248,9 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
         model = FeedCollection
         url_basename = 'feedcollections'
 
-    def validate_color(self, attrs, source):
-        color = attrs.get(source, None)
-        if (attrs.get('type') == constants.COLLECTION_PROMO and not color):
+    def validate_color(self, color):
+        if (self.initial_data.get('type') == constants.COLLECTION_PROMO and
+                not color):
             raise serializers.ValidationError(
                 '`color` is required for `promo` collections.'
             )
@@ -236,7 +258,7 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
             raise serializers.ValidationError(
                 '`Not a valid value for `color`.'
             )
-        return attrs
+        return color
 
     def get_apps(self, obj):
         """
@@ -246,11 +268,12 @@ class FeedCollectionSerializer(BaseFeedCollectionSerializer):
         ret = []
         memberships = FeedCollectionMembership.objects.filter(obj_id=obj.id)
         field = TranslationSerializerField()
-        field.initialize(self, 'group')
+        field.bind('group', self)
         field.context = self.context
         for member in memberships:
             data = AppSerializer(member.app, context=self.context).data
-            data['group'] = field.field_to_native(member, 'group')
+            data['group'] = field.to_representation(
+                field.get_attribute(member))
             ret.append(data)
         return ret
 
@@ -283,7 +306,7 @@ class FeedCollectionESSerializer(BaseFeedCollectionESSerializer,
 
 class FeedCollectionESHomeSerializer(FeedCollectionESSerializer):
     """Stripped down FeedCollectionESSerializer targeted for the homepage."""
-    apps = serializers.SerializerMethodField('get_apps')
+    apps = serializers.SerializerMethodField()
 
     def get_apps(self, obj):
         if obj.type == feed.COLLECTION_PROMO:
@@ -297,7 +320,7 @@ class FeedCollectionESHomeSerializer(FeedCollectionESSerializer):
                                        limit=feed.HOME_NUM_APPS_LISTING_COLL)
 
         app_field.context = self.context
-        return app_field.to_native(obj._app_ids)
+        return app_field.to_representation(obj._app_ids)
 
 
 class FeedShelfSerializer(BaseFeedCollectionSerializer):
@@ -305,16 +328,12 @@ class FeedShelfSerializer(BaseFeedCollectionSerializer):
     A serializer for the FeedBrand class, a type of collection that allows
     editors to quickly create content without involving localizers.
     """
-    apps = serializers.SerializerMethodField('get_apps')
-    background_image = FeedImageField(
-        source='*', view_name='api-v2:feed-shelf-image-detail', format='png')
-    background_image_landing = FeedLandingImageField(
-        source='*', view_name='api-v2:feed-shelf-landing-image-detail',
-        format='png')
+    apps = serializers.SerializerMethodField()
+    background_image = FeedImageField(allow_null=True)
+    background_image_landing = FeedLandingImageField(allow_null=True)
     carrier = SlugChoiceField(choices_dict=mkt.carriers.CARRIER_MAP)
     description = TranslationSerializerField(required=False)
-    is_published = serializers.BooleanField(source='is_published',
-                                            required=False)
+    is_published = serializers.BooleanField(required=False)
     name = TranslationSerializerField()
     region = SlugChoiceField(choices_dict=mkt.regions.REGION_LOOKUP)
 
@@ -333,11 +352,12 @@ class FeedShelfSerializer(BaseFeedCollectionSerializer):
         ret = []
         memberships = FeedShelfMembership.objects.filter(obj_id=obj.id)
         field = TranslationSerializerField()
-        field.initialize(self, 'group')
+        field.bind('group', self)
         field.context = self.context
         for member in memberships:
             data = AppSerializer(member.app, context=self.context).data
-            data['group'] = field.field_to_native(member, 'group')
+            data['group'] = field.to_representation(
+                field.get_attribute(member))
             ret.append(data)
         return ret
 
@@ -387,17 +407,26 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
     region = SlugChoiceField(required=False,
                              choices_dict=mkt.regions.REGION_LOOKUP)
     category = UnicodeChoiceField(required=False, choices=CATEGORY_CHOICES)
-    item_type = serializers.SerializerMethodField('get_item_type')
+    item_type = serializers.SerializerMethodField()
 
     # Types of objects that are allowed to be a feed item.
-    app = SplitField(relations.PrimaryKeyRelatedField(required=False),
-                     FeedAppSerializer())
-    brand = SplitField(relations.PrimaryKeyRelatedField(required=False),
-                       FeedBrandSerializer())
-    collection = SplitField(relations.PrimaryKeyRelatedField(required=False),
-                            FeedCollectionSerializer())
-    shelf = SplitField(relations.PrimaryKeyRelatedField(required=False),
-                       FeedShelfSerializer())
+    app = SplitField(
+        relations.PrimaryKeyRelatedField(
+            required=False,
+            queryset=FeedApp.objects),
+        FeedAppSerializer())
+    brand = SplitField(
+        relations.PrimaryKeyRelatedField(required=False,
+                                         queryset=FeedBrand.objects),
+        FeedBrandSerializer())
+    collection = SplitField(
+        relations.PrimaryKeyRelatedField(required=False,
+                                         queryset=FeedCollection.objects),
+        FeedCollectionSerializer())
+    shelf = SplitField(
+        relations.PrimaryKeyRelatedField(required=False,
+                                         queryset=FeedShelf.objects),
+        FeedShelfSerializer())
 
     class Meta:
         fields = ('app', 'brand', 'carrier', 'category', 'collection', 'id',
@@ -410,6 +439,8 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
         """
         Ensure that at least one object type is specified.
         """
+        if len(attrs) == 0:
+            raise serializers.ValidationError('Feed item cannot be empty.')
         item_changed = any(k for k in self.Meta.item_types
                            if k in attrs.keys())
         num_defined = sum(1 for item in self.Meta.item_types
@@ -427,26 +458,24 @@ class FeedItemSerializer(URLSerializerMixin, serializers.ModelSerializer):
                 return item_type
         return
 
-    def validate_shelf(self, attrs, source):
+    def validate_shelf(self, shelf_id):
         """
         If `shelf` is defined, validate that the FeedItem's `carrier` and
         `region` match the `carrier` and `region on `shelf`.
         """
-        shelf_id = attrs.get(source)
         if shelf_id:
             shelf = FeedShelf.objects.get(pk=shelf_id)
 
             carrier = CARRIER_CHOICE_DICT[shelf.carrier]
-            if attrs.get('carrier') != carrier.slug:
+            if self.initial_data.get('carrier') != carrier.slug:
                 raise serializers.ValidationError(
                     'Feed item carrier does not match operator shelf carrier.')
 
             region = REGIONS_CHOICES_ID_DICT[shelf.region]
-            if attrs.get('region') != region.slug:
+            if self.initial_data.get('region') != region.slug:
                 raise serializers.ValidationError(
                     'Feed item region does not match operator shelf region.')
-
-        return attrs
+        return shelf_id
 
 
 class FeedItemESSerializer(FeedItemSerializer, BaseESSerializer):
@@ -470,7 +499,7 @@ class FeedItemESSerializer(FeedItemSerializer, BaseESSerializer):
     collection = FeedCollectionESHomeSerializer(required=False,
                                                 source='_collection')
     shelf = FeedShelfESHomeSerializer(required=False, source='_shelf')
-    item_type = serializers.CharField(source='item_type')
+    item_type = serializers.CharField()
 
     def fake_object(self, data):
         feed_item = self._attach_fields(FeedItem(), data, (

@@ -12,7 +12,6 @@ from rest_framework.filters import OrderingFilter
 from rest_framework.generics import ListAPIView
 from rest_framework.mixins import (CreateModelMixin, DestroyModelMixin,
                                    ListModelMixin, RetrieveModelMixin)
-from rest_framework.parsers import FormParser, JSONParser
 
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
@@ -47,7 +46,6 @@ class NoAuthentication(BaseAuthentication):
 
 class CommViewSet(CORSMixin, MarketplaceView, GenericViewSet):
     """Some overriding and mixin stuff to adapt other viewsets."""
-    parser_classes = (FormParser, JSONParser)
 
     def patched_get_request(self):
         return lambda x: self.request
@@ -66,6 +64,7 @@ class CommViewSet(CORSMixin, MarketplaceView, GenericViewSet):
 class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
                     DestroyModelMixin, CreateModelMixin, CommViewSet):
     model = CommunicationThread
+    queryset = CommunicationThread.objects.all()
     serializer_class = ThreadSerializer
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
@@ -127,7 +126,7 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
         return res
 
     def create(self, request, *args, **kwargs):
-        form = forms.CreateCommThreadForm(request.DATA)
+        form = forms.CreateCommThreadForm(request.data)
         if not form.is_valid():
             return Response(
                 form.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -146,6 +145,7 @@ class ThreadViewSet(SilentListModelMixin, RetrieveModelMixin,
 class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
                   DestroyModelMixin, CommViewSet):
     model = CommunicationNote
+    queryset = CommunicationNote.objects.all()
     serializer_class = NoteSerializer
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
@@ -172,7 +172,7 @@ class NoteViewSet(ListModelMixin, CreateModelMixin, RetrieveModelMixin,
         thread = get_object_or_404(CommunicationThread, id=kwargs['thread_id'])
 
         # Validate note.
-        form = forms.CreateCommNoteForm(request.DATA)
+        form = forms.CreateCommNoteForm(request.data)
         if not form.is_valid():
             return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
         note_type = form.cleaned_data['note_type']
@@ -213,6 +213,7 @@ class NoteListView(CORSMixin, ListAPIView, MarketplaceView):
 
 class AttachmentViewSet(CreateModelMixin, CommViewSet):
     model = CommAttachment
+    queryset = CommAttachment.objects.all()
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     permission_classes = (AttachmentPermission,)
@@ -276,6 +277,7 @@ class AttachmentViewSet(CreateModelMixin, CommViewSet):
 
 class ThreadCCViewSet(DestroyModelMixin, CommViewSet):
     model = CommunicationThreadCC
+    queryset = CommunicationThreadCC.objects.all()
     authentication_classes = (RestOAuthAuthentication,
                               RestSharedSecretAuthentication)
     permission_classes = ()
@@ -298,7 +300,7 @@ class ThreadCCViewSet(DestroyModelMixin, CommViewSet):
 @authentication_classes((NoAuthentication,))
 @permission_classes((EmailCreationPermission,))
 def post_email(request):
-    email_body = request.POST.get('body')
+    email_body = request.data.get('body')
     if not email_body:
         raise ParseError(
             detail='email_body not present in the POST data.')

@@ -10,7 +10,7 @@ class TestAppFeaturesSerializer(mkt.site.tests.TestCase):
 
     def _test_features(self, true_features):
         features = self.app.current_version.features
-        data = self.serializer.to_native(features)
+        data = self.serializer.to_representation(features)
         self.assertSetEqual(['has_' + i for i in data], true_features)
 
     def test_all_false(self):

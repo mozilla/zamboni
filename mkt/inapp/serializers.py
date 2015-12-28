@@ -23,11 +23,11 @@ log = commonware.log.getLogger('z.inapp')
 
 class NameField(TranslationSerializerField):
 
-    def field_to_native(self, obj, field_name):
+    def get_attribute(self, obj):
         # TODO: maybe remove this when the API response is fixed in
         # bug 1070125
-        self.requested_language = obj.default_locale
-        return super(NameField, self).field_to_native(obj, field_name)
+        return super(NameField, self).get_attribute(
+            obj, requested_language=obj.default_locale)
 
 
 class InAppProductSerializer(serializers.ModelSerializer):
@@ -43,12 +43,13 @@ class InAppProductSerializer(serializers.ModelSerializer):
         required=False)
     name = NameField()
     default_locale = serializers.ChoiceField(choices=_locales)
-    price_id = serializers.PrimaryKeyRelatedField(source='price')
+    price_id = serializers.PrimaryKeyRelatedField(source='price',
+                                                  queryset=Price.objects)
 
     class Meta:
         model = InAppProduct
         fields = ['active', 'guid', 'app', 'price_id', 'name',
-                  'default_locale', 'logo_url']
+                  'default_locale', 'logo_url', 'include_inactive']
 
     def validate(self, attrs):
         default_name = attrs['name'].get(attrs['default_locale'], None)
@@ -59,10 +60,7 @@ class InAppProductSerializer(serializers.ModelSerializer):
                 .format(d=repr(attrs['default_locale'])))
         return attrs
 
-    def validate_logo_url(self, attrs, source):
-        logo_url = attrs.get(source)
-        if not logo_url:
-            return attrs
+    def validate_logo_url(self, logo_url):
 
         # This message is shown for all image errors even though it may
         # not be correct. This is to prevent leaking info that could
@@ -108,7 +106,7 @@ class InAppProductSerializer(serializers.ModelSerializer):
                      .format(url=logo_url, size=img.size))
             raise ValidationError(msg)
 
-        return attrs
+        return logo_url
 
 
 class InAppProductForm(forms.ModelForm):

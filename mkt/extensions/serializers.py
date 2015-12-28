@@ -1,20 +1,17 @@
-from drf_compound_fields.fields import ListField
-from rest_framework.fields import CharField, SerializerMethodField
+from rest_framework.fields import CharField, ListField, SerializerMethodField
 from rest_framework.serializers import ModelSerializer
 
 from mkt.api.fields import ReverseChoiceField, TranslationSerializerField
 from mkt.constants.base import (STATUS_CHOICES_API_v2,
                                 STATUS_FILE_CHOICES_API_v2, STATUS_PUBLIC)
 from mkt.extensions.models import Extension, ExtensionVersion
-from mkt.search.serializers import BaseESSerializer
+from mkt.search.serializers import BaseESSerializer, es_to_datetime
 
 
 class ExtensionVersionSerializer(ModelSerializer):
-    download_url = CharField(source='download_url', read_only=True)
-    unsigned_download_url = CharField(
-        source='unsigned_download_url', read_only=True)
-    reviewer_mini_manifest_url = CharField(
-        source='reviewer_mini_manifest_url', read_only=True)
+    download_url = CharField(read_only=True)
+    unsigned_download_url = CharField(read_only=True)
+    reviewer_mini_manifest_url = CharField(read_only=True)
     status = ReverseChoiceField(
         choices_dict=STATUS_FILE_CHOICES_API_v2, read_only=True)
 
@@ -28,12 +25,10 @@ class ExtensionVersionSerializer(ModelSerializer):
 class ExtensionSerializer(ModelSerializer):
     description = TranslationSerializerField(read_only=True)
     device_types = ListField(CharField(), source='device_names')
-    icons = SerializerMethodField('get_icons')
-    latest_public_version = ExtensionVersionSerializer(
-        source='latest_public_version', read_only=True)
-    latest_version = ExtensionVersionSerializer(
-        source='latest_version', read_only=True)
-    mini_manifest_url = CharField(source='mini_manifest_url', read_only=True)
+    icons = SerializerMethodField()
+    latest_public_version = ExtensionVersionSerializer(read_only=True)
+    latest_version = ExtensionVersionSerializer(read_only=True)
+    mini_manifest_url = CharField(read_only=True)
     name = TranslationSerializerField(read_only=True)
     status = ReverseChoiceField(
         choices_dict=STATUS_CHOICES_API_v2, read_only=True)
@@ -58,18 +53,24 @@ class ExtensionSerializer(ModelSerializer):
 class ESExtensionSerializer(BaseESSerializer, ExtensionSerializer):
     class Meta(ExtensionSerializer.Meta):
         # Exclude non-public version data that we don't currently store in ES.
-        exclude = ['latest_version', 'versions', ]
+        fields = ['id', 'author', 'description', 'device_types', 'disabled',
+                  'icons', 'last_updated', 'latest_public_version',
+                  'mini_manifest_url', 'name', 'slug', 'status', 'uuid']
 
     def fake_object(self, data):
         """Create a fake instance of Extension from ES data."""
         obj = Extension(id=data['id'])
+        data['created'] = es_to_datetime(data['created'])
+        data['last_updated'] = es_to_datetime(data['last_updated'])
+        data['modified'] = es_to_datetime(data['modified'])
 
         # Create a fake ExtensionVersion for latest_public_version.
         if data['latest_public_version']:
             obj.latest_public_version = ExtensionVersion(
                 extension=obj,
                 id=data['latest_public_version']['id'],
-                created=data['latest_public_version']['created'],
+                created=es_to_datetime(
+                    data['latest_public_version']['created']),
                 size=data['latest_public_version'].get('size', 0),
                 status=STATUS_PUBLIC,
                 version=data['latest_public_version']['version'],)

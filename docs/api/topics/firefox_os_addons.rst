@@ -120,9 +120,6 @@ Update
 .. http:patch:: /api/v2/extensions/extension/(int:id)|(string:slug)/
 
     .. note:: Requires authentication and ownership of the Add-on.
-    .. warning:: Changes to the slug will be ignored when the slug is also
-        used in the URL. To be able to change the slug of an Add-on, you *must*
-        use the id in the URL.
 
     Update some properties of an add-on.
 
