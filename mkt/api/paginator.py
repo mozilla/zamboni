@@ -84,6 +84,9 @@ class CustomPagination(pagination.LimitOffsetPagination):
             ('objects', data)]))
 
     def paginate_queryset(self, queryset, request, view=None):
+        # Modified from superclass method to skip an extra count call for ES
+        # searches, since it provides .total in the response. (This is similar
+        # to ESPaginator's behavior.)
         self.limit = self.get_limit(request)
         if self.limit is None:
             return None
