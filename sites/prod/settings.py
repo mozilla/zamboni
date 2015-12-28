@@ -213,6 +213,7 @@ MONOLITH_SERVER = env('MONOLITH_SERVER')
 MONOLITH_INDEX = 'mkt{0}-time_*'.format(ENV)
 
 BANGO_FAKE_REFUNDS = env.bool('BANGO_FAKE_REFUNDS', default=False)
+BANGO_BASE_PORTAL_URL = 'https://mozilla.bango.com/login/al.aspx?'
 
 if NEWRELIC_ENABLE:
     NEWRELIC_INI = '/etc/newrelic.d/{0}.ini'.format(DOMAIN)
