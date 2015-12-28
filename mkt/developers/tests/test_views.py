@@ -1418,7 +1418,7 @@ class TestContentRatingsV2(mkt.site.tests.TestCase):
         self.create_switch('iarc-upgrade-v2')
 
     @override_settings(IARC_V2_SUBMISSION_ENDPOINT='https://yo.lo',
-                       IARC_V2_STOREFRONT_ID='abc', IARC_PLATFORM='Firefox')
+                       IARC_V2_STORE_ID='abc', IARC_PLATFORM='Firefox')
     def test_edit_form(self):
         self.req._messages = default_storage(self.req)
         r = content_ratings_edit(self.req, app_slug=self.app.app_slug)

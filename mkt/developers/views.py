@@ -33,7 +33,7 @@ from waffle.decorators import waffle_switch
 import mkt
 import lib.iarc
 from lib.iarc.utils import get_iarc_app_title
-from lib.iarc_v2.client import app_data as iarc_app_data
+from lib.iarc_v2.client import _iarc_app_data
 from lib.iarc_v2.serializers import IARCV2RatingListSerializer
 from mkt.access import acl
 from mkt.api.base import CORSMixin, SlugOrIdMixin
@@ -1204,12 +1204,9 @@ class ContentRatingsPingbackV2(CORSMixin, UpdateModelMixin, GenericAPIView):
     def finalize_response(self, request, response, *args, **kwargs):
         """Alter response to conform to IARC spec (which is not REST)."""
         if is_success(response.status_code):
-            # not care about our serialized data.
             # Override data, because IARC wants a specific response and does
-            response.data = iarc_app_data(self.object)
-            # FIXME: not sure what StatusCode value to use when everything is
-            # OK. The spec says it's not nullable and only gives 2 possible
-            # values, to use when something goes wrong.
+            # not care about our serialized data.
+            response.data = _iarc_app_data(self.object)
             response.data['StatusCode'] = 'Success'
         else:
             response.data['StatusCode'] = 'InvalidRequest'

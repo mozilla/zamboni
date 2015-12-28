@@ -10,9 +10,10 @@ from django.conf import settings
 from django.test import TestCase, TransactionTestCase
 from nose.tools import eq_
 
-from lib.iarc_v2.client import (app_data, _attach_to_cert, get_rating_changes,
-                                IARCException, publish, unpublish,
-                                _search_cert, search_and_attach_cert)
+from lib.iarc_v2.client import (_attach_to_cert, get_rating_changes,
+                                _iarc_app_data, IARCException, publish,
+                                unpublish, _search_cert,
+                                search_and_attach_cert)
 from mkt.constants.ratingsbodies import CLASSIND_12, ESRB_10
 from mkt.site.helpers import absolutify
 from mkt.site.tests import app_factory, user_factory
@@ -23,13 +24,18 @@ from mkt.webapps.models import (IARCCert, RatingDescriptors,
 mock_root = os.path.join(settings.ROOT, 'lib', 'iarc_v2', 'mock')
 
 
-def setup_mock_response(endpoint, data=None):
+def setup_mock_response(endpoint, data=None, status=200):
     if data is None:
         with open(os.path.join(mock_root, '%s.json' % endpoint)) as f:
             data = f.read()
     url = urljoin(settings.IARC_V2_SERVICE_ENDPOINT, endpoint)
-    responses.add(responses.POST, url, data, status=200)
-    return json.loads(data)
+    responses.add(responses.POST, url, data, status=status)
+    try:
+        # Purely for convenience, return data the caller used, as dict.
+        result = json.loads(data)
+    except ValueError:
+        result = data
+    return result
 
 
 class TestGetRatingChanges(TestCase):
@@ -58,8 +64,10 @@ class TestGetRatingChanges(TestCase):
         res = get_rating_changes()
 
         eq_(len(responses.calls), 1)
-        eq_(responses.calls[0].request.url,
-            urljoin(settings.IARC_V2_SERVICE_ENDPOINT, 'GetRatingChanges'))
+        eq_(responses.calls[0].request.headers.get('StorePassword'),
+            settings.IARC_V2_STORE_PASSWORD)
+        eq_(responses.calls[0].request.headers.get('StoreID'),
+            settings.IARC_V2_STORE_ID)
         eq_(json.loads(responses.calls[0].request.body), {
             'StartDate': expected_start_date.strftime('%Y-%m-%d'),
             'EndDate': expected_end_date.strftime('%Y-%m-%d'),
@@ -92,8 +100,10 @@ class TestUpdateCerts(TestCase):
         res = publish(app)
         eq_(res['ResultList'][0]['ResultCode'], 'Success')
         eq_(len(responses.calls), 1)
-        eq_(responses.calls[0].request.url,
-            urljoin(settings.IARC_V2_SERVICE_ENDPOINT, 'UpdateCerts'))
+        eq_(responses.calls[0].request.headers.get('StorePassword'),
+            settings.IARC_V2_STORE_PASSWORD)
+        eq_(responses.calls[0].request.headers.get('StoreID'),
+            settings.IARC_V2_STORE_ID)
         eq_(json.loads(responses.calls[0].request.body), {
             'UpdateList': [{
                 'Action': 'Publish',
@@ -116,8 +126,10 @@ class TestUpdateCerts(TestCase):
         res = unpublish(app)
         eq_(res['ResultList'][0]['ResultCode'], 'Success')
         eq_(len(responses.calls), 1)
-        eq_(responses.calls[0].request.url,
-            urljoin(settings.IARC_V2_SERVICE_ENDPOINT, 'UpdateCerts'))
+        eq_(responses.calls[0].request.headers.get('StorePassword'),
+            settings.IARC_V2_STORE_PASSWORD)
+        eq_(responses.calls[0].request.headers.get('StoreID'),
+            settings.IARC_V2_STORE_ID)
         eq_(json.loads(responses.calls[0].request.body), {
             'UpdateList': [{
                 'Action': 'RemoveProduct',
@@ -134,11 +146,11 @@ class TestUpdateCerts(TestCase):
 
 
 class TestSearchCertsAndAttachToCert(TestCase):
-    def test_app_data(self):
+    def test_iarc_app_data(self):
         self.app = app_factory()
         self.profile = user_factory()
         self.app.addonuser_set.create(user=self.profile)
-        eq_(app_data(self.app),
+        eq_(_iarc_app_data(self.app),
             {'StoreProductID': self.app.guid,
              'StoreProductURL': absolutify(self.app.get_url_path()),
              'EmailAddress': self.profile.email,
@@ -148,13 +160,13 @@ class TestSearchCertsAndAttachToCert(TestCase):
              'Publish': True,
              'ProductName': unicode(self.app.name)})
 
-    def test_app_data_not_public(self):
+    def test_iarc_app_data_not_public(self):
         self.app = app_factory()
         self.profile = user_factory()
         self.app.addonuser_set.create(user=self.profile)
         with mock.patch.object(self.app, 'is_public') as is_public_mock:
             is_public_mock.return_value = False
-            eq_(app_data(self.app),
+            eq_(_iarc_app_data(self.app),
                 {'StoreProductID': self.app.guid,
                  'StoreProductURL': absolutify(self.app.get_url_path()),
                  'EmailAddress': self.profile.email,
@@ -171,8 +183,10 @@ class TestSearchCertsAndAttachToCert(TestCase):
         serializer = _search_cert(mock.Mock(), fake_cert_id)
         eq_(serializer.is_valid(), True)
         eq_(len(responses.calls), 1)
-        eq_(responses.calls[0].request.url,
-            urljoin(settings.IARC_V2_SERVICE_ENDPOINT, 'SearchCerts'))
+        eq_(responses.calls[0].request.headers.get('StorePassword'),
+            settings.IARC_V2_STORE_PASSWORD)
+        eq_(responses.calls[0].request.headers.get('StoreID'),
+            settings.IARC_V2_STORE_ID)
         eq_(json.loads(responses.calls[0].request.body), {
             'CertID': fake_cert_id
         })
@@ -184,8 +198,10 @@ class TestSearchCertsAndAttachToCert(TestCase):
         serializer = _search_cert(mock.Mock(), fake_cert.get_hex())
         eq_(serializer.is_valid(), True)
         eq_(len(responses.calls), 1)
-        eq_(responses.calls[0].request.url,
-            urljoin(settings.IARC_V2_SERVICE_ENDPOINT, 'SearchCerts'))
+        eq_(responses.calls[0].request.headers.get('StorePassword'),
+            settings.IARC_V2_STORE_PASSWORD)
+        eq_(responses.calls[0].request.headers.get('StoreID'),
+            settings.IARC_V2_STORE_ID)
         eq_(json.loads(responses.calls[0].request.body), {
             'CertID': unicode(fake_cert)
         })
@@ -199,11 +215,13 @@ class TestSearchCertsAndAttachToCert(TestCase):
         data = _attach_to_cert(fake_app, fake_cert_id)
         eq_(data,
             {'ResultCode': 'Success', 'ErrorMessage': None, 'ErrorID': None})
-        expected_json = app_data(fake_app)
+        expected_json = _iarc_app_data(fake_app)
         expected_json['CertID'] = fake_cert_id
         eq_(len(responses.calls), 1)
-        eq_(responses.calls[0].request.url,
-            urljoin(settings.IARC_V2_SERVICE_ENDPOINT, 'AttachToCert'))
+        eq_(responses.calls[0].request.headers.get('StorePassword'),
+            settings.IARC_V2_STORE_PASSWORD)
+        eq_(responses.calls[0].request.headers.get('StoreID'),
+            settings.IARC_V2_STORE_ID)
         eq_(json.loads(responses.calls[0].request.body), expected_json)
 
     @responses.activate
@@ -214,11 +232,13 @@ class TestSearchCertsAndAttachToCert(TestCase):
         data = _attach_to_cert(fake_app, fake_cert.get_hex())
         eq_(data,
             {'ResultCode': 'Success', 'ErrorMessage': None, 'ErrorID': None})
-        expected_json = app_data(fake_app)
+        expected_json = _iarc_app_data(fake_app)
         expected_json['CertID'] = unicode(fake_cert)
         eq_(len(responses.calls), 1)
-        eq_(responses.calls[0].request.url,
-            urljoin(settings.IARC_V2_SERVICE_ENDPOINT, 'AttachToCert'))
+        eq_(responses.calls[0].request.headers.get('StorePassword'),
+            settings.IARC_V2_STORE_PASSWORD)
+        eq_(responses.calls[0].request.headers.get('StoreID'),
+            settings.IARC_V2_STORE_ID)
         eq_(json.loads(responses.calls[0].request.body), expected_json)
 
     @responses.activate
@@ -253,8 +273,6 @@ class TestSearchCertsAndAttachToCert(TestCase):
         # Just to make sure we didn't do anything. There should have been only
         # one call to SearchCerts, none to AttachToCert.
         eq_(len(responses.calls), 1)
-        eq_(responses.calls[0].request.url,
-            urljoin(settings.IARC_V2_SERVICE_ENDPOINT, 'SearchCerts'))
         eq_(RatingDescriptors.objects.filter(addon=app).exists(), False)
         eq_(RatingInteractives.objects.filter(addon=app).exists(), False)
         eq_(IARCCert.objects.filter(app=app).exists(), False)
