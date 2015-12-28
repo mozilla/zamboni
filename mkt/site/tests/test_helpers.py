@@ -4,13 +4,14 @@ from django.conf import settings
 import fudge
 import mock
 from datetime import datetime, timedelta
-from mkt.site.utils import env
+
 from nose.tools import eq_
 from urlparse import urljoin
 
 import mkt.site.tests
 from mkt.site.helpers import absolutify, css, js, product_as_dict, timesince
 from mkt.site.fixtures import fixture
+from mkt.site.utils import env
 from mkt.webapps.models import Webapp
 
 

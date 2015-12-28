@@ -33,7 +33,7 @@ class Access(ModelBase):
         return Access.objects.create(
             key=key,
             user=user,
-            secret=get_random_string())
+            secret=get_random_string().encode('ascii'))
 
 
 class Token(ModelBase):

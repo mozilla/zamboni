@@ -871,7 +871,8 @@ def JINJA_CONFIG():
     config = {'extensions': ['jinja2.ext.do',
                              'jinja2.ext.with_',
                              'jinja2.ext.loopcontrols',
-                             'jinja2.ext.i18n'],
+                             'jinja2.ext.i18n',
+                             'waffle.jinja.WaffleExtension'],
               'autoescape': True,
               'finalize': lambda x: x if x is not None else ''}
     if False and not settings.DEBUG:

@@ -10,6 +10,25 @@ from babel import Locale
 from html5lib.serializer.htmlserializer import HTMLSerializer
 
 
+# Copypaste from Jinja2 2.7.2. The behaviour change in 2.8 may be more
+# desirable but this matches our existing tests.
+def do_truncate(s, length=255, killwords=False, end='...'):
+    if len(s) <= length:
+        return s
+    elif killwords:
+        return s[:length] + end
+    words = s.split(' ')
+    result = []
+    m = 0
+    for word in words:
+        m += len(word) + 1
+        if m > length:
+            break
+        result.append(word)
+    result.append(end)
+    return u' '.join(result)
+
+
 def truncate_text(text, limit, killwords=False, end='...'):
     """Return as many characters as possible without going over the limit.
 
@@ -24,7 +43,7 @@ def truncate_text(text, limit, killwords=False, end='...'):
 
     # Explicitly add "end" in any case, as Jinja can't know we're truncating
     # for real here, even though we might be at the end of a word.
-    text = jinja2.filters.do_truncate(text, limit, killwords, end='')
+    text = do_truncate(text, limit, killwords, end='')
     return text + end, 0
 
 

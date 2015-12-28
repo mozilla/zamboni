@@ -6,6 +6,9 @@ from django.utils.translation.trans_real import to_language
 import jingo
 import jinja2
 
+from mkt.site.utils import env
+from mkt.translations.utils import do_truncate
+
 jingo.register.filter(to_language)
 
 
@@ -40,7 +43,7 @@ def truncate(s, length=255, killwords=True, end='...'):
         return ''
     if hasattr(s, '__truncate__'):
         return s.__truncate__(length, killwords, end)
-    return jinja2.filters.do_truncate(smart_unicode(s), length, killwords, end)
+    return do_truncate(smart_unicode(s), length, killwords, end)
 
 
 @jingo.register.inclusion_tag('translations/trans-menu.html')
@@ -66,5 +69,5 @@ def all_locales(addon, field_name, nl2br=False, prettify_empty=False):
                                            localized_string__isnull=False)
     ctx = dict(addon=addon, field=field, field_name=field_name,
                translations=trans, nl2br=nl2br, prettify_empty=prettify_empty)
-    t = jingo.env.get_template('translations/all-locales.html')
+    t = env.get_template('translations/all-locales.html')
     return jinja2.Markup(t.render(ctx))

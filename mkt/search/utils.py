@@ -3,7 +3,7 @@ from math import log10
 from django.core.exceptions import ObjectDoesNotExist
 
 from elasticsearch_dsl.search import Search as dslSearch
-from statsd import statsd
+from django_statsd.clients import statsd
 
 from mkt.constants.base import VALID_STATUSES
 

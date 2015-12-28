@@ -11,6 +11,7 @@ import jinja2
 from jingo import register
 from django.utils.translation import pgettext, ugettext as _
 from django.utils.translation import ugettext_lazy as _lazy
+
 import mkt
 from mkt.access import acl
 from mkt.reviewers.models import EscalationQueue, QUEUE_TARAKO, ReviewerScore

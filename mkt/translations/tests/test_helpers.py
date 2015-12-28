@@ -10,6 +10,7 @@ from mkt.translations import helpers
 from mkt.translations.fields import save_signal
 from mkt.translations.models import PurifiedTranslation
 from mkt.translations.tests.testapp.models import TranslatedModel
+from mkt.site.utils import env
 from mkt.webapps.models import Webapp
 
 
@@ -59,7 +60,7 @@ def test_empty_locale_html():
 def test_truncate_purified_field():
     s = '<i>one</i><i>two</i>'
     t = PurifiedTranslation(localized_string=s)
-    actual = jingo.env.from_string('{{ s|truncate(6) }}').render({'s': t})
+    actual = env.from_string('{{ s|truncate(6) }}').render({'s': t})
     eq_(actual, s)
 
 
@@ -67,9 +68,9 @@ def test_truncate_purified_field_xss():
     """Truncating should not introduce xss issues."""
     s = 'safe <script>alert("omg")</script>'
     t = PurifiedTranslation(localized_string=s)
-    actual = jingo.env.from_string('{{ s|truncate(100) }}').render({'s': t})
+    actual = env.from_string('{{ s|truncate(100) }}').render({'s': t})
     eq_(actual, 'safe &lt;script&gt;alert("omg")&lt;/script&gt;')
-    actual = jingo.env.from_string('{{ s|truncate(5) }}').render({'s': t})
+    actual = env.from_string('{{ s|truncate(5) }}').render({'s': t})
     eq_(actual, 'safe ...')
 
 

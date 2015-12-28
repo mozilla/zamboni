@@ -1,12 +1,13 @@
 import re
 
 import jinja2
-from jingo import register, env
+from jingo import register
 from langid import classify
 
 from django.conf import settings
 
 import mkt
+from mkt.site.utils import env
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.translations.utils import find_language
 

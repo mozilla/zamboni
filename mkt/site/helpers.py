@@ -199,7 +199,8 @@ def form_field(field, label=None, tag='div', req=None, opt=False, hint=False,
 @register.filter
 @jinja2.contextfilter
 def timelabel(context, time):
-    t = env.get_template('site/helpers/timelabel.html').render({'time': time})
+    t = env.get_template('site/helpers/timelabel.html').render(
+        {'time': time})
     return jinja2.Markup(t)
 
 

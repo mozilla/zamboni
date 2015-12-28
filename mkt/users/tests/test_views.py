@@ -7,7 +7,6 @@ from django.core.urlresolvers import reverse
 from jingo.helpers import urlparams
 from nose.tools import eq_, ok_
 from pyquery import PyQuery as pq
-from waffle import helpers  # NOQA
 
 from mkt.site.fixtures import fixture
 from mkt.site.tests import TestCase

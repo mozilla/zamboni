@@ -26,8 +26,7 @@ from django_browserid.tests import mock_browserid
 from nose.exc import SkipTest
 from nose.tools import eq_
 from pyquery import PyQuery as pq
-from waffle import cache_sample, cache_switch
-from waffle.models import Flag, Sample, Switch
+from waffle.models import Flag, Sample, Switch, cache_sample, cache_switch
 
 import mkt
 from lib.es.management.commands import reindex

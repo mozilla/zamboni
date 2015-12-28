@@ -1,6 +1,7 @@
 import codecs
 import datetime
 import itertools
+import imp
 import operator
 import os
 import random
@@ -24,6 +25,7 @@ from django.utils import translation
 from django.utils.encoding import smart_str, smart_unicode
 from django.utils.functional import Promise
 from django.utils.http import urlquote
+from django.utils.importlib import import_module
 
 import bleach
 import chardet
@@ -45,8 +47,33 @@ from mkt.site.storage_utils import (local_storage, private_storage,
 from mkt.translations.models import Translation
 
 
+# Copied from jingo 0.7.1 -- loader in 0.8.1 is broken on python 2
+def load_helpers():
+    """Try to import ``helpers.py`` from each app in INSTALLED_APPS."""
+    # We want to wait as long as possible to load helpers so there aren't any
+    # weird circular imports with jingo.
+    if jingo._helpers_loaded:
+        return
+    jingo._helpers_loaded = True
+
+    from jingo import helpers  # noqa
+
+    for app in settings.INSTALLED_APPS:
+        try:
+            app_path = import_module(app).__path__
+        except AttributeError:
+            continue
+
+        try:
+            imp.find_module('helpers', app_path)
+        except ImportError:
+            continue
+
+        import_module('%s.helpers' % app)
+
+jingo.load_helpers = load_helpers
 # Install gettext functions into Jingo's Jinja2 environment.
-env = jingo.env
+env = jingo.get_env()
 env.install_gettext_translations(translation, newstyle=True)
 
 

@@ -15,6 +15,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('site', '0001_initial'),
+        ('waffle', '0001_initial'),
     ]
 
     operations = [

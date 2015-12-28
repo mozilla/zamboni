@@ -6,7 +6,6 @@ from django.utils import translation
 
 
 from babel import Locale, numbers
-from mkt.site.utils import env
 from jingo.helpers import urlparams
 from jinja2.filters import do_dictsort
 
@@ -14,6 +13,7 @@ import mkt
 from mkt.site.helpers import absolutify
 from mkt.site.mail import send_mail
 from mkt.site.models import ModelBase
+from mkt.site.utils import env
 from mkt.translations.utils import get_locale_from_lang
 
 
