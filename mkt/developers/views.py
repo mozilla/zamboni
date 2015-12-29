@@ -44,8 +44,9 @@ from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (
     APIConsumerForm, AppFormBasic, AppFormDetails, AppFormMedia,
     AppFormSupport, AppFormTechnical, AppVersionForm, CategoryForm,
-    ContentRatingForm, IARCGetAppInfoForm, MOTDForm, NewPackagedAppForm,
-    PreviewFormSet, TransactionFilterForm, trap_duplicate)
+    ContentRatingForm, IARCGetAppInfoForm, IARCV2ExistingCertificateForm,
+    MOTDForm,
+    NewPackagedAppForm, PreviewFormSet, TransactionFilterForm, trap_duplicate)
 from mkt.developers.models import AppLog, IARCRequest
 from mkt.developers.serializers import ContentRatingSerializer
 from mkt.developers.tasks import (fetch_manifest, file_validator,
@@ -66,7 +67,8 @@ from mkt.users.models import UserProfile
 from mkt.users.views import _clean_next_url
 from mkt.versions.models import Version
 from mkt.webapps.decorators import app_view
-from mkt.webapps.models import AddonUser, ContentRating, IARCInfo, Webapp
+from mkt.webapps.models import (AddonUser, ContentRating, IARCCert, IARCInfo,
+                                Webapp)
 from mkt.webapps.tasks import _update_manifest, update_manifests
 from mkt.zadmin.models import set_config, unmemoized_get_config
 
@@ -350,18 +352,28 @@ def content_ratings(request, addon_id, addon):
 
 @dev_required
 def content_ratings_edit(request, addon_id, addon):
+    if settings.DEBUG:
+        messages.debug(request,
+                       "DEBUG mode on; you may use IARC id 0 with any code")
     initial = {}
-    try:
-        app_info = addon.iarc_info
-        initial['submission_id'] = app_info.submission_id
-        initial['security_code'] = app_info.security_code
-    except IARCInfo.DoesNotExist:
-        pass
-    messages.debug(request,
-                   "DEBUG mode on; you may use IARC id 0 with any code")
-    form = IARCGetAppInfoForm(data=request.POST or None, initial=initial,
-                              app=addon)
+    data = request.POST if request.method == 'POST' else None
 
+    if waffle.switch_is_active('iarc-upgrade-v2'):
+        try:
+            initial['cert_id'] = unicode(uuid.UUID(addon.iarc_cert.cert_id))
+        except IARCCert.DoesNotExist:
+            pass
+        form_class = IARCV2ExistingCertificateForm
+    else:
+        try:
+            app_info = addon.iarc_info
+            initial['submission_id'] = app_info.submission_id
+            initial['security_code'] = app_info.security_code
+        except IARCInfo.DoesNotExist:
+            pass
+        form_class = IARCGetAppInfoForm
+
+    form = form_class(data=data, initial=initial, app=addon)
     if request.method == 'POST' and form.is_valid():
         try:
             form.save()

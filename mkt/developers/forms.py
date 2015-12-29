@@ -2,6 +2,7 @@
 import json
 import os
 from datetime import datetime
+from uuid import UUID
 
 from django import forms
 from django.conf import settings
@@ -27,6 +28,7 @@ from django.utils.translation import (ugettext as _, ugettext_lazy as _lazy,
 
 import lib.iarc
 import mkt
+from lib.iarc_v2.client import IARCException, search_and_attach_cert
 from lib.video import tasks as vtasks
 from mkt import get_user
 from mkt.access import acl
@@ -49,8 +51,8 @@ from mkt.translations.forms import TranslationFormMixin
 from mkt.translations.models import Translation
 from mkt.translations.widgets import TranslationTextarea, TransTextarea
 from mkt.versions.models import Version
-from mkt.webapps.models import (AddonUser, BlockedSlug, IARCInfo, Preview,
-                                Webapp)
+from mkt.webapps.models import (AddonUser, BlockedSlug, IARCCert, IARCInfo,
+                                Preview, Webapp)
 from mkt.webapps.tasks import (index_webapps, set_storefront_data,
                                update_manifests)
 
@@ -1159,6 +1161,54 @@ class AppVersionForm(happyforms.ModelForm):
                 publish_type = mkt.PUBLISH_PRIVATE
             self.instance.addon.update(publish_type=publish_type)
         return rval
+
+
+class IARCV2ExistingCertificateForm(happyforms.Form):
+    cert_id = forms.CharField(max_length=36, required=True)
+
+    def __init__(self, app, *args, **kwargs):
+        self.app = app
+        super(IARCV2ExistingCertificateForm, self).__init__(*args, **kwargs)
+
+    def clean_cert_id(self):
+        cert_id = self.cleaned_data['cert_id']
+
+        if settings.DEBUG and cert_id == '0':
+            # For local developement without IARC server, accept '0' as a
+            # special value which will generate a rating locally.
+            return None
+        try:
+            value = UUID(cert_id)
+        except ValueError as e:
+            raise forms.ValidationError(e.message)
+
+        # Check for existence using the hexadecimal value without a separator.
+        if (IARCCert.objects.filter(
+                cert_id=value.get_hex()).exclude(app=self.app).exists()):
+            raise forms.ValidationError(
+                _('This IARC certificate is already being used for another '
+                  'app. Please create a new IARC Ratings Certificate.'))
+
+        # Return as string separated by dashes.
+        return unicode(value)
+
+    def save(self, *args, **kwargs):
+        if not self.is_valid():
+            # Safeguard.
+            raise forms.ValidationError('Invalid Form')
+        if self.cleaned_data['cert_id'] is None:
+            # Dummy rating for local developement without IARC.
+            self.app.set_descriptors([])
+            self.app.set_interactives([])
+            self.app.set_content_ratings({
+                ratingsbodies.ESRB: ratingsbodies.ESRB_E})
+            return
+        try:
+            search_and_attach_cert(self.app, self.cleaned_data['cert_id'])
+        except IARCException:
+            msg = _('This Certificate ID is not recognized by IARC.')
+            self._errors['cert_id'] = self.error_class([msg])
+            raise forms.ValidationError(msg)
 
 
 class IARCGetAppInfoForm(happyforms.Form):
