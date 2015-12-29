@@ -73,6 +73,9 @@ def dehydrate_content_ratings(content_ratings):
 
 
 def iarc_get_app_info(app):
+    """
+    Return info from IARC using submission id / security code (IARC v1 only).
+    """
     if waffle.switch_is_active('iarc-upgrade-v2'):
         raise ImproperlyConfigured(
             'We should not be calling this function with IARC v2.')

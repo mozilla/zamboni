@@ -15,15 +15,17 @@ import zipfile
 
 from django import forms
 from django.conf import settings
+from django.utils.translation import ugettext as _
 
 import requests
 from appvalidator import validate_app, validate_packaged_app
 from celery import task
 from django_statsd.clients import statsd
 from PIL import Image
-from django.utils.translation import ugettext as _
+import waffle
 
 import mkt
+from lib.iarc_v2.client import refresh as iarc_refresh
 from lib.post_request_task.task import task as post_request_task
 from mkt.constants import APP_PREVIEW_SIZES
 from mkt.constants.regions import REGIONS_CHOICES_ID_DICT
@@ -604,15 +606,22 @@ def save_test_plan(f, filename, addon):
 @use_master
 def refresh_iarc_ratings(ids, **kw):
     """
-    Refresh old or corrupt IARC ratings by re-fetching the certificate.
+    Refresh old or corrupt IARC ratings.
+
+    The caller is responsible for sending app ids that already have iarc
+    information set.
     """
-    for app in Webapp.objects.filter(id__in=ids):
-        data = iarc_get_app_info(app)
+    if waffle.switch_is_active('iarc-upgrade-v2'):
+        for app in Webapp.objects.filter(id__in=ids):
+            iarc_refresh(app)
+    else:
+        for app in Webapp.objects.filter(id__in=ids):
+            data = iarc_get_app_info(app)
 
-        if data.get('rows'):
-            row = data['rows'][0]
+            if data.get('rows'):
+                row = data['rows'][0]
 
-            # We found a rating, so store the id and code for future use.
-            app.set_descriptors(row.get('descriptors', []))
-            app.set_interactives(row.get('interactives', []))
-            app.set_content_ratings(row.get('ratings', {}))
+                # We found a rating, so store the id and code for future use.
+                app.set_descriptors(row.get('descriptors', []))
+                app.set_interactives(row.get('interactives', []))
+                app.set_content_ratings(row.get('ratings', {}))

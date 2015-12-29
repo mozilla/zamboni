@@ -7,16 +7,16 @@ from uuid import UUID, uuid4
 import mock
 import responses
 from django.conf import settings
-from django.test import TestCase, TransactionTestCase
+from django.test import TransactionTestCase
 from nose.tools import eq_
 
 from lib.iarc_v2.client import (_attach_to_cert, get_rating_changes,
                                 _iarc_app_data, IARCException, publish,
-                                unpublish, _search_cert,
+                                refresh, unpublish, _search_cert,
                                 search_and_attach_cert)
 from mkt.constants.ratingsbodies import CLASSIND_12, ESRB_10
 from mkt.site.helpers import absolutify
-from mkt.site.tests import app_factory, user_factory
+from mkt.site.tests import app_factory, TestCase, user_factory
 from mkt.webapps.models import (IARCCert, RatingDescriptors,
                                 RatingInteractives, Webapp)
 
@@ -45,6 +45,24 @@ class TestGetRatingChanges(TestCase):
         setup_mock_response('GetRatingChanges')
         res = get_rating_changes()
         eq_(res['Result']['ResponseCode'], 'Success')
+
+    @responses.activate
+    def test_with_date(self):
+        setup_mock_response('GetRatingChanges')
+        expected_start_date = self.days_ago(2)
+        expected_end_date = expected_start_date - datetime.timedelta(days=1)
+        get_rating_changes(date=expected_start_date)
+        eq_(len(responses.calls), 1)
+        eq_(responses.calls[0].request.headers.get('StorePassword'),
+            settings.IARC_V2_STORE_PASSWORD)
+        eq_(responses.calls[0].request.headers.get('StoreID'),
+            settings.IARC_V2_STORE_ID)
+        eq_(json.loads(responses.calls[0].request.body), {
+            'StartDate': expected_start_date.strftime('%Y-%m-%d'),
+            'EndDate': expected_end_date.strftime('%Y-%m-%d'),
+            'MaxRows': 500,
+            'StartRowIndex': 0
+        })
 
     @responses.activate
     def test_with_existing_cert_valid(self):
@@ -277,6 +295,31 @@ class TestSearchCertsAndAttachToCert(TestCase):
         eq_(RatingInteractives.objects.filter(addon=app).exists(), False)
         eq_(IARCCert.objects.filter(app=app).exists(), False)
         eq_(app.content_ratings.count(), 0)
+
+    @responses.activate
+    def test_refresh(self):
+        setup_mock_response('SearchCerts')
+        cert = UUID('adb3261b-c657-4fd2-a057-bc9f85310b80')
+        app = app_factory()
+        IARCCert.objects.create(app=app, cert_id=cert.get_hex())
+        refresh(app)
+        eq_(len(responses.calls), 1)
+        eq_(responses.calls[0].request.headers.get('StorePassword'),
+            settings.IARC_V2_STORE_PASSWORD)
+        eq_(responses.calls[0].request.headers.get('StoreID'),
+            settings.IARC_V2_STORE_ID)
+        eq_(json.loads(responses.calls[0].request.body), {
+            'CertID': unicode(cert)
+        })
+
+        # Compare with mock data. Force reload using .objects.get in order to
+        # properly reset the related objects caching.
+        app = Webapp.objects.get(pk=app.pk)
+        eq_(app.rating_descriptors.to_keys(), ['has_classind_lang'])
+        eq_(app.rating_interactives.to_keys(),
+            ['has_shares_location', 'has_digital_purchases',
+             'has_users_interact'])
+        eq_(app.content_ratings.all()[0].get_rating_class(), CLASSIND_12)
 
 
 class TestSearchCertsAndAttachToCertWithTransaction(TransactionTestCase):

@@ -61,15 +61,16 @@ def _iarc_app_data(app):
     return data
 
 
-def get_rating_changes():
+def get_rating_changes(date=None):
     """
-    Call GetRatingChange to get all changes from IARC within the last day, and
-    apply them to the corresponding Webapps.
+    Call GetRatingChange to get all changes from IARC within 24 hours of the
+    specified date (using today by default), and apply them to the
+    corresponding Webapps.
 
     FIXME: Could add support for pagination, but very low priority since we
     will never ever get anywhere close to 500 rating changes in a single day.
     """
-    start_date = datetime.datetime.utcnow()
+    start_date = date or datetime.datetime.utcnow()
     end_date = start_date - datetime.timedelta(days=1)
     data = _iarc_request('GetRatingChanges', {
         'StartDate': start_date.strftime('%Y-%m-%d'),
@@ -141,6 +142,12 @@ def unpublish(app):
     except IARCCert.DoesNotExist:
         data = None
     return data
+
+
+def refresh(app):
+    """Refresh an app IARC information by ask IARC about its certificate."""
+    serializer = _search_cert(app, app.iarc_cert.cert_id)
+    serializer.save()
 
 
 # FIXME: implement UpdateStoreAttributes for when the app developer email

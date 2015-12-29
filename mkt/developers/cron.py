@@ -2,11 +2,13 @@ import datetime
 import logging
 
 import cronjobs
+import waffle
 from celery.task.sets import TaskSet
 from django.utils.translation import ugettext as _
 
 import mkt
 import lib.iarc
+from lib.iarc_v2.client import get_rating_changes
 from mkt.constants.iarc_mappings import RATINGS
 from mkt.developers.tasks import (refresh_iarc_ratings, region_email,
                                   region_exclude)
@@ -64,6 +66,16 @@ def process_iarc_changes(date=None):
     Queries IARC for recent changes in the past 24 hours (or date provided).
 
     If date provided use it. It should be in the form YYYY-MM-DD.
+    """
+    if waffle.switch_is_active('iarc-upgrade-v2'):
+        get_rating_changes(date=date)
+    else:
+        _process_iarc_rating_changes_v1(date=date)
+
+
+def _process_iarc_rating_changes_v1(date=None):
+    """
+    Process IARC changes in the past 24 hours (or date provided) (IARC v1 only)
 
     NOTE: Get_Rating_Changes only sends the diff of the changes
     by rating body. They only send data for the ratings bodies that
