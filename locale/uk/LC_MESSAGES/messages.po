@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2015-12-29 10:00+0000\n"
+"PO-Revision-Date: 2015-12-29 10:23+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -6514,7 +6514,7 @@ msgstr "Елемент"
 
 #: mkt/purchase/templates/purchase/receipt.html:38
 msgid "Seller"
-msgstr ""
+msgstr "Продавець"
 
 #: mkt/purchase/templates/purchase/receipt.html:61
 msgid "For the Firefox Marketplace Terms of Service please visit:"
@@ -6526,7 +6526,7 @@ msgstr ""
 
 #: mkt/purchase/templates/purchase/receipt.html:71
 msgid "Your purchase history:"
-msgstr ""
+msgstr "Ваша історія покупок:"
 
 #: mkt/ratings/forms.py:66
 msgid "Keep review; remove flags"
@@ -6630,7 +6630,7 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:34 mkt/search/forms.py:44
 msgid "Any Device"
-msgstr ""
+msgstr "Будь-який пристрій"
 
 #: mkt/reviewers/forms.py:40 mkt/reviewers/forms.py:65
 msgid "View entries between"
@@ -6647,12 +6647,12 @@ msgstr "які містять"
 #. L10n: start, as in "start date"
 #: mkt/reviewers/forms.py:73
 msgid "start"
-msgstr ""
+msgstr "початкова"
 
 #. L10n: end, as in "end date"
 #: mkt/reviewers/forms.py:77
 msgid "end"
-msgstr ""
+msgstr "кінцева"
 
 #. L10n: Descript of what can be searched for.
 #: mkt/reviewers/forms.py:81
@@ -6661,11 +6661,11 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:104
 msgid "Device Type:"
-msgstr ""
+msgstr "Типи пристрою:"
 
 #: mkt/reviewers/forms.py:105
 msgid "Device:"
-msgstr ""
+msgstr "Пристрій:"
 
 #: mkt/reviewers/forms.py:106
 msgid "Firefox Version:"
@@ -6673,7 +6673,7 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:118
 msgid "Comments:"
-msgstr ""
+msgstr "Коментарі:"
 
 #: mkt/reviewers/forms.py:123
 msgid "Device Type Override:"
@@ -6702,7 +6702,7 @@ msgstr ""
 #: mkt/reviewers/forms.py:205 mkt/reviewers/helpers.py:45
 #: mkt/search/forms.py:105
 msgid "Device"
-msgstr ""
+msgstr "Пристрій"
 
 #: mkt/reviewers/helpers.py:38 mkt/reviewers/helpers.py:69
 #: mkt/site/context_processors.py:70
@@ -6719,7 +6719,7 @@ msgstr ""
 
 #: mkt/reviewers/helpers.py:43
 msgid "Updates"
-msgstr ""
+msgstr "Оновлення"
 
 #: mkt/reviewers/helpers.py:44
 msgid "Escalations"
@@ -6772,7 +6772,7 @@ msgstr ""
 
 #: mkt/reviewers/helpers.py:112
 msgid "China ({0})"
-msgstr ""
+msgstr "Китай ({0})"
 
 #: mkt/reviewers/helpers.py:117
 msgid "Tarako ({0})"
@@ -6810,7 +6810,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
-msgstr ""
+msgstr "Схвалити"
 
 #: mkt/reviewers/utils.py:402
 msgid "This will approve the app and allow the author(s) to publish it."
@@ -6820,7 +6820,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
-msgstr ""
+msgstr "Відхилити"
 
 #: mkt/reviewers/utils.py:408
 msgid ""
@@ -8180,7 +8180,7 @@ msgstr "Створено: {0}."
 
 #: mkt/site/log.py:576
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Змінене поле: {2} встановлене в: {0}."
 
 #: mkt/site/log.py:582
 msgid "Deleted: {1}."
