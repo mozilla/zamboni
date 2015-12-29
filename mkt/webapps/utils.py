@@ -3,8 +3,10 @@ import hashlib
 import json
 
 from django.core.cache import cache
+from django.core.exceptions import ImproperlyConfigured
 
 import commonware.log
+import waffle
 
 import lib.iarc
 import mkt
@@ -71,6 +73,10 @@ def dehydrate_content_ratings(content_ratings):
 
 
 def iarc_get_app_info(app):
+    if waffle.switch_is_active('iarc-upgrade-v2'):
+        raise ImproperlyConfigured(
+            'We should not be calling this function with IARC v2.')
+
     client = lib.iarc.client.get_iarc_client('services')
     iarc = app.iarc_info
     iarc_id = iarc.submission_id
