@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2015-12-27 09:10+0000\n"
+"PO-Revision-Date: 2015-12-29 10:00+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -5711,7 +5711,7 @@ msgstr ""
 
 #: mkt/files/helpers.py:171
 msgid "That file no longer exists."
-msgstr ""
+msgstr "Такий файл більше не існує."
 
 #. L10n: {0} is the file size limit of the file viewer.
 #: mkt/files/helpers.py:180
@@ -5798,7 +5798,7 @@ msgstr "Повернутись до програми"
 
 #: mkt/files/templates/fileviewer/file.html:2
 msgid "Download {0}"
-msgstr ""
+msgstr "Завантажити {0}"
 
 #: mkt/files/templates/fileviewer/file.html:6
 msgid ""
@@ -5836,7 +5836,7 @@ msgstr "Файли:"
 
 #: mkt/files/templates/fileviewer/viewer.html:48
 msgid "Deleted files:"
-msgstr ""
+msgstr "Видалені файли:"
 
 #: mkt/files/templates/fileviewer/viewer.html:66
 msgid "Tab stops:"
@@ -5860,7 +5860,7 @@ msgstr ""
 #: mkt/files/templates/fileviewer/viewer.html:86
 #: mkt/files/templates/fileviewer/viewer.html:87
 msgid "Previous note"
-msgstr ""
+msgstr "Попередня примітка"
 
 #: mkt/files/templates/fileviewer/viewer.html:93
 #: mkt/files/templates/fileviewer/viewer.html:94
@@ -5870,7 +5870,7 @@ msgstr ""
 #: mkt/files/templates/fileviewer/viewer.html:96
 #: mkt/files/templates/fileviewer/viewer.html:97
 msgid "Next note"
-msgstr ""
+msgstr "Наступна примітка"
 
 #: mkt/files/templates/fileviewer/viewer.html:102
 #: mkt/files/templates/fileviewer/viewer.html:103
@@ -5880,7 +5880,7 @@ msgstr ""
 #: mkt/files/templates/fileviewer/viewer.html:107
 #: mkt/files/templates/fileviewer/viewer.html:108
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Приховати чи показати дерево"
 
 #: mkt/files/templates/fileviewer/viewer.html:112
 #: mkt/files/templates/fileviewer/viewer.html:113
@@ -5893,7 +5893,7 @@ msgstr ""
 
 #: mkt/files/templates/fileviewer/viewer.html:127
 msgid "Fetching file."
-msgstr ""
+msgstr "Отримання файлу."
 
 #: mkt/inapp/serializers.py:70
 msgid "Product logo must be a 64x64 image. Check that the URL is correct."
@@ -5927,7 +5927,7 @@ msgstr ""
 
 #: mkt/langpacks/utils.py:50
 msgid "Your language pack should contain a version."
-msgstr ""
+msgstr "Ваш мовний пакет повинен містити версію."
 
 #: mkt/langpacks/utils.py:53
 msgid ""
@@ -5949,7 +5949,7 @@ msgstr ""
 
 #: mkt/lookup/forms.py:65
 msgid "Reason for Deletion"
-msgstr ""
+msgstr "Причина видалення"
 
 #: mkt/lookup/forms.py:81
 msgid "Promo Image"
@@ -5957,7 +5957,7 @@ msgstr ""
 
 #: mkt/lookup/forms.py:82
 msgid "Minimum size: {0}x{1}"
-msgstr ""
+msgstr "Мінімальний розмір: {0}x{1}"
 
 #: mkt/lookup/views.py:201
 msgid "A refund has already been processed."
@@ -5981,7 +5981,7 @@ msgstr ""
 
 #: mkt/lookup/views.py:359
 msgid "Website saved."
-msgstr ""
+msgstr "Веб-сайт збережено."
 
 #: mkt/lookup/templates/lookup/app_activity.html:10
 #: mkt/lookup/templates/lookup/helpers/app_header.html:22
@@ -5999,19 +5999,19 @@ msgstr ""
 #: mkt/lookup/templates/lookup/app_activity.html:30
 #: mkt/lookup/templates/lookup/user_activity.html:34
 msgid "Administrative Actions"
-msgstr ""
+msgstr "Адміністративні дії"
 
 #: mkt/lookup/templates/lookup/app_summary.html:10
 msgid "last 24 hours"
-msgstr ""
+msgstr "останні 24 години"
 
 #: mkt/lookup/templates/lookup/app_summary.html:11
 msgid "last 7 days"
-msgstr ""
+msgstr "останні 7 днів"
 
 #: mkt/lookup/templates/lookup/app_summary.html:12
 msgid "all time"
-msgstr ""
+msgstr "весь час"
 
 #: mkt/lookup/templates/lookup/app_summary.html:19
 msgid "Authors"
@@ -6019,13 +6019,13 @@ msgstr "Автори"
 
 #: mkt/lookup/templates/lookup/app_summary.html:35
 msgid "Manifest"
-msgstr ""
+msgstr "Маніфест"
 
 #: mkt/lookup/templates/lookup/app_summary.html:41
 #: mkt/reviewers/templates/reviewers/includes/details.html:35
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:57
 msgid "View"
-msgstr ""
+msgstr "Перегляд"
 
 #: mkt/lookup/templates/lookup/app_summary.html:47
 #: mkt/reviewers/templates/reviewers/includes/details.html:13
@@ -6047,12 +6047,12 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/app_summary.html:59
 msgid "Submitted"
-msgstr ""
+msgstr "Надіслано"
 
 #: mkt/lookup/templates/lookup/app_summary.html:71
 #: mkt/lookup/templates/lookup/app_summary.html:171
 msgid "OK"
-msgstr ""
+msgstr "Гаразд"
 
 #: mkt/lookup/templates/lookup/app_summary.html:78
 msgid "Review Prioritized"
@@ -6084,22 +6084,22 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/app_summary.html:96
 msgid "Review failed"
-msgstr ""
+msgstr "Перевірку не пройдено"
 
 #: mkt/lookup/templates/lookup/app_summary.html:101
 #: mkt/reviewers/helpers.py:47 mkt/reviewers/templates/reviewers/abuse.html:5
 #: mkt/reviewers/templates/reviewers/includes/details.html:113
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:104
 msgid "Abuse Reports"
-msgstr ""
+msgstr "Скарги"
 
 #: mkt/lookup/templates/lookup/app_summary.html:103
 msgid "Permissions"
-msgstr ""
+msgstr "Дозволи"
 
 #: mkt/lookup/templates/lookup/app_summary.html:107
 msgid "No reason given"
-msgstr ""
+msgstr "Причину не вказано"
 
 #: mkt/lookup/templates/lookup/app_summary.html:109
 msgid "No permissions requested"
@@ -6108,7 +6108,7 @@ msgstr ""
 #: mkt/lookup/templates/lookup/app_summary.html:121
 #: mkt/lookup/templates/lookup/helpers/user_header.html:24
 msgid "Purchases"
-msgstr ""
+msgstr "Покупки"
 
 #: mkt/lookup/templates/lookup/app_summary.html:131
 #: mkt/lookup/templates/lookup/user_summary.html:63
@@ -6138,15 +6138,15 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/app_summary.html:149
 msgid "Version History"
-msgstr ""
+msgstr "Історія версій"
 
 #: mkt/lookup/templates/lookup/app_summary.html:154
 msgid "Version (ID)"
-msgstr ""
+msgstr "Версія (ID)"
 
 #: mkt/lookup/templates/lookup/app_summary.html:155
 msgid "Filename (ID, Size)"
-msgstr ""
+msgstr "Ім'я файлу (ID, Розмір)"
 
 #: mkt/lookup/templates/lookup/base.html:3 mkt/site/context_processors.py:74
 msgid "Lookup Tool"
@@ -6170,11 +6170,11 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/group_summary.html:22
 msgid "Rules"
-msgstr ""
+msgstr "Правила"
 
 #: mkt/lookup/templates/lookup/group_summary.html:24
 msgid "Notes"
-msgstr ""
+msgstr "Примітки"
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
@@ -6182,7 +6182,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/group_summary.html:30
 msgid "Group Members"
-msgstr ""
+msgstr "Учасники групи"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
@@ -6190,11 +6190,11 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:23
 msgid "Buyer"
-msgstr ""
+msgstr "Покупець"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:31
 msgid "Price Tier"
-msgstr ""
+msgstr "Цінова категорія"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:33
 msgid "Related Transaction"
@@ -6235,7 +6235,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:93
 msgid "Unrequested"
-msgstr ""
+msgstr "Не запитано"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:105
 msgid ""
@@ -6270,7 +6270,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:13
 msgid "General"
-msgstr ""
+msgstr "Загальні"
 
 #: mkt/lookup/templates/lookup/user_summary.html:15
 msgid "Display Name"
@@ -6282,15 +6282,15 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:21
 msgid "Registered"
-msgstr ""
+msgstr "Зареєстровано"
 
 #: mkt/lookup/templates/lookup/user_summary.html:25
 msgid "Groups"
-msgstr ""
+msgstr "Групи"
 
 #: mkt/lookup/templates/lookup/user_summary.html:33
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: mkt/lookup/templates/lookup/user_summary.html:58
 msgid "Marketplace Credit"
@@ -6302,23 +6302,23 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:64
 msgid "requested"
-msgstr ""
+msgstr "запитано"
 
 #: mkt/lookup/templates/lookup/user_summary.html:65
 msgid "auto-approved"
-msgstr ""
+msgstr "схвалено автоматично"
 
 #: mkt/lookup/templates/lookup/user_summary.html:71
 msgid "Developer Program"
-msgstr ""
+msgstr "Програма розробника"
 
 #: mkt/lookup/templates/lookup/user_summary.html:73
 msgid "Read agreement"
-msgstr ""
+msgstr "Прочитати угоду"
 
 #: mkt/lookup/templates/lookup/user_summary.html:81
 msgid "Addresses"
-msgstr ""
+msgstr "Адреси"
 
 #: mkt/lookup/templates/lookup/user_summary.html:100
 msgid "Submissions"
@@ -6326,14 +6326,14 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:108
 msgid "Unnamed"
-msgstr ""
+msgstr "Без назви"
 
 #: mkt/lookup/templates/lookup/user_summary.html:119
 #: mkt/lookup/templates/lookup/user_summary.html:127
 #: mkt/lookup/templates/lookup/user_summary.html:131
 #: mkt/lookup/templates/lookup/user_summary.html:135
 msgid "Delete User"
-msgstr ""
+msgstr "Видалити користувача"
 
 #: mkt/lookup/templates/lookup/user_summary.html:122
 msgid ""
@@ -6351,27 +6351,27 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:144
 msgid "Deleted by"
-msgstr ""
+msgstr "Видалено"
 
 #: mkt/lookup/templates/lookup/user_summary.html:147
 msgid "Reason"
-msgstr ""
+msgstr "Причина"
 
 #: mkt/lookup/templates/lookup/website_edit.html:27 mkt/websites/forms.py:36
 msgid "Short Name"
-msgstr ""
+msgstr "Коротка назва"
 
 #: mkt/lookup/templates/lookup/website_edit.html:34
 #: mkt/lookup/templates/lookup/website_summary.html:16
 #: mkt/websites/forms.py:38
 msgid "Title"
-msgstr ""
+msgstr "Заголовок"
 
 #: mkt/lookup/templates/lookup/website_edit.html:48
 #: mkt/lookup/templates/lookup/website_summary.html:28
 #: mkt/websites/forms.py:40
 msgid "URL"
-msgstr ""
+msgstr "URL-адреса"
 
 #: mkt/lookup/templates/lookup/website_edit.html:55
 #: mkt/lookup/templates/lookup/website_summary.html:32
@@ -6407,7 +6407,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/website_summary.html:60
 msgid "disabled"
-msgstr ""
+msgstr "вимкнено"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:2
 msgid "App Lookup results for"
@@ -6431,7 +6431,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/helpers/user_header.html:7
 msgid "Account Deleted"
-msgstr ""
+msgstr "Обліковий запис видалено"
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:3
 msgid "Website Summary for"
@@ -6439,7 +6439,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:5
 msgid "Edit Website"
-msgstr ""
+msgstr "Змінити веб-сайт"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
@@ -6494,7 +6494,7 @@ msgstr ""
 
 #: mkt/purchase/templates/purchase/receipt.html:19
 msgid "Receipt"
-msgstr ""
+msgstr "Чек"
 
 #: mkt/purchase/templates/purchase/receipt.html:21
 msgid "Billed To:"
@@ -6502,15 +6502,15 @@ msgstr ""
 
 #: mkt/purchase/templates/purchase/receipt.html:28
 msgid "Order Number:"
-msgstr ""
+msgstr "Номер замовлення:"
 
 #: mkt/purchase/templates/purchase/receipt.html:29
 msgid "Order Date:"
-msgstr ""
+msgstr "Дата замовлення:"
 
 #: mkt/purchase/templates/purchase/receipt.html:37
 msgid "Item"
-msgstr ""
+msgstr "Елемент"
 
 #: mkt/purchase/templates/purchase/receipt.html:38
 msgid "Seller"
