@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from tower import ugettext_lazy as _lazy
+from django.utils.translation import ugettext_lazy as _lazy
 
 
 NAME_GENERAL = _lazy('For all ages')

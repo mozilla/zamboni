@@ -7,7 +7,7 @@ from django.db import models
 import bleach
 from celery import task
 
-from tower import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 
 from mkt.site.models import ManagerBase, ModelBase, TransformQuerySet
 from mkt.translations.fields import save_signal, TranslatedField

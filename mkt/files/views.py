@@ -11,7 +11,7 @@ from django.views.decorators.http import condition
 import commonware.log
 from cache_nuggets.lib import Message, Token
 from jingo.helpers import urlparams
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 from mkt.access import acl
 from mkt.files import forms

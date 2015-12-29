@@ -1,4 +1,4 @@
-from tower import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 
 # App type for reviewer app queue filters.
 APP_TYPE_HOSTED = 0

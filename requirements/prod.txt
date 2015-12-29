@@ -83,6 +83,7 @@ oauthlib==0.7.2
 polib==1.0.3
 # protobuf is required by heka-py
 protobuf==2.5.0
+puente==0.4.1
 # pyasn1 is required by app-validator, cryptography
 pyasn1==0.1.7
 PyBrowserID==0.6
@@ -112,7 +113,6 @@ sqlparse==0.1.16
 statsd==2.0.3
 suds==0.4
 responses==0.4.0
-tower==0.4.1
 # urllib3 is required by elasticsearch
 urllib3==1.10.3
 

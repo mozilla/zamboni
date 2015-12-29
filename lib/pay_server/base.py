@@ -8,7 +8,7 @@ from django.conf import settings
 
 from curling.lib import API
 
-from tower import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 
 
 log = logging.getLogger('s.client')

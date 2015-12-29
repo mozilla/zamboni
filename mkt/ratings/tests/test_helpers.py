@@ -1,13 +1,14 @@
-import jingo
+
 from nose.tools import eq_
 from pyquery import PyQuery as pq
 
+from mkt.site.utils import env
 import mkt.site.tests
 
 
 class TestRatingsHelpers(mkt.site.tests.TestCase):
     def render(self, s, context={}):
-        t = jingo.env.from_string(s)
+        t = env.from_string(s)
         return t.render(context)
 
     def test_stars(self):

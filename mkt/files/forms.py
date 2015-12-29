@@ -6,7 +6,7 @@ from django.forms import widgets
 import commonware.log
 import happyforms
 import jinja2
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 import mkt
 from mkt.files.models import File

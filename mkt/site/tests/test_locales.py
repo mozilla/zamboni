@@ -1,6 +1,4 @@
-from django.utils.translation import trans_real
-
-import tower
+from django.utils.translation import trans_real, activate
 
 
 def test_mkt_locale_not_in_django():
@@ -15,7 +13,7 @@ def test_mkt_locale_not_in_django():
 
     This test will be invalid once Django gets an mn locale.
     """
-    tower.activate('mn')
+    activate('mn')
     en = trans_real._translations['en-US']
     mn = trans_real._translations['mn']
     assert en != mn

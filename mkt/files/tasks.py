@@ -4,7 +4,7 @@ from django.conf import settings
 
 from cache_nuggets.lib import Message
 from celery import task
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 from mkt.files.helpers import FileViewer
 from mkt.files.models import File

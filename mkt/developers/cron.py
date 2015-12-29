@@ -3,7 +3,7 @@ import logging
 
 import cronjobs
 from celery.task.sets import TaskSet
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 import mkt
 import lib.iarc

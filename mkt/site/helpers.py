@@ -12,16 +12,15 @@ from django.utils.encoding import smart_unicode
 import commonware.log
 import jinja2
 from babel.support import Format
-from jingo import env, register
+from jingo import register
 # Needed to make sure our own |f filter overrides jingo's one.
 from jingo import helpers  # noqa
 from jingo_minify import helpers as jingo_minify_helpers
 from six import text_type
-from tower import ugettext as _
-
+from django.utils.translation import ugettext as _
 from mkt.translations.helpers import truncate
 from mkt.translations.utils import get_locale_from_lang
-from mkt.site.utils import append_tz
+from mkt.site.utils import env, append_tz
 
 
 log = commonware.log.getLogger('z.mkt.site')

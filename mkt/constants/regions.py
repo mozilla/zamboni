@@ -2,7 +2,7 @@
 import inspect
 import sys
 
-from tower import ugettext_lazy as _lazy
+from django.utils.translation import ugettext_lazy as _lazy
 
 from mpconstants import countries
 

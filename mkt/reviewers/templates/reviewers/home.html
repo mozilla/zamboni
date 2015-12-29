@@ -59,7 +59,7 @@
                          style="width:{{ percentage[type][d] }}%"
                          title="{{ duration }} ::
                                 {{ ngettext('{0} app', '{0} apps', total)|f(total) }}
-                                &bull; {{ _('{0}%')|f(percentage[type][d]|round|int) }}"></div>
+                                &bull; {{ '{0}%'|f(percentage[type][d]|round|int) }}"></div>
                     {% endfor %}
                   </div>
                 </div>

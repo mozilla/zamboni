@@ -21,7 +21,7 @@ from appvalidator import validate_app, validate_packaged_app
 from celery import task
 from django_statsd.clients import statsd
 from PIL import Image
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 import mkt
 from lib.post_request_task.task import task as post_request_task

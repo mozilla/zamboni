@@ -2,7 +2,7 @@ from urlparse import urlparse
 
 from django import forms
 
-from tower import ugettext_lazy as _lazy
+from django.utils.translation import ugettext_lazy as _lazy
 
 from mkt.api.forms import SluggableModelChoiceField
 from mkt.webapps.models import Webapp

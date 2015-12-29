@@ -12,7 +12,7 @@ from uuidfield.fields import UUIDField
 
 import commonware.log
 import jinja2
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 import mkt
 from lib.crypto import generate_key
