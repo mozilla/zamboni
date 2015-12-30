@@ -734,6 +734,13 @@ class TestPublishForm(mkt.site.tests.TestCase):
         self.app.reload()
         eq_(self.app.status, mkt.STATUS_PUBLIC)
 
+    @mock.patch('mkt.developers.forms.iarc_publish')
+    def test_iarc_publish_is_called(self, iarc_publish_mock):
+        self.create_switch('iarc-upgrade-v2')
+        self.test_go_public()
+        eq_(iarc_publish_mock.delay.call_count, 1)
+        eq_(iarc_publish_mock.delay.call_args[0], (self.app.pk, ))
+
     def test_go_unlisted(self):
         self.app.update(status=mkt.STATUS_PUBLIC)
         form = self.form({'publish_type': mkt.PUBLISH_HIDDEN,

@@ -28,7 +28,8 @@ from django.utils.translation import (ugettext as _, ugettext_lazy as _lazy,
 
 import lib.iarc
 import mkt
-from lib.iarc_v2.client import IARCException, search_and_attach_cert
+from lib.iarc_v2.client import (IARCException, publish as iarc_publish,
+                                search_and_attach_cert)
 from lib.video import tasks as vtasks
 from mkt import get_user
 from mkt.access import acl
@@ -834,7 +835,10 @@ class PublishForm(happyforms.Form):
         self.addon.update_name_from_package_manifest()
         self.addon.update_supported_locales()
 
-        set_storefront_data.delay(self.addon.pk)
+        if waffle.switch_is_active('iarc-upgrade-v2'):
+            iarc_publish.delay(self.addon.pk)
+        else:
+            set_storefront_data.delay(self.addon.pk)
 
 
 class RegionForm(forms.Form):

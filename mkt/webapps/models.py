@@ -31,6 +31,7 @@ from uuidfield.fields import UUIDField
 import mkt
 from lib.crypto import packaged
 from lib.iarc.client import get_iarc_client
+from lib.iarc_v2.client import unpublish as iarc_unpublish
 from lib.iarc.utils import get_iarc_app_title, render_xml
 from lib.utils import static_url
 from mkt.access import acl
@@ -525,8 +526,11 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
         id = self.id
 
-        # Tell IARC this app is delisted from the set_iarc_storefront_data.
-        tasks.set_storefront_data.delay(self.pk, disable=True)
+        # Tell IARC this app is delisted.
+        if waffle.switch_is_active('iarc-upgrade-v2'):
+            iarc_unpublish.delay(self.pk)
+        else:
+            tasks.set_storefront_data.delay(self.pk, disable=True)
 
         # Fetch previews before deleting the addon instance, so that we can
         # pass the list of files to delete to the delete_preview_files task

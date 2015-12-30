@@ -113,9 +113,10 @@ class TestUpdateCerts(TestCase):
     @responses.activate
     def test_publish(self):
         setup_mock_response('UpdateCerts')
-        app = mock.Mock()
-        app.iarc_cert.cert_id = 'adb3261bc6574fd2a057bc9f85310b80'
-        res = publish(app)
+        app = app_factory()
+        IARCCert.objects.create(
+            app=app, cert_id='adb3261bc6574fd2a057bc9f85310b80')
+        res = publish(app.pk)
         eq_(res['ResultList'][0]['ResultCode'], 'Success')
         eq_(len(responses.calls), 1)
         eq_(responses.calls[0].request.headers.get('StorePassword'),
@@ -131,17 +132,17 @@ class TestUpdateCerts(TestCase):
 
     @responses.activate
     def test_publish_no_cert(self):
-        app = Webapp()
-        res = publish(app)
+        res = publish(42)
         eq_(res, None)
         eq_(len(responses.calls), 0)
 
     @responses.activate
     def test_unpublish(self):
         setup_mock_response('UpdateCerts')
-        app = mock.Mock()
-        app.iarc_cert.cert_id = 'adb3261bc6574fd2a057bc9f85310b80'
-        res = unpublish(app)
+        app = app_factory()
+        IARCCert.objects.create(
+            app=app, cert_id='adb3261bc6574fd2a057bc9f85310b80')
+        res = unpublish(app.pk)
         eq_(res['ResultList'][0]['ResultCode'], 'Success')
         eq_(len(responses.calls), 1)
         eq_(responses.calls[0].request.headers.get('StorePassword'),
@@ -157,8 +158,7 @@ class TestUpdateCerts(TestCase):
 
     @responses.activate
     def test_unpublish_no_cert(self):
-        app = Webapp()
-        res = unpublish(app)
+        res = unpublish(42)
         eq_(res, None)
         eq_(len(responses.calls), 0)
 

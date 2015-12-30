@@ -8,12 +8,12 @@ from django.conf import settings
 from django.db import transaction
 
 import commonware.log
+from celery import task
 
 from lib.iarc_v2.serializers import IARCV2RatingListSerializer
 from mkt.site.helpers import absolutify
 from mkt.translations.utils import no_translation
 from mkt.users.models import UserProfile
-from mkt.webapps.models import IARCCert, Webapp
 
 log = commonware.log.getLogger('z.iarc_v2')
 
@@ -41,6 +41,8 @@ def _iarc_request(endpoint_name, data):
 
 def _iarc_app_data(app):
     """App data that IARC needs in PushCert response / AttachToCert request."""
+    from mkt.webapps.models import Webapp
+
     author = app.listed_authors[0] if app.listed_authors else UserProfile()
     with no_translation(app.default_locale):
         app_name = unicode(Webapp.with_deleted.get(pk=app.pk).name)
@@ -70,6 +72,8 @@ def get_rating_changes(date=None):
     FIXME: Could add support for pagination, but very low priority since we
     will never ever get anywhere close to 500 rating changes in a single day.
     """
+    from mkt.webapps.models import IARCCert
+
     start_date = date or datetime.datetime.utcnow()
     end_date = start_date - datetime.timedelta(days=1)
     data = _iarc_request('GetRatingChanges', {
@@ -124,8 +128,15 @@ def _attach_to_cert(app, cert_id):
     return _iarc_request('AttachToCert', data)
 
 
-def publish(app):
-    """Tell IARC we published an app."""
+@task
+def publish(app_id):
+    """Delayed task to tell IARC we published an app."""
+    from mkt.webapps.models import IARCCert, Webapp
+
+    try:
+        app = Webapp.with_deleted.get(pk=app_id)
+    except Webapp.DoesNotExist:
+        return
     try:
         cert_id = app.iarc_cert.cert_id
         data = _update_certs(cert_id, 'Publish')
@@ -134,8 +145,15 @@ def publish(app):
     return data
 
 
-def unpublish(app):
-    """Tell IARC we unpublished an app."""
+@task
+def unpublish(app_id):
+    """Delayed task to tell IARC we unpublished an app."""
+    from mkt.webapps.models import IARCCert, Webapp
+
+    try:
+        app = Webapp.with_deleted.get(pk=app_id)
+    except Webapp.DoesNotExist:
+        return
     try:
         cert_id = app.iarc_cert.cert_id
         data = _update_certs(cert_id, 'RemoveProduct')
