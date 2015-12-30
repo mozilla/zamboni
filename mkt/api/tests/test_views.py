@@ -67,7 +67,7 @@ class TestConfig(RestOAuth):
         self.assertCORS(self.anon.get(self.url), 'get')
 
     def test_switch(self):
-        self.create_switch('test-switch', db=True)
+        self.create_switch('test-switch')
         res = self.anon.get(self.url)
         eq_(res.status_code, 200)
         data = json.loads(res.content)
@@ -88,8 +88,8 @@ class TestConfig(RestOAuth):
         ok_(not data['waffle']['switches'])
 
     def test_switch_commonplace(self):
-        self.create_switch('eggos', db=True)
-        self.create_switch('strudel', db=True)
+        self.create_switch('eggos')
+        self.create_switch('strudel')
         res = self.client.get(self.url, data={'serializer': 'commonplace'})
         data = json.loads(res.content)
         self.assertSetEqual(data['waffle']['switches'], ['eggos', 'strudel'])

@@ -829,12 +829,8 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         if self.uses_es():
             self.reindex(Webapp)
         res = self.client.get(self.url)
-        if self.uses_es():
-            self.assertSetEqual([a.id for a in res.context['addons']],
-                                [a.id for a in self.apps[1:]])
-        else:
-            self.assertSetEqual([a.app for a in res.context['addons']],
-                                self.apps[1:])
+        self.assertSetEqual([a.app.id for a in res.context['addons']],
+                            [a.id for a in self.apps[1:]])
 
         doc = pq(res.content)
         links = doc('.tabnav li a')
