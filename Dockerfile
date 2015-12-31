@@ -12,6 +12,8 @@ RUN yum install -y redis \
     openssl-devel \
     libffi-devel \
     libjpeg-devel \
+    libxml2-devel \
+    libxslt-devel \
     gcc-c++ \
     npm \
     wget \

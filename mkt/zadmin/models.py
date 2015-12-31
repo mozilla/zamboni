@@ -83,7 +83,7 @@ class EmailPreview(ModelBase):
     """
     topic = models.CharField(max_length=255, db_index=True)
     recipient_list = models.TextField()  # comma separated list of emails
-    from_email = models.EmailField()
+    from_email = models.EmailField(max_length=75)
     subject = models.CharField(max_length=255)
     body = models.TextField()
 

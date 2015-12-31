@@ -6,6 +6,7 @@ from os.path import basename, splitext
 from django.core.management.base import BaseCommand, CommandError
 from django.core.validators import URLValidator, ValidationError
 from django.db.transaction import atomic
+from django.utils.translation import activate
 
 from mkt.constants.applications import DEVICE_DESKTOP
 from mkt.constants.base import STATUS_PUBLIC
@@ -138,6 +139,7 @@ class Command(BaseCommand):
             self.print_help('manage.py', self.subcommand)
             return
         filename = args[0]
+        activate('en-US')
         data = self.parse(filename)
         created_count = self.create_instances(data)
         print '[DONE] Imported %d games' % created_count

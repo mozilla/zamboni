@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 from django.contrib import messages
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 
 import basket
 import commonware.log
@@ -9,6 +9,7 @@ from session_csrf import anonymous_csrf
 from django.utils.translation import ugettext as _
 
 from mkt.developers.forms import DevNewsletterForm
+from mkt.site.utils import render
 
 
 log = commonware.log.getLogger('z.ecosystem')

@@ -6,6 +6,7 @@ from .models import MonolithRecord
 
 class MonolithSerializer(serializers.ModelSerializer):
     value = serializers.JSONField()
+    recorded = serializers.DateTimeField(format='%Y-%m-%d')
 
     class Meta:
         model = MonolithRecord

@@ -477,7 +477,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
                                         on_delete=models.SET_NULL,
                                         null=True, related_name='+')
     publish_type = models.PositiveSmallIntegerField(default=0)
-    mozilla_contact = models.EmailField(blank=True)
+    mozilla_contact = models.EmailField(blank=True, max_length=75)
     vip_app = models.BooleanField(default=False)
     priority_review = models.BooleanField(default=False)
     # Whether the app is packaged or not (aka hosted).

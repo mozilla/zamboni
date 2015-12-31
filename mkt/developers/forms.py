@@ -562,9 +562,11 @@ class AppFormBasic(AddonFormBase):
             if 'slug' in data:
                 data['app_slug'] = data.pop('slug')
             self._meta.fields[slug_idx] = 'app_slug'
+            self.fields['app_slug'] = self.fields['slug']
             super(AppFormBasic, self)._post_clean()
         finally:
             self._meta.fields[slug_idx] = 'slug'
+            del self.fields['app_slug']
 
     def clean_slug(self):
         slug = self.cleaned_data['slug']

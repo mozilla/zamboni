@@ -27,7 +27,7 @@ class SeparatedValuesFieldTestCase(TestCase):
     def test_url_field(self):
         field = SeparatedValuesField(forms.URLField)
         eq_(field.clean(u'http://hy.fr/,,http://yo.lo'),
-            u'http://hy.fr/, http://yo.lo/')
+            u'http://hy.fr/, http://yo.lo')
 
     def test_alt_separator(self):
         self.field = SeparatedValuesField(forms.EmailField, separator='#')

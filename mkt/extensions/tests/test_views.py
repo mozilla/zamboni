@@ -359,9 +359,11 @@ class TestExtensionViewSetPostAction(UploadTest, RestOAuth):
         self.extension = Extension.objects.create()
         self.user = UserProfile.objects.get(pk=2519)
         self.block_url = reverse(
-            'api-v2:extension-block', kwargs={'pk': self.extension.slug})
+            'api-v2:extension-block', kwargs={'pk': self.extension.slug}
+            ).encode('utf-8')
         self.unblock_url = reverse(
-            'api-v2:extension-unblock', kwargs={'pk': self.extension.slug})
+            'api-v2:extension-unblock', kwargs={'pk': self.extension.slug}
+        ).encode('utf-8')
 
     def test_cors(self):
         self.grant_permission(self.user, 'Admin:%')
@@ -533,7 +535,7 @@ class TestExtensionViewSetGet(RestOAuth):
 
     def test_detail_with_slug(self):
         self.url = reverse('api-v2:extension-detail',
-                           kwargs={'pk': self.extension.slug})
+                           kwargs={'pk': self.extension.slug}).encode('utf-8')
         self.test_detail_anonymous()
 
     def test_detail_logged_in(self):
@@ -662,7 +664,7 @@ class TestExtensionViewSetPatchPut(RestOAuth):
     def test_patch_with_rights_with_slug(self):
         # Changes to the slug are made even if you used the slug in the URL.
         self.url = reverse('api-v2:extension-detail',
-                           kwargs={'pk': self.extension.slug})
+                           kwargs={'pk': self.extension.slug}).encode('utf-8')
         self.extension.authors.add(self.user)
         response = self.client.patch(self.url, json.dumps({'slug': u'làlé'}))
         eq_(response.status_code, 200)
@@ -1164,7 +1166,7 @@ class TestReviewerExtensionViewSet(ReviewQueueTestMixin, RestOAuth):
 
     def test_detail_with_slug(self):
         self.url = reverse('api-v2:extension-queue-detail',
-                           kwargs={'pk': self.extension.slug})
+                           kwargs={'pk': self.extension.slug}).encode('utf-8')
         self.test_detail_logged_in_with_rights()
 
     def test_detail_logged_in_with_rights_deleted(self):

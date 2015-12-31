@@ -41,7 +41,8 @@ class Tag(ModelBase):
     def _get_m2m_name(cls, obj):
         """Return the related field name of the m2m on Tag."""
         related_models = cls._meta.get_all_related_m2m_objects_with_model()
-        field_map = {rm[0].model: rm[0].field.name for rm in related_models}
+        field_map = {rm[0].related_model: rm[0].field.name
+                     for rm in related_models}
         return field_map.get(obj._meta.model)
 
     def save_tag(self, obj):

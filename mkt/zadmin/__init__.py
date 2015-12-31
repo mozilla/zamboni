@@ -13,10 +13,9 @@ def rendered_content(self):
     from mkt.site.utils import env  # django import order LOL :-(
     template = self.template_name
     context_instance = self.resolve_context(self.context_data)
-    request = context_instance['request']
 
     # Gross, let's figure out if we're in the admin.
-    if self._current_app == 'admin':
+    if getattr(self._request, 'current_app', None) == 'admin':
         source = loader.render_to_string(template, context_instance)
         template = env.from_string(source)
         # This interferes with our media() helper.
@@ -27,6 +26,7 @@ def rendered_content(self):
     # not a list.
     if isinstance(template, (list, tuple)):
         template = loader.select_template(template)
-    return jingo.render_to_string(request, template, self.context_data)
+    return jingo.render_to_string(self._request, template.template,
+                                  self.context_data)
 
 SimpleTemplateResponse.rendered_content = property(rendered_content)

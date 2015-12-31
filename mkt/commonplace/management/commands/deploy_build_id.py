@@ -13,6 +13,8 @@ log = logging.getLogger('commonplace')
 
 
 class Command(BaseCommand):
+    use_argparse = False
+
     def handle(self, *args, **kw):
         if len(args) < 1:
             sys.stdout.write('Pass repo name as arg (e.g., fireplace).\n')

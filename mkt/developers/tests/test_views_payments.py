@@ -228,19 +228,18 @@ class TestInAppProductsView(InappTest):
         div = doc('#in-app-products')
 
         url = div.attr('data-list-url')
-        assert url.endswith('http%3A%2F%2Ff.c/in-app/'), (
+        assert url.endswith('http:%2F%2Ff.c/in-app/'), (
             'Unexpected URL: {u}'.format(u=url))
 
         url = div.attr('data-detail-url-format')
-        assert url.endswith('http%3A%2F%2Ff.c/in-app/%7Bguid%7D/'), (
+        assert url.endswith('http:%2F%2Ff.c/in-app/%7Bguid%7D/'), (
             'Unexpected URL: {u}'.format(u=url))
 
     def test_no_declared_origin(self):
         self.app.update(is_packaged=True, app_domain=None)
         doc = pq(self.get().content)
         div = doc('#in-app-products')
-
-        mkt_origin = 'marketplace%3A{}'.format(self.app.guid)
+        mkt_origin = 'marketplace:{}'.format(self.app.guid)
         url = div.attr('data-list-url')
         assert url.endswith('{}/in-app/'.format(mkt_origin)), (
             'Unexpected URL: {u}'.format(u=url))

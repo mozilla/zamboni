@@ -3,7 +3,6 @@ from urlparse import urljoin
 from django import http, shortcuts
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.shortcuts import render
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import condition
@@ -20,7 +19,7 @@ from mkt.files.decorators import (compare_webapp_file_view, etag,
                                   webapp_file_view_token)
 from mkt.files.tasks import extract_file
 from mkt.site.decorators import json_view
-from mkt.site.utils import get_file_response
+from mkt.site.utils import get_file_response, render
 
 
 log = commonware.log.getLogger('z.addons')

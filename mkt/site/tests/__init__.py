@@ -371,8 +371,6 @@ class ClassFixtureTestCase(test.TestCase):
                         'commit': False,
                         'database': db_name,
                     })
-
-            cls.setUpTestData()
         except Exception:
             cls._rollback_atomics(cls.cls_atomics)
             raise
@@ -426,12 +424,6 @@ class TestCase(MockEsMixin, MockBrowserIdMixin, ClassFixtureTestCase):
 
     def _pre_setup(self):
         super(TestCase, self)._pre_setup()
-
-        # XXX See if we can remove this when we switch to Django 1.8.
-        # Some crud from the migration system gets stuck here and we have to
-        # kick it loose manually.
-        from mkt.webapps.models import AddonUser
-        UserProfile.addonuser_set.related.model = AddonUser
 
         # Clean the slate.
         cache.clear()

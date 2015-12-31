@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import hashlib
 import json
+import uuid
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
@@ -222,31 +223,34 @@ class TestLangPackViewSetCreate(TestLangPackViewSetMixin,
         eq_(response.json, {u'upload': [u'No upload found.']})
 
     def test_dont_own_the_upload(self):
-        FileUpload.objects.create(uuid='my-uuid', user=None, valid=True)
+        myid = uuid.uuid4().hex
+        FileUpload.objects.create(uuid=myid, user=None, valid=True)
         self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.post(self.list_url, data=json.dumps({
-            'upload': 'my-uuid'}))
+            'upload': myid}))
         eq_(response.status_code, 400)
         eq_(response.json, {u'upload': [u'No upload found.']})
 
     def test_invalid_upload(self):
-        FileUpload.objects.create(uuid='my-uuid', valid=False, user=self.user)
+        myid = uuid.uuid4().hex
+        FileUpload.objects.create(uuid=myid, valid=False, user=self.user)
         self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.post(self.list_url, data=json.dumps({
-            'upload': 'my-uuid'}))
+            'upload': myid}))
         eq_(response.status_code, 400)
         eq_(response.json, {u'upload': [u'Upload not valid.']})
 
     @patch('mkt.langpacks.models.LangPack.from_upload')
     def test_errors_returned_by_from_upload(self, mock_from_upload):
         mock_from_upload.side_effect = ValidationError('foo bar')
-        FileUpload.objects.create(uuid='my-uuid', valid=True, user=self.user)
+        myid = uuid.uuid4().hex
+        FileUpload.objects.create(uuid=myid, valid=True, user=self.user)
         self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.post(self.list_url, data=json.dumps({
-            'upload': 'my-uuid'}))
+            'upload': myid}))
         eq_(response.status_code, 400)
         eq_(response.json, {u'detail': [u'foo bar']})
 
@@ -336,31 +340,34 @@ class TestLangPackViewSetUpdate(TestLangPackViewSetMixin, UploadCreationMixin,
         eq_(response.json, {u'upload': [u'No upload found.']})
 
     def test_dont_own_the_upload(self):
-        FileUpload.objects.create(uuid='my-uuid', user=None, valid=True)
+        myid = uuid.uuid4().hex
+        FileUpload.objects.create(uuid=myid, user=None, valid=True)
         self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.put(self.detail_url, data=json.dumps({
-            'upload': 'my-uuid'}))
+            'upload': myid}))
         eq_(response.status_code, 400)
         eq_(response.json, {u'upload': [u'No upload found.']})
 
     def test_invalid_upload(self):
-        FileUpload.objects.create(uuid='my-uuid', valid=False, user=self.user)
+        myid = uuid.uuid4().hex
+        FileUpload.objects.create(uuid=myid, valid=False, user=self.user)
         self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.put(self.detail_url, data=json.dumps({
-            'upload': 'my-uuid'}))
+            'upload': myid}))
         eq_(response.status_code, 400)
         eq_(response.json, {u'upload': [u'Upload not valid.']})
 
     @patch('mkt.langpacks.models.LangPack.from_upload')
     def test_errors_returned_by_from_upload(self, mock_from_upload):
         mock_from_upload.side_effect = ValidationError('foo bar')
-        FileUpload.objects.create(uuid='my-uuid', valid=True, user=self.user)
+        myid = uuid.uuid4().hex
+        FileUpload.objects.create(uuid=myid, valid=True, user=self.user)
         self.grant_permission(self.user, 'LangPacks:Admin')
 
         response = self.client.put(self.detail_url, data=json.dumps({
-            'upload': 'my-uuid'}))
+            'upload': myid}))
         eq_(response.status_code, 400)
         eq_(response.json, {u'detail': [u'foo bar']})
 
