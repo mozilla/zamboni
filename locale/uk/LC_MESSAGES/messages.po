@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2015-12-29 10:23+0000\n"
-"Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
+"PO-Revision-Date: 2015-12-29 20:24+0000\n"
+"Last-Translator: Петро <pe3k.lutsk@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -6037,7 +6037,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:15
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:47
 msgid "Packaged app"
-msgstr ""
+msgstr "Запакований застосунок"
 
 #: mkt/lookup/templates/lookup/app_summary.html:52
 #: mkt/reviewers/templates/reviewers/includes/details.html:18
@@ -6298,7 +6298,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:61
 msgid "apps purchased"
-msgstr ""
+msgstr "придбані застосунки"
 
 #: mkt/lookup/templates/lookup/user_summary.html:64
 msgid "requested"
@@ -6415,7 +6415,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:4
 msgid "App Detail"
-msgstr ""
+msgstr "Деталі застосунку"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:40
 msgid "Review History"
@@ -6443,7 +6443,7 @@ msgstr "Змінити веб-сайт"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
-msgstr ""
+msgstr "Огляд застосунку"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:9
 #: mkt/lookup/templates/lookup/includes/group_search.html:6
@@ -6460,7 +6460,7 @@ msgstr "Пошук"
 
 #: mkt/lookup/templates/lookup/includes/group_search.html:4
 msgid "Group Lookup"
-msgstr ""
+msgstr "Огляд групи"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
@@ -6468,15 +6468,15 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:4
 msgid "App: {0}"
-msgstr ""
+msgstr "Застосунок: {0}"
 
 #: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
-msgstr ""
+msgstr "Огляд облікового запису"
 
 #: mkt/lookup/templates/lookup/includes/website_search.html:5
 msgid "Website Lookup"
-msgstr ""
+msgstr "Огляд веб-сайту"
 
 #: mkt/operators/helpers.py:12
 msgid "Operator Dashboard"
@@ -6711,7 +6711,7 @@ msgstr ""
 
 #: mkt/reviewers/helpers.py:41 mkt/site/helpers.py:170
 msgid "Apps"
-msgstr ""
+msgstr "Застосунки"
 
 #: mkt/reviewers/helpers.py:42
 msgid "Re-reviews"
@@ -8188,27 +8188,27 @@ msgstr "Видалено: {1}."
 
 #: mkt/site/log.py:588
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Відредаговано користувача {user} по причині: {1}"
 
 #: mkt/site/log.py:594
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "Користувача {user} анонімізовано."
 
 #: mkt/site/log.py:600
 msgid "User {user} restricted."
-msgstr ""
+msgstr "Користувача {user} обмежено."
 
 #: mkt/site/log.py:606
 msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
+msgstr "Адміністратор {0} переглянув журнал активності для {user}."
 
 #: mkt/site/log.py:613
 msgid "{review} for {addon} updated."
-msgstr ""
+msgstr "{review} для {addon} оновлено."
 
 #: mkt/site/log.py:619
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} перевірено."
 
 #: mkt/site/log.py:625
 msgid "User {0.name} added to {group}."
@@ -8232,7 +8232,7 @@ msgstr ""
 
 #: mkt/site/log.py:649
 msgid "Requirements Changed"
-msgstr ""
+msgstr "Вимоги змінено"
 
 #. L10n: {0} is the status
 #: mkt/site/log.py:657
@@ -8286,7 +8286,7 @@ msgstr ""
 
 #: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
-msgstr ""
+msgstr "Не дозволено"
 
 #: mkt/site/templates/site/403.html:8
 msgid "Oops! Not allowed."
@@ -8302,11 +8302,11 @@ msgstr ""
 
 #: mkt/site/templates/site/404.html:4
 msgid "Page Not Found"
-msgstr ""
+msgstr "Сторінку не знайдено"
 
 #: mkt/site/templates/site/404.html:8
 msgid "We're sorry, but we can't find what you're looking for."
-msgstr ""
+msgstr "Нам шкода, але ми не можемо знайти те, що ви шукаєте."
 
 #: mkt/site/templates/site/404.html:11
 msgid ""
@@ -8316,7 +8316,7 @@ msgstr ""
 
 #: mkt/site/templates/site/404.html:16
 msgid "If you typed in the address, please double check the spelling."
-msgstr ""
+msgstr "Якщо ви ввели адресу, будь ласка, двічі перевірте орфографію."
 
 #: mkt/site/templates/site/404.html:19
 msgid ""
@@ -8326,11 +8326,11 @@ msgstr ""
 
 #: mkt/site/templates/site/500.html:4
 msgid "Server Error"
-msgstr ""
+msgstr "Помилка сервера"
 
 #: mkt/site/templates/site/500.html:8
 msgid "Oops! We had an error."
-msgstr ""
+msgstr "Ой! Маємо помилку."
 
 #: mkt/site/templates/site/500.html:10
 msgid "We'll get to fixing that soon."
@@ -8342,15 +8342,15 @@ msgstr ""
 
 #: mkt/stats/forms.py:9
 msgid "Day"
-msgstr ""
+msgstr "День"
 
 #: mkt/stats/forms.py:10
 msgid "Week"
-msgstr ""
+msgstr "Тиждень"
 
 #: mkt/stats/forms.py:12
 msgid "Quarter"
-msgstr ""
+msgstr "Квартал"
 
 #: mkt/submit/forms.py:31
 msgid "Device(s) changed: {0}"
@@ -8367,19 +8367,20 @@ msgstr ""
 
 #: mkt/submit/forms.py:50
 msgid "Please select a device."
-msgstr ""
+msgstr "Будь ласка, оберіть пристрій."
 
 #: mkt/submit/forms.py:123
 msgid "Agree and Continue"
-msgstr ""
+msgstr "Згодитись і продовжити"
 
 #: mkt/submit/forms.py:150 mkt/submit/forms.py:228
 msgid "There was an error with your upload. Please try again."
 msgstr ""
+"У процесі Вашого завантаження сталася помилка. Будь ласка, спробуйте знову."
 
 #: mkt/submit/forms.py:186
 msgid "Version %s already exists."
-msgstr ""
+msgstr "Версія %s вже існує."
 
 #: mkt/submit/forms.py:197
 msgid "Changes to \"origin\" are not allowed."
@@ -8404,6 +8405,8 @@ msgid ""
 "Do not publish my app. Notify me and I will adjust app visibility after it "
 "is approved."
 msgstr ""
+"Не публікувати мій застосунок. Повідомити мене та я скоригую видимість "
+"застосунку після його ухвалення."
 
 #: mkt/submit/forms.py:295
 msgid "Privacy Policy:"
@@ -8471,7 +8474,7 @@ msgstr ""
 
 #: mkt/submit/forms.py:338
 msgid "My app works without an Internet connection."
-msgstr ""
+msgstr "Моя програма працює без підключення до Інтернету."
 
 #: mkt/submit/templates/submit/details.html:5
 msgid "Edit App Details"
@@ -8504,7 +8507,7 @@ msgstr "Відкрити сторінку з подробицями"
 
 #: mkt/submit/templates/submit/details.html:124
 msgid "Support Information:"
-msgstr ""
+msgstr "Відомості про підтримку:"
 
 #: mkt/submit/templates/submit/details.html:133
 msgid "Screenshot or video of your app:"
@@ -8530,7 +8533,7 @@ msgstr "Завершено!"
 
 #: mkt/submit/templates/submit/done.html:14
 msgid "Success! What happens now?"
-msgstr ""
+msgstr "Успіх! Що тепер станеться?"
 
 #: mkt/submit/templates/submit/done.html:18
 msgid ""
@@ -8557,7 +8560,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/done.html:51
 msgid "Manage My App"
-msgstr ""
+msgstr "Управління моїм застосунком"
 
 #: mkt/submit/templates/submit/done.html:54
 msgid "Submit Another App"
@@ -8565,7 +8568,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/manifest.html:101
 msgid "App Minimum Requirements"
-msgstr ""
+msgstr "Мінімальні вимоги застосунку"
 
 #: mkt/submit/templates/submit/manifest.html:106
 msgid "<b>What's next:</b> fill out the rest of your app's details"
@@ -8581,7 +8584,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:27
 msgid "Submit App Manifest"
-msgstr ""
+msgstr "Відправити маніфест застосунку"
 
 #: mkt/submit/templates/submit/next_steps.html:28
 msgid "Enter App Details"
@@ -8597,11 +8600,11 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:41
 msgid "Wait for Review"
-msgstr ""
+msgstr "Чекати перевірки"
 
 #: mkt/submit/templates/submit/next_steps.html:45
 msgid "At any point, you can"
-msgstr ""
+msgstr "У будь-який момент ви можете"
 
 #: mkt/submit/templates/submit/next_steps.html:48
 msgid "Revise your app details on <a href=\"%(url)s\">Edit Listing</a>"
@@ -8761,7 +8764,7 @@ msgstr "Локалізувати для: <a id=\"change-locale\" href=\"#\">%(dl
 #: mkt/translations/templates/translations/trans-menu.html:16
 #: mkt/translations/templates/translations/trans-menu.html:29
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 #: mkt/translations/templates/translations/trans-menu.html:20
 msgid "Existing Locales"
@@ -8908,7 +8911,7 @@ msgstr ""
 
 #: mkt/webapps/models.py:1341
 msgid "You must provide an app name."
-msgstr ""
+msgstr "Вам слід вказати назву застосунка."
 
 #: mkt/webapps/models.py:1343
 msgid "You must provide at least one device type."
@@ -8916,7 +8919,7 @@ msgstr ""
 
 #: mkt/webapps/models.py:1346
 msgid "You must provide at least one category."
-msgstr ""
+msgstr "Слід вказати принаймні одну категорію."
 
 #: mkt/webapps/models.py:1413
 msgid "You must set up content ratings."
@@ -8924,7 +8927,7 @@ msgstr ""
 
 #: mkt/webapps/models.py:1415
 msgid "You must set up a payment account."
-msgstr ""
+msgstr "Ви повинні встановити обліковий запис оплати."
 
 #: mkt/webapps/models.py:1440
 msgid "This app's submission process has not been fully completed."
@@ -8932,7 +8935,7 @@ msgstr ""
 
 #: mkt/webapps/models.py:1447
 msgid "This app needs to get a content rating."
-msgstr ""
+msgstr "Цей застосунок потребує отримання оцінки вмісту."
 
 #: mkt/webapps/models.py:1453
 msgid "This app needs a payment account set up."
