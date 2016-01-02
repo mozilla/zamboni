@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2015-12-10 18:38+0000\n"
+"PO-Revision-Date: 2016-01-02 13:10+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -157,19 +157,19 @@ msgstr "Arnavutluk"
 
 #: mkt/constants/bango.py:22 mkt/constants/regions.py:133
 msgid "Algeria"
-msgstr ""
+msgstr "Cezayir"
 
 #: mkt/constants/bango.py:23 mkt/constants/regions.py:79
 msgid "American Samoa"
-msgstr ""
+msgstr "Amerikan Samoası"
 
 #: mkt/constants/bango.py:24 mkt/constants/regions.py:75
 msgid "Andorra"
-msgstr ""
+msgstr "Andorra"
 
 #: mkt/constants/bango.py:25 mkt/constants/regions.py:71
 msgid "Angola"
-msgstr ""
+msgstr "Angola"
 
 #: mkt/constants/bango.py:26 mkt/constants/regions.py:72
 msgid "Anguilla"
@@ -177,7 +177,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:27 mkt/constants/regions.py:80
 msgid "Antarctica"
-msgstr ""
+msgstr "Antarktika"
 
 #: mkt/constants/bango.py:28 mkt/constants/regions.py:82
 msgid "Antigua and Barbuda"
@@ -205,7 +205,7 @@ msgstr "Avusturya"
 
 #: mkt/constants/bango.py:34 mkt/constants/regions.py:85
 msgid "Azerbaijan"
-msgstr ""
+msgstr "Azerbaycan"
 
 #: mkt/constants/bango.py:35 mkt/constants/regions.py:94
 msgid "Bahamas"
@@ -261,7 +261,7 @@ msgstr "Bosna Hersek"
 
 #: mkt/constants/bango.py:48 mkt/constants/regions.py:106
 msgid "Botswana"
-msgstr ""
+msgstr "Botsvana"
 
 #: mkt/constants/bango.py:49 mkt/constants/regions.py:105
 msgid "Bouvet Island"
@@ -274,11 +274,11 @@ msgstr "Brezilya"
 
 #: mkt/constants/bango.py:51 mkt/constants/regions.py:174
 msgid "British Indian Ocean Territory"
-msgstr ""
+msgstr "Britanya Hint Okyanusu Toprakları"
 
 #: mkt/constants/bango.py:52 mkt/constants/regions.py:103
 msgid "Brunei Darussalam"
-msgstr ""
+msgstr "Brunei"
 
 #: mkt/constants/bango.py:53 mkt/constants/regions.py:92
 msgid "Bulgaria"
@@ -306,19 +306,19 @@ msgstr "Kanada"
 
 #: mkt/constants/bango.py:59
 msgid "Cape Verde"
-msgstr ""
+msgstr "Yeşil Burun Adaları"
 
 #: mkt/constants/bango.py:60 mkt/constants/regions.py:125
 msgid "Cayman Islands"
-msgstr ""
+msgstr "Cayman Adaları"
 
 #: mkt/constants/bango.py:61 mkt/constants/regions.py:107
 msgid "Central African Republic"
-msgstr ""
+msgstr "Orta Afrika Cumhuriyeti"
 
 #: mkt/constants/bango.py:62 mkt/constants/regions.py:283
 msgid "Chad"
-msgstr ""
+msgstr "Çad"
 
 #: mkt/constants/bango.py:63 mkt/constants/regions.py:111
 msgid "Chile"
@@ -334,7 +334,7 @@ msgstr "Christmas Adası"
 
 #: mkt/constants/bango.py:66 mkt/constants/regions.py:109
 msgid "Cocos (Keeling) Islands"
-msgstr ""
+msgstr "Cocos Adaları"
 
 #: mkt/constants/bango.py:67 mkt/constants/regions.py:118
 msgid "Colombia"
@@ -342,7 +342,7 @@ msgstr "Kolombiya"
 
 #: mkt/constants/bango.py:68 mkt/constants/regions.py:119
 msgid "Comoros"
-msgstr ""
+msgstr "Komorlar"
 
 #: mkt/constants/bango.py:69 mkt/constants/regions.py:116
 msgid "Congo"
@@ -362,7 +362,7 @@ msgstr "Kosta Rika"
 
 #: mkt/constants/bango.py:73 mkt/constants/regions.py:113
 msgid "Côte d'Ivoire"
-msgstr ""
+msgstr "Fildişi Sahili"
 
 #: mkt/constants/bango.py:74 mkt/constants/regions.py:168
 msgid "Croatia"
@@ -374,7 +374,7 @@ msgstr "Küba"
 
 #: mkt/constants/bango.py:76 mkt/constants/regions.py:123
 msgid "Curaçao"
-msgstr ""
+msgstr "Curaçao"
 
 #: mkt/constants/bango.py:77 mkt/constants/regions.py:126
 msgid "Cyprus"
@@ -390,19 +390,19 @@ msgstr "Danimarka"
 
 #: mkt/constants/bango.py:80 mkt/constants/regions.py:129
 msgid "Djibouti"
-msgstr ""
+msgstr "Cibuti"
 
 #: mkt/constants/bango.py:81 mkt/constants/regions.py:130
 msgid "Dominica"
-msgstr ""
+msgstr "Dominika"
 
 #: mkt/constants/bango.py:82 mkt/constants/regions.py:132
 msgid "Dominican Republic"
-msgstr ""
+msgstr "Dominik Cumhuriyeti"
 
 #: mkt/constants/bango.py:83 mkt/constants/regions.py:134
 msgid "Ecuador"
-msgstr ""
+msgstr "Ekvador"
 
 #: mkt/constants/bango.py:84 mkt/constants/regions.py:135
 msgid "Egypt"
@@ -414,11 +414,11 @@ msgstr "El Salvador"
 
 #: mkt/constants/bango.py:86 mkt/constants/regions.py:157
 msgid "Equatorial Guinea"
-msgstr ""
+msgstr "Ekvator Ginesi"
 
 #: mkt/constants/bango.py:87 mkt/constants/regions.py:136
 msgid "Eritrea"
-msgstr ""
+msgstr "Eritre"
 
 #: mkt/constants/bango.py:88 mkt/constants/regions.py:139
 msgid "Estonia"
@@ -430,7 +430,7 @@ msgstr "Etiyopya"
 
 #: mkt/constants/bango.py:90 mkt/constants/regions.py:143
 msgid "Falkland Islands (Malvinas)"
-msgstr ""
+msgstr "Falkland Adaları (Malvinas)"
 
 #: mkt/constants/bango.py:91 mkt/constants/regions.py:145
 msgid "Faroe Islands"
@@ -450,19 +450,19 @@ msgstr "Fransa"
 
 #: mkt/constants/bango.py:95 mkt/constants/regions.py:162
 msgid "French Guiana"
-msgstr ""
+msgstr "Fransız Guyanası"
 
 #: mkt/constants/bango.py:96 mkt/constants/regions.py:252
 msgid "French Polynesia"
-msgstr ""
+msgstr "Fransız Polinezyası"
 
 #: mkt/constants/bango.py:97 mkt/constants/regions.py:81
 msgid "French Southern Territories"
-msgstr ""
+msgstr "Fransız Güney Toprakları"
 
 #: mkt/constants/bango.py:98 mkt/constants/regions.py:147
 msgid "Gabon"
-msgstr ""
+msgstr "Gabon"
 
 #: mkt/constants/bango.py:99 mkt/constants/regions.py:155
 msgid "Gambia"
@@ -483,7 +483,7 @@ msgstr "Gana"
 
 #: mkt/constants/bango.py:103 mkt/constants/regions.py:152
 msgid "Gibraltar"
-msgstr ""
+msgstr "Cebelitarık"
 
 #: mkt/constants/bango.py:104 mkt/constants/regions.py:158
 msgid "Greece"
@@ -499,11 +499,11 @@ msgstr "Grenada"
 
 #: mkt/constants/bango.py:107 mkt/constants/regions.py:154
 msgid "Guadeloupe"
-msgstr ""
+msgstr "Guadeloupe"
 
 #: mkt/constants/bango.py:108 mkt/constants/regions.py:163
 msgid "Guam"
-msgstr ""
+msgstr "Guam"
 
 #: mkt/constants/bango.py:109 mkt/constants/regions.py:161
 msgid "Guatemala"
@@ -511,15 +511,15 @@ msgstr "Guatemala"
 
 #: mkt/constants/bango.py:110 mkt/constants/regions.py:150
 msgid "Guernsey"
-msgstr ""
+msgstr "Guernsey"
 
 #: mkt/constants/bango.py:111
 msgid "Guinea"
-msgstr ""
+msgstr "Gine"
 
 #: mkt/constants/bango.py:112 mkt/constants/regions.py:156
 msgid "Guinea-Bissau"
-msgstr ""
+msgstr "Gine-Bissau"
 
 #: mkt/constants/bango.py:113 mkt/constants/regions.py:164
 msgid "Guyana"
@@ -535,7 +535,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:116
 msgid "Holy See (Vatican City State)"
-msgstr ""
+msgstr "Vatikan"
 
 #: mkt/constants/bango.py:117 mkt/constants/regions.py:167
 msgid "Honduras"
@@ -615,11 +615,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:136
 msgid "Korea, Democratic People's Rep"
-msgstr ""
+msgstr "Kuzey Kore"
 
 #: mkt/constants/bango.py:137 mkt/constants/regions.py:190
 msgid "Korea, Republic of"
-msgstr ""
+msgstr "Güney Kore"
 
 #: mkt/constants/bango.py:138
 msgid "Kosovo"
@@ -651,7 +651,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:145 mkt/constants/regions.py:194
 msgid "Liberia"
-msgstr ""
+msgstr "Liberya"
 
 #: mkt/constants/bango.py:146
 msgid "Libyan Arab Jamahiriya"
@@ -659,7 +659,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:147
 msgid "Liechtenstei"
-msgstr ""
+msgstr "Lihtenştayn"
 
 #: mkt/constants/bango.py:148 mkt/constants/regions.py:200
 msgid "Lithuania"
@@ -671,11 +671,11 @@ msgstr "Lüksemburg"
 
 #: mkt/constants/bango.py:150 mkt/constants/regions.py:203
 msgid "Macao"
-msgstr ""
+msgstr "Makao"
 
 #: mkt/constants/bango.py:151
 msgid "Macedonia, Former Yugoslav Rep"
-msgstr ""
+msgstr "Makendoya"
 
 #: mkt/constants/bango.py:152 mkt/constants/regions.py:208
 msgid "Madagascar"
@@ -731,7 +731,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:165 mkt/constants/regions.py:207
 msgid "Moldova, Republic of"
-msgstr ""
+msgstr "Moldova"
 
 #: mkt/constants/bango.py:166 mkt/constants/regions.py:206
 msgid "Monaco"
@@ -879,7 +879,7 @@ msgstr "Romanya"
 
 #: mkt/constants/bango.py:202
 msgid "Russian Federation"
-msgstr ""
+msgstr "Rusya Federasyonu"
 
 #: mkt/constants/bango.py:203 mkt/constants/regions.py:257
 msgid "Rwanda"
@@ -1205,9 +1205,8 @@ msgstr "Sahibi"
 # <option> text in a <select> for Author role in an add-on.
 #: mkt/constants/base.py:147
 #: mkt/developers/templates/developers/apps/owner.html:94
-#, fuzzy
 msgid "Viewer"
-msgstr "Viewer"
+msgstr "Görüntüleyici"
 
 #: mkt/constants/base.py:148
 #: mkt/developers/templates/developers/skeleton_impala.html:60
@@ -1611,7 +1610,7 @@ msgstr ""
 
 #: mkt/constants/features.py:66
 msgid "Contacts"
-msgstr ""
+msgstr "Kişiler"
 
 #: mkt/constants/features.py:67
 msgid "The app requires the `navigator.mozContacts` API."
@@ -3008,7 +3007,7 @@ msgstr "Anahtar"
 
 #: mkt/developers/templates/developers/api.html:62
 msgid "Secret"
-msgstr ""
+msgstr "Gizli"
 
 #: mkt/developers/templates/developers/api.html:80
 #: mkt/developers/templates/developers/apps/status.html:236
@@ -3232,9 +3231,8 @@ msgstr ""
 #: mkt/lookup/templates/lookup/transaction_summary.html:21
 #: mkt/reviewers/templates/reviewers/logs.html:16
 #: mkt/reviewers/templates/reviewers/moderatelog.html:16
-#, fuzzy
 msgid "Date"
-msgstr "Date"
+msgstr "Tarih"
 
 #: mkt/developers/templates/developers/transactions.html:43
 #: mkt/lookup/templates/lookup/app_summary.html:43
@@ -4012,9 +4010,8 @@ msgstr "Uygulama Ayrıntıları"
 #: mkt/reviewers/templates/reviewers/includes/details.html:42
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:66
 #: mkt/translations/templates/translations/trans-menu.html:13
-#, fuzzy
 msgid "Default Locale"
-msgstr "Default Locale"
+msgstr "Varsayılan dil"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:18
 msgid ""
@@ -4396,9 +4393,8 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:103
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:34
 #: mkt/lookup/templates/lookup/helpers/app_header.html:27
-#, fuzzy
 msgid "Statistics"
-msgstr "Statistics"
+msgstr "İstatistikler"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:109
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:39
@@ -6019,9 +6015,8 @@ msgid "all time"
 msgstr "tüm zamanlar"
 
 #: mkt/lookup/templates/lookup/app_summary.html:19
-#, fuzzy
 msgid "Authors"
-msgstr "Authors"
+msgstr "Yazarlar"
 
 #: mkt/lookup/templates/lookup/app_summary.html:35
 msgid "Manifest"
@@ -6146,9 +6141,8 @@ msgstr ""
 # 78%
 # 100%
 #: mkt/lookup/templates/lookup/app_summary.html:149
-#, fuzzy
 msgid "Version History"
-msgstr "{0} Version History"
+msgstr "Sürüm geçmişi"
 
 #: mkt/lookup/templates/lookup/app_summary.html:154
 msgid "Version (ID)"
@@ -6465,9 +6459,8 @@ msgstr ""
 #: mkt/search/forms.py:97 mkt/search/forms.py:99
 #: mkt/templates/mkt/header.html:9 mkt/templates/mkt/header.html:12
 #: mkt/templates/mkt/header.html:13
-#, fuzzy
 msgid "Search"
-msgstr "Search"
+msgstr "Arama"
 
 #: mkt/lookup/templates/lookup/includes/group_search.html:4
 msgid "Group Lookup"
@@ -7000,9 +6993,8 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:127
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:138
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:7
-#, fuzzy
 msgid "Flags"
-msgstr "Flags"
+msgstr "Bayraklar"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:23
 #: mkt/reviewers/templates/reviewers/queue.html:34
@@ -7133,14 +7125,12 @@ msgid "App has been deleted."
 msgstr "Uygulama silindi."
 
 #: mkt/reviewers/templates/reviewers/logs.html:44
-#, fuzzy
 msgid "Show Comments"
-msgstr "Show Comments"
+msgstr "Yorumları Göster"
 
 #: mkt/reviewers/templates/reviewers/logs.html:45
-#, fuzzy
 msgid "Hide Comments"
-msgstr "Hide Comments"
+msgstr "Yorumları Gizle"
 
 #: mkt/reviewers/templates/reviewers/logs.html:57
 #, fuzzy
@@ -7543,9 +7533,8 @@ msgstr ""
 
 # Header for a column in a table
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:35
-#, fuzzy
 msgid "Validation"
-msgstr "Validation"
+msgstr "Doğrulama"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:37
 msgid "Contents"
@@ -7735,9 +7724,8 @@ msgstr ""
 
 # 100%
 #: mkt/search/forms.py:166
-#, fuzzy
 msgid "Tags"
-msgstr "Tags"
+msgstr "Etiketler"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
