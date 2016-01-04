@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2016-01-01 11:46+0000\n"
+"PO-Revision-Date: 2016-01-04 04:22+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -1312,15 +1312,15 @@ msgstr "6단계"
 
 #: mkt/constants/base.py:292
 msgid "Level 7"
-msgstr ""
+msgstr "7 단계"
 
 #: mkt/constants/base.py:293
 msgid "Level 8"
-msgstr ""
+msgstr "8 단계"
 
 #: mkt/constants/base.py:294
 msgid "Level 9"
-msgstr ""
+msgstr "9 단계"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
@@ -1344,7 +1344,7 @@ msgstr ""
 
 #: mkt/constants/categories.py:10
 msgid "Kids"
-msgstr ""
+msgstr "어린이"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:46
 msgid "Games"
@@ -1430,15 +1430,15 @@ msgstr "도구"
 
 #: mkt/constants/comm.py:45
 msgid "No action"
-msgstr ""
+msgstr "작업 안 함"
 
 #: mkt/constants/comm.py:48
 msgid "Banned"
-msgstr ""
+msgstr "금지됨"
 
 #: mkt/constants/comm.py:49
 msgid "Reviewer comment"
-msgstr ""
+msgstr "검토자 댓글"
 
 #: mkt/constants/comm.py:50 mkt/reviewers/forms.py:197 mkt/site/log.py:196
 msgid "Escalated"
@@ -1446,7 +1446,7 @@ msgstr "검토 대상이 됨"
 
 #: mkt/constants/comm.py:51
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "비공개 검토자 댓글"
 
 #: mkt/constants/comm.py:52
 msgid "App resubmission"
@@ -1478,11 +1478,11 @@ msgstr "개발자 댓글"
 
 #: mkt/constants/comm.py:60
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "검토자가 장치를 변경함"
 
 #: mkt/constants/comm.py:61
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "검토지에 의해 요구사항 변경됨"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Manifest Change"
@@ -1530,15 +1530,15 @@ msgstr ""
 
 #: mkt/constants/comm.py:73
 msgid "Additional review failed"
-msgstr ""
+msgstr "추가 심사 실패"
 
 #: mkt/constants/comm.py:74
 msgid "Version notes for reviewer"
-msgstr ""
+msgstr "검토자를 위한 버전 노트"
 
 #: mkt/constants/comm.py:75
 msgid "Public reviewer comment"
-msgstr ""
+msgstr "공공 검토자 댓글"
 
 #: mkt/constants/comm.py:76 mkt/site/log.py:545
 msgid "Abuse reports investigation"
@@ -1966,7 +1966,7 @@ msgstr ""
 
 #: mkt/constants/features.py:330
 msgid "512MB RAM Device"
-msgstr ""
+msgstr "512MB RAM 장치"
 
 #: mkt/constants/features.py:331
 msgid "The app requires the device to have at least 512MB RAM."
@@ -1974,7 +1974,7 @@ msgstr "이 앱은 적어도 512MB 이상의 램을 요구합니다."
 
 #: mkt/constants/features.py:336
 msgid "1GB RAM Device"
-msgstr ""
+msgstr "1GB RAM 장치"
 
 #: mkt/constants/features.py:337
 msgid "The app requires the device to have at least 1GB RAM."
@@ -1982,7 +1982,7 @@ msgstr "이 앱은 적어도 1GB 이상의 램을 요구합니다."
 
 #: mkt/constants/features.py:342
 msgid "NFC"
-msgstr ""
+msgstr "NFC"
 
 #: mkt/constants/features.py:343
 msgid "The app requires access to the Near Field Communication (NFC) API."
@@ -1990,7 +1990,7 @@ msgstr "본 앱은 Near Field Communication (NFC) API 접속을 필요로 합니
 
 #: mkt/constants/features.py:357
 msgid "UDP Sockets"
-msgstr ""
+msgstr "UDP 소켓"
 
 #: mkt/constants/features.py:358
 msgid "The app requires the platform to allow opening raw UDP sockets."
@@ -2176,7 +2176,7 @@ msgstr ""
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
-msgstr ""
+msgstr "리비아"
 
 #: mkt/constants/regions.py:197
 msgid "Liechtenstein"
@@ -2184,7 +2184,7 @@ msgstr ""
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
-msgstr ""
+msgstr "세인트 마틴(프랑스령)"
 
 #: mkt/constants/regions.py:212
 msgid "Macedonia, the former Yugoslav Republic of"
@@ -2216,7 +2216,7 @@ msgstr "탄자니아"
 
 #: mkt/constants/regions.py:303
 msgid "Holy See"
-msgstr ""
+msgstr "바티칸"
 
 #: mkt/constants/regions.py:305
 msgid "Venezuela"
@@ -2264,11 +2264,11 @@ msgstr "지불 서버에 연결 할 수 없습니다."
 
 #: mkt/developers/api_payments.py:128
 msgid "Cannot delete shared account"
-msgstr ""
+msgstr "공유 계정을 삭제할 수 없습니다"
 
 #: mkt/developers/cron.py:128
 msgid "Content rating changed to Adult."
-msgstr ""
+msgstr "콘텐츠 등급을 성인용으로 변경하였습니다."
 
 #: mkt/developers/forms.py:63
 msgid "You cannot select {region}."
@@ -2346,7 +2346,7 @@ msgstr "zip 파일에서 설치선언문 압축을 푸는 도중에 오류가 �
 
 #: mkt/developers/forms.py:505
 msgid "Hosted URL:"
-msgstr ""
+msgstr "호스트 URL:"
 
 #: mkt/developers/forms.py:506
 msgid ""
@@ -2364,7 +2364,7 @@ msgstr "이 설명은 상세 정보 페이지에 노출됩니다."
 
 #: mkt/developers/forms.py:515 mkt/submit/forms.py:288
 msgid "Search Keywords:"
-msgstr ""
+msgstr "검색 키워드:"
 
 #: mkt/developers/forms.py:517
 #: mkt/developers/templates/developers/apps/edit/basic.html:143
@@ -2418,11 +2418,11 @@ msgstr ""
 
 #: mkt/developers/forms.py:792
 msgid "App Visibility:"
-msgstr ""
+msgstr "앱 표시:"
 
 #: mkt/developers/forms.py:794
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
-msgstr ""
+msgstr "<b>내 팀 제한</b>: 팀 구성원만 볼 수 있습니다."
 
 #: mkt/developers/forms.py:840
 msgid "Choose the regions your app will be listed in:"
@@ -2442,7 +2442,7 @@ msgstr "대부분의 지역에서 사용가능한 나의 앱 만들기"
 
 #: mkt/developers/forms.py:851
 msgid "Choose where my app is made available"
-msgstr ""
+msgstr "앱 사용 가능 지역 선택"
 
 #: mkt/developers/forms.py:1004
 #: mkt/developers/templates/developers/apps/edit/basic.html:189
@@ -2521,7 +2521,7 @@ msgstr "웹 사이트"
 
 #: mkt/developers/forms.py:1118
 msgid "Command line"
-msgstr ""
+msgstr "커멘드라인"
 
 #: mkt/developers/forms.py:1139
 msgid ""
@@ -2587,7 +2587,7 @@ msgstr "업그레이드 아님"
 
 #: mkt/developers/forms_payments.py:369
 msgid "Bank Account Holder Name"
-msgstr ""
+msgstr "은행 계좌 소유자 이름"
 
 #: mkt/developers/forms_payments.py:371
 msgid "Company Name"
@@ -2823,7 +2823,7 @@ msgstr "미리보기를 열 수 없습니다."
 
 #: mkt/developers/utils.py:107
 msgid "Promo image could not be opened."
-msgstr ""
+msgstr "홍보 이미지를 열 수 없습니다."
 
 #: mkt/developers/utils.py:114
 msgid "Icons must be at least 128px by 128px."
