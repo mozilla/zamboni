@@ -10,7 +10,7 @@ from django.db.models import Q
 import commonware.log
 from elasticsearch_dsl import Search
 from elasticsearch_dsl import filter as es_filter
-from tower import ugettext_lazy as _lazy
+from django.utils.translation import ugettext_lazy as _lazy
 
 import mkt
 from mkt.abuse.models import AbuseReport

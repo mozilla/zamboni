@@ -9,7 +9,7 @@ from django.forms.formsets import formset_factory, BaseFormSet
 
 import commonware
 import happyforms
-from tower import ugettext as _, ugettext_lazy as _lazy
+from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 import mkt
 

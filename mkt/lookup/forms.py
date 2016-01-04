@@ -5,7 +5,7 @@ from django.conf import settings
 
 import commonware.log
 import happyforms
-from tower import ugettext_lazy as _lazy
+from django.utils.translation import ugettext_lazy as _lazy
 
 import mkt
 from mkt.access.models import Group

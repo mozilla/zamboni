@@ -3,7 +3,7 @@ from django.forms.models import modelformset_factory
 
 import happyforms
 from quieter_formset.formset import BaseModelFormSet
-from tower import ugettext_lazy as _lazy
+from django.utils.translation import ugettext_lazy as _lazy
 
 import mkt
 from mkt.ratings import (REVIEW_MODERATE_DELETE, REVIEW_MODERATE_KEEP,

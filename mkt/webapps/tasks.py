@@ -19,7 +19,7 @@ from celery import chord
 from celery.exceptions import RetryTaskError
 from celery import task
 from requests.exceptions import RequestException
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 import mkt
 from lib.post_request_task.task import task as post_request_task

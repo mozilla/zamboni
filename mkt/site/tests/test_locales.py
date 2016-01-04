@@ -1,13 +1,11 @@
-from django.utils.translation import trans_real
-
-import tower
+from django.utils.translation import trans_real, activate
 
 
 def test_mkt_locale_not_in_django():
     """
     We load gettext catalogs in this order:
         django/locale/django.po
-        locale/messages.po
+        locale/django.po
 
     If Django doesn't have a locale, it returns the en-us catalog as a
     fallback.  But then we take that catalog and merge in our messages.po.
@@ -15,7 +13,7 @@ def test_mkt_locale_not_in_django():
 
     This test will be invalid once Django gets an mn locale.
     """
-    tower.activate('mn')
+    activate('mn')
     en = trans_real._translations['en-US']
     mn = trans_real._translations['mn']
     assert en != mn

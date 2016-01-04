@@ -20,6 +20,7 @@ from django.core.urlresolvers import reverse
 from django.core.validators import validate_slug, ValidationError
 from django.db.models.signals import post_save
 from django.http import HttpRequest
+from django.utils import translation
 from django.utils.encoding import smart_str, smart_unicode
 from django.utils.functional import Promise
 from django.utils.http import urlquote
@@ -27,6 +28,7 @@ from django.utils.http import urlquote
 import bleach
 import chardet
 import commonware.log
+import jingo
 import jinja2
 import pytz
 from cef import log_cef as _log_cef
@@ -41,6 +43,11 @@ from mkt.constants.applications import DEVICE_TYPES
 from mkt.site.storage_utils import (local_storage, private_storage,
                                     public_storage, storage_is_remote)
 from mkt.translations.models import Translation
+
+
+# Install gettext functions into Jingo's Jinja2 environment.
+env = jingo.env
+env.install_gettext_translations(translation, newstyle=True)
 
 
 def days_ago(n):

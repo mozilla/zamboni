@@ -7,7 +7,7 @@ import requests
 from PIL import Image
 from rest_framework import exceptions
 
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 
 from django.conf import settings

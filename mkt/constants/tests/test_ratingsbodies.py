@@ -1,7 +1,7 @@
 from contextlib import contextmanager
 
 from nose.tools import eq_
-from tower import activate
+from django.utils.translation import activate
 
 import mkt.site.tests
 

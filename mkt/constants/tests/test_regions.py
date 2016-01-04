@@ -1,7 +1,7 @@
 from contextlib import contextmanager
 from mpconstants.countries import COUNTRY_DETAILS
 from nose.tools import eq_, ok_
-from tower import activate
+from django.utils.translation import activate
 
 import mkt.constants.regions as regions
 from mkt.site.tests import TestCase

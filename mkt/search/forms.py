@@ -1,6 +1,6 @@
 from django import forms
 
-from tower import ugettext_lazy as _lazy
+from django.utils.translation import ugettext_lazy as _lazy
 
 import mkt
 from mkt.constants import (CATEGORY_CHOICES, CATEGORY_CHOICES_DICT,

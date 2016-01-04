@@ -1,7 +1,8 @@
 import jinja2
-from jingo import env, register
+from jingo import register
 
 from mkt.constants.applications import DEVICE_TYPES
+from mkt.site.utils import env
 
 
 @register.function

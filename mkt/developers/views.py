@@ -27,7 +27,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.status import is_success
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 from waffle.decorators import waffle_switch
 
 import mkt

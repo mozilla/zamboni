@@ -13,7 +13,7 @@ import commonware
 import jinja2
 import waffle
 from slumber.exceptions import HttpClientError
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 from waffle.decorators import waffle_switch
 
 import mkt

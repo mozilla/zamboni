@@ -6,7 +6,7 @@ from django.shortcuts import redirect, render
 import basket
 import commonware.log
 from session_csrf import anonymous_csrf
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 from mkt.developers.forms import DevNewsletterForm
 

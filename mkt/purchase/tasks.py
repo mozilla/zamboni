@@ -2,7 +2,7 @@ import logging
 
 import jingo.helpers
 from celery import task
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 from mkt.purchase.models import Contribution
 from mkt.site.helpers import absolutify
@@ -21,7 +21,6 @@ def send_purchase_receipt(contrib_id, **kw):
     Sends an email to the purchaser of the app.
     """
     contrib = Contribution.objects.get(pk=contrib_id)
-
     with contrib.user.activate_lang():
         addon = contrib.addon
         version = addon.current_version or addon.latest_version

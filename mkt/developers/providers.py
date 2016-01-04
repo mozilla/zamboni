@@ -8,7 +8,7 @@ from django.core.urlresolvers import reverse
 
 import bleach
 import commonware
-from tower import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 
 from lib.crypto import generate_key
 # Because client is used in the classes, renaming here for clarity.
