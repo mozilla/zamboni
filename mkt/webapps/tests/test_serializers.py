@@ -158,7 +158,7 @@ class TestAppSerializer(mkt.site.tests.TestCase):
 
     def test_with_preview(self):
         obj = Preview.objects.create(**{
-            'filetype': 'image/png', 'thumbtype': 'image/png',
+            'filetype': 'image/png',
             'addon': self.app})
         preview = self.serialize(self.app)['previews'][0]
         self.assertSetEqual(preview, ['filetype', 'id', 'image_url',

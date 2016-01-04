@@ -523,7 +523,6 @@ class TestPreviewModel(mkt.site.tests.TestCase):
     def setUp(self):
         app = Webapp.objects.create()
         self.preview = Preview.objects.create(addon=app, filetype='image/png',
-                                              thumbtype='image/png',
                                               caption='my preview')
 
     def test_as_dict(self):

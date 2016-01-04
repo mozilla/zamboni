@@ -86,7 +86,6 @@ def generate_previews(app, n=1):
         img = gen.generate(unicode(app.name) + unichr(i), 320, 480,
                            output_format="png")
         p = Preview.objects.create(addon=app, filetype="image/png",
-                                   thumbtype="image/png",
                                    caption="screenshot " + str(i),
                                    position=i)
         fn = tempfile.mktemp()
@@ -401,14 +400,12 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
             copy_stored_file(f, t, src_storage=local_storage,
                              dst_storage=private_storage)
             p = Preview.objects.create(addon=app, filetype="video/webm",
-                                       thumbtype="image/png",
                                        caption="video " + str(i),
                                        position=i)
             resize_video(t, p.pk)
     if preview_files:
         for i, f in enumerate(preview_files):
             p = Preview.objects.create(addon=app, filetype="image/png",
-                                       thumbtype="image/png",
                                        caption="screenshot " + str(i),
                                        position=i + len(video_files))
             t = tempfile.mktemp()
