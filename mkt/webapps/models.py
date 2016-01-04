@@ -220,7 +220,6 @@ class AddonUser(models.Model):
 class Preview(ModelBase):
     addon = models.ForeignKey('Webapp', related_name='previews')
     filetype = models.CharField(max_length=25)
-    thumbtype = models.CharField(max_length=25)
     caption = TranslatedField()
 
     position = models.IntegerField(default=0)
