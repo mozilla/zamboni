@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-02 10:00-0700\n"
-"PO-Revision-Date: 2015-12-29 20:24+0000\n"
+"PO-Revision-Date: 2015-12-29 20:50+0000\n"
 "Last-Translator: Петро <pe3k.lutsk@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -7660,11 +7660,11 @@ msgstr ""
 
 #: mkt/search/forms.py:46
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: mkt/search/forms.py:54
 msgid "Any Device Type"
-msgstr ""
+msgstr "Будь-який тип пристрою"
 
 #: mkt/search/forms.py:56
 msgid "Mobile"
@@ -7672,19 +7672,19 @@ msgstr "Мобільний"
 
 #: mkt/search/forms.py:57
 msgid "Tablet"
-msgstr ""
+msgstr "Планшет"
 
 #: mkt/search/forms.py:64
 msgid "All Categories"
-msgstr ""
+msgstr "Всі категорії"
 
 #: mkt/search/forms.py:91
 msgid "Search for apps"
-msgstr ""
+msgstr "Пошук програм"
 
 #: mkt/search/forms.py:107
 msgid "Device type"
-msgstr ""
+msgstr "Тип пристрою"
 
 #: mkt/search/forms.py:151
 msgid "Premium types"
@@ -7692,7 +7692,7 @@ msgstr ""
 
 #: mkt/search/forms.py:155
 msgid "App type"
-msgstr ""
+msgstr "Тип програми"
 
 #: mkt/search/forms.py:159
 msgid "Installs allowed from"
@@ -7700,7 +7700,7 @@ msgstr ""
 
 #: mkt/search/forms.py:160
 msgid "Everywhere"
-msgstr ""
+msgstr "Всюди"
 
 #: mkt/search/forms.py:162
 msgid "Works offline"
@@ -7708,11 +7708,11 @@ msgstr "Працює поза мережею"
 
 #: mkt/search/forms.py:164
 msgid "Supported languages"
-msgstr ""
+msgstr "Підтримувані мови"
 
 #: mkt/search/forms.py:165
 msgid "Author name"
-msgstr ""
+msgstr "Ім’я автора"
 
 #: mkt/search/forms.py:166
 msgid "Tags"
@@ -7732,15 +7732,15 @@ msgstr "Налаштування рахунку"
 
 #: mkt/site/context_processors.py:58
 msgid "Change Password"
-msgstr ""
+msgstr "Змінити пароль"
 
 #: mkt/site/context_processors.py:60
 msgid "Sign out"
-msgstr ""
+msgstr "Вийти"
 
 #: mkt/site/context_processors.py:63
 msgid "Developer Hub"
-msgstr ""
+msgstr "Центр розробника"
 
 #: mkt/site/context_processors.py:77
 msgid "Admin Tools"
@@ -7748,7 +7748,7 @@ msgstr "Адміністративні інструменти"
 
 #: mkt/site/fields.py:32
 msgid "Enter at least one value."
-msgstr ""
+msgstr "Введіть хоча б одне значення."
 
 #: mkt/site/fields.py:53
 msgid "Hexadecimal color"
@@ -7756,11 +7756,11 @@ msgstr ""
 
 #: mkt/site/fields.py:58
 msgid "Must be a valid hex color code, e.g. #FF0035."
-msgstr ""
+msgstr "Має бути припустимий шістнадцятковий колір коду, наприклад #FF0035."
 
 #: mkt/site/forms.py:9
 msgid "As soon as it is approved."
-msgstr ""
+msgstr "Як тільки його затвердять."
 
 #: mkt/site/forms.py:10
 msgid "Not until I manually make it public."
@@ -7768,41 +7768,41 @@ msgstr ""
 
 #: mkt/site/helpers.py:160
 msgid "Home"
-msgstr ""
+msgstr "Домівка"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: mkt/site/helpers.py:312
 msgid "{0} ago"
-msgstr ""
+msgstr "{0} тому"
 
 #: mkt/site/log.py:17
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} було створено."
 
 #: mkt/site/log.py:25
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "Властивості {addon} змінено."
 
 #: mkt/site/log.py:31
 msgid "{addon} description edited."
-msgstr ""
+msgstr "Опис {addon} змінено."
 
 #: mkt/site/log.py:37
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Категорії для {addon} змінено."
 
 #: mkt/site/log.py:43
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) додано до {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 #: mkt/site/log.py:51
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) вилучено з {addon}."
 
 #: mkt/site/log.py:58
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Внески для {addon}."
 
 #: mkt/site/log.py:63
 msgid "{addon} disabled."
@@ -7814,11 +7814,11 @@ msgstr "{addon} увімкнено."
 
 #: mkt/site/log.py:76
 msgid "Stats set public for {addon}."
-msgstr ""
+msgstr "Статистику для {addon} встановлено загальнодоступною."
 
 #: mkt/site/log.py:83
 msgid "{addon} stats set to private."
-msgstr ""
+msgstr "Статистику {addon} встановлено приватною."
 
 #. L10n: {0} is the status
 #: mkt/site/log.py:90
@@ -8172,7 +8172,7 @@ msgstr ""
 
 #: mkt/site/log.py:553
 msgid "Manual re-review"
-msgstr ""
+msgstr "Ручна повторна перевірка"
 
 #: mkt/site/log.py:570
 msgid "Created: {0}."
@@ -8237,20 +8237,20 @@ msgstr "Вимоги змінено"
 #. L10n: {0} is the status
 #: mkt/site/log.py:657
 msgid "{version} status changed to {0}."
-msgstr ""
+msgstr "Статус {version} змінено на {0}."
 
 #. L10n: {0} is the status
 #: mkt/site/log.py:664
 msgid "User {0.name} {0.id} deleted via lookup tool."
-msgstr ""
+msgstr "Користувача {0.name} {0.id} видалено через інструмент пошуку."
 
 #: mkt/site/log.py:670
 msgid "{addon} content rating changed to Adult."
-msgstr ""
+msgstr "Рейтинг вмісту {addon} змінено на Дорослий."
 
 #: mkt/site/log.py:676
 msgid "{addon} content rating changed."
-msgstr ""
+msgstr "Рейтинг вмісту {addon} змінено."
 
 #: mkt/site/log.py:681
 msgid "Priority review requested for {addon}."
@@ -8460,7 +8460,7 @@ msgstr ""
 
 #: mkt/submit/forms.py:327
 msgid "Your comments for reviewers:"
-msgstr ""
+msgstr "Ваші коментарі для рецензентів:"
 
 #: mkt/submit/forms.py:329
 msgid ""
@@ -8486,14 +8486,14 @@ msgstr "Змінити інформацію про програму"
 #: mkt/submit/templates/submit/next_steps.html:10
 #: mkt/submit/templates/submit/terms.html:8
 msgid "Submit App"
-msgstr ""
+msgstr "Представити програму"
 
 #: mkt/submit/templates/submit/details.html:19
 #: mkt/submit/templates/submit/manifest.html:6
 #: mkt/submit/templates/submit/manifest.html:24
 #: mkt/submit/templates/submit/terms.html:3
 msgid "Submit an App"
-msgstr ""
+msgstr "Представити програму"
 
 #: mkt/submit/templates/submit/details.html:25
 msgid ""
@@ -8673,10 +8673,13 @@ msgstr ""
 msgid ""
 "To begin, please read and accept our <strong>Developer Agreement</strong>:"
 msgstr ""
+"Щоб почати, прочитайте і прийміть нашу <strong>угоду розробника</strong>:"
 
 #: mkt/submit/templates/submit/terms.html:47
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr ""
+"Mozilla хоче зв'язатися зі мною з приводу новин та опитувань для розробників"
+" програм"
 
 #: mkt/submit/tests/test_forms.py:342
 msgid "Héllo"
@@ -8709,6 +8712,8 @@ msgstr[2] "У вас на {0} міток більше допустимого."
 msgid ""
 "All tags must be %s characters or less after invalid characters are removed."
 msgstr ""
+"Довжина всіх міток не повинна перевищувати %s символів після того, як "
+"вилучено заборонені символи."
 
 #: mkt/tags/utils.py:56
 msgid "All tags must be at least {0} character."
@@ -8842,7 +8847,7 @@ msgstr ""
 
 #: mkt/users/notifications.py:90
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "сумісність мого додатку не може бути оновлена"
 
 #: mkt/users/notifications.py:99
 msgid "my sdk-based add-on cannot be upgraded"
@@ -8850,28 +8855,34 @@ msgstr ""
 
 #: mkt/users/notifications.py:108
 msgid "my add-on is reviewed by an editor"
-msgstr ""
+msgstr "мій додаток перевірений редактором"
 
 #: mkt/users/notifications.py:117
 msgid "Mozilla needs to contact me about my individual add-on"
 msgstr ""
+"Mozilla необхідно зв'язатися зі мною з приводу мого індивідуального додатку"
 
 #: mkt/users/notifications.py:126
 msgid "my app is reviewed by an editor"
-msgstr ""
+msgstr "моя програма перевірена редактором"
 
 #: mkt/users/notifications.py:132
 msgid "Mozilla needs to contact me about my individual app"
 msgstr ""
+"Mozilla необхідно зв'язатися зі мною з приводу моєї індивідуальної програми"
 
 #: mkt/users/notifications.py:139
 msgid ""
 "Mozilla wants to contact me about relevant App Developer news and surveys"
 msgstr ""
+"Mozilla хоче зв'язатися зі мною з приводу новин та опитувань для розробників"
+" програм"
 
 #: mkt/users/notifications.py:150
 msgid "Mozilla wants to contact me about new regions added to the Marketplace"
 msgstr ""
+"Mozilla хоче зв'язатися зі мною з приводу нових регіонів, доданих на "
+"Marketplace"
 
 #: mkt/users/notifications.py:158
 msgid "User Notifications"
@@ -8890,6 +8901,8 @@ msgid ""
 "A user with that email address does not exist, or the user has not yet "
 "accepted the developer agreement."
 msgstr ""
+"Користувача з цією адресою не існує або користувач не прийняв угоду "
+"розробника."
 
 #: mkt/users/views.py:87
 msgid "Native FxA authentication failure."
@@ -8907,7 +8920,7 @@ msgstr "У списку"
 
 #: mkt/webapps/models.py:1339
 msgid "You must provide a support email or URL."
-msgstr ""
+msgstr "Ви повинні надати URL або адресу електронної пошти підтримки."
 
 #: mkt/webapps/models.py:1341
 msgid "You must provide an app name."
@@ -8923,7 +8936,7 @@ msgstr "Слід вказати принаймні одну категорію."
 
 #: mkt/webapps/models.py:1413
 msgid "You must set up content ratings."
-msgstr ""
+msgstr "Ви повинні вказати рейтинги вмісту."
 
 #: mkt/webapps/models.py:1415
 msgid "You must set up a payment account."
@@ -8939,7 +8952,7 @@ msgstr "Цей застосунок потребує отримання оцін
 
 #: mkt/webapps/models.py:1453
 msgid "This app needs a payment account set up."
-msgstr ""
+msgstr "Цей застосунок потребує встановленого облікового запису оплати."
 
 #. L10n: An app is awaiting approval for a particular region.
 #: mkt/webapps/models.py:2672
