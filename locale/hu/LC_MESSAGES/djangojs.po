@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-12 10:27-0700\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2016-01-06 13:06-0800\n"
 "PO-Revision-Date: 2015-10-27 10:08+0000\n"
 "Last-Translator: Kroszki <kroszki@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -46,6 +46,7 @@ msgstr "Az összecsomagolt appnak <code>.zip</code> kiterjesztésűnek kell lenn
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-packaged-app.js:89
+#, fuzzy, python-format
 msgid "{0}% complete"
 msgstr "{0}% kész"
 
@@ -561,7 +562,8 @@ msgstr "Hiba az app buktatásakor: {app}"
 msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
 msgstr "Elnézést, hiba történt az értékelési előzmények lekérésekor. Próbáljon meg újra bejelentkezni.<p>"
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary 18th 2014 12:12 pm").
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary
+#. 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
 msgstr "{0} által ekkor: {1}"
