@@ -2260,7 +2260,7 @@ msgstr "यह स्लग पहले से ही उपयोग में
 
 #: mkt/developers/forms.py:575 mkt/submit/forms.py:372
 msgid "The slug cannot be \"%s\". Please choose another."
-msgstr "यह स्लग \"% s \" नहीं हो सकता. कृपया दूसरा चुनें."
+msgstr "यह स्लग \"%s\" नहीं हो सकता. कृपया दूसरा चुनें."
 
 #: mkt/developers/forms.py:603
 msgid "Manifest URL changed from {before_url} to {after_url}"
