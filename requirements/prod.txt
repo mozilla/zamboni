@@ -11,12 +11,16 @@ basket-client==0.3.11
 # billiard is required by celery
 billiard==3.3.0.22
 bleach==1.4.2
+# blessings is used by dennis
+blessings==1.6
 boto==2.38.0
 # cef is required by heka-py-cef
 cef==0.5
 celery==3.1.19
 certifi==2015.11.20.1
 chardet==2.3.0
+# click is required by dennis
+click==4.0
 commonware==0.4.3
 # cookies is required by responses
 cookies==2.2.1
