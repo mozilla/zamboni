@@ -36,7 +36,7 @@ class ExtensionValidator(object):
             u'longer than 132 characters.'),
         'ICON_INCORRECT_DIMENSIONS': _(
             u'The icon file `%(icon_path)s` is not the specified dimensions '
-            u' of %(icon_size)s x %(icon_size)s as defined in the manifest.'),
+            u'of %(icon_size)s x %(icon_size)s as defined in the manifest.'),
         'ICON_DOES_NOT_EXIST': _(
             u'The icon file `%(icon_path)s` is referenced in the manifest but'
             u' does not exist in the ZIP file.'),

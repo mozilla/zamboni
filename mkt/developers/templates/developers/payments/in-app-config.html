@@ -20,10 +20,10 @@
     <div id="in-app-config" class="devhub-form island">
       <form class="item in-app-config" method="post" action="{{ request.path }}">
         <p>
-          {{ _('The Firefox Marketplace allows your app to take in-app payments.
-                The <a href="{guide}">in-app payment guide</a> explains how to
-                configure your app for payments with the parameters below.
-                ')|f(guide='https://developer.mozilla.org/en-US/Marketplace/Monetization/In-app_payments_section/Introduction_In-app_Payments') }}
+          {{ _('The Firefox Marketplace allows your app to take in-app '
+               'payments. The <a href="{guide}">in-app payment guide</a> '
+               'explains how to configure your app for payments with the '
+               'parameters below.')|f(guide='https://developer.mozilla.org/en-US/Marketplace/Monetization/In-app_payments_section/Introduction_In-app_Payments') }}
         </p>
         {{ csrf() }}
         <table>

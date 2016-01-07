@@ -486,7 +486,7 @@ class ESCALATE_MANUAL(_LOG):
 class VIDEO_ERROR(_LOG):
     id = 74
     format = _(u'Video removed from {addon} because of a problem with '
-               u'the video. ')
+               u'the video.')
     short = _(u'Video removed')
 
 
