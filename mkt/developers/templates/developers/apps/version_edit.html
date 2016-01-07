@@ -23,10 +23,7 @@
           <tr>
             <th>
               <label data-for="{{ form.releasenotes.auto_id }}">{{ _('Version Notes') }}
-              {{ tip(None, _('Information about changes in this release, new features,
-                              known bugs, and other useful information specific to this
-                              release/version. This information is also shown in the
-                              Apps Manager when updating.')) }}
+              {{ tip(None, _('Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Apps Manager when updating.')) }}
               </label>
             </th>
             <td>
@@ -38,9 +35,7 @@
           <tr>
             <th>
               <label for="{{ form.approvalnotes.auto_id }}">{{ _('Notes for Reviewers') }}</label>
-              {{ tip(None, _('Optionally, enter any information that may be useful
-                              to the Reviewer reviewing this app, such as test
-                              account information.')) }}
+              {{ tip(None, _('Optionally, enter any information that may be useful to the Reviewer reviewing this app, such as test account information.')) }}
             </th>
             <td>
               {{ form.approvalnotes.errors }}

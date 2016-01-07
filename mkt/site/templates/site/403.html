@@ -8,8 +8,8 @@
       <h1>{{ _('Oops! Not allowed.') }}</h1>
       <p>{{ _("You tried to do something that you weren't allowed to.") }}</p>
     {% if because_csrf %}
-      <p>{{ _('Try going back to the previous page, refreshing and trying
-              again.') }}</p>
+      <p>{{ _("Try going back to the previous page, refreshing and trying "
+              "again.") }}</p>
     {% endif %}
   </section>
 {% endblock %}

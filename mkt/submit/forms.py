@@ -296,7 +296,7 @@ class AppDetailsBasicForm(AppSupportFormMixin, TranslationFormMixin,
         widget=TransTextarea(attrs={'rows': 6}),
         help_text=_lazy(
             u'A privacy policy explains how you handle data received '
-            u'through your app.  For example: what data do you receive? '
+            u'through your app. For example: what data do you receive? '
             u'How do you use it? Who do you share it with? Do you '
             u'receive personal information? Do you take steps to make '
             u'it anonymous? What choices do users have to control what '

@@ -167,7 +167,7 @@ def delete(request, addon_id, addon):
         return redirect(request.GET.get('to') or
                         reverse('mkt.developers.apps'))
     else:
-        msg = _('Password was incorrect.  App was not deleted.')
+        msg = _('Password was incorrect. App was not deleted.')
         messages.error(request, msg)
         return redirect(addon.get_dev_url('versions'))
 

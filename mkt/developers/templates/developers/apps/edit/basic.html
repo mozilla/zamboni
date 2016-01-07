@@ -20,10 +20,12 @@
             <label data-for="name">
               {{ _('Name') }}
               {{ tip(None,
-                    _('The app name is one of the fields used to return search results in the Firefox Marketplace.
-                       The app name also appears on the app’s detail page. Be sure you’ve included a descriptive
-                       name in your app manifest. If you want to change the app name, you’ll need to do that in
-                       your app manifest.')) }}
+                    _("The app name is one of the fields used to return "
+                      "search results in the Firefox Marketplace. The app "
+                      "name also appears on the app’s detail page. Be sure "
+                      "you’ve included a descriptive name in your app "
+                      "manifest. If you want to change the app name, you’ll "
+                      "need to do that in your app manifest.")) }}
             </label>
           </th>
           <td>
@@ -118,8 +120,11 @@
             <label data-for="description">
               {{ _('Description') }}
               {{ tip(None,
-                    _("The app description is one of the fields used to return search results in the Firefox Marketplace. The app description
-                       also appears on the app's detail page. Be sure to include a description that accurately represents your app.")) }}
+                    _("The app description is one of the fields used to "
+                      "return search results in the Firefox Marketplace. "
+                      "The app description also appears on the app's detail "
+                      "page. Be sure to include a description that accurately "
+                      "represents your app.")) }}
             </label>
             {{ req_if_edit }}
           </th>
@@ -166,9 +171,10 @@
             <th>
               <label data-for="releasenotes">
                 {{ _('Release Notes') }}
-                {{ tip(None, _('Information about changes in the latest release, new features,
-                                known bugs, and other useful information specific to this
-                                release/version.')) }}
+                {{ tip(None, _("Information about changes in the latest "
+                               "release, new features, known bugs, and other "
+                               "useful information specific to this "
+                               "release/version.")) }}
               </label>
             </th>
             <td>
@@ -187,9 +193,9 @@
         <tr>
           <th>
             {{ tip(_('Categories'),
-                   _("Categories are the primary way users browse through apps.
-                      Choose any that fit your app's functionality for the
-                      most exposure.")) }}
+                   _("Categories are the primary way users browse through "
+                     "apps. Choose any that fit your app's functionality for "
+                     "the most exposure.")) }}
             {{ req_if_edit }}
           </th>
           <td id="addon-categories-edit"

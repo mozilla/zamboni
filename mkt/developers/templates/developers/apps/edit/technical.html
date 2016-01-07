@@ -18,7 +18,8 @@
             <label for="id_is_offline">
               {{ _('Works Offline') }}
               {{ tip(None,
-                     _('If your app works without an Internet connection then we will list that your app &quot;Works Offline&quot;.')) }}
+                     _("If your app works without an Internet connection then "
+                       "we will list that your app &quot;Works Offline&quot;.")) }}
             </label>
           </th>
           <td>
@@ -33,12 +34,13 @@
         <tr>
           <th>
             {{ tip(_("Public Stats?"),
-                   _("Whether the install and usage stats of your app can
-                      be displayed in our online viewer.")) }}
+                   _("Whether the install and usage stats of your app can be "
+                     "displayed in our online viewer.")) }}
           </th>
           <td>
             {{ flags(_("This app's stats are publicly viewable."),
-                     addon.public_stats if not editable else form.public_stats, editable,
+                     addon.public_stats if not editable else form.public_stats,
+                     editable,
                      _("No, this app's stats are not publicly viewable.")) }}
           </td>
         </tr>
@@ -77,7 +79,8 @@
             <label for="id_guid">
               {{ _('GUID') }}
               {{ tip(None,
-                     _('Internal identifier for this app on the Firefox Marketplace.')) }}
+                     _("Internal identifier for this app on the "
+                       "Firefox Marketplace.")) }}
             </label>
           </th>
           <td>
