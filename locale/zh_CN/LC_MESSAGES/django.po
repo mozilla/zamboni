@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-06 13:06-0800\n"
-"PO-Revision-Date: 2016-01-07 00:08+0000\n"
+"PO-Revision-Date: 2016-01-07 00:50+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -3006,6 +3006,11 @@ msgid ""
 "://marketplace-dev.allizom.org\">development server</a> and not the "
 "production server. </p>"
 msgstr ""
+"<p> 应用市场 API 有两个主要用途：从其他网站使用传统的 OAuth 工作流，或者使用命令行工具。差异讨论在  <a href=\"https"
+"://firefox-marketplace-"
+"api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace"
+" 文档</a> 中讨论。任何测试都应该使用 <a href=\"https://marketplace-"
+"dev.allizom.org\">开发服务器</a> 而不是生产服务器。</p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
@@ -3470,13 +3475,13 @@ msgstr "应用可以有4种角色的任意数量团队成员："
 msgid ""
 "Can manage all aspects of the app's listing, including\n"
 "            adding and removing other team members"
-msgstr ""
+msgstr "可以管理此应用上架的任何方面，除了添加和移除其他团队成员"
 
 #: mkt/developers/templates/developers/apps/owner.html:92
 msgid ""
 "Can manage all aspects of the app's listing, except\n"
 "            for adding and removing other team members and managing payments"
-msgstr ""
+msgstr "可以管理此应用上架的任何方面，除了添加和移除其他团队成员，以及管理支付"
 
 #: mkt/developers/templates/developers/apps/owner.html:95
 msgid "Can view the app's settings but cannot make any changes"
@@ -3861,7 +3866,7 @@ msgid ""
 "                              known bugs, and other useful information specific to this\n"
 "                              release/version. This information is also shown in the\n"
 "                              Apps Manager when updating."
-msgstr ""
+msgstr "有关此次发布的变更、新功能、已知问题，及其他特定于此次发布的实用信息。此信息也在更新时显示在应用管理器中。"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:40
 msgid "Notes for Reviewers"
@@ -3872,7 +3877,7 @@ msgid ""
 "Optionally, enter any information that may be useful\n"
 "                              to the Reviewer reviewing this app, such as test\n"
 "                              account information."
-msgstr ""
+msgstr "可选，输入任何可能有助于审核员审核此应用的信息，例如测试账号的登录信息。"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:53
 #: mkt/developers/templates/developers/apps/edit/technical.html:59
@@ -3897,7 +3902,7 @@ msgstr "联系 Mozilla"
 msgid ""
 "An e-mail address (or addresses separated by commas) of this\n"
 "                   app's Mozilla contact that will be CC'd on any reviewer emails."
-msgstr ""
+msgstr "Mozilla 就此应用的任何审核邮件将抄送一个电子邮件地址（或者逗号分隔的多个地址）。"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:75
 msgid "Enter email addresses, separated by commas"
@@ -3946,6 +3951,8 @@ msgid ""
 "                       name in your app manifest. If you want to change the app name, you’ll need to do that in\n"
 "                       your app manifest."
 msgstr ""
+"应用名称是 Firefox "
+"应用市场返回搜索结果中的其中一项。应用名称也出现在应用的详细信息页面上。请确保您已经在应用的清单文件（manifest）中包含了一个描述性的名称。如果您想更改应用名称，您也必须在应用的清单文件中更改它。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:36
 #: mkt/reviewers/templates/reviewers/includes/details.html:40
@@ -4032,7 +4039,7 @@ msgstr "描述"
 msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description\n"
 "                       also appears on the app's detail page. Be sure to include a description that accurately represents your app."
-msgstr ""
+msgstr "应用描述是 Firefox 应用市场返回搜索结果中的其中一项。应用描述也出现在应用的详细信息页面上。请确保包含一个准确表达您的应用的描述。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:141
 #: mkt/reviewers/templates/reviewers/includes/details.html:63
@@ -4049,14 +4056,14 @@ msgid ""
 "Information about changes in the latest release, new features,\n"
 "                                known bugs, and other useful information specific to this\n"
 "                                release/version."
-msgstr ""
+msgstr "有关最新版本的变更、新功能、已知问题，及其他特定于此次发布的实用信息。"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:190
 msgid ""
 "Categories are the primary way users browse through apps.\n"
 "                      Choose any that fit your app's functionality for the\n"
 "                      most exposure."
-msgstr ""
+msgstr "分类是用户浏览应用的主要方式。选择最能展现您的应用功能的分类。"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:5
 msgid "App Details"
@@ -4085,7 +4092,7 @@ msgid ""
 "                        address here. If your website is localized into other\n"
 "                        languages multiple translations of this field can be\n"
 "                        added."
-msgstr ""
+msgstr "如果您的应用还有一个首页，在这里输入那个地址。如果您的网站已本地化到多种语言，可以在此栏中添加多个语言版本。"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:55
 #: mkt/reviewers/templates/reviewers/includes/details.html:55
@@ -4144,7 +4151,7 @@ msgid ""
 "                        with support issues. If you have different addresses\n"
 "                        for each language multiple translations of this field\n"
 "                        can be added."
-msgstr ""
+msgstr "电子邮件地址用于最终用户就支持问题联系您。如果您对各个语言有不同的邮件地址，可以在此栏中添加多个语言版本。"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:41
 #: mkt/reviewers/templates/reviewers/includes/details.html:103
@@ -4158,7 +4165,7 @@ msgid ""
 "                        its address here. If your website is localized into\n"
 "                        other languages, multiple translations of this\n"
 "                        field can be added."
-msgstr ""
+msgstr "如果您的应用有一个支持网站或论坛，在这里输入地址。如果您的网站已本地化到多种语言，可以在此栏中添加多个语言版本。"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -4187,7 +4194,7 @@ msgstr "公开统计数据？"
 msgid ""
 "Whether the install and usage stats of your app can\n"
 "                      be displayed in our online viewer."
-msgstr ""
+msgstr "您的应用的安装和使用率统计是否要在我们的在线查看器中显示。"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:40
 msgid "This app's stats are publicly viewable."
@@ -4556,7 +4563,7 @@ msgstr "提交 ID"
 msgid ""
 "The submission ID can be found on the certificate sent to you.\n"
 "                              It is a numeric value like &quot;14&quot;."
-msgstr ""
+msgstr "提交 ID 可以在发送给您的证书上找到。它是一个像是 &quot;14&quot; 的数字值。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:120
 msgid "Security Code"
@@ -4566,7 +4573,7 @@ msgstr "安全码"
 msgid ""
 "The security code can be found on the certificate sent to you.\n"
 "                              It is a mix of letters and numbers like &quot;AB12CD3&quot;."
-msgstr ""
+msgstr "安全代码可以在发送给您的证书上找到。它是像是 &quot;AB12CD3&quot; 的一个字母+数字混合的值。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14
 #: mkt/lookup/templates/lookup/helpers/app_header.html:15
@@ -4683,6 +4690,8 @@ msgid ""
 "                configure your app for payments with the parameters below.\n"
 "                "
 msgstr ""
+"Firefox 应用市场允许您的应用进行应用内支付。<a "
+"href=\"{guide}\">应用内支付指南</a>介绍了如何配置您的应用使用下面的参数进行支付。"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:31
 #: mkt/developers/templates/developers/payments/in-app-keys.html:29
@@ -5702,7 +5711,7 @@ msgstr "“description”属性不能超过 132 个字符。"
 msgid ""
 "The icon file `%(icon_path)s` is not the specified dimensions  of "
 "%(icon_size)s x %(icon_size)s as defined in the manifest."
-msgstr ""
+msgstr "图标文件 `%(icon_path)s` 不是清单文件中指定的 %(icon_size)s x %(icon_size)s 大小。"
 
 #: mkt/extensions/validation.py:40
 #, python-format
@@ -7852,7 +7861,7 @@ msgstr "搜索不可用"
 msgid ""
 "Search is temporarily unavailable. Please try again in a few\n"
 "             minutes."
-msgstr ""
+msgstr "搜索暂时不可用。请几分钟后再试。"
 
 #: mkt/site/context_processors.py:57
 msgid "Account Settings"
@@ -8236,7 +8245,7 @@ msgstr "审核者向上呈报"
 
 #: mkt/site/log.py:488
 msgid "Video removed from {addon} because of a problem with the video. "
-msgstr ""
+msgstr "{addon} 的视频已移除，因为视频存在一个问题。"
 
 #: mkt/site/log.py:490
 msgid "Video removed"
@@ -8428,7 +8437,7 @@ msgstr "您尝试去做一些不被我们允许的事。"
 msgid ""
 "Try going back to the previous page, refreshing and trying\n"
 "              again."
-msgstr ""
+msgstr "尝试返回上一个页面，然后刷新并重试。"
 
 #: mkt/site/templates/site/404.html:4
 msgid "Page Not Found"
@@ -8443,13 +8452,13 @@ msgid ""
 "The page or file you requested wasn't found on our site. It's\n"
 "             possible that you clicked a link that's out of date, or typed in\n"
 "             the address incorrectly."
-msgstr ""
+msgstr "您请求的页面或文件无法在网站上找到。可能您点击的链接已经过时，或者输入的地址不正确。"
 
 #: mkt/site/templates/site/404.html:16
 msgid ""
 "If you typed in the address, please double check the\n"
 "                 spelling."
-msgstr ""
+msgstr "如果您手动输入了该地址，请重新检查拼写。"
 
 #: mkt/site/templates/site/404.html:19
 #, python-format
@@ -8563,6 +8572,8 @@ msgid ""
 "privacy policy, <a href=\"{url}\" target=\"_blank\">learn more on how to "
 "write one.</a>"
 msgstr ""
+"隐私政策介绍了您如何处理您的应用收到的数据。例如：您收到什么数据？您如何使用它？您与谁共享它？您会收到个人信息？您会采取措施使数据匿名化？用户是否有选项控制您与其他人收到哪些数据？请在上方输入您的隐私政策的链接或者正文。如果您没有一个隐私政策，<a"
+" href=\"{url}\" target=\"_blank\">了解如何写一个</a>。"
 
 #: mkt/submit/forms.py:308
 msgid "Homepage:"
@@ -8645,6 +8656,8 @@ msgid ""
 "                            name in your app manifest. If you want to change the app name, you’ll need to do that in\n"
 "                            your app manifest."
 msgstr ""
+"应用名称是 Firefox "
+"应用市场返回搜索结果中的其中一项。应用名称也出现在应用的详细信息页面上。请确保您已经在应用的清单文件（manifest）中包含了一个描述性的名称。如果您想更改应用名称，您也必须在应用的清单文件中更改它。"
 
 #: mkt/submit/templates/submit/details.html:124
 msgid "Support Information:"
