@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: Marketplace 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-06 13:06-0800\n"
-"PO-Revision-Date: 2016-01-06 22:54+0000\n"
-"Last-Translator: Andreas Pettersson <az@kth.se>\n"
+"PO-Revision-Date: 2016-01-07 13:28+0000\n"
+"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
 "Language-Team: Den svenska L10n-gruppen <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -2943,7 +2943,7 @@ msgstr "App borttagen."
 
 #: mkt/developers/views.py:170
 msgid "Password was incorrect.  App was not deleted."
-msgstr ""
+msgstr "Lösenordet var fel.   Appen blev inte borttagen."
 
 #: mkt/developers/views.py:214
 msgid "App successfully resubmitted."
@@ -8567,7 +8567,7 @@ msgstr "Upptrappning granskare"
 
 #: mkt/site/log.py:488
 msgid "Video removed from {addon} because of a problem with the video. "
-msgstr ""
+msgstr "Video borttagen från {addon} för att det var ett problem med videon. "
 
 #: mkt/site/log.py:490
 msgid "Video removed"
@@ -8761,6 +8761,8 @@ msgid ""
 "Try going back to the previous page, refreshing and trying\n"
 "              again."
 msgstr ""
+"Prova att gå tillbaka till förra sidan, ladda om och försök \n"
+"              igen."
 
 #: mkt/site/templates/site/404.html:4
 msgid "Page Not Found"
