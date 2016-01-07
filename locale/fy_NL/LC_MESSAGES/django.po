@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-06 13:06-0800\n"
-"PO-Revision-Date: 2016-01-07 10:13+0000\n"
+"PO-Revision-Date: 2016-01-07 10:16+0000\n"
 "Last-Translator: fryskefirefox <fryskefirefox@gmail.com>\n"
 "Language-Team: FRISIAN <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -7447,9 +7447,9 @@ msgid "Abuse Reports for {item} ({num})"
 msgstr "Misbrûkmeldingen foar {item} ({num})"
 
 #: mkt/reviewers/templates/reviewers/abuse.html:13
-#, fuzzy, python-format
+#, python-format
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
-msgstr "%(reporter)'s op %(date)s [%(ip_address)s]"
+msgstr "%(reporter)s op %(date)s [%(ip_address)s]"
 
 #: mkt/reviewers/templates/reviewers/additional_review.html:7
 msgid "Additional Queues"
@@ -8842,12 +8842,17 @@ msgid ""
 "             possible that you clicked a link that's out of date, or typed in\n"
 "             the address incorrectly."
 msgstr ""
+"De opfrege side of it bestân is net op ús website fûn.\n"
+"             Mooglik hawwe jo op in ferâldere keppeling klikt, of it adres\n"
+"             net krekt yntypt."
 
 #: mkt/site/templates/site/404.html:16
 msgid ""
 "If you typed in the address, please double check the\n"
 "                 spelling."
 msgstr ""
+"As jo it adres yntypt hawwe, kontrolearje dan nochris de\n"
+"                 stavering."
 
 #: mkt/site/templates/site/404.html:19
 #, python-format
