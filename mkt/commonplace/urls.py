@@ -95,6 +95,12 @@ urlpatterns = patterns(
     url('^content/.*$', views.commonplace,
         {'repo': 'marketplace-content-tools'},
         name='commonplace.content'),
+
+    # TV:
+    url('^tv/.*$', views.commonplace,
+        {'repo': 'marketplace-tv-front-end'},
+        name='commonplace.tv'),
+
 )
 
 if settings.DEBUG:
