@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-06 13:06-0800\n"
-"PO-Revision-Date: 2016-01-07 10:16+0000\n"
+"PO-Revision-Date: 2016-01-08 09:56+0000\n"
 "Last-Translator: fryskefirefox <fryskefirefox@gmail.com>\n"
 "Language-Team: FRISIAN <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -3608,6 +3608,8 @@ msgid ""
 "Can manage all aspects of the app's listing, except\n"
 "            for adding and removing other team members and managing payments"
 msgstr ""
+"Kin alle aspekten fan de app beheare, útsein it tafoegjen en fuortsmiten fan"
+" oare teamleden en behearen fan betellingen"
 
 #: mkt/developers/templates/developers/apps/owner.html:95
 msgid "Can view the app's settings but cannot make any changes"
@@ -4074,6 +4076,9 @@ msgid ""
 "An e-mail address (or addresses separated by commas) of this\n"
 "                   app's Mozilla contact that will be CC'd on any reviewer emails."
 msgstr ""
+"In e-mailadres (of -adressen skieden troch komma’s) fan de Mozilla-"
+"kontaktpersoan fan dizze app dy't in kopy ûntfangt fan e-mailberjochten fan "
+"beoardielers."
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:75
 msgid "Enter email addresses, separated by commas"
@@ -4126,6 +4131,10 @@ msgid ""
 "                       name in your app manifest. If you want to change the app name, you’ll need to do that in\n"
 "                       your app manifest."
 msgstr ""
+"De appnamme is ien fan de fjilden dy't brûkt wurdt foar sykresultaten yn de "
+"Firefox Marketplace. De appnamme ferskynt ek op de detailside fan de app. "
+"Soargje foar in beskriuwende namme yn jo app-manifest. As jo de appnamme "
+"wizigje wolle, moatte jo dat dwaan yn jo app-manifest."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:36
 #: mkt/reviewers/templates/reviewers/includes/details.html:40
@@ -4770,6 +4779,8 @@ msgid ""
 "The submission ID can be found on the certificate sent to you.\n"
 "                              It is a numeric value like &quot;14&quot;."
 msgstr ""
+"It yntsjinningskenmerk kin op it nei jo ferstjoerde sertifikaat fûn wurde. "
+"It is in numerike wearde lykas ‘14’."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:120
 msgid "Security Code"
