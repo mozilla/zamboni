@@ -611,7 +611,8 @@ CLEANCSS_BIN = os.getenv('CLEANCSS_BIN',
 
 # Name of our frontend repositories on GitHub.
 COMMONPLACE_REPOS = ['commbadge', 'fireplace', 'marketplace-stats',
-                     'transonic', 'marketplace-operator-dashboard']
+                     'transonic', 'marketplace-operator-dashboard',
+                     'marketplace-tv-front-end']
 REACT_REPOS = ['marketplace-content-tools']
 FRONTEND_REPOS = COMMONPLACE_REPOS + REACT_REPOS
 
