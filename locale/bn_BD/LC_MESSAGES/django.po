@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-01-06 13:06-0800\n"
+"POT-Creation-Date: 2016-01-07 11:57-0800\n"
 "PO-Revision-Date: 2014-09-05 18:47+0000\n"
 "Last-Translator: Belayet <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,11 +53,11 @@ msgstr ""
 msgid "Unknown"
 msgstr "অজানা"
 
-#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/developers/templates/developers/apps/edit/technical.html:51 mkt/reviewers/forms.py:212
+#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/developers/templates/developers/apps/edit/technical.html:53 mkt/reviewers/forms.py:212
 msgid "Yes"
 msgstr "হ্যাঁ"
 
-#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/developers/templates/developers/apps/edit/technical.html:53 mkt/lookup/templates/lookup/user_summary.html:78 mkt/reviewers/forms.py:213
+#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/developers/templates/developers/apps/edit/technical.html:55 mkt/lookup/templates/lookup/user_summary.html:78 mkt/reviewers/forms.py:213
 msgid "No"
 msgstr "না"
 
@@ -128,7 +128,7 @@ msgstr "ব্যবহারকারী"
 msgid "Reviewer"
 msgstr "পর্যালোচনাকারী"
 
-#: mkt/constants/apps.py:11 mkt/constants/base.py:146 mkt/developers/templates/developers/apps/owner.html:91 mkt/users/notifications.py:157
+#: mkt/constants/apps.py:11 mkt/constants/base.py:146 mkt/developers/templates/developers/apps/owner.html:90 mkt/users/notifications.py:157
 msgid "Developer"
 msgstr "ডেভলপার"
 
@@ -1184,11 +1184,11 @@ msgstr " অনুমোদিত "
 msgid "Owner"
 msgstr "মালিক"
 
-#: mkt/constants/base.py:147 mkt/developers/templates/developers/apps/owner.html:94
+#: mkt/constants/base.py:147 mkt/developers/templates/developers/apps/owner.html:92
 msgid "Viewer"
 msgstr "দর্শক"
 
-#: mkt/constants/base.py:148 mkt/developers/templates/developers/skeleton_impala.html:60 mkt/developers/templates/developers/apps/owner.html:96 mkt/ecosystem/templates/ecosystem/support.html:5
+#: mkt/constants/base.py:148 mkt/developers/templates/developers/skeleton_impala.html:60 mkt/developers/templates/developers/apps/owner.html:94 mkt/ecosystem/templates/ecosystem/support.html:5
 #: mkt/ecosystem/templates/ecosystem/support.html:13 templates/base.html:61
 msgid "Support"
 msgstr "সহায়তা"
@@ -2152,7 +2152,7 @@ msgstr "প্যাকেজ"
 msgid "Agreement"
 msgstr "এগ্রিমেন্ট"
 
-#: mkt/constants/submit.py:6 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:136
+#: mkt/constants/submit.py:6 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:138
 msgid "Submit"
 msgstr "জমা দিন"
 
@@ -2267,7 +2267,7 @@ msgstr "এই বিবরণটি বিবরণ পৃষ্ঠায় প�
 msgid "Search Keywords:"
 msgstr ""
 
-#: mkt/developers/forms.py:518 mkt/developers/templates/developers/apps/edit/basic.html:143 mkt/submit/forms.py:290
+#: mkt/developers/forms.py:518 mkt/developers/templates/developers/apps/edit/basic.html:148 mkt/submit/forms.py:290
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
 msgstr ""
 
@@ -2293,7 +2293,7 @@ msgstr "দয়া করে আপনার অ্যাপ্লিকেশন
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr "আপনার ডিফল্ট লোকেল পরিবর্তন করার আগে আপনাকে অবশ্যই ঐ স্থানের একটি নাম ও বিবরণ দিতে হবে। আপনি %s মিসিং করেছেন।"
 
-#: mkt/developers/forms.py:721 mkt/submit/templates/submit/details.html:125
+#: mkt/developers/forms.py:721 mkt/submit/templates/submit/details.html:128
 msgid "You must provide either a website, an email, or both."
 msgstr ""
 
@@ -2337,7 +2337,7 @@ msgstr "অধিকাংশ অঞ্চলে আমার অ্যাপ্
 msgid "Choose where my app is made available"
 msgstr "আমার অ্যাপ কোথায় পাওয়া যাবে তা নির্বাচন করুন"
 
-#: mkt/developers/forms.py:1005 mkt/developers/templates/developers/apps/edit/basic.html:189 mkt/lookup/templates/lookup/website_edit.html:84 mkt/lookup/templates/lookup/website_summary.html:48
+#: mkt/developers/forms.py:1005 mkt/developers/templates/developers/apps/edit/basic.html:195 mkt/lookup/templates/lookup/website_edit.html:84 mkt/lookup/templates/lookup/website_summary.html:48
 #: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:102 mkt/websites/forms.py:23
 msgid "Categories"
 msgstr "বিষয়শ্রেণী"
@@ -2706,8 +2706,8 @@ msgid "App deleted."
 msgstr "অ্যাপ মুছে ফেলা হয়েছে।"
 
 #: mkt/developers/views.py:170
-msgid "Password was incorrect.  App was not deleted."
-msgstr ""
+msgid "Password was incorrect. App was not deleted."
+msgstr "পাসওয়ার্ড ভুল ছিল। অ্যাপ মুছে ফেলা হয় নি।"
 
 #: mkt/developers/views.py:214
 msgid "App successfully resubmitted."
@@ -2828,10 +2828,13 @@ msgstr "মার্কেটপ্লেস API অ্যাকসেস কর
 
 #: mkt/developers/templates/developers/api.html:23
 msgid ""
-"<p> There are two main uses for the Marketplace API. From another web site using a traditional OAuth flow or from a command line tool. The difference is discussed in the  <a href=\"https://firefox-"
+"<p> There are two main uses for the Marketplace API. From another web site using a traditional OAuth flow or from a command line tool. The difference is discussed in the <a href=\"https://firefox-"
 "marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
+"<p> মার্কেটপ্লেস এপিআই এর দুটি প্রধান ব্যবহার রয়েছে। অন্য ওয়েব সাইট থেকে একটি ঐতিহ্যগত OAuth কী প্রবাহ বা একটি কমান্ড লাইন টুল থেকে ব্যবহার করা হয়। পার্থক্য আলোচনা করা হয় <a href=\"https://firefox-marketplace-"
+"api.readthedocs.org/en/latest/topics/authentication.html#oauth\">মার্কেটপ্লেস ডকুমেন্টে</a>। কোন পরীক্ষা উৎপাদন সার্ভারে না ঘটে <a href=\"https://marketplace-dev.allizom.org\">উন্নয়ন সার্ভারে</a> ঘটা উচিত।"
+"</p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
@@ -3116,7 +3119,7 @@ msgstr "এই ঘোষণা খারিজ করুন"
 #: mkt/developers/templates/developers/apps/dashboard.html:15 mkt/developers/templates/developers/apps/edit/admin.html:9 mkt/developers/templates/developers/apps/edit/basic.html:10
 #: mkt/developers/templates/developers/apps/edit/details.html:8 mkt/developers/templates/developers/apps/edit/media.html:6 mkt/developers/templates/developers/apps/edit/support.html:7
 #: mkt/developers/templates/developers/apps/edit/technical.html:8 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:12
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:16 mkt/developers/templates/developers/payments/in-app-product-row.html:31 mkt/submit/templates/submit/details.html:88
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:16 mkt/developers/templates/developers/payments/in-app-product-row.html:31 mkt/submit/templates/submit/details.html:91
 msgid "Edit"
 msgstr "সম্পাদনা"
 
@@ -3158,9 +3161,9 @@ msgstr "শুধুমাত্র অ্যাপের মালিক এই
 msgid "About team member roles"
 msgstr "টিমের সদস্যদের ভূমিকা সম্পর্কে"
 
-#: mkt/developers/templates/developers/apps/owner.html:58 mkt/developers/templates/developers/apps/version_edit.html:72 mkt/developers/templates/developers/apps/edit/admin.html:127
-#: mkt/developers/templates/developers/apps/edit/basic.html:211 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62
-#: mkt/developers/templates/developers/apps/edit/technical.html:91 mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/payments/premium.html:75
+#: mkt/developers/templates/developers/apps/owner.html:58 mkt/developers/templates/developers/apps/version_edit.html:67 mkt/developers/templates/developers/apps/edit/admin.html:130
+#: mkt/developers/templates/developers/apps/edit/basic.html:217 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62
+#: mkt/developers/templates/developers/apps/edit/technical.html:94 mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/payments/premium.html:75
 #: mkt/developers/templates/developers/payments/premium.html:104 mkt/developers/templates/developers/payments/premium.html:162 mkt/developers/templates/developers/payments/premium.html:272
 #: mkt/developers/templates/developers/payments/premium.html:286 mkt/developers/templates/developers/payments/premium.html:325 mkt/lookup/templates/lookup/website_edit.html:121
 #: mkt/translations/templates/translations/trans-menu.html:48
@@ -3183,22 +3186,18 @@ msgid "Apps can have any number of team members with 4 possible roles:"
 msgstr "অ্যাপ এর যে কোন পরিমাণ এর টিম মেম্বার থাকতে পারে সাথে ৪টি সম্ভাব্য ভূমিকা থাকতে হবে :"
 
 #: mkt/developers/templates/developers/apps/owner.html:89
-msgid ""
-"Can manage all aspects of the app's listing, including\n"
-"            adding and removing other team members"
-msgstr ""
+msgid "Can manage all aspects of the app's listing, including adding and removing other team members"
+msgstr "তালিকাভুক্ত অ্যাপগুলু সব দিক পরিচালনা করতে পারেন, অন্যান্য দলের সদস্যদের যোগ এবং অপসারণ সহ"
 
-#: mkt/developers/templates/developers/apps/owner.html:92
-msgid ""
-"Can manage all aspects of the app's listing, except\n"
-"            for adding and removing other team members and managing payments"
-msgstr ""
+#: mkt/developers/templates/developers/apps/owner.html:91
+msgid "Can manage all aspects of the app's listing, except for adding and removing other team members and managing payments"
+msgstr "তালিকাভুক্ত অ্যাপগুলু সব দিক পরিচালনা করতে পারেন, শুধুমাত্র অন্যান্য দলের সদস্যদের যোগ, অপসারণ এবং পেমেন্ট পরিচালনা ব্যতীত"
 
-#: mkt/developers/templates/developers/apps/owner.html:95
+#: mkt/developers/templates/developers/apps/owner.html:93
 msgid "Can view the app's settings but cannot make any changes"
 msgstr "অ্যাপের সেটিং দেখতে পারবেন কিন্তু কোন পরিবর্তন করতে পারবেন না"
 
-#: mkt/developers/templates/developers/apps/owner.html:97
+#: mkt/developers/templates/developers/apps/owner.html:95
 msgid "Can view the app's settings"
 msgstr ""
 
@@ -3361,7 +3360,7 @@ msgstr ""
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
 msgstr "অ্যাপটির একটি বড় অংশ পরিবর্তন করতে হলে অ্যাপ এর <a href=\"%(ratings_url)s\">কন্টেন্ট রেটিংস</a>টি মনে করে হালনাগাদ করে নিতে হবে।"
 
-#: mkt/developers/templates/developers/apps/status.html:275 mkt/developers/templates/developers/apps/forms_shared/media.html:171 mkt/submit/templates/submit/details.html:188
+#: mkt/developers/templates/developers/apps/status.html:275 mkt/developers/templates/developers/apps/forms_shared/media.html:171 mkt/submit/templates/submit/details.html:191
 #: mkt/submit/templates/submit/manifest.html:110 mkt/submit/templates/submit/next_steps.html:110
 msgid "Continue"
 msgstr "চালিয়ে যান"
@@ -3422,9 +3421,9 @@ msgid "Are you sure you wish to delist your app?"
 msgstr "আপনি আপনার অ্যাপ্লিকেশন তালিকা বহির্ভূত করতে চান, আপনি কি নিশ্চিত?"
 
 #. This 'or' goes between two choices in a dialog.
-#: mkt/developers/templates/developers/apps/status.html:389 mkt/developers/templates/developers/apps/status.html:411 mkt/developers/templates/developers/apps/version_edit.html:72
-#: mkt/developers/templates/developers/apps/edit/admin.html:127 mkt/developers/templates/developers/apps/edit/basic.html:211 mkt/developers/templates/developers/apps/edit/details.html:79
-#: mkt/developers/templates/developers/apps/edit/support.html:62 mkt/developers/templates/developers/apps/edit/technical.html:91 mkt/developers/templates/developers/apps/forms_shared/media.html:164
+#: mkt/developers/templates/developers/apps/status.html:389 mkt/developers/templates/developers/apps/status.html:411 mkt/developers/templates/developers/apps/version_edit.html:67
+#: mkt/developers/templates/developers/apps/edit/admin.html:130 mkt/developers/templates/developers/apps/edit/basic.html:217 mkt/developers/templates/developers/apps/edit/details.html:79
+#: mkt/developers/templates/developers/apps/edit/support.html:62 mkt/developers/templates/developers/apps/edit/technical.html:94 mkt/developers/templates/developers/apps/forms_shared/media.html:164
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/payments/includes/accept_terms.html:11
 #: mkt/developers/templates/developers/payments/includes/account_list.html:67 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:141
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:126
@@ -3433,9 +3432,9 @@ msgstr "আপনি আপনার অ্যাপ্লিকেশন তা
 msgid "or"
 msgstr "অথবা"
 
-#: mkt/developers/templates/developers/apps/status.html:389 mkt/developers/templates/developers/apps/status.html:411 mkt/developers/templates/developers/apps/version_edit.html:73
-#: mkt/developers/templates/developers/apps/edit/admin.html:129 mkt/developers/templates/developers/apps/edit/basic.html:213 mkt/developers/templates/developers/apps/edit/details.html:81
-#: mkt/developers/templates/developers/apps/edit/support.html:64 mkt/developers/templates/developers/apps/edit/technical.html:93 mkt/developers/templates/developers/apps/forms_shared/media.html:166
+#: mkt/developers/templates/developers/apps/status.html:389 mkt/developers/templates/developers/apps/status.html:411 mkt/developers/templates/developers/apps/version_edit.html:68
+#: mkt/developers/templates/developers/apps/edit/admin.html:132 mkt/developers/templates/developers/apps/edit/basic.html:219 mkt/developers/templates/developers/apps/edit/details.html:81
+#: mkt/developers/templates/developers/apps/edit/support.html:64 mkt/developers/templates/developers/apps/edit/technical.html:96 mkt/developers/templates/developers/apps/forms_shared/media.html:166
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/apps/listing/delete_form.html:27
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:12 mkt/developers/templates/developers/payments/includes/account_list.html:68
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:142 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:29
@@ -3483,28 +3482,22 @@ msgstr "সংস্করণ নোট"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:26
 msgid ""
-"Information about changes in this release, new features,\n"
-"                              known bugs, and other useful information specific to this\n"
-"                              release/version. This information is also shown in the\n"
-"                              Apps Manager when updating."
+"Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Apps Manager when updating."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/version_edit.html:40
+#: mkt/developers/templates/developers/apps/version_edit.html:37
 msgid "Notes for Reviewers"
 msgstr "পর্যালোচকের জন্য নোট"
 
-#: mkt/developers/templates/developers/apps/version_edit.html:41
-msgid ""
-"Optionally, enter any information that may be useful\n"
-"                              to the Reviewer reviewing this app, such as test\n"
-"                              account information."
+#: mkt/developers/templates/developers/apps/version_edit.html:38
+msgid "Optionally, enter any information that may be useful to the Reviewer reviewing this app, such as test account information."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/version_edit.html:53 mkt/developers/templates/developers/apps/edit/technical.html:59
+#: mkt/developers/templates/developers/apps/version_edit.html:48 mkt/developers/templates/developers/apps/edit/technical.html:61
 msgid "Minimum Requirements"
 msgstr "ন্যূনতম চাহিদা"
 
-#: mkt/developers/templates/developers/apps/version_edit.html:54 mkt/developers/templates/developers/apps/edit/technical.html:60
+#: mkt/developers/templates/developers/apps/version_edit.html:49 mkt/developers/templates/developers/apps/edit/technical.html:62
 msgid "Device features required for this app to function."
 msgstr "এই অ্যাপ্লিকেশনের ফাংশনের জন্য ডিভাইস বৈশিষ্ট্য আবশ্যক।"
 
@@ -3517,36 +3510,34 @@ msgid "Mozilla Contact"
 msgstr "মজিলার সাথে যোগাযোগ করুন"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:73
-msgid ""
-"An e-mail address (or addresses separated by commas) of this\n"
-"                   app's Mozilla contact that will be CC'd on any reviewer emails."
+msgid "An e-mail address (or addresses separated by commas) of this app's Mozilla contact that will be CC'd on any reviewer emails."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:75
+#: mkt/developers/templates/developers/apps/edit/admin.html:76
 msgid "Enter email addresses, separated by commas"
 msgstr "ইমেল ঠিকানা লিখুন, একাধিক ইমেইল কমা দ্বারা পৃথক করুন"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:90
+#: mkt/developers/templates/developers/apps/edit/admin.html:91
 msgid "Mozilla VIP App"
 msgstr "মজিলা VIP অ্যাপ"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:92
+#: mkt/developers/templates/developers/apps/edit/admin.html:93
 msgid "Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?"
 msgstr "এটা কি এতই জরুরী অ্যাপ যে এটার বেবস্থাপনা সবসময় মজিলা স্টাফ অথবা সিনিওর অ্যাপ পর্যালোচনাকারীদের দ্বারা করতে হবে ?"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:93
+#: mkt/developers/templates/developers/apps/edit/admin.html:95
 msgid "Use sparingly"
 msgstr "মিতব্যয়ী ব্যবহার"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:108
+#: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "Priority review needed"
 msgstr "অগ্রাধিকার পর্যালোচনা প্রয়োজন"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:110
+#: mkt/developers/templates/developers/apps/edit/admin.html:112
 msgid "The app will be treated as a priority and placed the top of the review queue"
 msgstr "অ্যাপ্লিকেশনকে একটি অগ্রাধিকার হিসেবে গণ্য করা হয় এবং পর্যালোচনা তালিকার শীর্ষে স্থাপন করা হবে"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:111
+#: mkt/developers/templates/developers/apps/edit/admin.html:114
 msgid "This will persist until first approval"
 msgstr "এই প্রথম অনুমোদন না হওয়া পর্যন্ত অবিরত লাগিয়া থাকতে হবে।"
 
@@ -3559,57 +3550,55 @@ msgstr "প্রাথমিক তথ্য"
 msgid "Basic Information for {0}"
 msgstr "{0} এর জন্য প্রাথমিক তথ্য"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:23
+#: mkt/developers/templates/developers/apps/edit/basic.html:23 mkt/submit/templates/submit/details.html:60
 msgid ""
-"The app name is one of the fields used to return search results in the Firefox Marketplace.\n"
-"                       The app name also appears on the app’s detail page. Be sure you’ve included a descriptive\n"
-"                       name in your app manifest. If you want to change the app name, you’ll need to do that in\n"
-"                       your app manifest."
+"The app name is one of the fields used to return search results in the Firefox Marketplace. The app name also appears on the app’s detail page. Be sure you’ve included a descriptive name in your "
+"app manifest. If you want to change the app name, you’ll need to do that in your app manifest."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:36 mkt/reviewers/templates/reviewers/includes/details.html:40 mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
+#: mkt/developers/templates/developers/apps/edit/basic.html:38 mkt/reviewers/templates/reviewers/includes/details.html:40 mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
 msgid "Developer Name"
 msgstr "ডেভেলপার নাম"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:38
+#: mkt/developers/templates/developers/apps/edit/basic.html:40
 msgid "This field can only be edited by updating it in the manifest."
 msgstr "এই ফিল্ড শুধুমাত্র ম্যানিফেস্ট দ্বারা আপডেট সম্পাদনা করবে।"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:48 mkt/submit/templates/submit/details.html:72
+#: mkt/developers/templates/developers/apps/edit/basic.html:50 mkt/submit/templates/submit/details.html:75
 msgid "App URL"
 msgstr "অ্যাপ URL"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:49 mkt/submit/templates/submit/details.html:74
+#: mkt/developers/templates/developers/apps/edit/basic.html:51 mkt/submit/templates/submit/details.html:77
 msgid "Select a unique URL for your detail page. By default we use your app name to create this URL."
 msgstr "আপনার বিস্তারিত পৃষ্ঠার জন্য একটি ইউনিক URL নির্বাচন করুন। ডিফল্টভাবে আমরা এই URL তৈরি করার জন্য আপনার অ্যাপের এর নাম ব্যবহার করি।"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:62 mkt/developers/templates/developers/apps/listing/item_actions_app.html:94
+#: mkt/developers/templates/developers/apps/edit/basic.html:64 mkt/developers/templates/developers/apps/listing/item_actions_app.html:94
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:29 mkt/reviewers/templates/reviewers/review.html:58
 msgid "View Listing"
 msgstr "তালিকা অনুসারে দেখুন"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:68
+#: mkt/developers/templates/developers/apps/edit/basic.html:70
 msgid "API URL"
 msgstr "API URL"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:69
+#: mkt/developers/templates/developers/apps/edit/basic.html:71
 msgid "The URL for accessing this app using the Marketplace API"
 msgstr "মার্কেটপ্লেস API ব্যবহার করে এই অ্যাপ্লিকেশন অ্যাক্সেস করার জন্য URL"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:73
+#: mkt/developers/templates/developers/apps/edit/basic.html:75
 msgid "View API documentation"
 msgstr "API ডকুমেন্টেশন দেখুন"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:77 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
+#: mkt/developers/templates/developers/apps/edit/basic.html:79 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
 #: mkt/search/forms.py:156
 msgid "Manifest URL"
 msgstr "ম্যানিফেস্ট URL"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:85
+#: mkt/developers/templates/developers/apps/edit/basic.html:87
 msgid "Refresh"
 msgstr "রিফ্রেশ করুন"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:87
+#: mkt/developers/templates/developers/apps/edit/basic.html:89
 #, python-format
 msgid ""
 "Please try not to change your manifest URL too frequently. If you change your manifest URL, existing users won't be upgraded to use the new manifest URL. For more information, read the <a href="
@@ -3618,45 +3607,39 @@ msgstr ""
 "দয়া করে, খুব ঘন ঘন আপনার ম্যানিফেস্ট URL পরিবর্তন করার চেষ্টা করবেন না। যদি আপনি ম্যানিফেস্ট URL পরিবর্তন করেন, বিদ্যমান ব্যবহারকারীকে নতুন ম্যানিফেস্ট URL ব্যবহার করার জন্য আপগ্রেড করা হয় না। বিস্তারিত তথ্যের জন্য, "
 "<a href=\"%(doc_url)s\" target=\"_blank\"> অ্যাপ্লিকেশন আপডেট করার ডকুমেন্টেশন</a> টি পড়ুন।"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:101
+#: mkt/developers/templates/developers/apps/edit/basic.html:103
 msgid "Hosted URL"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:107
+#: mkt/developers/templates/developers/apps/edit/basic.html:109
 msgid "If your app has a URL where it is hosted, you can set it for users that want to try your app before installing it."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:119 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:24
+#: mkt/developers/templates/developers/apps/edit/basic.html:121 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:24
 #: mkt/reviewers/templates/reviewers/includes/details.html:138 mkt/websites/forms.py:25
 msgid "Description"
 msgstr "বিবরণ"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:121
+#: mkt/developers/templates/developers/apps/edit/basic.html:123 mkt/submit/forms.py:281
 msgid ""
-"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description\n"
-"                       also appears on the app's detail page. Be sure to include a description that accurately represents your app."
+"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
+"accurately represents your app."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:141 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
+#: mkt/developers/templates/developers/apps/edit/basic.html:146 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Search Keywords"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:168
+#: mkt/developers/templates/developers/apps/edit/basic.html:173
 msgid "Release Notes"
 msgstr "রিলিজ নোট"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:169
-msgid ""
-"Information about changes in the latest release, new features,\n"
-"                                known bugs, and other useful information specific to this\n"
-"                                release/version."
+#: mkt/developers/templates/developers/apps/edit/basic.html:174
+msgid "Information about changes in the latest release, new features, known bugs, and other useful information specific to this release/version."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:190
-msgid ""
-"Categories are the primary way users browse through apps.\n"
-"                      Choose any that fit your app's functionality for the\n"
-"                      most exposure."
+#: mkt/developers/templates/developers/apps/edit/basic.html:196
+msgid "Categories are the primary way users browse through apps. Choose any that fit your app's functionality for the most exposure."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/details.html:5
@@ -3677,12 +3660,8 @@ msgid "Homepage"
 msgstr "প্রধান পাতা"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:37
-msgid ""
-"If your app has another homepage, enter its\n"
-"                        address here. If your website is localized into other\n"
-"                        languages multiple translations of this field can be\n"
-"                        added."
-msgstr ""
+msgid "If your app has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added."
+msgstr "যদি আপনার অ্যাপ্লিকেশনের অন্য কোনো হোমপেজ থাকে, তাহলে এখানে তার ঠিকানা লিখুন। যদি আপনার ওয়েবসাইট অন্যান্য ভাষায় অনূদিত হয়, এই ফিল্ড একাধিক অনুবাদ যোগ করা যেতে পারে।"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:55 mkt/reviewers/templates/reviewers/includes/details.html:55 mkt/reviewers/templates/reviewers/includes/mobile_details.html:120
 #: mkt/templates/mkt/footer.html:15
@@ -3732,11 +3711,7 @@ msgid "Support Information for {0}"
 msgstr "{0} এর জন্য সহায়তা তথ্য"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:23
-msgid ""
-"The email address used by end users to contact you\n"
-"                        with support issues. If you have different addresses\n"
-"                        for each language multiple translations of this field\n"
-"                        can be added."
+msgid "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/support.html:41 mkt/reviewers/templates/reviewers/includes/details.html:103 mkt/reviewers/templates/reviewers/includes/mobile_details.html:92
@@ -3744,12 +3719,8 @@ msgid "Website"
 msgstr "ওয়েবসাইট"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:43
-msgid ""
-"If your app has a support website or forum, enter\n"
-"                        its address here. If your website is localized into\n"
-"                        other languages, multiple translations of this\n"
-"                        field can be added."
-msgstr ""
+msgid "If your app has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
+msgstr "যদি আপনার অ্যাপের সহায়তা ওয়েবসাইট বা ফোরাম থাকে, এখানে তার ঠিকানা লিখুন। আপনার ওয়েবসাইট অন্যান্য ভাষায় অনূদিত হলে, এই ক্ষেত্র একাধিক অনুবাদ যোগ করা যেতে পারে।"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -3768,41 +3739,39 @@ msgstr ""
 msgid "If your app works without an Internet connection then we will list that your app &quot;Works Offline&quot;."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:35
+#: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Public Stats?"
 msgstr "সার্বজনীন পরিসংখ্যান?"
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:36
-msgid ""
-"Whether the install and usage stats of your app can\n"
-"                      be displayed in our online viewer."
+#: mkt/developers/templates/developers/apps/edit/technical.html:37
+msgid "Whether the install and usage stats of your app can be displayed in our online viewer."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:40
+#: mkt/developers/templates/developers/apps/edit/technical.html:41
 msgid "This app's stats are publicly viewable."
 msgstr "এই অ্যাপ্লিকেশনের পরিসংখ্যান সবাই দেখতে পাবে।"
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:42
+#: mkt/developers/templates/developers/apps/edit/technical.html:44
 msgid "No, this app's stats are not publicly viewable."
 msgstr "না, এই অ্যাপ্লিকেশন এর পরিসংখ্যান সবাইকে দেখানো হবেনা।"
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:47
+#: mkt/developers/templates/developers/apps/edit/technical.html:49
 msgid "Homescreen?"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:48
+#: mkt/developers/templates/developers/apps/edit/technical.html:50
 msgid "Whether this app is a homescreen for Firefox OS."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:70
+#: mkt/developers/templates/developers/apps/edit/technical.html:72
 msgid "This app does not require any device features"
 msgstr "এই অ্যাপ্লিকেশন এর কোনো ডিভাইস বৈশিষ্ট্যের প্রয়োজন হয় না"
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:78
+#: mkt/developers/templates/developers/apps/edit/technical.html:80
 msgid "GUID"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:80
+#: mkt/developers/templates/developers/apps/edit/technical.html:82
 msgid "Internal identifier for this app on the Firefox Marketplace."
 msgstr ""
 
@@ -3861,7 +3830,7 @@ msgstr "স্ক্রিনশট বা ভিডিও"
 msgid "Please provide at least one screenshot or video of your app:"
 msgstr "আপনার অ্যাপ্লিকেশনের অন্তত একটি স্ক্রিনশট বা ভিডিও প্রদান করুন:"
 
-#: mkt/developers/templates/developers/apps/forms_shared/media.html:139 mkt/submit/templates/submit/details.html:169
+#: mkt/developers/templates/developers/apps/forms_shared/media.html:139 mkt/submit/templates/submit/details.html:172
 msgid "Add a Screenshot or Video..."
 msgstr "স্ক্রিনশট বা ভিডিও যোগ করুন"
 
@@ -4093,19 +4062,15 @@ msgid "Submission ID"
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
-msgid ""
-"The submission ID can be found on the certificate sent to you.\n"
-"                              It is a numeric value like &quot;14&quot;."
+msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:120
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:121
 msgid "Security Code"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:127
-msgid ""
-"The security code can be found on the certificate sent to you.\n"
-"                              It is a mix of letters and numbers like &quot;AB12CD3&quot;."
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:128
+msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:15 mkt/lookup/templates/lookup/helpers/website_header.html:16
@@ -4204,11 +4169,7 @@ msgid "In-App Payments Keys"
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
-msgid ""
-"The Firefox Marketplace allows your app to take in-app payments.\n"
-"                The <a href=\"{guide}\">in-app payment guide</a> explains how to\n"
-"                configure your app for payments with the parameters below.\n"
-"                "
+msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
 msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:31 mkt/developers/templates/developers/payments/in-app-keys.html:29
@@ -5053,7 +5014,7 @@ msgstr ""
 
 #: mkt/extensions/validation.py:37
 #, python-format
-msgid "The icon file `%(icon_path)s` is not the specified dimensions  of %(icon_size)s x %(icon_size)s as defined in the manifest."
+msgid "The icon file `%(icon_path)s` is not the specified dimensions of %(icon_size)s x %(icon_size)s as defined in the manifest."
 msgstr ""
 
 #: mkt/extensions/validation.py:40
@@ -5415,7 +5376,8 @@ msgstr ""
 msgid "Activity"
 msgstr "কার্যকলাপ"
 
-#: mkt/lookup/templates/lookup/app_activity.html:18 mkt/lookup/templates/lookup/app_activity.html:38 mkt/lookup/templates/lookup/user_activity.html:23 mkt/lookup/templates/lookup/user_activity.html:43
+#: mkt/lookup/templates/lookup/app_activity.html:18 mkt/lookup/templates/lookup/app_activity.html:38 mkt/lookup/templates/lookup/user_activity.html:23
+#: mkt/lookup/templates/lookup/user_activity.html:43
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
@@ -7015,10 +6977,8 @@ msgid "Search Unavailable"
 msgstr "অনুসন্ধান পাওয়া যাচ্ছে না"
 
 #: mkt/search/templates/search/down.html:10
-msgid ""
-"Search is temporarily unavailable. Please try again in a few\n"
-"             minutes."
-msgstr ""
+msgid "Search is temporarily unavailable. Please try again in a few minutes."
+msgstr "অনুসন্ধান করার সুবিধাটি সাময়িকভাবে পাওয়া যাচ্ছে না। অনুগ্রহ করে, কয়েক মিনিট পর আবার চেষ্টা করে দেখুন।"
 
 #: mkt/site/context_processors.py:57
 msgid "Account Settings"
@@ -7401,8 +7361,8 @@ msgid "Reviewer escalation"
 msgstr "পর্যালোচক তুলে নিয়েছেন"
 
 #: mkt/site/log.py:488
-msgid "Video removed from {addon} because of a problem with the video. "
-msgstr ""
+msgid "Video removed from {addon} because of a problem with the video."
+msgstr "ভিডিওতে সমস্যা থাকার কারনে {addon} থেকে অপসারন করা হয়েছে।"
 
 #: mkt/site/log.py:490
 msgid "Video removed"
@@ -7591,10 +7551,8 @@ msgid "You tried to do something that you weren't allowed to."
 msgstr "আপনি এমন কিছু চেষ্টা করেছেন যা করার অনুমতি আপনার নেই।"
 
 #: mkt/site/templates/site/403.html:11
-msgid ""
-"Try going back to the previous page, refreshing and trying\n"
-"              again."
-msgstr ""
+msgid "Try going back to the previous page, refreshing and trying again."
+msgstr "আগের পেজে ফিরে গিয়ে পুনরায় লোড করুন এবং আবার চেষ্টা করুন।"
 
 #: mkt/site/templates/site/404.html:4
 msgid "Page Not Found"
@@ -7605,17 +7563,12 @@ msgid "We're sorry, but we can't find what you're looking for."
 msgstr "আমরা দুঃখিত, আপনি যা খুঁজছেন তা পাওয়া যায়নি।"
 
 #: mkt/site/templates/site/404.html:11
-msgid ""
-"The page or file you requested wasn't found on our site. It's\n"
-"             possible that you clicked a link that's out of date, or typed in\n"
-"             the address incorrectly."
-msgstr ""
+msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
+msgstr "আপনার অনুরোধ করা পাতা অথবা ফাইল পাওয়া যায়নি। হতে পারে যে আপনি মেয়াদোত্তীর্ণ লিঙ্কে ক্লিক করেছেন অথবা ঠিকানাটি ভুল টাইপ করেছেন।"
 
 #: mkt/site/templates/site/404.html:16
-msgid ""
-"If you typed in the address, please double check the\n"
-"                 spelling."
-msgstr ""
+msgid "If you typed in the address, please double check the spelling."
+msgstr "আপনি যদি অ্যাড্রেসটি টাইপ করে থাকেন , তাহলে টাইপ করার সময় বানানগুলো পুনরায় চেক করে নিন।"
 
 #: mkt/site/templates/site/404.html:19
 #, python-format
@@ -7700,19 +7653,13 @@ msgstr ""
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr ""
 
-#: mkt/submit/forms.py:281
-msgid ""
-"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
-"accurately represents your app."
-msgstr ""
-
 #: mkt/submit/forms.py:295
 msgid "Privacy Policy:"
 msgstr "গোপনীয়তার নীতি:"
 
 #: mkt/submit/forms.py:297
 msgid ""
-"A privacy policy explains how you handle data received through your app.  For example: what data do you receive? How do you use it? Who do you share it with? Do you receive personal information? Do "
+"A privacy policy explains how you handle data received through your app. For example: what data do you receive? How do you use it? Who do you share it with? Do you receive personal information? Do "
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above.  If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
@@ -7778,27 +7725,19 @@ msgstr ""
 msgid "Open details page"
 msgstr "বিস্তারিত তথ্যের জন্য পেইজটি খুলুন"
 
-#: mkt/submit/templates/submit/details.html:60
-msgid ""
-"The app name is one of the fields used to return search results in the Firefox Marketplace.\n"
-"                            The app name also appears on the app’s detail page. Be sure you’ve included a descriptive\n"
-"                            name in your app manifest. If you want to change the app name, you’ll need to do that in\n"
-"                            your app manifest."
-msgstr ""
-
-#: mkt/submit/templates/submit/details.html:124
+#: mkt/submit/templates/submit/details.html:127
 msgid "Support Information:"
 msgstr ""
 
-#: mkt/submit/templates/submit/details.html:133
+#: mkt/submit/templates/submit/details.html:136
 msgid "Screenshot or video of your app:"
 msgstr "আপনার অ্যাপের স্ক্রিনশট অথবা ভিডিও:"
 
-#: mkt/submit/templates/submit/details.html:136
+#: mkt/submit/templates/submit/details.html:139
 msgid "You must provide at least one."
 msgstr "আপনাকে অন্তত ১টি প্রদান করতে হবে।"
 
-#: mkt/submit/templates/submit/details.html:176
+#: mkt/submit/templates/submit/details.html:179
 msgid "PNG and JPG supported. Screenshots must be at least 320px by 480px. Screenshots proportional to 320px by 480px are optimal. WebM supported for video."
 msgstr ""
 

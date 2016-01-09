@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-01-06 13:06-0800\n"
+"POT-Creation-Date: 2016-01-07 11:57-0800\n"
 "PO-Revision-Date: 2015-12-04 14:47+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -54,11 +54,11 @@ msgstr ""
 msgid "Unknown"
 msgstr "未知"
 
-#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/developers/templates/developers/apps/edit/technical.html:51 mkt/reviewers/forms.py:212
+#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/developers/templates/developers/apps/edit/technical.html:53 mkt/reviewers/forms.py:212
 msgid "Yes"
 msgstr "可以"
 
-#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/developers/templates/developers/apps/edit/technical.html:53 mkt/lookup/templates/lookup/user_summary.html:78 mkt/reviewers/forms.py:213
+#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/developers/templates/developers/apps/edit/technical.html:55 mkt/lookup/templates/lookup/user_summary.html:78 mkt/reviewers/forms.py:213
 msgid "No"
 msgstr "不行"
 
@@ -130,7 +130,7 @@ msgstr "使用者"
 msgid "Reviewer"
 msgstr "審查者"
 
-#: mkt/constants/apps.py:11 mkt/constants/base.py:146 mkt/developers/templates/developers/apps/owner.html:91 mkt/users/notifications.py:157
+#: mkt/constants/apps.py:11 mkt/constants/base.py:146 mkt/developers/templates/developers/apps/owner.html:90 mkt/users/notifications.py:157
 msgid "Developer"
 msgstr "開發者"
 
@@ -1188,11 +1188,11 @@ msgid "Owner"
 msgstr "所有人"
 
 # <option> text in a <select> for Author role in an add-on.
-#: mkt/constants/base.py:147 mkt/developers/templates/developers/apps/owner.html:94
+#: mkt/constants/base.py:147 mkt/developers/templates/developers/apps/owner.html:92
 msgid "Viewer"
 msgstr "檢視者"
 
-#: mkt/constants/base.py:148 mkt/developers/templates/developers/skeleton_impala.html:60 mkt/developers/templates/developers/apps/owner.html:96 mkt/ecosystem/templates/ecosystem/support.html:5
+#: mkt/constants/base.py:148 mkt/developers/templates/developers/skeleton_impala.html:60 mkt/developers/templates/developers/apps/owner.html:94 mkt/ecosystem/templates/ecosystem/support.html:5
 #: mkt/ecosystem/templates/ecosystem/support.html:13 templates/base.html:61
 msgid "Support"
 msgstr "支援"
@@ -2158,7 +2158,7 @@ msgstr "封裝"
 msgid "Agreement"
 msgstr "同意"
 
-#: mkt/constants/submit.py:6 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:136
+#: mkt/constants/submit.py:6 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:138
 msgid "Submit"
 msgstr "提交"
 
@@ -2274,7 +2274,7 @@ msgstr "這個敘述會顯示在詳細資訊頁面。"
 msgid "Search Keywords:"
 msgstr "搜尋關鍵字:"
 
-#: mkt/developers/forms.py:518 mkt/developers/templates/developers/apps/edit/basic.html:143 mkt/submit/forms.py:290
+#: mkt/developers/forms.py:518 mkt/developers/templates/developers/apps/edit/basic.html:148 mkt/submit/forms.py:290
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
 msgstr "搜尋關鍵字用來在 Firefox Marketplace 回傳搜尋結果，請確定您輸入能準確描述您的應用程式的關鍵字。"
 
@@ -2301,7 +2301,7 @@ msgstr "請註明您附加元件的隱私權保護政策："
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr "在您修改預設語言之前，您必須有該語言的名稱和說明。您目前沒有 %s 。"
 
-#: mkt/developers/forms.py:721 mkt/submit/templates/submit/details.html:125
+#: mkt/developers/forms.py:721 mkt/submit/templates/submit/details.html:128
 msgid "You must provide either a website, an email, or both."
 msgstr "您必須至少提供網站、電子郵件地址，或兩者都提供。"
 
@@ -2345,7 +2345,7 @@ msgstr "讓我的應用程式可以在大部分的地區取得"
 msgid "Choose where my app is made available"
 msgstr "選擇我的應用程式可以在哪些地方取得"
 
-#: mkt/developers/forms.py:1005 mkt/developers/templates/developers/apps/edit/basic.html:189 mkt/lookup/templates/lookup/website_edit.html:84 mkt/lookup/templates/lookup/website_summary.html:48
+#: mkt/developers/forms.py:1005 mkt/developers/templates/developers/apps/edit/basic.html:195 mkt/lookup/templates/lookup/website_edit.html:84 mkt/lookup/templates/lookup/website_summary.html:48
 #: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:102 mkt/websites/forms.py:23
 msgid "Categories"
 msgstr "類別"
@@ -2716,8 +2716,8 @@ msgid "App deleted."
 msgstr "已刪除應用程式。"
 
 #: mkt/developers/views.py:170
-msgid "Password was incorrect.  App was not deleted."
-msgstr ""
+msgid "Password was incorrect. App was not deleted."
+msgstr "密碼不正確。尚未刪除應用程式。"
 
 #: mkt/developers/views.py:214
 msgid "App successfully resubmitted."
@@ -2839,10 +2839,12 @@ msgstr "要存取 Marketplace API，請先同意 <a href=\"%(terms)s\">服務條
 
 #: mkt/developers/templates/developers/api.html:23
 msgid ""
-"<p> There are two main uses for the Marketplace API. From another web site using a traditional OAuth flow or from a command line tool. The difference is discussed in the  <a href=\"https://firefox-"
+"<p> There are two main uses for the Marketplace API. From another web site using a traditional OAuth flow or from a command line tool. The difference is discussed in the <a href=\"https://firefox-"
 "marketplace-api.readthedocs.org/en/latest/topics/authentication.html#oauth\">Marketplace documentation</a>. Any testing should occur on the <a href=\"https://marketplace-dev.allizom.org"
 "\">development server</a> and not the production server. </p>"
 msgstr ""
+"<p>Marketplace API 主要有兩種用途。分別是自其他網站透過傳統的 OAuth 流程，或自命令列工具。兩者間的差別列於 <a href=\"https://firefox-marketplace-api.readthedocs.org/en/latest/topics/authentication."
+"html#oauth\">Marketplace 文件</a>。只應該在 <a href=\"https://marketplace-dev.allizom.org\">開發伺服器</a> 上進行測試，而非正式上線用的伺服器。</p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
@@ -3128,7 +3130,7 @@ msgstr "略過這個消息"
 #: mkt/developers/templates/developers/apps/dashboard.html:15 mkt/developers/templates/developers/apps/edit/admin.html:9 mkt/developers/templates/developers/apps/edit/basic.html:10
 #: mkt/developers/templates/developers/apps/edit/details.html:8 mkt/developers/templates/developers/apps/edit/media.html:6 mkt/developers/templates/developers/apps/edit/support.html:7
 #: mkt/developers/templates/developers/apps/edit/technical.html:8 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:12
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:16 mkt/developers/templates/developers/payments/in-app-product-row.html:31 mkt/submit/templates/submit/details.html:88
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:16 mkt/developers/templates/developers/payments/in-app-product-row.html:31 mkt/submit/templates/submit/details.html:91
 msgid "Edit"
 msgstr "編輯"
 
@@ -3170,9 +3172,9 @@ msgstr "僅有應用程式擁有者可編輯此頁面。"
 msgid "About team member roles"
 msgstr "關於團隊成員角色"
 
-#: mkt/developers/templates/developers/apps/owner.html:58 mkt/developers/templates/developers/apps/version_edit.html:72 mkt/developers/templates/developers/apps/edit/admin.html:127
-#: mkt/developers/templates/developers/apps/edit/basic.html:211 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62
-#: mkt/developers/templates/developers/apps/edit/technical.html:91 mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/payments/premium.html:75
+#: mkt/developers/templates/developers/apps/owner.html:58 mkt/developers/templates/developers/apps/version_edit.html:67 mkt/developers/templates/developers/apps/edit/admin.html:130
+#: mkt/developers/templates/developers/apps/edit/basic.html:217 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62
+#: mkt/developers/templates/developers/apps/edit/technical.html:94 mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/payments/premium.html:75
 #: mkt/developers/templates/developers/payments/premium.html:104 mkt/developers/templates/developers/payments/premium.html:162 mkt/developers/templates/developers/payments/premium.html:272
 #: mkt/developers/templates/developers/payments/premium.html:286 mkt/developers/templates/developers/payments/premium.html:325 mkt/lookup/templates/lookup/website_edit.html:121
 #: mkt/translations/templates/translations/trans-menu.html:48
@@ -3195,22 +3197,18 @@ msgid "Apps can have any number of team members with 4 possible roles:"
 msgstr "應用程式的團隊成員人數不限且得擔任4種可用的角色:"
 
 #: mkt/developers/templates/developers/apps/owner.html:89
-msgid ""
-"Can manage all aspects of the app's listing, including\n"
-"            adding and removing other team members"
-msgstr ""
+msgid "Can manage all aspects of the app's listing, including adding and removing other team members"
+msgstr "可以管理應用程式所有的詳細資訊，包含加入與移除其他團隊成員"
 
-#: mkt/developers/templates/developers/apps/owner.html:92
-msgid ""
-"Can manage all aspects of the app's listing, except\n"
-"            for adding and removing other team members and managing payments"
-msgstr ""
+#: mkt/developers/templates/developers/apps/owner.html:91
+msgid "Can manage all aspects of the app's listing, except for adding and removing other team members and managing payments"
+msgstr "可以管理應用程式所有的詳細資訊，但不包含加入/移除其他團隊成員以及管理付款"
 
-#: mkt/developers/templates/developers/apps/owner.html:95
+#: mkt/developers/templates/developers/apps/owner.html:93
 msgid "Can view the app's settings but cannot make any changes"
 msgstr "可以檢視應用程式的設定，但不能進行任何修改"
 
-#: mkt/developers/templates/developers/apps/owner.html:97
+#: mkt/developers/templates/developers/apps/owner.html:95
 msgid "Can view the app's settings"
 msgstr "可以檢視應用程式設定"
 
@@ -3375,7 +3373,7 @@ msgstr "上船此封裝的程式新版本的新版本。新版本必須先經審
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
 msgstr "如果應用程式內容有大幅度更動，記得更新應用程式的 <a href=\"%(ratings_url)s\">內容分級</a>。"
 
-#: mkt/developers/templates/developers/apps/status.html:275 mkt/developers/templates/developers/apps/forms_shared/media.html:171 mkt/submit/templates/submit/details.html:188
+#: mkt/developers/templates/developers/apps/status.html:275 mkt/developers/templates/developers/apps/forms_shared/media.html:171 mkt/submit/templates/submit/details.html:191
 #: mkt/submit/templates/submit/manifest.html:110 mkt/submit/templates/submit/next_steps.html:110
 msgid "Continue"
 msgstr "繼續"
@@ -3440,9 +3438,9 @@ msgstr "您確定要下架這個應用程式嗎?"
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
 #. This 'or' goes between two choices in a dialog.
-#: mkt/developers/templates/developers/apps/status.html:389 mkt/developers/templates/developers/apps/status.html:411 mkt/developers/templates/developers/apps/version_edit.html:72
-#: mkt/developers/templates/developers/apps/edit/admin.html:127 mkt/developers/templates/developers/apps/edit/basic.html:211 mkt/developers/templates/developers/apps/edit/details.html:79
-#: mkt/developers/templates/developers/apps/edit/support.html:62 mkt/developers/templates/developers/apps/edit/technical.html:91 mkt/developers/templates/developers/apps/forms_shared/media.html:164
+#: mkt/developers/templates/developers/apps/status.html:389 mkt/developers/templates/developers/apps/status.html:411 mkt/developers/templates/developers/apps/version_edit.html:67
+#: mkt/developers/templates/developers/apps/edit/admin.html:130 mkt/developers/templates/developers/apps/edit/basic.html:217 mkt/developers/templates/developers/apps/edit/details.html:79
+#: mkt/developers/templates/developers/apps/edit/support.html:62 mkt/developers/templates/developers/apps/edit/technical.html:94 mkt/developers/templates/developers/apps/forms_shared/media.html:164
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/payments/includes/accept_terms.html:11
 #: mkt/developers/templates/developers/payments/includes/account_list.html:67 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:141
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:126
@@ -3451,9 +3449,9 @@ msgstr "您確定要下架這個應用程式嗎?"
 msgid "or"
 msgstr "或"
 
-#: mkt/developers/templates/developers/apps/status.html:389 mkt/developers/templates/developers/apps/status.html:411 mkt/developers/templates/developers/apps/version_edit.html:73
-#: mkt/developers/templates/developers/apps/edit/admin.html:129 mkt/developers/templates/developers/apps/edit/basic.html:213 mkt/developers/templates/developers/apps/edit/details.html:81
-#: mkt/developers/templates/developers/apps/edit/support.html:64 mkt/developers/templates/developers/apps/edit/technical.html:93 mkt/developers/templates/developers/apps/forms_shared/media.html:166
+#: mkt/developers/templates/developers/apps/status.html:389 mkt/developers/templates/developers/apps/status.html:411 mkt/developers/templates/developers/apps/version_edit.html:68
+#: mkt/developers/templates/developers/apps/edit/admin.html:132 mkt/developers/templates/developers/apps/edit/basic.html:219 mkt/developers/templates/developers/apps/edit/details.html:81
+#: mkt/developers/templates/developers/apps/edit/support.html:64 mkt/developers/templates/developers/apps/edit/technical.html:96 mkt/developers/templates/developers/apps/forms_shared/media.html:166
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/apps/listing/delete_form.html:27
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:12 mkt/developers/templates/developers/payments/includes/account_list.html:68
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:142 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:29
@@ -3501,28 +3499,22 @@ msgstr "版本紀錄"
 
 #: mkt/developers/templates/developers/apps/version_edit.html:26
 msgid ""
-"Information about changes in this release, new features,\n"
-"                              known bugs, and other useful information specific to this\n"
-"                              release/version. This information is also shown in the\n"
-"                              Apps Manager when updating."
-msgstr ""
+"Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Apps Manager when updating."
+msgstr "此次更新的資訊，包含新功能、已知臭蟲以及其他關於此次更新/版本的資訊。本資訊也會更新在應用程式管理員。"
 
-#: mkt/developers/templates/developers/apps/version_edit.html:40
+#: mkt/developers/templates/developers/apps/version_edit.html:37
 msgid "Notes for Reviewers"
 msgstr "審核者意見"
 
-#: mkt/developers/templates/developers/apps/version_edit.html:41
-msgid ""
-"Optionally, enter any information that may be useful\n"
-"                              to the Reviewer reviewing this app, such as test\n"
-"                              account information."
-msgstr ""
+#: mkt/developers/templates/developers/apps/version_edit.html:38
+msgid "Optionally, enter any information that may be useful to the Reviewer reviewing this app, such as test account information."
+msgstr "選用，輸入任何對審核者有用的資訊，像是測試帳號資訊等等。"
 
-#: mkt/developers/templates/developers/apps/version_edit.html:53 mkt/developers/templates/developers/apps/edit/technical.html:59
+#: mkt/developers/templates/developers/apps/version_edit.html:48 mkt/developers/templates/developers/apps/edit/technical.html:61
 msgid "Minimum Requirements"
 msgstr "最低需求"
 
-#: mkt/developers/templates/developers/apps/version_edit.html:54 mkt/developers/templates/developers/apps/edit/technical.html:60
+#: mkt/developers/templates/developers/apps/version_edit.html:49 mkt/developers/templates/developers/apps/edit/technical.html:62
 msgid "Device features required for this app to function."
 msgstr "這個應用程式需要裝置支援某些功能才能運作。"
 
@@ -3535,36 +3527,34 @@ msgid "Mozilla Contact"
 msgstr "Mozilla 聯絡人"
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:73
-msgid ""
-"An e-mail address (or addresses separated by commas) of this\n"
-"                   app's Mozilla contact that will be CC'd on any reviewer emails."
-msgstr ""
+msgid "An e-mail address (or addresses separated by commas) of this app's Mozilla contact that will be CC'd on any reviewer emails."
+msgstr "每當審核者透過審核者工具寄送電子郵件給應用程式開發者時，這個應用程式的 Mozilla 聯絡人都會收到該郵件的副本。"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:75
+#: mkt/developers/templates/developers/apps/edit/admin.html:76
 msgid "Enter email addresses, separated by commas"
 msgstr "請輸入電子郵件信箱地址，如有額外地址請以逗號分隔"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:90
+#: mkt/developers/templates/developers/apps/edit/admin.html:91
 msgid "Mozilla VIP App"
 msgstr "Mozilla VIP 應用程式"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:92
+#: mkt/developers/templates/developers/apps/edit/admin.html:93
 msgid "Is this a very important app that should always be handled by Mozilla Staff or Senior App Reviewers?"
 msgstr "這是非常重要的應用程式，每次都應該被 Mozilla 員工或資深的應用程式審核者處理嗎？"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:93
+#: mkt/developers/templates/developers/apps/edit/admin.html:95
 msgid "Use sparingly"
 msgstr "請保守使用"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:108
+#: mkt/developers/templates/developers/apps/edit/admin.html:110
 msgid "Priority review needed"
 msgstr "需要優先審查"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:110
+#: mkt/developers/templates/developers/apps/edit/admin.html:112
 msgid "The app will be treated as a priority and placed the top of the review queue"
 msgstr "此應用程式將被優先置於審核佇列最前面審查"
 
-#: mkt/developers/templates/developers/apps/edit/admin.html:111
+#: mkt/developers/templates/developers/apps/edit/admin.html:114
 msgid "This will persist until first approval"
 msgstr "將會持續到首次接受"
 
@@ -3577,103 +3567,97 @@ msgstr "基本資訊"
 msgid "Basic Information for {0}"
 msgstr "{0} 的基本資訊"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:23
+#: mkt/developers/templates/developers/apps/edit/basic.html:23 mkt/submit/templates/submit/details.html:60
 msgid ""
-"The app name is one of the fields used to return search results in the Firefox Marketplace.\n"
-"                       The app name also appears on the app’s detail page. Be sure you’ve included a descriptive\n"
-"                       name in your app manifest. If you want to change the app name, you’ll need to do that in\n"
-"                       your app manifest."
+"The app name is one of the fields used to return search results in the Firefox Marketplace. The app name also appears on the app’s detail page. Be sure you’ve included a descriptive name in your "
+"app manifest. If you want to change the app name, you’ll need to do that in your app manifest."
 msgstr ""
+"應用程式名稱是在 Firefox Marketplace 當中用來回傳搜尋結果的欄位之一，應用程式名稱也會顯示在應用程式的詳細資訊頁面上。請確定您在應用程式的安裝資訊檔當中加上了有意義的名稱，若您想要改變該名稱，您必須"
+"在安裝資訊檔中修改。"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:36 mkt/reviewers/templates/reviewers/includes/details.html:40 mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
+#: mkt/developers/templates/developers/apps/edit/basic.html:38 mkt/reviewers/templates/reviewers/includes/details.html:40 mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
 msgid "Developer Name"
 msgstr "開發者名稱"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:38
+#: mkt/developers/templates/developers/apps/edit/basic.html:40
 msgid "This field can only be edited by updating it in the manifest."
 msgstr "這個欄位只能透過更新安裝資訊來編輯。"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:48 mkt/submit/templates/submit/details.html:72
+#: mkt/developers/templates/developers/apps/edit/basic.html:50 mkt/submit/templates/submit/details.html:75
 msgid "App URL"
 msgstr "應用程式網址"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:49 mkt/submit/templates/submit/details.html:74
+#: mkt/developers/templates/developers/apps/edit/basic.html:51 mkt/submit/templates/submit/details.html:77
 msgid "Select a unique URL for your detail page. By default we use your app name to create this URL."
 msgstr "為您的詳細資訊頁面選擇一個獨一無二的 URL。該 URL 預設為您應用程式的名稱。"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:62 mkt/developers/templates/developers/apps/listing/item_actions_app.html:94
+#: mkt/developers/templates/developers/apps/edit/basic.html:64 mkt/developers/templates/developers/apps/listing/item_actions_app.html:94
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:29 mkt/reviewers/templates/reviewers/review.html:58
 msgid "View Listing"
 msgstr "檢視附加元件頁面"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:68
+#: mkt/developers/templates/developers/apps/edit/basic.html:70
 msgid "API URL"
 msgstr "API 網址"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:69
+#: mkt/developers/templates/developers/apps/edit/basic.html:71
 msgid "The URL for accessing this app using the Marketplace API"
 msgstr "這個 URL 是用來給 Marketplace API 存取這個應用程式的"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:73
+#: mkt/developers/templates/developers/apps/edit/basic.html:75
 msgid "View API documentation"
 msgstr "檢視 API 文件"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:77 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
+#: mkt/developers/templates/developers/apps/edit/basic.html:79 mkt/reviewers/templates/reviewers/includes/details.html:26 mkt/reviewers/templates/reviewers/includes/mobile_details.html:53
 #: mkt/search/forms.py:156
 msgid "Manifest URL"
 msgstr "安裝資訊網址"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:85
+#: mkt/developers/templates/developers/apps/edit/basic.html:87
 msgid "Refresh"
 msgstr "重新整理"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:87
+#: mkt/developers/templates/developers/apps/edit/basic.html:89
 #, python-format
 msgid ""
 "Please try not to change your manifest URL too frequently. If you change your manifest URL, existing users won't be upgraded to use the new manifest URL. For more information, read the <a href="
 "\"%(doc_url)s\" target=\"_blank\">documentation on Updating Apps</a>."
 msgstr "請不要太常修改您的安裝資訊網址。若您變更了安裝資訊網址，現有的使用者將無法升級使用新的安裝資訊網址。若需更多資訊，請參考 <a href=\"%(doc_url)s\" target=\"_blank\">更新應用程式相關文件</a>。"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:101
+#: mkt/developers/templates/developers/apps/edit/basic.html:103
 msgid "Hosted URL"
 msgstr "代管網址"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:107
+#: mkt/developers/templates/developers/apps/edit/basic.html:109
 msgid "If your app has a URL where it is hosted, you can set it for users that want to try your app before installing it."
 msgstr "若您的應用程式有個代管網址，您可以在此設定，這樣使用者就可以在安裝前先試用。"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:119 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:24
+#: mkt/developers/templates/developers/apps/edit/basic.html:121 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:24
 #: mkt/reviewers/templates/reviewers/includes/details.html:138 mkt/websites/forms.py:25
 msgid "Description"
 msgstr "敘述"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:121
+#: mkt/developers/templates/developers/apps/edit/basic.html:123 mkt/submit/forms.py:281
 msgid ""
-"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description\n"
-"                       also appears on the app's detail page. Be sure to include a description that accurately represents your app."
-msgstr ""
+"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
+"accurately represents your app."
+msgstr "應用程式描述是在 Firefox Marketplace 當中用來回傳搜尋結果的欄位之一，應用程式描述也會顯示在應用程式的詳細資訊頁面上。請確定您包含了準確能表達您的應用程式描述內容。"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:141 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
+#: mkt/developers/templates/developers/apps/edit/basic.html:146 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Search Keywords"
 msgstr "搜尋關鍵字"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:168
+#: mkt/developers/templates/developers/apps/edit/basic.html:173
 msgid "Release Notes"
 msgstr "新鮮事"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:169
-msgid ""
-"Information about changes in the latest release, new features,\n"
-"                                known bugs, and other useful information specific to this\n"
-"                                release/version."
-msgstr ""
+#: mkt/developers/templates/developers/apps/edit/basic.html:174
+msgid "Information about changes in the latest release, new features, known bugs, and other useful information specific to this release/version."
+msgstr "您的最新發行版本中有什麼新鮮事、已知問題、或其他與此次發行有關的資訊。"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:190
-msgid ""
-"Categories are the primary way users browse through apps.\n"
-"                      Choose any that fit your app's functionality for the\n"
-"                      most exposure."
-msgstr ""
+#: mkt/developers/templates/developers/apps/edit/basic.html:196
+msgid "Categories are the primary way users browse through apps. Choose any that fit your app's functionality for the most exposure."
+msgstr "分類類別是使用者主要瀏覽應用程式的方式。選擇符合您應用程式功能的類別，嶄露頭角吧！"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:5
 msgid "App Details"
@@ -3693,12 +3677,8 @@ msgid "Homepage"
 msgstr "首頁"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:37
-msgid ""
-"If your app has another homepage, enter its\n"
-"                        address here. If your website is localized into other\n"
-"                        languages multiple translations of this field can be\n"
-"                        added."
-msgstr ""
+msgid "If your app has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added."
+msgstr "如果您的應用程式有其他的首頁，請在此輸入其網址。如果您的網頁有其他語言版本，請在此欄新增。"
 
 #: mkt/developers/templates/developers/apps/edit/details.html:55 mkt/reviewers/templates/reviewers/includes/details.html:55 mkt/reviewers/templates/reviewers/includes/mobile_details.html:120
 #: mkt/templates/mkt/footer.html:15
@@ -3748,24 +3728,16 @@ msgid "Support Information for {0}"
 msgstr "{0} 的支援資訊"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:23
-msgid ""
-"The email address used by end users to contact you\n"
-"                        with support issues. If you have different addresses\n"
-"                        for each language multiple translations of this field\n"
-"                        can be added."
-msgstr ""
+msgid "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
+msgstr "使用者遇到需要技術支援問題的時候用可以用來連絡您的電子郵件地址。若您對不同的語言又不同的信箱，則可新增多個欄位。"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:41 mkt/reviewers/templates/reviewers/includes/details.html:103 mkt/reviewers/templates/reviewers/includes/mobile_details.html:92
 msgid "Website"
 msgstr "網站"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:43
-msgid ""
-"If your app has a support website or forum, enter\n"
-"                        its address here. If your website is localized into\n"
-"                        other languages, multiple translations of this\n"
-"                        field can be added."
-msgstr ""
+msgid "If your app has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added."
+msgstr "如果您的應用程式有支援網站或討論區，請在此輸入其位址。如果您的網站已經本地化為其他語言，您可以新增多個此欄位的翻譯。"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:5
 msgid "Technical Details"
@@ -3784,43 +3756,41 @@ msgstr "可在離線時使用"
 msgid "If your app works without an Internet connection then we will list that your app &quot;Works Offline&quot;."
 msgstr "若您的程式在無網際網路連線時也能使用，我們就會將您的程式標示為「可離線使用」。"
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:35
+#: mkt/developers/templates/developers/apps/edit/technical.html:36
 msgid "Public Stats?"
 msgstr "公開統計數據？"
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:36
-msgid ""
-"Whether the install and usage stats of your app can\n"
-"                      be displayed in our online viewer."
-msgstr ""
+#: mkt/developers/templates/developers/apps/edit/technical.html:37
+msgid "Whether the install and usage stats of your app can be displayed in our online viewer."
+msgstr "您應用程式的安裝與使用統計數據可以在我們的線上檢視器顯示。"
 
 # 88%
-#: mkt/developers/templates/developers/apps/edit/technical.html:40
+#: mkt/developers/templates/developers/apps/edit/technical.html:41
 msgid "This app's stats are publicly viewable."
 msgstr "這個應用程式的統計資訊是公開的。"
 
 # 90%
-#: mkt/developers/templates/developers/apps/edit/technical.html:42
+#: mkt/developers/templates/developers/apps/edit/technical.html:44
 msgid "No, this app's stats are not publicly viewable."
 msgstr "不，這個應用程式的統計資訊不是公開的。"
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:47
+#: mkt/developers/templates/developers/apps/edit/technical.html:49
 msgid "Homescreen?"
 msgstr "主畫面？"
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:48
+#: mkt/developers/templates/developers/apps/edit/technical.html:50
 msgid "Whether this app is a homescreen for Firefox OS."
 msgstr "這套程式是不是 Firefox OS 的主畫面？"
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:70
+#: mkt/developers/templates/developers/apps/edit/technical.html:72
 msgid "This app does not require any device features"
 msgstr "這個應用程式不需要裝置支援任何功能就能運作。"
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:78
+#: mkt/developers/templates/developers/apps/edit/technical.html:80
 msgid "GUID"
 msgstr "GUID"
 
-#: mkt/developers/templates/developers/apps/edit/technical.html:80
+#: mkt/developers/templates/developers/apps/edit/technical.html:82
 msgid "Internal identifier for this app on the Firefox Marketplace."
 msgstr "此應用程式在 Firefox Marketplace 上的內部識別代號。"
 
@@ -3883,7 +3853,7 @@ msgstr "螢幕截圖或影片"
 msgid "Please provide at least one screenshot or video of your app:"
 msgstr "請提供至少一張您的應用程式的螢幕截圖:"
 
-#: mkt/developers/templates/developers/apps/forms_shared/media.html:139 mkt/submit/templates/submit/details.html:169
+#: mkt/developers/templates/developers/apps/forms_shared/media.html:139 mkt/submit/templates/submit/details.html:172
 msgid "Add a Screenshot or Video..."
 msgstr "新增螢幕截圖或影片…"
 
@@ -4119,20 +4089,16 @@ msgid "Submission ID"
 msgstr "送出識別碼"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
-msgid ""
-"The submission ID can be found on the certificate sent to you.\n"
-"                              It is a numeric value like &quot;14&quot;."
-msgstr ""
+msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
+msgstr "您可以在認證書中找到該識別碼。識別碼由數字組成，例如 &quot;14&quot;。"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:120
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:121
 msgid "Security Code"
 msgstr "安全碼"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:127
-msgid ""
-"The security code can be found on the certificate sent to you.\n"
-"                              It is a mix of letters and numbers like &quot;AB12CD3&quot;."
-msgstr ""
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:128
+msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
+msgstr "您可以在憑證中找到該識別碼。識別碼由數字和英文字母組成，例如 &quot;AB12CD3&quot;。"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:15 mkt/lookup/templates/lookup/helpers/website_header.html:16
 msgid "Summary"
@@ -4229,12 +4195,8 @@ msgid "In-App Payments Keys"
 msgstr "應用程式內付款金鑰"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:23
-msgid ""
-"The Firefox Marketplace allows your app to take in-app payments.\n"
-"                The <a href=\"{guide}\">in-app payment guide</a> explains how to\n"
-"                configure your app for payments with the parameters below.\n"
-"                "
-msgstr ""
+msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
+msgstr "Firefox Marketplace 讓您可以接受 in-app 付款。<a href=\"{guide}\">in-app payment guide</a> 解釋了您應該如何使用下面的參數接受付款。"
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:31 mkt/developers/templates/developers/payments/in-app-keys.html:29
 msgid "Application Key"
@@ -5079,8 +5041,8 @@ msgstr "「description」屬性不能超過 132 個字元。"
 
 #: mkt/extensions/validation.py:37
 #, python-format
-msgid "The icon file `%(icon_path)s` is not the specified dimensions  of %(icon_size)s x %(icon_size)s as defined in the manifest."
-msgstr ""
+msgid "The icon file `%(icon_path)s` is not the specified dimensions of %(icon_size)s x %(icon_size)s as defined in the manifest."
+msgstr "圖示檔案「%(icon_path)s」與安裝資訊檔中指定的大小 %(icon_size)sx%(icon_size)s 不符。"
 
 #: mkt/extensions/validation.py:40
 #, python-format
@@ -5448,7 +5410,8 @@ msgstr "網站已儲存。"
 msgid "Activity"
 msgstr "活動"
 
-#: mkt/lookup/templates/lookup/app_activity.html:18 mkt/lookup/templates/lookup/app_activity.html:38 mkt/lookup/templates/lookup/user_activity.html:23 mkt/lookup/templates/lookup/user_activity.html:43
+#: mkt/lookup/templates/lookup/app_activity.html:18 mkt/lookup/templates/lookup/app_activity.html:38 mkt/lookup/templates/lookup/user_activity.html:23
+#: mkt/lookup/templates/lookup/user_activity.html:43
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> 由 %(user)s"
@@ -7057,10 +7020,8 @@ msgid "Search Unavailable"
 msgstr "無法搜尋"
 
 #: mkt/search/templates/search/down.html:10
-msgid ""
-"Search is temporarily unavailable. Please try again in a few\n"
-"             minutes."
-msgstr ""
+msgid "Search is temporarily unavailable. Please try again in a few minutes."
+msgstr "搜尋功能暫時無法使用。請幾分鐘後再行嘗試。"
 
 #: mkt/site/context_processors.py:57
 msgid "Account Settings"
@@ -7446,8 +7407,8 @@ msgid "Reviewer escalation"
 msgstr "審核者向上回報"
 
 #: mkt/site/log.py:488
-msgid "Video removed from {addon} because of a problem with the video. "
-msgstr ""
+msgid "Video removed from {addon} because of a problem with the video."
+msgstr "由於 {addon} 中的影片有問題，已被移除。"
 
 #: mkt/site/log.py:490
 msgid "Video removed"
@@ -7637,10 +7598,8 @@ msgid "You tried to do something that you weren't allowed to."
 msgstr "您嘗試了不被允許的動作。"
 
 #: mkt/site/templates/site/403.html:11
-msgid ""
-"Try going back to the previous page, refreshing and trying\n"
-"              again."
-msgstr ""
+msgid "Try going back to the previous page, refreshing and trying again."
+msgstr "回到上一頁，重新整理後再試一次。"
 
 #: mkt/site/templates/site/404.html:4
 msgid "Page Not Found"
@@ -7651,17 +7610,12 @@ msgid "We're sorry, but we can't find what you're looking for."
 msgstr "很抱歉，我們找不到您所找的東西。"
 
 #: mkt/site/templates/site/404.html:11
-msgid ""
-"The page or file you requested wasn't found on our site. It's\n"
-"             possible that you clicked a link that's out of date, or typed in\n"
-"             the address incorrectly."
-msgstr ""
+msgid "The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in the address incorrectly."
+msgstr "我們的網站沒有您要求的頁面或檔案。您有可能點選了不再有效的連結，或是輸入了錯誤的位址。"
 
 #: mkt/site/templates/site/404.html:16
-msgid ""
-"If you typed in the address, please double check the\n"
-"                 spelling."
-msgstr ""
+msgid "If you typed in the address, please double check the spelling."
+msgstr "如果您手動輸入位址，請再次檢查拼寫。"
 
 #: mkt/site/templates/site/404.html:19
 #, python-format
@@ -7746,22 +7700,18 @@ msgstr "發佈我的程式，讓所有人都能在 Marketplace 看到，並顯�
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr "不要自動發佈我的程式，通過審查後通知我，我會自行調整此程式的可見度。"
 
-#: mkt/submit/forms.py:281
-msgid ""
-"The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
-"accurately represents your app."
-msgstr "應用程式描述是在 Firefox Marketplace 當中用來回傳搜尋結果的欄位之一，應用程式描述也會顯示在應用程式的詳細資訊頁面上。請確定您包含了準確能表達您的應用程式描述內容。"
-
 #: mkt/submit/forms.py:295
 msgid "Privacy Policy:"
 msgstr "隱私權保護政策:"
 
 #: mkt/submit/forms.py:297
 msgid ""
-"A privacy policy explains how you handle data received through your app.  For example: what data do you receive? How do you use it? Who do you share it with? Do you receive personal information? Do "
+"A privacy policy explains how you handle data received through your app. For example: what data do you receive? How do you use it? Who do you share it with? Do you receive personal information? Do "
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above.  If you don't have a privacy policy, <a "
 "href=\"{url}\" target=\"_blank\">learn more on how to write one.</a>"
 msgstr ""
+"隱私權政策解釋了您會怎麼處理透過程式取得的資料。例如：您會取得那些資料？您會如何使用？您會與誰分享？您會不會取得個人資訊？您是否會將取得的資料匿名化？使用者可以做什麼來控制您與其他人收到的資料？"
+"請在上方輸入您的隱私權政策鏈結，若您沒有隱私權保護政策，<a href=\"{url}\" target=\"_blank\">點此了解怎麼寫。</a>"
 
 #: mkt/submit/forms.py:308
 msgid "Homepage:"
@@ -7824,27 +7774,19 @@ msgstr "請在下方確認您的清單資訊，我們已經從您的安裝資訊
 msgid "Open details page"
 msgstr "開啟詳細資訊頁面"
 
-#: mkt/submit/templates/submit/details.html:60
-msgid ""
-"The app name is one of the fields used to return search results in the Firefox Marketplace.\n"
-"                            The app name also appears on the app’s detail page. Be sure you’ve included a descriptive\n"
-"                            name in your app manifest. If you want to change the app name, you’ll need to do that in\n"
-"                            your app manifest."
-msgstr ""
-
-#: mkt/submit/templates/submit/details.html:124
+#: mkt/submit/templates/submit/details.html:127
 msgid "Support Information:"
 msgstr "支援資訊:"
 
-#: mkt/submit/templates/submit/details.html:133
+#: mkt/submit/templates/submit/details.html:136
 msgid "Screenshot or video of your app:"
 msgstr "您應用程式的螢幕截圖或影片:"
 
-#: mkt/submit/templates/submit/details.html:136
+#: mkt/submit/templates/submit/details.html:139
 msgid "You must provide at least one."
 msgstr "您至少必須提供其中一件。"
 
-#: mkt/submit/templates/submit/details.html:176
+#: mkt/submit/templates/submit/details.html:179
 msgid "PNG and JPG supported. Screenshots must be at least 320px by 480px. Screenshots proportional to 320px by 480px are optimal. WebM supported for video."
 msgstr "支援 PNG 與 JPG 檔案格式，螢幕截圖解析度不能小於 320 px * 480px。支援 WebM 視訊格式。"
 
