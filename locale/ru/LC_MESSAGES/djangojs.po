@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-06 13:06-0800\n"
-"PO-Revision-Date: 2015-12-26 16:24+0000\n"
+"PO-Revision-Date: 2016-01-04 18:22+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -31,7 +31,8 @@ msgstr "Изображения должны быть в PNG или JPG."
 msgid "Videos must be in WebM."
 msgstr "Видео должно быть в формате WebM."
 
-#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Проблема связи с сервером."
 
@@ -41,11 +42,12 @@ msgstr "Выбрать файл..."
 
 #: media/js/common/upload-packaged-app.js:53
 msgid "Your packaged app should end with <code>.zip</code>."
-msgstr "Ваше запакованное приложение должно заканчиваться на <code>.zip</code>."
+msgstr ""
+"Ваше запакованное приложение должно заканчиваться на <code>.zip</code>."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-packaged-app.js:89
-#, fuzzy, python-format
+#, python-format
 msgid "{0}% complete"
 msgstr "{0}% завершено"
 
@@ -69,9 +71,12 @@ msgstr "Ошибка с {0}"
 #: media/js/common/upload-packaged-app.js:169 media/js/devreg/devhub.js:203
 msgid "Your app failed validation with {0} error."
 msgid_plural "Your app failed validation with {0} errors."
-msgstr[0] "Ваше приложение не смогло пройти валидацию, в нём найдена {0} ошибка."
-msgstr[1] "Ваше приложение не смогло пройти валидацию, в нём найдено {0} ошибки."
-msgstr[2] "Ваше приложение не смогло пройти валидацию, в нём найдено {0} ошибок."
+msgstr[0] ""
+"Ваше приложение не смогло пройти валидацию, в нём найдена {0} ошибка."
+msgstr[1] ""
+"Ваше приложение не смогло пройти валидацию, в нём найдено {0} ошибки."
+msgstr[2] ""
+"Ваше приложение не смогло пройти валидацию, в нём найдено {0} ошибок."
 
 #: media/js/common/upload-packaged-app.js:184
 msgid "&hellip;and {0} more"
@@ -80,7 +85,8 @@ msgstr[0] "&hellip;и ещё {0}"
 msgstr[1] "&hellip;и ещё {0}"
 msgstr[2] "&hellip;и ещё {0}"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
+#: media/js/common/upload-packaged-app.js:199
+#: media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
 msgid "See full validation report"
 msgstr "Прочесть весь отчёт о валидации"
 
@@ -104,9 +110,12 @@ msgstr "Закончена валидация {0}"
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] "Ваше приложение прошло валидацию без ошибок и с {0} предупреждением."
-msgstr[1] "Ваше приложение прошло валидацию без ошибок и с {0} предупреждениями."
-msgstr[2] "Ваше приложение прошло валидацию без ошибок и с {0} предупреждениями."
+msgstr[0] ""
+"Ваше приложение прошло валидацию без ошибок и с {0} предупреждением."
+msgstr[1] ""
+"Ваше приложение прошло валидацию без ошибок и с {0} предупреждениями."
+msgstr[2] ""
+"Ваше приложение прошло валидацию без ошибок и с {0} предупреждениями."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
@@ -147,9 +156,12 @@ msgstr "Установка не удалась. Пожалуйста, повто
 #: media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] "Ваше дополнение не прошло проверку с {0} ошибкой и {1} сообщением(ями)."
-msgstr[1] "Ваше дополнение не прошло проверку с {0} ошибками и {1} сообщением(ями)."
-msgstr[2] "Ваше дополнение не прошло проверку с {0} ошибками и {1} сообщением(ями)."
+msgstr[0] ""
+"Ваше дополнение не прошло проверку с {0} ошибкой и {1} сообщением(ями)."
+msgstr[1] ""
+"Ваше дополнение не прошло проверку с {0} ошибками и {1} сообщением(ями)."
+msgstr[2] ""
+"Ваше дополнение не прошло проверку с {0} ошибками и {1} сообщением(ями)."
 
 #: media/js/devreg/devhub.js:222
 msgid "Your app passed validation with no errors and {0} message."
@@ -207,16 +219,24 @@ msgid "Disabled"
 msgstr "Отключено"
 
 #: media/js/devreg/init.js:35
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Пока мы производим техническое обслуживание веб-сайта, эта возможность временно отключена. Пожалуйста, зайдите попозже."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Пока мы производим техническое обслуживание веб-сайта, эта возможность "
+"временно отключена. Пожалуйста, зайдите попозже."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "Удалить эту локализацию"
 
 #: media/js/devreg/login.js:126
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Вход через Persona не удался. Может быть у вас нет учётной записи для этого адреса эл. почты?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Вход через Persona не удался. Может быть у вас нет учётной записи для этого "
+"адреса эл. почты?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
@@ -312,7 +332,9 @@ msgstr "Греческий HEBIC/Индонезийский банковский
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr "Британский/Ирландский код сортировки или Префикс Новозеландского счёта или Австралийский BSB-код"
+msgstr ""
+"Британский/Ирландский код сортировки или Префикс Новозеландского счёта или "
+"Австралийский BSB-код"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -337,22 +359,38 @@ msgstr "Обнаружен: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
-msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
-msgstr[0] "Удаление платёжного аккаунта \"{0}\" удалит платёжный аккаунт из следующих приложений. Приложения без платёжного аккаунта будет невозможно продать."
-msgstr[1] "Удаление платёжного аккаунта \"{0}\" удалит платёжный аккаунт из следующих приложений. Приложения без платёжного аккаунта будут недоступны для продажи."
-msgstr[2] "Удаление платёжного аккаунта \"{0}\" удалит платёжный аккаунт из следующих приложений. Приложения без платёжного аккаунта будут недоступны для продажи."
+msgid ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following apps. Applications without a payment account will no longer be "
+"available for sale."
+msgid_plural ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
+msgstr[0] ""
+"Удаление платёжного аккаунта \"{0}\" удалит платёжный аккаунт из следующих "
+"приложений. Приложения без платёжного аккаунта будет невозможно продать."
+msgstr[1] ""
+"Удаление платёжного аккаунта \"{0}\" удалит платёжный аккаунт из следующих "
+"приложений. Приложения без платёжного аккаунта будут недоступны для продажи."
+msgstr[2] ""
+"Удаление платёжного аккаунта \"{0}\" удалит платёжный аккаунт из следующих "
+"приложений. Приложения без платёжного аккаунта будут недоступны для продажи."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
 msgstr "{appName} счёта для платежей:"
 
-#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:112
+#: media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Ошибка"
 
-#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
+#: media/js/devreg/payments-manage.js:113
+#: media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
 msgstr "Возникла проблема при связи с сервером платежей."
 
@@ -542,11 +580,13 @@ msgstr "Бесплатно"
 msgid "Any"
 msgstr "Любая"
 
-#: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
+#: media/js/devreg/reviewers/reviewers.js:246
+#: media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
 msgstr "Одобренное приложение: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
+#: media/js/devreg/reviewers/reviewers.js:249
+#: media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
 msgstr "Отклоненное приложение: {app}"
 
@@ -567,10 +607,15 @@ msgid "Error failing app: {app}"
 msgstr "Ошибка падения приложения: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
-msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
-msgstr "Извините! У нас произвошла ошибка запрашивания истории проверок. Пожалуйста, попробуйте войти позже.<p>"
+msgid ""
+"Sorry! We had an error fetching the review history. Please try logging in "
+"again.<p>"
+msgstr ""
+"Извините! У нас произвошла ошибка запрашивания истории проверок. Пожалуйста,"
+" попробуйте войти позже.<p>"
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on
+#. Feburary
 #. 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
