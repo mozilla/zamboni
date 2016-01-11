@@ -6,16 +6,6 @@
                                    initial-scale=1, maximum-scale=1">
     <title>Firefox Web Apps</title>
     <link rel="stylesheet" href="{{ media(repo + '/css/include.css') }}">
-    <script>
-      (function(navigator) {
-        if (!navigator.onLine) {
-          location.href = 'offline/index.html';
-        }
-        if (!localStorage.getItem('marketplace.tutorial.fteskip')) {
-          location.href = 'tutorial/index.html';
-        }
-      })(window.navigator);
-    </script>
   </head>
 
   <body class="home" data-media="media/" contextmenu="contextmenu">
