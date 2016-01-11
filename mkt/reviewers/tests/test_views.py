@@ -829,12 +829,8 @@ class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         if self.uses_es():
             self.reindex(Webapp)
         res = self.client.get(self.url)
-        if self.uses_es():
-            self.assertSetEqual([a.id for a in res.context['addons']],
-                                [a.id for a in self.apps[1:]])
-        else:
-            self.assertSetEqual([a.app for a in res.context['addons']],
-                                self.apps[1:])
+        self.assertSetEqual([a.app.id for a in res.context['addons']],
+                            [a.id for a in self.apps[1:]])
 
         doc = pq(res.content)
         links = doc('.tabnav li a')
@@ -1516,7 +1512,9 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         # A reviewer changing features shouldn't generate a re-review.
         eq_(RereviewQueue.objects.count(), 0)
 
-        assert not storefront_mock.called
+        # Since the app is not public yet (see above), there is no need to
+        # notify IARC.
+        eq_(storefront_mock.call_count, 0)
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     def test_pending_to_public_w_requirements_removed(self, storefront_mock):
@@ -1538,7 +1536,9 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         # A reviewer changing features shouldn't generate a re-review.
         eq_(RereviewQueue.objects.count(), 0)
 
-        assert not storefront_mock.called
+        # Since the app is not public yet (see above), there is no need to
+        # notify IARC.
+        eq_(storefront_mock.call_count, 0)
 
     def test_pending_to_reject_w_requirements_overrides(self):
         # Rejecting an app doesn't let you override features requirements.
@@ -1622,8 +1622,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         self.client.post(self.url, data)
         eq_(self.get_app().status, mkt.STATUS_PENDING)
 
-    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
-    def test_pending_to_public_no_mozilla_contact(self, storefront_mock):
+    def _test_pending_to_public(self):
         self.app.update(mozilla_contact='')
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -1639,7 +1638,17 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_HOSTED)
 
-        assert storefront_mock.called
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    def test_pending_to_public_iarc_v1(self, set_iarc_storefront_data_mock):
+        self._test_pending_to_public()
+        eq_(set_iarc_storefront_data_mock.call_count, 1)
+
+    @mock.patch('mkt.reviewers.utils.iarc_publish')
+    def test_pending_to_public_iarc_v2(self, iarc_publish_mock):
+        self.create_switch('iarc-upgrade-v2')
+        self._test_pending_to_public()
+        eq_(iarc_publish_mock.delay.call_count, 1)
+        eq_(iarc_publish_mock.delay.call_args[0], (self.app.pk, ))
 
     @mock.patch('mkt.reviewers.views.messages.success')
     def test_pending_to_escalation(self, messages):
@@ -1687,8 +1696,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         eq_(self.get_app().status, mkt.STATUS_PUBLIC)
         eq_(len(mail.outbox), 0)
 
-    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
-    def test_escalation_to_public(self, storefront_mock):
+    def _test_escalation_to_public(self):
         EscalationQueue.objects.create(addon=self.app)
         eq_(self.app.status, mkt.STATUS_PENDING)
         data = {'action': 'public', 'comments': 'something'}
@@ -1704,7 +1712,17 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         self._check_email_dev_and_contact('Approved')
         self._check_email_body()
 
-        assert storefront_mock.called
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    def test_escalation_to_public_iarc_v1(self, set_iarc_storefront_data_mock):
+        self._test_escalation_to_public()
+        eq_(set_iarc_storefront_data_mock.call_count, 1)
+
+    @mock.patch('mkt.reviewers.utils.iarc_publish')
+    def test_escalation_to_public_iarc_v2(self, iarc_publish_mock):
+        self.create_switch('iarc-upgrade-v2')
+        self._test_escalation_to_public()
+        eq_(iarc_publish_mock.delay.call_count, 1)
+        eq_(iarc_publish_mock.delay.call_args[0], (self.app.pk, ))
 
     def test_escalation_to_reject(self):
         EscalationQueue.objects.create(addon=self.app)

@@ -2,18 +2,22 @@
 import json
 import os
 import shutil
+import uuid
 
 from django import forms as django_forms
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test.client import RequestFactory
+from django.test.utils import override_settings
 
 import mock
 from nose.tools import eq_, ok_
 
 import mkt
 import mkt.site.tests
+from lib.iarc_v2.client import IARCException
 from lib.post_request_task import task as post_request_task
+from mkt.constants import ratingsbodies
 from mkt.developers import forms
 from mkt.developers.tests.test_views_edit import TestAdmin
 from mkt.site.fixtures import fixture
@@ -23,7 +27,7 @@ from mkt.site.tests.test_utils_ import get_image_path
 from mkt.site.utils import app_factory, version_factory
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
-from mkt.webapps.models import Geodata, IARCInfo, Webapp
+from mkt.webapps.models import Geodata, IARCCert, IARCInfo, Webapp
 
 
 class TestPreviewForm(mkt.site.tests.TestCase):
@@ -730,6 +734,13 @@ class TestPublishForm(mkt.site.tests.TestCase):
         self.app.reload()
         eq_(self.app.status, mkt.STATUS_PUBLIC)
 
+    @mock.patch('mkt.developers.forms.iarc_publish')
+    def test_iarc_publish_is_called(self, iarc_publish_mock):
+        self.create_switch('iarc-upgrade-v2')
+        self.test_go_public()
+        eq_(iarc_publish_mock.delay.call_count, 1)
+        eq_(iarc_publish_mock.delay.call_args[0], (self.app.pk, ))
+
     def test_go_unlisted(self):
         self.app.update(status=mkt.STATUS_PUBLIC)
         form = self.form({'publish_type': mkt.PUBLISH_HIDDEN,
@@ -941,6 +952,141 @@ class TestIARCGetAppInfoForm(mkt.site.tests.WebappTestCase):
         assert form.is_valid(), form.errors
         with self.assertRaises(django_forms.ValidationError):
             form.save()
+
+
+class TestIARCV2ExistingCertificateForm(mkt.site.tests.WebappTestCase):
+    def setUp(self):
+        self.app = app_factory(status=mkt.STATUS_PUBLIC, is_packaged=True)
+        super(TestIARCV2ExistingCertificateForm, self).setUp()
+
+    def test_cert_id_required(self):
+        data = {}
+        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        eq_(form.is_valid(), False)
+        eq_(form.errors['cert_id'], ['This field is required.'])
+
+    def test_cert_id_value_0_invalid_in_prod(self):
+        data = {
+            'cert_id': '0'
+        }
+        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        eq_(form.is_valid(), False)
+        eq_(form.errors['cert_id'], ['badly formed hexadecimal UUID string'])
+
+    @override_settings(DEBUG=True)
+    def test_cert_id_value_0_valid_in_debug_mode(self):
+        data = {
+            'cert_id': '0'
+        }
+        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        eq_(form.is_valid(), True)
+        eq_(form.errors, {})
+        eq_(form.cleaned_data['cert_id'], None)  # Will be handled by save().
+        return form
+
+    def test_cert_id_valid_uuid_with_separators(self):
+        cert = uuid.uuid4()
+        data = {
+            'cert_id': unicode(cert)
+        }
+        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        eq_(form.is_valid(), True)
+        eq_(form.errors, {})
+        eq_(form.cleaned_data['cert_id'], unicode(cert))
+        return form
+
+    def test_cert_id_valid_uuid_no_separators(self):
+        cert = uuid.uuid4()
+        data = {
+            'cert_id': cert.get_hex()
+        }
+        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        eq_(form.is_valid(), True)
+        eq_(form.errors, {})
+        eq_(form.cleaned_data['cert_id'], unicode(cert))
+
+    def test_cert_id_valid_uuid_with_separators_already_used(self):
+        cert = uuid.uuid4()
+        data = {
+            'cert_id': cert.get_hex()
+        }
+        # If another app is using this cert, the form should be invalid.
+        iarc_cert = IARCCert.objects.create(app=app_factory(), cert_id=cert)
+        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        eq_(form.is_valid(), False)
+        eq_(form.errors['cert_id'],
+            ['This IARC certificate is already being used for another '
+             'app. Please create a new IARC Ratings Certificate.'])
+
+        # If the cert is used by the same app, then it should be valid:
+        iarc_cert.update(app=self.app)
+        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        eq_(form.is_valid(), True)
+        eq_(form.cleaned_data['cert_id'], unicode(cert))
+
+    def test_cert_id_valid_uuid_no_separators_already_used(self):
+        cert = uuid.uuid4()
+        data = {
+            'cert_id': cert.get_hex()
+        }
+        # If another app is using this cert, the form should be invalid.
+        iarc_cert = IARCCert.objects.create(app=app_factory(), cert_id=cert)
+        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        eq_(form.is_valid(), False)
+        eq_(form.errors['cert_id'],
+            ['This IARC certificate is already being used for another '
+             'app. Please create a new IARC Ratings Certificate.'])
+
+        # If the cert is used by the same app, then it should be valid:
+        iarc_cert.update(app=self.app)
+        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        eq_(form.is_valid(), True)
+        eq_(form.cleaned_data['cert_id'], unicode(cert))
+
+    def test_cert_id_invalid(self):
+        data = {
+            'cert_id': 'garbage'
+        }
+        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        eq_(form.is_valid(), False)
+        eq_(form.errors['cert_id'], ['badly formed hexadecimal UUID string'])
+        return form
+
+    def test_save_invalid(self):
+        form = self.test_cert_id_invalid()
+        with self.assertRaises(django_forms.ValidationError):
+            form.save()
+
+    @override_settings(DEBUG=True)
+    def test_save_debug(self):
+        form = self.test_cert_id_value_0_valid_in_debug_mode()
+        form.save()
+        descriptors = self.app.rating_descriptors
+        eq_(descriptors.to_keys(), [])
+
+        interactives = self.app.rating_interactives
+        eq_(interactives.to_keys(), [])
+
+        content_rating = self.app.content_ratings.get()
+        eq_(content_rating.ratings_body, ratingsbodies.ESRB.id)
+        eq_(content_rating.rating, ratingsbodies.ESRB_E.id)
+
+    @mock.patch('mkt.developers.forms.search_and_attach_cert')
+    def test_save(self, search_and_attach_cert_mock):
+        form = self.test_cert_id_valid_uuid_with_separators()
+        form.save()
+        eq_(search_and_attach_cert_mock.call_count, 1)
+        eq_(search_and_attach_cert_mock.call_args[0],
+            (self.app, form.cleaned_data['cert_id']))
+
+    @mock.patch('mkt.developers.forms.search_and_attach_cert')
+    def test_save_iarc_error(self, search_and_attach_cert_mock):
+        search_and_attach_cert_mock.side_effect = IARCException
+        form = self.test_cert_id_valid_uuid_with_separators()
+        with self.assertRaises(django_forms.ValidationError):
+            form.save()
+        eq_(form.errors['cert_id'],
+            ['This Certificate ID is not recognized by IARC.'])
 
 
 class TestAPIForm(mkt.site.tests.WebappTestCase):

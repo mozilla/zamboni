@@ -11,7 +11,7 @@ import uuid
 
 from django.conf import settings
 from django.core.cache import cache
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db import models, transaction
 from django.db.models import signals as dbsignals, Max, Q
@@ -31,6 +31,7 @@ from uuidfield.fields import UUIDField
 import mkt
 from lib.crypto import packaged
 from lib.iarc.client import get_iarc_client
+from lib.iarc_v2.client import unpublish as iarc_unpublish
 from lib.iarc.utils import get_iarc_app_title, render_xml
 from lib.utils import static_url
 from mkt.access import acl
@@ -525,8 +526,11 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
         id = self.id
 
-        # Tell IARC this app is delisted from the set_iarc_storefront_data.
-        tasks.set_storefront_data.delay(self.pk, disable=True)
+        # Tell IARC this app is delisted.
+        if waffle.switch_is_active('iarc-upgrade-v2'):
+            iarc_unpublish.delay(self.pk)
+        else:
+            tasks.set_storefront_data.delay(self.pk, disable=True)
 
         # Fetch previews before deleting the addon instance, so that we can
         # pass the list of files to delete to the delete_preview_files task
@@ -1968,8 +1972,11 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
     def iarc_token(self):
         """
-        Simple hash to verify token in pingback API.
+        Simple hash to verify token in pingback API (IARC v1 only).
         """
+        if waffle.switch_is_active('iarc-upgrade-v2'):
+            raise ImproperlyConfigured(
+                'We should not be calling this method with IARC v2.')
         return hashlib.sha512(settings.SECRET_KEY + str(self.id)).hexdigest()
 
     def get_content_ratings_by_body(self, es=False):
@@ -1996,6 +2003,10 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         """
         Sets the iarc_info for this app (IARC v1 only).
         """
+        if waffle.switch_is_active('iarc-upgrade-v2'):
+            raise ImproperlyConfigured(
+                'We should not be calling this method with IARC v2.')
+
         data = {'submission_id': submission_id,
                 'security_code': security_code}
         info, created = IARCInfo.objects.safer_get_or_create(
@@ -2004,9 +2015,12 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             info.update(**data)
 
     def set_iarc_certificate(self, cert_id):
+        """
+        Set the IARC Certificate for this app (IARC v2).
+        """
         if isinstance(cert_id, basestring):
             # Our UUIDField store values as strings, and would happily try to
-            # save a string with separators if we don't do anything. It knows
+            # save a string with separators if we didn't do anything. It knows
             # how to convert UUID objects though, so let's pass that when we
             # have a string to make sure it's stored properly.
             cert_id = uuid.UUID(cert_id)
@@ -2107,7 +2121,12 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             instance.update(**create_kwargs)
 
     def set_iarc_storefront_data(self, disable=False):
-        """Send app data to IARC for them to verify."""
+        """Send app data to IARC for them to verify (IARC v1 only)."""
+
+        if waffle.switch_is_active('iarc-upgrade-v2'):
+            raise ImproperlyConfigured(
+                'We should not be calling this method with IARC v2.')
+
         try:
             iarc_info = self.iarc_info
         except IARCInfo.DoesNotExist:
@@ -2426,7 +2445,7 @@ def clean_memoized_exclusions(sender, **kw):
 
 class IARCInfo(ModelBase):
     """
-    Stored data for IARC.
+    Stored data for IARC (IARC v1 only).
     """
     addon = models.OneToOneField(Webapp, related_name='iarc_info')
     submission_id = models.PositiveIntegerField(null=False)

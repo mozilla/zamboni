@@ -54,7 +54,7 @@
         {% if waffle.switch('iarc-upgrade-v2') %}
           <form id="iarc" method="post" action="{{ settings.IARC_V2_SUBMISSION_ENDPOINT }}"
                 target="IARCForm">
-            <input type="hidden" name="StoreID" value="{{ settings.IARC_V2_STOREFRONT_ID }}">
+            <input type="hidden" name="StoreID" value="{{ settings.IARC_V2_STORE_ID }}">
             <input type="hidden" name="StoreRequestID" value="{{ iarc_request_id }}">
             <input type="hidden" name="LanguageID" value="{{ request.LANG }}">
             <p class="listing-footer">
@@ -89,50 +89,77 @@
 
       <div class="island">
         <p>
-          {% trans %}
-            If you have already gotten your app rated via the IARC Global Ratings
-            Tool above and already have an IARC security code, you can manually
-            enter it here.
-          {% endtrans %}
-        </p>
+          {% if waffle.switch('iarc-upgrade-v2') %}
+            {% trans %}
+              If you have already gotten your app rated via the IARC Global
+              Ratings Tool above and already have an IARC certificate, you can
+              enter it here and we'll notify IARC to link your Marketplace
+              submission with that certificate.
+            {% endtrans %}
+          {% else %}
+            {% trans %}
+              If you have already gotten your app rated via the IARC Global
+              Ratings Tool above and already have an IARC security code, you
+              can manually enter it here.
+            {% endtrans %}
+          {% endif %}
+          </p>
         <form method="POST">
           {{ csrf() }}
-          <table class="iarc-sec-code">
-            <tbody>
-              <tr>
-                <th>
-                  <label for="{{ form.submission_id.auto_id }}">
-                    {{ _('Submission ID') }}
-                    {{ required() }}
-                  </label>
-                </th>
-                <td>
-                  {{ form.submission_id }}
+          {% if waffle.switch('iarc-upgrade-v2') %}
+            <div class="iarc-cert">
+              <label for="{{ form.cert_id.auto_id }}">
+                {{ _('Certificate ID') }}
+                {{ required() }}
+                {{ form.cert_id }}
+              </label>
                   {{ tip(None,
+                         _("The certificate ID is an unique identifier sent "
+                           "to you. It is a mix of letters, numbers and "
+                           "dashes following the UUID canonical hexadecimal "
+                           "format like "
+                           "&quot;adb3261b-c657-4fd2-a057-bc9f85310b80&quot;."
+                          )) }}
+              {{ form.cert_id.errors }}
+            </div>
+          {% else %}
+            <table class="iarc-sec-code">
+              <tbody>
+                <tr>
+                  <th>
+                    <label for="{{ form.submission_id.auto_id }}">
+                      {{ _('Submission ID') }}
+                      {{ required() }}
+                    </label>
+                  </th>
+                  <td>
+                    {{ form.submission_id }}
+                    {{ tip(None,
                            _("The submission ID can be found on the "
                              "certificate sent to you. It is a numeric value "
                              "like &quot;14&quot;.")) }}
-                  {{ form.submission_id.errors }}
-                </td>
-              </tr>
-              <tr>
-                <th>
-                  <label for="{{ form.security_code.auto_id }}">
-                    {{ _('Security Code') }}
-                    {{ required() }}
-                  </label>
-                </th>
-                <td>
-                  {{ form.security_code }}
-                  {{ tip(None,
+                    {{ form.submission_id.errors }}
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label for="{{ form.security_code.auto_id }}">
+                      {{ _('Security Code') }}
+                      {{ required() }}
+                    </label>
+                  </th>
+                  <td>
+                    {{ form.security_code }}
+                    {{ tip(None,
                            _("The security code can be found on the "
                              "certificate sent to you. It is a mix of letters "
                              "and numbers like &quot;AB12CD3&quot;.")) }}
-                  {{ form.security_code.errors }}
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                    {{ form.security_code.errors }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          {% endif %}
           {{ form.non_field_errors() }}
           <p class="listing-footer">
             <button>{{ _('Submit') }}</button>

@@ -59,6 +59,8 @@ ES_DEFAULT_NUM_REPLICAS = 0
 # http://www.elasticsearch.org/guide/en/elasticsearch/guide/current/relevance-is-broken.html
 ES_DEFAULT_NUM_SHARDS = 1
 IARC_MOCK = True
+IARC_V2_STORE_ID = 'dummy-store-id'
+IARC_V2_STORE_PASSWORD = 'dummy-store-password'
 IN_TEST_SUITE = True
 INSTALLED_APPS += ('mkt.translations.tests.testapp',)
 PASSWORD_HASHERS = (

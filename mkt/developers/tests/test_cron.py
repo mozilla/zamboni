@@ -58,8 +58,7 @@ class TestExcludeNewRegion(WebappTestCase):
         eq_(list(_region_exclude_mock.call_args_list[0][0][0]), [self.app.id])
 
 
-class TestIARCChangesCron(TestCase):
-
+class TestIARCChangesCronV1(TestCase):
     @mock.patch('lib.iarc.utils.render_xml')
     def test_no_date(self, _render):
         process_iarc_changes()
@@ -156,3 +155,23 @@ class TestIARCChangesCron(TestCase):
         eq_(app.rereviewqueue_set.count(), 1)
         eq_(ActivityLog.objects.filter(
             action=mkt.LOG.CONTENT_RATING_TO_ADULT.id).count(), 1)
+
+
+class TestIARCChangesCronV2(TestCase):
+    def setUp(self):
+        super(TestIARCChangesCronV2, self).setUp()
+        self.create_switch('iarc-upgrade-v2')
+
+    @mock.patch('mkt.developers.cron.get_rating_changes')
+    def test_get_ratings_changes_is_called(self, get_rating_changes_mock):
+        process_iarc_changes()
+        eq_(get_rating_changes_mock.call_count, 1)
+        eq_(get_rating_changes_mock.call_args[0], ())
+        eq_(get_rating_changes_mock.call_args[1], {'date': None})
+
+        get_rating_changes_mock.reset_mock()
+        start_date = self.days_ago(1)
+        process_iarc_changes(start_date)
+        eq_(get_rating_changes_mock.call_count, 1)
+        eq_(get_rating_changes_mock.call_args[0], ())
+        eq_(get_rating_changes_mock.call_args[1], {'date': start_date})

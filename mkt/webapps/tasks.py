@@ -624,7 +624,7 @@ def pre_generate_apk(app_id, **kw):
 @use_master
 def set_storefront_data(app_id, disable=False, **kw):
     """
-    Call IARC's SET_STOREFRONT_DATA endpoint.
+    Call IARC's SET_STOREFRONT_DATA endpoint (IARC v1 only).
     """
     try:
         app = Webapp.with_deleted.get(pk=app_id)

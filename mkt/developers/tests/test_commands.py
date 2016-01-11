@@ -9,8 +9,8 @@ from mkt.developers.management.commands import (cleanup_addon_premium,
                                                 migrate_geodata,
                                                 refresh_iarc_ratings)
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import (AddonExcludedRegion, AddonPremium, IARCInfo,
-                                RatingDescriptors, Webapp)
+from mkt.webapps.models import (AddonExcludedRegion, AddonPremium, IARCCert,
+                                IARCInfo, RatingDescriptors, Webapp)
 
 
 class TestCommandViews(mkt.site.tests.TestCase):
@@ -168,3 +168,35 @@ class TestRefreshIARCRatings(mkt.site.tests.TestCase):
             addon=self.webapp, submission_id=52, security_code='FZ32CU8')
         refresh_iarc_ratings.Command().handle(apps=unicode(self.webapp.id))
         ok_(self.webapp.content_ratings.count())
+
+
+class TestRefreshIARCRatingsV2(mkt.site.tests.TestCase):
+    fixtures = fixture('webapp_337141')
+
+    def setUp(self):
+        super(TestRefreshIARCRatingsV2, self).setUp()
+        self.create_switch('iarc-upgrade-v2')
+        self.app = Webapp.objects.get(pk=337141)
+
+    @mock.patch('mkt.developers.management.commands.refresh_iarc_ratings'
+                '.refresh_iarc_ratings.delay')
+    def test_refresh_has_cert(self, refresh_iarc_ratings_delay_mock):
+        IARCCert.objects.create(
+            app=self.app, cert_id='e7611f4093304719aa10902ecbaf1aa4')
+
+        refresh_iarc_ratings.Command().handle()
+        eq_(refresh_iarc_ratings_delay_mock.call_count, 1)
+        eq_(refresh_iarc_ratings_delay_mock.call_args[0], ([self.app.pk], ))
+
+    @mock.patch('mkt.developers.management.commands.refresh_iarc_ratings'
+                '.refresh_iarc_ratings.delay')
+    def test_refresh_does_not_have_cert(self, refresh_iarc_ratings_delay_mock):
+        refresh_iarc_ratings.Command().handle()
+        eq_(refresh_iarc_ratings_delay_mock.call_count, 0)
+
+        # Having IARCInfo objects should not matter, if we have no IARCCert,
+        # we can't refresh ratings.
+        IARCInfo.objects.create(
+            addon=self.app, submission_id=52, security_code='FZ32CU8')
+        refresh_iarc_ratings.Command().handle()
+        eq_(refresh_iarc_ratings_delay_mock.call_count, 0)

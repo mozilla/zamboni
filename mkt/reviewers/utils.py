@@ -6,13 +6,16 @@ from datetime import datetime
 from django.conf import settings
 from django.core.cache import cache
 from django.db.models import Q
+from django.utils.translation import ugettext_lazy as _lazy
 
 import commonware.log
 from elasticsearch_dsl import Search
 from elasticsearch_dsl import filter as es_filter
-from django.utils.translation import ugettext_lazy as _lazy
+import waffle
 
 import mkt
+from lib.iarc_v2.client import (publish as iarc_publish,
+                                unpublish as iarc_unpublish)
 from mkt.abuse.models import AbuseReport
 from mkt.access import acl
 from mkt.comm.utils import create_comm_note
@@ -248,7 +251,10 @@ class ReviewApp(ReviewBase):
             self.set_addon(status=status, highest_status=status)
         self.set_reviewed()
 
-        set_storefront_data.delay(self.addon.pk)
+        if waffle.switch_is_active('iarc-upgrade-v2'):
+            iarc_publish.delay(self.addon.pk)
+        else:
+            set_storefront_data.delay(self.addon.pk)
 
         self.create_note(mkt.LOG.APPROVE_VERSION)
 
@@ -363,7 +369,10 @@ class ReviewApp(ReviewBase):
         if self.in_rereview:
             RereviewQueue.objects.filter(addon=self.addon).delete()
 
-        set_storefront_data.delay(self.addon.pk, disable=True)
+        if waffle.switch_is_active('iarc-upgrade-v2'):
+            iarc_unpublish.delay(self.addon.pk)
+        else:
+            set_storefront_data.delay(self.addon.pk, disable=True)
 
         self.create_note(mkt.LOG.APP_DISABLED)
         log.info(u'App %s has been banned by a reviewer.' % self.addon)

@@ -1414,11 +1414,23 @@ class TestWebappContentRatings(TestCase):
             hashlib.sha512(settings.SECRET_KEY + str(app.id)).hexdigest())
 
     @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
-    def test_delete_with_iarc(self, storefront_mock):
-        app = app_factory(rated=True)
+    def test_delete_with_iarc(self, set_iarc_storefront_data_mock):
+        app = app_factory()
         app.delete()
         eq_(app.status, mkt.STATUS_DELETED)
-        assert storefront_mock.called
+        eq_(set_iarc_storefront_data_mock.call_count, 1)
+
+    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
+    @mock.patch('mkt.webapps.models.iarc_unpublish')
+    def test_delete_with_iarc_v2(
+            self, iarc_unpublish_mock, set_iarc_storefront_data_mock):
+        self.create_switch('iarc-upgrade-v2')
+        app = app_factory()
+        app.delete()
+        eq_(app.status, mkt.STATUS_DELETED)
+        eq_(set_iarc_storefront_data_mock.call_count, 0)
+        eq_(iarc_unpublish_mock.delay.call_count, 1)
+        eq_(iarc_unpublish_mock.delay.call_args[0], (app.pk, ))
 
     @mock.patch('mkt.webapps.models.Webapp.details_complete')
     @mock.patch('mkt.webapps.models.Webapp.payments_complete')
