@@ -81,7 +81,9 @@ def commonplace(request, repo, **kwargs):
         region_middleware = RegionMiddleware()
         ctx['geoip_region'] = region_middleware.region_from_request(request)
 
-    if repo in settings.REACT_REPOS:
+    if repo == 'marketplace-tv-front-end':
+        return render(request, 'commonplace/index_tv.html', ctx)
+    elif repo in settings.REACT_REPOS:
         return render(request, 'commonplace/index_react.html', ctx)
     elif repo in settings.COMMONPLACE_REPOS:
         return render(request, 'commonplace/index.html', ctx)

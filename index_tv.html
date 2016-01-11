@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no,
+                                   initial-scale=1, maximum-scale=1">
+    <title>Firefox Web Apps</title>
+    <link rel="stylesheet" href="{{ media(repo + '/css/include.css') }}">
+    <script>
+      (function(navigator) {
+        if (!navigator.onLine) {
+          location.href = 'offline/index.html';
+        }
+        if (!localStorage.getItem('marketplace.tutorial.fteskip')) {
+          location.href = 'tutorial/index.html';
+        }
+      })(window.navigator);
+    </script>
+  </head>
+
+  <body class="home" data-media="media/" contextmenu="contextmenu">
+    <noscript><p>Sorry, you need JavaScript to use this site.</p></noscript>
+
+    <main>
+      <div id="page" class="page" role="main"></div>
+    </main>
+
+    <menu type="context" id="contextmenu">
+      <menuitem></menuitem>
+    </menu>
+    <script type="text/javascript" src="{{ media(repo + '/js/include.js') }}" defer></script>
+  </body>
+</html>
