@@ -1210,7 +1210,8 @@ class IARCV2ExistingCertificateForm(happyforms.Form):
         try:
             search_and_attach_cert(self.app, self.cleaned_data['cert_id'])
         except IARCException:
-            msg = _('This Certificate ID is not recognized by IARC.')
+            msg = _('This Certificate ID is not recognized by IARC, or is '
+                    'already attached to an app in the Firefox Marketplace.')
             self._errors['cert_id'] = self.error_class([msg])
             raise forms.ValidationError(msg)
 
