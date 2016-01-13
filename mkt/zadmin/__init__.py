@@ -3,7 +3,7 @@ from django.template.response import SimpleTemplateResponse
 
 import jingo
 
-
+from mkt.site.utils import env
 # We monkeypatch SimpleTemplateResponse.rendered_content to use our jinja
 # rendering pipeline (most of the time). The exception is the admin app, where
 # we render their Django templates and pipe the result through jinja to render
@@ -16,7 +16,7 @@ def rendered_content(self):
     # Gross, let's figure out if we're in the admin.
     if self._current_app == 'admin':
         source = loader.render_to_string(template, context_instance)
-        template = jingo.env.from_string(source)
+        template = env.from_string(source)
         # This interferes with our media() helper.
         if 'media' in self.context_data:
             del self.context_data['media']
