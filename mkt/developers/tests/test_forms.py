@@ -1085,8 +1085,8 @@ class TestIARCV2ExistingCertificateForm(mkt.site.tests.WebappTestCase):
         form = self.test_cert_id_valid_uuid_with_separators()
         with self.assertRaises(django_forms.ValidationError):
             form.save()
-        eq_(form.errors['cert_id'],
-            ['This Certificate ID is not recognized by IARC.'])
+        ok_(form.errors['cert_id'][0].startswith(
+            'This Certificate ID is not recognized by IARC'))
 
 
 class TestAPIForm(mkt.site.tests.WebappTestCase):

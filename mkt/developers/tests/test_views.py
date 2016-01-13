@@ -1499,8 +1499,8 @@ class TestContentRatingsV2(mkt.site.tests.TestCase):
         }
         response = content_ratings_edit(self.req, app_slug=self.app.app_slug)
         doc = pq(response.content)
-        eq_(doc('.iarc-cert .errorlist').text(),
-            'This Certificate ID is not recognized by IARC.')
+        ok_(doc('.iarc-cert .errorlist').text().startswith(
+            'This Certificate ID is not recognized by IARC'))
 
     @mock.patch('mkt.developers.forms.search_and_attach_cert')
     def test_existing_cert_form_submit_success(
