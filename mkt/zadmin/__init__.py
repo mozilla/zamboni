@@ -3,12 +3,13 @@ from django.template.response import SimpleTemplateResponse
 
 import jingo
 
-from mkt.site.utils import env
 # We monkeypatch SimpleTemplateResponse.rendered_content to use our jinja
 # rendering pipeline (most of the time). The exception is the admin app, where
 # we render their Django templates and pipe the result through jinja to render
 # our page skeleton.
+
 def rendered_content(self):
+    from mkt.site.utils import env  # django import order LOL :-(
     template = self.template_name
     context_instance = self.resolve_context(self.context_data)
     request = context_instance['request']
