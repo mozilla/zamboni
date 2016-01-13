@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from urlparse import urlparse
 
 from django.core.paginator import (EmptyPage, Page, PageNotAnInteger,
                                    Paginator)
@@ -72,6 +73,20 @@ class CustomPagination(pagination.LimitOffsetPagination):
         pagination.LimitOffsetPagination.__init__(self)
         if default_limit is not None:
             self.default_limit = default_limit
+
+    def get_next_link(self):
+        absolute_url = super(CustomPagination, self).get_next_link()
+        if absolute_url is None:
+            return None
+        url = urlparse(absolute_url)
+        return '%s?%s' % (url.path, url.query)
+
+    def get_previous_link(self):
+        absolute_url = super(CustomPagination, self).get_previous_link()
+        if absolute_url is None:
+            return None
+        url = urlparse(absolute_url)
+        return '%s?%s' % (url.path, url.query)
 
     def get_paginated_response(self, data):
         return response.Response(OrderedDict([
