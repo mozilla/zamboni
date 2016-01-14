@@ -8,6 +8,7 @@ import jingo
 # we render their Django templates and pipe the result through jinja to render
 # our page skeleton.
 
+
 def rendered_content(self):
     from mkt.site.utils import env  # django import order LOL :-(
     template = self.template_name

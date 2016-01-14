@@ -14,8 +14,10 @@ URL_RE = re.compile(
 
 
 class WebsiteIndexer(BaseIndexer):
-    translated_fields = ('description', 'name', 'short_name', 'title')
-    fields_with_language_analyzers = ('description', 'name', 'short_name')
+    translated_fields = ('description', 'developer_name', 'name', 'short_name',
+                         'title')
+    fields_with_language_analyzers = ('description', 'developer_name', 'name',
+                                      'short_name')
     hidden_fields = (
         '*.raw',
         '*_sort',
@@ -27,9 +29,11 @@ class WebsiteIndexer(BaseIndexer):
         # matches, and are never returned to the client through the API. The
         # fields that are returned to the API are '*_translations'.
         'description',
+        'developer_name',
         'name',
         'short_name',
         'description_l10n_*',
+        'developer_name_l10n_*',
         'name_l10n_*',
         'short_name_l10n_*',
         # Title is not analyzed with language-specific analyzers but again, we
