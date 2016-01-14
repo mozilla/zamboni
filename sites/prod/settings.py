@@ -146,9 +146,10 @@ GEOIP_URL = env('GEOIP_URL')
 
 RAISE_ON_SIGNAL_ERROR = True
 
-NEWRELIC_ENABLED_LIST = env.list('NEWRELIC_ENABLED_LIST')
+NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)
 
-NEWRELIC_ENABLE = HOSTNAME in NEWRELIC_ENABLED_LIST
+if NEWRELIC_ENABLE:
+    NEWRELIC_INI = '/etc/newrelic.d/%s.ini' % DOMAIN
 
 AES_KEYS = env.dict('AES_KEYS')
 IMPALA_BROWSE = True
@@ -214,9 +215,6 @@ MONOLITH_INDEX = 'mkt{0}-time_*'.format(ENV)
 
 BANGO_FAKE_REFUNDS = env.bool('BANGO_FAKE_REFUNDS', default=False)
 BANGO_BASE_PORTAL_URL = 'https://mozilla.bango.com/login/al.aspx?'
-
-if NEWRELIC_ENABLE:
-    NEWRELIC_INI = '/etc/newrelic.d/{0}.ini'.format(DOMAIN)
 
 ES_DEFAULT_NUM_REPLICAS = 2
 ES_USE_PLUGINS = False

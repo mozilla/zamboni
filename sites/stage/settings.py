@@ -145,9 +145,10 @@ RAISE_ON_SIGNAL_ERROR = True
 
 API_THROTTLE = False
 
-NEWRELIC_ENABLED_LIST = env.list('NEWRELIC_ENABLED_LIST')
+NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)
 
-NEWRELIC_ENABLE = HOSTNAME in NEWRELIC_ENABLED_LIST
+if NEWRELIC_ENABLE:
+    NEWRELIC_INI = '/etc/newrelic.d/%s.ini' % DOMAIN
 
 AES_KEYS = env.dict('AES_KEYS')
 
@@ -229,9 +230,6 @@ ENABLE_API_ERROR_SERVICE = env.bool('ENABLE_API_ERROR_SERVICE', default=True)
 
 # Until Bango can properly do refunds.
 BANGO_FAKE_REFUNDS = env.bool('BANGO_FAKE_REFUNDS', default=True)
-
-if NEWRELIC_ENABLE:
-    NEWRELIC_INI = '/etc/newrelic.d/{0}.ini'.format(DOMAIN)
 
 ES_DEFAULT_NUM_REPLICAS = 2
 ES_USE_PLUGINS = True
