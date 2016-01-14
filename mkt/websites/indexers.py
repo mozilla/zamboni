@@ -142,6 +142,8 @@ class WebsiteIndexer(BaseIndexer):
 
         doc['category'] = obj.categories or []
         doc['device'] = obj.devices or []
+        doc['developer_name'] = (unicode(obj.developer_name)
+                                 if obj.developer_name else None)
         doc['name_sort'] = unicode(obj.name).lower()
         doc['preferred_regions'] = obj.preferred_regions or []
         doc['tags'] = getattr(obj, 'keywords_list', [])
