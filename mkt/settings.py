@@ -271,8 +271,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'jingo_minify.helpers.build_ids',
     'mkt.site.context_processors.global_settings',
     'mkt.site.context_processors.i18n',
-    'mkt.site.context_processors.static_url',
-    'mkt.carriers.context_processors.carrier_data',
+    'mkt.site.context_processors.static_url'
 )
 
 TEMPLATE_DIRS = (
