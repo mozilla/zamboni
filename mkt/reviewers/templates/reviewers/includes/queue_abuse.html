@@ -9,7 +9,7 @@
     {{ abuse_formset.management_form }}
     {% for item in abuse_formset.forms %}
       <div class="abuse-reports-items">
-        <div class="abuse-report-actions reviewers-desktop">
+        <div class="abuse-report-actions">
           {{ item.errors }}
           <strong>{{ _('Actions:') }}</strong>
           {{ item.id }}
