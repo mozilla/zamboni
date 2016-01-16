@@ -41,7 +41,7 @@ class TVWebsiteSerializer(WebsiteSerializer):
     tv_featured = serializers.SerializerMethodField()
 
     class Meta(WebsiteSerializer.Meta):
-        fields = ['categories', 'description', 'icons', 'id',
+        fields = ['categories', 'description', 'developer_name', 'icons', 'id',
                   'keywords', 'name', 'promo_imgs', 'short_name',
                   'tv_featured', 'tv_url', 'url']
 
