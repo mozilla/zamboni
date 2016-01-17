@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-07 11:57-0800\n"
-"PO-Revision-Date: 2016-01-08 00:24+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2016-01-17 16:05+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -8232,7 +8232,7 @@ msgstr "Popularidade"
 
 #: mkt/search/forms.py:16
 msgid "Weekly Downloads"
-msgstr "Transferências semanais"
+msgstr "Descargas semanais"
 
 #: mkt/search/forms.py:17
 msgid "Top Rated"
