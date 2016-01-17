@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-07 11:57-0800\n"
-"PO-Revision-Date: 2016-01-09 18:37+0000\n"
+"PO-Revision-Date: 2016-01-16 23:46+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: mkt/abuse/forms.py:70
 #, python-format
 msgid "Abuse reports needing investigation: %s"
-msgstr ""
+msgstr "Отчёты о жалобах ожидающие рассмотрения: %s"
 
 #: mkt/abuse/forms.py:78 mkt/abuse/forms.py:92 mkt/ratings/forms.py:67
 msgid "Skip for now"
@@ -1557,7 +1557,7 @@ msgstr "Публичный комментарий проверяющего"
 
 #: mkt/constants/comm.py:76 mkt/site/log.py:545
 msgid "Abuse reports investigation"
-msgstr ""
+msgstr "Рассмотрение отчётов о жалобах"
 
 #: mkt/constants/features.py:20
 msgid "App Management API"
@@ -3960,7 +3960,7 @@ msgstr "Удалить версию &quot;{version}&quot;"
 
 #: mkt/developers/templates/developers/apps/status.html:400
 msgid "Deleting the only version will result in the following:"
-msgstr ""
+msgstr "Удаление единственной версии приведёт к следующему:"
 
 #: mkt/developers/templates/developers/apps/status.html:402
 msgid "the app status will be marked as &quot;incomplete&quot;"
@@ -5044,6 +5044,9 @@ msgid ""
 " types</a>.<br /> Learn about <a href=\"%(receipts_url)s\" "
 "target=\"_blank\">validating purchase receipts</a>."
 msgstr ""
+"Узнайте о <a href=\"%(payments_url)s\" target=\"_blank\">различных методах "
+"оплаты</a>.<br /> Узнайте о <a href=\"%(receipts_url)s\" "
+"target=\"_blank\">проверке поступления оплаты</a>."
 
 #: mkt/developers/templates/developers/payments/premium.html:119
 #: mkt/developers/templates/developers/payments/includes/account_list.html:6
@@ -8961,6 +8964,9 @@ msgid ""
 "Screenshots proportional to 320px by 480px are optimal. WebM supported for "
 "video."
 msgstr ""
+"Поддерживаются JPG и PNG. Скриншоты должны быть как минимум 320px на 480px. "
+"Скриншоты, пропорциональные 320px на 480px, являются оптимальными. Для видео"
+" поддерживается WebM."
 
 #: mkt/submit/templates/submit/done.html:3
 msgid "Finished!"
