@@ -25,7 +25,7 @@ from mkt.files.utils import WebAppParser
 from mkt.prices.models import AddonPremium, Price
 from mkt.ratings.models import Review
 from mkt.ratings.tasks import addon_review_aggregates
-from mkt.reviewers.models import AdditionalReview, RereviewQueue
+from mkt.reviewers.models import RereviewQueue
 from mkt.site.storage_utils import (copy_stored_file, local_storage,
                                     private_storage)
 from mkt.site.utils import app_factory, slugify, version_factory
@@ -379,8 +379,7 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                            premium_type='free', description=None,
                            default_locale='en-US', rereview=False,
                            special_regions={}, inapp_id=None,
-                           inapp_secret=None, popularity=0, tarako=False,
-                           **spec):
+                           inapp_secret=None, popularity=0, **spec):
     status = STATUS_CHOICES_API_LOOKUP[status]
     names = generate_localized_names(name, locale_names)
     if type == 'hosted':
@@ -450,8 +449,6 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                               datetime.datetime.now(),
                               'region_%s_status' % (region,):
                               STATUS_CHOICES_API_LOOKUP[region_status]})
-    if tarako:
-        AdditionalReview.objects.create(app=app, queue='tarako')
     addon_review_aggregates(app.pk)
     if rereview:
         RereviewQueue.objects.get_or_create(addon=app)

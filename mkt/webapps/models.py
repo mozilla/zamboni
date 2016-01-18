@@ -1742,10 +1742,6 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     def in_rereview_queue(self):
         return self.rereviewqueue_set.exists()
 
-    def in_tarako_queue(self):
-        from mkt.reviewers.models import QUEUE_TARAKO
-        return self.additionalreview_set.unreviewed(queue=QUEUE_TARAKO)
-
     def in_china_queue(self):
         china_queue = self.__class__.objects.pending_in_region(mkt.regions.CHN)
         return china_queue.filter(pk=self.pk).exists()

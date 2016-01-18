@@ -1,9 +1,0 @@
-{%- if note.note_type == comm.ADDITIONAL_REVIEW_PASSED -%}
-{{ obj.name }} has passed the low-memory device review. It will now
-be shown to low-memory devices.
-{% else %}
-{{ obj.name }} has not passed the low-memory device review. It will
-not be shown to low-memory devices.
-{% endif %}
-
-{% include "comm/emails/includes/details.html" %}

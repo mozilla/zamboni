@@ -116,8 +116,6 @@ COMM_MAIL_MAP = {
     APPROVE_VERSION_PRIVATE: 'approval_private',
     ESCALATION_VIP_APP: 'escalation_vip',
     ESCALATION_PRERELEASE_APP: 'escalation_prerelease_app',
-    ADDITIONAL_REVIEW_PASSED: 'tarako',
-    ADDITIONAL_REVIEW_FAILED: 'tarako',
 }
 
 # Note types to only email senior reviewers on.

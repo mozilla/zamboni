@@ -9,9 +9,8 @@ import commonware.log
 import mkt
 import mkt.constants.comm as comm
 from mkt.comm.utils import create_comm_note
-from mkt.site.models import ManagerBase, ModelBase
+from mkt.site.models import ModelBase
 from mkt.site.utils import cache_ns_key
-from mkt.tags.models import Tag
 from mkt.translations.fields import save_signal, TranslatedField
 from mkt.users.models import UserProfile
 from mkt.webapps.indexers import WebappIndexer
@@ -146,19 +145,6 @@ class ReviewerScore(ModelBase):
         user_log.info(
             u'Awarding %s points to user %s for "%s" for review %s' % (
                 score, user, mkt.REVIEWED_CHOICES[event], review_id))
-
-    @classmethod
-    def award_additional_review_points(cls, user, addon, queue):
-        """Awards points to user based on additional (Tarako) review."""
-        # TODO: generalize with other additional reviews queues
-        event = mkt.REVIEWED_WEBAPP_TARAKO
-        score = mkt.REVIEWED_SCORES.get(event)
-
-        cls.objects.create(user=user, addon=addon, score=score, note_key=event)
-        cls.get_key(invalidate=True)
-        user_log.info(
-            u'Awarding %s points to user %s for "%s" for addon %s' %
-            (score, user, mkt.REVIEWED_CHOICES[event], addon.id))
 
     @classmethod
     def award_mark_abuse_points(cls, user, addon=None, website=None):
@@ -409,91 +395,6 @@ class RereviewQueue(ModelBase):
 
 
 RereviewQueue._meta.get_field('created').db_index = True
-
-
-def tarako_passed(review):
-    """Add the tarako tag to the app."""
-    tag = Tag(tag_text='tarako')
-    tag.save_tag(review.app)
-    WebappIndexer.index_ids([review.app.pk])
-
-
-def tarako_failed(review):
-    """Remove the tarako tag from the app."""
-    tag = Tag(tag_text='tarako')
-    tag.remove_tag(review.app)
-    WebappIndexer.index_ids([review.app.pk])
-
-
-class AdditionalReviewManager(ManagerBase):
-    def unreviewed(self, queue, and_approved=False, descending=False):
-        query = {
-            'passed': None,
-            'queue': queue,
-        }
-        if and_approved:
-            query['app__status__in'] = mkt.WEBAPPS_APPROVED_STATUSES
-        if descending:
-            created_order = '-created'
-        else:
-            created_order = 'created'
-        return (self.get_queryset()
-                    .filter(**query)
-                    .order_by('-app__priority_review', created_order))
-
-    def latest_for_queue(self, queue):
-        try:
-            return self.get_queryset().filter(queue=queue).latest()
-        except AdditionalReview.DoesNotExist:
-            return None
-
-
-class AdditionalReview(ModelBase):
-    app = models.ForeignKey(Webapp)
-    queue = models.CharField(max_length=30)
-    passed = models.NullBooleanField()
-    review_completed = models.DateTimeField(null=True)
-    comment = models.CharField(null=True, blank=True, max_length=255)
-    reviewer = models.ForeignKey('users.UserProfile', null=True, blank=True)
-
-    objects = AdditionalReviewManager()
-
-    class Meta:
-        db_table = 'additional_review'
-        unique_together = ('queue', 'created')
-        get_latest_by = 'created'
-
-    @property
-    def pending(self):
-        return self.passed is None
-
-    @property
-    def failed(self):
-        return self.passed is False
-
-    def __init__(self, *args, **kwargs):
-        super(AdditionalReview, self).__init__(*args, **kwargs)
-        from mkt.reviewers.utils import log_reviewer_action
-        self.log_reviewer_action = log_reviewer_action
-
-    def execute_post_review_task(self):
-        """
-        Call the correct post-review function for the queue.
-        """
-        # TODO: Pull this function from somewhere based on self.queue.
-        if self.passed is None:
-            raise ValueError('cannot execute post-review task when unreviewed')
-        elif self.passed:
-            tarako_passed(self)
-            action = mkt.LOG.PASS_ADDITIONAL_REVIEW
-        else:
-            tarako_failed(self)
-            action = mkt.LOG.FAIL_ADDITIONAL_REVIEW
-        self.log_reviewer_action(
-            self.app, self.reviewer, self.comment or '', action,
-            queue=self.queue)
-        ReviewerScore.award_additional_review_points(self.reviewer, self.app,
-                                                     self.queue)
 
 
 def cleanup_queues(sender, instance, **kwargs):

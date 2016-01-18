@@ -27,8 +27,7 @@ from cache_nuggets.lib import Token
 from jingo.helpers import urlparams
 from rest_framework import viewsets
 from rest_framework.exceptions import ParseError
-from rest_framework.generics import (CreateAPIView, DestroyAPIView,
-                                     ListAPIView, UpdateAPIView)
+from rest_framework.generics import CreateAPIView, DestroyAPIView, ListAPIView
 from rest_framework.permissions import AllowAny, BasePermission
 from rest_framework.response import Response
 from django.utils.translation import ugettext as _
@@ -42,7 +41,7 @@ from mkt.access import acl
 from mkt.api.authentication import (RestOAuthAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin, MarketplaceView, SlugOrIdMixin
-from mkt.api.permissions import AnyOf, ByHttpMethod, GroupPermission
+from mkt.api.permissions import ByHttpMethod, GroupPermission
 from mkt.comm.forms import CommAttachmentFormSet
 from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.developers.models import ActivityLog
@@ -52,11 +51,8 @@ from mkt.regions.utils import parse_region
 from mkt.reviewers.forms import (ApiReviewersSearchForm, ApproveRegionForm,
                                  ModerateLogDetailForm, ModerateLogForm,
                                  MOTDForm, TestedOnFormSet)
-from mkt.reviewers.models import (QUEUE_TARAKO, SHOWCASE_TAG, AdditionalReview,
-                                  CannedResponse, ReviewerScore)
-from mkt.reviewers.serializers import (AdditionalReviewSerializer,
-                                       CannedResponseSerializer,
-                                       ReviewerAdditionalReviewSerializer,
+from mkt.reviewers.models import SHOWCASE_TAG, CannedResponse, ReviewerScore
+from mkt.reviewers.serializers import (CannedResponseSerializer,
                                        ReviewerScoreSerializer,
                                        ReviewersESAppSerializer,
                                        ReviewingSerializer)
@@ -168,10 +164,6 @@ def queue_counts(request):
         'abusewebsites': queues_helper.get_abuse_queue_websites().count(),
         'homescreen': queues_helper.get_homescreen_queue().count(),
         'region_cn': Webapp.objects.pending_in_region(mkt.regions.CHN).count(),
-        'additional_tarako': (
-            AdditionalReview.objects
-                            .unreviewed(queue=QUEUE_TARAKO, and_approved=True)
-                            .count()),
     }
 
     rv = {}
@@ -544,23 +536,6 @@ def queue_region(request, region=None):
     return _queue(request, apps, 'region', date_sort=column,
                   template='reviewers/queue_region.html',
                   data={'region': region})
-
-
-@permission_required([('Apps', 'ReviewTarako')])
-def additional_review(request, queue):
-    """HTML page for an additional review queue."""
-    sort_descending = request.GET.get('order') == 'desc'
-    # TODO: Add `.select_related('app')`. Currently it won't load the name.
-    additional_reviews = AdditionalReview.objects.unreviewed(
-        queue=queue, and_approved=True, descending=sort_descending)
-    apps = [ActionableQueuedApp(additional_review.app,
-                                additional_review.created,
-                                reverse('additionalreview-detail',
-                                        args=[additional_review.pk]))
-            for additional_review in additional_reviews]
-    return _queue(request, apps, queue, date_sort='created',
-                  template='reviewers/additional_review.html',
-                  data={'queue': queue})
 
 
 @reviewer_required
@@ -1188,31 +1163,6 @@ class WebsiteReject(_WebsiteAction, CreateAPIView):
         return Response()
 
 
-class UpdateAdditionalReviewViewSet(SlugOrIdMixin, UpdateAPIView):
-    """
-    API ViewSet for setting pass/fail of an AdditionalReview. This does not
-    follow the DRF convention but instead calls review_passed() or
-    review_failed() on the AdditionalReview based on request.data['passed'].
-    """
-
-    model = AdditionalReview
-    queryset = AdditionalReview.objects.all()
-    authentication_classes = (RestOAuthAuthentication,
-                              RestSharedSecretAuthentication)
-    serializer_class = ReviewerAdditionalReviewSerializer
-    # TODO: Change this when there is more than just the Tarako queue.
-    permission_classes = [GroupPermission('Apps', 'ReviewTarako')]
-
-    def perform_create(self, serializer):
-        serializer.validated_data['reviewer'] = self.request.user
-        serializer.validated_data['review_completed'] = datetime.datetime.now()
-        serializer.save()
-        serializer.instance.execute_post_review_task()
-
-    def perform_update(self, serializer):
-        self.perform_create(serializer)
-
-
 class AppOwnerPermission(BasePermission):
     def webapp_exists(self, app_id):
         return Webapp.objects.filter(pk=app_id).exists()
@@ -1227,24 +1177,6 @@ class AppOwnerPermission(BasePermission):
             return True
         else:
             return self.user_is_author(app_id, request.user)
-
-
-class CreateAdditionalReviewViewSet(CreateAPIView):
-    """
-    API ViewSet for requesting an additional review.
-    """
-
-    model = AdditionalReview
-    serializer_class = AdditionalReviewSerializer
-    authentication_classes = (RestOAuthAuthentication,
-                              RestSharedSecretAuthentication)
-    # TODO: Change this when there is more than just the Tarako queue.
-    permission_classes = [AnyOf(AppOwnerPermission,
-                                GroupPermission('Apps', 'Edit'))]
-
-    def app(self, app_id):
-        self.app = Webapp.objects.get(pk=app_id)
-        return self.app
 
 
 class GenerateToken(SlugOrIdMixin, CreateAPIView):

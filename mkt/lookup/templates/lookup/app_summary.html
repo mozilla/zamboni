@@ -86,16 +86,7 @@
           {% if is_tarako %}
             {{ _('Tarako enabled') }}
           {% else %}
-            {{ _('Tarako not enabled') }} |
-            {% if not tarako_review or tarako_review.passed %}
-              {{ _('Review not requested') }}
-            {% else %}
-              {% if tarako_review.pending %}
-                {{ _('Review pending') }}
-              {% elif tarako_review.failed %}
-                {{ _('Review failed') }}
-              {% endif %}
-            {% endif %}
+            {{ _('Tarako not enabled') }}
           {% endif %}
         </dd>
         <dt>{{ _('Abuse Reports') }}</dt>
