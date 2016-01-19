@@ -215,7 +215,17 @@ define('login', ['notification', 'storage'], function(notification, storage) {
     }
 
     function userToken() {
-        return storage.getItem('user');
+        var redux = localStorage.getItem('redux');
+        var reduxToken;
+        var user;
+        if (redux) {
+          redux = JSON.parse(redux);
+          user = redux.user;
+          if (user && user.token) {
+            reduxToken = user.token;
+          }
+        }
+        return reduxToken || storage.getItem('user');
     }
 
     init_native_fxa();
