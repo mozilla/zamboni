@@ -1,0 +1,15 @@
+{
+    "default_locale": "en-US",
+    "description": "Firefox Web Apps",
+    "developer": {
+        "name": "Mozilla",
+        "url": "http://mozilla.org"
+    },
+    "icons": {
+        "336": "https://marketplace.cdn.mozilla.net/media/img/mkt/logos/128.png",
+    },
+    "launch_path": "/tv/",
+    "appcache_path": "manifest.appcache",
+    "name": "Firefox Web Apps",
+    "type": "web",
+}
