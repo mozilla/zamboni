@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-01-06 13:06-0800\n"
-"PO-Revision-Date: 2015-10-06 13:16+0000\n"
-"Last-Translator: Aleksandra Uzelac <auzelac91@gmail.com>\n"
+"POT-Creation-Date: 2016-01-20 11:10-0800\n"
+"PO-Revision-Date: 2014-09-17 12:36+0000\n"
+"Last-Translator: Vanja Tumbas <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -47,7 +47,7 @@ msgstr "Vaša upakovana aplikacija se mora završavati sa <code>.zip</code>."
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #: media/js/common/upload-packaged-app.js:89
-#, fuzzy, python-format
+#, python-format
 msgid "{0}% complete"
 msgstr "{0}% završeno"
 

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-01-07 11:57-0800\n"
+"POT-Creation-Date: 2016-01-20 11:10-0800\n"
 "PO-Revision-Date: 2016-01-08 21:44-0600\n"
 "Last-Translator: Αλέξανδρος Μιόγλου <alexandros@mioglou.me>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -48,15 +48,15 @@ msgstr ""
 msgid "Invalid pk or slug \"%s\" - object does not exist"
 msgstr ""
 
-#: mkt/api/forms.py:110 mkt/reviewers/forms.py:211
+#: mkt/api/forms.py:110 mkt/reviewers/forms.py:207
 msgid "Unknown"
 msgstr "Άγνωστο"
 
-#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/developers/templates/developers/apps/edit/technical.html:53 mkt/reviewers/forms.py:212
+#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/developers/templates/developers/apps/edit/technical.html:53 mkt/reviewers/forms.py:208
 msgid "Yes"
 msgstr ""
 
-#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/developers/templates/developers/apps/edit/technical.html:55 mkt/lookup/templates/lookup/user_summary.html:78 mkt/reviewers/forms.py:213
+#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/developers/templates/developers/apps/edit/technical.html:55 mkt/lookup/templates/lookup/user_summary.html:78 mkt/reviewers/forms.py:209
 msgid "No"
 msgstr ""
 
@@ -1155,7 +1155,7 @@ msgstr ""
 msgid "Deleted"
 msgstr "Διαγράφηκε"
 
-#: mkt/constants/base.py:32 mkt/constants/comm.py:47 mkt/reviewers/helpers.py:200 mkt/site/log.py:176
+#: mkt/constants/base.py:32 mkt/constants/comm.py:47 mkt/reviewers/helpers.py:195 mkt/site/log.py:176
 msgid "Rejected"
 msgstr "Απορίφθηκε"
 
@@ -2153,11 +2153,11 @@ msgstr ""
 msgid "Agreement"
 msgstr ""
 
-#: mkt/constants/submit.py:6 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:138
+#: mkt/constants/submit.py:6 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:165
 msgid "Submit"
 msgstr "Υποβολή"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1444
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1448
 msgid "Details"
 msgstr "Λεπτομέρειες"
 
@@ -2177,246 +2177,250 @@ msgstr ""
 msgid "Cannot delete shared account"
 msgstr ""
 
-#: mkt/developers/cron.py:128
+#: mkt/developers/cron.py:140
 msgid "Content rating changed to Adult."
 msgstr ""
 
-#: mkt/developers/forms.py:64
+#: mkt/developers/forms.py:67
 msgid "You cannot select {region}."
 msgstr ""
 
-#: mkt/developers/forms.py:122
+#: mkt/developers/forms.py:125
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr ""
 
-#: mkt/developers/forms.py:153
+#: mkt/developers/forms.py:156
 msgid "Must have at least one owner."
 msgstr "Θα πρέπει να υπάρχει τουλάχιστον ένας ιδιοκτήτης"
 
-#: mkt/developers/forms.py:156
+#: mkt/developers/forms.py:159
 msgid "At least one team member must be listed."
 msgstr ""
 
-#: mkt/developers/forms.py:160
+#: mkt/developers/forms.py:163
 msgid "A team member can only be listed once."
 msgstr ""
 
-#: mkt/developers/forms.py:187
+#: mkt/developers/forms.py:190
 #, python-format
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:191
+#: mkt/developers/forms.py:194
 #, python-format
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:195
+#: mkt/developers/forms.py:198
 #, python-format
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:199
+#: mkt/developers/forms.py:202
 #, python-format
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:203
+#: mkt/developers/forms.py:206
 #, python-format
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:207
+#: mkt/developers/forms.py:210
 #, python-format
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
 msgstr ""
 
-#: mkt/developers/forms.py:222
+#: mkt/developers/forms.py:225
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr ""
 
-#: mkt/developers/forms.py:372 mkt/webapps/models.py:1353
+#: mkt/developers/forms.py:375 mkt/webapps/models.py:1357
 msgid "You must upload at least one screenshot or video."
 msgstr ""
 
-#: mkt/developers/forms.py:413
+#: mkt/developers/forms.py:416
 #, python-format
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr ""
 
-#: mkt/developers/forms.py:436
+#: mkt/developers/forms.py:439
 msgid "Error extracting manifest from zip file."
 msgstr ""
 
-#: mkt/developers/forms.py:506
+#: mkt/developers/forms.py:509
 msgid "Hosted URL:"
 msgstr ""
 
-#: mkt/developers/forms.py:507
+#: mkt/developers/forms.py:510
 msgid "A URL to where your app is hosted on the web, if it exists. This allows users to try out your app before installing it."
 msgstr ""
 
-#: mkt/developers/forms.py:512
+#: mkt/developers/forms.py:515
 msgid "Provide a detailed description of your app"
 msgstr ""
 
-#: mkt/developers/forms.py:513
+#: mkt/developers/forms.py:516
 msgid "This description will appear on the details page."
 msgstr ""
 
-#: mkt/developers/forms.py:516 mkt/submit/forms.py:288
+#: mkt/developers/forms.py:519 mkt/submit/forms.py:288
 msgid "Search Keywords:"
 msgstr ""
 
-#: mkt/developers/forms.py:518 mkt/developers/templates/developers/apps/edit/basic.html:148 mkt/submit/forms.py:290
+#: mkt/developers/forms.py:521 mkt/developers/templates/developers/apps/edit/basic.html:148 mkt/submit/forms.py:290
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
 msgstr ""
 
-#: mkt/developers/forms.py:573 mkt/submit/forms.py:368
+#: mkt/developers/forms.py:576 mkt/submit/forms.py:368
 msgid "This slug is already in use. Please choose another."
 msgstr "Αυτό το slug χρησιμοποιείται ήδη. Παρακαλώ διαλέξτε κάποιο άλλο."
 
-#: mkt/developers/forms.py:576 mkt/submit/forms.py:372
+#: mkt/developers/forms.py:579 mkt/submit/forms.py:372
 #, python-format
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "Το slug δε μπορεί να είναι \"%s\". Παρακαλώ διαλέξτε κάποιο άλλο."
 
-#: mkt/developers/forms.py:604
+#: mkt/developers/forms.py:607
 msgid "Manifest URL changed from {before_url} to {after_url}"
 msgstr ""
 
-#: mkt/developers/forms.py:641
+#: mkt/developers/forms.py:644
 msgid "Please specify your app's Privacy Policy"
 msgstr ""
 
-#: mkt/developers/forms.py:662
+#: mkt/developers/forms.py:665
 #, python-format
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr ""
 
-#: mkt/developers/forms.py:721 mkt/submit/templates/submit/details.html:128
+#: mkt/developers/forms.py:724 mkt/submit/templates/submit/details.html:128
 msgid "You must provide either a website, an email, or both."
 msgstr ""
 
-#: mkt/developers/forms.py:746
+#: mkt/developers/forms.py:749
 msgid "Your comments"
 msgstr "Τα σχόλια σας"
 
-#: mkt/developers/forms.py:773
+#: mkt/developers/forms.py:776
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr ""
 
-#: mkt/developers/forms.py:777
+#: mkt/developers/forms.py:780
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
 msgstr ""
 
-#: mkt/developers/forms.py:793
+#: mkt/developers/forms.py:796
 msgid "App Visibility:"
 msgstr ""
 
-#: mkt/developers/forms.py:795
+#: mkt/developers/forms.py:798
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
 msgstr ""
 
-#: mkt/developers/forms.py:841
+#: mkt/developers/forms.py:847
 msgid "Choose the regions your app will be listed in:"
 msgstr ""
 
-#: mkt/developers/forms.py:843 mkt/developers/forms.py:944
+#: mkt/developers/forms.py:849 mkt/developers/forms.py:950
 msgid "You must select at least one region."
 msgstr ""
 
-#: mkt/developers/forms.py:848
+#: mkt/developers/forms.py:854
 msgid "Enable new regions"
 msgstr ""
 
-#: mkt/developers/forms.py:851
+#: mkt/developers/forms.py:857
 msgid "Make my app available in most regions"
 msgstr ""
 
-#: mkt/developers/forms.py:852
+#: mkt/developers/forms.py:858
 msgid "Choose where my app is made available"
 msgstr ""
 
-#: mkt/developers/forms.py:1005 mkt/developers/templates/developers/apps/edit/basic.html:195 mkt/lookup/templates/lookup/website_edit.html:84 mkt/lookup/templates/lookup/website_summary.html:48
+#: mkt/developers/forms.py:1011 mkt/developers/templates/developers/apps/edit/basic.html:195 mkt/lookup/templates/lookup/website_edit.html:84 mkt/lookup/templates/lookup/website_summary.html:48
 #: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:102 mkt/websites/forms.py:23
 msgid "Categories"
 msgstr "Κατηγορίες"
 
 #. L10n: {0} is the number of categories.
-#: mkt/developers/forms.py:1030 mkt/webapps/serializers.py:299 mkt/websites/forms.py:62
+#: mkt/developers/forms.py:1036 mkt/webapps/serializers.py:299 mkt/websites/forms.py:62
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Μπορείτε να έχετε μόνο {0} κατηγορία."
 msgstr[1] "Μπορείτε να έχετε μόνο {0} κατηγορίες."
 
-#: mkt/developers/forms.py:1044
+#: mkt/developers/forms.py:1050
 msgid "Agree"
 msgstr "Συμφωνώ"
 
-#: mkt/developers/forms.py:1061
+#: mkt/developers/forms.py:1067
 msgid "Please enter a valid email address."
 msgstr "Παρακαλώ εισάγετε μία έγκυρη διεύθυνση email"
 
-#: mkt/developers/forms.py:1064
+#: mkt/developers/forms.py:1070
 msgid "Your email address"
 msgstr "Η διεύθυνση email σας"
 
-#: mkt/developers/forms.py:1067
+#: mkt/developers/forms.py:1073
 msgid "Text"
 msgstr "Κείμενο"
 
-#: mkt/developers/forms.py:1071
+#: mkt/developers/forms.py:1077
 msgid "You must agree to the Privacy Policy."
 msgstr "Πρέπει να συμφωνείτε με την Πολιτική Απορρήτου"
 
-#: mkt/developers/forms.py:1072 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:1078 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "Χώρα"
 
-#: mkt/developers/forms.py:1093 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27
+#: mkt/developers/forms.py:1099 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:21 mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:18
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:20 mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
 msgstr "Εφαρμογή"
 
-#: mkt/developers/forms.py:1095
+#: mkt/developers/forms.py:1101
 msgid "Transaction Type"
 msgstr "Τύπος Συναλλαγής"
 
-#: mkt/developers/forms.py:1098 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
+#: mkt/developers/forms.py:1104 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
 msgid "Transaction ID"
 msgstr ""
 
-#: mkt/developers/forms.py:1104
+#: mkt/developers/forms.py:1110
 msgid "From"
 msgstr "Από"
 
-#: mkt/developers/forms.py:1107
+#: mkt/developers/forms.py:1113
 msgid "To"
 msgstr "Προς"
 
-#: mkt/developers/forms.py:1118
+#: mkt/developers/forms.py:1124
 msgid "Web site"
 msgstr ""
 
-#: mkt/developers/forms.py:1119
+#: mkt/developers/forms.py:1125
 msgid "Command line"
 msgstr ""
 
-#: mkt/developers/forms.py:1140
+#: mkt/developers/forms.py:1146
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr ""
 
-#: mkt/developers/forms.py:1180
-msgid "Please enter a valid submission ID."
-msgstr ""
-
-#: mkt/developers/forms.py:1196
+#: mkt/developers/forms.py:1193 mkt/developers/forms.py:1251
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr ""
 
-#: mkt/developers/forms.py:1231 mkt/developers/forms.py:1243
+#: mkt/developers/forms.py:1213
+msgid "This Certificate ID is not recognized by IARC, or is already attached to an app in the Firefox Marketplace."
+msgstr ""
+
+#: mkt/developers/forms.py:1235
+msgid "Please enter a valid submission ID."
+msgstr ""
+
+#: mkt/developers/forms.py:1286 mkt/developers/forms.py:1298
 msgid "Invalid submission ID or security code."
 msgstr ""
 
@@ -2613,37 +2617,37 @@ msgstr "Έκδοση {0}"
 msgid "Reference Implementation"
 msgstr ""
 
-#: mkt/developers/tasks.py:475
+#: mkt/developers/tasks.py:477
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr ""
 
-#: mkt/developers/tasks.py:481
+#: mkt/developers/tasks.py:483
 #, python-format
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr ""
 
-#: mkt/developers/tasks.py:490
+#: mkt/developers/tasks.py:492
 #, python-format
 msgid "Your manifest must be less than %s bytes."
 msgstr "Η δήλωση σας θα πρέπει να έχει λιγότερα από %s bytes."
 
-#: mkt/developers/tasks.py:498
+#: mkt/developers/tasks.py:500
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr ""
 
-#: mkt/developers/tasks.py:509
+#: mkt/developers/tasks.py:511
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr ""
 
-#: mkt/developers/tasks.py:540 mkt/developers/tasks.py:546 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:542 mkt/developers/tasks.py:548 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "και"
 
-#: mkt/developers/tasks.py:560
+#: mkt/developers/tasks.py:562
 msgid "{region} region added to the Firefox Marketplace"
 msgstr ""
 
-#: mkt/developers/tasks.py:564
+#: mkt/developers/tasks.py:566
 msgid "New regions added to the Firefox Marketplace"
 msgstr ""
 
@@ -2698,83 +2702,83 @@ msgstr ""
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr ""
 
-#: mkt/developers/views.py:155
+#: mkt/developers/views.py:157
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr ""
 
-#: mkt/developers/views.py:165
+#: mkt/developers/views.py:167
 msgid "App deleted."
 msgstr "Η εφαρμογή διαγράφηκε."
 
-#: mkt/developers/views.py:170
+#: mkt/developers/views.py:172
 msgid "Password was incorrect. App was not deleted."
 msgstr ""
 
-#: mkt/developers/views.py:214
+#: mkt/developers/views.py:216
 msgid "App successfully resubmitted."
 msgstr ""
 
-#: mkt/developers/views.py:247
+#: mkt/developers/views.py:249
 msgid "New version successfully added."
 msgstr ""
 
-#: mkt/developers/views.py:295 mkt/developers/views.py:527 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:449 mkt/reviewers/views.py:730
+#: mkt/developers/views.py:297 mkt/developers/views.py:539 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:449 mkt/reviewers/views.py:705
 msgid "Changes successfully saved."
 msgstr "Οι αλλαγές αποθηκεύτηκαν με επιτυχία. "
 
-#: mkt/developers/views.py:302
+#: mkt/developers/views.py:304
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr ""
 
-#: mkt/developers/views.py:304
+#: mkt/developers/views.py:306
 msgid "Content ratings successfully saved."
 msgstr ""
 
-#: mkt/developers/views.py:431
+#: mkt/developers/views.py:443
 msgid "Version successfully edited."
 msgstr ""
 
-#: mkt/developers/views.py:466
+#: mkt/developers/views.py:478
 msgid "Version successfully made active."
 msgstr ""
 
-#: mkt/developers/views.py:480
+#: mkt/developers/views.py:492
 msgid "Version \"{0}\" deleted."
 msgstr ""
 
-#: mkt/developers/views.py:615
+#: mkt/developers/views.py:627
 msgid "There was an error with the submission."
 msgstr "Παρουσιάστηκε σφάλμα κατά την υποβολή."
 
-#: mkt/developers/views.py:657
+#: mkt/developers/views.py:669
 msgid "An error occurred validating the manifest."
 msgstr ""
 
-#: mkt/developers/views.py:911
+#: mkt/developers/views.py:923
 msgid "There was an error uploading your preview."
 msgstr "Παρουσιάστηκε σφάλμα κατά την αποστολή εικόνας προεπισκόπησης."
 
-#: mkt/developers/views.py:962
+#: mkt/developers/views.py:974
 msgid "Terms of service accepted."
 msgstr ""
 
-#: mkt/developers/views.py:978
+#: mkt/developers/views.py:990
 msgid "Users with the admin role cannot use the API."
 msgstr ""
 
-#: mkt/developers/views.py:987
+#: mkt/developers/views.py:999
 msgid "No such API key."
 msgstr ""
 
-#: mkt/developers/views.py:993
+#: mkt/developers/views.py:1005
 msgid "New API key generated."
 msgstr ""
 
-#: mkt/developers/views.py:1011
+#: mkt/developers/views.py:1023
 msgid "Created blocklisted version."
 msgstr ""
 
-#: mkt/developers/views.py:1013
+#: mkt/developers/views.py:1025
 msgid "App already blocklisted."
 msgstr ""
 
@@ -2921,7 +2925,7 @@ msgid "Update Message of the Day"
 msgstr ""
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:32 mkt/reviewers/templates/reviewers/motd.html:15
-#: mkt/reviewers/templates/reviewers/review.html:218
+#: mkt/reviewers/templates/reviewers/review.html:215
 msgid "Save"
 msgstr "Αποθήκευση"
 
@@ -3039,7 +3043,7 @@ msgstr[1] "{num} συναλλαγές βρέθηκαν"
 msgid "Your apps currently have no transactions."
 msgstr ""
 
-#: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:153 mkt/lookup/templates/lookup/transaction_summary.html:21
+#: mkt/developers/templates/developers/transactions.html:42 mkt/lookup/templates/lookup/app_summary.html:144 mkt/lookup/templates/lookup/transaction_summary.html:21
 #: mkt/reviewers/templates/reviewers/logs.html:16 mkt/reviewers/templates/reviewers/moderatelog.html:16
 msgid "Date"
 msgstr "Ημερομηνία"
@@ -3136,7 +3140,7 @@ msgstr "Υποβολή εφαρμογής"
 
 #: mkt/developers/templates/developers/apps/edit.html:3 mkt/developers/templates/developers/apps/listing/item_actions.html:25 mkt/developers/templates/developers/apps/listing/item_actions_app.html:46
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:2 mkt/lookup/templates/lookup/helpers/app_header.html:33 mkt/lookup/templates/lookup/helpers/website_header.html:22
-#: mkt/reviewers/templates/reviewers/review.html:61
+#: mkt/reviewers/templates/reviewers/review.html:58
 msgid "Edit Listing"
 msgstr "Επεξεργασία καταχώρησης"
 
@@ -3205,8 +3209,8 @@ msgstr "Κατάσταση & εκδόσεις"
 
 #: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:8 mkt/developers/templates/developers/payments/in-app-products.html:52 mkt/lookup/forms.py:71 mkt/lookup/forms.py:76
-#: mkt/lookup/templates/lookup/app_summary.html:61 mkt/lookup/templates/lookup/app_summary.html:156 mkt/lookup/templates/lookup/website_edit.html:105
-#: mkt/lookup/templates/lookup/website_summary.html:56 mkt/reviewers/forms.py:186 mkt/reviewers/forms.py:235 mkt/reviewers/templates/reviewers/review.html:29
+#: mkt/lookup/templates/lookup/app_summary.html:61 mkt/lookup/templates/lookup/app_summary.html:147 mkt/lookup/templates/lookup/website_edit.html:105
+#: mkt/lookup/templates/lookup/website_summary.html:56 mkt/reviewers/forms.py:186 mkt/reviewers/forms.py:231 mkt/reviewers/templates/reviewers/review.html:29
 #: mkt/reviewers/templates/reviewers/includes/details.html:21 mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
 msgstr "Κατάσταση"
@@ -3573,7 +3577,7 @@ msgid "Select a unique URL for your detail page. By default we use your app name
 msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:64 mkt/developers/templates/developers/apps/listing/item_actions_app.html:94
-#: mkt/developers/templates/developers/includes/addons_edit_nav.html:29 mkt/reviewers/templates/reviewers/review.html:58
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:29 mkt/reviewers/templates/reviewers/review.html:55
 msgid "View Listing"
 msgstr "Σελίδα πρόσθετου"
 
@@ -3961,7 +3965,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1451
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1455
 msgid "Content Ratings"
 msgstr ""
 
@@ -4051,23 +4055,39 @@ msgstr ""
 msgid "Already Have Your App Rated?"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:92
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:93
+msgid ""
+"If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC certificate, you can enter it here and we'll notify IARC to link your Marketplace "
+"submission with that certificate."
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:100
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
+msgid "Certificate ID"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:117
+msgid ""
+"The certificate ID is an unique identifier sent to you. It is a mix of letters, numbers and dashes following the UUID canonical hexadecimal format like &quot;adb3261b-c657-4fd2-a057-"
+"bc9f85310b80&quot;."
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:131
 msgid "Submission ID"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:138
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:121
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:147
 msgid "Security Code"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:128
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:154
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr ""
 
@@ -4762,8 +4782,8 @@ msgstr "Χρήση εφαρμογών εκτός σύνδεσης"
 msgid "Developing Game Apps"
 msgstr ""
 
-#: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:119 mkt/lookup/templates/lookup/user_summary.html:56 mkt/lookup/templates/lookup/user_summary.html:60
-#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1457
+#: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:110 mkt/lookup/templates/lookup/user_summary.html:56 mkt/lookup/templates/lookup/user_summary.html:60
+#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1461
 msgid "Payments"
 msgstr "Πληρωμές"
 
@@ -5366,7 +5386,7 @@ msgstr "Η αποζημίωση για αυτή τη συναλλαγή εγκρ
 msgid "Refund request for this transaction failed."
 msgstr "Η αίτηση αποζημίωσης για αυτή τη συναλλαγή απέτυχε."
 
-#: mkt/lookup/views.py:359
+#: mkt/lookup/views.py:357
 msgid "Website saved."
 msgstr ""
 
@@ -5374,8 +5394,7 @@ msgstr ""
 msgid "Activity"
 msgstr "Δραστηριότητα"
 
-#: mkt/lookup/templates/lookup/app_activity.html:18 mkt/lookup/templates/lookup/app_activity.html:38 mkt/lookup/templates/lookup/user_activity.html:23
-#: mkt/lookup/templates/lookup/user_activity.html:43
+#: mkt/lookup/templates/lookup/app_activity.html:18 mkt/lookup/templates/lookup/app_activity.html:38 mkt/lookup/templates/lookup/user_activity.html:23 mkt/lookup/templates/lookup/user_activity.html:43
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> από %(user)s"
@@ -5424,7 +5443,7 @@ msgstr "Φιλοξενούσα εφαρμογή"
 msgid "Submitted"
 msgstr "Υποβλήθηκε"
 
-#: mkt/lookup/templates/lookup/app_summary.html:71 mkt/lookup/templates/lookup/app_summary.html:171
+#: mkt/lookup/templates/lookup/app_summary.html:71 mkt/lookup/templates/lookup/app_summary.html:162
 msgid "OK"
 msgstr ""
 
@@ -5448,72 +5467,60 @@ msgstr ""
 msgid "Tarako not enabled"
 msgstr ""
 
-#: mkt/lookup/templates/lookup/app_summary.html:91
-msgid "Review not requested"
-msgstr ""
-
-#: mkt/lookup/templates/lookup/app_summary.html:94
-msgid "Review pending"
-msgstr ""
-
-#: mkt/lookup/templates/lookup/app_summary.html:96
-msgid "Review failed"
-msgstr ""
-
-#: mkt/lookup/templates/lookup/app_summary.html:101 mkt/reviewers/helpers.py:48 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/includes/details.html:113
+#: mkt/lookup/templates/lookup/app_summary.html:92 mkt/reviewers/helpers.py:48 mkt/reviewers/templates/reviewers/abuse.html:5 mkt/reviewers/templates/reviewers/includes/details.html:113
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:104
 msgid "Abuse Reports"
 msgstr "Αναφορές κατάχρησης"
 
-#: mkt/lookup/templates/lookup/app_summary.html:103
+#: mkt/lookup/templates/lookup/app_summary.html:94
 msgid "Permissions"
 msgstr "Άδειες"
 
-#: mkt/lookup/templates/lookup/app_summary.html:107
+#: mkt/lookup/templates/lookup/app_summary.html:98
 msgid "No reason given"
 msgstr ""
 
-#: mkt/lookup/templates/lookup/app_summary.html:109
+#: mkt/lookup/templates/lookup/app_summary.html:100
 msgid "No permissions requested"
 msgstr ""
 
-#: mkt/lookup/templates/lookup/app_summary.html:121 mkt/lookup/templates/lookup/helpers/user_header.html:24
+#: mkt/lookup/templates/lookup/app_summary.html:112 mkt/lookup/templates/lookup/helpers/user_header.html:24
 msgid "Purchases"
 msgstr "Αγορές"
 
-#: mkt/lookup/templates/lookup/app_summary.html:131 mkt/lookup/templates/lookup/user_summary.html:63
+#: mkt/lookup/templates/lookup/app_summary.html:122 mkt/lookup/templates/lookup/user_summary.html:63
 msgid "Refunds"
 msgstr "Επιστροφές"
 
 #. first argument is number of refunds, second argument is percentage of purchases.
-#: mkt/lookup/templates/lookup/app_summary.html:134
+#: mkt/lookup/templates/lookup/app_summary.html:125
 msgid "{0} requested ({1} of purchases)"
 msgstr "{0} αιτηθείσες ({1} αγορών"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:137
+#: mkt/lookup/templates/lookup/app_summary.html:128
 msgid "{0} auto-approved"
 msgstr "{0} εγκρίθηκαν αυτόματα"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:139
+#: mkt/lookup/templates/lookup/app_summary.html:130
 msgid "{0} approved"
 msgstr "{0} εγκρίθηκαν"
 
 #. number of refunds.
-#: mkt/lookup/templates/lookup/app_summary.html:141
+#: mkt/lookup/templates/lookup/app_summary.html:132
 msgid "{0} rejected"
 msgstr "{0} απορρίφθηκαν"
 
-#: mkt/lookup/templates/lookup/app_summary.html:149
+#: mkt/lookup/templates/lookup/app_summary.html:140
 msgid "Version History"
 msgstr "Ιστορικό εκδώσεων"
 
-#: mkt/lookup/templates/lookup/app_summary.html:154
+#: mkt/lookup/templates/lookup/app_summary.html:145
 msgid "Version (ID)"
 msgstr "Έκδοση (ID)"
 
-#: mkt/lookup/templates/lookup/app_summary.html:155
+#: mkt/lookup/templates/lookup/app_summary.html:146
 msgid "Filename (ID, Size)"
 msgstr "Αρχείο (ID, Μέγεθος)"
 
@@ -6029,11 +6036,7 @@ msgstr "έχει σχόλιο "
 msgid "More Info Requested"
 msgstr "Ζητήθηκαν περισσότερες πληροφορίες"
 
-#: mkt/reviewers/forms.py:201
-msgid "Tarako-ready"
-msgstr ""
-
-#: mkt/reviewers/forms.py:205 mkt/reviewers/helpers.py:46 mkt/search/forms.py:105
+#: mkt/reviewers/forms.py:201 mkt/reviewers/helpers.py:46 mkt/search/forms.py:105
 msgid "Device"
 msgstr "Συσκευή"
 
@@ -6057,7 +6060,7 @@ msgstr "Ενημερώσεις"
 msgid "Escalations"
 msgstr "Κλιμακώσεις"
 
-#: mkt/reviewers/helpers.py:47 mkt/reviewers/helpers.py:167
+#: mkt/reviewers/helpers.py:47 mkt/reviewers/helpers.py:162
 msgid "Moderated Reviews"
 msgstr "Ελεγμένες αξιολογήσεις"
 
@@ -6105,152 +6108,148 @@ msgstr "Αξιολόγηση ({0})"
 msgid "China ({0})"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:120
-msgid "Tarako ({0})"
-msgstr ""
-
-#: mkt/reviewers/helpers.py:123
+#: mkt/reviewers/helpers.py:118
 msgctxt "homescreen"
 msgid "Homescreens ({0})"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:132
+#: mkt/reviewers/helpers.py:127
 msgctxt "moderated"
 msgid "Moderated Reviews ({0})"
 msgstr "Επεξεργασμένες Αξιολογήσεις ({0})"
 
-#: mkt/reviewers/helpers.py:139
+#: mkt/reviewers/helpers.py:134
 msgctxt "abuse"
 msgid "Abuse Reports ({0})"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:146
+#: mkt/reviewers/helpers.py:141
 msgctxt "abusewebsites"
 msgid "Website Abuse Reports ({0})"
 msgstr ""
 
-#: mkt/reviewers/helpers.py:162
+#: mkt/reviewers/helpers.py:157
 msgid "Reviews"
 msgstr "Αξιολογήσεις"
 
-#: mkt/reviewers/helpers.py:204
+#: mkt/reviewers/helpers.py:199
 msgid "Rejected or Unreviewed"
 msgstr ""
 
-#: mkt/reviewers/utils.py:401 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
+#: mkt/reviewers/utils.py:410 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
 msgstr ""
 
-#: mkt/reviewers/utils.py:402
+#: mkt/reviewers/utils.py:411
 msgid "This will approve the app and allow the author(s) to publish it."
 msgstr ""
 
-#: mkt/reviewers/utils.py:406 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
+#: mkt/reviewers/utils.py:415 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
 msgstr "Απόρριψη "
 
-#: mkt/reviewers/utils.py:408
+#: mkt/reviewers/utils.py:417
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
 msgstr ""
 
-#: mkt/reviewers/utils.py:413
+#: mkt/reviewers/utils.py:422
 msgid "Message developer"
 msgstr ""
 
-#: mkt/reviewers/utils.py:415
+#: mkt/reviewers/utils.py:424
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
 msgstr ""
 
-#: mkt/reviewers/utils.py:420
+#: mkt/reviewers/utils.py:429
 msgid "Escalate"
 msgstr "Κλιμάκωση"
 
-#: mkt/reviewers/utils.py:422
+#: mkt/reviewers/utils.py:431
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
 msgstr ""
 
-#: mkt/reviewers/utils.py:427
+#: mkt/reviewers/utils.py:436
 msgid "Private comment"
 msgstr ""
 
-#: mkt/reviewers/utils.py:429
+#: mkt/reviewers/utils.py:438
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
 msgstr ""
 
-#: mkt/reviewers/utils.py:435
+#: mkt/reviewers/utils.py:444
 msgid "Request Re-review"
 msgstr ""
 
-#: mkt/reviewers/utils.py:437
+#: mkt/reviewers/utils.py:446
 msgid "Add this app to the re-review queue. Any comments here won't be visible to the author(s), and no notification will be sent to them."
 msgstr ""
 
-#: mkt/reviewers/utils.py:443
+#: mkt/reviewers/utils.py:452
 msgid "Clear Escalation"
 msgstr "Διαγραφή κλιμάκωσης"
 
-#: mkt/reviewers/utils.py:445
+#: mkt/reviewers/utils.py:454
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 msgstr ""
 
-#: mkt/reviewers/utils.py:450
+#: mkt/reviewers/utils.py:459
 msgid "Clear Re-review"
 msgstr "Διαγραφή επαναξιολόγησης"
 
-#: mkt/reviewers/utils.py:452
+#: mkt/reviewers/utils.py:461
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 msgstr ""
 
-#: mkt/reviewers/utils.py:457
+#: mkt/reviewers/utils.py:466
 msgid "Ban app"
 msgstr ""
 
-#: mkt/reviewers/utils.py:459
+#: mkt/reviewers/utils.py:468
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr ""
 
-#: mkt/reviewers/views.py:139
+#: mkt/reviewers/views.py:135
 msgid "New Apps (Under 5 days)"
 msgstr "Νέες εφαρμογές (Λιγότερο από 5 ημέρες)"
 
-#: mkt/reviewers/views.py:140
+#: mkt/reviewers/views.py:136
 msgid "Passable (5 to 10 days)"
 msgstr ""
 
-#: mkt/reviewers/views.py:141
+#: mkt/reviewers/views.py:137
 msgid "Overdue (Over 10 days)"
 msgstr ""
 
-#: mkt/reviewers/views.py:257
+#: mkt/reviewers/views.py:249
 msgid "Self-reviews are not allowed."
 msgstr "Δεν επιτρέπονται αξιολογήσεις για το δικό σας πρόσθετο"
 
-#: mkt/reviewers/views.py:263
+#: mkt/reviewers/views.py:255
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "Μόνο αρχαιότεροι επιθεωρητές μπορούν να αξιολογήσουν αποκλεισμένες εφαρμογές."
 
-#: mkt/reviewers/views.py:312 mkt/reviewers/views.py:337 mkt/submit/forms.py:32 mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:304 mkt/reviewers/views.py:329 mkt/submit/forms.py:32 mkt/submit/forms.py:42
 msgid "Added {0}"
 msgstr "Προστέθηκε {0}"
 
-#: mkt/reviewers/views.py:315 mkt/reviewers/views.py:338 mkt/submit/forms.py:34 mkt/submit/forms.py:43
+#: mkt/reviewers/views.py:307 mkt/reviewers/views.py:330 mkt/submit/forms.py:34 mkt/submit/forms.py:43
 msgid "Removed {0}"
 msgstr "Αφαιρέθηκε {0}"
 
-#: mkt/reviewers/views.py:318
+#: mkt/reviewers/views.py:310
 msgid "Device(s) changed by reviewer: {0}"
 msgstr ""
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:340
+#: mkt/reviewers/views.py:332
 msgid "Requirements changed by reviewer: {0}"
 msgstr "Οι απαιτήσεις τροποποιήθηκαν από τον επιθεωρητή: {0}"
 
-#: mkt/reviewers/views.py:369
+#: mkt/reviewers/views.py:361
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "\"{0}\" επεξεργάστηκε επιτυχώς (+{1} βαθμοί, {2} συνολικά)."
 
-#: mkt/reviewers/views.py:371
+#: mkt/reviewers/views.py:363
 msgid "Review successfully processed."
 msgstr "Η αξιολόγηση επεξεργάστηκε με επιτυχία."
 
@@ -6262,26 +6261,6 @@ msgstr ""
 #, python-format
 msgid "%(reporter)s on %(date)s [%(ip_address)s]"
 msgstr ""
-
-#: mkt/reviewers/templates/reviewers/additional_review.html:7
-msgid "Additional Queues"
-msgstr ""
-
-#: mkt/reviewers/templates/reviewers/additional_review.html:11
-msgid "{queue} Review Queue"
-msgstr ""
-
-#: mkt/reviewers/templates/reviewers/additional_review.html:22
-msgid "Pass"
-msgstr ""
-
-#: mkt/reviewers/templates/reviewers/additional_review.html:23
-msgid "Fail"
-msgstr ""
-
-#: mkt/reviewers/templates/reviewers/additional_review.html:32 mkt/reviewers/templates/reviewers/queue.html:88 mkt/reviewers/templates/reviewers/queue_region.html:31
-msgid "There are currently no items of this type to review."
-msgstr "Δεν υπάρχουν προς το παρόν αντικείμενα αυτού του τύπου για αξιολόγηση."
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:16
 msgid "You are currently not reviewing any apps."
@@ -6509,6 +6488,10 @@ msgstr "Χρόνος αναμονής"
 msgid "Payment Category:"
 msgstr "Κατηγορία Πληρωμής:"
 
+#: mkt/reviewers/templates/reviewers/queue.html:88 mkt/reviewers/templates/reviewers/queue_region.html:31
+msgid "There are currently no items of this type to review."
+msgstr "Δεν υπάρχουν προς το παρόν αντικείμενα αυτού του τύπου για αξιολόγηση."
+
 #: mkt/reviewers/templates/reviewers/queue.html:103
 msgid "Helpful Links:"
 msgstr "Χρήσιμοι δεσμοί:"
@@ -6534,66 +6517,62 @@ msgid "In escalation queue"
 msgstr "Στην ουρά κλιμάκωσης"
 
 #: mkt/reviewers/templates/reviewers/review.html:37
-msgid "In Tarako queue"
-msgstr ""
-
-#: mkt/reviewers/templates/reviewers/review.html:40
 msgid "In China queue"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/review.html:64
+#: mkt/reviewers/templates/reviewers/review.html:61
 msgid "Review This App"
 msgstr "Επιθεώρηση Εφαρμογής"
 
-#: mkt/reviewers/templates/reviewers/review.html:66
+#: mkt/reviewers/templates/reviewers/review.html:63
 msgid "More Information"
 msgstr "Περισσότερες πληροφορίες"
 
-#: mkt/reviewers/templates/reviewers/review.html:67 mkt/reviewers/templates/reviewers/includes/review_history.html:2
+#: mkt/reviewers/templates/reviewers/review.html:64 mkt/reviewers/templates/reviewers/includes/review_history.html:2
 msgid "App History"
 msgstr "Ιστορικό Εφαρμογής"
 
-#: mkt/reviewers/templates/reviewers/review.html:68
+#: mkt/reviewers/templates/reviewers/review.html:65
 msgid "Resolution"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/review.html:100
+#: mkt/reviewers/templates/reviewers/review.html:97
 msgid "App submission incomplete"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/review.html:121
+#: mkt/reviewers/templates/reviewers/review.html:118
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/review.html:128
+#: mkt/reviewers/templates/reviewers/review.html:125
 msgid "Insert canned response..."
 msgstr "Εισαγωγή τυποποιημένης απάντησης..."
 
-#: mkt/reviewers/templates/reviewers/review.html:133
+#: mkt/reviewers/templates/reviewers/review.html:130
 msgid "Tested on:"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/review.html:159
+#: mkt/reviewers/templates/reviewers/review.html:156
 msgid "Add device"
 msgstr ""
 
-#: mkt/reviewers/templates/reviewers/review.html:176
+#: mkt/reviewers/templates/reviewers/review.html:173
 msgid "Browse"
 msgstr "Περιήγηση"
 
-#: mkt/reviewers/templates/reviewers/review.html:188
+#: mkt/reviewers/templates/reviewers/review.html:185
 msgid "Attach another file"
 msgstr "Επισύναψη άλλου αρχείου"
 
-#: mkt/reviewers/templates/reviewers/review.html:191
+#: mkt/reviewers/templates/reviewers/review.html:188
 msgid "Device Override:"
 msgstr "Παράκαμψη συσκευής:"
 
-#: mkt/reviewers/templates/reviewers/review.html:204
+#: mkt/reviewers/templates/reviewers/review.html:201
 msgid "Minimum Requirements Override:"
 msgstr "Παράκαμψη ελάχιστων απαιτήσεων:"
 
-#: mkt/reviewers/templates/reviewers/review.html:214
+#: mkt/reviewers/templates/reviewers/review.html:211
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
 
@@ -8093,66 +8072,66 @@ msgid "Please use the verified email for this account."
 msgstr ""
 
 # Column name in a table.
-#: mkt/webapps/models.py:205
+#: mkt/webapps/models.py:206
 msgid "Listed"
 msgstr "Δηλωμένοι"
 
-#: mkt/webapps/models.py:1344
+#: mkt/webapps/models.py:1348
 msgid "You must provide a support email or URL."
 msgstr ""
 
-#: mkt/webapps/models.py:1346
+#: mkt/webapps/models.py:1350
 msgid "You must provide an app name."
 msgstr "Πρέπει να παρέχετε ένα όνομα εφαρμογής."
 
-#: mkt/webapps/models.py:1348
+#: mkt/webapps/models.py:1352
 msgid "You must provide at least one device type."
 msgstr ""
 
-#: mkt/webapps/models.py:1351
+#: mkt/webapps/models.py:1355
 msgid "You must provide at least one category."
 msgstr "Πρέπει να παρέχετε τουλάχιστον μια κατηγορία."
 
-#: mkt/webapps/models.py:1418
+#: mkt/webapps/models.py:1422
 msgid "You must set up content ratings."
 msgstr ""
 
-#: mkt/webapps/models.py:1420
+#: mkt/webapps/models.py:1424
 msgid "You must set up a payment account."
 msgstr ""
 
-#: mkt/webapps/models.py:1445
+#: mkt/webapps/models.py:1449
 msgid "This app's submission process has not been fully completed."
 msgstr ""
 
-#: mkt/webapps/models.py:1452
+#: mkt/webapps/models.py:1456
 msgid "This app needs to get a content rating."
 msgstr ""
 
-#: mkt/webapps/models.py:1458
+#: mkt/webapps/models.py:1462
 msgid "This app needs a payment account set up."
 msgstr ""
 
 #. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2718
+#: mkt/webapps/models.py:2733
 msgid "awaiting approval"
 msgstr ""
 
 #. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2720
+#: mkt/webapps/models.py:2735
 msgid "rejected"
 msgstr "απορρίφθηκε"
 
 #. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2722
+#: mkt/webapps/models.py:2737
 msgid "requires additional review"
 msgstr ""
 
-#: mkt/webapps/models.py:2761
+#: mkt/webapps/models.py:2776
 msgid "{region} approval status"
 msgstr ""
 
-#: mkt/webapps/models.py:2770
+#: mkt/webapps/models.py:2785
 msgid "{region} nomination date"
 msgstr ""
 
