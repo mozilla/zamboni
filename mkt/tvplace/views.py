@@ -1,3 +1,5 @@
+from django.shortcuts import render
+
 from elasticsearch_dsl import F
 from elasticsearch_dsl.filter import Bool
 
@@ -28,3 +30,10 @@ class MultiSearchView(BaseMultiSearchView):
     def get_queryset(self):
         qs = BaseMultiSearchView.get_queryset(self)
         return qs.filter(Bool(must=[F('term', device=mkt.DEVICE_TV.id)]))
+
+
+def manifest(request):
+    ctx = {}
+    return render(
+        request, 'tvplace/manifest.webapp', ctx,
+        content_type='application/x-web-app-manifest+json')

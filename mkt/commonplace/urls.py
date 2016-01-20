@@ -3,6 +3,7 @@ from django.conf.urls import include, patterns, url
 
 import mkt
 from . import views
+from mkt.tvplace.views import manifest
 
 
 def fireplace_route(path, name=None):
@@ -97,6 +98,8 @@ urlpatterns = patterns(
         name='commonplace.content'),
 
     # TV:
+    url(r'^tv/manifest.webapp$', manifest,
+        name='commonplace.tv_manifest'),
     url('^tv/.*$', views.commonplace,
         {'repo': 'marketplace-tv-front-end'},
         name='commonplace.tv'),
