@@ -7,6 +7,7 @@ from django.test.client import RequestFactory
 
 from mock import patch
 from nose.tools import eq_, ok_
+from post_request_task import task as post_request_task
 
 import mkt
 from mkt.api.tests import BaseAPI
@@ -166,6 +167,7 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
 
     def setUp(self):
         super(TestMultiSearchView, self).setUp()
+        post_request_task._start_queuing_tasks()
         self.url = reverse('fireplace-multi-search-api')
         self.website = website_factory()
         self.website.popularity.add(WebsitePopularity(region=0, value=666))
@@ -176,6 +178,7 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         self.extension.versions.create(status=STATUS_PUBLIC)
         self.extension.popularity.add(ExtensionPopularity(region=0, value=999))
         self.extension.save()
+        post_request_task._send_tasks_and_stop_queuing()
         self.refresh(doctypes=('extension', 'webapp', 'website',
                                'homescreen'))
 
@@ -201,6 +204,7 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         self.refresh(('webapp', 'website', 'extension', 'homescreen'))
 
     def make_homescreen(self):
+        post_request_task._start_queuing_tasks()
         self.homescreen = app_factory(name=u'Elegant Waffle',
                                       description=u'homescreen runner',
                                       created=self.days_ago(5),
@@ -208,9 +212,9 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         Tag(tag_text='homescreen').save_tag(self.homescreen)
         self.homescreen.addondevicetype_set.create(
             device_type=mkt.DEVICE_GAIA.id)
-        self.homescreen.update(categories=['health-fitness', 'productivity'])
         self.homescreen.update_version()
-        HomescreenIndexer.index_ids([self.homescreen.pk], no_delay=True)
+        self.homescreen.update(categories=['health-fitness', 'productivity'])
+        post_request_task._send_tasks_and_stop_queuing()
         self.refresh(('webapp', 'website', 'extension', 'homescreen'))
         return self.homescreen
 

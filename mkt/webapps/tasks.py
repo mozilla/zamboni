@@ -12,17 +12,16 @@ from django.contrib.auth.models import AnonymousUser
 from django.core.urlresolvers import reverse
 from django.template import Context, loader
 from django.test.client import RequestFactory
+from django.utils.translation import ugettext as _
 
 import pytz
 import requests
 from celery import chord
 from celery.exceptions import RetryTaskError
-from celery import task
 from requests.exceptions import RequestException
-from django.utils.translation import ugettext as _
+from post_request_task.task import task
 
 import mkt
-from lib.post_request_task.task import task as post_request_task
 from mkt.constants.regions import RESTOFWORLD
 from mkt.developers.models import ActivityLog
 from mkt.developers.tasks import _fetch_manifest, validator
@@ -285,7 +284,7 @@ def _update_manifest(id, check_hash, failed_fetches):
         webapp.set_iarc_storefront_data()
 
 
-@post_request_task
+@task
 @use_master
 def update_cached_manifests(id, **kw):
     try:
@@ -318,7 +317,7 @@ def update_supported_locales(ids, **kw):
                 _log(app, u'Updating supported locales failed.', exc_info=True)
 
 
-@post_request_task(acks_late=True)
+@task(acks_late=True)
 @use_master
 def index_webapps(ids, **kw):
     # DEPRECATED: call WebappIndexer.index_ids directly.
@@ -334,7 +333,7 @@ def index_webapps(ids, **kw):
         WebappIndexer.index_ids(list(webapps), no_delay=True)
 
 
-@post_request_task(acks_late=True)
+@task(acks_late=True)
 @use_master
 def unindex_webapps(ids, **kw):
     # DEPRECATED: call WebappIndexer.unindexer directly.

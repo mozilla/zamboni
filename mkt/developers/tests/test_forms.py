@@ -16,7 +16,6 @@ from nose.tools import eq_, ok_
 import mkt
 import mkt.site.tests
 from lib.iarc_v2.client import IARCException
-from lib.post_request_task import task as post_request_task
 from mkt.constants import ratingsbodies
 from mkt.developers import forms
 from mkt.developers.tests.test_views_edit import TestAdmin
@@ -59,9 +58,6 @@ class TestPreviewForm(mkt.site.tests.TestCase):
             src_storage=local_storage, dst_storage=private_storage)
         assert form.is_valid(), form.errors
         form.save(self.addon)
-        # Since the task is a post-request-task and we are outside the normal
-        # request-response cycle, manually send the tasks.
-        post_request_task._send_tasks()
         eq_(self.addon.previews.all()[0].sizes,
             {u'image': [250, 297], u'thumbnail': [100, 119]})
 

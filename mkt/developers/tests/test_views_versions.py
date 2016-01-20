@@ -409,7 +409,11 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         eq_(Version.with_deleted.get(pk=ver2.pk).all_files[0].status,
             mkt.STATUS_DISABLED)
 
-    def test_delete_version_app_public(self):
+    @mock.patch('mkt.webapps.tasks.index_webapps')
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests')
+    @mock.patch('mkt.webapps.models.Webapp.update_name_from_package_manifest')
+    def test_delete_version_app_public(self, update_name_mock,
+                                       update_manifest_mock, index_mock):
         """Test deletion of current_version when app is PUBLIC."""
         eq_(self.app.status, mkt.STATUS_PUBLIC)
         ver1 = self.app.latest_version
@@ -418,6 +422,9 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
             file_kw=dict(status=mkt.STATUS_PUBLIC))
         eq_(self.app.latest_version, ver2)
         eq_(self.app.current_version, ver2)
+
+        update_manifest_mock.reset_mock()
+        index_mock.reset_mock()
 
         self.client.post(self.delete_url, {'version_id': ver2.pk})
 
@@ -428,6 +435,10 @@ class TestVersionPackaged(mkt.site.tests.WebappTestCase):
         eq_(self.app.versions.count(), 1)
         eq_(Version.with_deleted.get(pk=ver2.pk).all_files[0].status,
             mkt.STATUS_DISABLED)
+
+        eq_(update_name_mock.call_count, 1)
+        eq_(update_manifest_mock.delay.call_count, 1)
+        eq_(index_mock.delay.call_count, 1)
 
     @mock.patch('mkt.webapps.tasks.index_webapps')
     @mock.patch('mkt.webapps.tasks.update_cached_manifests')

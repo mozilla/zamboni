@@ -9,6 +9,7 @@ import mock
 from elasticsearch_dsl.search import Search
 from mpconstants import collection_colors as coll_colors
 from nose.tools import eq_, ok_
+from post_request_task import task as post_request_task
 
 import mkt
 import mkt.carriers
@@ -56,6 +57,10 @@ class BaseTestFeedESView(ESTestCase):
         Webapp.get_indexer().index_ids(
             list(Webapp.objects.values_list('id', flat=True)))
         super(BaseTestFeedESView, self).setUp()
+        # Because the factories might create things in the wrong order, queue
+        # all indexing tasks, _get() will then fire the tasks and stop queuing
+        # before calling the view.
+        post_request_task._start_queuing_tasks()
 
     def tearDown(self):
         for model in (FeedApp, FeedBrand, FeedCollection, FeedShelf,
@@ -64,12 +69,16 @@ class BaseTestFeedESView(ESTestCase):
         super(BaseTestFeedESView, self).tearDown()
 
     def _refresh(self):
+        # Before calling the view, test methods must call _refresh() to make
+        # sure the ES indexes are ready. We also stop queuing tasks at this
+        # point.
         self.refresh('mkt_feed_app')
         self.refresh('mkt_feed_brand')
         self.refresh('mkt_feed_collection')
         self.refresh('mkt_feed_shelf')
         self.refresh('mkt_feed_item')
         self.refresh('webapp')
+        post_request_task._stop_queuing_tasks()
 
 
 class BaseTestGroupedApps(object):
@@ -1692,6 +1701,7 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         feed_item = self.feed_item_factory(item_type=feed.FEED_TYPE_APP)
         feed_item.app.app.addondevicetype_set.create(
             device_type=applications.DEVICE_DESKTOP.id)
+        self.reindex(Webapp)
 
         # Mobile doesn't show desktop apps.
         res, data = self._get(device='firefoxos', dev='firefoxos')
@@ -1754,6 +1764,7 @@ class TestFeedViewDeviceFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
             device_type=applications.DEVICE_DESKTOP.id)
         feed_item.app.app.addondevicetype_set.create(
             device_type=applications.DEVICE_GAIA.id)
+        self.reindex(Webapp)
 
         # Shows up on Desktop and Gaia.
         res, data = self._get(dev='desktop')
@@ -1803,6 +1814,8 @@ class TestFeedViewRegionFiltering(BaseTestFeedESView, BaseTestFeedItemViewSet):
         app = feed_item.app.app
         # Exclude from Germany.
         app.addonexcludedregion.create(region=mkt.regions.DEU.id)
+        self.reindex(Webapp)
+
         res, data = self._get()
         ok_(data['objects'])
         res, data = self._get(region='de')

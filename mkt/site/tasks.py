@@ -5,7 +5,7 @@ from django.core.mail import (EmailMessage, EmailMultiAlternatives,
                               get_connection)
 
 import commonware.log
-from celery import task
+from post_request_task.task import task
 
 from mkt.site.decorators import use_master
 from mkt.translations.models import PurifiedTranslation

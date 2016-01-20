@@ -46,6 +46,7 @@ django-extensions==1.6.1
 django-filter==0.12.0
 django-multidb-router==0.6
 django-nose==1.4.3
+django-post-request-task==0.0.3
 django-quieter-formset==0.4
 djangorestframework==3.3.2
 django-secure==1.0.1

@@ -19,14 +19,13 @@ from django.utils.translation import ugettext as _
 
 import requests
 from appvalidator import validate_app, validate_packaged_app
-from celery import task
 from django_statsd.clients import statsd
 from PIL import Image
+from post_request_task.task import task
 import waffle
 
 import mkt
 from lib.iarc_v2.client import refresh as iarc_refresh
-from lib.post_request_task.task import task as post_request_task
 from mkt.constants import APP_PREVIEW_SIZES
 from mkt.constants.regions import REGIONS_CHOICES_ID_DICT
 from mkt.files.models import File, FileUpload, FileValidation
@@ -54,7 +53,7 @@ REQUESTS_HEADERS = {
 }
 
 
-@post_request_task
+@task
 @use_master
 def validator(upload_id, **kw):
     if not settings.VALIDATE_ADDONS:
@@ -153,7 +152,7 @@ def _hash_file(fd):
     return hashlib.md5(fd.read()).hexdigest()[:8]
 
 
-@post_request_task
+@task
 @use_master
 @set_modified_on
 def resize_icon(src, dst, sizes, src_storage=private_storage,
@@ -177,7 +176,7 @@ def resize_icon(src, dst, sizes, src_storage=private_storage,
         log.error("Error resizing icon: %s; %s" % (e, dst))
 
 
-@post_request_task
+@task
 @use_master
 @set_modified_on
 def resize_promo_imgs(src, dst, sizes, **kw):
@@ -250,7 +249,7 @@ def pngcrush_image(src, hash_field='image_hash', storage=public_storage, **kw):
     return {}
 
 
-@post_request_task
+@task
 @use_master
 @set_modified_on
 def resize_preview(src, pk, **kw):
@@ -372,7 +371,7 @@ def save_promo_imgs(obj, img_content):
         set_modified_on=[obj])
 
 
-@post_request_task
+@task
 @use_master
 def fetch_icon(pk, file_pk=None, **kw):
     """
@@ -516,7 +515,7 @@ def _fetch_manifest(url, upload=None):
     return content
 
 
-@post_request_task
+@task
 @use_master
 def fetch_manifest(url, upload_pk=None, **kw):
     log.info(u'[1@None] Fetching manifest: %s.' % url)

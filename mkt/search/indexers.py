@@ -4,13 +4,12 @@ import sys
 from django.conf import settings
 
 import elasticsearch
-from celery import task
 from elasticsearch import helpers
 from elasticsearch_dsl import Search
+from post_request_task.task import task
 
 import mkt
 from lib.es.models import Reindexing
-from lib.post_request_task.task import task as post_request_task
 from mkt.constants.regions import MATURE_REGION_IDS
 from mkt.search.utils import get_boost
 from mkt.site.decorators import use_master
@@ -500,7 +499,7 @@ class BaseIndexer(object):
         return extend_with_me
 
 
-@post_request_task(acks_late=True)
+@task(acks_late=True)
 @use_master
 def index(ids, indexer, **kw):
     """

@@ -21,6 +21,7 @@ from cache_nuggets.lib import Token
 from jingo.helpers import urlparams
 from nose import SkipTest
 from nose.tools import eq_, ok_
+from post_request_task import task as post_request_task
 from pyquery import PyQuery as pq
 from requests.structures import CaseInsensitiveDict
 
@@ -811,8 +812,12 @@ class TestRereviewQueueES(mkt.site.tests.ESTestCase, TestRereviewQueue):
 class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                       XSSMixin):
 
+    # Prevent update_cached_manifests at setUp() since it gets called and tries
+    # to access files when we add versions.
+    @mock.patch('mkt.webapps.tasks.update_cached_manifests', False)
     def setUp(self):
         super(TestUpdateQueue, self).setUp()
+        post_request_task._start_queuing_tasks()
         app1 = app_factory(is_packaged=True, name='XXX',
                            version_kw={'version': '1.0',
                                        'created': self.days_ago(2),
@@ -828,7 +833,7 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
         version_factory(addon=app2, version='1.1', created=self.days_ago(1),
                         nomination=self.days_ago(1),
                         file_kw={'status': mkt.STATUS_PENDING})
-
+        post_request_task._send_tasks_and_stop_queuing()
         self.apps = list(Webapp.objects.order_by('id'))
         self.url = reverse('reviewers.apps.queue_updates')
 
@@ -918,8 +923,8 @@ class TestUpdateQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
     def test_homescreen(self):
         Tag(tag_text='homescreen').save_tag(self.apps[1])
         self.apps[1].save()
-        WebappIndexer.unindex(self.apps[1].id)
         if self.uses_es():
+            WebappIndexer.unindex(self.apps[1].id)
             self.refresh(doctypes=('homescreen', 'webapp'))
         r = self.client.get(self.url)
         eq_(r.status_code, 200)

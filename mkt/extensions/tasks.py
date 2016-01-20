@@ -1,12 +1,13 @@
 from zipfile import ZipFile
 
-from lib.post_request_task.task import task as post_request_task
+from post_request_task.task import task
+
 from mkt.developers.tasks import save_icon
 from mkt.site.decorators import use_master
 from mkt.site.storage_utils import private_storage
 
 
-@post_request_task
+@task
 @use_master
 def fetch_icon(pk, version_pk=None, **kw):
     """Take an extension pk and extract 128x128 icon from its zip file, build

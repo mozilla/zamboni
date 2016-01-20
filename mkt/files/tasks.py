@@ -1,10 +1,10 @@
 import logging
 
 from django.conf import settings
+from django.utils.translation import ugettext as _
 
 from cache_nuggets.lib import Message
-from celery import task
-from django.utils.translation import ugettext as _
+from post_request_task.task import task
 
 from mkt.files.helpers import FileViewer
 from mkt.files.models import File

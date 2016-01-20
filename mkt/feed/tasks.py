@@ -1,5 +1,6 @@
 import logging
-from celery import task
+
+from post_request_task.task import task
 
 from mkt.feed.models import FeedApp, FeedCollection
 
