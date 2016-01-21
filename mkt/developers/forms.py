@@ -23,8 +23,7 @@ from jinja2 import escape as jinja2_escape
 from jinja2.filters import do_dictsort
 from mpconstants import regions as mpconstants_regions
 from quieter_formset.formset import BaseModelFormSet
-from django.utils.translation import (ugettext as _, ugettext_lazy as _lazy,
-                                      ungettext as ngettext)
+from tower import ugettext as _, ugettext_lazy as _lazy, ungettext as ngettext
 
 import lib.iarc
 import mkt

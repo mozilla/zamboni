@@ -10,7 +10,7 @@ from jinja2.filters import do_dictsort
 from PIL import Image
 from rest_framework import serializers
 from rest_framework.serializers import ValidationError
-from django.utils.translation import ugettext as _
+from tower import ugettext as _
 
 from mkt.prices.models import Price
 from mkt.api.fields import TranslationSerializerField

@@ -132,8 +132,8 @@ class TestPackagedValidation(MktPaths, ValidationHandler):
                                data=json.dumps({'upload': self.data}))
         eq_(res.status_code, 400)
         eq_(json.loads(res.content)['upload'][0],
-            u'Packaged app too large for submission. '
-            u'Packages must be smaller than 2\xa0bytes.')
+            'Packaged app too large for submission. '
+            'Packages must be smaller than 2 bytes.')
 
     @override_settings(FILE_UNZIP_SIZE_LIMIT=42)
     def test_file_in_zip_file_too_big(self):

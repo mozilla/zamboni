@@ -12,7 +12,7 @@ from django import forms
 from django.conf import settings
 from django.utils.translation import trans_real as translation
 
-from django.utils.translation import ugettext as _
+from tower import ugettext as _
 
 from mkt.site.storage_utils import private_storage
 from mkt.site.utils import rm_local_tmp_dir, strip_bom

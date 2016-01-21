@@ -466,7 +466,7 @@ class TestPackagedAppForm(mkt.site.tests.MktPaths,
         assert 'messages' in validation, 'No messages in validation.'
         eq_(validation['messages'][0]['message'],
             u'Packaged app too large for submission. Packages must be smaller '
-            u'than 5\xa0bytes.')
+            u'than 5 bytes.')
 
     def test_origin_exists(self):
         self.app.update(app_domain='app://hy.fr')

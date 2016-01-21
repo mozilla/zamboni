@@ -5,10 +5,10 @@ from django.conf import settings
 from django.core.mail.backends.base import BaseEmailBackend
 
 import commonware.log
+from jingo import env
 
 from mkt.site.models import FakeEmail
 from mkt.site.tasks import send_email
-from mkt.site.utils import env
 from mkt.users.models import UserNotification
 from mkt.users.notifications import NOTIFICATIONS_BY_SHORT
 from mkt.zadmin.models import get_config

@@ -11,7 +11,7 @@ from rest_framework.decorators import (authentication_classes,
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from session_csrf import anonymous_csrf_exempt
-from django.utils.translation import ugettext as _
+from tower import ugettext as _
 
 import mkt
 from lib.cef_loggers import receipt_cef

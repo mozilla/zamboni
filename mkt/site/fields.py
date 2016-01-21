@@ -4,7 +4,7 @@ from django.core import exceptions
 from django.db import models
 from django.forms import fields
 
-from django.utils.translation import ugettext as _
+from tower import ugettext as _
 
 
 class SeparatedValuesField(fields.Field):

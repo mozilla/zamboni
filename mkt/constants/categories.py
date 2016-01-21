@@ -1,4 +1,4 @@
-from django.utils.translation import ugettext_lazy as _lazy
+from tower import ugettext_lazy as _lazy
 
 
 CATEGORY_CHOICES = (

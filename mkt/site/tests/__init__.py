@@ -17,10 +17,11 @@ from django.core.management import call_command
 from django.core.urlresolvers import reverse
 from django.test.client import Client, RequestFactory
 from django.utils import translation
-from django.utils.translation import activate, trans_real
+from django.utils.translation import trans_real
 
 import elasticsearch
 import mock
+import tower
 from dateutil.parser import parse as dateutil_parser
 from django_browserid.tests import mock_browserid
 from nose.exc import SkipTest
@@ -54,7 +55,7 @@ from mkt.webapps.models import Webapp
 # running middlewares, and thus not activating a language, and thus not
 # installing gettext in the globals, and thus not have it in the context when
 # rendering templates.
-activate('en-us')
+tower.activate('en-us')
 
 
 class DynamicBoolFieldsTestMixin():

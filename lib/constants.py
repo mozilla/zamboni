@@ -1,5 +1,5 @@
 # -*- coding: utf8 -*-
-from django.utils.translation import ugettext_lazy as _lazy
+from tower import ugettext_lazy as _lazy
 
 ALL_CURRENCIES = {
     'AED': _lazy(u'United Arab Emirates Dirham'),

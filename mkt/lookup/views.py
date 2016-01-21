@@ -16,7 +16,7 @@ import commonware.log
 from babel import numbers
 from elasticsearch_dsl import Q as ES_Q, query
 from slumber.exceptions import HttpClientError, HttpServerError
-from django.utils.translation import ugettext as _
+from tower import ugettext as _
 
 import mkt
 import mkt.constants.lookup as lkp

@@ -1,7 +1,7 @@
 from django import forms
 
 import commonware.log
-from django.utils.translation import ugettext as _
+from tower import ugettext as _
 
 log = commonware.log.getLogger('z.mkt.site.forms')
 

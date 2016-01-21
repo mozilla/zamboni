@@ -5,7 +5,7 @@ from django.utils.http import is_safe_url
 
 import commonware.log
 from django_browserid import BrowserIDBackend, get_audience
-from django.utils.translation import ugettext as _
+from tower import ugettext as _
 
 import mkt
 from lib.metrics import record_action

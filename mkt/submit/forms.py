@@ -7,7 +7,7 @@ from django.utils.safestring import mark_safe
 
 import basket
 import happyforms
-from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext as _, ugettext_lazy as _lazy
 
 import mkt
 from mkt.comm.utils import create_comm_note
