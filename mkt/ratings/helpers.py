@@ -1,5 +1,5 @@
 import jingo
-from django.utils.translation import ugettext as _
+from tower import ugettext as _
 
 from mkt.access import acl
 

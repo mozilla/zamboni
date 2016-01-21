@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 
 import jinja2
 from jingo import register
-from django.utils.translation import ugettext as _
+from tower import ugettext as _
 
 import mkt
 from mkt.access import acl

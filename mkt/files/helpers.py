@@ -13,8 +13,8 @@ from django.utils.encoding import smart_unicode
 import commonware.log
 import jinja2
 from cache_nuggets.lib import memoize, Message
-from jingo import register
-from django.utils.translation import ugettext as _
+from jingo import env, register
+from tower import ugettext as _
 from appvalidator.testcases.packagelayout import (
     blacklisted_extensions as blocked_extensions,
     blacklisted_magic_numbers as blocked_magic_numbers)
@@ -24,7 +24,6 @@ from mkt.files.utils import extract_zip, get_md5
 from mkt.site.storage_utils import (copy_stored_file, local_storage,
                                     private_storage, public_storage,
                                     storage_is_remote, walk_storage)
-from mkt.site.utils import env
 
 
 # Allow files with a shebang through.

@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 
 import commonware.log
 from rest_framework import response, serializers
-from django.utils.translation import ungettext as ngettext
+from tower import ungettext as ngettext
 
 import mkt
 from mkt.api.fields import (ESTranslationSerializerField, LargeTextField,

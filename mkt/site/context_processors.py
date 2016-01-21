@@ -4,7 +4,7 @@ from django.utils import translation
 
 import waffle
 from cache_nuggets.lib import memoize
-from django.utils.translation import ugettext as _
+from tower import ugettext as _
 
 import mkt
 from mkt.access import acl

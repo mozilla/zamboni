@@ -15,7 +15,7 @@ from rest_framework.serializers import (HyperlinkedModelSerializer,
                                         ValidationError)
 from rest_framework.viewsets import GenericViewSet
 from slumber.exceptions import HttpClientError, HttpServerError
-from django.utils.translation import ugettext as _
+from tower import ugettext as _
 
 import mkt
 from lib.pay_server import get_client

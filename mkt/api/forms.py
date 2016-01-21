@@ -6,7 +6,7 @@ from django.core.validators import URLValidator
 from django.core.exceptions import ValidationError
 
 import happyforms
-from django.utils.translation import ugettext_lazy as _lazy
+from tower import ugettext_lazy as _lazy
 
 from mkt.developers.forms import JSONField, NewPackagedAppForm
 from mkt.developers.utils import check_upload

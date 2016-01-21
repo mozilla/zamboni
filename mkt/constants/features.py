@@ -5,7 +5,7 @@ from collections import OrderedDict
 
 from django.conf import settings
 
-from django.utils.translation import ugettext_lazy as _lazy
+from tower import ugettext_lazy as _lazy
 
 
 # WARNING: When adding a new app feature here also include a migration.

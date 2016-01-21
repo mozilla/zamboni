@@ -12,7 +12,7 @@ import commonware.log
 from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
 from rest_framework.exceptions import ParseError
-from django.utils.translation import ugettext as _
+from tower import ugettext as _
 from uuidfield.fields import UUIDField
 
 from lib.crypto.packaged import sign_app, SigningError

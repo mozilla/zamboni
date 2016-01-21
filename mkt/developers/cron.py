@@ -4,7 +4,7 @@ import logging
 import cronjobs
 import waffle
 from celery.task.sets import TaskSet
-from django.utils.translation import ugettext as _
+from tower import ugettext as _
 
 import mkt
 import lib.iarc

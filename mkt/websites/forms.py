@@ -1,7 +1,7 @@
 import happyforms
-from django.utils.translation import ugettext as _
-from django.utils.translation import ugettext_lazy as _lazy
-from django.utils.translation import ungettext as ngettext
+from tower import ugettext as _
+from tower import ugettext_lazy as _lazy
+from tower import ungettext as ngettext
 
 from django import forms
 

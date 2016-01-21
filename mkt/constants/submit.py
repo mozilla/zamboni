@@ -1,4 +1,4 @@
-from django.utils.translation import ugettext_lazy as _
+from tower import ugettext_lazy as _
 
 
 APP_STEPS = [

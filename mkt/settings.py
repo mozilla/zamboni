@@ -113,13 +113,13 @@ INSTALLED_APPS = (
     'csp',
     'jingo_minify',
     'lib.es',
+    'tower',  # for ./manage.py extract
     'mkt.translations',
 
     # Third party apps
     'djcelery',
     'django_extensions',
     'django_nose',
-    'puente',
     'raven.contrib.django',
     'storages',
     'waffle',
@@ -646,29 +646,36 @@ DEFAULT_PAYMENT_PROVIDER = 'reference'
 DEV_AGREEMENT_LAST_UPDATED = datetime.date(2012, 2, 23)
 
 # Tells the extract script what files to look for l10n in and what function
-# handles the extraction.  The Puente library expects this.
-PUENTE = {
-    'BASE_DIR': ROOT,
-    'DOMAIN_METHODS': {
-        'django': [
-            ('templates/**.html', 'jinja2'),
-            ('mkt/**.py', 'python'),
-            ('mkt/zadmin/templates/admin/base_site.html', 'ignore'),
-            ('mkt/**/templates/**.html', 'jinja2'),
-            ('mkt/templates/**.html', 'jinja2'),
-            ('**/templates/**.lhtml', 'jinja2'),
-        ],
-        'djangojs': [
-            # We can't say **.js because that would dive into mochikit and
-            # timeplot and all the other baggage we're carrying.  Timeplot, in
-            # particular, crashes the extractor with bad unicode data.
-            ('media/js/*.js', 'javascript'),
-            ('media/js/common/**.js', 'javascript'),
-            ('media/js/zamboni/**.js', 'javascript'),
-            ('media/js/devreg/**.js', 'javascript'),
-        ],
-    }
+# handles the extraction.  The Tower library expects this.
+TEXT_DOMAIN = 'django'
+DOMAIN_METHODS = {
+    'django': [
+        ('apps/**.py',
+            'tower.management.commands.extract.extract_tower_python'),
+        ('apps/**/templates/**.html',
+            'tower.management.commands.extract.extract_tower_template'),
+        ('templates/**.html',
+            'tower.management.commands.extract.extract_tower_template'),
+        ('mkt/**.py',
+            'tower.management.commands.extract.extract_tower_python'),
+        ('mkt/**/templates/**.html',
+            'tower.management.commands.extract.extract_tower_template'),
+        ('mkt/templates/**.html',
+            'tower.management.commands.extract.extract_tower_template'),
+        ('**/templates/**.lhtml',
+            'tower.management.commands.extract.extract_tower_template'),
+    ],
+    'djangojs': [
+        # We can't say **.js because that would dive into mochikit and timeplot
+        # and all the other baggage we're carrying.  Timeplot, in particular,
+        # crashes the extractor with bad unicode data.
+        ('media/js/*.js', 'javascript'),
+        ('media/js/common/**.js', 'javascript'),
+        ('media/js/zamboni/**.js', 'javascript'),
+        ('media/js/devreg/**.js', 'javascript'),
+    ],
 }
+
 # Tarballs in DUMPED_APPS_PATH deleted 30 days after they have been written.
 DUMPED_APPS_DAYS_DELETE = 3600 * 24 * 30
 
@@ -870,7 +877,8 @@ def JINJA_CONFIG():
     import jinja2
     from django.conf import settings
     from django.core.cache import cache
-    config = {'extensions': ['jinja2.ext.do',
+    config = {'extensions': ['tower.template.i18n',
+                             'jinja2.ext.do',
                              'jinja2.ext.with_',
                              'jinja2.ext.loopcontrols',
                              'jinja2.ext.i18n',
@@ -1109,6 +1117,9 @@ SOLITUDE_OAUTH = {'key': SOLITUDE_KEY, 'secret': SOLITUDE_SECRET}
 # binary.  It must be a version compatible with amo-validator
 SPIDERMONKEY = None
 
+# Tower
+STANDALONE_DOMAINS = ['django', 'djangojs']
+
 STATSD_HOST = 'localhost'
 STATSD_PORT = 8125
 STATSD_PREFIX = 'amo'
@@ -1141,6 +1152,11 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 TOTEM_BINARIES = {'thumbnailer': 'totem-video-thumbnailer',
                   'indexer': 'totem-video-indexer'}
+
+TOWER_KEYWORDS = {
+    '_lazy': None,
+}
+TOWER_ADD_HEADERS = True
 
 # Path to uglifyjs (our JS minifier).
 UGLIFY_BIN = os.getenv('UGLIFY_BIN',
