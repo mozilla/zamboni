@@ -4,7 +4,7 @@
 cffi==0.9.2
 # cryptography is required by pyOpenSSL
 cryptography==0.8.2
-Jinja2==2.8
+Jinja2==2.7.2
 lxml==3.4.3
 MarkupSafe==0.23
 # M2Crypto is required by m2secret, mozpay, PyBrowserID, PyJWT-mozilla, django-aesfield
