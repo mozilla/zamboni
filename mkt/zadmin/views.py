@@ -33,6 +33,16 @@ log = commonware.log.getLogger('z.zadmin')
 
 
 @admin_required
+def memory_profile(request):
+    import tempfile
+    from meliae.scanner import dump_all_objects
+    f = tempfile.TemporaryFile()
+    dump_all_objects(f)
+    f.seek(0)
+    return http.HttpResponse(f.read(), content_type='application/json')
+
+
+@admin_required
 def show_settings(request):
     settings_dict = debug.get_safe_settings()
 
