@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 from lib.constants import ALL_CURRENCIES
 
-from django.utils.translation import ugettext_lazy as _lazy
+from tower import ugettext_lazy as _lazy
 
 # From page 10 of the Mozilla Exporter API docs v1.0.0
 #

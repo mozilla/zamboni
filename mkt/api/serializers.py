@@ -3,7 +3,7 @@ from django.conf import settings
 import commonware.log
 from rest_framework import serializers
 from rest_framework.reverse import reverse
-from django.utils.translation import ugettext as _
+from tower import ugettext as _
 
 
 log = commonware.log.getLogger('z.mkt.api.forms')

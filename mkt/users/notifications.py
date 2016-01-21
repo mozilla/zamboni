@@ -1,7 +1,7 @@
 from inspect import isclass
 
 from celery.datastructures import AttributeDict
-from django.utils.translation import ugettext_lazy as _
+from tower import ugettext_lazy as _
 
 
 class _NOTIFICATION(object):

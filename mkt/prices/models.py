@@ -11,7 +11,7 @@ import commonware.log
 from babel import numbers
 from cache_nuggets.lib import memoize_key
 from jinja2.filters import do_dictsort
-from django.utils.translation import ugettext_lazy as _
+from tower import ugettext_lazy as _
 
 import mkt
 from lib.constants import ALL_CURRENCIES

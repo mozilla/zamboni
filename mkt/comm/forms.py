@@ -4,7 +4,7 @@ from django.forms import ValidationError
 
 import happyforms
 from jinja2.filters import do_filesizeformat
-from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
+from tower import ugettext as _, ugettext_lazy as _lazy
 
 from mkt.api.forms import SluggableModelChoiceField
 from mkt.comm.models import CommunicationThread

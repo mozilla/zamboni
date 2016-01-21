@@ -16,7 +16,7 @@ from rest_framework.parsers import FileUploadParser
 from rest_framework.permissions import AllowAny, SAFE_METHODS
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-from django.utils.translation import ugettext as _
+from tower import ugettext as _
 
 from mkt.access.acl import action_allowed
 from mkt.api.authentication import (RestAnonymousAuthentication,

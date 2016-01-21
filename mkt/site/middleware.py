@@ -10,8 +10,9 @@ from django.middleware import common
 from django.utils.cache import (get_max_age, patch_cache_control,
                                 patch_response_headers, patch_vary_headers)
 from django.utils.encoding import iri_to_uri
-from django.utils.translation import activate
 from django.utils.translation.trans_real import parse_accept_lang_header
+
+import tower
 
 
 def _set_cookie(self, key, value='', max_age=None, expires=None, path='/',
@@ -126,7 +127,7 @@ class LocaleMiddleware(object):
             request.user.lang = lang
             request.user.save()
         request.LANG = lang
-        activate(lang)
+        tower.activate(lang)
 
     def process_response(self, request, response):
         # We want to change the cookie, but didn't have the response in

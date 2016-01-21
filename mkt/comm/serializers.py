@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 
 from rest_framework.fields import BooleanField, CharField
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
-from django.utils.translation import ugettext as _
+from tower import ugettext as _
 
 from mkt.comm.models import (CommAttachment, CommunicationNote,
                              CommunicationThread)

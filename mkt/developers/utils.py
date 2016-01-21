@@ -8,7 +8,7 @@ from django.template.defaultfilters import filesizeformat
 from appvalidator.constants import PRERELEASE_PERMISSIONS
 import commonware.log
 from PIL import Image
-from django.utils.translation import ugettext as _
+from tower import ugettext as _
 
 import mkt
 from lib.video import library as video_library
