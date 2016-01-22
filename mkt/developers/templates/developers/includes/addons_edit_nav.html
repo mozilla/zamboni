@@ -3,7 +3,7 @@
 ] %}
 
 {% if addon.is_packaged %}
-  {% do urls.append((addon.get_dev_url('versions'), _('Status &amp; Versions'))) %}
+  {% do urls.append((addon.get_dev_url('versions'), _('Status & Versions'))) %}
 {% else %}
   {% do urls.append((addon.get_dev_url('versions'), _('Status'))) %}
 {% endif %}
