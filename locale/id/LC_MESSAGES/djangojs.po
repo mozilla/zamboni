@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-06 13:06-0800\n"
-"PO-Revision-Date: 2016-01-23 08:03+0000\n"
+"PO-Revision-Date: 2016-01-23 09:17+0000\n"
 "Last-Translator: Artanto Ishaam <artanto.ishaam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -231,75 +231,76 @@ msgstr "Tidak dapat mengganti status menjadi \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:70
 msgid "Group membership \"{0}\" added"
-msgstr ""
+msgstr "Keanggotaan grup \"{0}\" ditambahkan"
 
 #: media/js/devreg/lookup-tool.js:84
 msgid "Could not add group \"{0}\""
-msgstr ""
+msgstr "Tidak dapat menambahkan grup \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:108
 msgid "Group membership \"{0}\" removed"
-msgstr ""
+msgstr "Keanggotaan grup \"{0}\" dihapus"
 
 #: media/js/devreg/lookup-tool.js:114
 msgid "Could not remove group \"{0}\""
-msgstr ""
+msgstr "Tidak dapat menghapus grup \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:183
 msgid "Show All Results"
-msgstr ""
+msgstr "Tampilkan Seluruh Hasil"
 
 #: media/js/devreg/lookup-tool.js:186
 msgid "Over {0} results found, consider refining your search."
 msgstr ""
+"Ditemukan hasil di atas {0}, pertimbangkan untuk memperbaiki pencarian Anda."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
-msgstr ""
+msgstr "Permintaan Izin:"
 
 #: media/js/devreg/manifest.js:55
 msgid "Certified"
-msgstr ""
+msgstr "Tersertifikasi"
 
 #: media/js/devreg/manifest.js:58
 msgid "Privileged"
-msgstr ""
+msgstr "Hak akses"
 
 #: media/js/devreg/manifest.js:61
 msgid "Unprivileged"
-msgstr ""
+msgstr "Tanpa hak akses"
 
 #: media/js/devreg/manifest.js:67
 msgid "No reason given"
-msgstr ""
+msgstr "Tidak ada alasan diberikan"
 
 #: media/js/devreg/overlay.js:41
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: media/js/devreg/payments-enroll.js:9
 msgid "Spanish Banking Code"
-msgstr ""
+msgstr "Kode Bank Spanyol"
 
 #: media/js/devreg/payments-enroll.js:11
 msgid "Irish Sort Code"
-msgstr ""
+msgstr "Kode Pengurutan Irlandia"
 
 #: media/js/devreg/payments-enroll.js:13
 msgid "Belgian Sort Code"
-msgstr ""
+msgstr "Kode Pengurutan Belgia"
 
 #: media/js/devreg/payments-enroll.js:15
 msgid "Spanish/French/Italian/Dutch Banking Code"
-msgstr ""
+msgstr "Kode Bank Spanyol/Perancis/Italia/Jerman"
 
 #: media/js/devreg/payments-enroll.js:17
 msgid "Dutch/US Sort Code"
-msgstr ""
+msgstr "Kode Pengurutan Jerman/US"
 
 #: media/js/devreg/payments-enroll.js:19
 msgid "Canadian Transit Number/German Routing Code"
-msgstr ""
+msgstr "Nomor Transit Kanada / Kode Pengarahan Jerman"
 
 #: media/js/devreg/payments-enroll.js:21
 msgid "Korean Bank and Branch/Indonesian Bank Code"
@@ -356,7 +357,7 @@ msgstr ""
 #: media/js/devreg/reviewers/buttons.js:85
 #: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
-msgstr ""
+msgstr "Kesalahan"
 
 #: media/js/devreg/payments-manage.js:113
 #: media/js/devreg/payments-manage.js:176
@@ -365,7 +366,7 @@ msgstr ""
 
 #: media/js/devreg/payments-manage.js:143
 msgid "Authentication error"
-msgstr ""
+msgstr "Kesalahan autentikasi"
 
 #: media/js/devreg/payments-manage.js:199
 msgid "You do not currently have any payment accounts."
@@ -391,19 +392,19 @@ msgstr[0] ""
 
 #: media/js/devreg/validator.js:71
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Semua tes berhasil terlewati."
 
 #: media/js/devreg/validator.js:74 media/js/devreg/validator.js:356
 msgid "These tests were not run."
-msgstr ""
+msgstr "Tes tidak berjalan."
 
 #: media/js/devreg/validator.js:117 media/js/devreg/validator.js:130
 msgid "Tests"
-msgstr ""
+msgstr "Test"
 
 #: media/js/devreg/validator.js:192
 msgid "Warning"
-msgstr ""
+msgstr "Peringatan"
 
 #: media/js/devreg/validator.js:279
 msgid "Compatibility Tests"
