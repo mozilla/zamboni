@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-06 13:06-0800\n"
-"PO-Revision-Date: 2016-01-23 07:07+0000\n"
+"PO-Revision-Date: 2016-01-23 08:03+0000\n"
 "Last-Translator: Artanto Ishaam <artanto.ishaam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -208,25 +208,26 @@ msgstr ""
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
-msgstr ""
+msgstr "Hilangkan pelokalan ini"
 
 #: media/js/devreg/login.js:126
 msgid ""
 "Persona login failed. Maybe you don't have an account under that email "
 "address?"
 msgstr ""
+"Masuk persona gagal. Mungkin Anda tidak memiliki akun pada email tersebut?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
-msgstr ""
+msgstr "Login persona gagal. Terjadi kesalahan server."
 
 #: media/js/devreg/lookup-tool.js:39
 msgid "Status successfully changed to \"{0}\""
-msgstr ""
+msgstr "Status sukses terganti menjadi \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:44
 msgid "Could not change status to \"{0}\""
-msgstr ""
+msgstr "Tidak dapat mengganti status menjadi \"{0}\""
 
 #: media/js/devreg/lookup-tool.js:70
 msgid "Group membership \"{0}\" added"
