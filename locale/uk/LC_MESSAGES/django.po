@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-20 11:10-0800\n"
-"PO-Revision-Date: 2016-01-24 14:07+0000\n"
+"PO-Revision-Date: 2016-01-24 20:16+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1274,11 +1274,11 @@ msgstr "Повторний перегляд веб-застосунку"
 
 #: mkt/constants/base.py:246
 msgid "Updated Packaged App Review"
-msgstr ""
+msgstr "Перевірка оновленого запакованого застосунка"
 
 #: mkt/constants/base.py:247
 msgid "Updated Privileged App Review"
-msgstr ""
+msgstr "Перевірка привілейованого запакованого застосунка"
 
 #: mkt/constants/base.py:248
 msgid "Moderated App Review"
