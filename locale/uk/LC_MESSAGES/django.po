@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-20 11:10-0800\n"
-"PO-Revision-Date: 2016-01-19 22:22+0000\n"
-"Last-Translator: Oleksii Khmarnyk <prest290114@gmail.com>\n"
+"PO-Revision-Date: 2016-01-24 14:07+0000\n"
+"Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -1254,7 +1254,7 @@ msgstr "Я буду використовувати власну систему �
 
 #: mkt/constants/base.py:241
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Бали за перевірку вручну"
 
 #: mkt/constants/base.py:242
 msgid "Web App Review"
@@ -7020,7 +7020,7 @@ msgstr ""
 
 #: mkt/reviewers/views.py:361
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
-msgstr ""
+msgstr "\"{0}\" успішно оброблено (+{1} балів, {2} всього)."
 
 #: mkt/reviewers/views.py:363
 msgid "Review successfully processed."
@@ -7160,7 +7160,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/leaderboard.html:18
 #: mkt/reviewers/templates/reviewers/performance.html:18
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Бали за перевірку поки що не нараховано."
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:23
 msgid "Rank"
@@ -7258,11 +7258,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/performance.html:20
 msgid "All-time Point Breakdown"
-msgstr ""
+msgstr "Розбиття за весь чаc"
 
 #: mkt/reviewers/templates/reviewers/performance.html:25
 msgid "Points"
-msgstr ""
+msgstr "Бали"
 
 #: mkt/reviewers/templates/reviewers/performance.html:30 mkt/stats/forms.py:11
 msgid "Month"
@@ -7650,11 +7650,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
-msgstr ""
+msgstr "Недавні бали"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Балів поки не нараховано."
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:23
 msgid "Top Reviewers (past 7 days)"
@@ -7671,7 +7671,7 @@ msgstr ""
 #. {0} is a number, like "480".
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:55
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "У вас <span>{0}</span> балів."
 
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:49
 #: mkt/site/templates/site/helpers/no_results.html:1
