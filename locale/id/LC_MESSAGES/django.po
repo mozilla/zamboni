@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-20 11:10-0800\n"
-"PO-Revision-Date: 2016-01-25 15:01+0000\n"
+"PO-Revision-Date: 2016-01-25 16:02+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -5557,19 +5557,19 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
-msgstr ""
+msgstr "Oranye"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Grey"
-msgstr ""
+msgstr "Abu-abu"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Black"
-msgstr ""
+msgstr "Hitam"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:58
 msgid "Logo"
-msgstr ""
+msgstr "Logo"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:60
 #, python-format
@@ -5584,7 +5584,7 @@ msgstr "Часті питання"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:18
 msgid "What should I know before creating an App?"
-msgstr ""
+msgstr "Apa yang harus saya ketahui sebelum membuat aplikasi?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:23
 msgid "How can I upload my App to the Firefox Marketplace?"
@@ -5604,7 +5604,7 @@ msgstr "Bagaimana pembayaran bekerja?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:43
 msgid "How do I manage the taxes of my sales?"
-msgstr ""
+msgstr "Bagaimana cara mengelola pajak penjualan saya?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:48
 msgid "Do you still have questions?"
@@ -5638,7 +5638,7 @@ msgstr ""
 
 #: mkt/extensions/models.py:237
 msgid "An Add-on with the same name already exists in your submissions."
-msgstr ""
+msgstr "Pengaya dengan nama yang sama telah ada di pengajuan anda."
 
 #: mkt/extensions/models.py:538
 #, python-format
@@ -5649,15 +5649,15 @@ msgstr ""
 
 #: mkt/extensions/models.py:549
 msgid "An Add-on with this version number already exists."
-msgstr ""
+msgstr "Pengaya dengan versi tersebut telah ada."
 
 #: mkt/extensions/validation.py:24
 msgid "The `author` property must be a string."
-msgstr ""
+msgstr "Properti `author` haruslah dalam teks."
 
 #: mkt/extensions/validation.py:25
 msgid "The `author` property cannot be longer than 128 characters."
-msgstr ""
+msgstr "Properti `author` tidak boleh lebih dari 128 karakter."
 
 #: mkt/extensions/validation.py:27
 msgid ""
@@ -5671,11 +5671,11 @@ msgstr ""
 
 #: mkt/extensions/validation.py:32
 msgid "The `description` property must be a string."
-msgstr ""
+msgstr "Properti `description` haruslah dalam teks."
 
 #: mkt/extensions/validation.py:34
 msgid "The `description` property cannot be longer than 132 characters."
-msgstr ""
+msgstr "Properti `description` tidak boleh lebih dari 132 karakter."
 
 #: mkt/extensions/validation.py:37
 #, python-format
