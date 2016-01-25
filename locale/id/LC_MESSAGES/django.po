@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-20 11:10-0800\n"
-"PO-Revision-Date: 2016-01-22 13:10+0000\n"
+"PO-Revision-Date: 2016-01-25 15:01+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -681,7 +681,7 @@ msgstr "Luxembourg"
 
 #: mkt/constants/bango.py:150 mkt/constants/regions.py:203
 msgid "Macao"
-msgstr ""
+msgstr "Makau"
 
 #: mkt/constants/bango.py:151
 msgid "Macedonia, Former Yugoslav Rep"
@@ -697,7 +697,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:154 mkt/constants/regions.py:225
 msgid "Malaysia"
-msgstr ""
+msgstr "Malaysia"
 
 #: mkt/constants/bango.py:155 mkt/constants/regions.py:209
 msgid "Maldives"
@@ -769,7 +769,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:172 mkt/constants/regions.py:215
 msgid "Myanmar"
-msgstr ""
+msgstr "Myanmar"
 
 #: mkt/constants/bango.py:173 mkt/constants/regions.py:227
 msgid "Namibia"
@@ -785,7 +785,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:176 mkt/constants/regions.py:234
 msgid "Netherlands"
-msgstr ""
+msgstr "Belanda"
 
 #: mkt/constants/bango.py:177 mkt/constants/regions.py:228
 msgid "New Caledonia"
@@ -821,7 +821,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:185 mkt/constants/regions.py:235
 msgid "Norway"
-msgstr ""
+msgstr "Norwegia"
 
 #: mkt/constants/bango.py:186 mkt/constants/regions.py:239
 msgid "Oman"
@@ -845,7 +845,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:191 mkt/constants/regions.py:246
 msgid "Papua New Guinea"
-msgstr ""
+msgstr "Papua Nugini"
 
 #: mkt/constants/bango.py:192 mkt/constants/regions.py:250
 msgid "Paraguay"
@@ -853,11 +853,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:193 mkt/constants/regions.py:243
 msgid "Peru"
-msgstr ""
+msgstr "Peru"
 
 #: mkt/constants/bango.py:194 mkt/constants/regions.py:244
 msgid "Philippines"
-msgstr ""
+msgstr "Filipina"
 
 #: mkt/constants/bango.py:195 mkt/constants/regions.py:242
 msgid "Pitcairn"
@@ -865,7 +865,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:196 mkt/constants/regions.py:247
 msgid "Poland"
-msgstr ""
+msgstr "Polandia"
 
 #: mkt/constants/bango.py:197 mkt/constants/regions.py:249
 msgid "Portugal"
@@ -937,11 +937,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:214 mkt/constants/regions.py:258
 msgid "Saudi Arabia"
-msgstr ""
+msgstr "Arab Saudi"
 
 #: mkt/constants/bango.py:215
 msgid "Senega"
-msgstr ""
+msgstr "Senegal"
 
 #: mkt/constants/bango.py:216 mkt/constants/regions.py:271
 msgid "Serbia"
@@ -961,7 +961,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:220 mkt/constants/regions.py:261
 msgid "Singapore"
-msgstr ""
+msgstr "Singapura"
 
 #: mkt/constants/bango.py:221 mkt/constants/regions.py:279
 msgid "Sint Maarten (Dutch part)"
@@ -985,7 +985,7 @@ msgstr ""
 
 #: mkt/constants/bango.py:226 mkt/constants/regions.py:313
 msgid "South Africa"
-msgstr ""
+msgstr "Afrika Selatan"
 
 #: mkt/constants/bango.py:227 mkt/constants/regions.py:262
 msgid "South Georgia and the South Sandwich Islands"
@@ -1073,11 +1073,11 @@ msgstr ""
 
 #: mkt/constants/bango.py:248 mkt/constants/regions.py:293
 msgid "Turkey"
-msgstr ""
+msgstr "Turki"
 
 #: mkt/constants/bango.py:249 mkt/constants/regions.py:288
 msgid "Turkmenistan"
-msgstr ""
+msgstr "Turkmenistan"
 
 #: mkt/constants/bango.py:250 mkt/constants/regions.py:282
 msgid "Turks and Caicos Islands"
@@ -1254,7 +1254,7 @@ msgstr ""
 
 #: mkt/constants/base.py:242
 msgid "Web App Review"
-msgstr ""
+msgstr "Ulasan Aplikasi Web"
 
 #: mkt/constants/base.py:243
 msgid "Packaged App Review"
@@ -1752,7 +1752,7 @@ msgstr ""
 
 #: mkt/constants/features.py:171
 msgid "Audio"
-msgstr ""
+msgstr "Suara"
 
 #: mkt/constants/features.py:172
 msgid "The app requires that the platform supports the HTML5 audio API."
@@ -2010,7 +2010,7 @@ msgstr "Lainnya"
 
 #: mkt/constants/payments.py:42 mkt/constants/payments.py:49
 msgid "Purchase"
-msgstr ""
+msgstr "Beli"
 
 #: mkt/constants/payments.py:43 mkt/constants/payments.py:50
 msgid "Refund"
@@ -2034,7 +2034,7 @@ msgstr ""
 
 #: mkt/constants/payments.py:75 mkt/constants/payments.py:121
 msgid "Failed"
-msgstr ""
+msgstr "Gagal"
 
 #: mkt/constants/payments.py:79 mkt/constants/payments.py:80
 msgid "The payment was received, but not completed."
@@ -2119,11 +2119,11 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:221
 msgid "Teen"
-msgstr ""
+msgstr "Remaja"
 
 #: mkt/constants/ratingsbodies.py:228
 msgid "Mature 17+"
-msgstr ""
+msgstr "Dewasa 17+"
 
 #: mkt/constants/ratingsbodies.py:235
 msgid "Adults Only 18+"
@@ -2141,7 +2141,7 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:294
 msgid "Europe"
-msgstr ""
+msgstr "Eropa"
 
 #: mkt/constants/ratingsbodies.py:295
 msgid "Pan European Game Information"
@@ -2477,11 +2477,11 @@ msgstr[0] "Anda hanya diperbolehkan memiliki {0} kategori."
 
 #: mkt/developers/forms.py:1050
 msgid "Agree"
-msgstr ""
+msgstr "Setuju"
 
 #: mkt/developers/forms.py:1067
 msgid "Please enter a valid email address."
-msgstr ""
+msgstr "Masukkan alamat email yang sah."
 
 #: mkt/developers/forms.py:1070
 msgid "Your email address"
@@ -3453,7 +3453,7 @@ msgstr "Simpan Perubahan"
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:4
 msgid "close"
-msgstr ""
+msgstr "tutup"
 
 #: mkt/developers/templates/developers/apps/owner.html:84
 msgid "About Team Member Roles"
@@ -3515,7 +3515,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:33
 msgid "This app is <b>incomplete</b>."
-msgstr ""
+msgstr "Aplikasi ini <b>belum selesai</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:43
 msgid "This app has been <b>disabled by Mozilla</b>."
@@ -4204,7 +4204,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:13
 msgid "App Icon"
-msgstr ""
+msgstr "Ikon Aplikasi"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:14
 msgid ""
@@ -4220,7 +4220,7 @@ msgstr ""
 #. The size of the icon
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:34
 msgid "128x128px"
-msgstr ""
+msgstr "128x128px"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:35
 msgid "Used on the search pages, browse pages, and homepage."
@@ -4520,7 +4520,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:88
 msgid "Already Have Your App Rated?"
-msgstr ""
+msgstr "Sudahkah Aplikasi Anda Dinilai?"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:93
 msgid ""
@@ -4951,7 +4951,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:317
 msgid "No free apps"
-msgstr ""
+msgstr "Tidak ada aplikasi bebas"
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:4
 msgid "Terms of Agreement"
@@ -4968,7 +4968,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/account_list.html:14
 #: mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Modify"
-msgstr ""
+msgstr "Ubah"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:16
 #: mkt/developers/templates/developers/payments/includes/account_list.html:52
@@ -5600,7 +5600,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:38
 msgid "How do payments work?"
-msgstr ""
+msgstr "Bagaimana pembayaran bekerja?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:43
 msgid "How do I manage the taxes of my sales?"
@@ -5608,7 +5608,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:48
 msgid "Do you still have questions?"
-msgstr ""
+msgstr "Apakah Anda masih memiliki pertanyaan?"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:50
 msgid ""
@@ -5620,7 +5620,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/support.html:58
 #: mkt/ecosystem/templates/ecosystem/support.html:60
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:64
 msgid ""
@@ -5698,12 +5698,12 @@ msgstr ""
 #: mkt/extensions/validation.py:45
 #, python-format
 msgid "The icon file `%s` is not a valid PNG."
-msgstr ""
+msgstr "Ikon berkas `%s` bukan PNG yang sah."
 
 #: mkt/extensions/validation.py:47
 #, python-format
 msgid "The icon file `%(icon_path)s` is not square."
-msgstr ""
+msgstr "Berkas ikon `%(icon_path)s` tidak persegi."
 
 #: mkt/extensions/validation.py:49
 #, python-format
