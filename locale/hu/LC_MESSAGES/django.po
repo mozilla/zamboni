@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-20 11:10-0800\n"
-"PO-Revision-Date: 2016-01-26 12:15+0000\n"
-"Last-Translator: samtelen <szep.annabella@gmail.com>\n"
+"PO-Revision-Date: 2016-01-26 22:42+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -1327,15 +1327,15 @@ msgstr "6. szint"
 
 #: mkt/constants/base.py:292
 msgid "Level 7"
-msgstr ""
+msgstr "7. szint"
 
 #: mkt/constants/base.py:293
 msgid "Level 8"
-msgstr ""
+msgstr "8. szint"
 
 #: mkt/constants/base.py:294
 msgid "Level 9"
-msgstr ""
+msgstr "9. szint"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
@@ -1375,7 +1375,7 @@ msgstr "Humoros"
 
 #: mkt/constants/categories.py:14
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: mkt/constants/categories.py:15 mkt/constants/categories.py:47
 msgid "Lifestyle"
@@ -1497,7 +1497,7 @@ msgstr "Eszközök megváltoztatva a vizsgálatot végző által"
 
 #: mkt/constants/comm.py:61
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "A követelményeket a vizsgálatot végző módosította"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Manifest Change"
@@ -1637,7 +1637,7 @@ msgstr "Az app használatához a „navigator.mozContacts” API szükséges."
 
 #: mkt/constants/features.py:72
 msgid "Device Storage"
-msgstr ""
+msgstr "Eszköztárhely"
 
 #: mkt/constants/features.py:73
 msgid ""
@@ -1677,7 +1677,7 @@ msgstr ""
 
 #: mkt/constants/features.py:103
 msgid "Network Stats"
-msgstr ""
+msgstr "Hálózat statisztika"
 
 #: mkt/constants/features.py:104
 msgid "The app requires the `navigator.mozNetworkStats` API."
@@ -1685,7 +1685,7 @@ msgstr ""
 
 #: mkt/constants/features.py:109
 msgid "Proximity"
-msgstr ""
+msgstr "Közelségérzékelés"
 
 #: mkt/constants/features.py:110
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
@@ -1701,7 +1701,7 @@ msgstr ""
 
 #: mkt/constants/features.py:120
 msgid "Screen Orientation"
-msgstr ""
+msgstr "Képernyő tájolása"
 
 #: mkt/constants/features.py:121
 msgid ""
@@ -1710,7 +1710,7 @@ msgstr ""
 
 #: mkt/constants/features.py:126
 msgid "Time/Clock"
-msgstr ""
+msgstr "Idő/óra"
 
 #: mkt/constants/features.py:127
 msgid "The app requires the `navigator.mozTime` API."
@@ -1718,7 +1718,7 @@ msgstr ""
 
 #: mkt/constants/features.py:131
 msgid "Vibration"
-msgstr ""
+msgstr "Rezgés"
 
 #: mkt/constants/features.py:132
 msgid ""
@@ -1746,7 +1746,7 @@ msgstr ""
 
 #: mkt/constants/features.py:155
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr ""
+msgstr "Okostelefon-méretű kijelzők (qHD)"
 
 #: mkt/constants/features.py:156
 msgid ""
@@ -1814,7 +1814,7 @@ msgstr ""
 
 #: mkt/constants/features.py:208
 msgid "Quota Management"
-msgstr ""
+msgstr "Kvótakezelés"
 
 #: mkt/constants/features.py:209
 msgid ""
@@ -1895,7 +1895,7 @@ msgstr ""
 
 #: mkt/constants/features.py:258
 msgid "Web Speech Synthesis"
-msgstr ""
+msgstr "Webes beszéd szintézis"
 
 #: mkt/constants/features.py:259
 msgid "The app requires the platform to allow the use of text-to-speech."
@@ -1904,7 +1904,7 @@ msgstr ""
 
 #: mkt/constants/features.py:264
 msgid "Web Speech Recognition"
-msgstr ""
+msgstr "Webes beszédfelismerés"
 
 #: mkt/constants/features.py:265
 msgid "The app requires the platform to allow the use of speech-to-text."
@@ -1988,7 +1988,7 @@ msgstr ""
 
 #: mkt/constants/features.py:318
 msgid "Mobile ID"
-msgstr ""
+msgstr "Mobil azonosító"
 
 #: mkt/constants/features.py:319
 msgid "The app requires access to the `navigator.getMobileIdAssertion` API."
@@ -2071,11 +2071,11 @@ msgstr "Elutasítva"
 
 #: mkt/constants/payments.py:75 mkt/constants/payments.py:121
 msgid "Failed"
-msgstr ""
+msgstr "Sikertelen"
 
 #: mkt/constants/payments.py:79 mkt/constants/payments.py:80
 msgid "The payment was received, but not completed."
-msgstr ""
+msgstr "A fizetés megérkezett, de nem fejeződött be."
 
 #: mkt/constants/payments.py:81
 msgid "The payment failed."
@@ -2101,16 +2101,16 @@ msgstr "Firefox számítógépre"
 
 #: mkt/constants/platforms.py:41 mkt/constants/platforms.py:45
 msgid "Fully open mobile ecosystem"
-msgstr ""
+msgstr "Teljesen nyílt mobil ökoszisztéma"
 
 #: mkt/constants/platforms.py:42 mkt/constants/platforms.py:46
 msgid "Windows, Mac and Linux"
-msgstr ""
+msgstr "Windows, Mac és Linux"
 
 #: mkt/constants/platforms.py:43 mkt/constants/platforms.py:47
 #: mkt/ecosystem/templates/ecosystem/partners.html:95
 msgid "Android smartphones"
-msgstr ""
+msgstr "Android okostelefonok"
 
 #: mkt/constants/platforms.py:44 mkt/constants/platforms.py:48
 msgid "Tablets"
@@ -2156,15 +2156,15 @@ msgstr "Mindenki 10+"
 
 #: mkt/constants/ratingsbodies.py:221
 msgid "Teen"
-msgstr ""
+msgstr "Tizenéves"
 
 #: mkt/constants/ratingsbodies.py:228
 msgid "Mature 17+"
-msgstr ""
+msgstr "Érett 17 +"
 
 #: mkt/constants/ratingsbodies.py:235
 msgid "Adults Only 18+"
-msgstr ""
+msgstr "Csak felnőtteknek 18+"
 
 #. L10n: `18+` is age eighteen and over.
 #. L10n: North and South American, but not Brazil.
@@ -2186,7 +2186,7 @@ msgstr ""
 
 #: mkt/constants/regions.py:61
 msgid "Rest of World"
-msgstr ""
+msgstr "A világ többi része"
 
 #: mkt/constants/regions.py:89
 msgid "Bonaire, Sint Eustatius and Saba"
@@ -2198,7 +2198,7 @@ msgstr ""
 
 #: mkt/constants/regions.py:115
 msgid "Congo, Democratic Republic of the"
-msgstr ""
+msgstr "Kongói Demokratikus Köztársaság"
 
 #: mkt/constants/regions.py:120
 msgid "Cabo Verde"
@@ -2218,11 +2218,11 @@ msgstr ""
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
-msgstr ""
+msgstr "Líbia"
 
 #: mkt/constants/regions.py:197
 msgid "Liechtenstein"
-msgstr ""
+msgstr "Liechtenstein"
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
@@ -2230,7 +2230,7 @@ msgstr ""
 
 #: mkt/constants/regions.py:212
 msgid "Macedonia, the former Yugoslav Republic of"
-msgstr ""
+msgstr "Macedónia"
 
 #: mkt/constants/regions.py:251
 msgid "Palestine, State of"
@@ -2246,7 +2246,7 @@ msgstr "Szenegál"
 
 #: mkt/constants/regions.py:263
 msgid "Saint Helena, Ascension and Tristan da Cunha"
-msgstr ""
+msgstr "Szent Ilona, Ascension és Tristan da Cunha"
 
 #: mkt/constants/regions.py:295
 msgid "Taiwan"
@@ -2302,23 +2302,25 @@ msgstr "(Nem támogatott)"
 
 #: mkt/developers/api_payments.py:105
 msgid "Could not connect to payment server."
-msgstr ""
+msgstr "Nem sikerült a kifizetési kiszolgálóhoz csatlakozni."
 
 #: mkt/developers/api_payments.py:129
 msgid "Cannot delete shared account"
-msgstr ""
+msgstr "Az osztott fiók nem törölhető"
 
 #: mkt/developers/cron.py:140
 msgid "Content rating changed to Adult."
-msgstr ""
+msgstr "Tartalom besorolása módosítva Felnőttre."
 
 #: mkt/developers/forms.py:67
 msgid "You cannot select {region}."
-msgstr ""
+msgstr "{region} nem választható."
 
 #: mkt/developers/forms.py:125
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr ""
+"Minden csoporttagnak el kell olvasnia és el kell fogadnia a fejlesztői "
+"megállapodást."
 
 #: mkt/developers/forms.py:156
 msgid "Must have at least one owner."
@@ -2326,11 +2328,11 @@ msgstr "Legalább egy tulajdonosnak lennie kell."
 
 #: mkt/developers/forms.py:159
 msgid "At least one team member must be listed."
-msgstr ""
+msgstr "Legalább egy csoporttagot fel kell tüntetni."
 
 #: mkt/developers/forms.py:163
 msgid "A team member can only be listed once."
-msgstr ""
+msgstr "Egy csoporttag csak egyszer szerepelhet."
 
 #: mkt/developers/forms.py:190
 #, python-format
@@ -2415,7 +2417,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:519 mkt/submit/forms.py:288
 msgid "Search Keywords:"
-msgstr ""
+msgstr "Keresési kulcsszavak:"
 
 #: mkt/developers/forms.py:521
 #: mkt/developers/templates/developers/apps/edit/basic.html:148
@@ -2553,7 +2555,7 @@ msgstr "App"
 
 #: mkt/developers/forms.py:1101
 msgid "Transaction Type"
-msgstr ""
+msgstr "Tranzakció típusa"
 
 #: mkt/developers/forms.py:1104
 #: mkt/developers/templates/developers/transactions.html:44
@@ -2582,30 +2584,35 @@ msgid ""
 "Make this the Active version of my app as soon as it has been reviewed and "
 "approved."
 msgstr ""
+"Alkalmazásom ezen verziója legyen Aktív, amint értékelték és elfogadták."
 
 #: mkt/developers/forms.py:1193 mkt/developers/forms.py:1251
 msgid ""
 "This IARC certificate is already being used for another app. Please create a"
 " new IARC Ratings Certificate."
 msgstr ""
+"Ezt az IARC tanúsítványt már egy másik alkalmazás használja. Kérjük, hozzon "
+"létre egy új IARC besorolási tanúsítványt."
 
 #: mkt/developers/forms.py:1213
 msgid ""
 "This Certificate ID is not recognized by IARC, or is already attached to an "
 "app in the Firefox Marketplace."
 msgstr ""
+"Ezt a tanúsítvány azonosítót az IARC nem ismeri, vagy a Firefox Marketplace-"
+"en már egy alkalmazáshoz csatolták."
 
 #: mkt/developers/forms.py:1235
 msgid "Please enter a valid submission ID."
-msgstr ""
+msgstr "Adjon meg egy érvényes benyújtási azonosítót."
 
 #: mkt/developers/forms.py:1286 mkt/developers/forms.py:1298
 msgid "Invalid submission ID or security code."
-msgstr ""
+msgstr "Érvénytelen benyújtási azonosító vagy biztonsági kulcs."
 
 #: mkt/developers/forms_payments.py:57
 msgid "App Price"
-msgstr ""
+msgstr "App ára"
 
 #: mkt/developers/forms_payments.py:110
 msgid "Free (with in-app payments)"
@@ -2613,19 +2620,19 @@ msgstr "Ingyenes (alkalmazáson belüli fizetésekkel)"
 
 #: mkt/developers/forms_payments.py:122
 msgid "Promotional Pricing"
-msgstr ""
+msgstr "Promóciós árazás"
 
 #: mkt/developers/forms_payments.py:135
 msgid "Only supports carrier billing"
-msgstr ""
+msgstr "Csak a szolgáltatói számlázást támogatja"
 
 #: mkt/developers/forms_payments.py:138
 msgid "Only supports credit-card billing"
-msgstr ""
+msgstr "Csak a hitelkártya számlázást támogatja"
 
 #: mkt/developers/forms_payments.py:142
 msgid "Supports all billing methods"
-msgstr ""
+msgstr "Az összes számlázási módot támogatja"
 
 #: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
@@ -2635,20 +2642,20 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
-msgstr ""
+msgstr "Érvénytelen választás"
 
 #: mkt/developers/forms_payments.py:326
 #: mkt/developers/templates/developers/payments/premium.html:301
 msgid "This is a paid upgrade of"
-msgstr ""
+msgstr "Ez egy fizetett frissítése ennek:"
 
 #: mkt/developers/forms_payments.py:327
 msgid "Not an upgrade"
-msgstr ""
+msgstr "Nem frissítés"
 
 #: mkt/developers/forms_payments.py:369
 msgid "Bank Account Holder Name"
-msgstr ""
+msgstr "Bankszámlatulajdonos neve"
 
 #: mkt/developers/forms_payments.py:371
 msgid "Company Name"
@@ -2660,15 +2667,15 @@ msgstr "Szállító neve"
 
 #: mkt/developers/forms_payments.py:375
 msgid "Financial Email"
-msgstr ""
+msgstr "Pénzügyi e-mail"
 
 #: mkt/developers/forms_payments.py:378
 msgid "Administrative Email"
-msgstr ""
+msgstr "Adminisztratív e-mail"
 
 #: mkt/developers/forms_payments.py:381
 msgid "Support Email"
-msgstr ""
+msgstr "Támogatási e-mailcím"
 
 #: mkt/developers/forms_payments.py:385
 msgid "Address"
@@ -2696,7 +2703,7 @@ msgstr "Telefonszám"
 
 #: mkt/developers/forms_payments.py:400
 msgid "I prefer to be paid in"
-msgstr ""
+msgstr "Kifizetést így kérném"
 
 #: mkt/developers/forms_payments.py:403
 msgid "VAT Number"
@@ -2733,11 +2740,11 @@ msgstr "Bank állama/tartománya/régiója"
 
 #: mkt/developers/forms_payments.py:422
 msgid "Bank Zip/Postal Code"
-msgstr ""
+msgstr "Bank irányítószáma"
 
 #: mkt/developers/forms_payments.py:424
 msgid "Bank Country"
-msgstr ""
+msgstr "Bank országa"
 
 #: mkt/developers/forms_payments.py:426
 #: mkt/developers/templates/developers/payments/includes/account_list.html:12
@@ -2796,7 +2803,7 @@ msgstr "Beküldéseim"
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:134
 msgid "Donate to {0}"
-msgstr ""
+msgstr "Adományozás ide: {0}"
 
 #: mkt/developers/models.py:457
 msgid "Review"
@@ -2844,15 +2851,15 @@ msgstr "és"
 
 #: mkt/developers/tasks.py:562
 msgid "{region} region added to the Firefox Marketplace"
-msgstr ""
+msgstr "{region} régió hozzáadva a Firefox Marketplace-hez"
 
 #: mkt/developers/tasks.py:566
 msgid "New regions added to the Firefox Marketplace"
-msgstr ""
+msgstr "Új régiók hozzáadva a Firefox Marketplace-hez"
 
 #: mkt/developers/utils.py:60
 msgid "Video support not enabled."
-msgstr ""
+msgstr "Videótámogatás nincs engedélyezve."
 
 #: mkt/developers/utils.py:73
 msgid "Icons must be either PNG or JPG."
@@ -2877,15 +2884,15 @@ msgstr ""
 
 #: mkt/developers/utils.py:103
 msgid "Icon could not be opened."
-msgstr ""
+msgstr "Az ikon nem nyitható meg."
 
 #: mkt/developers/utils.py:105
 msgid "Preview could not be opened."
-msgstr ""
+msgstr "Az előkép nem nyitható meg."
 
 #: mkt/developers/utils.py:107
 msgid "Promo image could not be opened."
-msgstr ""
+msgstr "A promóciós kép nem nyitható meg."
 
 #: mkt/developers/utils.py:114
 msgid "Icons must be at least 128px by 128px."
@@ -2893,7 +2900,7 @@ msgstr ""
 
 #: mkt/developers/utils.py:117
 msgid "Icons must be square."
-msgstr ""
+msgstr "Az ikonoknak négyzetesnek kell lennie."
 
 #. L10n: {0} and {1} are the height/width of the preview
 #. in px.
@@ -2903,7 +2910,7 @@ msgstr ""
 
 #: mkt/developers/views.py:157
 msgid "Paid apps cannot be deleted. Disable this app instead."
-msgstr ""
+msgstr "A fizetős appok nem törölhetőek. Inkább tiltsa le azt."
 
 #: mkt/developers/views.py:167
 msgid "App deleted."
@@ -2915,7 +2922,7 @@ msgstr "Hibás jelszó. Az app nem került törlésre."
 
 #: mkt/developers/views.py:216
 msgid "App successfully resubmitted."
-msgstr ""
+msgstr "Alkalmazás sikeresen újra benyújtva."
 
 #: mkt/developers/views.py:249
 msgid "New version successfully added."
@@ -2932,22 +2939,24 @@ msgid ""
 "Congratulations, your app submission is now complete and will be reviewed "
 "shortly!"
 msgstr ""
+"Gratulálunk, az alkalmazás benyújtás most teljes, és hamarosan "
+"felülvizsgálják!"
 
 #: mkt/developers/views.py:306
 msgid "Content ratings successfully saved."
-msgstr ""
+msgstr "Tartalomértékelések sikeresen elmentve."
 
 #: mkt/developers/views.py:443
 msgid "Version successfully edited."
-msgstr ""
+msgstr "Verzió sikeresen szerkesztve."
 
 #: mkt/developers/views.py:478
 msgid "Version successfully made active."
-msgstr ""
+msgstr "Verzió sikeresen aktiválva."
 
 #: mkt/developers/views.py:492
 msgid "Version \"{0}\" deleted."
-msgstr ""
+msgstr "„{0}” verzió törölve."
 
 #: mkt/developers/views.py:627
 msgid "There was an error with the submission."
@@ -9126,7 +9135,7 @@ msgstr "Kijelentkezés"
 
 #: templates/base.html:72
 msgid "Register"
-msgstr ""
+msgstr "Regisztráció"
 
 #: templates/includes/forms.html:2 templates/includes/forms.html:6
 msgid "required"
