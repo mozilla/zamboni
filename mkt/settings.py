@@ -1017,6 +1017,7 @@ REST_FRAMEWORK = {
     'DEFAULT_CONTENT_NEGOTIATION_CLASS': (
         'mkt.api.renderers.FirstAvailableRenderer'
     ),
+    'DEFAULT_METADATA_CLASS': 'mkt.site.views.MinimalMetadata',
     'DEFAULT_PARSER_CLASSES': (
         'rest_framework.parsers.JSONParser',
         'rest_framework.parsers.FormParser',
