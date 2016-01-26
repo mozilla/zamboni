@@ -6,10 +6,9 @@
         "url": "http://mozilla.org"
     },
     "icons": {
-        "336": "https://marketplace.cdn.mozilla.net/media/img/mkt/logos/128.png",
+        "336": "https://marketplace-dev-cdn.allizom.org/media/marketplace-tv-front-end/img/app-icons/appic_web_apps.png"
     },
     "launch_path": "/tv/",
-    "appcache_path": "manifest.appcache",
-    "name": "Firefox Web Apps",
-    "type": "web",
+    "name": "Web Apps",
+    "type": "web"
 }
