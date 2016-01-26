@@ -39,6 +39,8 @@ class DEVICE_TV(object):
 DEVICE_TYPE_LIST = [DEVICE_DESKTOP, DEVICE_MOBILE, DEVICE_TABLET, DEVICE_GAIA,
                     DEVICE_TV]
 DEVICE_TYPES = dict((d.id, d) for d in DEVICE_TYPE_LIST)
+VISIBLE_DEVICE_TYPES = dict((k, v) for k, v in DEVICE_TYPES.iteritems()
+                            if v is not DEVICE_TV)
 REVERSE_DEVICE_LOOKUP = dict((d.id, d.api_name) for d in DEVICE_TYPE_LIST)
 DEVICE_LOOKUP = dict((d.api_name, d) for d in DEVICE_TYPE_LIST)
 DEVICE_CHOICES = ((d.id, d.name) for d in DEVICE_TYPE_LIST)
