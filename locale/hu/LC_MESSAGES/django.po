@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-20 11:10-0800\n"
-"PO-Revision-Date: 2016-01-26 10:26+0000\n"
+"PO-Revision-Date: 2016-01-26 12:15+0000\n"
 "Last-Translator: samtelen <szep.annabella@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -142,7 +142,7 @@ msgstr "Firefox OS"
 
 #: mkt/constants/applications.py:34 mkt/search/forms.py:48
 msgid "Firefox OS TV"
-msgstr ""
+msgstr "Firefox OS TV-re"
 
 #: mkt/constants/apps.py:9
 msgid "User"
@@ -4905,7 +4905,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:144
 msgid "Countries"
-msgstr ""
+msgstr "Országok"
 
 #: mkt/developers/templates/developers/payments/premium.html:159
 msgid "Add, manage or view transactions for your payment accounts"
@@ -4913,7 +4913,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:169
 msgid "Prices and Countries"
-msgstr ""
+msgstr "Árak és országok"
 
 #: mkt/developers/templates/developers/payments/premium.html:176
 #: mkt/purchase/templates/purchase/receipt.html:39
@@ -4931,11 +4931,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:195
 msgid "A server error occurred. Please try again later."
-msgstr ""
+msgstr "Kiszolgálóhiba történt. Próbálja újra később."
 
 #: mkt/developers/templates/developers/payments/premium.html:201
 msgid "Not applicable"
-msgstr ""
+msgstr "Nem alkalmazható"
 
 #: mkt/developers/templates/developers/payments/premium.html:207
 msgid "Regions"
@@ -5026,7 +5026,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/account_list.html:14
 #: mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Modify"
-msgstr ""
+msgstr "Módosítás"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:16
 #: mkt/developers/templates/developers/payments/includes/account_list.html:52
