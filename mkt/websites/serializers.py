@@ -51,7 +51,7 @@ class ESWebsiteSerializer(BaseESSerializer, WebsiteSerializer):
         # Set basic attributes on the fake instance using the data from ES.
         self._attach_fields(
             obj, data, ('default_locale', 'icon_hash', 'mobile_url',
-                        'promo_img_hash', 'tv_url', 'url'))
+                        'promo_img_hash', 'tv_featured', 'tv_url', 'url'))
 
         # Set attributes with names that don't exactly match the one on the
         # model.

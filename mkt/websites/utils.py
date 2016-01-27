@@ -28,8 +28,10 @@ def website_factory(**kwargs):
         'title': 'Title for %s' % text.capitalize(),
         'url': 'http://%s.example.com' % text,
         'mobile_url': 'http://mobile.%s.example.com' % text,
+        'tv_featured': None,
         'tv_url': 'http://tv.%s.example.com' % text,
         'devices': DEVICE_TYPES.keys(),
     }
     data.update(kwargs)
-    return Website.objects.create(**data)
+    w = Website.objects.create(**data)
+    return w

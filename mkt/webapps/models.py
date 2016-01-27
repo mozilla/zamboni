@@ -492,6 +492,8 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     is_offline = models.BooleanField(default=False)
     tags = models.ManyToManyField(Tag)
 
+    tv_featured = models.PositiveIntegerField(null=True)
+
     # Initially, for desktop games.
     hosted_url = models.URLField(max_length=255, blank=True, null=True)
 

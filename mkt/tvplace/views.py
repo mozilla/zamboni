@@ -4,6 +4,8 @@ from elasticsearch_dsl import F
 from elasticsearch_dsl.filter import Bool
 
 import mkt
+from mkt.search.filters import (PublicContentFilter, PublicSearchFormFilter,
+                                RegionFilter, SearchQueryFilter)
 from mkt.search.views import (
     SearchView as BaseSearchView,
     MultiSearchView as BaseMultiSearchView)
@@ -26,10 +28,13 @@ class MultiSearchView(BaseMultiSearchView):
         'webapp': TVESAppSerializer,
         'website': TVESWebsiteSerializer,
     }
+    filter_backends = [PublicContentFilter, PublicSearchFormFilter,
+                       RegionFilter, SearchQueryFilter]
 
     def get_queryset(self):
         qs = BaseMultiSearchView.get_queryset(self)
-        return qs.filter(Bool(must=[F('term', device=mkt.DEVICE_TV.id)]))
+        return qs.filter(Bool(must=[F('term', device=mkt.DEVICE_TV.id)])
+                         ).sort('-tv_featured')
 
 
 def manifest(request):

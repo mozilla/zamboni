@@ -460,7 +460,7 @@ class ESAppSerializer(BaseESSerializer, AppSerializer):
                         'is_escalated', 'is_offline', 'last_updated',
                         'hosted_url', 'manifest_url', 'modified',
                         'premium_type', 'promo_img_hash', 'regions',
-                        'reviewed', 'status'))
+                        'reviewed', 'status', 'tv_featured'))
 
         # Attach translations for all translated attributes.
         self._attach_translations(

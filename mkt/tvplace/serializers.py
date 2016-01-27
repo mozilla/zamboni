@@ -4,7 +4,7 @@ from mkt.websites.serializers import ESWebsiteSerializer, WebsiteSerializer
 
 
 class TVAppSerializer(SimpleAppSerializer):
-    tv_featured = serializers.SerializerMethodField()
+    tv_featured = serializers.IntegerField()
 
     class Meta(SimpleAppSerializer.Meta):
         fields = ['author', 'categories',
@@ -16,12 +16,9 @@ class TVAppSerializer(SimpleAppSerializer):
                   'tags', 'tv_featured', 'user']
         exclude = []
 
-    def get_tv_featured(self, obj):
-        return obj.tags.filter(tag_text='featured-tv').exists()
-
 
 class TVESAppSerializer(SimpleESAppSerializer):
-    tv_featured = serializers.BooleanField()
+    tv_featured = serializers.IntegerField()
 
     class Meta(SimpleESAppSerializer.Meta):
         fields = TVAppSerializer.Meta.fields
@@ -31,31 +28,18 @@ class TVESAppSerializer(SimpleESAppSerializer):
         # TV search should always be anonymous for extra-cacheability.
         return None
 
-    def fake_object(self, data):
-        o = SimpleESAppSerializer.fake_object(self, data)
-        o.tv_featured = data['tv_featured']
-        return o
-
 
 class TVWebsiteSerializer(WebsiteSerializer):
-    tv_featured = serializers.SerializerMethodField()
+    tv_featured = serializers.IntegerField()
 
     class Meta(WebsiteSerializer.Meta):
         fields = ['categories', 'description', 'developer_name', 'icons', 'id',
                   'keywords', 'name', 'promo_imgs', 'short_name',
                   'tv_featured', 'tv_url', 'url']
 
-    def get_tv_featured(self, obj):
-        return obj.keywords.filter(tag_text='featured-tv').exists()
-
 
 class TVESWebsiteSerializer(ESWebsiteSerializer):
-    tv_featured = serializers.BooleanField()
+    tv_featured = serializers.IntegerField()
 
     class Meta(ESWebsiteSerializer.Meta):
         fields = TVWebsiteSerializer.Meta.fields
-
-    def fake_object(self, data):
-        o = ESWebsiteSerializer.fake_object(self, data)
-        o.tv_featured = data['tv_featured']
-        return o
