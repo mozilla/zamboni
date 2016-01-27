@@ -135,6 +135,3 @@ urllib3==1.10.3
 
 ## moved for 2014/04/02 deployment expediency
 MySQL-python==1.2.5
-
-# temporary helper for memory leak investigation
-meliae==0.4.0
