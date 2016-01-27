@@ -66,6 +66,11 @@ class TestAppDetail(BaseAPI):
 class TestMultiSearchView(RestOAuth, ESTestCase):
     fixtures = fixture('user_2519', 'webapp_337141')
 
+    def tearDown(self):
+        Webapp.get_indexer().unindexer(_all=True)
+        Website.get_indexer().unindexer(_all=True)
+        super(TestMultiSearchView, self).tearDown()
+
     def test_get_multi(self):
         website = website_factory()
         app = app_factory()
@@ -86,3 +91,22 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         eq_(objects[1]['doc_type'], 'website')
         assert_tvplace_website(objects[1])
         eq_(objects[1]['id'], website.pk)
+
+    def test_search_ordering(self):
+        website1 = website_factory(name='A', devices=[mkt.DEVICE_TV.id])
+        website2 = website_factory(name='B', devices=[mkt.DEVICE_TV.id],
+                                   tv_featured=1)
+        website3 = website_factory(name='C', devices=[mkt.DEVICE_TV.id],
+                                   tv_featured=2)
+        website4 = website_factory(name='D', devices=[mkt.DEVICE_TV.id])
+        self.reindex(Website)
+        self.reindex(Webapp)
+        self.refresh()
+        url = reverse('tv-multi-search-api')
+        res = self.client.get(url)
+        objects = res.json['objects']
+        eq_(len(objects), 4)
+        eq_(objects[0]['id'], website3.pk)
+        eq_(objects[1]['id'], website2.pk)
+        eq_(objects[2]['id'], website1.pk)
+        eq_(objects[3]['id'], website4.pk)

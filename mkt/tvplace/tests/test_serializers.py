@@ -1,10 +1,9 @@
 from django.contrib.auth.models import AnonymousUser
 from django.test.client import RequestFactory
 
-from nose.tools import ok_
+from nose.tools import eq_
 
 from mkt.site.tests import ESTestCase, TestCase, app_factory
-from mkt.tags.models import Tag
 from mkt.tvplace.serializers import (TVAppSerializer, TVESAppSerializer,
                                      TVWebsiteSerializer,
                                      TVESWebsiteSerializer)
@@ -28,14 +27,13 @@ class AppSerializerTestsMixin(object):
 
     def test_no_tv_featured(self):
         res = self.serialize(self.app)
-        ok_(not res['tv_featured'])
+        eq_(res['tv_featured'], None)
 
     def test_tv_featured(self):
-        Tag(tag_text='featured-tv').save_tag(self.app)
-        self.app.save()
+        self.app.update(tv_featured=3)
         self.refresh('webapp')
         res = self.serialize(self.app)
-        ok_(res['tv_featured'])
+        eq_(res['tv_featured'], 3)
 
 
 class AppSerializerTests(AppSerializerTestsMixin, TestCase):
@@ -66,14 +64,13 @@ class WebsiteSerializerTestsMixin(object):
 
     def test_tv_no_featured(self):
         res = self.serialize(self.website)
-        ok_(not res['tv_featured'])
+        eq_(res['tv_featured'], None)
 
     def test_tv_featured(self):
-        Tag(tag_text='featured-tv').save_tag(self.website)
-        self.website.save()
+        self.website.update(tv_featured=3)
         self.refresh('website')
         res = self.serialize(self.website)
-        ok_(res['tv_featured'])
+        eq_(res['tv_featured'], 3)
 
 
 class WebsiteSerializerTests(WebsiteSerializerTestsMixin, TestCase):

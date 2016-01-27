@@ -191,7 +191,7 @@ class WebappIndexer(BaseIndexer):
                     'status': {'type': 'byte'},
                     'supported_locales': cls.string_not_analyzed(),
                     'tags': cls.string_not_analyzed(),
-                    'tv_featured': {'type': 'boolean'},
+                    'tv_featured': {'type': 'short'},
                     'upsell': {
                         'type': 'object',
                         'properties': {
@@ -258,7 +258,7 @@ class WebappIndexer(BaseIndexer):
         attrs = ('app_slug', 'bayesian_rating', 'created', 'default_locale',
                  'guid', 'hosted_url', 'icon_hash', 'id', 'is_disabled',
                  'is_offline', 'file_size', 'last_updated', 'modified',
-                 'premium_type', 'promo_img_hash', 'status')
+                 'premium_type', 'promo_img_hash', 'status', 'tv_featured')
         d = dict(zip(attrs, attrgetter(*attrs)(obj)))
 
         d['app_type'] = obj.app_type_id
@@ -342,8 +342,6 @@ class WebappIndexer(BaseIndexer):
         d['supported_locales'] = list(set(supported_locales))
 
         d['tags'] = getattr(obj, 'tags_list', [])
-        d['tv_featured'] = obj.tags.filter(
-            tag_text='featured-tv').exists()
 
         if obj.upsell and obj.upsell.premium.is_published():
             upsell_obj = obj.upsell.premium
