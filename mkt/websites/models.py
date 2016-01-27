@@ -176,6 +176,7 @@ class Website(ModelBase):
     # of status) or not.
     is_disabled = models.BooleanField(default=False)
 
+    tv_featured = models.PositiveIntegerField(null=True)
     objects = WebsiteManager()
 
     class Meta:
