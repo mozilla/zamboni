@@ -74,12 +74,6 @@ class TestRatingResource(RestOAuth, mkt.site.tests.MktPaths):
         self.assertCORS(self.client.get(self.list_url),
                         'get', 'post', 'put', 'delete')
 
-    def test_options(self):
-        res = self.anon.options(self.list_url)
-        eq_(res.status_code, 200)
-        data = json.loads(res.content)
-        ok_('application/json' in data['renders'])
-        ok_('application/json' in data['parses'])
 
     def test_get_empty_with_app(self):
         AddonUser.objects.create(user=self.user, addon=self.app)
