@@ -8,16 +8,13 @@
     <link rel="stylesheet" href="{{ media(repo + '/css/include.css') }}">
   </head>
 
-  <body class="home" data-media="media/" contextmenu="contextmenu">
+  <body class="home" contextmenu="contextmenu" data-media="{{ MEDIA_URL }}" data-repo="{{ repo }}">
     <noscript><p>Sorry, you need JavaScript to use this site.</p></noscript>
 
     <main>
       <div id="page" class="page" role="main"></div>
     </main>
 
-    <menu type="context" id="contextmenu">
-      <menuitem></menuitem>
-    </menu>
     <script type="text/javascript" src="{{ media(repo + '/js/include.js') }}" defer></script>
   </body>
 </html>
