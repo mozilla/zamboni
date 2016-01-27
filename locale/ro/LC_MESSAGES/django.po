@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-01-20 11:10-0800\n"
+"POT-Creation-Date: 2016-01-27 11:59-0800\n"
 "PO-Revision-Date: 2015-11-13 10:41+0000\n"
 "Last-Translator: Jobava <jobaval10n@gmail.com>\n"
 "Language-Team: Romanian <dev-l10n-web@lists.mozilla.org>\n"
@@ -3221,7 +3221,7 @@ msgstr "Pot vedea setările aplicației, dar nu pot face schimbări"
 msgid "Can view the app's settings"
 msgstr "Pot vedea setările aplicației"
 
-#: mkt/developers/templates/developers/apps/status.html:5 mkt/developers/templates/developers/apps/listing/item_actions.html:48
+#: mkt/developers/templates/developers/apps/status.html:5 mkt/developers/templates/developers/apps/listing/item_actions.html:48 mkt/developers/templates/developers/includes/addons_edit_nav.html:6
 msgid "Status & Versions"
 msgstr "Stare și versiuni"
 
@@ -3989,7 +3989,7 @@ msgstr "Adaugă o nouă versiune la aplicația împachetată."
 msgid "Add New Version"
 msgstr "Adaugă o nouă versiune"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60 mkt/developers/templates/developers/includes/addons_edit_nav.html:6
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 msgid "Status &amp; Versions"
 msgstr "Stare și versiuni"
 
@@ -4749,8 +4749,8 @@ msgid "Target tech savvy consumers with your app."
 msgstr "Țintiți consumatorii tehnofili."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:232
-msgid "Firefox Apps &amp; Hacks"
-msgstr "Firefox Apps &amp; Hacks"
+msgid "Firefox Apps & Hacks"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 #, python-format
@@ -4764,12 +4764,12 @@ msgid "Developer Devices"
 msgstr "Dispozitive dezvoltator"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:249
-msgid "Code &amp; Tools"
-msgstr "Cod și unelte"
+msgid "Code & Tools"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:253
-msgid "Events &amp; Meetups"
-msgstr "Evenimente și întâlniri"
+msgid "Events & Meetups"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:271
 #, python-format

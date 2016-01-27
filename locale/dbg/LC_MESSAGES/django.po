@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-01-20 11:10-0800\n"
+"POT-Creation-Date: 2016-01-27 11:59-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3579,6 +3579,7 @@ msgstr "Ƈȧƞ ṽīḗẇ ŧħḗ ȧƥƥ'ş şḗŧŧīƞɠş"
 
 #: mkt/developers/templates/developers/apps/status.html:5
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:48
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:6
 msgid "Status & Versions"
 msgstr "Şŧȧŧŭş & Ṽḗřşīǿƞş"
 
@@ -4578,7 +4579,6 @@ msgid "Add New Version"
 msgstr "Ȧḓḓ Ƞḗẇ Ṽḗřşīǿƞ"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
-#: mkt/developers/templates/developers/includes/addons_edit_nav.html:6
 msgid "Status &amp; Versions"
 msgstr "Şŧȧŧŭş &amp; Ṽḗřşīǿƞş"
 
@@ -5567,8 +5567,8 @@ msgid "Target tech savvy consumers with your app."
 msgstr "Ŧȧřɠḗŧ ŧḗƈħ şȧṽṽẏ ƈǿƞşŭḿḗřş ẇīŧħ ẏǿŭř ȧƥƥ."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:232
-msgid "Firefox Apps &amp; Hacks"
-msgstr "Ƒīřḗƒǿẋ Ȧƥƥş &amp; Ħȧƈķş"
+msgid "Firefox Apps & Hacks"
+msgstr "Ƒīřḗƒǿẋ Ȧƥƥş & Ħȧƈķş"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 #, python-format
@@ -5586,12 +5586,12 @@ msgid "Developer Devices"
 msgstr "Ḓḗṽḗŀǿƥḗř Ḓḗṽīƈḗş"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:249
-msgid "Code &amp; Tools"
-msgstr "Ƈǿḓḗ &amp; Ŧǿǿŀş"
+msgid "Code & Tools"
+msgstr "Ƈǿḓḗ & Ŧǿǿŀş"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:253
-msgid "Events &amp; Meetups"
-msgstr "Ḗṽḗƞŧş &amp; Ḿḗḗŧŭƥş"
+msgid "Events & Meetups"
+msgstr "Ḗṽḗƞŧş & Ḿḗḗŧŭƥş"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:271
 #, python-format

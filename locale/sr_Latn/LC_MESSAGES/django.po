@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-01-20 11:10-0800\n"
+"POT-Creation-Date: 2016-01-27 11:59-0800\n"
 "PO-Revision-Date: 2015-12-27 15:17+0000\n"
 "Last-Translator: Marko Andrejić <marko.andrejic93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -3622,6 +3622,7 @@ msgstr "Ne mogu da prikažem postavke aplikacije"
 
 #: mkt/developers/templates/developers/apps/status.html:5
 #: mkt/developers/templates/developers/apps/listing/item_actions.html:48
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:6
 msgid "Status & Versions"
 msgstr "Status i verzija"
 
@@ -4641,7 +4642,6 @@ msgid "Add New Version"
 msgstr "Dodaj novu verziju"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
-#: mkt/developers/templates/developers/includes/addons_edit_nav.html:6
 msgid "Status &amp; Versions"
 msgstr "Status &amp; verzije"
 
@@ -5639,8 +5639,8 @@ msgid "Target tech savvy consumers with your app."
 msgstr "Ciljajte tehnički potkovane potrošače aplikacijom."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:232
-msgid "Firefox Apps &amp; Hacks"
-msgstr "Firefox aplikacije &amp; Hakovi"
+msgid "Firefox Apps & Hacks"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 #, python-format
@@ -5658,12 +5658,12 @@ msgid "Developer Devices"
 msgstr "Uređaji za programere"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:249
-msgid "Code &amp; Tools"
-msgstr "Kod &amp; alati"
+msgid "Code & Tools"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:253
-msgid "Events &amp; Meetups"
-msgstr "Događaji &amp; sastanci"
+msgid "Events & Meetups"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:271
 #, python-format

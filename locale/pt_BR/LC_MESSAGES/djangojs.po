@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-01-06 13:06-0800\n"
+"POT-Creation-Date: 2016-01-27 11:59-0800\n"
 "PO-Revision-Date: 2015-10-01 23:15+0000\n"
 "Last-Translator: Marco Aurélio <ouesten@me.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,8 +31,7 @@ msgstr "As imagens devem ser PNG ou JPG."
 msgid "Videos must be in WebM."
 msgstr "Os vídeos devem estar no formato WebM."
 
-#: media/js/common/upload-image.js:129
-#: media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Houve um problema ao contatar o servidor."
 
@@ -79,8 +78,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;e mais {0}"
 msgstr[1] "&hellip;e mais {0}"
 
-#: media/js/common/upload-packaged-app.js:199
-#: media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
+#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
 msgid "See full validation report"
 msgstr "Ver o relatório de validação completo"
 
@@ -146,10 +144,8 @@ msgstr "A instalação falhou. Por favor, tente mais tarde."
 #: media/js/devreg/devhub.js:208
 msgid "Your app failed validation with {0} error and {1} message(s)."
 msgid_plural "Your app failed validation with {0} errors and {1} message(s)."
-msgstr[0] ""
-"Seu aplicativo falhou na validação com {0} erros e {1} mensagem(s)."
-msgstr[1] ""
-"Seu aplicativo falhou na validação com {0} erros e {1} mensagem(s)."
+msgstr[0] "Seu aplicativo falhou na validação com {0} erros e {1} mensagem(s)."
+msgstr[1] "Seu aplicativo falhou na validação com {0} erros e {1} mensagem(s)."
 
 #: media/js/devreg/devhub.js:222
 msgid "Your app passed validation with no errors and {0} message."
@@ -206,23 +202,16 @@ msgid "Disabled"
 msgstr "Desativado"
 
 #: media/js/devreg/init.js:35
-msgid ""
-"This feature is temporarily disabled while we perform website maintenance. "
-"Please check back a little later."
-msgstr ""
-"Esse recurso está desativado temporariamente enquanto realizamos a "
-"manutenção do site. Por favor, volte mais tarde."
+msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
+msgstr "Esse recurso está desativado temporariamente enquanto realizamos a manutenção do site. Por favor, volte mais tarde."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "Remover essa tradução"
 
 #: media/js/devreg/login.js:126
-msgid ""
-"Persona login failed. Maybe you don't have an account under that email "
-"address?"
-msgstr ""
-"O login com Persona falhou. Será que você tem uma conta com este e-mail?"
+msgid "Persona login failed. Maybe you don't have an account under that email address?"
+msgstr "O login com Persona falhou. Será que você tem uma conta com este e-mail?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
@@ -318,9 +307,7 @@ msgstr "HEBIC Grego/Code Bancário Indonésio"
 
 #: media/js/devreg/payments-enroll.js:25
 msgid "UK/Irish Sort Code or NZ Account Prefix or Australian BSB Code"
-msgstr ""
-"Código bancário inglês/irlandês ou prefixo de conta neozelandês ou código "
-"BSB australiano"
+msgstr "Código bancário inglês/irlandês ou prefixo de conta neozelandês ou código BSB australiano"
 
 #: media/js/devreg/payments-enroll.js:27
 msgid "Austrian/Swiss Bank Code"
@@ -345,37 +332,22 @@ msgstr "Detectado: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following apps. Applications without a payment account will no longer be "
-"available for sale."
-msgid_plural ""
-"Deleting payment account \"{0}\" will remove the payment account from the "
-"following app. Applications without a payment account will no longer be "
-"available for sale."
+msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
+msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
 msgstr[0] ""
-"Apagar a conta para pagamentos \"{0}\" vai causar a remoção da conta de "
-"pagamentos dos aplicativos abaixo. Aplicativos sem uma conta para pagamentos"
-" não estarão mais disponíveis para compra."
-msgstr[1] ""
-"Apagar a conta para pagamentos \"{0}\" vai causar a remoção da conta de "
-"pagamentos do aplicativo abaixo. Aplicativos sem uma conta para pagamentos "
-"não estarão mais disponíveis para compra."
+"Apagar a conta para pagamentos \"{0}\" vai causar a remoção da conta de pagamentos dos aplicativos abaixo. Aplicativos sem uma conta para pagamentos não estarão mais disponíveis para compra."
+msgstr[1] "Apagar a conta para pagamentos \"{0}\" vai causar a remoção da conta de pagamentos do aplicativo abaixo. Aplicativos sem uma conta para pagamentos não estarão mais disponíveis para compra."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
 msgstr "Contas para pagamentos de {appName}:"
 
-#: media/js/devreg/payments-manage.js:112
-#: media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191
-#: media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85
-#: media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Erro"
 
-#: media/js/devreg/payments-manage.js:113
-#: media/js/devreg/payments-manage.js:176
+#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
 msgstr "Ocorreu um problema ao contactar o servidor de pagamento."
 
@@ -562,13 +534,11 @@ msgstr "Gratuito"
 msgid "Any"
 msgstr "Qualquer"
 
-#: media/js/devreg/reviewers/reviewers.js:246
-#: media/js/devreg/reviewers/reviewers.js:297
+#: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
 msgstr "Aplicativo aprovado: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:249
-#: media/js/devreg/reviewers/reviewers.js:300
+#: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
 msgstr "Aplicativo rejeitado: {app}"
 
@@ -589,15 +559,10 @@ msgid "Error failing app: {app}"
 msgstr "Erro ao invalidar o aplicativo: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
-msgid ""
-"Sorry! We had an error fetching the review history. Please try logging in "
-"again.<p>"
-msgstr ""
-"Desculpa! Tivemos um erro ao buscar o histórico da revisão. Por favor tente "
-"iniciar sessão novamente.<p>"
+msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
+msgstr "Desculpa! Tivemos um erro ao buscar o histórico da revisão. Por favor tente iniciar sessão novamente.<p>"
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on
-#. Feburary
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary
 #. 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
