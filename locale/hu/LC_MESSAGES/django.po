@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-20 11:10-0800\n"
-"PO-Revision-Date: 2016-01-26 22:42+0000\n"
-"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
+"PO-Revision-Date: 2016-01-27 08:12+0000\n"
+"Last-Translator: Gabor Kelemen <kelemeng@ubuntu.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -2896,7 +2896,7 @@ msgstr "A promóciós kép nem nyitható meg."
 
 #: mkt/developers/utils.py:114
 msgid "Icons must be at least 128px by 128px."
-msgstr ""
+msgstr "Az ikonok legyenek legalább 128px × 128px méretűek."
 
 #: mkt/developers/utils.py:117
 msgid "Icons must be square."
@@ -4948,7 +4948,7 @@ msgstr "Nem alkalmazható"
 
 #: mkt/developers/templates/developers/payments/premium.html:207
 msgid "Regions"
-msgstr ""
+msgstr "Területek"
 
 #: mkt/developers/templates/developers/payments/premium.html:213
 msgid "Available Regions"
@@ -5588,7 +5588,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:123
 msgid "Firefox Marketplace YouTube channel"
-msgstr ""
+msgstr "Firefox Marketplace YouTube csatorna"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:4
 msgid "Badges, banners, and icons"
