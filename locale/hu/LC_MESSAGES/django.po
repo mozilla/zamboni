@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-20 11:10-0800\n"
-"PO-Revision-Date: 2016-01-27 08:12+0000\n"
-"Last-Translator: Gabor Kelemen <kelemeng@ubuntu.com>\n"
+"PO-Revision-Date: 2016-01-27 10:34+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -232,11 +232,11 @@ msgstr "Bahrein"
 
 #: mkt/constants/bango.py:37 mkt/constants/regions.py:91
 msgid "Bangladesh"
-msgstr "Bangladesh"
+msgstr "Banglades"
 
 #: mkt/constants/bango.py:38 mkt/constants/regions.py:102
 msgid "Barbados"
-msgstr "Barbados                "
+msgstr "Barbados"
 
 #: mkt/constants/bango.py:39 mkt/constants/regions.py:97
 msgid "Belarus"
@@ -1485,7 +1485,7 @@ msgstr "Újra áttekintés törölve"
 
 #: mkt/constants/comm.py:58
 msgid "App submission notes"
-msgstr ""
+msgstr "App benyújtási megjegyzések"
 
 #: mkt/constants/comm.py:59
 msgid "Developer comment"
@@ -1643,10 +1643,12 @@ msgstr "Eszköztárhely"
 msgid ""
 "The app requires the Device Storage API to access files on the filesystem."
 msgstr ""
+"Az app használatához a Device Storage API szükséges, a fájlrendszeren "
+"található fájlok elérésére."
 
 #: mkt/constants/features.py:79
 msgid "The app requires the platform to support IndexedDB."
-msgstr ""
+msgstr "Az app megköveteli, hogy a platform támogassa az IndexedDB-t."
 
 #: mkt/constants/features.py:84
 msgid "Geolocation"
@@ -1656,6 +1658,8 @@ msgstr "Helymeghatározás"
 msgid ""
 "The app requires the platform to support the `navigator.geolocation` API."
 msgstr ""
+"Az app megköveteli, hogy a platform támogassa a „navigator.geolocation” "
+"API-t."
 
 #: mkt/constants/features.py:90
 msgid "Idle"
@@ -1664,6 +1668,7 @@ msgstr "Üresjárat"
 #: mkt/constants/features.py:91
 msgid "The app requires the platform to support the `addIdleObserver` API."
 msgstr ""
+"Az app megköveteli, hogy a platform támogassa az „addIdleObserver” API-t."
 
 #: mkt/constants/features.py:96
 msgid "Network Information"
@@ -1674,6 +1679,8 @@ msgid ""
 "The app requires the ability to get information about the network connection"
 " (the `navigator.mozConnection` API)."
 msgstr ""
+"Az app megköveteli, hogy képes legyen információt szerezni a hálózati "
+"kapcsolatról („navigator.mozConnection” API)."
 
 #: mkt/constants/features.py:103
 msgid "Network Stats"
@@ -1681,7 +1688,7 @@ msgstr "Hálózat statisztika"
 
 #: mkt/constants/features.py:104
 msgid "The app requires the `navigator.mozNetworkStats` API."
-msgstr ""
+msgstr "Az app használatához a „navigator.mozNetworkStats” API szükséges."
 
 #: mkt/constants/features.py:109
 msgid "Proximity"
@@ -1690,6 +1697,7 @@ msgstr "Közelségérzékelés"
 #: mkt/constants/features.py:110
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
 msgstr ""
+"Az app használatához közelségérzékelő szükséges (,,ondeviceproximity\" API)."
 
 #: mkt/constants/features.py:115
 msgid "Simple Push"
@@ -1697,7 +1705,7 @@ msgstr ""
 
 #: mkt/constants/features.py:116
 msgid "The app requires the `navigator.mozPush` API."
-msgstr ""
+msgstr "Az app használatához a „navigator.mozPush” API szükséges."
 
 #: mkt/constants/features.py:120
 msgid "Screen Orientation"
@@ -1707,6 +1715,8 @@ msgstr "Képernyő tájolása"
 msgid ""
 "The app requires the platform to support the `ondeviceorientation` API."
 msgstr ""
+"Az app megköveteli, hogy a platform támogassa az „ondeviceorientation” "
+"API-t."
 
 #: mkt/constants/features.py:126
 msgid "Time/Clock"
@@ -1714,7 +1724,7 @@ msgstr "Idő/óra"
 
 #: mkt/constants/features.py:127
 msgid "The app requires the `navigator.mozTime` API."
-msgstr ""
+msgstr "Az app használatához a „navigator.mozTime” API szükséges."
 
 #: mkt/constants/features.py:131
 msgid "Vibration"
@@ -1725,14 +1735,18 @@ msgid ""
 "The app requires the device to support vibration (the `navigator.vibrate` "
 "API)."
 msgstr ""
+"Az app megköveteli, hogy az eszköz támogassa a rezgést („navigator.vibrate” "
+"API)."
 
 #: mkt/constants/features.py:138
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
 msgstr ""
+"Az app használatához szükséges a „navigator.mozFM” vagy a "
+"„navigator.mozFMRadio” API."
 
 #: mkt/constants/features.py:144
 msgid "The app requires the `navigator.mozSms` API."
-msgstr ""
+msgstr "Az app használatához szükséges a „navigator.mozSms” API."
 
 #: mkt/constants/features.py:148
 msgid "Touch"
@@ -2020,6 +2034,7 @@ msgstr ""
 #: mkt/constants/features.py:337
 msgid "The app requires the device to have at least 1GB RAM."
 msgstr ""
+"Az app megköveteli, hogy a készülék legalább 1GB RAM-mal rendelkezzen."
 
 #: mkt/constants/features.py:342
 msgid "NFC"
@@ -2028,6 +2043,8 @@ msgstr "NFC"
 #: mkt/constants/features.py:343
 msgid "The app requires access to the Near Field Communication (NFC) API."
 msgstr ""
+"Az app megköveteli a Near Field Communication (NFC) API-hoz való "
+"hozzáférést."
 
 #: mkt/constants/features.py:357
 msgid "UDP Sockets"
