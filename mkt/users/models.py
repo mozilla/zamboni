@@ -12,9 +12,8 @@ from django.utils.encoding import smart_unicode
 from django.utils.functional import lazy
 
 import commonware.log
-import tower
 from cache_nuggets.lib import memoize
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 import mkt
 from mkt.site.models import ModelBase, OnChangeMixin
@@ -197,9 +196,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         """
         lang = self.lang if self.lang else settings.LANGUAGE_CODE
         old = translation.get_language()
-        tower.activate(lang)
+        translation.activate(lang)
         yield
-        tower.activate(old)
+        translation.activate(old)
 
 
 models.signals.pre_save.connect(save_signal, sender=UserProfile,

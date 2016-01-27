@@ -71,7 +71,7 @@ urlpatterns = patterns(
 
     # Javascript translations.
     url('^jsi18n.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
-        {'domain': 'javascript', 'packages': ['zamboni']}, name='jsi18n'),
+        {'domain': 'djangojs', 'packages': ['zamboni']}, name='jsi18n'),
 
     # webpay / nav.pay() services.
     ('^services/webpay/', include(webpay_services_patterns)),

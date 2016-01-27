@@ -1,6 +1,6 @@
 from django import forms
 
-from tower import ugettext as _, ungettext as ngettext
+from django.utils.translation import ugettext as _, ungettext as ngettext
 
 import mkt
 from mkt.access import acl

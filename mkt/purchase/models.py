@@ -4,7 +4,7 @@ from django.conf import settings
 from django.db import models
 from django.utils import translation
 
-import tower
+
 from babel import Locale, numbers
 from jingo.helpers import urlparams
 from jinja2.filters import do_dictsort
@@ -80,7 +80,7 @@ class Contribution(ModelBase):
             lang = self.source_locale
         else:
             lang = self.addon.default_locale
-        tower.activate(lang)
+        translation.activate(lang)
         return Locale(translation.to_locale(lang))
 
     def _mail(self, template, subject, context):

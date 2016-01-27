@@ -9,8 +9,8 @@ from django.utils.encoding import smart_str
 
 import jinja2
 from jingo import register
-from tower import ugettext as _
-from tower import ugettext_lazy as _lazy
+from django.utils.translation import pgettext, ugettext as _
+from django.utils.translation import ugettext_lazy as _lazy
 
 import mkt
 from mkt.access import acl
@@ -89,19 +89,21 @@ def queue_tabnav(context):
     if acl.action_allowed(request, 'Apps', 'Review'):
         rv = [
             (reverse('reviewers.apps.queue_pending'), 'pending',
-             _('Apps ({0})', counts['pending']).format(counts['pending'])),
+             pgettext(counts['pending'], 'Apps ({0})')
+             .format(counts['pending'])),
 
             (reverse('reviewers.apps.queue_rereview'), 'rereview',
-             _('Re-reviews ({0})', counts['rereview']).format(
+             pgettext(counts['rereview'], 'Re-reviews ({0})').format(
                  counts['rereview'])),
 
             (reverse('reviewers.apps.queue_updates'), 'updates',
-             _('Updates ({0})', counts['updates']).format(counts['updates'])),
+             pgettext(counts['updates'], 'Updates ({0})')
+             .format(counts['updates'])),
         ]
         if acl.action_allowed(request, 'Apps', 'ReviewEscalated'):
             rv.append((reverse('reviewers.apps.queue_escalated'), 'escalated',
-                       _('Escalations ({0})', counts['escalated']).format(
-                       counts['escalated'])))
+                       pgettext(counts['escalated'], 'Escalations ({0})')
+                       .format(counts['escalated'])))
         rv.append(
             (reverse('reviewers.apps.apps_reviewing'), 'reviewing',
              _('Reviewing ({0})').format(len(apps_reviewing))),
@@ -113,7 +115,7 @@ def queue_tabnav(context):
                       _('China ({0})').format(counts['region_cn'])))
         rv.append(
             (reverse('reviewers.apps.queue_homescreen'), 'homescreen',
-             _('Homescreens ({0})', counts['homescreen']).format(
+             pgettext(counts['homescreen'], 'Homescreens ({0})').format(
                  counts['homescreen'])),
         )
     else:
@@ -122,21 +124,21 @@ def queue_tabnav(context):
     if acl.action_allowed(request, 'Apps', 'ModerateReview'):
         rv.append(
             (reverse('reviewers.apps.queue_moderated'), 'moderated',
-             _('Moderated Reviews ({0})', counts['moderated'])
+             pgettext(counts['moderated'], 'Moderated Reviews ({0})')
              .format(counts['moderated'])),
         )
 
     if acl.action_allowed(request, 'Apps', 'ReadAbuse'):
         rv.append(
             (reverse('reviewers.apps.queue_abuse'), 'abuse',
-             _('Abuse Reports ({0})', counts['abuse'])
+             pgettext(counts['abuse'], 'Abuse Reports ({0})')
              .format(counts['abuse'])),
         )
 
     if acl.action_allowed(request, 'Websites', 'ReadAbuse'):
         rv.append(
             (reverse('reviewers.websites.queue_abuse'), 'abusewebsites',
-             _('Website Abuse Reports ({0})', counts['abusewebsites'])
+             pgettext(counts['abusewebsites'], 'Website Abuse Reports ({0})')
              .format(counts['abusewebsites'])),
         )
     return rv

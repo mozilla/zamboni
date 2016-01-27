@@ -1,7 +1,7 @@
 import jinja2
 from jingo import register
 
-from tower import ugettext_lazy as _lazy
+from django.utils.translation import ugettext_lazy as _lazy
 
 from mkt.site.helpers import page_title
 

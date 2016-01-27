@@ -1,7 +1,7 @@
 from django import forms
 
 import happyforms
-from tower import ugettext_lazy as _lazy
+from django.utils.translation import ugettext_lazy as _lazy
 
 
 INTERVAL_CHOICES = (

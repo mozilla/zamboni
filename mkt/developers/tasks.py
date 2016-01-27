@@ -15,6 +15,7 @@ import zipfile
 
 from django import forms
 from django.conf import settings
+from django.utils.translation import ugettext as _
 
 import requests
 from appvalidator import validate_app, validate_packaged_app
@@ -22,7 +23,6 @@ from celery import task
 from django_statsd.clients import statsd
 from PIL import Image
 import waffle
-from tower import ugettext as _
 
 import mkt
 from lib.iarc_v2.client import refresh as iarc_refresh

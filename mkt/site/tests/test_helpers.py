@@ -4,6 +4,7 @@ from django.conf import settings
 import fudge
 import mock
 from datetime import datetime, timedelta
+
 from nose.tools import eq_
 from urlparse import urljoin
 

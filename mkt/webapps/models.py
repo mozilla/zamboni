@@ -24,8 +24,8 @@ from cache_nuggets.lib import memoize, memoize_key
 from django_extensions.db.fields.json import JSONField
 from jingo.helpers import urlparams
 from jinja2.filters import do_dictsort
-from tower import ugettext as _
-from tower import ugettext_lazy as _lazy
+from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _lazy
 from uuidfield.fields import UUIDField
 
 import mkt

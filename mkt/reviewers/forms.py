@@ -5,8 +5,8 @@ from django import forms
 from django.forms import widgets
 
 import happyforms
-from tower import ugettext as _
-from tower import ugettext_lazy as _lazy
+from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _lazy
 
 import mkt
 from mkt.api.forms import CustomNullBooleanSelect

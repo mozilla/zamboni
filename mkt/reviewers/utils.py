@@ -6,12 +6,12 @@ from datetime import datetime
 from django.conf import settings
 from django.core.cache import cache
 from django.db.models import Q
+from django.utils.translation import ugettext_lazy as _lazy
 
 import commonware.log
 from elasticsearch_dsl import Search
 from elasticsearch_dsl import filter as es_filter
 import waffle
-from tower import ugettext_lazy as _lazy
 
 import mkt
 from lib.iarc_v2.client import (publish as iarc_publish,

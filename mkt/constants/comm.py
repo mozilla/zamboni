@@ -1,4 +1,4 @@
-from tower import ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 
 
 # To add a note type:

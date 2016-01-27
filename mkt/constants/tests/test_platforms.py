@@ -1,6 +1,6 @@
 from django.test.client import RequestFactory
 from nose.tools import eq_
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 
 import mkt.site.tests
 from mkt.constants.platforms import FREE_PLATFORMS, PAID_PLATFORMS

@@ -30,7 +30,7 @@ from rest_framework.exceptions import ParseError
 from rest_framework.generics import CreateAPIView, DestroyAPIView, ListAPIView
 from rest_framework.permissions import AllowAny, BasePermission
 from rest_framework.response import Response
-from tower import ugettext as _
+from django.utils.translation import ugettext as _
 from waffle.decorators import waffle_switch
 
 import mkt

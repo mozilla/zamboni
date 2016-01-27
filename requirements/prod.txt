@@ -66,7 +66,7 @@ html5lib==0.999
 # httplib2 is required by curling, google-api-python-client
 httplib2==0.9.1
 importlib-no-failure==1.0.2
-jingo==0.7.1
+jingo==0.8.1
 # kombu is required by celery
 kombu==3.0.26
 heka-py==0.30.3
@@ -87,6 +87,7 @@ oauthlib==0.7.2
 polib==1.0.3
 # protobuf is required by heka-py
 protobuf==2.5.0
+puente==0.4.1
 # pyasn1 is required by app-validator, cryptography
 pyasn1==0.1.7
 PyBrowserID==0.6
@@ -116,7 +117,6 @@ sqlparse==0.1.16
 statsd==2.0.3
 suds==0.4
 responses==0.4.0
-tower==0.4.1
 # urllib3 is required by elasticsearch
 urllib3==1.10.3
 
