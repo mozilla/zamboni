@@ -133,6 +133,13 @@ class Command(BaseCommand):
         except ValidationError:
             instance.icon_type = ''
 
+    def set_featured(self, instance, row):
+        featuredNum = row.get(
+            "BD Featured 1-q7 \n"
+            "(# featured apps 1-7; the remainder, leave blank)")
+        if featuredNum:
+            instance.update(tv_featured=abs(int(featuredNum) - 8))
+
     def parse(self, filename):
         try:
             return csv.DictReader(open(filename))
@@ -166,7 +173,7 @@ class Command(BaseCommand):
                     # everything is OK.
                     self.set_icon(website, row)
                     self.set_promo_img(website, row)
-
+                    self.set_featured(website, row)
                     created_count += created
                 except ParsingError as e:
                     print e.message
