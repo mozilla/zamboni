@@ -13,7 +13,8 @@ class TestRegions(TestCase):
         dictionary."""
         defined_regions = regions.REGION_LOOKUP.keys()
         available_regions = {c['slug'] for c in COUNTRY_DETAILS.values()}
-        eq_(list(available_regions.difference(defined_regions)), [])
+        # China *should* be missing, it's no longer available for submission.
+        eq_(list(available_regions.difference(defined_regions)), ['cn'])
 
     def test_regions_dict(self):
         eq_(regions.REGIONS_DICT['restofworld'], regions.RESTOFWORLD)

@@ -78,7 +78,7 @@ kombu==3.0.32
 heka-py==0.30.3
 heka-py-cef==0.3.1
 langid==1.1.5
-marketplace-constants==0.14.0
+marketplace-constants==0.15.0
 monolith.client==0.9
 mozilla-logger==0.2
 mozpay==2.0.0

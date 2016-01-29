@@ -378,8 +378,8 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
                            privacy_policy='Fake privacy policy',
                            premium_type='free', description=None,
                            default_locale='en-US', rereview=False,
-                           special_regions={}, inapp_id=None,
-                           inapp_secret=None, popularity=0, **spec):
+                           inapp_id=None, inapp_secret=None, popularity=0,
+                           **spec):
     status = STATUS_CHOICES_API_LOOKUP[status]
     names = generate_localized_names(name, locale_names)
     if type == 'hosted':
@@ -444,11 +444,6 @@ def generate_app_from_spec(name, categories, type, status, num_previews=1,
     # be saved.
     app.status = status
     app.save()
-    for (region, region_status) in special_regions.iteritems():
-        app.geodata.update(**{'region_%s_nominated' % (region,):
-                              datetime.datetime.now(),
-                              'region_%s_status' % (region,):
-                              STATUS_CHOICES_API_LOOKUP[region_status]})
     addon_review_aggregates(app.pk)
     if rereview:
         RereviewQueue.objects.get_or_create(addon=app)

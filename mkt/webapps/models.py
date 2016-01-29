@@ -358,23 +358,6 @@ class WebappManager(ManagerBase):
         return self.filter(status__in=mkt.LISTED_STATUSES,
                            disabled_by_user=False)
 
-    def pending_in_region(self, region):
-        """
-        Apps that have been approved by reviewers but unapproved by
-        reviewers in special regions (e.g., China).
-
-        """
-        region = parse_region(region)
-        column_prefix = '_geodata__region_%s' % region.slug
-        return self.filter(**{
-            # Only nominated apps should show up.
-            '%s_nominated__isnull' % column_prefix: False,
-            'status__in': mkt.WEBAPPS_APPROVED_STATUSES,
-            'disabled_by_user': False,
-            'escalationqueue__isnull': True,
-            '%s_status' % column_prefix: mkt.STATUS_PENDING,
-        }).order_by('-%s_nominated' % column_prefix)
-
     def rated(self):
         """IARC."""
         return self.exclude(content_ratings__isnull=True)
@@ -1744,10 +1727,6 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     def in_rereview_queue(self):
         return self.rereviewqueue_set.exists()
 
-    def in_china_queue(self):
-        china_queue = self.__class__.objects.pending_in_region(mkt.regions.CHN)
-        return china_queue.filter(pk=self.pk).exists()
-
     def get_package_path(self):
         """Returns the `package_path` if the app is packaged."""
         if not self.is_packaged:
@@ -2682,10 +2661,8 @@ class RegionListField(JSONField):
 
 
 class Geodata(ModelBase):
-    """TODO: Forgo AER and use bool columns for every region and carrier."""
     addon = models.OneToOneField(Webapp, related_name='_geodata')
     restricted = models.BooleanField(default=False)
-    popular_region = models.CharField(max_length=10, null=True)
     # Exclude apps with USK_RATING_REFUSED in Germany.
     region_de_usk_exclude = models.BooleanField(default=False)
 
@@ -2697,104 +2674,9 @@ class Geodata(ModelBase):
             self.id, 'restricted' if self.restricted else 'unrestricted',
             self.addon.id)
 
-    def get_status(self, region):
-        """
-        Return the status of listing in a given region (e.g., China).
-        """
-        return getattr(self, 'region_%s_status' % parse_region(region).slug,
-                       mkt.STATUS_PUBLIC)
-
-    def set_status(self, region, status, save=False):
-        """Return a tuple of `(value, changed)`."""
-
-        value, changed = None, False
-
-        attr = 'region_%s_status' % parse_region(region).slug
-        if hasattr(self, attr):
-            value = setattr(self, attr, status)
-
-            if self.get_status(region) != value:
-                changed = True
-                # Save only if the value is different.
-                if save:
-                    self.save()
-
-        return None, changed
-
-    def get_status_slug(self, region):
-        return {
-            mkt.STATUS_PENDING: 'pending',
-            mkt.STATUS_PUBLIC: 'public',
-            mkt.STATUS_REJECTED: 'rejected',
-        }.get(self.get_status(region), 'unavailable')
-
-    @classmethod
-    def get_status_messages(cls):
-        return {
-            # L10n: An app is awaiting approval for a particular region.
-            'pending': _('awaiting approval'),
-            # L10n: An app is rejected for a particular region.
-            'rejected': _('rejected'),
-            # L10n: An app requires additional review for a particular region.
-            'unavailable': _('requires additional review')
-        }
-
-    def get_nominated_date(self, region):
-        """
-        Return the timestamp of when the app was approved in a region.
-        """
-        return getattr(self,
-                       'region_%s_nominated' % parse_region(region).slug)
-
-    def set_nominated_date(self, region, timestamp=None, save=False):
-        """Return a tuple of `(value, saved)`."""
-
-        value, changed = None, False
-
-        attr = 'region_%s_nominated' % parse_region(region).slug
-        if hasattr(self, attr):
-            if timestamp is None:
-                timestamp = datetime.datetime.now()
-            value = setattr(self, attr, timestamp)
-
-            if self.get_nominated_date(region) != value:
-                changed = True
-                # Save only if the value is different.
-                if save:
-                    self.save()
-
-        return None, changed
-
-
-# (1) Add a dynamic status field to `Geodata` model for each special region:
-# -  0: STATUS_NULL (Unavailable)
-# -  2: STATUS_PENDING (Pending)
-# -  4: STATUS_PUBLIC (Public)
-# - 12: STATUS_REJECTED (Rejected)
-#
-# (2) Add a dynamic nominated field to keep track of timestamp for when
-# the developer requested approval for each region.
-for region in mkt.regions.SPECIAL_REGIONS:
-    help_text = _('{region} approval status').format(
-        region=unicode(region.name))
-    field = models.PositiveIntegerField(
-        help_text=help_text,
-        choices=mkt.STATUS_CHOICES.items(),
-        db_index=True,
-        default=mkt.STATUS_PENDING)
-    field.contribute_to_class(Geodata, 'region_%s_status' % region.slug)
-
-    help_text = _('{region} nomination date').format(
-        region=unicode(region.name))
-    field = models.DateTimeField(help_text=help_text, null=True)
-    field.contribute_to_class(Geodata, 'region_%s_nominated' % region.slug)
 
 # Add a dynamic field to `Geodata` model to exclude pre-IARC public unrated
 # Brazil and Germany games.
 for region in (mkt.regions.BRA, mkt.regions.DEU):
     field = models.BooleanField(default=False)
     field.contribute_to_class(Geodata, 'region_%s_iarc_exclude' % region.slug)
-
-# Save geodata translations when a Geodata instance is saved.
-models.signals.pre_save.connect(save_signal, sender=Geodata,
-                                dispatch_uid='geodata_translations')

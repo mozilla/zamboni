@@ -365,9 +365,6 @@ REGION_LOOKUP = dict(
 ALL_REGIONS = frozenset(REGIONS_DICT.values())
 ALL_REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())
 
-SPECIAL_REGIONS = [x for x in BY_SLUG if x.special]
-SPECIAL_REGION_IDS = sorted(x.id for x in SPECIAL_REGIONS)
-
 # Regions not including restofworld.
 REGION_IDS = sorted(REGIONS_CHOICES_ID_DICT.keys())[1:]
 
