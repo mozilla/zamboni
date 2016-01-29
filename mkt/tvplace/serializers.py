@@ -16,6 +16,9 @@ class TVAppSerializer(SimpleAppSerializer):
                   'tags', 'tv_featured', 'user']
         exclude = []
 
+    def get_icons(self, obj):
+        return {336: obj.get_icon_url(336), 128: obj.get_icon_url(128)}
+
 
 class TVESAppSerializer(SimpleESAppSerializer):
     tv_featured = serializers.IntegerField()
@@ -28,6 +31,9 @@ class TVESAppSerializer(SimpleESAppSerializer):
         # TV search should always be anonymous for extra-cacheability.
         return None
 
+    def get_icons(self, obj):
+        return {336: obj.get_icon_url(336), 128: obj.get_icon_url(128)}
+
 
 class TVWebsiteSerializer(WebsiteSerializer):
     tv_featured = serializers.IntegerField()
@@ -37,9 +43,15 @@ class TVWebsiteSerializer(WebsiteSerializer):
                   'keywords', 'name', 'promo_imgs', 'short_name',
                   'tv_featured', 'tv_url', 'url']
 
+    def get_icons(self, obj):
+        return {336: obj.get_icon_url(336), 128: obj.get_icon_url(128)}
+
 
 class TVESWebsiteSerializer(ESWebsiteSerializer):
     tv_featured = serializers.IntegerField()
 
     class Meta(ESWebsiteSerializer.Meta):
         fields = TVWebsiteSerializer.Meta.fields
+
+    def get_icons(self, obj):
+        return {336: obj.get_icon_url(336), 128: obj.get_icon_url(128)}

@@ -6,6 +6,7 @@ from lib.post_request_task.task import task as post_request_task
 from mkt.developers.tasks import (_fetch_content, get_content_and_check_size,
                                   ResponseTooLargeException, save_icon,
                                   save_promo_imgs)
+import mkt
 from mkt.site.decorators import use_master
 from mkt.websites.models import Website
 
@@ -15,7 +16,7 @@ log = logging.getLogger('z.mkt.websites.tasks')
 
 @post_request_task
 @use_master
-def fetch_icon(pk, icon_url, **kw):
+def fetch_icon(pk, icon_url, sizes=mkt.CONTENT_ICON_SIZES, **kw):
     """
     Downloads a website icon from the location passed to the task.
 
@@ -41,7 +42,7 @@ def fetch_icon(pk, icon_url, **kw):
         return False
 
     log.info('[Website:%s] Icon fetching completed, saving icon', website.name)
-    save_icon(website, content)
+    save_icon(website, content, sizes)
     return True
 
 

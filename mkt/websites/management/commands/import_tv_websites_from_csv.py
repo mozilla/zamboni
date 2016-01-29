@@ -114,14 +114,15 @@ class Command(BaseCommand):
                 # Use original_apply_async instead of using the
                 # post_request_task mechanism. See comment below at the end of
                 # the file for an explanation.
-                fetch_icon.original_apply_async(args=(instance.pk, icon_url))
+                fetch_icon.original_apply_async(args=(instance.pk, icon_url),
+                                                kwargs={'sizes': (336, 128)})
             else:
                 raise ValidationError('Empty Icon URL')
         except ValidationError:
             instance.icon_type = ''
 
     def set_promo_img(self, instance, row):
-        img_url = self.clean_string(row['A screenshot, 57.5x32.5 REM'])
+        img_url = self.clean_string(row['A screenshot, 575 x 325 .pngREM'])
         try:
             if img_url:
                 self.validate_url(img_url)

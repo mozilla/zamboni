@@ -327,7 +327,7 @@ def get_content_and_check_size(response, max_size):
     return content
 
 
-def save_icon(obj, icon_content):
+def save_icon(obj, icon_content, sizes=mkt.CONTENT_ICON_SIZES):
     """
     Saves the icon for `obj` to its final destination. `obj` can be an app or a
     website.
@@ -339,7 +339,7 @@ def save_icon(obj, icon_content):
     dirname = obj.get_icon_dir()
     destination = os.path.join(dirname, '%s' % obj.pk)
     remove_icons(destination)
-    icon_hash = resize_icon(tmp_dst, destination, mkt.CONTENT_ICON_SIZES,
+    icon_hash = resize_icon(tmp_dst, destination, sizes,
                             set_modified_on=[obj], src_storage=public_storage,
                             dst_storage=public_storage)
 
