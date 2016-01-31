@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-27 11:59-0800\n"
-"PO-Revision-Date: 2016-01-31 12:01+0000\n"
+"PO-Revision-Date: 2016-01-31 13:13+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -4066,6 +4066,11 @@ msgid ""
 "sure you’ve included a descriptive name in your app manifest. If you want to"
 " change the app name, you’ll need to do that in your app manifest."
 msgstr ""
+"Az app neve egyike azoknak a mezőknek, amelyek a keresési találatokhoz "
+"használatosak a Firefox Marketplace-en. Az app neve megjelenik az app "
+"részletező oldalán is. Győződjön meg róla, hogy egy beszédes nevet adott meg"
+" a jegyzékfájlban. Ha meg szeretné változtatni az app nevét, akkor ezt az "
+"app jegyzékfájljában teheti meg."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:38
 #: mkt/reviewers/templates/reviewers/includes/details.html:40
@@ -6019,6 +6024,8 @@ msgid ""
 "Developer name is required in the manifest in order to display it on the "
 "app's listing."
 msgstr ""
+"A fejlesztő nevének megadása azért szükséges a jegyzékfájlban, hogy "
+"megjelenjen az appok listázásánál."
 
 #: mkt/files/utils.py:192
 msgid "Invalid file name in archive: {0}"
@@ -8382,11 +8389,11 @@ msgstr ""
 
 #: mkt/site/log.py:527
 msgid "{addon} re-reviewed because of manifest URL change."
-msgstr ""
+msgstr "{addon} újra átvizsgálva a jegyzékfájl URL változása miatt. "
 
 #: mkt/site/log.py:528
 msgid "Manifest URL Change"
-msgstr ""
+msgstr "Jegyzékfájl URL változás"
 
 #: mkt/site/log.py:535
 msgid "{addon} auto-escalated because its a prerelease app."
@@ -8726,6 +8733,8 @@ msgid ""
 "Please review your listing information below. We've pre-filled as much as we"
 " can from your manifest."
 msgstr ""
+"Kérjük, ellenőrizze az alábbi információkat. Mi előre beállítottunk, amit "
+"csak tudtunk, a jegyzékfájlból."
 
 #: mkt/submit/templates/submit/details.html:50
 msgid "Open details page"
@@ -8808,7 +8817,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:27
 msgid "Submit App Manifest"
-msgstr ""
+msgstr "App jegyzékfájl benyújtása"
 
 #: mkt/submit/templates/submit/next_steps.html:28
 msgid "Enter App Details"
@@ -9188,11 +9197,11 @@ msgstr "elutasított"
 #. L10n: An app requires additional review for a particular region.
 #: mkt/webapps/models.py:2737
 msgid "requires additional review"
-msgstr ""
+msgstr "további felülvizsgálatot igényel"
 
 #: mkt/webapps/models.py:2776
 msgid "{region} approval status"
-msgstr ""
+msgstr "{region} jóváhagyási állapot"
 
 #: mkt/webapps/models.py:2785
 msgid "{region} nomination date"
@@ -9212,11 +9221,11 @@ msgstr "Létrehozva"
 
 #: mkt/websites/forms.py:81
 msgid "Invalid region(s) selected."
-msgstr ""
+msgstr "Érvénytelen régió(k) kiválasztva."
 
 #: mkt/websites/forms.py:90
 msgid "Invalid device(s) selected."
-msgstr ""
+msgstr "Érvénytelen eszköz(ök) kiválasztva."
 
 #: mkt/zadmin/templates/admin/base.html:72
 msgid "Log out"
