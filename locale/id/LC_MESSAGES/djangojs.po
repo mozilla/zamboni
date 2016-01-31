@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-27 11:59-0800\n"
-"PO-Revision-Date: 2016-01-24 14:55+0000\n"
+"PO-Revision-Date: 2016-01-31 14:09+0000\n"
 "Last-Translator: Artanto Ishaam <artanto.ishaam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
@@ -30,7 +30,8 @@ msgstr "Gambar harus berupa PNG atau JPG."
 msgid "Videos must be in WebM."
 msgstr "Video harus berupa WebM."
 
-#: media/js/common/upload-image.js:129 media/js/common/upload-packaged-app.js:34
+#: media/js/common/upload-image.js:129
+#: media/js/common/upload-packaged-app.js:34
 msgid "There was a problem contacting the server."
 msgstr "Terjadi masalah dalam menghubungi server."
 
@@ -75,7 +76,8 @@ msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
 msgstr[0] "&hellip;dan {0} lainnya"
 
-#: media/js/common/upload-packaged-app.js:199 media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
+#: media/js/common/upload-packaged-app.js:199
+#: media/js/common/upload-packaged-app.js:325 media/js/devreg/devhub.js:165
 msgid "See full validation report"
 msgstr "Lihat laporan validasi selengkapnya"
 
@@ -99,7 +101,8 @@ msgstr "Validasi selesai {0}"
 #: media/js/common/upload-packaged-app.js:300
 msgid "Your app passed validation with no errors and {0} warning."
 msgid_plural "Your app passed validation with no errors and {0} warnings."
-msgstr[0] "App Anda melewati validasi dengan tanpa kesalahan dan {0} peringatan."
+msgstr[0] ""
+"App Anda melewati validasi dengan tanpa kesalahan dan {0} peringatan."
 
 #: media/js/common/upload-packaged-app.js:305
 msgid "Your app passed validation with no errors or warnings."
@@ -196,16 +199,23 @@ msgid "Disabled"
 msgstr "Dinonaktifkan"
 
 #: media/js/devreg/init.js:35
-msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Fitur ini sementara dinonaktifkan saat kami melakukan pemeliharaan situs web. Silakan cek kembali nanti."
+msgid ""
+"This feature is temporarily disabled while we perform website maintenance. "
+"Please check back a little later."
+msgstr ""
+"Fitur ini sementara dinonaktifkan saat kami melakukan pemeliharaan situs "
+"web. Silakan cek kembali nanti."
 
 #: media/js/devreg/l10n.js:45
 msgid "Remove this localization"
 msgstr "Hilangkan pelokalan ini"
 
 #: media/js/devreg/login.js:126
-msgid "Persona login failed. Maybe you don't have an account under that email address?"
-msgstr "Masuk persona gagal. Mungkin Anda tidak memiliki akun pada email tersebut?"
+msgid ""
+"Persona login failed. Maybe you don't have an account under that email "
+"address?"
+msgstr ""
+"Masuk persona gagal. Mungkin Anda tidak memiliki akun pada email tersebut?"
 
 #: media/js/devreg/login.js:131
 msgid "Persona login failed. A server error was encountered."
@@ -241,7 +251,8 @@ msgstr "Tampilkan Seluruh Hasil"
 
 #: media/js/devreg/lookup-tool.js:186
 msgid "Over {0} results found, consider refining your search."
-msgstr "Ditemukan hasil di atas {0}, pertimbangkan untuk memperbaiki pencarian Anda."
+msgstr ""
+"Ditemukan hasil di atas {0}, pertimbangkan untuk memperbaiki pencarian Anda."
 
 #: media/js/devreg/manifest.js:47
 msgid "Requested Permissions:"
@@ -309,11 +320,11 @@ msgstr "Kode Bank /Swiss Austria"
 
 #: media/js/devreg/payments-enroll.js:29
 msgid "Danish/Swiss Bank Code"
-msgstr ""
+msgstr "Kode Bank Denmark /Swiss"
 
 #: media/js/devreg/payments-enroll.js:31
 msgid "Swiss/Iraqi Bank Code"
-msgstr ""
+msgstr "Kode Bank Swiss /Iraqi"
 
 #: media/js/devreg/payments-enroll.js:33
 msgid "Iraqi Bank Code"
@@ -326,22 +337,34 @@ msgstr "Terdeteksi: {0}"
 
 #. L10n: This sentence introduces a list of applications.
 #: media/js/devreg/payments-manage.js:32
-msgid "Deleting payment account \"{0}\" will remove the payment account from the following apps. Applications without a payment account will no longer be available for sale."
-msgid_plural "Deleting payment account \"{0}\" will remove the payment account from the following app. Applications without a payment account will no longer be available for sale."
+msgid ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following apps. Applications without a payment account will no longer be "
+"available for sale."
+msgid_plural ""
+"Deleting payment account \"{0}\" will remove the payment account from the "
+"following app. Applications without a payment account will no longer be "
+"available for sale."
 msgstr[0] ""
+"Hapus akun pembayaran \"{0}\" akan menghapus akun pembayaran dari aplikasi. "
+"Aplikasi tanpa akun pembayaran akan tidak tersedia dalam penjualan."
 
 #: media/js/devreg/payments-manage.js:45
 msgid "{appName} payment accounts:"
-msgstr ""
+msgstr "Akun pembayaran {appName}:"
 
-#: media/js/devreg/payments-manage.js:112 media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191 media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
-#: media/js/devreg/reviewers/buttons.js:85 media/js/devreg/reviewers/buttons.js:94
+#: media/js/devreg/payments-manage.js:112
+#: media/js/devreg/payments-manage.js:175 media/js/devreg/validator.js:191
+#: media/js/devreg/validator.js:437 media/js/devreg/validator.js:456
+#: media/js/devreg/reviewers/buttons.js:85
+#: media/js/devreg/reviewers/buttons.js:94
 msgid "Error"
 msgstr "Kesalahan"
 
-#: media/js/devreg/payments-manage.js:113 media/js/devreg/payments-manage.js:176
+#: media/js/devreg/payments-manage.js:113
+#: media/js/devreg/payments-manage.js:176
 msgid "There was a problem contacting the payment server."
-msgstr ""
+msgstr "Terjadi masalah saat menghubungi server pembayaran."
 
 #: media/js/devreg/payments-manage.js:143
 msgid "Authentication error"
@@ -349,25 +372,25 @@ msgstr "Kesalahan autentikasi"
 
 #: media/js/devreg/payments-manage.js:199
 msgid "You do not currently have any payment accounts."
-msgstr ""
+msgstr "Anda saat ini tidak memiliki akun pembayaran."
 
 #: media/js/devreg/suggestions.js:66
 msgid "Search themes for <b>{0}</b>"
-msgstr ""
+msgstr "Cari tema untuk <b>{0}</b>"
 
 #: media/js/devreg/suggestions.js:68
 msgid "Search apps for <b>{0}</b>"
-msgstr ""
+msgstr "Cari aplikasi untuk <b>{0}</b>"
 
 #: media/js/devreg/suggestions.js:70
 msgid "Search add-ons for <b>{0}</b>"
-msgstr ""
+msgstr "Cari pengaya untuk <b>{0}</b>"
 
 #. L10n: {0} is the number of characters left.
 #: media/js/devreg/utils.js:89
 msgid "{0} character left."
 msgid_plural "{0} characters left."
-msgstr[0] ""
+msgstr[0] "{0} karakter tersisa."
 
 #: media/js/devreg/validator.js:71
 msgid "All tests passed successfully."
@@ -387,172 +410,180 @@ msgstr "Peringatan"
 
 #: media/js/devreg/validator.js:279
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Tes Kesesuaian"
 
 #: media/js/devreg/validator.js:327
 msgid "App failed validation."
-msgstr ""
+msgstr "Validasi aplikasi gagal."
 
 #: media/js/devreg/validator.js:329
 msgid "App passed validation."
-msgstr ""
+msgstr "Validasi aplikasi terlewati."
 
 #: media/js/devreg/validator.js:359
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
+msgstr[0] "{0} kesalahan"
 
 #: media/js/devreg/validator.js:361
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
+msgstr[0] "{0} peringatan"
 
 #: media/js/devreg/validator.js:439
 msgid "Validation task could not complete or completed with errors"
 msgstr ""
+"Validasi tidak dapat diselesaikan atau selesai dengan beberapa kesalahan"
 
 #: media/js/devreg/validator.js:457
 msgid "Internal server error"
-msgstr ""
+msgstr "Kesalahan server internal"
 
 #: media/js/devreg/reviewers/buttons.js:38
 msgid "Purchasing"
-msgstr ""
+msgstr "Membeli"
 
 #: media/js/devreg/reviewers/buttons.js:44
 msgid "Purchased"
-msgstr ""
+msgstr "Dibeli"
 
 #: media/js/devreg/reviewers/buttons.js:70
 msgid "Launch"
-msgstr ""
+msgstr "Buka"
 
 #: media/js/devreg/reviewers/editors.js:138
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} telah melihat halaman ini."
 
 #: media/js/devreg/reviewers/editors.js:188
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Struk telah diperiksa oleh aplikasi."
 
 #: media/js/devreg/reviewers/editors.js:190
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Struk tidak diperiksa oleh aplikasi."
 
 #: media/js/devreg/reviewers/editors.js:241
 msgid "{name} was viewing this app first."
-msgstr ""
+msgstr "{name} telah melihat app ini."
 
 #: media/js/devreg/reviewers/editors.js:252
 msgid "Loading&hellip;"
-msgstr ""
+msgstr "Memuat&hellip;"
 
 #: media/js/devreg/reviewers/editors.js:257
 msgid "Version Notes"
-msgstr ""
+msgstr "Catatan Versi"
 
 #: media/js/devreg/reviewers/editors.js:262
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Catatan untuk Pengulas"
 
 #: media/js/devreg/reviewers/editors.js:267
 msgid "No version notes found"
-msgstr ""
+msgstr "Tidak ditemukan catatan versi"
 
 #: media/js/devreg/reviewers/editors.js:292
 msgid "Select an application first"
-msgstr ""
+msgstr "Pilih aplikasi terlebih dulu"
 
 #: media/js/devreg/reviewers/editors.js:356
 msgid "Error loading translation"
-msgstr ""
+msgstr "Ada masalah dalam memuat terjemahan"
 
 #: media/js/devreg/reviewers/expandable.js:15
 msgid "more..."
-msgstr ""
+msgstr "lebih banyak..."
 
 #: media/js/devreg/reviewers/expandable.js:18
 msgid "less..."
-msgstr ""
+msgstr "kurang..."
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:7
 msgid "Keep review / Remove flags"
-msgstr ""
+msgstr "Tetap meninjau / Hapus penanda"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:8
 msgid "Delete review"
-msgstr ""
+msgstr "Hapus ulasan"
 
 #: media/js/devreg/reviewers/mobile_review_actions.js:9
 msgid "Skip for now"
-msgstr ""
+msgstr "Lewatkan untuk sekarang"
 
 #: media/js/devreg/reviewers/payments.js:69
 msgid "Payment failed. Try again later."
-msgstr ""
+msgstr "Pembayaran gagal. Coba kembali nanti."
 
 #: media/js/devreg/reviewers/reviewers.js:97
 msgid "Packaged App"
-msgstr ""
+msgstr "Paket Aplikasi"
 
 #: media/js/devreg/reviewers/reviewers.js:101
 msgid "Privileged App"
-msgstr ""
+msgstr "Kebebasan Aplikasi"
 
 #: media/js/devreg/reviewers/reviewers.js:104
 msgid "More Information Requested"
-msgstr ""
+msgstr "Diperlukan Lebih Banyak Informasi"
 
 #: media/js/devreg/reviewers/reviewers.js:107
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Mengandung Komentar Editor"
 
 #: media/js/devreg/reviewers/reviewers.js:111
 msgid "Premium App"
-msgstr ""
+msgstr "Aplikasi Premium"
 
 #: media/js/devreg/reviewers/reviewers.js:114
 msgid "Escalated"
-msgstr ""
+msgstr "Diajukan"
 
 #: media/js/devreg/reviewers/reviewers.js:122
 msgid "Free"
-msgstr ""
+msgstr "Gratis"
 
 #: media/js/devreg/reviewers/reviewers.js:219
 msgid "Any"
-msgstr ""
+msgstr "Apa pun"
 
-#: media/js/devreg/reviewers/reviewers.js:246 media/js/devreg/reviewers/reviewers.js:297
+#: media/js/devreg/reviewers/reviewers.js:246
+#: media/js/devreg/reviewers/reviewers.js:297
 msgid "Approved app: {app}"
-msgstr ""
+msgstr "Aplikasi diterima: {app}"
 
-#: media/js/devreg/reviewers/reviewers.js:249 media/js/devreg/reviewers/reviewers.js:300
+#: media/js/devreg/reviewers/reviewers.js:249
+#: media/js/devreg/reviewers/reviewers.js:300
 msgid "Rejected app: {app}"
-msgstr ""
+msgstr "Aplikasi ditolak: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:255
 msgid "Error approving app: {app}"
-msgstr ""
+msgstr "Kesalahan penerimaan aplikasi: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:256
 msgid "Error rejecting app: {app}"
-msgstr ""
+msgstr "Kesalahan penolakan aplikasi: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:307
 msgid "Error passing app: {app}"
-msgstr ""
+msgstr "Kesalahan pelewatan aplikasi: {app}"
 
 #: media/js/devreg/reviewers/reviewers.js:308
 msgid "Error failing app: {app}"
-msgstr ""
+msgstr "Kesalahan pengagalan aplikasi: {app}"
 
 #: media/js/devreg/reviewers/reviewers_commbadge.js:66
-msgid "Sorry! We had an error fetching the review history. Please try logging in again.<p>"
+msgid ""
+"Sorry! We had an error fetching the review history. Please try logging in "
+"again.<p>"
 msgstr ""
+"Maaf! Terjadi kesahan dalam pengambilan riwayat ulasan. Silakan coba masuk "
+"kembali.<p>"
 
-#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on Feburary
+#. L10n: {0} is author of note, {1} is a datetime. (e.g., "by Kevin on
+#. Feburary
 #. 18th 2014 12:12 pm").
 #: media/js/devreg/reviewers/reviewers_commbadge.js:86
 msgid "By {0} on {1}"
-msgstr ""
+msgstr "Oleh {0} pada {1}"
