@@ -110,7 +110,9 @@
             "name": 1,
             "description": 2,
             "no_locale": 10,
-            "default_locale": "de"
+            "default_locale": "de",
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
         }
     },
     {
@@ -120,7 +122,9 @@
             "id": 3,
             "name": 3,
             "description": null,
-            "default_locale": "fr"
+            "default_locale": "fr",
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
         }
     },
     {
@@ -130,7 +134,9 @@
             "id": 4,
             "name": 4,
             "description": null,
-            "default_locale": "en-US"
+            "default_locale": "en-US",
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
         }
     },
     {
@@ -138,7 +144,9 @@
         "model": "testapp.untranslatedmodel",
         "fields": {
             "id": 1,
-            "number": 17
+            "number": 17,
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
         }
     },
     {
@@ -147,7 +155,9 @@
         "fields": {
             "id": 1,
             "purified": 20,
-            "linkified": 30
+            "linkified": 30,
+            "created": "2007-03-05 16:06:55",
+            "modified": "2007-03-21 13:42:36"
         }
     }
 ]

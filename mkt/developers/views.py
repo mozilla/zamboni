@@ -12,7 +12,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -60,7 +60,7 @@ from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.site.decorators import (
     json_view, login_required, permission_required, use_master)
 from mkt.site.storage_utils import public_storage
-from mkt.site.utils import escape_all, paginate
+from mkt.site.utils import escape_all, paginate, render
 from mkt.submit.forms import AppFeaturesForm, NewWebappVersionForm
 from mkt.translations.query import order_by_translation
 from mkt.users.models import UserProfile
@@ -770,7 +770,6 @@ def addons_section(request, addon_id, addon, section, editable=False):
               'support': AppFormSupport,
               'technical': AppFormTechnical,
               'admin': forms.AdminSettingsForm}
-
     is_dev = acl.check_addon_ownership(request, addon, dev=True)
 
     if section not in models:
@@ -827,7 +826,6 @@ def addons_section(request, addon_id, addon, section, editable=False):
             for additional_form in (appfeatures_form, cat_form, version_form):
                 if additional_form:
                     all_forms.append(additional_form)
-
             if all(not f or f.is_valid() for f in all_forms):
                 if cat_form:
                     cat_form.save()

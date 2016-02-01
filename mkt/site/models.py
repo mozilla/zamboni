@@ -6,6 +6,7 @@ from django.utils import translation
 
 import multidb.pinning
 
+from mkt.translations.hold import save_translations
 
 _locals = threading.local()
 
@@ -304,6 +305,11 @@ class ModelBase(models.Model):
         else:
             cls = self.__class__
             cls.objects.filter(pk=self.pk).update(**kwargs)
+
+    def save(self, **kwargs):
+        if hasattr(self._meta, 'translated_fields'):
+            save_translations(id(self))
+        return super(ModelBase, self).save(**kwargs)
 
 
 def manual_order(qs, pks, pk_name='id'):

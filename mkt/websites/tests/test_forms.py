@@ -36,7 +36,7 @@ class TestWebsiteForm(TestCase):
         data = self.data.copy()
         data.update({
             'title_en-us': u'Tëst',
-            'url': u'http://test.com',
+            'url': u'http://test.com/',
         })
         form = WebsiteForm(request=self.request, instance=self.website,
                            data=data)

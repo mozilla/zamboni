@@ -34,7 +34,7 @@ class UserForeignKey(models.ForeignKey):
     """
 
     def __init__(self, to=None, **kwargs):
-        super(UserForeignKey, self).__init__(UserProfile, **kwargs)
+        super(UserForeignKey, self).__init__('users.UserProfile', **kwargs)
 
     def value_from_object(self, obj):
         return getattr(obj, self.name).email
@@ -68,7 +68,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                                null=True)
     display_name = models.CharField(max_length=255, default='', null=True,
                                     blank=True)
-    email = models.EmailField(unique=True, null=True)
+    email = models.EmailField(unique=True, null=True, max_length=75)
     deleted = models.BooleanField(default=False)
     last_login_ip = models.CharField(default='', max_length=45, editable=False)
     source = models.PositiveIntegerField(default=mkt.LOGIN_SOURCE_UNKNOWN,

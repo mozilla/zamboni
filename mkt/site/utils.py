@@ -77,6 +77,11 @@ env = jingo.get_env()
 env.install_gettext_translations(translation, newstyle=True)
 
 
+def render(request, template, ctx=None, status=None):
+    return http.HttpResponse(jingo.render_to_string(request, template, ctx),
+                             status=status)
+
+
 def days_ago(n):
     return datetime.datetime.now() - datetime.timedelta(days=n)
 

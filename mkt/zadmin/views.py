@@ -6,7 +6,7 @@ from django.contrib import admin, messages
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from django.db.models import Q
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.views import debug
 
 import commonware.log
@@ -18,7 +18,7 @@ from mkt.developers.models import ActivityLog
 from mkt.prices.utils import update_from_csv
 from mkt.site.decorators import permission_required
 from mkt.site.mail import FakeEmailBackend
-from mkt.site.utils import chunked
+from mkt.site.utils import chunked, render
 from mkt.users.models import UserProfile
 from mkt.webapps.models import AddonUser, Webapp
 from mkt.webapps.tasks import update_manifests

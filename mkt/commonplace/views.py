@@ -5,7 +5,6 @@ from urlparse import urlparse
 from django.conf import settings
 from django.core.urlresolvers import resolve
 from django.http import Http404
-from django.shortcuts import render
 from django.utils import translation
 from django.views.decorators.cache import cache_control
 from django.views.decorators.gzip import gzip_page
@@ -17,6 +16,7 @@ from mkt.account.helpers import fxa_auth_info
 from mkt.commonplace.models import DeployBuildId
 from mkt.regions.middleware import RegionMiddleware
 from mkt.site.storage_utils import local_storage
+from mkt.site.utils import render
 from mkt.webapps.models import Webapp
 
 
@@ -54,7 +54,7 @@ def commonplace(request, repo, **kwargs):
     ctx = {
         'BUILD_ID': BUILD_ID,
         'LANG': request.LANG,
-        'DIR': lang_dir(request.LANG),
+        'langdir': lang_dir(request.LANG),
         'include_splash': include_splash,
         'repo': repo,
         'robots': 'googlebot' in ua,

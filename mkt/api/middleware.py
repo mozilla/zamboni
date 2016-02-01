@@ -88,8 +88,7 @@ class RestOAuthMiddleware(object):
                 token_type=ACCESS_TOKEN,
                 key=oauth_req.resource_owner_key).values_list(
                     'user_id', flat=True)[0]
-            request.user = UserProfile.objects.select_related(
-                'user').get(pk=uid)
+            request.user = UserProfile.objects.get(pk=uid)
         else:
             # This is 2-legged OAuth.
             log.info('Trying 2 legged OAuth')
@@ -107,8 +106,7 @@ class RestOAuthMiddleware(object):
             uid = Access.objects.filter(
                 key=client_key).values_list(
                     'user_id', flat=True)[0]
-            request.user = UserProfile.objects.select_related(
-                'user').get(pk=uid)
+            request.user = UserProfile.objects.get(pk=uid)
 
         # But you cannot have one of these roles.
         denied_groups = set(['Admins'])

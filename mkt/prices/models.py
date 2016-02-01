@@ -448,7 +448,7 @@ class AddonPaymentData(ModelBase):
     # Basic.
     first_name = models.CharField(max_length=255, blank=True)
     last_name = models.CharField(max_length=255, blank=True)
-    email = models.EmailField(blank=True)
+    email = models.EmailField(blank=True, max_length=75)
     full_name = models.CharField(max_length=255, blank=True)
     business_name = models.CharField(max_length=255, blank=True)
     country = models.CharField(max_length=64)

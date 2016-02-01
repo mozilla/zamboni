@@ -1,9 +1,8 @@
 import logging
 
-from django.shortcuts import render
-
 import elasticsearch
 
+from mkt.site.utils import render
 
 log = logging.getLogger('z.elasticsearch')
 

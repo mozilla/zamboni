@@ -6,7 +6,7 @@ from django import http
 from django.conf import settings
 from django.contrib import messages
 from django.core.urlresolvers import reverse
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.http import require_POST
 
 import commonware
@@ -32,6 +32,7 @@ from mkt.inapp.models import InAppProduct
 from mkt.inapp.serializers import InAppProductForm
 from mkt.prices.models import Price
 from mkt.site.decorators import json_view, login_required, use_master
+from mkt.site.utils import render
 from mkt.webapps.models import Webapp
 
 

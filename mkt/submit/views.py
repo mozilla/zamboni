@@ -2,7 +2,7 @@ import json
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.utils.translation.trans_real import to_language
 
 import commonware.log
@@ -31,6 +31,7 @@ from mkt.developers.forms import (AppFormMedia, CategoryForm, NewManifestForm,
 from mkt.developers.utils import escalate_prerelease_permissions
 from mkt.files.models import FileUpload
 from mkt.site.decorators import login_required, use_master
+from mkt.site.utils import render
 from mkt.submit.forms import AppDetailsBasicForm
 from mkt.submit.models import AppSubmissionChecklist
 from mkt.submit.serializers import (AppStatusSerializer, FileUploadSerializer,

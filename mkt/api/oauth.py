@@ -2,7 +2,6 @@ import string
 from urllib import urlencode
 
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 import commonware.log
@@ -12,6 +11,7 @@ from jingo.helpers import urlparams
 
 from mkt.api.models import Access, Nonce, Token, REQUEST_TOKEN, ACCESS_TOKEN
 from mkt.site.decorators import login_required
+from mkt.site.utils import render
 
 
 DUMMY_CLIENT_KEY = u'DummyOAuthClientKeyString'

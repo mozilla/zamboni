@@ -15,7 +15,7 @@ from django.core.urlresolvers import reverse
 from django.db import transaction
 from django.db.models import Q
 from django.db.models.signals import post_save
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.cache import never_cache
 
 import commonware.log
@@ -66,7 +66,7 @@ from mkt.site.helpers import absolutify, product_as_dict
 from mkt.site.mail import send_mail
 from mkt.site.utils import (JSONEncoder, days_ago, escape_all,
                             get_file_response, paginate, redirect_for_login,
-                            smart_decode)
+                            render, smart_decode)
 from mkt.submit.forms import AppFeaturesForm
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile

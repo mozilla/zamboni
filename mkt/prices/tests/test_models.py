@@ -87,7 +87,7 @@ class TestPrice(mkt.site.tests.TestCase):
         eq_(Price.objects.get(pk=2).get_price_locale(regions=[HUN.id]), None)
 
     def test_fallback(self):
-        translation.activate('foo')
+        translation.activate('dbg')
         eq_(Price.objects.get(pk=1).get_price(regions=[RESTOFWORLD.id]),
             Decimal('0.99'))
         eq_(Price.objects.get(pk=1).get_price_locale(regions=[RESTOFWORLD.id]),

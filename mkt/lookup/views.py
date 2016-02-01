@@ -9,7 +9,7 @@ from django.core.urlresolvers import reverse
 from django.db import connection
 from django.db.models import Count, Q, Sum
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from django.views.decorators.http import require_POST
 
 import commonware.log
@@ -42,7 +42,7 @@ from mkt.reviewers.models import QUEUE_TARAKO
 from mkt.search.filters import SearchQueryFilter
 from mkt.search.views import SearchView
 from mkt.site.decorators import json_view, permission_required
-from mkt.site.utils import paginate
+from mkt.site.utils import paginate, render
 from mkt.tags.models import attach_tags
 from mkt.users.models import UserProfile
 from mkt.webapps.models import Webapp

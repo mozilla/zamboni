@@ -258,34 +258,40 @@ SESSION_COOKIE_SECURE = False
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_DOMAIN = None
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+TEMPLATE_DEBUG = True
 
-TEMPLATE_DEBUG = DEBUG
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.media',
-    'django.core.context_processors.request',
-    'session_csrf.context_processor',
-    'django.contrib.messages.context_processors.messages',
-    'jingo_minify.helpers.build_ids',
-    'mkt.site.context_processors.global_settings',
-    'mkt.site.context_processors.i18n',
-    'mkt.site.context_processors.static_url'
-)
-
-TEMPLATE_DIRS = (
-    path('media/docs'),
-    path('templates'),
-    path('mkt/templates'),
-    path('mkt/zadmin/templates')
-)
-
-TEMPLATE_LOADERS = (
-    'lib.template_loader.Loader',
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': (
+            path('media/docs'),
+            path('templates'),
+            path('mkt/templates'),
+            path('mkt/zadmin/templates')
+        ),
+        'OPTIONS': {
+            'context_processors': (
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.media',
+                'django.template.context_processors.request',
+                'session_csrf.context_processor',
+                'django.contrib.messages.context_processors.messages',
+                'jingo_minify.helpers.build_ids',
+                'mkt.site.context_processors.global_settings',
+                'mkt.site.context_processors.i18n',
+                'mkt.site.context_processors.static_url',
+            ),
+            'loaders': (
+                'lib.template_loader.Loader',
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            )
+        },
+    },
+]
+# jingo still looks at TEMPLATE_DIRS
+TEMPLATE_DIRS = TEMPLATES[0]['DIRS']
 
 TIME_ZONE = 'America/Los_Angeles'
 
@@ -998,6 +1004,7 @@ QA_APP_ID = 0
 READ_ONLY = False
 
 REST_FRAMEWORK = {
+    'DATETIME_FORMAT': '%Y-%m-%dT%H:%M:%S',
     'DEFAULT_MODEL_SERIALIZER_CLASS':
         'rest_framework.serializers.HyperlinkedModelSerializer',
     'DEFAULT_AUTHENTICATION_CLASSES': (

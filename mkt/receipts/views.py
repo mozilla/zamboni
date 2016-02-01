@@ -1,7 +1,7 @@
 from django import http
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
@@ -32,6 +32,7 @@ from mkt.receipts.utils import (create_receipt, create_test_receipt, get_uuid,
                                 reissue_receipt)
 from mkt.reviewers.views import reviewer_required
 from mkt.site.decorators import json_view, use_master
+from mkt.site.utils import render
 from mkt.users.models import UserProfile
 from mkt.webapps.decorators import app_view_factory
 from mkt.webapps.models import Installed, Webapp
