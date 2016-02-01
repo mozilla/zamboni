@@ -248,6 +248,10 @@ IARC_STOREFRONT_ID = env('IARC_STOREFRONT_ID', default=4)
 IARC_SUBMISSION_ENDPOINT = 'https://www.globalratings.com/IARCDEMORating/Submission.aspx'  # noqa
 IARC_ALLOW_CERT_REUSE = True
 
+# IARC V2
+IARC_V2_STORE_ID = env('IARC_V2_STORE_ID', default=None)
+IARC_V2_STORE_PASSWORD = env('IARC_V2_STORE_PASSWORD', default=None)
+
 # We'll use zippy, the reference implementation on -dev.
 PAYMENT_PROVIDERS = env.list('PAYMENT_PROVIDERS', default=['reference'])
 
