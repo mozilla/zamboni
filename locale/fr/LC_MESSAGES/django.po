@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-01-27 11:59-0800\n"
-"PO-Revision-Date: 2016-01-30 07:53+0000\n"
-"Last-Translator: Sphinx / Julien G <sphinx_knight@hotmail.fr>\n"
+"PO-Revision-Date: 2016-02-01 15:37+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -5771,7 +5771,7 @@ msgstr "Code & Outils"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:253
 msgid "Events & Meetups"
-msgstr ""
+msgstr "Évènements et réunions"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:271
 #, python-format
