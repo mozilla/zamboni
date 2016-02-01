@@ -303,20 +303,20 @@ class CommAttachment(ModelBase):
         ordering = ('id',)
 
     def __unicode__(self):
-        return 'Note %s - %s' % (self.note.id, self.filepath)
+        return u'Note %s - %s' % (self.note.id, self.filepath)
 
     def get_absolute_url(self):
         return reverse('comm-attachment-detail', args=[self.note_id, self.pk])
 
     def filename(self):
         """Returns the attachment's file name."""
-        return os.path.basename(self.filepath)
+        return os.path.basename(self.filepath.encode('utf-8'))
 
     def full_path(self):
         """Returns the full filesystem path of the attachment."""
         try:
             return os.path.join(settings.REVIEWER_ATTACHMENTS_PATH,
-                                self.filepath)
+                                self.filepath.encode('utf-8'))
         except IOError:
             if not settings.DEBUG:
                 raise
