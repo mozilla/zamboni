@@ -322,27 +322,6 @@ class TestWebapp(WebappTestCase):
             sorted(mkt.regions.REGIONS_CHOICES_ID_DICT.values(),
                    key=lambda x: x.id))
 
-    def test_in_china_queue_pending_not_in_queue(self):
-        app = self.get_app()
-        app.geodata.update(region_cn_nominated=datetime.now(),
-                           region_cn_status=mkt.STATUS_PENDING)
-        app.update(status=mkt.STATUS_PENDING)
-        ok_(not app.in_china_queue())  # Need to be approved in general first.
-
-    def test_in_china_queue_approved_in_queue(self):
-        app = self.get_app()
-        app.geodata.update(region_cn_nominated=datetime.now(),
-                           region_cn_status=mkt.STATUS_PENDING)
-        app.update(status=mkt.STATUS_APPROVED)
-        ok_(app.in_china_queue())
-
-    def test_in_china_queue_approved_in_china_not_in_queue(self):
-        app = self.get_app()
-        app.geodata.update(region_cn_nominated=datetime.now(),
-                           region_cn_status=mkt.STATUS_APPROVED)
-        app.update(status=mkt.STATUS_APPROVED)
-        ok_(not app.in_china_queue())
-
     def test_file_size(self):
         app = self.get_app()
         ok_(app.file_size)
@@ -2464,37 +2443,6 @@ class TestGeodata(mkt.site.tests.WebappTestCase):
 
     def test_app_geodata(self):
         assert isinstance(Webapp(id=337141).geodata, Geodata)
-
-    def test_unicode(self):
-        eq_(unicode(self.geo),
-            u'%s (unrestricted): <Webapp 337141>' % self.geo.id)
-        self.geo.update(restricted=True)
-        eq_(unicode(self.geo),
-            u'%s (restricted): <Webapp 337141>' % self.geo.id)
-
-    def test_get_status(self):
-        status = mkt.STATUS_PENDING
-        eq_(self.geo.get_status(mkt.regions.CHN), status)
-        eq_(self.geo.region_cn_status, status)
-
-        status = mkt.STATUS_PUBLIC
-        self.geo.update(region_cn_status=status)
-        eq_(self.geo.get_status(mkt.regions.CHN), status)
-        eq_(self.geo.region_cn_status, status)
-
-    def test_set_status(self):
-        status = mkt.STATUS_PUBLIC
-
-        # Called with `save=False`.
-        self.geo.set_status(mkt.regions.CHN, status)
-        eq_(self.geo.region_cn_status, status)
-        eq_(self.geo.reload().region_cn_status, mkt.STATUS_PENDING,
-            '`set_status(..., save=False)` should not save the value')
-
-        # Called with `save=True`.
-        self.geo.set_status(mkt.regions.CHN, status, save=True)
-        eq_(self.geo.region_cn_status, status)
-        eq_(self.geo.reload().region_cn_status, status)
 
 
 @mock.patch.object(settings, 'PRE_GENERATE_APKS', True)

@@ -26,7 +26,6 @@ from appvalidator.constants import PERMISSIONS
 from cache_nuggets.lib import Token
 from jingo.helpers import urlparams
 from rest_framework import viewsets
-from rest_framework.exceptions import ParseError
 from rest_framework.generics import CreateAPIView, DestroyAPIView, ListAPIView
 from rest_framework.permissions import AllowAny, BasePermission
 from rest_framework.response import Response
@@ -47,10 +46,8 @@ from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.developers.models import ActivityLog
 from mkt.ratings.forms import ReviewFlagFormSet
 from mkt.ratings.models import Review, ReviewFlag
-from mkt.regions.utils import parse_region
-from mkt.reviewers.forms import (ApiReviewersSearchForm, ApproveRegionForm,
-                                 ModerateLogDetailForm, ModerateLogForm,
-                                 MOTDForm, TestedOnFormSet)
+from mkt.reviewers.forms import (ApiReviewersSearchForm, ModerateLogDetailForm,
+                                 ModerateLogForm, MOTDForm, TestedOnFormSet)
 from mkt.reviewers.models import SHOWCASE_TAG, CannedResponse, ReviewerScore
 from mkt.reviewers.serializers import (CannedResponseSerializer,
                                        ReviewerScoreSerializer,
@@ -103,8 +100,7 @@ def reviewer_required(region=None, moderator=False):
         @login_required
         @functools.wraps(f)
         def wrapper(request, *args, **kw):
-            reviewer_perm = acl.check_reviewer(request,
-                                               region=kw.get('region'))
+            reviewer_perm = acl.check_reviewer(request)
             moderator_perm = (moderator and
                               acl.action_allowed(request,
                                                  'Apps', 'ModerateReview'))
@@ -163,7 +159,6 @@ def queue_counts(request):
         'abuse': queues_helper.get_abuse_queue().count(),
         'abusewebsites': queues_helper.get_abuse_queue_websites().count(),
         'homescreen': queues_helper.get_homescreen_queue().count(),
-        'region_cn': Webapp.objects.pending_in_region(mkt.regions.CHN).count(),
     }
 
     rv = {}
@@ -515,27 +510,6 @@ def queue_homescreen(request):
 
     return _queue(request, apps, 'homescreen', date_sort='nomination',
                   use_es=use_es)
-
-
-@reviewer_required
-def queue_region(request, region=None):
-    # TODO: Create a landing page that lists all the special regions.
-    if region is None:
-        raise http.Http404
-
-    region = parse_region(region)
-    column = '_geodata__region_%s_nominated' % region.slug
-
-    queues_helper = ReviewersQueuesHelper(request)
-    qs = Webapp.objects.pending_in_region(region)
-    apps = [ActionableQueuedApp(app, app.geodata.get_nominated_date(region),
-                                reverse('approve-region',
-                                        args=[app.id, region.slug]))
-            for app in queues_helper.sort(qs, date_sort=column)]
-
-    return _queue(request, apps, 'region', date_sort=column,
-                  template='reviewers/queue_region.html',
-                  data={'region': region})
 
 
 @reviewer_required
@@ -1033,36 +1007,6 @@ class ReviewersSearchView(SearchView):
                        SortingFilter]
     form_class = ApiReviewersSearchForm
     serializer_class = ReviewersESAppSerializer
-
-
-class ApproveRegion(SlugOrIdMixin, CreateAPIView):
-    """
-    TODO: Document this API.
-    """
-    authentication_classes = (RestOAuthAuthentication,
-                              RestSharedSecretAuthentication)
-    model = Webapp
-    slug_field = 'app_slug'
-
-    def get_permissions(self):
-        region = parse_region(self.request.parser_context['kwargs']['region'])
-        region_slug = region.slug.upper()
-        return (GroupPermission('Apps', 'ReviewRegion%s' % region_slug),)
-
-    def get_queryset(self):
-        region = parse_region(self.request.parser_context['kwargs']['region'])
-        return self.model.objects.pending_in_region(region)
-
-    def post(self, request, pk, region, *args, **kwargs):
-        app = self.get_object()
-        region = parse_region(region)
-
-        form = ApproveRegionForm(request.data, app=app, region=region)
-        if not form.is_valid():
-            raise ParseError(dict(form.errors.items()))
-        form.save()
-
-        return Response({'approved': bool(form.cleaned_data['approve'])})
 
 
 class _AppAction(SlugOrIdMixin):

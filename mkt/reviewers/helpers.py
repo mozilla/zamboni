@@ -108,11 +108,6 @@ def queue_tabnav(context):
             (reverse('reviewers.apps.apps_reviewing'), 'reviewing',
              _('Reviewing ({0})').format(len(apps_reviewing))),
         )
-        if acl.action_allowed(request, 'Apps', 'ReviewRegionCN'):
-            url_ = reverse('reviewers.apps.queue_region',
-                           args=[mkt.regions.CHN.slug])
-            rv.append((url_, 'region',
-                      _('China ({0})').format(counts['region_cn'])))
         rv.append(
             (reverse('reviewers.apps.queue_homescreen'), 'homescreen',
              pgettext(counts['homescreen'], 'Homescreens ({0})').format(

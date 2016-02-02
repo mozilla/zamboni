@@ -69,53 +69,6 @@ def region_error(region):
     ))
 
 
-def toggle_app_for_special_regions(request, app, enabled_regions=None):
-    """Toggle for special regions (e.g., China)."""
-    if not waffle.flag_is_active(request, 'special-regions'):
-        return
-
-    for region in mkt.regions.SPECIAL_REGIONS:
-        status = app.geodata.get_status(region)
-
-        if enabled_regions is not None:
-            if region.id in enabled_regions:
-                # If it's not already enabled, mark as pending.
-                if status != mkt.STATUS_PUBLIC:
-                    # Developer requested for it to be in China.
-                    status = mkt.STATUS_PENDING
-                    value, changed = app.geodata.set_status(region, status)
-                    if changed:
-                        log.info(u'[Webapp:%s] App marked as pending '
-                                 u'special region (%s).' % (app, region.slug))
-                        value, changed = app.geodata.set_nominated_date(
-                            region, save=True)
-                        log.info(u'[Webapp:%s] Setting nomination date to '
-                                 u'now for region (%s).' % (app, region.slug))
-            else:
-                # Developer cancelled request for approval.
-                status = mkt.STATUS_NULL
-                value, changed = app.geodata.set_status(
-                    region, status, save=True)
-                if changed:
-                    log.info(u'[Webapp:%s] App marked as null special '
-                             u'region (%s).' % (app, region.slug))
-
-        if status == mkt.STATUS_PUBLIC:
-            # Reviewer approved for it to be in China.
-            aer = app.addonexcludedregion.filter(region=region.id)
-            if aer.exists():
-                aer.delete()
-                log.info(u'[Webapp:%s] App included in new special '
-                         u'region (%s).' % (app, region.slug))
-        else:
-            # Developer requested for it to be in China.
-            aer, created = app.addonexcludedregion.get_or_create(
-                region=region.id)
-            if created:
-                log.info(u'[Webapp:%s] App excluded from new special '
-                         u'region (%s).' % (app, region.slug))
-
-
 class AuthorForm(happyforms.ModelForm):
 
     def clean_user(self):
@@ -849,9 +802,6 @@ class RegionForm(forms.Form):
         label=_lazy(u'Choose the regions your app will be listed in:'),
         error_messages={'required':
                         _lazy(u'You must select at least one region.')})
-    special_regions = forms.MultipleChoiceField(
-        required=False, widget=forms.CheckboxSelectMultiple,
-        choices=[(x.id, x.name) for x in mkt.regions.SPECIAL_REGIONS])
     enable_new_regions = forms.BooleanField(
         required=False, label=_lazy(u'Enable new regions'))
     restricted = forms.TypedChoiceField(
@@ -887,52 +837,9 @@ class RegionForm(forms.Form):
             'enable_new_regions': self.product.enable_new_regions,
         }
 
-        # The checkboxes for special regions are
-        #
-        # - checked ... if an app has not been requested for approval in
-        #   China or the app has been rejected in China.
-        #
-        # - unchecked ... if an app has been requested for approval in
-        #   China or the app has been approved in China.
-        unchecked_statuses = (mkt.STATUS_NULL, mkt.STATUS_REJECTED)
-
-        for region in self.special_region_objs:
-            if self.product.geodata.get_status(region) in unchecked_statuses:
-                # If it's rejected in this region, uncheck its checkbox.
-                if region.id in self.initial['regions']:
-                    self.initial['regions'].remove(region.id)
-            elif region.id not in self.initial['regions']:
-                # If it's pending/public, check its checkbox.
-                self.initial['regions'].append(region.id)
-
     @property
     def regions_by_id(self):
         return mkt.regions.REGIONS_CHOICES_ID_DICT
-
-    @property
-    def special_region_objs(self):
-        return mkt.regions.SPECIAL_REGIONS
-
-    @property
-    def special_region_ids(self):
-        return mkt.regions.SPECIAL_REGION_IDS
-
-    @property
-    def low_memory_regions(self):
-        return any(region.low_memory for region in self.regions_by_id.values())
-
-    @property
-    def special_region_statuses(self):
-        """Returns the null/pending/public status for each region."""
-        statuses = {}
-        for region in self.special_region_objs:
-            statuses[region.id] = self.product.geodata.get_status_slug(region)
-        return statuses
-
-    @property
-    def special_region_messages(self):
-        """Returns the L10n messages for each region's status."""
-        return self.product.geodata.get_status_messages()
 
     def is_toggling(self):
         if not self.request or not hasattr(self.request, 'POST'):
@@ -958,9 +865,6 @@ class RegionForm(forms.Form):
             return
 
         regions = [int(x) for x in self.cleaned_data['regions']]
-        special_regions = [
-            int(x) for x in self.cleaned_data['special_regions']
-        ]
         restricted = int(self.cleaned_data['restricted'] or 0)
 
         if restricted:
@@ -1004,10 +908,6 @@ class RegionForm(forms.Form):
 
         self.product.geodata.update(restricted=restricted)
 
-        # Toggle region exclusions/statuses for special regions (e.g., China).
-        toggle_app_for_special_regions(self.request, self.product,
-                                       special_regions)
-
 
 class CategoryForm(happyforms.Form):
     categories = forms.MultipleChoiceField(label=_lazy(u'Categories'),
@@ -1045,7 +945,6 @@ class CategoryForm(happyforms.Form):
     def save(self):
         after = list(self.cleaned_data['categories'])
         self.product.update(categories=after)
-        toggle_app_for_special_regions(self.request, self.product)
 
 
 class DevAgreementForm(happyforms.Form):

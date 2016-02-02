@@ -198,15 +198,6 @@ def details(request, addon_id, addon):
             addon.update(status=mkt.STATUS_NULL,
                          highest_status=mkt.STATUS_PENDING)
 
-        # Mark as pending in special regions (i.e., China).
-        # By default, the column is set to pending when the row is inserted.
-        # But we need to set a nomination date so we know to list the app
-        # in the China Review Queue now (and sort it by that date too).
-        for region in mkt.regions.SPECIAL_REGIONS:
-            addon.geodata.set_nominated_date(region, save=True)
-            log.info(u'[Webapp:%s] Setting nomination date to '
-                     u'now for region (%s).' % (addon, region.slug))
-
         record_action('app-submitted', request, {'app-id': addon.pk})
 
         return redirect('submit.app.done', addon.app_slug)

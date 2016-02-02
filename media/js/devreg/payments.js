@@ -287,39 +287,9 @@ define('payments', [], function() {
             $free_island.toggle(tab.id == 'free-tab-header');
         });
 
-        // Special cases for special regions.
-        var regionData = $('#region-list').data();
-        var regionStatuses = regionData.specialRegionStatuses;
-        var regionLabels = regionData.specialRegionL10n;
-        z.doc.on('change', '#regions input[name="special_regions"]', function() {
-            var $this = $(this);
-            // Check/uncheck the visible checkboxes.
-            $('input.special[value="' + $this.val() + '"]')
-                .prop('checked', $this.is(':checked')).trigger('change');
-        }).on('change', '#regions input.special', function() {
-            var $this = $(this);
-            var checked = $this.is(':checked');
-            var region = $this.val();
-            var status = regionStatuses[region];
-            var labels = regionLabels;
-
-            // Check/uncheck the hidden checkbox. (Notice we're not triggering `change`.)
-            $('input[name="special_regions"][value="' + region + '"]').prop('checked', checked);
-
-            // Based on the region's status, show the appropriate label for the special region:
-            // - unchecked and not public: "requires additional review"
-            // - pending:                  "awaiting approval"
-            // - rejected:                 "rejected"
-            if (status != 'public') {
-                status = checked ? 'pending' : 'unavailable';
-            }
-            $this.closest('li').find('.status-label').text(labels[status] || '');
-        }).on('change', '.paid-regions input[name="regions"][value="1"]', function() {
+        z.doc.on('change', '.paid-regions input[name="regions"][value="1"]', function() {
             $('#regions .rest-of-world').toggle();
         });
-
-        // Initialize special checkboxes.
-        z.doc.find('#regions input.special').trigger('change');
 
         if ($('#paid-regions-island').length) {
             // Paid apps for the time being must be restricted.
@@ -337,18 +307,6 @@ define('payments', [], function() {
             // otherwise hidden (for free apps).
             $('.restricted').removeClass('hidden');
         } else {
-            // Clone the special regions' checkboxes from the restricted section.
-            var $specials = $('#regions .region-cb.special').closest('li').clone().wrap('<ul class="special-regions-unrestricted unrestricted">').parent();
-            $specials.find('.restricted').removeClass('restricted');
-            $specials.insertAfter($('input[name="restricted"][value="0"]').closest('label'));
-
-            // Clone the "Learn why some regions are restricted" choice.
-            var $unrestrictedList = $('ul.special-regions-unrestricted');
-            $('header.unrestricted').clone().removeClass('hidden').insertBefore($unrestrictedList);
-            // Remove the old one.
-            $('header.unrestricted.hidden').remove();
-            $('.disabled-regions').clone().insertAfter($unrestrictedList).addClass('unrestricted');
-
             // Free apps can toggle between restricted and not.
             z.doc.on('change', '#regions input[name=restricted]:checked', function(e, init) {
                 // Coerce string ('0' or '1') to boolean ('true' or 'false').

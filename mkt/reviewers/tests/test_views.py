@@ -653,52 +653,6 @@ class TestAppQueueES(mkt.site.tests.ESTestCase, TestAppQueue):
         self.reindex(Webapp)
 
 
-class TestRegionQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
-                      XSSMixin):
-
-    def setUp(self):
-        super(TestRegionQueue, self).setUp()
-        self.apps = [app_factory(name='WWW',
-                                 status=mkt.STATUS_PUBLIC),
-                     app_factory(name='XXX',
-                                 status=mkt.STATUS_APPROVED),
-                     app_factory(name='YYY',
-                                 status=mkt.STATUS_PUBLIC),
-                     app_factory(name='ZZZ',
-                                 status=mkt.STATUS_PENDING)]
-        # WWW and XXX are the only ones actually requested to be public.
-        self.apps[0].geodata.update(region_cn_status=mkt.STATUS_PENDING,
-                                    region_cn_nominated=self.days_ago(2))
-        self.apps[1].geodata.update(region_cn_status=mkt.STATUS_PENDING,
-                                    region_cn_nominated=self.days_ago(1))
-        self.apps[2].geodata.update(region_cn_status=mkt.STATUS_PUBLIC)
-
-        self.grant_permission(self.reviewer_user, 'Apps:ReviewRegionCN')
-        self.login_as_editor()
-        self.url = reverse('reviewers.apps.queue_region',
-                           args=[mkt.regions.CHN.slug])
-
-    def test_template_links(self):
-        r = self.client.get(self.url)
-        eq_(r.status_code, 200)
-        links = pq(r.content)('.regional-queue tbody tr td:first-child a')
-        apps = Webapp.objects.pending_in_region('cn').order_by(
-            '_geodata__region_cn_nominated')
-        src = '?src=queue-region-cn'
-        expected = [
-            (unicode(apps[0].name), apps[0].get_url_path() + src),
-            (unicode(apps[1].name), apps[1].get_url_path() + src),
-        ]
-        check_links(expected, links, verify=False)
-
-    def test_escalated_not_in_queue(self):
-        self.grant_permission(self.snr_reviewer_user, 'Apps:ReviewRegionCN')
-        self.login_as_senior_reviewer()
-        self.apps[0].escalationqueue_set.create()
-        res = self.client.get(self.url)
-        eq_([a.app for a in res.context['addons']], [self.apps[1]])
-
-
 @mock.patch('mkt.versions.models.Version.is_privileged', False)
 class TestRereviewQueue(AppReviewerTest, AccessMixin, FlagsMixin, SearchMixin,
                         XSSMixin):

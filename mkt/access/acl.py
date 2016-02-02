@@ -87,11 +87,5 @@ def check_addon_ownership(request, addon, viewer=False, dev=False,
                                 addonuser__role__in=roles).exists()
 
 
-def check_reviewer(request, region=None):
-    if region is not None:
-        # This is for reviewers in special regions (e.g., China).
-        from mkt.regions.utils import parse_region
-        region_slug = parse_region(region).slug.upper()
-        return action_allowed(request, 'Apps', 'ReviewRegion%s' % region_slug)
-
+def check_reviewer(request):
     return action_allowed(request, 'Apps', 'Review')

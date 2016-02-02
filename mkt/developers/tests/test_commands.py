@@ -6,10 +6,9 @@ import mkt
 import mkt.site.tests
 from mkt.developers.management.commands import (cleanup_addon_premium,
                                                 exclude_unrated,
-                                                migrate_geodata,
                                                 refresh_iarc_ratings)
 from mkt.site.fixtures import fixture
-from mkt.webapps.models import (AddonExcludedRegion, AddonPremium, IARCCert,
+from mkt.webapps.models import (AddonPremium, IARCCert,
                                 IARCInfo, RatingDescriptors, Webapp)
 
 
@@ -29,49 +28,6 @@ class TestCommandViews(mkt.site.tests.TestCase):
         self.webapp.update(premium_type=mkt.ADDON_FREE)
         cleanup_addon_premium.Command().handle()
         eq_(AddonPremium.objects.all().count(), 0)
-
-
-class TestMigrateGeodata(mkt.site.tests.TestCase):
-    fixtures = fixture('webapp_337141')
-
-    def setUp(self):
-        self.webapp = Webapp.objects.get(pk=337141)
-
-    def test_restricted_no_migration_of_paid_apps_exclusions(self):
-        self.make_premium(self.webapp)
-        self.webapp.addonexcludedregion.create(region=mkt.regions.USA.id)
-        eq_(self.webapp.geodata.reload().restricted, False)
-
-        migrate_geodata.Command().handle()
-
-        eq_(self.webapp.reload().addonexcludedregion.count(), 1)
-        eq_(self.webapp.geodata.reload().restricted, True)
-
-    def test_unrestricted_migration_of_free_apps_exclusions(self):
-        self.webapp.addonexcludedregion.create(region=mkt.regions.USA.id)
-        eq_(self.webapp.geodata.reload().restricted, False)
-
-        migrate_geodata.Command().handle()
-
-        eq_(self.webapp.reload().addonexcludedregion.count(), 0)
-        eq_(self.webapp.geodata.reload().restricted, False)
-
-    def test_migration_of_regional_content(self):
-        # Exclude in everywhere except Brazil.
-        regions = list(mkt.regions.REGIONS_CHOICES_ID_DICT)
-        regions.remove(mkt.regions.BRA.id)
-        AddonExcludedRegion.objects.bulk_create(
-            [AddonExcludedRegion(region=region, addon=self.webapp) for region
-             in regions])
-
-        eq_(self.webapp.geodata.reload().popular_region, None)
-
-        migrate_geodata.Command().handle()
-
-        self.assertSetEqual(self.webapp.reload().addonexcludedregion
-                                .values_list('region', flat=True),
-                            [mkt.regions.CHN.id])
-        eq_(self.webapp.geodata.reload().popular_region, mkt.regions.BRA.slug)
 
 
 @mock.patch('mkt.developers.management.commands.exclude_unrated.index_webapps')

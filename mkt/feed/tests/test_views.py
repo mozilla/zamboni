@@ -1097,7 +1097,7 @@ class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
                 ['brand', self.brand.id],
                 ['app', self.feed_apps[0].id],
             ],
-            'cn': [
+            'fr': [
                 ['brand', self.brand.id],
                 ['app', self.feed_apps[2].id],
                 ['collection', self.collection.id],
@@ -1129,20 +1129,20 @@ class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
         eq_(us_items[2].item_type, 'brand')
         eq_(us_items[3].item_type, 'app')
 
-        # Test China feed.
-        cn_items = FeedItem.objects.filter(
-            region=mkt.regions.CHN.id).order_by('order')
-        eq_(cn_items.count(), 3)
-        eq_(cn_items[0].item_type, 'brand')
-        eq_(cn_items[1].item_type, 'app')
-        eq_(cn_items[2].item_type, 'collection')
+        # Test France feed.
+        fr_items = FeedItem.objects.filter(
+            region=mkt.regions.FRA.id).order_by('order')
+        eq_(fr_items.count(), 3)
+        eq_(fr_items[0].item_type, 'brand')
+        eq_(fr_items[1].item_type, 'app')
+        eq_(fr_items[2].item_type, 'collection')
 
     def test_update_feed(self):
         self.feed_permission()
         self._set_feed_items(self.data)
 
         # Update US.
-        self.data['us'] = self.data['cn']
+        self.data['us'] = self.data['fr']
         self._set_feed_items(self.data)
 
         us_items = FeedItem.objects.filter(
@@ -1151,18 +1151,18 @@ class TestBuilderView(FeedAppMixin, BaseTestFeedItemViewSet):
         eq_(us_items[1].app_id, self.feed_apps[2].id)
 
     def test_truncate_feed(self):
-        """Fill up China feed, then send an empty array for China."""
+        """Fill up France feed, then send an empty array for France."""
         self.feed_permission()
         self._set_feed_items(self.data)
-        ok_(FeedItem.objects.filter(region=mkt.regions.CHN.id))
+        ok_(FeedItem.objects.filter(region=mkt.regions.FRA.id))
 
-        self.data['cn'] = []
+        self.data['fr'] = []
         self._set_feed_items(self.data)
         ok_(FeedItem.objects.filter(region=mkt.regions.USA.id))
-        ok_(not FeedItem.objects.filter(region=mkt.regions.CHN.id))
+        ok_(not FeedItem.objects.filter(region=mkt.regions.FRA.id))
 
     def test_no_perm(self):
-        """Fill up China feed, then send an empty array for China."""
+        """Fill up France feed, then send an empty array for France."""
         r = self._set_feed_items(self.data)
         eq_(r.status_code, 403)
 
