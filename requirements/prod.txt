@@ -1,31 +1,31 @@
 # include compiled.txt
 -r compiled.txt
 # amgp is required by kombu
-amqp==1.4.8
+amqp==1.4.9
 # anyjson is required by kombu
 anyjson==0.3.3
 # argparse is required by app-validator, translate-toolkit, curling, receipts
 argparse==1.4.0
-babel==2.1.1
+babel==2.2.0
 basket-client==0.3.11
 # billiard is required by celery
 billiard==3.3.0.22
 bleach==1.4.2
 # blessings is used by dennis
 blessings==1.6
-boto==2.38.0
+boto==2.39.0
 # cef is required by heka-py-cef
 cef==0.5
-celery==3.1.19
+celery==3.1.20
 certifi==2015.11.20.1
 chardet==2.3.0
 # click is required by dennis
-click==4.0
+click==6.2
 commonware==0.4.3
 # cookies is required by responses
 cookies==2.2.1
 # contextlib2 is used by raven
-contextlib2==0.4.0
+contextlib2==0.5.1
 # cssselect is required by pyquery
 cssselect==0.9.1
 # cssutils is required by app-validator
@@ -43,14 +43,14 @@ django-cronjobs==0.2.3
 django_csp==2.0.3
 django-environ==0.4.0
 django-extensions==1.6.1
-django-filter==0.11.0
+django-filter==0.12.0
 django-multidb-router==0.6
-django-nose==1.4.2
+django-nose==1.4.3
 django-quieter-formset==0.4
 djangorestframework==3.3.2
 django-secure==1.0.1
 django-statsd-mozilla==0.3.16
-django-storages-redux==1.3
+django-storages-redux==1.3.2
 django-waffle==0.11
 drf-nested-routers==0.11.1
 easy-thumbnails==2.3
@@ -72,9 +72,9 @@ idna==2.0
 importlib-no-failure==1.0.2
 # ipaddress is required by cryptography
 ipaddress==1.0.16
-jingo==0.8.1
+jingo==0.8.2
 # kombu is required by celery
-kombu==3.0.32
+kombu==3.0.33
 heka-py==0.30.3
 heka-py-cef==0.3.1
 langid==1.1.5
@@ -87,7 +87,7 @@ m2secret==0.1.1
 # ndg-httpsclient is required by app-validator
 ndg-httpsclient==0.4.0
 newrelic==2.60.0.46
-nose==1.3.0
+nose==1.3.7
 oauthlib==0.7.2
 # polib is required by dennis
 polib==1.0.7
@@ -102,12 +102,12 @@ pycparser==2.14
 pydenticon==0.2
 pyjwkest==1.0.9
 PyJWT-mozilla==0.1.5
-pyquery==1.2.9
-python-dateutil==1.5
+pyquery==1.2.11
+python-dateutil==2.4.2
 python-gflags==2.0
 python-memcached==1.57
 pytz==2015.7
-raven==5.9.2
+raven==5.10.2
 receipts==0.2.10
 redis==2.10.5
 # requests is required by responses, basket-client

@@ -425,7 +425,7 @@ class TestAppSerializerPrices(mkt.site.tests.TestCase):
         with self.activate(locale='fr'):
             res = self.serialize(self.app, region=regions.POL)
             eq_(res['price'], '5.01')
-            eq_(res['price_locale'], u'5,01\xa0PLN')
+            eq_(res['price_locale'], u'5,01 zł')
 
     def test_missing_price(self):
         premium = self.make_premium(self.app, price='0.99')

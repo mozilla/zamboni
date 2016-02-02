@@ -3,10 +3,10 @@
 -r prod.txt
 
 # Flake8 requirements
-flake8==2.4.1
+flake8==2.5.2
 pyflakes==1.0.0
-pep8==1.6.2
-mccabe==0.3.1
+pep8==1.7.0
+mccabe==0.4.0
 
 fudge==1.1.0
 funcsigs==0.4
