@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/mozilla/zamboni.svg?branch=master)](https://travis-ci.org/mozilla/zamboni)
-[![Coverage Status](https://img.shields.io/coveralls/mozilla/zamboni.svg)](https://coveralls.io/r/mozilla/zamboni)
 
 The [Firefox Marketplace](https://marketplace.firefox.com) backend.
 
