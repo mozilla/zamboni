@@ -91,7 +91,7 @@ class TestVersion(mkt.site.tests.TestCase):
         self.webapp.update(status=mkt.STATUS_REJECTED)
         make_rated(self.webapp)
         (self.webapp.versions.latest()
-                             .all_files[0].update(status=mkt.STATUS_DISABLED))
+                             .all_files[0].update(status=mkt.STATUS_REJECTED))
 
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -131,7 +131,7 @@ class TestVersion(mkt.site.tests.TestCase):
         make_rated(self.webapp)
         mkt.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
         (self.webapp.versions.latest()
-                             .all_files[0].update(status=mkt.STATUS_DISABLED))
+                             .all_files[0].update(status=mkt.STATUS_REJECTED))
         my_reply = 'no give up'
         self.client.post(self.url, {'notes': my_reply,
                                     'resubmit-app': ''})
@@ -148,7 +148,7 @@ class TestVersion(mkt.site.tests.TestCase):
                 details={'comments': comments, 'reviewtype': 'pending'})
         self.webapp.update(status=mkt.STATUS_REJECTED)
         (self.webapp.versions.latest()
-                             .all_files[0].update(status=mkt.STATUS_DISABLED))
+                             .all_files[0].update(status=mkt.STATUS_REJECTED))
 
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
@@ -208,7 +208,7 @@ class TestAddVersion(BaseAddVersionTest):
         # Test app rejection, then new version, updates app status to pending.
         self.app.update(status=mkt.STATUS_REJECTED)
         files = File.objects.filter(version__addon=self.app)
-        files.update(status=mkt.STATUS_DISABLED)
+        files.update(status=mkt.STATUS_REJECTED)
         self._post(302)
         self.app.reload()
         version = self.app.versions.latest()

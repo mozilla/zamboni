@@ -1688,7 +1688,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         self.post(data, queue='escalated')
         app = self.get_app()
         eq_(app.status, mkt.STATUS_REJECTED)
-        eq_(File.objects.filter(id__in=files)[0].status, mkt.STATUS_DISABLED)
+        eq_(File.objects.filter(id__in=files)[0].status, mkt.STATUS_REJECTED)
         self._check_log(mkt.LOG.REJECT_VERSION)
         eq_(EscalationQueue.objects.count(), 0)
 
@@ -2301,7 +2301,7 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
         eq_(index_webapps.delay.call_count, 1)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_REJECTED)
-        eq_(self.file.reload().status, mkt.STATUS_DISABLED)
+        eq_(self.file.reload().status, mkt.STATUS_REJECTED)
         self._check_log(mkt.LOG.REJECT_VERSION)
         self._check_message(messages)
 
@@ -2460,7 +2460,7 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         self.post(data)
         app = self.get_app()
         eq_(app.status, mkt.STATUS_REJECTED)
-        eq_(self.file.reload().status, mkt.STATUS_DISABLED)
+        eq_(self.file.reload().status, mkt.STATUS_REJECTED)
 
         self._check_email_dev_and_contact('Rejected')
         self._check_email_body()
@@ -2778,7 +2778,7 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(app.status, mkt.STATUS_PUBLIC)
         ok_(app.current_version != self.new_version)
         eq_(app.current_version.all_files[0].status, mkt.STATUS_PUBLIC)
-        eq_(self.new_version.all_files[0].status, mkt.STATUS_DISABLED)
+        eq_(self.new_version.all_files[0].status, mkt.STATUS_REJECTED)
         self._check_log(mkt.LOG.REJECT_VERSION)
 
         self._check_email_dev_and_contact('Rejected')
@@ -2811,7 +2811,7 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(app.status, mkt.STATUS_UNLISTED)
         ok_(app.current_version != self.new_version)
         eq_(app.current_version.all_files[0].status, mkt.STATUS_PUBLIC)
-        eq_(self.new_version.all_files[0].status, mkt.STATUS_DISABLED)
+        eq_(self.new_version.all_files[0].status, mkt.STATUS_REJECTED)
         self._check_log(mkt.LOG.REJECT_VERSION)
 
         self._check_email_dev_and_contact('Rejected')
@@ -2844,7 +2844,7 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(app.status, mkt.STATUS_APPROVED)
         ok_(app.current_version != self.new_version)
         eq_(app.current_version.all_files[0].status, mkt.STATUS_PUBLIC)
-        eq_(self.new_version.all_files[0].status, mkt.STATUS_DISABLED)
+        eq_(self.new_version.all_files[0].status, mkt.STATUS_REJECTED)
         self._check_log(mkt.LOG.REJECT_VERSION)
 
         self._check_email_dev_and_contact('Rejected')

@@ -230,6 +230,17 @@ class TestFile(mkt.site.tests.TestCase, mkt.site.tests.MktPaths):
         f.save()
         assert hide_mock.called
 
+    @mock.patch('mkt.files.models.File.hide_disabled_file')
+    def test_reject_signal(self, hide_mock):
+        f = File.objects.get()
+        f.status = mkt.STATUS_PUBLIC
+        f.save()
+        assert not hide_mock.called
+
+        f.status = mkt.STATUS_REJECTED
+        f.save()
+        assert hide_mock.called
+
     @mock.patch('mkt.files.models.File.unhide_disabled_file')
     def test_unhide_on_enable(self, unhide_mock):
         f = File.objects.get()

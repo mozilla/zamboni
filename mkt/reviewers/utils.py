@@ -269,7 +269,7 @@ class ReviewApp(ReviewBase):
         # Hold onto the status before we change it.
         status = self.addon.status
 
-        self.set_files(mkt.STATUS_DISABLED, self.version.files.all(),
+        self.set_files(mkt.STATUS_REJECTED, self.version.files.all(),
                        hide_disabled_file=True)
         # If this app is not packaged (packaged apps can have multiple
         # versions) or if there aren't other versions with already reviewed

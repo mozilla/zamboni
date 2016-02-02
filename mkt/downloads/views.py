@@ -26,7 +26,8 @@ def download_file(request, file_id, type=None):
     webapp = get_object_or_404(Webapp.objects.all().no_transforms(),
                                pk=file_.version.addon_id, is_packaged=True)
 
-    if webapp.is_disabled or file_.status == mkt.STATUS_DISABLED:
+    if webapp.is_disabled or file_.status in [mkt.STATUS_DISABLED,
+                                              mkt.STATUS_REJECTED]:
         if not acl.check_addon_ownership(request, webapp, viewer=True,
                                          ignore_disabled=True):
             raise http.Http404()
