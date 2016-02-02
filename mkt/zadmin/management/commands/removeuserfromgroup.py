@@ -11,6 +11,7 @@ class Command(BaseCommand):
             '    ./manage.py removeuserfromgroup <user_id|email> <group_id>')
 
     log = commonware.log.getLogger('z.users')
+    use_argparse = False
 
     def handle(self, *args, **options):
         try:

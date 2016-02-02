@@ -8,6 +8,7 @@ from lib.crypto import generate_key
 
 class Command(BaseCommand):
     help = 'Generate a randomized encryption encryption key'
+    use_argparse = False
     option_list = BaseCommand.option_list + (
         make_option('--dest', action='store',
                     help='Location for key file. Default: %default',

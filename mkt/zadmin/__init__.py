@@ -1,4 +1,5 @@
 from django.template import loader
+from django.template.backends.django import Template
 from django.template.response import SimpleTemplateResponse
 
 import jingo
@@ -26,7 +27,9 @@ def rendered_content(self):
     # not a list.
     if isinstance(template, (list, tuple)):
         template = loader.select_template(template)
-    return jingo.render_to_string(self._request, template.template,
+    if isinstance(template, Template):
+        template = template.template
+    return jingo.render_to_string(self._request, template,
                                   self.context_data)
 
 SimpleTemplateResponse.rendered_content = property(rendered_content)
