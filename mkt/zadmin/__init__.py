@@ -13,6 +13,8 @@ import jingo
 def rendered_content(self):
     from mkt.site.utils import env  # django import order LOL :-(
     template = self.template_name
+    if 'user' not in self.context_data:
+        self.context_data['user'] = self._request.user
     context_instance = self.resolve_context(self.context_data)
 
     # Gross, let's figure out if we're in the admin.
