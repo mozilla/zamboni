@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-01-27 11:59-0800\n"
+"POT-Creation-Date: 2016-02-03 15:04-0800\n"
 "PO-Revision-Date: 2015-11-13 10:41+0000\n"
 "Last-Translator: Jobava <jobaval10n@gmail.com>\n"
 "Language-Team: Romanian <dev-l10n-web@lists.mozilla.org>\n"
@@ -1162,7 +1162,7 @@ msgstr "Interzis de pe Marketplace"
 msgid "Deleted"
 msgstr "Șters"
 
-#: mkt/constants/base.py:32 mkt/constants/comm.py:47 mkt/reviewers/helpers.py:195 mkt/site/log.py:176
+#: mkt/constants/base.py:32 mkt/constants/comm.py:47 mkt/reviewers/helpers.py:190 mkt/site/log.py:176
 msgid "Rejected"
 msgstr "Respins"
 
@@ -2166,7 +2166,7 @@ msgstr "Acord"
 msgid "Submit"
 msgstr "Trimite"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1448
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1433
 msgid "Details"
 msgstr "Detalii"
 
@@ -2194,244 +2194,244 @@ msgstr "Evaluare de conținut schimbat în Adult."
 msgid "You cannot select {region}."
 msgstr "Nu poți selecta {region}."
 
-#: mkt/developers/forms.py:125
+#: mkt/developers/forms.py:78
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr "Toți membrii echipei trebuie să citească și să fie de acord cu acordul de dezvoltare."
 
-#: mkt/developers/forms.py:156
+#: mkt/developers/forms.py:109
 msgid "Must have at least one owner."
 msgstr "Trebuie să aibă cel puțin un proprietar."
 
-#: mkt/developers/forms.py:159
+#: mkt/developers/forms.py:112
 msgid "At least one team member must be listed."
 msgstr "Cel puțin un membru al echipei trebuie listat."
 
-#: mkt/developers/forms.py:163
+#: mkt/developers/forms.py:116
 msgid "A team member can only be listed once."
 msgstr "Un membru al echipei poate fi listat o singură dată."
 
-#: mkt/developers/forms.py:190
+#: mkt/developers/forms.py:143
 #, python-format
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
 msgstr "Ups, se pare că ați trimis deja manifestul pentru %s, care este public în prezent. <a href=\"%s\">Editează aplicația</a>"
 
-#: mkt/developers/forms.py:194
+#: mkt/developers/forms.py:147
 #, python-format
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
 msgstr "Ups, se pare că ați trimis deja manifestul pentru %s, care este în așteptare. <a href=\"%s\">Editează aplicația</a>"
 
-#: mkt/developers/forms.py:198
+#: mkt/developers/forms.py:151
 #, python-format
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
 msgstr "Ups, se pare că ați trimis deja manifestul pentru %s, care este momentan incomplet. <a href=\"%s\">Reia aplicația</a>"
 
-#: mkt/developers/forms.py:202
+#: mkt/developers/forms.py:155
 #, python-format
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
 msgstr "Ups, se pare că ați trimis deja manifestul pentru %s, care a fost respins deja. <a href=\"%s\">Editează aplicația</a>"
 
-#: mkt/developers/forms.py:206
+#: mkt/developers/forms.py:159
 #, python-format
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
 msgstr "Ups, se pare că ați trimis deja manifestul pentru %s, care este momentan interzisă pe Marketplace. <a href=\"%s\">Editează aplicația</a>"
 
-#: mkt/developers/forms.py:210
+#: mkt/developers/forms.py:163
 #, python-format
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
 msgstr "Ups, se pare că ați trimis deja manifestul pentru %s, care este momentan dezactivat. <a href=\"%s\">Editează aplicația</a>"
 
-#: mkt/developers/forms.py:225
+#: mkt/developers/forms.py:178
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "Există deja o aplicație pentru acest domeniu; doar o singură aplicație per domeniu este permisă."
 
-#: mkt/developers/forms.py:375 mkt/webapps/models.py:1357
+#: mkt/developers/forms.py:328 mkt/webapps/models.py:1342
 msgid "You must upload at least one screenshot or video."
 msgstr "Trebuie să încarci cel puțin o captură de ecran sau videoclip."
 
-#: mkt/developers/forms.py:416
+#: mkt/developers/forms.py:369
 #, python-format
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr "Aplicația împachetată este prea mare pentru a fi admisă. Pachetele trebuie să fie mai mici de %s."
 
-#: mkt/developers/forms.py:439
+#: mkt/developers/forms.py:392
 msgid "Error extracting manifest from zip file."
 msgstr "Eroare la extragerea manifestului din fișierul zip."
 
 # Posibil să fie „URL gazdă”
-#: mkt/developers/forms.py:509
+#: mkt/developers/forms.py:462
 msgid "Hosted URL:"
 msgstr "URL găzduit:"
 
-#: mkt/developers/forms.py:510
+#: mkt/developers/forms.py:463
 msgid "A URL to where your app is hosted on the web, if it exists. This allows users to try out your app before installing it."
 msgstr "Un URL cu locația în care este găzduită aplicația pe web, dacă există. Asta permite utilizatorilor să încerce aplicația înainte de a o instala."
 
-#: mkt/developers/forms.py:515
+#: mkt/developers/forms.py:468
 msgid "Provide a detailed description of your app"
 msgstr "Furnizează o descriere detaliată a aplicației"
 
-#: mkt/developers/forms.py:516
+#: mkt/developers/forms.py:469
 msgid "This description will appear on the details page."
 msgstr "Descrierea va apărea pe pagina de detalii."
 
-#: mkt/developers/forms.py:519 mkt/submit/forms.py:288
+#: mkt/developers/forms.py:472 mkt/submit/forms.py:288
 msgid "Search Keywords:"
 msgstr "Cuvintele cheie pentru căutare:"
 
-#: mkt/developers/forms.py:521 mkt/developers/templates/developers/apps/edit/basic.html:148 mkt/submit/forms.py:290
+#: mkt/developers/forms.py:474 mkt/developers/templates/developers/apps/edit/basic.html:148 mkt/submit/forms.py:290
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
 msgstr "Cuvintele cheie pentru căutare sunt folosite pentru a returna rezultatele căutării în Firefox Marketplace. Asigură-te că incluzi cuvinte cheii care să reflecte corect aplicația."
 
-#: mkt/developers/forms.py:576 mkt/submit/forms.py:368
+#: mkt/developers/forms.py:531 mkt/submit/forms.py:368
 msgid "This slug is already in use. Please choose another."
 msgstr "Acest slug este deja folosit. Te rugăm să alegi altul."
 
-#: mkt/developers/forms.py:579 mkt/submit/forms.py:372
+#: mkt/developers/forms.py:534 mkt/submit/forms.py:372
 #, python-format
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "Slug-ul nu poate fi „%s”. Te rugăm să alegi altul."
 
-#: mkt/developers/forms.py:607
+#: mkt/developers/forms.py:562
 msgid "Manifest URL changed from {before_url} to {after_url}"
 msgstr "URL-ul manifestului schimbat din {before_url} în {after_url}"
 
-#: mkt/developers/forms.py:644
+#: mkt/developers/forms.py:599
 msgid "Please specify your app's Privacy Policy"
 msgstr "Specifică politica de confidențialitate a aplicației"
 
-#: mkt/developers/forms.py:665
+#: mkt/developers/forms.py:620
 #, python-format
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr "Înainte de a schimba limba locală implicită trebuie să ai un nume și descriere pentru acea limbă locală. Nu ai pentru %s."
 
-#: mkt/developers/forms.py:724 mkt/submit/templates/submit/details.html:128
+#: mkt/developers/forms.py:679 mkt/submit/templates/submit/details.html:128
 msgid "You must provide either a website, an email, or both."
 msgstr "Trebuie să introduci fie un site web, un e-mail, fie ambele."
 
-#: mkt/developers/forms.py:749
+#: mkt/developers/forms.py:704
 msgid "Your comments"
 msgstr "Comentariile tale"
 
-#: mkt/developers/forms.py:776
+#: mkt/developers/forms.py:731
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr "<b>Publicat</b>: Vizibil pentru toată lumea în Marketplace și inclus în rezultatele de căutare și paginile cu listări."
 
-#: mkt/developers/forms.py:780
+#: mkt/developers/forms.py:735
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
 msgstr "<b>Nelistat</b>: Vizibil doar pentru persoane care au un URL, nu apare în rezultatele de căutare sau paginile cu listări."
 
-#: mkt/developers/forms.py:796
+#: mkt/developers/forms.py:751
 msgid "App Visibility:"
 msgstr "Vizibilitatea aplicației:"
 
-#: mkt/developers/forms.py:798
+#: mkt/developers/forms.py:753
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
 msgstr "<b>Limitează la echipa mea</b>: Vizibil doar membrilor echipei."
 
-#: mkt/developers/forms.py:847
+#: mkt/developers/forms.py:802
 msgid "Choose the regions your app will be listed in:"
 msgstr "Alege regiunile unde va fi listată aplicația:"
 
-#: mkt/developers/forms.py:849 mkt/developers/forms.py:950
+#: mkt/developers/forms.py:804 mkt/developers/forms.py:859
 msgid "You must select at least one region."
 msgstr "Trebuie să selectezi cel puțin o regiune."
 
-#: mkt/developers/forms.py:854
+#: mkt/developers/forms.py:806
 msgid "Enable new regions"
 msgstr "Activează regiuni noi"
 
-#: mkt/developers/forms.py:857
+#: mkt/developers/forms.py:809
 msgid "Make my app available in most regions"
 msgstr "Fă aplicația disponibilă în majoritatea regiunilor"
 
-#: mkt/developers/forms.py:858
+#: mkt/developers/forms.py:810
 msgid "Choose where my app is made available"
 msgstr "Alege unde dorești să fie disponibilă aplicația"
 
-#: mkt/developers/forms.py:1011 mkt/developers/templates/developers/apps/edit/basic.html:195 mkt/lookup/templates/lookup/website_edit.html:84 mkt/lookup/templates/lookup/website_summary.html:48
+#: mkt/developers/forms.py:913 mkt/developers/templates/developers/apps/edit/basic.html:195 mkt/lookup/templates/lookup/website_edit.html:84 mkt/lookup/templates/lookup/website_summary.html:48
 #: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:102 mkt/websites/forms.py:23
 msgid "Categories"
 msgstr "Categorii"
 
 #. L10n: {0} is the number of categories.
-#: mkt/developers/forms.py:1036 mkt/webapps/serializers.py:299 mkt/websites/forms.py:62
+#: mkt/developers/forms.py:938 mkt/webapps/serializers.py:299 mkt/websites/forms.py:62
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Poți avea doar {0} categorie."
 msgstr[1] "Poți avea doar {0} categorii."
 msgstr[2] "Poți avea doar {0} de categorii."
 
-#: mkt/developers/forms.py:1050
+#: mkt/developers/forms.py:951
 msgid "Agree"
 msgstr "De acord"
 
-#: mkt/developers/forms.py:1067
+#: mkt/developers/forms.py:968
 msgid "Please enter a valid email address."
 msgstr "Introdu o adresă de e-mail validă."
 
-#: mkt/developers/forms.py:1070
+#: mkt/developers/forms.py:971
 msgid "Your email address"
 msgstr "Adresa de e-mail"
 
-#: mkt/developers/forms.py:1073
+#: mkt/developers/forms.py:974
 msgid "Text"
 msgstr "Text"
 
-#: mkt/developers/forms.py:1077
+#: mkt/developers/forms.py:978
 msgid "You must agree to the Privacy Policy."
 msgstr "Trebuie să fii de acord cu politica de confidențialitate."
 
-#: mkt/developers/forms.py:1078 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:979 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "Țara"
 
-#: mkt/developers/forms.py:1099 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27
+#: mkt/developers/forms.py:1000 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:21 mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:18
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:20 mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
 msgstr "Aplicație"
 
-#: mkt/developers/forms.py:1101
+#: mkt/developers/forms.py:1002
 msgid "Transaction Type"
 msgstr "Tipul tranzacției"
 
-#: mkt/developers/forms.py:1104 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
+#: mkt/developers/forms.py:1005 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
 msgid "Transaction ID"
 msgstr "ID-ul tranzacției"
 
-#: mkt/developers/forms.py:1110
+#: mkt/developers/forms.py:1011
 msgid "From"
 msgstr "De la"
 
-#: mkt/developers/forms.py:1113
+#: mkt/developers/forms.py:1014
 msgid "To"
 msgstr "Către"
 
-#: mkt/developers/forms.py:1124
+#: mkt/developers/forms.py:1025
 msgid "Web site"
 msgstr "Site web"
 
-#: mkt/developers/forms.py:1125
+#: mkt/developers/forms.py:1026
 msgid "Command line"
 msgstr "Linie de comandă"
 
-#: mkt/developers/forms.py:1146
+#: mkt/developers/forms.py:1047
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr "Faceți din aceasta versiunea Activă a aplicației mele imediat ce a fost recenzată și aprobată."
 
-#: mkt/developers/forms.py:1193 mkt/developers/forms.py:1251
+#: mkt/developers/forms.py:1094 mkt/developers/forms.py:1152
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr "Acest certificat IARC este deja folosit de o altă aplicație. Creează un nou certificat de evaluare IARC."
 
-#: mkt/developers/forms.py:1213
+#: mkt/developers/forms.py:1114
 msgid "This Certificate ID is not recognized by IARC, or is already attached to an app in the Firefox Marketplace."
 msgstr ""
 
-#: mkt/developers/forms.py:1235
+#: mkt/developers/forms.py:1136
 msgid "Please enter a valid submission ID."
 msgstr "Introdu un ID de propunere (submission) valid."
 
-#: mkt/developers/forms.py:1286 mkt/developers/forms.py:1298
+#: mkt/developers/forms.py:1187 mkt/developers/forms.py:1199
 msgid "Invalid submission ID or security code."
 msgstr "ID-ul de propunere este invalid sau codul de securitate."
 
@@ -2467,7 +2467,7 @@ msgstr "Dacă aplicația e gratuită, trebuie activate plățile în aplicație"
 msgid "Not a valid choice"
 msgstr "Nu e o opțiune validă"
 
-#: mkt/developers/forms_payments.py:326 mkt/developers/templates/developers/payments/premium.html:301
+#: mkt/developers/forms_payments.py:326 mkt/developers/templates/developers/payments/premium.html:294
 msgid "This is a paid upgrade of"
 msgstr "Acesta este o actualizare contra cost a"
 
@@ -2734,7 +2734,7 @@ msgstr "Aplicație repropusă cu succes."
 msgid "New version successfully added."
 msgstr "Noua versiune a fost adăugată cu succes."
 
-#: mkt/developers/views.py:297 mkt/developers/views.py:539 mkt/developers/views_payments.py:113 mkt/developers/views_payments.py:449 mkt/reviewers/views.py:705
+#: mkt/developers/views.py:297 mkt/developers/views.py:539 mkt/developers/views_payments.py:114 mkt/developers/views_payments.py:450 mkt/reviewers/views.py:679
 msgid "Changes successfully saved."
 msgstr "Schimbările au fost salvate cu succes."
 
@@ -2766,67 +2766,67 @@ msgstr "Propunerea a întâmpinat o eroare."
 msgid "An error occurred validating the manifest."
 msgstr "S-a produs o eroare la validarea manifestului."
 
-#: mkt/developers/views.py:923
+#: mkt/developers/views.py:921
 msgid "There was an error uploading your preview."
 msgstr "S-a produs o eroare la încărcarea previzualizării."
 
-#: mkt/developers/views.py:974
+#: mkt/developers/views.py:972
 msgid "Terms of service accepted."
 msgstr "Termenii serviciului au fost acceptați."
 
-#: mkt/developers/views.py:990
+#: mkt/developers/views.py:988
 msgid "Users with the admin role cannot use the API."
 msgstr "Utilizatorii cu rolul de admin nu pot folosi API-ul."
 
-#: mkt/developers/views.py:999
+#: mkt/developers/views.py:997
 msgid "No such API key."
 msgstr "Nu există cheia API."
 
-#: mkt/developers/views.py:1005
+#: mkt/developers/views.py:1003
 msgid "New API key generated."
 msgstr "A fost generată o nouă cheie API."
 
-#: mkt/developers/views.py:1023
+#: mkt/developers/views.py:1021
 msgid "Created blocklisted version."
 msgstr "S-a creat o versiune blocklistată."
 
-#: mkt/developers/views.py:1025
+#: mkt/developers/views.py:1023
 msgid "App already blocklisted."
 msgstr "Aplicația este deja blocklistată."
 
-#: mkt/developers/views_payments.py:88 mkt/developers/views_payments.py:106
+#: mkt/developers/views_payments.py:89 mkt/developers/views_payments.py:107
 msgid "We encountered a problem connecting to the payment server."
 msgstr "Am întâlnit o problemă în conectarea la serverul de plăți."
 
-#: mkt/developers/views_payments.py:175 mkt/files/forms.py:28
+#: mkt/developers/views_payments.py:176 mkt/files/forms.py:28
 msgid "All"
 msgstr "Toate"
 
-#: mkt/developers/views_payments.py:176
+#: mkt/developers/views_payments.py:177
 msgid "Credit card"
 msgstr "Card credit"
 
-#: mkt/developers/views_payments.py:177
+#: mkt/developers/views_payments.py:178
 msgid "Carrier"
 msgstr "Operator"
 
-#: mkt/developers/views_payments.py:329
+#: mkt/developers/views_payments.py:330
 msgid "A server error occurred when retrieving the application key."
 msgstr "S-a produs o eroare server la accesarea cheii aplicației."
 
-#: mkt/developers/views_payments.py:336
+#: mkt/developers/views_payments.py:337
 msgid "Secret was reset successfully."
 msgstr "Secretul a fost resetat cu succes."
 
-#: mkt/developers/views_payments.py:340
+#: mkt/developers/views_payments.py:341
 msgid "Key and secret were created successfully."
 msgstr "Cheia și secretul au fost create cu succes."
 
-#: mkt/developers/views_payments.py:366
+#: mkt/developers/views_payments.py:367
 msgid "Your app is not configured for in-app payments."
 msgstr "Aplicația nu este configurată pentru plăți în aplicație."
 
-#: mkt/developers/views_payments.py:369
+#: mkt/developers/views_payments.py:370
 msgid "No payment account for this app."
 msgstr "Nu există cont de plăți pentru această aplicație."
 
@@ -2940,7 +2940,7 @@ msgid "Update Message of the Day"
 msgstr "Actualizați mesajul zilei"
 
 #: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:32 mkt/reviewers/templates/reviewers/motd.html:15
-#: mkt/reviewers/templates/reviewers/review.html:215
+#: mkt/reviewers/templates/reviewers/review.html:211
 msgid "Save"
 msgstr "Salvare"
 
@@ -3158,7 +3158,7 @@ msgstr "Propunere aplicație"
 
 #: mkt/developers/templates/developers/apps/edit.html:3 mkt/developers/templates/developers/apps/listing/item_actions.html:25 mkt/developers/templates/developers/apps/listing/item_actions_app.html:46
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:2 mkt/lookup/templates/lookup/helpers/app_header.html:33 mkt/lookup/templates/lookup/helpers/website_header.html:22
-#: mkt/reviewers/templates/reviewers/review.html:58
+#: mkt/reviewers/templates/reviewers/review.html:54
 msgid "Edit Listing"
 msgstr "Editare listare"
 
@@ -3184,8 +3184,8 @@ msgstr "Despre rolurile membrilor echipei"
 #: mkt/developers/templates/developers/apps/owner.html:58 mkt/developers/templates/developers/apps/version_edit.html:67 mkt/developers/templates/developers/apps/edit/admin.html:130
 #: mkt/developers/templates/developers/apps/edit/basic.html:217 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62
 #: mkt/developers/templates/developers/apps/edit/technical.html:94 mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/payments/premium.html:75
-#: mkt/developers/templates/developers/payments/premium.html:104 mkt/developers/templates/developers/payments/premium.html:162 mkt/developers/templates/developers/payments/premium.html:272
-#: mkt/developers/templates/developers/payments/premium.html:286 mkt/developers/templates/developers/payments/premium.html:325 mkt/lookup/templates/lookup/website_edit.html:121
+#: mkt/developers/templates/developers/payments/premium.html:104 mkt/developers/templates/developers/payments/premium.html:162 mkt/developers/templates/developers/payments/premium.html:266
+#: mkt/developers/templates/developers/payments/premium.html:279 mkt/developers/templates/developers/payments/premium.html:318 mkt/lookup/templates/lookup/website_edit.html:121
 #: mkt/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
 msgstr "Salvare schimbări"
@@ -3603,7 +3603,7 @@ msgid "Select a unique URL for your detail page. By default we use your app name
 msgstr "Alegeți un URL unic pentru pagina de detalii. În mod implicit folosim numele aplicației pentru URL."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:64 mkt/developers/templates/developers/apps/listing/item_actions_app.html:94
-#: mkt/developers/templates/developers/includes/addons_edit_nav.html:29 mkt/reviewers/templates/reviewers/review.html:55
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:29 mkt/reviewers/templates/reviewers/review.html:51
 msgid "View Listing"
 msgstr "Vezi listarea"
 
@@ -3996,7 +3996,7 @@ msgstr "Stare și versiuni"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1455
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1440
 msgid "Content Ratings"
 msgstr "Evaluări de conținut"
 
@@ -4134,7 +4134,7 @@ msgstr "Sumar"
 msgid "Rating System"
 msgstr "Sistem de evaluare (rating)"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:230
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:224
 msgid "Region"
 msgstr "Regiune"
 
@@ -4390,72 +4390,72 @@ msgstr "Aplicația folosește platforma de plată în aplicație a Mozillei?"
 msgid "A server error occurred. Please try again later."
 msgstr "S-a produs o eroare pe server. Încercați din nou mai târziu."
 
-#: mkt/developers/templates/developers/payments/premium.html:201
+#: mkt/developers/templates/developers/payments/premium.html:197
 msgid "Not applicable"
 msgstr "Nu se aplică."
 
-#: mkt/developers/templates/developers/payments/premium.html:207
+#: mkt/developers/templates/developers/payments/premium.html:203
 msgid "Regions"
 msgstr "Regiuni"
 
-#: mkt/developers/templates/developers/payments/premium.html:213
+#: mkt/developers/templates/developers/payments/premium.html:209
 msgid "Available Regions"
 msgstr "Regiuni disponibile"
 
-#: mkt/developers/templates/developers/payments/premium.html:218
+#: mkt/developers/templates/developers/payments/premium.html:212
 #, python-format
 msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
 msgstr "Verificați <a href=\"%(status_url)s\" target=\"_blank\">pagina de stare</a> pentru a vedea țările disponibile momentan pentru vânzare."
 
-#: mkt/developers/templates/developers/payments/premium.html:225
+#: mkt/developers/templates/developers/payments/premium.html:219
 msgid "Your app will be available in the following selected regions:"
 msgstr "Aplicația va fi disponibilă în următoarele regiuni selectate:"
 
-#: mkt/developers/templates/developers/payments/premium.html:231
+#: mkt/developers/templates/developers/payments/premium.html:225
 msgid "Retail price"
 msgstr "Preț de vânzare"
 
-#: mkt/developers/templates/developers/payments/premium.html:232
+#: mkt/developers/templates/developers/payments/premium.html:226
 msgid "local currency"
 msgstr "moneda locală"
 
-#: mkt/developers/templates/developers/payments/premium.html:233
+#: mkt/developers/templates/developers/payments/premium.html:227
 msgid "Billing method"
 msgstr "Metoda de plată"
 
-#: mkt/developers/templates/developers/payments/premium.html:244
+#: mkt/developers/templates/developers/payments/premium.html:238
 msgid "Add a payment account to enable your app for sale in more regions"
 msgstr "Adăugați un cont de plată pentru a permite vânzarea aplicației în mai multe regiuni"
 
-#: mkt/developers/templates/developers/payments/premium.html:248
+#: mkt/developers/templates/developers/payments/premium.html:242
 msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
 msgstr "Dacă este selectată opțiunea „Restul lumii” aplicația va fi disponibilă pentru achiziție în toate teritoriile de sub titulatura „<a href=\"#regions-other\">Alte regiuni</a>”."
 
-#: mkt/developers/templates/developers/payments/premium.html:256
+#: mkt/developers/templates/developers/payments/premium.html:250
 msgid "Other regions"
 msgstr "Alte regiuni"
 
-#: mkt/developers/templates/developers/payments/premium.html:258
+#: mkt/developers/templates/developers/payments/premium.html:252
 msgid "To exclude your app from appearing in a region, you may uncheck that region before saving."
 msgstr "Pentru ca aplicația să nu apară într-o regiune, puteți deselecta acea regiune înainte de a salva."
 
-#: mkt/developers/templates/developers/payments/premium.html:278
+#: mkt/developers/templates/developers/payments/premium.html:272
 msgid "Regions and Listings"
 msgstr "Regiuni și listări"
 
-#: mkt/developers/templates/developers/payments/premium.html:293
+#: mkt/developers/templates/developers/payments/premium.html:286
 msgid "Promote as upgrade to free version"
 msgstr "Promovați ca o actualizare la versiunea gratuită"
 
-#: mkt/developers/templates/developers/payments/premium.html:302
+#: mkt/developers/templates/developers/payments/premium.html:295
 msgid "If you have a free app, you can link and promote your premium app next to the free version here."
 msgstr "Dacă ai o aplicație gratuită, poți să legi și să promovezi aplicația ta premium alături de versiunea gratuită aici."
 
-#: mkt/developers/templates/developers/payments/premium.html:310
+#: mkt/developers/templates/developers/payments/premium.html:303
 msgid "Linking this app will promote your premium app next to the free version."
 msgstr "Legarea acestei aplicații va promova aplicația ta premium alături de versiunea gratuită."
 
-#: mkt/developers/templates/developers/payments/premium.html:317
+#: mkt/developers/templates/developers/payments/premium.html:310
 msgid "No free apps"
 msgstr "Nu sunt aplicații gratuite"
 
@@ -4571,14 +4571,6 @@ msgstr "Actualizare cont"
 msgid "Modify Reference Account"
 msgstr "Modificare cont de referință"
 
-#: mkt/developers/templates/developers/payments/includes/region_form.html:3
-msgid "Regions that require extra consideration:"
-msgstr "Regiuni care necesită considerații suplimentare:"
-
-#: mkt/developers/templates/developers/payments/includes/regions_disabled.html:3
-msgid "Learn why some regions are restricted."
-msgstr "Aflați de ce unele regiuni sunt restricționate."
-
 #: mkt/developers/templates/developers/payments/includes/regions_inappropriate.html:2
 msgid "Your app will no longer be listed in certain regions because those regions do not support payments. We have transferred your region choices. Please review the changes before saving."
 msgstr "Aplicația nu va mai fi listată în anumite regiuni deoarece acestea nu suportă plăți. V-am transferat opțiunile de regiune. Verificați aceste schimbări înainte de a salva."
@@ -4599,11 +4591,11 @@ msgstr "Veți primi o notificare pe e-mail atunci când este adăugată o nouă 
 msgid "Select All"
 msgstr "Selectează tot"
 
-#: mkt/ecosystem/views.py:53
+#: mkt/ecosystem/views.py:54
 msgid "Thank you for subscribing!"
 msgstr "Mulțumim pentru abonare!"
 
-#: mkt/ecosystem/views.py:59
+#: mkt/ecosystem/views.py:60
 msgid "We apologize, but an error occurred in our system. Please try again later."
 msgstr "Ne cerem scuze, s-a produs o eroare în sistemul nostru. Încercați din nou mai târziu."
 
@@ -4833,7 +4825,7 @@ msgid "Developing Game Apps"
 msgstr "Dezvoltarea de aplicații jocuri"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:110 mkt/lookup/templates/lookup/user_summary.html:56 mkt/lookup/templates/lookup/user_summary.html:60
-#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1461
+#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1446
 msgid "Payments"
 msgstr "Plăți"
 
@@ -5267,11 +5259,11 @@ msgstr "Mărimea totală a fișierelor peste limită din arhivă: {0}"
 msgid "Invalid archive."
 msgstr "Arhivă invalidă."
 
-#: mkt/files/views.py:45
+#: mkt/files/views.py:44
 msgid "Back to review"
 msgstr "Înapoi la recenzie"
 
-#: mkt/files/views.py:50
+#: mkt/files/views.py:49
 msgid "Back to app"
 msgstr "Înapoi la aplicație"
 
@@ -5987,7 +5979,7 @@ msgstr "Chitanță test invalidă"
 msgid "Refunded test receipt"
 msgstr "Chitanța test rambursată"
 
-#: mkt/receipts/views.py:86 mkt/receipts/views.py:177
+#: mkt/receipts/views.py:87 mkt/receipts/views.py:178
 msgid "There was a problem installing the app."
 msgstr "S-a produs o problemă la instalarea aplicației."
 
@@ -6118,7 +6110,7 @@ msgstr "Actualizări"
 msgid "Escalations"
 msgstr "Escaladări"
 
-#: mkt/reviewers/helpers.py:47 mkt/reviewers/helpers.py:162
+#: mkt/reviewers/helpers.py:47 mkt/reviewers/helpers.py:157
 msgid "Moderated Reviews"
 msgstr "Recenzii moderate"
 
@@ -6134,7 +6126,7 @@ msgstr "În recenzie"
 msgid "Homescreens"
 msgstr "Ecrane principale"
 
-#: mkt/reviewers/helpers.py:53 mkt/reviewers/templates/reviewers/queue_region.html:7
+#: mkt/reviewers/helpers.py:53
 msgid "Regional Queues"
 msgstr "Cozi regionale"
 
@@ -6162,35 +6154,31 @@ msgstr "Escaladări ({0})"
 msgid "Reviewing ({0})"
 msgstr "În recenzie ({0})"
 
-#: mkt/reviewers/helpers.py:115
-msgid "China ({0})"
-msgstr "China ({0})"
-
-#: mkt/reviewers/helpers.py:118
+#: mkt/reviewers/helpers.py:113
 msgctxt "homescreen"
 msgid "Homescreens ({0})"
 msgstr "Ecrane principale ({0})"
 
-#: mkt/reviewers/helpers.py:127
+#: mkt/reviewers/helpers.py:122
 msgctxt "moderated"
 msgid "Moderated Reviews ({0})"
 msgstr "Recenzii moderate ({0})"
 
-#: mkt/reviewers/helpers.py:134
+#: mkt/reviewers/helpers.py:129
 msgctxt "abuse"
 msgid "Abuse Reports ({0})"
 msgstr "Rapoarte de abuz ({0})"
 
-#: mkt/reviewers/helpers.py:141
+#: mkt/reviewers/helpers.py:136
 msgctxt "abusewebsites"
 msgid "Website Abuse Reports ({0})"
 msgstr "Rapoarte de abuz pentru site-uri web ({0})"
 
-#: mkt/reviewers/helpers.py:157
+#: mkt/reviewers/helpers.py:152
 msgid "Reviews"
 msgstr "Recenzii"
 
-#: mkt/reviewers/helpers.py:199
+#: mkt/reviewers/helpers.py:194
 msgid "Rejected or Unreviewed"
 msgstr "Respinse sau nerecenzate"
 
@@ -6266,48 +6254,48 @@ msgstr "Interzice aplicația"
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr "Interziceți aplicația pe Marketplace. Asemănător cu butonul Respingere, dar autorii o pot repropune. Folosiți doar în cazuri extreme."
 
-#: mkt/reviewers/views.py:135
+#: mkt/reviewers/views.py:131
 msgid "New Apps (Under 5 days)"
 msgstr "Aplicații noi (sub 5 zile)"
 
-#: mkt/reviewers/views.py:136
+#: mkt/reviewers/views.py:132
 msgid "Passable (5 to 10 days)"
 msgstr "În grafic (de la 5 la 10 zile)"
 
-#: mkt/reviewers/views.py:137
+#: mkt/reviewers/views.py:133
 msgid "Overdue (Over 10 days)"
 msgstr "Întârziate (peste 10 zile)"
 
-#: mkt/reviewers/views.py:249
+#: mkt/reviewers/views.py:244
 msgid "Self-reviews are not allowed."
 msgstr "Auto-recenziile nu sunt permise."
 
-#: mkt/reviewers/views.py:255
+#: mkt/reviewers/views.py:250
 msgid "Only senior reviewers can review blocklisted apps."
 msgstr "Doar recenzenții seniori pot recenza aplicații blocklistate."
 
-#: mkt/reviewers/views.py:304 mkt/reviewers/views.py:329 mkt/submit/forms.py:32 mkt/submit/forms.py:42
+#: mkt/reviewers/views.py:299 mkt/reviewers/views.py:324 mkt/submit/forms.py:32 mkt/submit/forms.py:42
 msgid "Added {0}"
 msgstr "Adăugate {0}"
 
-#: mkt/reviewers/views.py:307 mkt/reviewers/views.py:330 mkt/submit/forms.py:34 mkt/submit/forms.py:43
+#: mkt/reviewers/views.py:302 mkt/reviewers/views.py:325 mkt/submit/forms.py:34 mkt/submit/forms.py:43
 msgid "Removed {0}"
 msgstr "Eliminate {0}"
 
-#: mkt/reviewers/views.py:310
+#: mkt/reviewers/views.py:305
 msgid "Device(s) changed by reviewer: {0}"
 msgstr "Dispozitive schimbate de recenzent: {0}"
 
 #. L10n: {0} is the list of requirements changes.
-#: mkt/reviewers/views.py:332
+#: mkt/reviewers/views.py:327
 msgid "Requirements changed by reviewer: {0}"
 msgstr "Cerințe schimbate de recenzent: {0}"
 
-#: mkt/reviewers/views.py:361
+#: mkt/reviewers/views.py:356
 msgid "\"{0}\" successfully processed (+{1} points, {2} total)."
 msgstr "\"{0}\" procesate cu succes (+{1} puncte, {2} total)."
 
-#: mkt/reviewers/views.py:363
+#: mkt/reviewers/views.py:358
 msgid "Review successfully processed."
 msgstr "Recenzie procesată cu succes."
 
@@ -6552,7 +6540,7 @@ msgstr "Timp de așteptare"
 msgid "Payment Category:"
 msgstr "Categorie de plăți:"
 
-#: mkt/reviewers/templates/reviewers/queue.html:88 mkt/reviewers/templates/reviewers/queue_region.html:31
+#: mkt/reviewers/templates/reviewers/queue.html:88
 msgid "There are currently no items of this type to review."
 msgstr "Nu există elemente de acest tip pentru recenzie."
 
@@ -6563,10 +6551,6 @@ msgstr "Linkuri utile:"
 #: mkt/reviewers/templates/reviewers/queue.html:104
 msgid "Reviewers' Guide"
 msgstr "Ghidul recenzentului"
-
-#: mkt/reviewers/templates/reviewers/queue_region.html:11
-msgid "{region} Review Queue"
-msgstr "{region} coadă de recenzii"
 
 #: mkt/reviewers/templates/reviewers/review.html:20
 msgid "by"
@@ -6580,63 +6564,59 @@ msgstr "În coada de rerecenzii"
 msgid "In escalation queue"
 msgstr "În coada de escaladări"
 
-#: mkt/reviewers/templates/reviewers/review.html:37
-msgid "In China queue"
-msgstr "În coada China"
-
-#: mkt/reviewers/templates/reviewers/review.html:61
+#: mkt/reviewers/templates/reviewers/review.html:57
 msgid "Review This App"
 msgstr "Recenzează aplicația"
 
-#: mkt/reviewers/templates/reviewers/review.html:63
+#: mkt/reviewers/templates/reviewers/review.html:59
 msgid "More Information"
 msgstr "Mai multe informații"
 
-#: mkt/reviewers/templates/reviewers/review.html:64 mkt/reviewers/templates/reviewers/includes/review_history.html:2
+#: mkt/reviewers/templates/reviewers/review.html:60 mkt/reviewers/templates/reviewers/includes/review_history.html:2
 msgid "App History"
 msgstr "Istoric aplicație"
 
-#: mkt/reviewers/templates/reviewers/review.html:65
+#: mkt/reviewers/templates/reviewers/review.html:61
 msgid "Resolution"
 msgstr "Rezoluție"
 
-#: mkt/reviewers/templates/reviewers/review.html:97
+#: mkt/reviewers/templates/reviewers/review.html:93
 msgid "App submission incomplete"
 msgstr "Propunerea de aplicație e incompletă"
 
-#: mkt/reviewers/templates/reviewers/review.html:118
+#: mkt/reviewers/templates/reviewers/review.html:114
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Încă puteți să transmiteți acest formular, dar numai dacă sunteți sigur(ă) că nu va exista un conflict."
 
-#: mkt/reviewers/templates/reviewers/review.html:125
+#: mkt/reviewers/templates/reviewers/review.html:121
 msgid "Insert canned response..."
 msgstr "Introduceți răspuns standard..."
 
-#: mkt/reviewers/templates/reviewers/review.html:130
+#: mkt/reviewers/templates/reviewers/review.html:126
 msgid "Tested on:"
 msgstr "Testat pe:"
 
-#: mkt/reviewers/templates/reviewers/review.html:156
+#: mkt/reviewers/templates/reviewers/review.html:152
 msgid "Add device"
 msgstr "Adaugă dispozitiv"
 
-#: mkt/reviewers/templates/reviewers/review.html:173
+#: mkt/reviewers/templates/reviewers/review.html:169
 msgid "Browse"
 msgstr "Navigare"
 
-#: mkt/reviewers/templates/reviewers/review.html:185
+#: mkt/reviewers/templates/reviewers/review.html:181
 msgid "Attach another file"
 msgstr "Atașează un alt fișier"
 
-#: mkt/reviewers/templates/reviewers/review.html:188
+#: mkt/reviewers/templates/reviewers/review.html:184
 msgid "Device Override:"
 msgstr "Ignorare dispozitiv:"
 
-#: mkt/reviewers/templates/reviewers/review.html:201
+#: mkt/reviewers/templates/reviewers/review.html:197
 msgid "Minimum Requirements Override:"
 msgstr "Ignorare cerințe minime:"
 
-#: mkt/reviewers/templates/reviewers/review.html:211
+#: mkt/reviewers/templates/reviewers/review.html:207
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Atenție!</strong> Un alt utilizator vizualiza această pagină mai devreme."
 
@@ -8150,64 +8130,41 @@ msgstr "Trebuie să folosiți adresa verificată pentru acest cont."
 msgid "Listed"
 msgstr "Listat"
 
-#: mkt/webapps/models.py:1348
+#: mkt/webapps/models.py:1333
 msgid "You must provide a support email or URL."
 msgstr "Trebuie să furnizați o adresă de e-mail de suport sau URL."
 
-#: mkt/webapps/models.py:1350
+#: mkt/webapps/models.py:1335
 msgid "You must provide an app name."
 msgstr "Trebuie să furnizați un nume pentru aplicație."
 
-#: mkt/webapps/models.py:1352
+#: mkt/webapps/models.py:1337
 msgid "You must provide at least one device type."
 msgstr "Trebuie să furnizați cel puțin un tip de dispozitiv."
 
-#: mkt/webapps/models.py:1355
+#: mkt/webapps/models.py:1340
 msgid "You must provide at least one category."
 msgstr "Trebuie să furnizați cel puțin o categorie."
 
-#: mkt/webapps/models.py:1422
+#: mkt/webapps/models.py:1407
 msgid "You must set up content ratings."
 msgstr "Trebuie să stabiliți evaluări de conținut."
 
-#: mkt/webapps/models.py:1424
+#: mkt/webapps/models.py:1409
 msgid "You must set up a payment account."
 msgstr "Trebuie să setați un cont de plăți."
 
-#: mkt/webapps/models.py:1449
+#: mkt/webapps/models.py:1434
 msgid "This app's submission process has not been fully completed."
 msgstr "Procesul de propunere al aplicației nu a fost finalizat complet."
 
-#: mkt/webapps/models.py:1456
+#: mkt/webapps/models.py:1441
 msgid "This app needs to get a content rating."
 msgstr "Această aplicație are nevoie de o evaluare de conținut."
 
-#: mkt/webapps/models.py:1462
+#: mkt/webapps/models.py:1447
 msgid "This app needs a payment account set up."
 msgstr "Aplicația are nevoie de setarea unui cont de plăți."
-
-#. L10n: An app is awaiting approval for a particular region.
-#: mkt/webapps/models.py:2733
-msgid "awaiting approval"
-msgstr "așteaptă aprobarea"
-
-#. L10n: An app is rejected for a particular region.
-#: mkt/webapps/models.py:2735
-msgid "rejected"
-msgstr "respinsă"
-
-#. L10n: An app requires additional review for a particular region.
-#: mkt/webapps/models.py:2737
-msgid "requires additional review"
-msgstr "necesită recenziere suplimentară"
-
-#: mkt/webapps/models.py:2776
-msgid "{region} approval status"
-msgstr "{region} stare aprobare"
-
-#: mkt/webapps/models.py:2785
-msgid "{region} nomination date"
-msgstr "{region} stare nominalizare"
 
 #: mkt/webapps/tasks.py:144
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
