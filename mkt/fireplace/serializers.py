@@ -30,7 +30,7 @@ class FireplaceAppSerializer(BaseFireplaceAppSerializer, SimpleAppSerializer):
     class Meta(SimpleAppSerializer.Meta):
         fields = ['author', 'categories', 'content_ratings', 'current_version',
                   'description', 'device_types', 'feature_compatibility',
-                  'file_size', 'homepage', 'hosted_url', 'icons', 'id',
+                  'file_size', 'homepage', 'icons', 'id',
                   'is_offline', 'is_packaged', 'last_updated', 'manifest_url',
                   'name', 'payment_required', 'premium_type', 'previews',
                   'price', 'price_locale', 'privacy_policy', 'promo_imgs',

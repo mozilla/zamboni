@@ -477,9 +477,6 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
 
     tv_featured = models.PositiveIntegerField(null=True)
 
-    # Initially, for desktop games.
-    hosted_url = models.URLField(max_length=255, blank=True, null=True)
-
     objects = WebappManager()
     with_deleted = WebappManager(include_deleted=True)
 

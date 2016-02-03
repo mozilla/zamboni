@@ -458,11 +458,6 @@ class AppFormBasic(AddonFormBase):
     """Form to edit basic app info."""
     slug = forms.CharField(max_length=30, widget=forms.TextInput)
     manifest_url = forms.URLField()
-    hosted_url = forms.CharField(
-        label=_lazy(u'Hosted URL:'), required=False,
-        help_text=_lazy(
-            u'A URL to where your app is hosted on the web, if it exists. This'
-            u' allows users to try out your app before installing it.'))
     description = TransField(
         required=True,
         label=_lazy(u'Provide a detailed description of your app'),
@@ -478,7 +473,7 @@ class AppFormBasic(AddonFormBase):
 
     class Meta:
         model = Webapp
-        fields = ('slug', 'manifest_url', 'hosted_url', 'description', 'tags')
+        fields = ('slug', 'manifest_url', 'description', 'tags')
 
     def __init__(self, *args, **kw):
         # Force the form to use app_slug. We want to keep
