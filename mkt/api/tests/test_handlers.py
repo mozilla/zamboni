@@ -61,8 +61,13 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
     def count(self):
         return Webapp.objects.count()
 
+    def create_app(self, **kwargs):
+        obj = app_factory(
+            status=kwargs.pop('status', mkt.STATUS_NULL), **kwargs)
+        self.get_url = reverse('app-detail', kwargs={'pk': obj.pk})
+        return obj
+
     def test_verbs(self):
-        self.create()
         self._allowed_verbs(self.list_url, ['get', 'post'])
         self.create_app()
         self._allowed_verbs(self.get_url, ['get', 'put', 'delete'])
@@ -125,16 +130,9 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         eq_(set(app.authors.all()), set([self.user]))
         assert record_action.called
 
-    def create_app(self, fil=None):
-        obj = self.create(fil)
-        res = self.client.post(self.list_url,
-                               data=json.dumps({'manifest': obj.uuid}))
-        pk = json.loads(res.content)['id']
-        self.get_url = reverse('app-detail', kwargs={'pk': pk})
-        return Webapp.objects.get(pk=pk)
-
     def test_upsell(self):
         app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         upsell = app_factory()
         self.make_premium(upsell)
         AddonUpsell.objects.create(free=app, premium=upsell)
@@ -149,7 +147,8 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
             reverse('app-detail', kwargs={'pk': upsell.id}))
 
     def test_get(self):
-        self.create_app()
+        app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         res = self.client.get(self.get_url)
         eq_(res.status_code, 200)
         content = json.loads(res.content)
@@ -157,6 +156,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
 
     def test_get_slug(self):
         app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         url = reverse('app-detail', kwargs={'pk': app.app_slug})
         res = self.client.get(url)
         content = json.loads(res.content)
@@ -164,6 +164,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
 
     def test_list(self):
         app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         res = self.client.get(self.list_url)
         eq_(res.status_code, 200)
         content = json.loads(res.content)
@@ -174,7 +175,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         eq_(self.anon.get(self.list_url).status_code, 403)
 
     def test_get_device(self):
-        app = self.create_app()
+        app = self.create_app(status=mkt.STATUS_PUBLIC)
         AddonDeviceType.objects.create(addon=app,
                                        device_type=mkt.DEVICE_DESKTOP.id)
         res = self.client.get(self.get_url)
@@ -194,7 +195,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         eq_(res.status_code, 200)
 
     def test_get_previews(self):
-        app = self.create_app()
+        app = self.create_app(status=mkt.STATUS_PUBLIC)
         res = self.client.get(self.get_url)
         eq_(len(json.loads(res.content)['previews']), 0)
         Preview.objects.create(addon=app)
@@ -209,42 +210,34 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
 
     def test_get_privacy_policy(self):
         app = self.create_app()
-        data = self.base_data()
-        self.client.put(self.get_url, data=json.dumps(data))
-        app.reload()
-        app.authors.clear()
         res = self.client.get(reverse('app-privacy-policy-detail',
                                       args=[app.pk]))
         eq_(res.status_code, 403)
 
     def test_get_privacy_policy_anon(self):
         app = self.create_app()
-        data = self.base_data()
-        self.client.put(self.get_url, data=json.dumps(data))
         res = self.anon.get(reverse('app-privacy-policy-detail',
                                     args=[app.pk]))
         eq_(res.status_code, 403)
 
     def test_get_privacy_policy_mine(self):
-        app = self.create_app()
-        data = self.base_data()
-        self.client.put(self.get_url, data=json.dumps(data))
+        app = self.create_app(privacy_policy=u'lolé')
+        app.addonuser_set.create(user=self.user)
         res = self.client.get(reverse('app-privacy-policy-detail',
                                       args=[app.pk]))
-        eq_(res.json['privacy_policy'], data['privacy_policy'])
+        eq_(res.json['privacy_policy'], u'lolé')
 
     def test_get_privacy_policy_slug(self):
-        app = self.create_app()
-        data = self.base_data()
-        self.client.put(self.get_url, data=json.dumps(data))
+        app = self.create_app(
+            privacy_policy=u'rotfllolé', status=mkt.STATUS_PUBLIC)
         url = reverse('app-privacy-policy-detail', kwargs={'pk': app.app_slug})
         res = self.client.get(url)
-        eq_(res.json['privacy_policy'], data['privacy_policy'])
+        eq_(res.json['privacy_policy'], u'rotfllolé')
 
     def base_data(self):
         return {
             'support_email': 'a@a.com',
-            'privacy_policy': 'wat',
+            'privacy_policy': u'waté',
             'homepage': 'http://www.whatever.com',
             'name': 'mozball',
             'categories': self.categories,
@@ -256,21 +249,23 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
 
     def test_put(self):
         app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         res = self.client.put(self.get_url, data=json.dumps(self.base_data()))
         eq_(res.status_code, 202)
         app = Webapp.objects.get(pk=app.pk)
-        eq_(app.privacy_policy, 'wat')
+        eq_(app.privacy_policy, u'waté')
 
     def test_put_as_post(self):
         # This is really a test of the HTTP_X_HTTP_METHOD_OVERRIDE header
         # and that signing works correctly. Do a POST, but ask DRF to do
         # a PUT.
         app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         res = self.client.post(self.get_url, data=json.dumps(self.base_data()),
                                HTTP_X_HTTP_METHOD_OVERRIDE='PUT')
         eq_(res.status_code, 202)
         app = Webapp.objects.get(pk=app.pk)
-        eq_(app.privacy_policy, 'wat')
+        eq_(app.privacy_policy, u'waté')
 
     def test_put_anon(self):
         app = self.create_app()
@@ -280,36 +275,46 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
 
     def test_put_categories_worked(self):
         app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         res = self.client.put(self.get_url, data=json.dumps(self.base_data()))
         eq_(res.status_code, 202)
         app = Webapp.objects.get(pk=app.pk)
         eq_(set(app.categories), set(self.categories))
 
-    def test_post_content_ratings(self):
+    @patch('mkt.developers.forms.IARCGetAppInfoForm.save')
+    def test_post_content_ratings(self, iarc_save_mock):
         """Test the @action on AppViewSet to attach the content ratings."""
-        app = self.create_app()
+        app = self.create_app(
+            support_email='a@a.com', categories=self.categories)
+        app.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
+        app.addonuser_set.create(user=self.user)
         url = reverse('app-content-ratings', kwargs={'pk': app.pk})
         res = self.client.post(url, data=json.dumps(
             {'submission_id': 50, 'security_code': 'AB12CD3'}))
         eq_(res.status_code, 201)
         eq_(res.content, '')
 
-    def test_post_content_ratings_bad(self):
+    @patch('mkt.developers.forms.IARCGetAppInfoForm.save')
+    def test_post_content_ratings_bad(self, iarc_save_mock):
         """Test the @action on AppViewSet to attach the content ratings."""
         app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         url = reverse('app-content-ratings', kwargs={'pk': app.pk})
         # Missing `security_code`.
         res = self.client.post(url, data=json.dumps({'submission_id': 50}))
         eq_(res.status_code, 400)
         eq_(json.loads(res.content),
             {'security_code': ['This field is required.']})
+        eq_(iarc_save_mock.call_count, 0)
 
     def test_dehydrate(self):
-        app = self.create_app()
-        res = self.client.put(self.get_url, data=json.dumps(self.base_data()))
-        app = app.reload()
+        app = self.create_app(
+            homepage=u'http://www.whatever.com', support_email='a@a.com',
+            version_kw={'_developer_name': 'Mozilla Labs'})
+        app.addonuser_set.create(user=self.user)
+        for device in mkt.DEVICE_TYPES.values():
+            app.addondevicetype_set.create(device_type=device.id)
         version = app.current_version
-        eq_(res.status_code, 202)
         res = self.client.get(self.get_url + '?lang=en')
         eq_(res.status_code, 200)
         data = json.loads(res.content)
@@ -332,7 +337,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
                            'purchased': False})
 
     def test_ratings(self):
-        app = self.create_app()
+        app = self.create_app(status=mkt.STATUS_PUBLIC)
         rater = UserProfile.objects.get(pk=999)
         Review.objects.create(addon=app, user=self.user, body='yes', rating=3)
         Review.objects.create(addon=app, user=rater, body='no', rating=2)
@@ -342,14 +347,16 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         eq_(data['ratings'], {'count': 2, 'average': 2.5})
 
     def test_put_wrong_category(self):
-        self.create_app()
+        app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         data = self.base_data()
         data['categories'] = ['nonexistent']
         res = self.client.put(self.get_url, data=json.dumps(data))
         eq_(res.status_code, 400)
 
     def test_put_no_categories(self):
-        self.create_app()
+        app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         data = self.base_data()
         del data['categories']
         res = self.client.put(self.get_url, data=json.dumps(data))
@@ -357,7 +364,8 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         eq_(res.json['categories'], ['This field is required.'])
 
     def test_put_no_desktop(self):
-        self.create_app()
+        app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         data = self.base_data()
         del data['device_types']
         res = self.client.put(self.get_url, data=json.dumps(data))
@@ -366,6 +374,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
 
     def test_put_devices_worked(self):
         app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         data = self.base_data()
         data['device_types'] = [a.api_name for a in mkt.DEVICE_TYPES.values()]
         res = self.client.put(self.get_url, data=json.dumps(data))
@@ -375,7 +384,8 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
             set(mkt.DEVICE_TYPES[d] for d in mkt.DEVICE_TYPES.keys()))
 
     def test_put_desktop_error_nice(self):
-        self.create_app()
+        app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         data = self.base_data()
         data['device_types'] = [12345]
         res = self.client.put(self.get_url, data=json.dumps(data))
@@ -391,6 +401,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
 
     def test_put_price(self):
         app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         data = self.base_data()
         self.create_price('1.07')
         data['premium_type'] = 'premium'
@@ -402,6 +413,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
 
     def test_put_premium_inapp(self):
         app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         data = self.base_data()
         self.create_price('1.07')
         data['premium_type'] = 'premium-inapp'
@@ -413,7 +425,8 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         eq_(app.premium_type, mkt.ADDON_PREMIUM_INAPP)
 
     def test_put_bad_price(self):
-        self.create_app()
+        app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         data = self.base_data()
         self.create_price('1.07')
         self.create_price('3.14')
@@ -426,7 +439,8 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
             '"1.07", "3.14".')
 
     def test_put_no_price(self):
-        self.create_app()
+        app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         data = self.base_data()
         Price.objects.create(price='1.07')
         Price.objects.create(price='3.14')
@@ -439,6 +453,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
 
     def test_put_free_inapp(self):
         app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         data = self.base_data()
         data['premium_type'] = 'free-inapp'
         res = self.client.put(self.get_url, data=json.dumps(data))
@@ -474,6 +489,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
 
     def test_delete(self):
         obj = self.create_app()
+        obj.addonuser_set.create(user=self.user)
         res = self.client.delete(self.get_url)
         eq_(res.status_code, 204)
         assert not Webapp.objects.filter(pk=obj.pk).exists()
@@ -486,9 +502,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         assert Webapp.objects.filter(pk=obj.pk).exists()
 
     def test_reviewer_get(self):
-        app = self.create_app()
-        data = self.base_data()
-        self.client.put(self.get_url, data=json.dumps(data))
+        app = self.create_app(privacy_policy=u'lolà')
 
         editor = UserProfile.objects.get(email='admin@mozilla.com')
         g = Group.objects.create(rules='Apps:Review,Reviews:Edit')
@@ -502,12 +516,10 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         res = client.get(reverse('app-privacy-policy-detail',
                                  args=[app.pk]))
         eq_(r.status_code, 200)
-        eq_(res.json['privacy_policy'], data['privacy_policy'])
+        eq_(res.json['privacy_policy'], u'lolà')
 
     def test_admin_get(self):
-        app = self.create_app()
-        data = self.base_data()
-        self.client.put(self.get_url, data=json.dumps(data))
+        app = self.create_app(privacy_policy=u'élolà')
 
         admin = UserProfile.objects.get(email='admin@mozilla.com')
         g = Group.objects.create(rules='*:*')
@@ -521,7 +533,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         res = client.get(reverse('app-privacy-policy-detail',
                                  args=[app.pk]))
         eq_(r.status_code, 200)
-        eq_(res.json['privacy_policy'], data['privacy_policy'])
+        eq_(res.json['privacy_policy'], u'élolà')
 
 
 class CreatePackagedHandler(mkt.site.tests.MktPaths, RestOAuth):
