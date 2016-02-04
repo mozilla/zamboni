@@ -9,7 +9,7 @@ class TVAppSerializer(SimpleAppSerializer):
     class Meta(SimpleAppSerializer.Meta):
         fields = ['author', 'categories',
                   'content_ratings', 'current_version', 'description',
-                  'file_size', 'homepage', 'hosted_url', 'icons', 'id',
+                  'file_size', 'homepage', 'icons', 'id',
                   'last_updated', 'manifest_url', 'name', 'privacy_policy',
                   'promo_imgs', 'public_stats', 'release_notes',
                   'ratings', 'slug', 'status', 'support_email', 'support_url',

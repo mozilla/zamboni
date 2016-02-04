@@ -366,7 +366,6 @@ class TestAppFormBasic(mkt.site.tests.TestCase):
     def setUp(self):
         self.data = {
             'slug': 'yolo',
-            'hosted_url': '',
             'manifest_url': 'https://omg.org/yes.webapp',
             'description': 'You Only Live Once'
         }
@@ -498,13 +497,6 @@ class TestAppFormBasic(mkt.site.tests.TestCase):
         assert self.form.is_valid(), self.form.errors
         self.form.save(self.app)
         assert mock.delay.called
-
-    def test_hosted_url_change(self):
-        self.data.update({'hosted_url': 'http://ngokevin.com'})
-        self.post()
-        assert self.form.is_valid(), self.form.errors
-        self.form.save(self.app)
-        eq_(self.app.hosted_url, 'http://ngokevin.com')
 
 
 class TestAppVersionForm(mkt.site.tests.TestCase):
