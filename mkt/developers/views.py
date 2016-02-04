@@ -1205,9 +1205,12 @@ class ContentRatingsPingbackV2(CORSMixin, UpdateModelMixin, GenericAPIView):
     def get_object(self, queryset=None):
         request = self.request
         try:
-            self.kwargs[self.lookup_field] = request.data['StoreRequestID']
+            self.kwargs[self.lookup_field] = uuid.UUID(
+                request.data['StoreRequestID']).get_hex()
         except KeyError:
             raise ParseError('Need a StoreRequestID')
+        except ValueError:
+            raise ParseError('StoreRequestID is not a valid UUID')
         self.object = super(ContentRatingsPingbackV2, self).get_object().app
         return self.object
 
