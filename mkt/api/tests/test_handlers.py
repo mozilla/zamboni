@@ -304,6 +304,31 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         eq_(json.loads(res.content),
             {'security_code': ['This field is required.']})
 
+    @patch('mkt.developers.forms.search_and_attach_cert')
+    def test_post_content_ratings_v2(self, search_and_attach_cert_mock):
+        """Test the @action on AppViewSet to attach the content ratings."""
+        self.create_switch('iarc-upgrade-v2')
+        app = self.create_app()
+        url = reverse('app-content-ratings', kwargs={'pk': app.pk})
+        res = self.client.post(url, data=json.dumps(
+            {'cert_id': 'adb3261b-c657-4fd2-a057-bc9f85310b80'}))
+        eq_(res.status_code, 201)
+        eq_(res.content, '')
+        eq_(search_and_attach_cert_mock.call_count, 1)
+        eq_(search_and_attach_cert_mock.call_args[0],
+            (app, 'adb3261b-c657-4fd2-a057-bc9f85310b80'))
+
+    def test_post_content_ratings_bad_v2(self):
+        """Test the @action on AppViewSet to attach the content ratings."""
+        self.create_switch('iarc-upgrade-v2')
+        app = self.create_app()
+        url = reverse('app-content-ratings', kwargs={'pk': app.pk})
+        # Missing `cert_id`.
+        res = self.client.post(url, data=json.dumps({'lol': 42}))
+        eq_(res.status_code, 400)
+        eq_(json.loads(res.content),
+            {'cert_id': ['This field is required.']})
+
     def test_dehydrate(self):
         app = self.create_app()
         res = self.client.put(self.get_url, data=json.dumps(self.base_data()))
