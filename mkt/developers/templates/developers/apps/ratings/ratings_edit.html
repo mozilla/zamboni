@@ -52,7 +52,7 @@
           {% endtrans %}
         </p>
         {% if waffle.switch('iarc-upgrade-v2') %}
-          <form id="iarc" method="post" action="{{ settings.IARC_V2_SUBMISSION_ENDPOINT }}"
+          <form id="iarc" method="get" action="{{ settings.IARC_V2_SUBMISSION_ENDPOINT }}"
                 target="IARCForm">
             <input type="hidden" name="StoreID" value="{{ settings.IARC_V2_STORE_ID }}">
             <input type="hidden" name="StoreRequestID" value="{{ iarc_request_id }}">
