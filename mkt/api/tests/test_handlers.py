@@ -312,6 +312,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         """Test the @action on AppViewSet to attach the content ratings."""
         self.create_switch('iarc-upgrade-v2')
         app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         url = reverse('app-content-ratings', kwargs={'pk': app.pk})
         res = self.client.post(url, data=json.dumps(
             {'cert_id': 'adb3261b-c657-4fd2-a057-bc9f85310b80'}))
@@ -325,6 +326,7 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         """Test the @action on AppViewSet to attach the content ratings."""
         self.create_switch('iarc-upgrade-v2')
         app = self.create_app()
+        app.addonuser_set.create(user=self.user)
         url = reverse('app-content-ratings', kwargs={'pk': app.pk})
         # Missing `cert_id`.
         res = self.client.post(url, data=json.dumps({'lol': 42}))
