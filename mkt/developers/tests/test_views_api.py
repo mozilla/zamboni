@@ -339,6 +339,13 @@ class TestContentRatingPingbackV2(RestOAuth):
         eq_(res.data, {'detail': 'Need a StoreRequestID',
                        'StatusCode': 'InvalidRequest'})
 
+    def test_post_store_request_id_is_not_an_uuid(self):
+        res = self.anon.post(self.url, data=json.dumps(
+            {'StoreRequestID': 'garbage'}))
+        eq_(res.status_code, 400)
+        eq_(res.data, {'detail': 'StoreRequestID is not a valid UUID',
+                       'StatusCode': 'InvalidRequest'})
+
     def test_post_store_request_id_not_found(self):
         res = self.anon.post(self.url, data=json.dumps(
             {'StoreRequestID': unicode(uuid.uuid4())}))
@@ -354,10 +361,17 @@ class TestContentRatingPingbackV2(RestOAuth):
             {'RatingList': 'This field is required.',
              'StatusCode': 'InvalidRequest'})
 
-    def test_post_success(self):
+    def test_post_success_uuid_without_separators(self):
         request = IARCRequest.objects.create(app=self.app)
+        self._test_post_success(unicode(request.uuid))
+
+    def test_post_success_uuid_with_separators(self):
+        request = IARCRequest.objects.create(app=self.app)
+        self._test_post_success(unicode(uuid.UUID(request.uuid)))
+
+    def _test_post_success(self, store_request_uuid):
         data = {
-            'StoreRequestID': unicode(request.uuid),
+            'StoreRequestID': store_request_uuid,
             'CertID': unicode(uuid.uuid4()),
             'RatingList': [
                 {
