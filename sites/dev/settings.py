@@ -251,7 +251,7 @@ IARC_ALLOW_CERT_REUSE = True
 # IARC V2
 IARC_V2_STORE_ID = env('IARC_V2_STORE_ID', default=None)
 IARC_V2_STORE_PASSWORD = env('IARC_V2_STORE_PASSWORD', default=None)
-IARC_V2_SUBMISSION_ENDPOINT = 'https://iarcdemo.azurewebsites.net/Demo/Questionnaire'  # noqa
+IARC_V2_SUBMISSION_ENDPOINT = 'https://iarcdemo.azurewebsites.net/Hosted/Index'  # noqa
 
 # We'll use zippy, the reference implementation on -dev.
 PAYMENT_PROVIDERS = env.list('PAYMENT_PROVIDERS', default=['reference'])
