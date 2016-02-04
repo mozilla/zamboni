@@ -143,7 +143,7 @@ class TranslationDescriptor(related.ReverseSingleRelatedObjectDescriptor):
             return None
 
     def __set__(self, instance, value):
-        lang = translation_utils.get_language()
+        lang = translation_utils.get_language() or 'en-us'
         if isinstance(value, basestring):
             value = self.translation_from_string(instance, lang, value)
         elif hasattr(value, 'items'):
