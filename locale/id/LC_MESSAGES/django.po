@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-03 15:04-0800\n"
-"PO-Revision-Date: 2016-02-05 05:04+0000\n"
+"PO-Revision-Date: 2016-02-05 07:17+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -1382,11 +1382,11 @@ msgstr ""
 
 #: mkt/constants/categories.py:17
 msgid "Music"
-msgstr ""
+msgstr "Musik"
 
 #: mkt/constants/categories.py:18
 msgid "News"
-msgstr ""
+msgstr "Berita"
 
 #: mkt/constants/categories.py:19
 msgid "Personalization"
@@ -1394,7 +1394,7 @@ msgstr ""
 
 #: mkt/constants/categories.py:20
 msgid "Photo & Video"
-msgstr ""
+msgstr "Foto & Video"
 
 #: mkt/constants/categories.py:21
 msgid "Productivity"
@@ -2038,11 +2038,11 @@ msgstr "Gagal"
 
 #: mkt/constants/payments.py:79 mkt/constants/payments.py:80
 msgid "The payment was received, but not completed."
-msgstr ""
+msgstr "Pembayaran diterima, tetapi tidak diselesaikan."
 
 #: mkt/constants/payments.py:81
 msgid "The payment failed."
-msgstr ""
+msgstr "Pembayaran gagal."
 
 #: mkt/constants/payments.py:82
 msgid "The reversal failed."
@@ -2068,7 +2068,7 @@ msgstr ""
 
 #: mkt/constants/platforms.py:42 mkt/constants/platforms.py:46
 msgid "Windows, Mac and Linux"
-msgstr ""
+msgstr "Windows, Mac, dan Linux"
 
 #: mkt/constants/platforms.py:43 mkt/constants/platforms.py:47
 #: mkt/ecosystem/templates/ecosystem/partners.html:95
@@ -2081,7 +2081,7 @@ msgstr ""
 
 #: mkt/constants/ratingsbodies.py:5
 msgid "For all ages"
-msgstr ""
+msgstr "Semua umur"
 
 #. L10n: %d is the age in years. For ages %d and higher.
 #: mkt/constants/ratingsbodies.py:7
@@ -2127,7 +2127,7 @@ msgstr "Dewasa 17+"
 
 #: mkt/constants/ratingsbodies.py:235
 msgid "Adults Only 18+"
-msgstr ""
+msgstr "Hanya Dewasa 18+"
 
 #. L10n: `18+` is age eighteen and over.
 #. L10n: North and South American, but not Brazil.
@@ -2485,20 +2485,20 @@ msgstr "Masukkan alamat email yang sah."
 
 #: mkt/developers/forms.py:971
 msgid "Your email address"
-msgstr ""
+msgstr "Alamat email Anda"
 
 #: mkt/developers/forms.py:974
 msgid "Text"
-msgstr ""
+msgstr "Teks"
 
 #: mkt/developers/forms.py:978
 msgid "You must agree to the Privacy Policy."
-msgstr ""
+msgstr "Anda harus menyetujui Kebijakan Privasi."
 
 #: mkt/developers/forms.py:979 mkt/developers/forms_payments.py:397
 #: mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
-msgstr ""
+msgstr "Negara"
 
 #: mkt/developers/forms.py:1000
 #: mkt/developers/templates/developers/transactions.html:41
@@ -2509,7 +2509,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:20
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
-msgstr ""
+msgstr "Aplikasi"
 
 #: mkt/developers/forms.py:1002
 msgid "Transaction Type"
@@ -2531,7 +2531,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:1025
 msgid "Web site"
-msgstr ""
+msgstr "Situs web"
 
 #: mkt/developers/forms.py:1026
 msgid "Command line"
@@ -2593,7 +2593,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:221
 msgid "Not a valid choice"
-msgstr ""
+msgstr "Bukan pilihan yang valid"
 
 #: mkt/developers/forms_payments.py:326
 #: mkt/developers/templates/developers/payments/premium.html:294
@@ -2610,7 +2610,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:371
 msgid "Company Name"
-msgstr ""
+msgstr "Nama Perusahaan"
 
 #: mkt/developers/forms_payments.py:373
 msgid "Vendor Name"
@@ -2671,15 +2671,15 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:411
 msgid "Bank Name"
-msgstr ""
+msgstr "Nama Bank"
 
 #: mkt/developers/forms_payments.py:413
 msgid "Bank Address"
-msgstr ""
+msgstr "Alamat Bank"
 
 #: mkt/developers/forms_payments.py:415
 msgid "Bank Address 2"
-msgstr ""
+msgstr "Alamat 2 Bank"
 
 #: mkt/developers/forms_payments.py:417
 msgid "Bank City/Municipality"
@@ -2700,7 +2700,7 @@ msgstr ""
 #: mkt/developers/forms_payments.py:426
 #: mkt/developers/templates/developers/payments/includes/account_list.html:12
 msgid "Account Name"
-msgstr ""
+msgstr "Nama Akun"
 
 #: mkt/developers/forms_payments.py:455
 msgid "Payment Account"
@@ -2736,7 +2736,7 @@ msgstr "Nama"
 #: mkt/ecosystem/templates/ecosystem/partners.html:127
 #: mkt/lookup/templates/lookup/user_summary.html:19
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: mkt/developers/forms_payments.py:642
 msgid "No payment account set up for that app"
@@ -2744,7 +2744,7 @@ msgstr ""
 
 #: mkt/developers/helpers.py:31 mkt/developers/helpers.py:50
 msgid "Developers"
-msgstr ""
+msgstr "Pengembang"
 
 #: mkt/developers/helpers.py:51 mkt/site/context_processors.py:66
 #: templates/base.html:65
@@ -2798,7 +2798,7 @@ msgstr ""
 #: mkt/developers/tasks.py:542 mkt/developers/tasks.py:548
 #: mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
-msgstr ""
+msgstr "dan"
 
 #: mkt/developers/tasks.py:562
 msgid "{region} region added to the Firefox Marketplace"
@@ -2810,15 +2810,15 @@ msgstr ""
 
 #: mkt/developers/utils.py:60
 msgid "Video support not enabled."
-msgstr ""
+msgstr "Dukungan video tidak diaktifkan."
 
 #: mkt/developers/utils.py:73
 msgid "Icons must be either PNG or JPG."
-msgstr ""
+msgstr "Ikon haruslah dalam PNG atau JPG."
 
 #: mkt/developers/utils.py:75
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Gambar haruslah dalam PNG atau JPG."
 
 #: mkt/developers/utils.py:80
 msgid "Icons cannot be animated."
@@ -2865,7 +2865,7 @@ msgstr ""
 
 #: mkt/developers/views.py:167
 msgid "App deleted."
-msgstr ""
+msgstr "Aplikasi dihapus."
 
 #: mkt/developers/views.py:172
 msgid "Password was incorrect. App was not deleted."
