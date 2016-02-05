@@ -67,8 +67,7 @@ from mkt.users.models import UserProfile
 from mkt.users.views import _clean_next_url
 from mkt.versions.models import Version
 from mkt.webapps.decorators import app_view
-from mkt.webapps.models import (AddonUser, ContentRating, IARCCert, IARCInfo,
-                                Webapp)
+from mkt.webapps.models import AddonUser, ContentRating, IARCInfo, Webapp
 from mkt.webapps.tasks import _update_manifest, update_manifests
 from mkt.zadmin.models import set_config, unmemoized_get_config
 
@@ -359,10 +358,6 @@ def content_ratings_edit(request, addon_id, addon):
     data = request.POST if request.method == 'POST' else None
 
     if waffle.switch_is_active('iarc-upgrade-v2'):
-        try:
-            initial['cert_id'] = unicode(uuid.UUID(addon.iarc_cert.cert_id))
-        except IARCCert.DoesNotExist:
-            pass
         form_class = IARCV2ExistingCertificateForm
     else:
         try:
