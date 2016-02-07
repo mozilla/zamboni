@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-03 15:04-0800\n"
-"PO-Revision-Date: 2016-02-07 10:33+0000\n"
+"PO-Revision-Date: 2016-02-07 11:46+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1882,7 +1882,7 @@ msgstr ""
 
 #: mkt/constants/features.py:244
 msgid "WebRTC DataChannel"
-msgstr ""
+msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:245
 msgid ""
@@ -1892,7 +1892,7 @@ msgstr ""
 
 #: mkt/constants/features.py:251
 msgid "WebRTC PeerConnection"
-msgstr ""
+msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:252
 msgid ""
@@ -1948,7 +1948,7 @@ msgstr ""
 
 #: mkt/constants/features.py:292
 msgid "SystemXHR"
-msgstr ""
+msgstr "SystemXHR"
 
 #: mkt/constants/features.py:293
 msgid ""
@@ -1958,7 +1958,7 @@ msgstr ""
 
 #: mkt/constants/features.py:299
 msgid "TCP Sockets"
-msgstr ""
+msgstr "Сокети TCP"
 
 #: mkt/constants/features.py:300
 msgid "The app requires the platform to allow opening raw TCP sockets."
@@ -1974,7 +1974,7 @@ msgstr ""
 
 #: mkt/constants/features.py:311
 msgid "Multiple Network Information"
-msgstr ""
+msgstr "Інформація про безліч мережевих з'єднань"
 
 #: mkt/constants/features.py:312
 msgid ""
@@ -2129,7 +2129,7 @@ msgstr "Оцінка очікується"
 
 #: mkt/constants/ratingsbodies.py:91
 msgid "Department of Justice, Rating, Titles and Qualification"
-msgstr ""
+msgstr "Міністерство Юстиції, Рейтингу, Назви та Кваліфікації"
 
 #: mkt/constants/ratingsbodies.py:144 mkt/constants/ratingsbodies.py:146
 msgid "Generic"
@@ -2179,7 +2179,7 @@ msgstr ""
 
 #: mkt/constants/regions.py:61
 msgid "Rest of World"
-msgstr ""
+msgstr "Решта світу"
 
 #: mkt/constants/regions.py:89
 msgid "Bonaire, Sint Eustatius and Saba"
@@ -2191,7 +2191,7 @@ msgstr ""
 
 #: mkt/constants/regions.py:115
 msgid "Congo, Democratic Republic of the"
-msgstr ""
+msgstr "Конго, Демократична Республіка"
 
 #: mkt/constants/regions.py:120
 msgid "Cabo Verde"
@@ -2319,11 +2319,11 @@ msgstr "Повинен мати хоча б одного власника."
 
 #: mkt/developers/forms.py:112
 msgid "At least one team member must be listed."
-msgstr ""
+msgstr "Повинен бути вказаний щонайменше один член команди."
 
 #: mkt/developers/forms.py:116
 msgid "A team member can only be listed once."
-msgstr ""
+msgstr "Член команди може бути вказаним тільки один раз."
 
 #: mkt/developers/forms.py:143
 #, python-format
@@ -2398,7 +2398,7 @@ msgstr ""
 
 #: mkt/developers/forms.py:468
 msgid "Provide a detailed description of your app"
-msgstr ""
+msgstr "Надайте детальну інформацію про ваш застосунок"
 
 #: mkt/developers/forms.py:469
 msgid "This description will appear on the details page."
@@ -2474,15 +2474,15 @@ msgstr ""
 
 #: mkt/developers/forms.py:804 mkt/developers/forms.py:859
 msgid "You must select at least one region."
-msgstr ""
+msgstr "Ви повинні обрати хоча б один регіон."
 
 #: mkt/developers/forms.py:806
 msgid "Enable new regions"
-msgstr ""
+msgstr "Увімкнути нові регіони"
 
 #: mkt/developers/forms.py:809
 msgid "Make my app available in most regions"
-msgstr ""
+msgstr "Зробити мій застосунок доступним у більшості регіонів"
 
 #: mkt/developers/forms.py:810
 msgid "Choose where my app is made available"
@@ -2509,15 +2509,15 @@ msgstr[2] "Ви можете мати тільки {0} категорій."
 
 #: mkt/developers/forms.py:951
 msgid "Agree"
-msgstr ""
+msgstr "Згоден"
 
 #: mkt/developers/forms.py:968
 msgid "Please enter a valid email address."
-msgstr ""
+msgstr "Введіть дійсну адресу електронної пошти."
 
 #: mkt/developers/forms.py:971
 msgid "Your email address"
-msgstr ""
+msgstr "Ваша адреса електронної пошти"
 
 #: mkt/developers/forms.py:974
 msgid "Text"
@@ -2617,7 +2617,7 @@ msgstr ""
 
 #: mkt/developers/forms_payments.py:142
 msgid "Supports all billing methods"
-msgstr ""
+msgstr "Підтримує всі розрахункові методи"
 
 #: mkt/developers/forms_payments.py:214
 msgid "If app is Free, in-app payments must be enabled"
@@ -2858,7 +2858,7 @@ msgstr ""
 
 #: mkt/developers/utils.py:82
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Зображення не можуть бути з анімацією."
 
 #: mkt/developers/utils.py:92
 #, python-format
@@ -2915,7 +2915,7 @@ msgstr ""
 #: mkt/developers/views_payments.py:114 mkt/developers/views_payments.py:450
 #: mkt/reviewers/views.py:679
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "Зміни успішно збережені."
 
 #: mkt/developers/views.py:304
 msgid ""
@@ -2985,7 +2985,7 @@ msgstr "Всі"
 
 #: mkt/developers/views_payments.py:177
 msgid "Credit card"
-msgstr ""
+msgstr "Кредитна карта"
 
 #: mkt/developers/views_payments.py:178
 msgid "Carrier"
@@ -3165,7 +3165,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/nav.html:15
 msgid "Submit a New App"
-msgstr ""
+msgstr "Відправити новий застосунок"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:2
 msgid "Authorize Access"
@@ -3182,7 +3182,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/oauth_authorize.html:17
 msgid "Deny"
-msgstr ""
+msgstr "Заборонити"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:54
 #: templates/base.html:55
@@ -3266,7 +3266,7 @@ msgstr ""
 #: mkt/receipts/templates/receipts/test_details.html:8
 #: mkt/receipts/templates/receipts/test_manifest.html:8
 msgid "Testing"
-msgstr ""
+msgstr "Тестування"
 
 #: mkt/developers/templates/developers/testing.html:14
 msgid ""
@@ -3311,11 +3311,11 @@ msgstr "Тип"
 
 #: mkt/developers/templates/developers/transactions.html:45
 msgid "Currency"
-msgstr ""
+msgstr "Валюта"
 
 #: mkt/developers/templates/developers/transactions.html:46
 msgid "Amount"
-msgstr ""
+msgstr "Сума"
 
 #: mkt/developers/templates/developers/validate_app.html:3
 #: mkt/developers/templates/developers/includes/testing_nav.html:2
@@ -3447,7 +3447,7 @@ msgstr "Жодного"
 #: mkt/reviewers/templates/reviewers/includes/details.html:118
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:128
 msgid "Team Members"
-msgstr ""
+msgstr "Учасники групи"
 
 #: mkt/developers/templates/developers/apps/owner.html:22
 #: mkt/developers/templates/developers/payments/premium.html:51
@@ -3540,7 +3540,7 @@ msgstr "Статус"
 
 #: mkt/developers/templates/developers/apps/status.html:21
 msgid "Current Status"
-msgstr ""
+msgstr "Поточний стан"
 
 #: mkt/developers/templates/developers/apps/status.html:29
 msgid "You have <b>delisted</b> this app."
@@ -3691,7 +3691,7 @@ msgstr "Завантажити"
 
 #: mkt/developers/templates/developers/apps/status.html:233
 msgid "Make Active"
-msgstr ""
+msgstr "Зробити активним"
 
 #: mkt/developers/templates/developers/apps/status.html:248
 msgid "Upload New Version"
@@ -3761,7 +3761,7 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
 msgid "Delete App"
-msgstr ""
+msgstr "Видалити застосунок"
 
 #: mkt/developers/templates/developers/apps/status.html:336
 msgid ""
@@ -3971,7 +3971,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:40
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:98
 msgid "Developer Name"
-msgstr ""
+msgstr "Ім'я розробника"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:40
 msgid "This field can only be edited by updating it in the manifest."
@@ -4059,7 +4059,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:63
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Search Keywords"
-msgstr ""
+msgstr "Пошук ключових слів"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:173
 msgid "Release Notes"
@@ -4183,7 +4183,7 @@ msgstr "Технічні Деталі"
 #. {0} is an addon name
 #: mkt/developers/templates/developers/apps/edit/technical.html:14
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "Технічна інформація для {0}"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:19
 msgid "Works Offline"
@@ -4215,7 +4215,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:49
 msgid "Homescreen?"
-msgstr ""
+msgstr "Домашній екран?"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:50
 msgid "Whether this app is a homescreen for Firefox OS."
@@ -4340,7 +4340,7 @@ msgstr "Наступна"
 
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:12
 msgid "Are you sure you wish to delete your app?"
-msgstr ""
+msgstr "Ви дійсно хочете видалити свій застосунок?"
 
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:16
 msgid "Please tell us why you are deleting your app"
@@ -4435,7 +4435,7 @@ msgstr "Додати нову версію"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
 msgid "Status &amp; Versions"
-msgstr ""
+msgstr "Стан і версії"
 
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
