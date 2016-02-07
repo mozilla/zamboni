@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-03 15:04-0800\n"
-"PO-Revision-Date: 2016-02-07 11:46+0000\n"
+"PO-Revision-Date: 2016-02-07 11:54+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4486,7 +4486,7 @@ msgstr "Статус:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:33
 msgid "Packaged App Version:"
-msgstr ""
+msgstr "Версія запакованого застосунку:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:38
 msgid "Pending Version:"
@@ -4498,20 +4498,20 @@ msgstr "Ціна:"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:50
 msgid "Set up Payment Account"
-msgstr ""
+msgstr "Налаштувати рахунок для платежів"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:55
 msgid "Change Devices"
-msgstr ""
+msgstr "Змінити пристрої"
 
 #: mkt/developers/templates/developers/apps/listing/items.html:60
 #, python-format
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
-msgstr ""
+msgstr "<a href=\"%(rating_url)s\">Налаштувати рейтинг вмісту</a>"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
 msgid "Get My App Rated"
-msgstr ""
+msgstr "Отримати оцінку мого застосунку"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:26
 msgid ""
@@ -4827,11 +4827,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:51
 msgid "Product ID"
-msgstr ""
+msgstr "ID продукту"
 
 #: mkt/developers/templates/developers/payments/in-app-products.html:63
 msgid "Add a product"
-msgstr ""
+msgstr "Додати продукт"
 
 #: mkt/developers/templates/developers/payments/premium.html:57
 msgid "App Compatibility"
@@ -4839,7 +4839,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:71
 msgid "Change to Free"
-msgstr ""
+msgstr "Змінити на безкоштовний"
 
 #: mkt/developers/templates/developers/payments/premium.html:87
 msgid "Paid mode requires that your app only supports:"
@@ -4936,7 +4936,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:226
 msgid "local currency"
-msgstr ""
+msgstr "місцева валюта"
 
 #: mkt/developers/templates/developers/payments/premium.html:227
 msgid "Billing method"
@@ -5142,7 +5142,7 @@ msgstr "Вибрати все"
 
 #: mkt/ecosystem/views.py:54
 msgid "Thank you for subscribing!"
-msgstr ""
+msgstr "Дякуємо що підписались!"
 
 #: mkt/ecosystem/views.py:60
 msgid ""
@@ -5183,7 +5183,7 @@ msgstr "Збірка"
 #: mkt/ecosystem/templates/ecosystem/landing.html:40
 #: mkt/ecosystem/templates/ecosystem/macros.html:29
 msgid "Quick Start"
-msgstr ""
+msgstr "Швидкий старт"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:41
 #: mkt/ecosystem/templates/ecosystem/landing.html:42
@@ -5259,7 +5259,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:115
 msgid "Join the community"
-msgstr ""
+msgstr "Приєднатися до спільноти"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:117
 msgid "Look who's already here"
@@ -5338,11 +5338,11 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:245
 msgid "Developer Devices"
-msgstr ""
+msgstr "Пристрої розробника"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:249
 msgid "Code & Tools"
-msgstr ""
+msgstr "Код та Інструменти"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:253
 msgid "Events & Meetups"
@@ -5529,7 +5529,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:112
 msgid "Stay connected."
-msgstr ""
+msgstr "Залишатися підключеним."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:116
 msgid "The Apps Blog"
@@ -6159,7 +6159,7 @@ msgstr "Запакований застосунок"
 #: mkt/reviewers/templates/reviewers/includes/details.html:18
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:50
 msgid "Hosted app"
-msgstr ""
+msgstr "Розміщений застосунок"
 
 #: mkt/lookup/templates/lookup/app_summary.html:59
 msgid "Submitted"
@@ -6180,15 +6180,15 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/app_summary.html:84
 msgid "Tarako Status"
-msgstr ""
+msgstr "Статус Tarako"
 
 #: mkt/lookup/templates/lookup/app_summary.html:87
 msgid "Tarako enabled"
-msgstr ""
+msgstr "Tarako увімкнено"
 
 #: mkt/lookup/templates/lookup/app_summary.html:89
 msgid "Tarako not enabled"
-msgstr ""
+msgstr "Tarako вимкнено"
 
 #: mkt/lookup/templates/lookup/app_summary.html:92 mkt/reviewers/helpers.py:48
 #: mkt/reviewers/templates/reviewers/abuse.html:5
@@ -6217,7 +6217,7 @@ msgstr "Покупки"
 #: mkt/lookup/templates/lookup/app_summary.html:122
 #: mkt/lookup/templates/lookup/user_summary.html:63
 msgid "Refunds"
-msgstr ""
+msgstr "Відшкодування"
 
 #. first argument is number of refunds, second argument is percentage of
 #. purchases.
@@ -6290,7 +6290,7 @@ msgstr "Учасники групи"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
-msgstr ""
+msgstr "Інформація Marketplace"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:23
 msgid "Buyer"
@@ -7680,11 +7680,11 @@ msgstr "У вас <span>{0}</span> балів."
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:49
 #: mkt/site/templates/site/helpers/no_results.html:1
 msgid "No results found"
-msgstr ""
+msgstr "Результатів не знайдено"
 
 #: mkt/search/forms.py:14
 msgid "Relevance"
-msgstr ""
+msgstr "Відповідність"
 
 #: mkt/search/forms.py:15
 msgid "Popularity"
@@ -7720,11 +7720,11 @@ msgstr ""
 
 #: mkt/search/forms.py:36
 msgid "Free with In-app"
-msgstr ""
+msgstr "Безкоштовний з платежами в застосунку"
 
 #: mkt/search/forms.py:38
 msgid "Premium with In-app"
-msgstr ""
+msgstr "Преміум з платежами в застосунку"
 
 #: mkt/search/forms.py:39
 msgid "Other System for In-App"
@@ -7760,7 +7760,7 @@ msgstr "Тип пристрою"
 
 #: mkt/search/forms.py:151
 msgid "Premium types"
-msgstr ""
+msgstr "Преміум-типи"
 
 #: mkt/search/forms.py:155
 msgid "App type"
