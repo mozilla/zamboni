@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-03 15:04-0800\n"
-"PO-Revision-Date: 2016-02-07 11:54+0000\n"
+"PO-Revision-Date: 2016-02-07 13:05+0000\n"
 "Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -1676,7 +1676,7 @@ msgid ""
 "The app requires the ability to get information about the network connection"
 " (the `navigator.mozConnection` API)."
 msgstr ""
-"Застосунок потребує можливість отримання інформації про мережу з’єднання ( "
+"Застосунок вимагає можливість отримання інформації про мережу з’єднання ( "
 "`navigator.mozConnection` API)."
 
 #: mkt/constants/features.py:103
@@ -1685,7 +1685,7 @@ msgstr "Статистика мережі"
 
 #: mkt/constants/features.py:104
 msgid "The app requires the `navigator.mozNetworkStats` API."
-msgstr "Застосунок потребує `navigator.mozNetworkStats` API."
+msgstr "Застосунок вимагає `navigator.mozNetworkStats` API."
 
 #: mkt/constants/features.py:109
 msgid "Proximity"
@@ -1693,7 +1693,7 @@ msgstr "Близькість"
 
 #: mkt/constants/features.py:110
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
-msgstr ""
+msgstr "Застосунок вимагає безконтактний датчик (`ondeviceproximity` API)."
 
 #: mkt/constants/features.py:115
 msgid "Simple Push"
@@ -1701,7 +1701,7 @@ msgstr "Просте проштовхування"
 
 #: mkt/constants/features.py:116
 msgid "The app requires the `navigator.mozPush` API."
-msgstr "Застосунок потребує `navigator.mozPush` API."
+msgstr "Застосунок вимагає `navigator.mozPush` API."
 
 #: mkt/constants/features.py:120
 msgid "Screen Orientation"
@@ -1710,8 +1710,7 @@ msgstr "Орієнтація екрана"
 #: mkt/constants/features.py:121
 msgid ""
 "The app requires the platform to support the `ondeviceorientation` API."
-msgstr ""
-"Застосунок потребує платформи для підтримки `ondeviceorientation` API."
+msgstr "Застосунок вимагає платформи для підтримки `ondeviceorientation` API."
 
 #: mkt/constants/features.py:126
 msgid "Time/Clock"
@@ -1719,7 +1718,7 @@ msgstr "Час/Годинник"
 
 #: mkt/constants/features.py:127
 msgid "The app requires the `navigator.mozTime` API."
-msgstr "Застосунок потребує `navigator.mozTime` API."
+msgstr "Застосунок вимагає `navigator.mozTime` API."
 
 #: mkt/constants/features.py:131
 msgid "Vibration"
@@ -1730,16 +1729,16 @@ msgid ""
 "The app requires the device to support vibration (the `navigator.vibrate` "
 "API)."
 msgstr ""
-"Застосунок потребує пристрою, що підтримує вібрацію (`navigator.vibrate` "
+"Застосунок вимагає пристрою, що підтримує вібрацію (`navigator.vibrate` "
 "API)."
 
 #: mkt/constants/features.py:138
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
-msgstr "Застосунок потребує `navigator.mozFM` або `navigator.mozFMRadio` API."
+msgstr "Застосунок вимагає `navigator.mozFM` або `navigator.mozFMRadio` API."
 
 #: mkt/constants/features.py:144
 msgid "The app requires the `navigator.mozSms` API."
-msgstr "Застосунок потребує `navigator.mozSms` API."
+msgstr "Застосунок вимагає `navigator.mozSms` API."
 
 #: mkt/constants/features.py:148
 msgid "Touch"
@@ -1750,7 +1749,7 @@ msgid ""
 "The app requires the platform to support touch events. This option indicates"
 " that the app will not function when used with a mouse."
 msgstr ""
-"Застосунок потребує платформу з сенсорною підтримкою дотиків. Ця опція "
+"Застосунок вимагає платформу з сенсорною підтримкою дотиків. Ця опція "
 "сповіщає про те, що застосунок не працюватиме при використанні миші."
 
 #: mkt/constants/features.py:155
@@ -1763,14 +1762,14 @@ msgid ""
 " resolution). This option indicates that the app will be unusable on larger "
 "displays (e.g., tablets, desktop, large or high-DPI phones)."
 msgstr ""
-"Застосунок потребує платформу з мобільним розширенням дисплею (наприклад, "
-"qHD розширення). Ця опція сповіщає про те, що застосунок не зможе "
+"Застосунок вимагає платформу з мобільним розширенням дисплею (наприклад, qHD"
+" розширення). Ця опція сповіщає про те, що застосунок не зможе "
 "використовуватися на пристроях з великими дисплеями (наприклад, планшети, "
 "великі дисплеї та телефони з високороздільними дисплеями)."
 
 #: mkt/constants/features.py:166
 msgid "The app requires that the platform can decode and play MP3 files."
-msgstr "Застосунок потребує платформу, що може опрацьовувати MP3 файли."
+msgstr "Застосунок вимагає платформу, що може опрацьовувати MP3 файли."
 
 #: mkt/constants/features.py:171
 msgid "Audio"
@@ -1789,14 +1788,14 @@ msgid ""
 "The app requires that the platform supports the Web Audio API "
 "(`window.AudioContext`)."
 msgstr ""
-"Застосунок потребує платформу, що підтримує Web Audio API "
+"Застосунок вимагає платформу, що підтримує Web Audio API "
 "(`window.AudioContext`)."
 
 #: mkt/constants/features.py:184
 msgid ""
 "The app requires that the platform can decode and play H.264 video files."
 msgstr ""
-"Застосунок потребує платформу, що може опрацьовувати і програвати H.264 "
+"Застосунок вимагає платформу, що може опрацьовувати і програвати H.264 "
 "відеофайли."
 
 #: mkt/constants/features.py:190
@@ -1804,7 +1803,7 @@ msgid ""
 "The app requires that the platform can decode and play WebM video files "
 "(VP8)."
 msgstr ""
-"Застосунок потребує платформу, що може опрацьовувати і програвати WebM "
+"Застосунок вимагає платформу, що може опрацьовувати і програвати WebM "
 "відеофайли (VP8)."
 
 #: mkt/constants/features.py:195
@@ -1816,7 +1815,7 @@ msgid ""
 "The app requires the Full Screen API (`requestFullScreen` or "
 "`mozRequestFullScreen`)."
 msgstr ""
-"Застосунок потребує платформу Full Screen API (`requestFullScreen` або "
+"Застосунок вимагає платформу Full Screen API (`requestFullScreen` або "
 "`mozRequestFullScreen`)."
 
 #: mkt/constants/features.py:202
@@ -1827,7 +1826,7 @@ msgstr "Ігровий пристрій"
 msgid ""
 "The app requires the platform to support the gamepad API "
 "(`navigator.getGamepads`)."
-msgstr "Застосунок потребує платформу gamepad API (`navigator.getGamepads`)."
+msgstr "Застосунок вимагає платформу gamepad API (`navigator.getGamepads`)."
 
 #: mkt/constants/features.py:208
 msgid "Quota Management"
@@ -1839,6 +1838,9 @@ msgid ""
 "above the normally allowed limits for an app (`window.StorageInfo` or "
 "`window.persistentStorage`)."
 msgstr ""
+"Застосунок вимагає дозвіл збільшити ліміт постійного сховища вище "
+"звичайного, дозволеного для додатків (`window.StorageInfo` або "
+"`window.persistentStorage`)."
 
 #: mkt/constants/features.py:217
 msgid "Camera"
@@ -1906,7 +1908,7 @@ msgstr ""
 
 #: mkt/constants/features.py:259
 msgid "The app requires the platform to allow the use of text-to-speech."
-msgstr ""
+msgstr "Застосунок вимагає дозвіл на перетворення тексту на мовлення."
 
 #: mkt/constants/features.py:264
 msgid "Web Speech Recognition"
@@ -1914,7 +1916,7 @@ msgstr ""
 
 #: mkt/constants/features.py:265
 msgid "The app requires the platform to allow the use of speech-to-text."
-msgstr ""
+msgstr "Застосунок вимагає дозвіл на перетворення мовлення на текст."
 
 #: mkt/constants/features.py:270
 msgid "Pointer Lock"
@@ -2020,7 +2022,7 @@ msgstr "NFC"
 
 #: mkt/constants/features.py:343
 msgid "The app requires access to the Near Field Communication (NFC) API."
-msgstr "Програма потребує доступу до Near Field Communication (NFC) API."
+msgstr "Програма вимагає доступу до Near Field Communication (NFC) API."
 
 #: mkt/constants/features.py:357
 msgid "UDP Sockets"
@@ -9038,11 +9040,11 @@ msgstr "Цей процес подання програм не було повн
 
 #: mkt/webapps/models.py:1441
 msgid "This app needs to get a content rating."
-msgstr "Цей застосунок потребує отримання оцінки вмісту."
+msgstr "Цей застосунок вимагає отримання оцінки вмісту."
 
 #: mkt/webapps/models.py:1447
 msgid "This app needs a payment account set up."
-msgstr "Цей застосунок потребує встановленого облікового запису оплати."
+msgstr "Цей застосунок вимагає встановленого облікового запису оплати."
 
 #: mkt/webapps/tasks.py:144
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
