@@ -502,7 +502,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
     def delete(self, msg='', reason=''):
         # To avoid a circular import.
         from . import tasks
-
+        from mkt.search.utils import get_popularity
         if self.status == mkt.STATUS_DELETED:
             return  # We're already done.
 
@@ -537,6 +537,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             'url': absolutify(self.get_url_path()),
             'user_str': ("%s, %s (%s)" % (user.name, user.email, user.id)
                          if user else "Unknown"),
+            'popularity': get_popularity(self)
         }
 
         email_msg = u"""
@@ -546,6 +547,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         DELETED BY: %(user_str)s
         ID: %(id)s
         GUID: %(guid)s
+        90 DAY POPULARITY: %(popularity)s
         AUTHORS: %(authors)s
         NOTES: %(msg)s
         REASON GIVEN BY USER FOR DELETION: %(reason)s

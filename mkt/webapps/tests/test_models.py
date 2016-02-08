@@ -143,6 +143,15 @@ class TestWebapp(WebappTestCase):
         eq_(len(mail.outbox), 1)
         assert reason in mail.outbox[0].body
 
+    def test_delete_popularity(self):
+        app = self.get_app()
+        pop = 47
+        app.popularity.create(region=0, value=pop)
+        eq_(len(mail.outbox), 0)
+        app.delete(msg='bye')
+        eq_(len(mail.outbox), 1)
+        assert ('POPULARITY: %s' % (pop,)) in mail.outbox[0].body
+
     def test_soft_deleted(self):
         app = self.get_app()
 
