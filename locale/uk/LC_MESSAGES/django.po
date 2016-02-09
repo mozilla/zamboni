@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-03 15:04-0800\n"
-"PO-Revision-Date: 2016-02-07 13:05+0000\n"
-"Last-Translator: Tymur Faradzhev <faradzhev.timur@gmail.com>\n"
+"PO-Revision-Date: 2016-02-08 21:28+0000\n"
+"Last-Translator: Andriy Kuryk <andrij.kuryk@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -1286,7 +1286,7 @@ msgstr "Промодерований огляд застосунку"
 
 #: mkt/constants/base.py:249
 msgid "App Review Moderation Reverted"
-msgstr ""
+msgstr "Модерацію відгуку на застосунок скасовано"
 
 #: mkt/constants/base.py:250
 msgid "Tarako App Review"
@@ -1830,7 +1830,7 @@ msgstr "Застосунок вимагає платформу gamepad API (`nav
 
 #: mkt/constants/features.py:208
 msgid "Quota Management"
-msgstr ""
+msgstr "Керування квотами"
 
 #: mkt/constants/features.py:209
 msgid ""
@@ -1851,6 +1851,8 @@ msgid ""
 "The app requires the platform to allow access to video from the device "
 "camera via a LocalMediaStream object."
 msgstr ""
+"Застосунок вимагає платформу для доступу до відео з камери пристрою за "
+"допомогою об’єкту LocalMediaStream."
 
 #: mkt/constants/features.py:224
 msgid "Microphone"
@@ -1871,16 +1873,19 @@ msgid ""
 "The app requires the platform to allow access to the device screen for "
 "capture."
 msgstr ""
+"Застосунок вимагає платформу для доступу до захоплення зображення пристрою."
 
 #: mkt/constants/features.py:237
 msgid "WebRTC MediaStream"
-msgstr ""
+msgstr "WebRTC MediaStream"
 
 #: mkt/constants/features.py:238
 msgid ""
 "The app requires the platform to allow web real-time communication browser-"
 "to-browser inbound media streams."
 msgstr ""
+"Застосунок вимагає платформи для доступу до комунікації браузерів вхідними "
+"потоками даних в реальному часі."
 
 #: mkt/constants/features.py:244
 msgid "WebRTC DataChannel"
@@ -1891,6 +1896,8 @@ msgid ""
 "The app requires the platform to allow peer-to-peer exchange of data other "
 "than audio and video."
 msgstr ""
+"Застосунок вимагає платформу для P2P обміну даними (обмін між пірами), окрім"
+" відео і аудіо."
 
 #: mkt/constants/features.py:251
 msgid "WebRTC PeerConnection"
@@ -1901,6 +1908,7 @@ msgid ""
 "The app requires the platform to allow communication of streaming data "
 "between peers."
 msgstr ""
+"Застосунок вимагає платформу для комунікації потоків даних між пірами."
 
 #: mkt/constants/features.py:258
 msgid "Web Speech Synthesis"
@@ -2788,7 +2796,7 @@ msgstr ""
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:134
 msgid "Donate to {0}"
-msgstr ""
+msgstr "Зробити внесок {0}"
 
 #: mkt/developers/models.py:457
 msgid "Review"
@@ -2856,7 +2864,7 @@ msgstr ""
 
 #: mkt/developers/utils.py:80
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "Зображення не можуть бути з анімацією."
 
 #: mkt/developers/utils.py:82
 msgid "Images cannot be animated."
@@ -2865,7 +2873,7 @@ msgstr "Зображення не можуть бути з анімацією."
 #: mkt/developers/utils.py:92
 #, python-format
 msgid "Please use files smaller than %s."
-msgstr ""
+msgstr "Будь ласка, використовуйте файли розміром до %s."
 
 #: mkt/developers/utils.py:103
 msgid "Icon could not be opened."
@@ -2873,7 +2881,7 @@ msgstr "Не вдалося відкрити піктограму."
 
 #: mkt/developers/utils.py:105
 msgid "Preview could not be opened."
-msgstr ""
+msgstr "Не вдалося відкрити попередній перегляд."
 
 #: mkt/developers/utils.py:107
 msgid "Promo image could not be opened."
@@ -2892,10 +2900,12 @@ msgstr "Піктограми повинні бути квадратними."
 #: mkt/developers/utils.py:127
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr ""
+"Попередній перегляд затосунку повинен бути принаймні {0}px на {1}px або "
+"{1}px на {0}px."
 
 #: mkt/developers/views.py:157
 msgid "Paid apps cannot be deleted. Disable this app instead."
-msgstr ""
+msgstr "Платні застосунки неможливо видалити. Натомість можна вимкнути."
 
 #: mkt/developers/views.py:167
 msgid "App deleted."
@@ -2907,11 +2917,11 @@ msgstr ""
 
 #: mkt/developers/views.py:216
 msgid "App successfully resubmitted."
-msgstr ""
+msgstr "Застосунок успішно повторно відправлено."
 
 #: mkt/developers/views.py:249
 msgid "New version successfully added."
-msgstr ""
+msgstr "Нова версія успішно додана."
 
 #: mkt/developers/views.py:297 mkt/developers/views.py:539
 #: mkt/developers/views_payments.py:114 mkt/developers/views_payments.py:450
@@ -2924,18 +2934,20 @@ msgid ""
 "Congratulations, your app submission is now complete and will be reviewed "
 "shortly!"
 msgstr ""
+"Вітання, Ваш застосунок успішно відправлено, він буде розглянутий найближчим"
+" часом!"
 
 #: mkt/developers/views.py:306
 msgid "Content ratings successfully saved."
-msgstr ""
+msgstr "Вікові обмеження успішно збережені."
 
 #: mkt/developers/views.py:443
 msgid "Version successfully edited."
-msgstr ""
+msgstr "Версія успішно відредагована."
 
 #: mkt/developers/views.py:478
 msgid "Version successfully made active."
-msgstr ""
+msgstr "Версія успішно активована."
 
 #: mkt/developers/views.py:492
 msgid "Version \"{0}\" deleted."
@@ -2943,11 +2955,11 @@ msgstr "Версію \"{0}\" видалено."
 
 #: mkt/developers/views.py:627
 msgid "There was an error with the submission."
-msgstr ""
+msgstr "Під час відправлення сталася помилка."
 
 #: mkt/developers/views.py:669
 msgid "An error occurred validating the manifest."
-msgstr ""
+msgstr "Відбулася помилка при перевірці маніфесту."
 
 #: mkt/developers/views.py:921
 msgid "There was an error uploading your preview."
@@ -2959,23 +2971,23 @@ msgstr ""
 
 #: mkt/developers/views.py:988
 msgid "Users with the admin role cannot use the API."
-msgstr ""
+msgstr "Адміністратор не може використовувати API."
 
 #: mkt/developers/views.py:997
 msgid "No such API key."
-msgstr ""
+msgstr "Немає такого ключа API."
 
 #: mkt/developers/views.py:1003
 msgid "New API key generated."
-msgstr ""
+msgstr "Створено новий ключ API."
 
 #: mkt/developers/views.py:1021
 msgid "Created blocklisted version."
-msgstr ""
+msgstr "Створено список заблокованих версій."
 
 #: mkt/developers/views.py:1023
 msgid "App already blocklisted."
-msgstr ""
+msgstr "Застосунок вже заблоковано."
 
 #: mkt/developers/views_payments.py:89 mkt/developers/views_payments.py:107
 msgid "We encountered a problem connecting to the payment server."
@@ -3141,7 +3153,7 @@ msgstr "Увійти / Зареєструватися"
 #: mkt/developers/templates/developers/motd.html:3
 #: mkt/reviewers/templates/reviewers/motd.html:4
 msgid "Message of the Day"
-msgstr ""
+msgstr "Повідомлення дня"
 
 #: mkt/developers/templates/developers/motd.html:11
 msgid "Update Message of the Day"
@@ -3171,7 +3183,7 @@ msgstr "Відправити новий застосунок"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:2
 msgid "Authorize Access"
-msgstr ""
+msgstr "Дозволити доступ"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:10
 #, python-format
@@ -3180,7 +3192,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/oauth_authorize.html:16
 msgid "Grant"
-msgstr ""
+msgstr "Дарунок"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:17
 msgid "Deny"
@@ -3199,7 +3211,7 @@ msgstr ""
 #: mkt/developers/templates/developers/skeleton_impala.html:62
 #: templates/base.html:63
 msgid "Submit an app"
-msgstr ""
+msgstr "Опублікувати програму"
 
 #: mkt/developers/templates/developers/skeleton_impala.html:64
 #: mkt/ecosystem/templates/ecosystem/partners.html:115 templates/base.html:67
@@ -3251,7 +3263,7 @@ msgstr ""
 #: mkt/developers/templates/developers/terms.html:18
 #: mkt/submit/templates/submit/terms.html:37
 msgid "Printable Version"
-msgstr ""
+msgstr "Версія для друку"
 
 #: mkt/developers/templates/developers/terms.html:22
 #: mkt/submit/templates/submit/terms.html:41
@@ -3282,7 +3294,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/transactions.html:24
 msgid "Filter Transactions"
-msgstr ""
+msgstr "Фільтрувати транзакції"
 
 #: mkt/developers/templates/developers/transactions.html:28
 msgid "{num} transaction found"
@@ -3332,7 +3344,7 @@ msgstr ""
 #: mkt/developers/templates/developers/validate_app.html:27
 #: mkt/submit/templates/submit/manifest.html:59
 msgid "Validate"
-msgstr ""
+msgstr "Перевірити"
 
 #: mkt/developers/templates/developers/validate_app.html:35
 #: mkt/submit/templates/submit/manifest.html:67
@@ -3368,15 +3380,15 @@ msgstr ""
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: mkt/developers/templates/developers/validation.html:5
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Результати перевірки {0}"
 
 #: mkt/developers/templates/developers/validation.html:7
 msgid "Validation Results"
-msgstr ""
+msgstr "Результати перевірки"
 
 #: mkt/developers/templates/developers/validation.html:20
 msgid "Validated at:"
-msgstr ""
+msgstr "Перевірено:"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:3
 msgid "Manage My Submissions"
@@ -4127,7 +4139,7 @@ msgstr "Країна та Мова"
 #. {0} is an add-on name.
 #: mkt/developers/templates/developers/apps/edit/language.html:5
 msgid "Country and Language Details for {0}"
-msgstr ""
+msgstr "Деталі країни та мови {0}"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:18
 msgid "Edit country on the Compatibility Page"
