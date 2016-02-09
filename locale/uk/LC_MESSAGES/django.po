@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-03 15:04-0800\n"
-"PO-Revision-Date: 2016-02-08 21:28+0000\n"
-"Last-Translator: Andriy Kuryk <andrij.kuryk@gmail.com>\n"
+"PO-Revision-Date: 2016-02-09 12:44+0000\n"
+"Last-Translator: Alexey Khmarnyk <prest290114@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -1912,7 +1912,7 @@ msgstr ""
 
 #: mkt/constants/features.py:258
 msgid "Web Speech Synthesis"
-msgstr ""
+msgstr "Веб-синтез мовлення"
 
 #: mkt/constants/features.py:259
 msgid "The app requires the platform to allow the use of text-to-speech."
@@ -2261,7 +2261,7 @@ msgstr "Танзанія"
 
 #: mkt/constants/regions.py:303
 msgid "Holy See"
-msgstr ""
+msgstr "Святий Престол"
 
 #: mkt/constants/regions.py:305
 msgid "Venezuela"
