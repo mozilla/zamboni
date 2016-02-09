@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-02-03 15:04-0800\n"
+"POT-Creation-Date: 2016-02-09 14:59-0800\n"
 "PO-Revision-Date: 2016-02-01 15:37+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -2170,7 +2170,7 @@ msgstr "Accord"
 msgid "Submit"
 msgstr "Proposer"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1433
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1430
 msgid "Details"
 msgstr "Détails"
 
@@ -2248,7 +2248,7 @@ msgstr "Oops, il semble que vous avez déjà envoyé un manifeste pour %s. qui e
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "Une application existe déjà sur ce domaine ; une seule application est autorisée par domaine."
 
-#: mkt/developers/forms.py:328 mkt/webapps/models.py:1342
+#: mkt/developers/forms.py:328 mkt/webapps/models.py:1339
 msgid "You must upload at least one screenshot or video."
 msgstr "Vous devez envoyer au moins une capture d'écran ou vidéo."
 
@@ -2261,179 +2261,171 @@ msgstr "Application empaquetée trop grosse. Les paquets doivent être plus peti
 msgid "Error extracting manifest from zip file."
 msgstr "Erreur à l'extraction du manifeste depuis le fichier ZIP."
 
-#: mkt/developers/forms.py:462
-msgid "Hosted URL:"
-msgstr "URL d'hébergement :"
-
 #: mkt/developers/forms.py:463
-msgid "A URL to where your app is hosted on the web, if it exists. This allows users to try out your app before installing it."
-msgstr "Une URL où votre application est hébergée sur le web, si elle existe. Elle permet à l'utilisateur d'essayer votre application avant de l'installer."
-
-#: mkt/developers/forms.py:468
 msgid "Provide a detailed description of your app"
 msgstr "Fournissez une description détaillée de votre application"
 
-#: mkt/developers/forms.py:469
+#: mkt/developers/forms.py:464
 msgid "This description will appear on the details page."
 msgstr "Cette description sera affichée sur la page de détails."
 
-#: mkt/developers/forms.py:472 mkt/submit/forms.py:288
+#: mkt/developers/forms.py:467 mkt/submit/forms.py:288
 msgid "Search Keywords:"
 msgstr "Mots-clés de recherche :"
 
-#: mkt/developers/forms.py:474 mkt/developers/templates/developers/apps/edit/basic.html:148 mkt/submit/forms.py:290
+#: mkt/developers/forms.py:469 mkt/developers/templates/developers/apps/edit/basic.html:131 mkt/submit/forms.py:290
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
 msgstr "Les mots-clés de recherche sont utilisés pour renvoyer des résultats de recherche dans le Firefox Marketplace. Assurez-vous d'utiliser des mots-clés qui représentent bien votre application."
 
-#: mkt/developers/forms.py:531 mkt/submit/forms.py:368
+#: mkt/developers/forms.py:526 mkt/submit/forms.py:368
 msgid "This slug is already in use. Please choose another."
 msgstr "Ce racourcis est déjà utilisé. Merci d'en choisir un autre."
 
-#: mkt/developers/forms.py:534 mkt/submit/forms.py:372
+#: mkt/developers/forms.py:529 mkt/submit/forms.py:372
 #, python-format
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "Ce racourcis ne peut être « %s ». Merci d'en choisir un autre."
 
-#: mkt/developers/forms.py:562
+#: mkt/developers/forms.py:557
 msgid "Manifest URL changed from {before_url} to {after_url}"
 msgstr "Adresse du manifeste changée de {before_url} vers {after_url}"
 
-#: mkt/developers/forms.py:599
+#: mkt/developers/forms.py:594
 msgid "Please specify your app's Privacy Policy"
 msgstr "Merci de déclarer la politique de confidentialité de votre application :"
 
-#: mkt/developers/forms.py:620
+#: mkt/developers/forms.py:615
 #, python-format
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr "Avant de changer votre langue par défaut vous devez avoir un nom et une description dans cette langue. Il vous manque %s."
 
-#: mkt/developers/forms.py:679 mkt/submit/templates/submit/details.html:128
+#: mkt/developers/forms.py:674 mkt/submit/templates/submit/details.html:128
 msgid "You must provide either a website, an email, or both."
 msgstr "Vous devez fournir un site web, une adresse électronique ou les deux."
 
-#: mkt/developers/forms.py:704
+#: mkt/developers/forms.py:699
 msgid "Your comments"
 msgstr "Vos commentaires"
 
-#: mkt/developers/forms.py:731
+#: mkt/developers/forms.py:726
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr "<b>Publié</b> : Visible pour tout le monde sur le Marketplace, et inclus dans les résultats de recherche et les pages de listing."
 
-#: mkt/developers/forms.py:735
+#: mkt/developers/forms.py:730
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
 msgstr "<b>Délisté</b> : Visible uniquement pour les personnes connaissant l'adresse, et caché des résultats de recherche et des pages de listing."
 
-#: mkt/developers/forms.py:751
+#: mkt/developers/forms.py:746
 msgid "App Visibility:"
 msgstr "Visibilité de l'application :"
 
-#: mkt/developers/forms.py:753
+#: mkt/developers/forms.py:748
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
 msgstr "<b>Limité à l'équipe</b> : Visible uniquement aux membres de l'équipe."
 
-#: mkt/developers/forms.py:802
+#: mkt/developers/forms.py:797
 msgid "Choose the regions your app will be listed in:"
 msgstr "Choisissez les régions où votre application sera présente :"
 
-#: mkt/developers/forms.py:804 mkt/developers/forms.py:859
+#: mkt/developers/forms.py:799 mkt/developers/forms.py:854
 msgid "You must select at least one region."
 msgstr "Vous devez sélectionner au moins une région."
 
-#: mkt/developers/forms.py:806
+#: mkt/developers/forms.py:801
 msgid "Enable new regions"
 msgstr "Activer de nouvelles régions"
 
-#: mkt/developers/forms.py:809
+#: mkt/developers/forms.py:804
 msgid "Make my app available in most regions"
 msgstr "Rendre mon application disponible dans la plupart des régions"
 
-#: mkt/developers/forms.py:810
+#: mkt/developers/forms.py:805
 msgid "Choose where my app is made available"
 msgstr "Choisir où mon application est disponible"
 
-#: mkt/developers/forms.py:913 mkt/developers/templates/developers/apps/edit/basic.html:195 mkt/lookup/templates/lookup/website_edit.html:84 mkt/lookup/templates/lookup/website_summary.html:48
+#: mkt/developers/forms.py:908 mkt/developers/templates/developers/apps/edit/basic.html:178 mkt/lookup/templates/lookup/website_edit.html:84 mkt/lookup/templates/lookup/website_summary.html:48
 #: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:102 mkt/websites/forms.py:23
 msgid "Categories"
 msgstr "Catégories"
 
 #. L10n: {0} is the number of categories.
-#: mkt/developers/forms.py:938 mkt/webapps/serializers.py:299 mkt/websites/forms.py:62
+#: mkt/developers/forms.py:933 mkt/webapps/serializers.py:299 mkt/websites/forms.py:62
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Vous ne pouvez avoir que {0} catégorie."
 msgstr[1] "Vous ne pouvez avoir que {0} catégories."
 
-#: mkt/developers/forms.py:951
+#: mkt/developers/forms.py:946
 msgid "Agree"
 msgstr "Accepter"
 
-#: mkt/developers/forms.py:968
+#: mkt/developers/forms.py:963
 msgid "Please enter a valid email address."
 msgstr "Merci d'indiquer une adresse courriel valide."
 
-#: mkt/developers/forms.py:971
+#: mkt/developers/forms.py:966
 msgid "Your email address"
 msgstr "Votre adresse de courriel"
 
-#: mkt/developers/forms.py:974
+#: mkt/developers/forms.py:969
 msgid "Text"
 msgstr "Texte"
 
-#: mkt/developers/forms.py:978
+#: mkt/developers/forms.py:973
 msgid "You must agree to the Privacy Policy."
 msgstr "Vous devez accepter la politique de vie privée."
 
-#: mkt/developers/forms.py:979 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:974 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "Pays"
 
-#: mkt/developers/forms.py:1000 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27
-#: mkt/reviewers/templates/reviewers/apps_reviewing.html:21 mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:18
-#: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:20 mkt/reviewers/templates/reviewers/includes/search_results.html:5
+#: mkt/developers/forms.py:995 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27 mkt/reviewers/templates/reviewers/apps_reviewing.html:21
+#: mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:18 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:20
+#: mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
 msgstr "App"
 
-#: mkt/developers/forms.py:1002
+#: mkt/developers/forms.py:997
 msgid "Transaction Type"
 msgstr "Type de transaction"
 
-#: mkt/developers/forms.py:1005 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
+#: mkt/developers/forms.py:1000 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
 msgid "Transaction ID"
 msgstr "Identifiant de transaction"
 
-#: mkt/developers/forms.py:1011
+#: mkt/developers/forms.py:1006
 msgid "From"
 msgstr "De"
 
-#: mkt/developers/forms.py:1014
+#: mkt/developers/forms.py:1009
 msgid "To"
 msgstr "À"
 
-#: mkt/developers/forms.py:1025
+#: mkt/developers/forms.py:1020
 msgid "Web site"
 msgstr "Site web"
 
-#: mkt/developers/forms.py:1026
+#: mkt/developers/forms.py:1021
 msgid "Command line"
 msgstr "Ligne de commande"
 
-#: mkt/developers/forms.py:1047
+#: mkt/developers/forms.py:1042
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr "Faire de cette version celle active dès qu'elle est vérifiée et approuvée."
 
-#: mkt/developers/forms.py:1094 mkt/developers/forms.py:1152
+#: mkt/developers/forms.py:1089 mkt/developers/forms.py:1147
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr "Ce certificat IARC est déjà utilisé pour une autre application. Merci de créer un nouveau certificat IARC."
 
-#: mkt/developers/forms.py:1114
+#: mkt/developers/forms.py:1109
 msgid "This Certificate ID is not recognized by IARC, or is already attached to an app in the Firefox Marketplace."
 msgstr "Cet identifiant de certificat n'est pas reconnu par IARC ou est déjà associé à une application du Firefox Marketplace."
 
-#: mkt/developers/forms.py:1136
+#: mkt/developers/forms.py:1131
 msgid "Please enter a valid submission ID."
 msgstr "Merci de fournir un identifiant de soumission valide."
 
-#: mkt/developers/forms.py:1187 mkt/developers/forms.py:1199
+#: mkt/developers/forms.py:1182 mkt/developers/forms.py:1194
 msgid "Invalid submission ID or security code."
 msgstr "Identifiant d'envoi ou code de sécurité invalide."
 
@@ -3183,7 +3175,7 @@ msgid "About team member roles"
 msgstr "À propos des rôles des membres de l'équipe"
 
 #: mkt/developers/templates/developers/apps/owner.html:58 mkt/developers/templates/developers/apps/version_edit.html:67 mkt/developers/templates/developers/apps/edit/admin.html:130
-#: mkt/developers/templates/developers/apps/edit/basic.html:217 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62
+#: mkt/developers/templates/developers/apps/edit/basic.html:200 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62
 #: mkt/developers/templates/developers/apps/edit/technical.html:94 mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/payments/premium.html:75
 #: mkt/developers/templates/developers/payments/premium.html:104 mkt/developers/templates/developers/payments/premium.html:162 mkt/developers/templates/developers/payments/premium.html:266
 #: mkt/developers/templates/developers/payments/premium.html:279 mkt/developers/templates/developers/payments/premium.html:318 mkt/lookup/templates/lookup/website_edit.html:121
@@ -3449,7 +3441,7 @@ msgstr "Êtes-vous sûr de vouloir désactiver l'application ? "
 # graphical [download now] button
 #. This 'or' goes between two choices in a dialog.
 #: mkt/developers/templates/developers/apps/status.html:389 mkt/developers/templates/developers/apps/status.html:411 mkt/developers/templates/developers/apps/version_edit.html:67
-#: mkt/developers/templates/developers/apps/edit/admin.html:130 mkt/developers/templates/developers/apps/edit/basic.html:217 mkt/developers/templates/developers/apps/edit/details.html:79
+#: mkt/developers/templates/developers/apps/edit/admin.html:130 mkt/developers/templates/developers/apps/edit/basic.html:200 mkt/developers/templates/developers/apps/edit/details.html:79
 #: mkt/developers/templates/developers/apps/edit/support.html:62 mkt/developers/templates/developers/apps/edit/technical.html:94 mkt/developers/templates/developers/apps/forms_shared/media.html:164
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/payments/includes/accept_terms.html:11
 #: mkt/developers/templates/developers/payments/includes/account_list.html:67 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:141
@@ -3460,7 +3452,7 @@ msgid "or"
 msgstr "ou"
 
 #: mkt/developers/templates/developers/apps/status.html:389 mkt/developers/templates/developers/apps/status.html:411 mkt/developers/templates/developers/apps/version_edit.html:68
-#: mkt/developers/templates/developers/apps/edit/admin.html:132 mkt/developers/templates/developers/apps/edit/basic.html:219 mkt/developers/templates/developers/apps/edit/details.html:81
+#: mkt/developers/templates/developers/apps/edit/admin.html:132 mkt/developers/templates/developers/apps/edit/basic.html:202 mkt/developers/templates/developers/apps/edit/details.html:81
 #: mkt/developers/templates/developers/apps/edit/support.html:64 mkt/developers/templates/developers/apps/edit/technical.html:96 mkt/developers/templates/developers/apps/forms_shared/media.html:166
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/apps/listing/delete_form.html:27
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:12 mkt/developers/templates/developers/payments/includes/account_list.html:68
@@ -3639,20 +3631,12 @@ msgstr ""
 "Merci d'éviter de changer l'adresse de votre manifeste trop souvent. Lorsque vous le faites, les utilisateurs ne recevront plus les mises à jour. Pour plus d'informations, reportez-vous à la <a "
 "href=\"%(doc_url)s\" target=\"_blank\">documentation sur la mise à jour des applications</a>."
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:103
-msgid "Hosted URL"
-msgstr "URL d’hébergement"
-
-#: mkt/developers/templates/developers/apps/edit/basic.html:109
-msgid "If your app has a URL where it is hosted, you can set it for users that want to try your app before installing it."
-msgstr "Si votre application est hébergée à une URL donnée, vous pouvez utiliser ce champ pour l’indiquer afin que vos utilisateurs puissent essayer l’application avant de l’installer."
-
-#: mkt/developers/templates/developers/apps/edit/basic.html:121 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:24
+#: mkt/developers/templates/developers/apps/edit/basic.html:104 mkt/lookup/templates/lookup/website_edit.html:41 mkt/lookup/templates/lookup/website_summary.html:24
 #: mkt/reviewers/templates/reviewers/includes/details.html:138 mkt/websites/forms.py:25
 msgid "Description"
 msgstr "Description"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:123 mkt/submit/forms.py:281
+#: mkt/developers/templates/developers/apps/edit/basic.html:106 mkt/submit/forms.py:281
 msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
 "accurately represents your app."
@@ -3660,19 +3644,19 @@ msgstr ""
 "La description de l'application est un des champs utilisés pour renvoyer des résultats de recherche dans le Firefox Marketplace. La description de l'application apparaît également dans la page "
 "détaillant votre application. Assurez-vous de fournir une description pertinente et représentative de votre application."
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:146 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
+#: mkt/developers/templates/developers/apps/edit/basic.html:129 mkt/reviewers/templates/reviewers/includes/details.html:63 mkt/reviewers/templates/reviewers/includes/mobile_details.html:126
 msgid "Search Keywords"
 msgstr "Mots-clés de recherche"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:173
+#: mkt/developers/templates/developers/apps/edit/basic.html:156
 msgid "Release Notes"
 msgstr "Notes de version"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:174
+#: mkt/developers/templates/developers/apps/edit/basic.html:157
 msgid "Information about changes in the latest release, new features, known bugs, and other useful information specific to this release/version."
 msgstr "Informations à propos des changements dans la dernière version, nouvelles fonctionnalités, problèmes connus, et autres informations utiles spécifiques à cette version."
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:196
+#: mkt/developers/templates/developers/apps/edit/basic.html:179
 msgid "Categories are the primary way users browse through apps. Choose any that fit your app's functionality for the most exposure."
 msgstr ""
 "Les catégories sont la première manière pour les utilisateurs de parcourir les applications. Choisissez-en qui correspondent aux fonctionnalités de votre application pour une exposition maximale."
@@ -3999,7 +3983,7 @@ msgstr "Statut &amp; versions"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1440
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1437
 msgid "Content Ratings"
 msgstr "Classification du contenu"
 
@@ -4840,7 +4824,7 @@ msgid "Developing Game Apps"
 msgstr "Développer des jeux"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:110 mkt/lookup/templates/lookup/user_summary.html:56 mkt/lookup/templates/lookup/user_summary.html:60
-#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1446
+#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1443
 msgid "Payments"
 msgstr "Paiements"
 
@@ -8133,39 +8117,39 @@ msgstr "Veuillez utiliser l'adresse électronique vérifiée pour ce compte."
 msgid "Listed"
 msgstr "Listé"
 
-#: mkt/webapps/models.py:1333
+#: mkt/webapps/models.py:1330
 msgid "You must provide a support email or URL."
 msgstr "Vous devez fournir une adresse électronique ou une URL d'assistance."
 
-#: mkt/webapps/models.py:1335
+#: mkt/webapps/models.py:1332
 msgid "You must provide an app name."
 msgstr "Vous devez fournir un nom d'application."
 
-#: mkt/webapps/models.py:1337
+#: mkt/webapps/models.py:1334
 msgid "You must provide at least one device type."
 msgstr "Vous devez fournir au moins un type de périphérique."
 
-#: mkt/webapps/models.py:1340
+#: mkt/webapps/models.py:1337
 msgid "You must provide at least one category."
 msgstr "Vous devez fournir au moins une catégorie."
 
-#: mkt/webapps/models.py:1407
+#: mkt/webapps/models.py:1404
 msgid "You must set up content ratings."
 msgstr "Vous devez configurer la classification du contenu."
 
-#: mkt/webapps/models.py:1409
+#: mkt/webapps/models.py:1406
 msgid "You must set up a payment account."
 msgstr "Vous devez configurer un compte de paiement."
 
-#: mkt/webapps/models.py:1434
+#: mkt/webapps/models.py:1431
 msgid "This app's submission process has not been fully completed."
 msgstr "Le processus d'envoi pour cette application n'a pas été complètement terminé."
 
-#: mkt/webapps/models.py:1441
+#: mkt/webapps/models.py:1438
 msgid "This app needs to get a content rating."
 msgstr "Cette application a besoin d'une classification du contenu."
 
-#: mkt/webapps/models.py:1447
+#: mkt/webapps/models.py:1444
 msgid "This app needs a payment account set up."
 msgstr "Cette application a besoin de la configuration d'un compte de paiement."
 
