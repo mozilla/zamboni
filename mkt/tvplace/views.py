@@ -33,8 +33,20 @@ class MultiSearchView(BaseMultiSearchView):
 
     def get_queryset(self):
         qs = BaseMultiSearchView.get_queryset(self)
-        return qs.filter(Bool(must=[F('term', device=mkt.DEVICE_TV.id)])
-                         ).sort('-tv_featured')
+        return self.order_queryset(
+            qs.filter(Bool(must=[F('term', device=mkt.DEVICE_TV.id)])))
+
+    def order_queryset(self, qs):
+        # We sort by featured first, and then, by score (will be descending
+        # automatically) if there is a query, otherwise by -reviewed so we get
+        # recent results first.
+        if self.request.GET.get('q'):
+            fallback_field = '_score'
+        else:
+            fallback_field = '-reviewed'
+        return qs.sort(
+            {'tv_featured': {'order': 'desc', 'missing': 0}},
+            fallback_field)
 
 
 def manifest(request):

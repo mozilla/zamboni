@@ -64,7 +64,6 @@ class TestAppDetail(BaseAPI):
 
 
 class TestMultiSearchView(RestOAuth, ESTestCase):
-    fixtures = fixture('user_2519', 'webapp_337141')
 
     def tearDown(self):
         Webapp.get_indexer().unindexer(_all=True)
@@ -73,17 +72,18 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
 
     def test_get_multi(self):
         website = website_factory()
-        app = app_factory()
+        website.update(last_updated=self.days_ago(42))
+        app = app_factory(version_kw={'reviewed': self.days_ago(1)})
         website_factory(devices=[mkt.DEVICE_DESKTOP.id,
                                  mkt.DEVICE_GAIA.id])
         app.addondevicetype_set.create(device_type=mkt.DEVICE_TV.id)
         self.reindex(Webapp)
         self.reindex(Website)
-        self.refresh()
         url = reverse('tv-multi-search-api')
         res = self.client.get(url)
         objects = res.json['objects']
         eq_(len(objects), 2)
+
         eq_(objects[0]['doc_type'], 'webapp')
         assert_tvplace_app(objects[0])
         eq_(objects[0]['id'], app.pk)
@@ -92,16 +92,33 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         assert_tvplace_website(objects[1])
         eq_(objects[1]['id'], website.pk)
 
+    def test_search_ordering_relevancy(self):
+        website1 = website_factory(
+            name='Blah', description='Blah', devices=[mkt.DEVICE_TV.id])
+        website2 = website_factory(name='Blah', devices=[mkt.DEVICE_TV.id],
+                                   tv_featured=1)
+        website3 = website_factory(name='Blah', devices=[mkt.DEVICE_TV.id])
+        self.reindex(Website)
+        self.reindex(Webapp)
+        url = reverse('tv-multi-search-api')
+        res = self.client.get(url, {'q': 'blah'})
+        objects = res.json['objects']
+        eq_(len(objects), 3)
+        eq_(objects[0]['id'], website2.pk)
+        eq_(objects[1]['id'], website1.pk)
+        eq_(objects[2]['id'], website3.pk)
+
     def test_search_ordering(self):
         website1 = website_factory(name='A', devices=[mkt.DEVICE_TV.id])
+        website1.update(last_updated=self.days_ago(1))
         website2 = website_factory(name='B', devices=[mkt.DEVICE_TV.id],
                                    tv_featured=1)
         website3 = website_factory(name='C', devices=[mkt.DEVICE_TV.id],
                                    tv_featured=2)
         website4 = website_factory(name='D', devices=[mkt.DEVICE_TV.id])
+        website4.update(last_updated=self.days_ago(2))
         self.reindex(Website)
         self.reindex(Webapp)
-        self.refresh()
         url = reverse('tv-multi-search-api')
         res = self.client.get(url)
         objects = res.json['objects']
