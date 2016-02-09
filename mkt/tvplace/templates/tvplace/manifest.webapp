@@ -6,7 +6,7 @@
         "url": "http://mozilla.org"
     },
     "icons": {
-        "336": "https://marketplace-dev-cdn.allizom.org/media/marketplace-tv-front-end/img/app-icons/appic_web_apps.png"
+        "336": "https://marketplace.cdn.mozilla.net/media/marketplace-tv-front-end/img/app-icons/appic_web_apps.png"
     },
     "launch_path": "/tv/",
     "name": "Web Apps",
