@@ -1465,7 +1465,7 @@ class TestContentRatingsV2(mkt.site.tests.TestCase):
     def test_existing_cert_form(self):
         response = content_ratings_edit(self.req, app_slug=self.app.app_slug)
         doc = pq(response.content)
-        # V1 fields are not present, V1 is (and empty).
+        # V1 fields are not present, V2 field is (and empty).
         ok_(not doc('#id_submission_id'))
         ok_(not doc('#id_security_code'))
         ok_(doc('#id_cert_id'))
@@ -1475,7 +1475,9 @@ class TestContentRatingsV2(mkt.site.tests.TestCase):
         self.app.set_iarc_certificate(cert_id)
         response = content_ratings_edit(self.req, app_slug=self.app.app_slug)
         doc = pq(response.content)
-        eq_(doc('#id_cert_id').attr('value'), cert_id)
+        # Still empty, we don't want to prefill that form since re-submit it
+        # with the same cert is useless.
+        ok_(not doc('#id_cert_id').attr('value'))
 
     def test_existing_cert_form_submit_error(self):
         self.req.method = 'POST'

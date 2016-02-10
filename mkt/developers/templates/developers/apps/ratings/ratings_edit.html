@@ -22,6 +22,18 @@
       <h2>{{ _('Get My App Rated') }}</h2>
 
       <div class="island">
+        {% if addon.is_rated() %}
+        <p>
+          {% trans %}
+            Your app has already been age rated and has an
+            International Age Rating Coalition (IARC) certificate attached. To
+            change the rating, click on the button below: that will open a new
+            window where you can fill out a new questionnaire about the
+            contents of your app. Upon completion, the window will close and
+            your app will then have an new age rating and certificate.
+          {% endtrans %}
+        </p>
+        {% else %}
         <p>
           {% trans %}
             To have your app listed on the Marketplace, you must attain an
@@ -32,6 +44,7 @@
             rating.
           {% endtrans %}
         </p>
+        {% endif %}
         <p>
           {% trans privacy_url=settings.IARC_PRIVACY_URL, tos_url=settings.IARC_TOS_URL %}
             By using the IARC ratings certificate tool, you agree to abide by their
@@ -85,25 +98,41 @@
     </section>
 
     <section>
-      <h2>{{ _('Already Have Your App Rated?') }}</h2>
+      <h2>
+        {% if waffle.switch('iarc-upgrade-v2') %}
+          {{ _('Already Have an IARC Certificate?') }}
+        {% else %}
+          {{ _('Already Have Your App Rated?') }}
+        {% endif %}
+      </h2>
 
       <div class="island">
-        <p>
-          {% if waffle.switch('iarc-upgrade-v2') %}
+        {% if waffle.switch('iarc-upgrade-v2') %}
+          <p>
             {% trans %}
               If you have already gotten your app rated via the IARC Global
               Ratings Tool above and already have an IARC certificate, you can
               enter it here and we'll notify IARC to link your Marketplace
               submission with that certificate.
             {% endtrans %}
-          {% else %}
+          </p>
+          {% if addon.is_rated() %}
+            <p>
+              {% trans %}
+                Warning: if a certificate is already attached to your app, this
+                will overwrite it. Use with caution.
+              {% endtrans %}
+            </p>
+          {% endif %}
+        {% else %}
+          <p>
             {% trans %}
               If you have already gotten your app rated via the IARC Global
               Ratings Tool above and already have an IARC security code, you
               can manually enter it here.
             {% endtrans %}
-          {% endif %}
           </p>
+        {% endif %}
         <form method="POST">
           {{ csrf() }}
           {% if waffle.switch('iarc-upgrade-v2') %}
