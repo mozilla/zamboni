@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-09 14:59-0800\n"
-"PO-Revision-Date: 2016-02-10 17:21+0000\n"
+"PO-Revision-Date: 2016-02-10 17:31+0000\n"
 "Last-Translator: Artanto Ishaam <artanto.ishaam@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -85,46 +85,47 @@ msgstr "Tipe catatan tidak valid."
 #: mkt/comm/forms.py:47
 #, python-format
 msgid "Version %s does not exist"
-msgstr ""
+msgstr "Versi %s tidak ada"
 
 #: mkt/comm/forms.py:51
 msgid "Attachment:"
-msgstr ""
+msgstr "Lampiran:"
 
 #: mkt/comm/forms.py:52 mkt/submit/forms.py:280
 msgid "Description:"
-msgstr ""
+msgstr "Deskripsi:"
 
 #: mkt/comm/forms.py:63
 #, python-format
 msgid "Attachment exceeds maximum size of %s."
-msgstr ""
+msgstr "Lampiran mencapai ukuran maksimum %s."
 
 #: mkt/comm/serializers.py:53
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: mkt/commonplace/templates/commonplace/includes/open_graph.html:10
 msgid ""
 "The Firefox Marketplace is the official source of apps for the Web Platform."
 msgstr ""
+"Firefox Marketplace merupakan sumber resmi dari aplikasi untuk Platform Web."
 
 #: mkt/constants/applications.py:6
 #: mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:45
 msgid "Desktop"
-msgstr ""
+msgstr "Desktop"
 
 #: mkt/constants/applications.py:13 mkt/constants/platforms.py:8
 #: mkt/constants/platforms.py:32 mkt/constants/tests/test_platforms.py:16
 #: mkt/constants/tests/test_platforms.py:33
 msgid "Firefox Mobile"
-msgstr ""
+msgstr "Firefox Mobile"
 
 #: mkt/constants/applications.py:20 mkt/constants/platforms.py:9
 #: mkt/constants/platforms.py:33 mkt/constants/tests/test_platforms.py:17
 #: mkt/constants/tests/test_platforms.py:34
 msgid "Firefox Tablet"
-msgstr ""
+msgstr "Firefox Tablet"
 
 #: mkt/constants/applications.py:27 mkt/constants/platforms.py:6
 #: mkt/constants/platforms.py:18 mkt/constants/tests/test_platforms.py:14
@@ -133,11 +134,11 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:47
 #: mkt/search/forms.py:55
 msgid "Firefox OS"
-msgstr ""
+msgstr "Firefox OS"
 
 #: mkt/constants/applications.py:34 mkt/search/forms.py:48
 msgid "Firefox OS TV"
-msgstr ""
+msgstr "Firefox OS TV"
 
 #: mkt/constants/apps.py:9
 msgid "User"
@@ -1178,33 +1179,33 @@ msgstr "Dilarang dari Marketplace"
 #: mkt/constants/base.py:31
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Deleted"
-msgstr ""
+msgstr "Dihapus"
 
 #: mkt/constants/base.py:32 mkt/constants/comm.py:47
 #: mkt/reviewers/helpers.py:190 mkt/site/log.py:176
 msgid "Rejected"
-msgstr ""
+msgstr "Ditolak"
 
 #: mkt/constants/base.py:35 mkt/constants/comm.py:53 mkt/site/log.py:375
 msgid "Approved but private"
-msgstr ""
+msgstr "Disetujui namun rahasia"
 
 #: mkt/constants/base.py:36
 msgid "Blocked"
-msgstr ""
+msgstr "Diblok"
 
 #: mkt/constants/base.py:37
 msgid "Unlisted"
-msgstr ""
+msgstr "Tidak terdaftar"
 
 #: mkt/constants/base.py:43
 msgid "Obsolete"
-msgstr ""
+msgstr "Usang"
 
 #: mkt/constants/base.py:44 mkt/constants/comm.py:46
 #: mkt/constants/payments.py:66 mkt/site/log.py:155
 msgid "Approved"
-msgstr ""
+msgstr "Disetujui"
 
 # <option> text in a <select> for Author role in an add-on.
 #: mkt/constants/base.py:145
@@ -1234,23 +1235,23 @@ msgstr "Bebas"
 
 #: mkt/constants/base.py:174 mkt/search/forms.py:37
 msgid "Premium"
-msgstr ""
+msgstr "Premium"
 
 #: mkt/constants/base.py:175
 msgid "Premium with in-app payments"
-msgstr ""
+msgstr "Premium dengan pembayaran in-app"
 
 #: mkt/constants/base.py:176
 msgid "Free with in-app payments"
-msgstr ""
+msgstr "Gratis dengan pembayaran in-app"
 
 #: mkt/constants/base.py:177
 msgid "I'll use my own system for in-app payments"
-msgstr ""
+msgstr "Saya akan menggunakan sistem sendiri untuk pembayaran in-app"
 
 #: mkt/constants/base.py:241
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Poin Peninjau Manual"
 
 #: mkt/constants/base.py:242
 msgid "Web App Review"
@@ -1258,27 +1259,27 @@ msgstr "Ulasan Aplikasi Web"
 
 #: mkt/constants/base.py:243
 msgid "Packaged App Review"
-msgstr ""
+msgstr "Tinjauan Paket Aplikasi"
 
 #: mkt/constants/base.py:244
 msgid "Privileged App Review"
-msgstr ""
+msgstr "Tinjauan Aplikasi Istimewa"
 
 #: mkt/constants/base.py:245
 msgid "Web App Re-review"
-msgstr ""
+msgstr "Tinjauan ulang Aplikasi Web"
 
 #: mkt/constants/base.py:246
 msgid "Updated Packaged App Review"
-msgstr ""
+msgstr "Tinjauan Paket Aplikasi Terbarukan"
 
 #: mkt/constants/base.py:247
 msgid "Updated Privileged App Review"
-msgstr ""
+msgstr "Tinjauan Paket Aplikasi Terbarukan"
 
 #: mkt/constants/base.py:248
 msgid "Moderated App Review"
-msgstr ""
+msgstr "Tinjauan Aplikasi Termoderasi"
 
 #: mkt/constants/base.py:249
 msgid "App Review Moderation Reverted"
@@ -1298,39 +1299,39 @@ msgstr ""
 
 #: mkt/constants/base.py:286
 msgid "Level 1"
-msgstr ""
+msgstr "Tingkat 1"
 
 #: mkt/constants/base.py:287
 msgid "Level 2"
-msgstr ""
+msgstr "Tingkat 2"
 
 #: mkt/constants/base.py:288
 msgid "Level 3"
-msgstr ""
+msgstr "Tingkat 3"
 
 #: mkt/constants/base.py:289
 msgid "Level 4"
-msgstr ""
+msgstr "Tingkat 4"
 
 #: mkt/constants/base.py:290
 msgid "Level 5"
-msgstr ""
+msgstr "Tingkat 5"
 
 #: mkt/constants/base.py:291
 msgid "Level 6"
-msgstr ""
+msgstr "Tingkat 6"
 
 #: mkt/constants/base.py:292
 msgid "Level 7"
-msgstr ""
+msgstr "Tingkat 7"
 
 #: mkt/constants/base.py:293
 msgid "Level 8"
-msgstr ""
+msgstr "Tingkat 8"
 
 #: mkt/constants/base.py:294
 msgid "Level 9"
-msgstr ""
+msgstr "Tingkat 9"
 
 #: mkt/constants/categories.py:5
 msgid "Books & Comics"
