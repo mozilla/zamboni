@@ -109,6 +109,21 @@ class TestDownload(BasePackagedAppTest):
         DEFAULT_FILE_STORAGE='mkt.site.storage_utils.S3BotoPrivateStorage'
     )
     @mock.patch.object(packaged, 'sign', mock_sign)
+    def test_rejected_but_owner(self):
+        self.login('steamcube@mozilla.com')
+        self.file.update(status=mkt.STATUS_REJECTED)
+        copy_stored_file(self.packaged_app_path('mozball.zip'),
+                         self.file.file_path,
+                         src_storage=local_storage,
+                         dst_storage=private_storage)
+        path = private_storage.url(self.file.file_path)
+        res = self.client.get(self.url)
+        self.assert3xx(res, path)
+
+    @override_settings(
+        DEFAULT_FILE_STORAGE='mkt.site.storage_utils.S3BotoPrivateStorage'
+    )
+    @mock.patch.object(packaged, 'sign', mock_sign)
     def test_disabled_but_admin(self):
         self.login('admin@mozilla.com')
         self.file.update(status=mkt.STATUS_DISABLED)

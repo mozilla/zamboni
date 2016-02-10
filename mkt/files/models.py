@@ -130,7 +130,7 @@ class File(OnChangeMixin, ModelBase):
 
     @property
     def file_path(self):
-        if self.status == mkt.STATUS_DISABLED:
+        if self.status in [mkt.STATUS_DISABLED, mkt.STATUS_REJECTED]:
             return self.guarded_file_path
         else:
             return self.approved_file_path
@@ -244,9 +244,10 @@ def check_file(old_attr, new_attr, instance, sender, **kw):
     if kw.get('raw'):
         return
     old, new = old_attr.get('status'), instance.status
-    if new == mkt.STATUS_DISABLED and old != mkt.STATUS_DISABLED:
+    disabled_statuses = [mkt.STATUS_DISABLED, mkt.STATUS_REJECTED]
+    if new in disabled_statuses and old not in disabled_statuses:
         instance.hide_disabled_file()
-    elif old == mkt.STATUS_DISABLED and new != mkt.STATUS_DISABLED:
+    elif old in disabled_statuses and new not in disabled_statuses:
         instance.unhide_disabled_file()
 
     # Log that the hash has changed.

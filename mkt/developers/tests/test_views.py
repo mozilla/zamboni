@@ -617,7 +617,7 @@ class TestStatus(mkt.site.tests.TestCase):
     def setUp(self):
         self.webapp = Webapp.objects.get(id=337141)
         self.file = self.webapp.versions.latest().all_files[0]
-        self.file.update(status=mkt.STATUS_DISABLED)
+        self.file.update(status=mkt.STATUS_REJECTED)
         self.status_url = self.webapp.get_dev_url('versions')
         self.login('steamcube@mozilla.com')
 
