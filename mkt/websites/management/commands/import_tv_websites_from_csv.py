@@ -28,7 +28,6 @@ class Command(BaseCommand):
 
     """
     help = u'Import Websites from a CSV file'
-    args = u'<file> [--overwrite] [--limit] [--set-popularity]'
     subcommand = splitext(basename(__file__))[0]
 
     def clean_string(self, s):
@@ -153,6 +152,9 @@ class Command(BaseCommand):
                 print 'Processing row %d... (%d websites created)' % (
                     i + 1, created_count)
 
+            if (row['Confirmed as Ready for Production Upload?'] == 'No' and
+                    not self.dev):
+                continue
             with atomic():
                 try:
                     url = self.clean_url(row)
@@ -179,15 +181,17 @@ class Command(BaseCommand):
                     print e.message
         return created_count
 
-    def handle(self, *args, **kwargs):
-        if len(args) != 1:
-            self.print_help('manage.py', self.subcommand)
-            return
-        filename = args[0]
-        self.overwrite = kwargs.get('overwrite', False)
-        self.limit = kwargs.get('limit', None)
-        self.set_popularity = kwargs.get('set_popularity', False)
+    def add_arguments(self, parser):
+        parser.add_argument('filename', nargs=1, type=str)
+        parser.add_argument('--dev',
+                            action='store_true',
+                            dest='dev',
+                            default=False,
+                            help='Load sites not ready for production')
 
+    def handle(self, *args, **options):
+        filename = options['filename'][0]
+        self.dev = options['dev']
         with translation.override('en-US'):
             self.languages = dict(LANGUAGES).keys()
             self.reversed_languages = {v['English'].lower(): k for k, v
