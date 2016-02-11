@@ -1,15 +1,15 @@
 # These should all be in our wheelhouse to avoid compiling on production and
 # automated testing machines
 # cffi is required by cryptography
-cffi==1.4.2
+cffi==1.5.0
 # cryptography is required by pyOpenSSL
-cryptography==1.1.2
+cryptography==1.2.2
 Jinja2==2.8
 lxml==3.5.0
 MarkupSafe==0.23
 # M2Crypto is required by m2secret, mozpay, PyBrowserID, PyJWT-mozilla, django-aesfield
 M2Crypto==0.22.3
-Pillow==2.7.0
+Pillow==3.1.0
 # pycrypto is required by pyjwkest
 pycrypto==2.6.1
 
@@ -17,4 +17,4 @@ pycrypto==2.6.1
 pyOpenSSL==0.15.1
 
 # used by langid.
-numpy==1.9.2
+numpy==1.10.4
