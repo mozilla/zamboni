@@ -425,37 +425,5 @@ IARC_ICONS = {
             '18': pth('USK_18.png'),
             'rating-refused': pth('USK_RR.png')
         }
-    },
-    'descriptors': {
-        'pegi': {
-            'has_pegi_discrimination':
-                pth('descriptors/pegi_discrimination.png'),
-            'has_pegi_drugs': pth('descriptors/pegi_drugs.png'),
-            'has_pegi_gambling': pth('descriptors/pegi_gambling.png'),
-            'has_pegi_lang': pth('descriptors/pegi_language.png'),
-            'has_pegi_nudity': pth('descriptors/pegi_nudity.png'),
-            'has_pegi_online': pth('descriptors/pegi_online.png'),
-            'has_pegi_scary': pth('descriptors/pegi_fear.png'),
-            'has_pegi_sex_content': pth('descriptors/pegi_sex.png'),
-            'has_pegi_violence': pth('descriptors/pegi_violence.png'),
-
-            'has_pegi_digital_purchases': pth(
-                'descriptors/pegi_inapp_purchase_option.png'),
-            'has_pegi_shares_info': pth(
-                'descriptors/pegi_personal_data_sharing.png'),
-            'has_pegi_shares_location': pth(
-                'descriptors/pegi_location_data_sharing.png'),
-            'has_pegi_users_interact': pth(
-                'descriptors/pegi_social_interaction_functionality.png'),
-        }
-    },
-    'interactive_elements': {
-        'has_shares_info': pth('interactives/ESRB_shares-info_small.png'),
-        'has_shares_location':
-            pth('interactives/ESRB_shares-location_small.png'),
-        'has_users_interact':
-            pth('interactives/ESRB_users-interact_small.png'),
-        'has_digital_purchases': pth(
-            'interactives/ESRB_digital-purchases_small.png'),
     }
 }

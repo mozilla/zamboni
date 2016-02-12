@@ -1385,7 +1385,7 @@ class TestContentRatings(mkt.site.tests.TestCase):
         self.assertSetEqual([name.text for name in doc('.name')],
                             [body.name for body in ratings])
         self.assertSetEqual([name.text.strip() for name in doc('.descriptor')],
-                            ['Sexo'])
+                            ['Language', 'Sexo'])
         self.assertSetEqual(
             [name.text.strip() for name in doc('.interactive')],
             ['Users Interact'])
