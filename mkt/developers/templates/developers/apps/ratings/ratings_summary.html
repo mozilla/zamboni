@@ -35,17 +35,10 @@
               <td class="content-rating">
                 {% include "developers/includes/content_rating_icon.html" %}</td>
               <td class="content-descriptors">
-                {% set desc_icons = mkt.ratingsbodies.IARC_ICONS.descriptors %}
                 {% for descriptor in addon.rating_descriptors.to_keys_by_body(body.label) %}
-                  {% set desc_icon = body.label in desc_icons and desc_icons[body.label][descriptor] %}
-                  {% if desc_icon %}
-                    <img src="{{ media(desc_icon) }}" class="icon"
-                         title="{{ mkt.iarc_mappings.HUMAN_READABLE_DESCS_AND_INTERACTIVES[descriptor] }}">
-                  {% else %}
-                    <span class="dot-sep descriptor">
-                      {{ mkt.iarc_mappings.HUMAN_READABLE_DESCS_AND_INTERACTIVES[descriptor] }}
-                    </span>
-                  {% endif %}
+                  <span class="dot-sep descriptor">
+                    {{ mkt.iarc_mappings.HUMAN_READABLE_DESCS_AND_INTERACTIVES[descriptor] }}
+                  </span>
                 {% else %}
                   &mdash;
                 {% endfor %}
@@ -66,13 +59,6 @@
               </span>
             {% endfor %}
           </div>
-          {% set inter_icons = mkt.ratingsbodies.IARC_ICONS.interactive_elements %}
-          {% for interactive in interactives %}
-            {% if inter_icons[interactive] %}
-              <img src="{{ media(inter_icons[interactive]) }}" class="icon"
-                   title="{{ mkt.iarc_mappings.HUMAN_READABLE_DESCS_AND_INTERACTIVES[interactive] }}">
-            {% endif %}
-          {% endfor %}
         </div>
       {% endif %}
     </div>
