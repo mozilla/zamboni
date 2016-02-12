@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-09 14:59-0800\n"
-"PO-Revision-Date: 2016-02-10 17:31+0000\n"
+"PO-Revision-Date: 2016-02-12 03:31+0000\n"
 "Last-Translator: Artanto Ishaam <artanto.ishaam@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -1283,7 +1283,7 @@ msgstr "Tinjauan Aplikasi Termoderasi"
 
 #: mkt/constants/base.py:249
 msgid "App Review Moderation Reverted"
-msgstr ""
+msgstr "Moderasi Tinjauan Aplikasi Dikembalikan"
 
 #: mkt/constants/base.py:250
 msgid "Tarako App Review"
