@@ -337,6 +337,8 @@ def content_ratings(request, addon_id, addon):
     # Use _ratings_success_msg to display success message.
     session = request.session
     app_id = str(addon.id)
+    ratings = sorted(addon.content_ratings.all(),
+                     key=lambda r: r.get_body().name)
     if 'ratings_edit' in session and app_id in session['ratings_edit']:
         prev_state = session['ratings_edit'][app_id]
         msg = _ratings_success_msg(
@@ -346,7 +348,7 @@ def content_ratings(request, addon_id, addon):
         request.session.modified = True
 
     return render(request, 'developers/apps/ratings/ratings_summary.html',
-                  {'addon': addon})
+                  {'addon': addon, 'ratings': ratings})
 
 
 @dev_required
