@@ -221,3 +221,31 @@ class TestIARCV2RatingListSerializer(mkt.site.tests.TestCase):
         cert.reload()
         self.assertCloseToNow(cert.modified)
         eq_(IARCCert.objects.count(), 1)
+
+    def test_to_objects(self):
+        serializer = self.test_validate_multiple_bodies_with_redundant_info()
+        objects = serializer.to_objects()
+        eq_(UUID(objects['cert'].cert_id),
+            serializer.validated_data['cert_id'])
+        ratings = sorted(objects['ratings'], key=lambda r: r.ratings_body)
+        eq_(len(ratings), 3)
+        eq_(ratings[0].get_body_class(), ratingsbodies.GENERIC)
+        eq_(ratings[0].get_rating_class(), ratingsbodies.GENERIC_12)
+        eq_(ratings[1].get_body_class(), ratingsbodies.ESRB)
+        eq_(ratings[1].get_rating_class(), ratingsbodies.ESRB_T)
+        eq_(ratings[2].get_body_class(), ratingsbodies.PEGI)
+        eq_(ratings[2].get_rating_class(), ratingsbodies.PEGI_12)
+        self.assertSetEqual(
+            objects['rating_descriptors'].to_keys(),
+            ['has_pegi_violence', 'has_generic_violence', 'has_pegi_online'])
+        self.assertSetEqual(
+            objects['rating_interactives'].to_keys(),
+            ['has_shares_location', 'has_digital_purchases',
+             'has_users_interact'])
+
+    @mock.patch.object(IARCV2RatingListSerializer, 'is_valid')
+    def test_to_objects_with_invalid_data(self, is_valid_mock):
+        is_valid_mock.return_value = False
+        serializer = IARCV2RatingListSerializer(instance=object())
+        with self.assertRaises(ParseError):
+            serializer.to_objects()

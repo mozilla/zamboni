@@ -99,7 +99,7 @@ def search_and_attach_cert(app, cert_id):
     """Call SearchCerts to get all info about an existing cert from IARC and
     apply that info to the Webapp instance passed. Then, call AttachToCert
     to notify IARC that we're attaching the cert to that Webapp."""
-    serializer = _search_cert(app, cert_id)
+    serializer = search_cert(app, cert_id)
     if serializer.is_valid():
         serializer.save()
     else:
@@ -112,7 +112,7 @@ def search_and_attach_cert(app, cert_id):
     return data
 
 
-def _search_cert(app, cert_id):
+def search_cert(app, cert_id):
     """Ask IARC for information about a cert."""
     data = _iarc_request('SearchCerts', {'CertID': unicode(UUID(cert_id))})
     # We don't care about MatchFound, serializer won't find the right fields
@@ -163,8 +163,8 @@ def unpublish(app_id):
 
 
 def refresh(app):
-    """Refresh an app IARC information by ask IARC about its certificate."""
-    serializer = _search_cert(app, app.iarc_cert.cert_id)
+    """Refresh an app IARC information by asking IARC about its certificate."""
+    serializer = search_cert(app, app.iarc_cert.cert_id)
     serializer.save()
 
 

@@ -904,6 +904,10 @@ class TestIARCV2ExistingCertificateForm(mkt.site.tests.WebappTestCase):
 
     @override_settings(DEBUG=True)
     def test_save_debug(self):
+        another_app = app_factory()
+        IARCCert.objects.create(cert_id=uuid.uuid4(), app=another_app)
+        IARCCert.objects.create(cert_id=uuid.uuid4(), app=self.app)
+
         form = self.test_cert_id_value_0_valid_in_debug_mode()
         form.save()
         descriptors = self.app.rating_descriptors
@@ -915,6 +919,9 @@ class TestIARCV2ExistingCertificateForm(mkt.site.tests.WebappTestCase):
         content_rating = self.app.content_ratings.get()
         eq_(content_rating.ratings_body, ratingsbodies.ESRB.id)
         eq_(content_rating.rating, ratingsbodies.ESRB_E.id)
+
+        eq_(IARCCert.objects.filter(app=self.app).count(), 0)
+        eq_(IARCCert.objects.count(), 1)
 
     @mock.patch('mkt.developers.forms.search_and_attach_cert')
     def test_save(self, search_and_attach_cert_mock):
@@ -930,6 +937,28 @@ class TestIARCV2ExistingCertificateForm(mkt.site.tests.WebappTestCase):
         form = self.test_cert_id_valid_uuid_with_separators()
         with self.assertRaises(django_forms.ValidationError):
             form.save()
+        ok_(form.errors['cert_id'][0].startswith(
+            'This Certificate ID is not recognized by IARC'))
+
+    @mock.patch('mkt.developers.forms.search_cert')
+    def test_cert_confirmation(self, search_cert_mock):
+        form = self.test_cert_id_valid_uuid_with_separators()
+        eq_(form.cert_confirmation(),
+            search_cert_mock.return_value.to_objects.return_value)
+
+    @override_settings(DEBUG=True)
+    def test_cert_confirmation_debug(self):
+        form = self.test_cert_id_value_0_valid_in_debug_mode()
+        data = form.cert_confirmation()
+        eq_(data.keys(), ['cert'])
+        eq_(data['cert'].cert_id, '00000000000000000000000000000000')
+
+    @mock.patch('mkt.developers.forms.search_cert')
+    def test_cert_confirmation_iarc_error(self, search_cert_mock):
+        search_cert_mock.return_value.is_valid.return_value = False
+        form = self.test_cert_id_valid_uuid_with_separators()
+        with self.assertRaises(django_forms.ValidationError):
+            form.cert_confirmation()
         ok_(form.errors['cert_id'][0].startswith(
             'This Certificate ID is not recognized by IARC'))
 
