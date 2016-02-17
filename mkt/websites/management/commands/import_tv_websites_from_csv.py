@@ -48,6 +48,7 @@ class Command(BaseCommand):
             # property on Website : field name in csv.
             'name': 'App/Service name',
             'description': 'A short description of the app, 430 char max.',
+            'developer_name': 'Developer name',
         }
 
         with translation.override(instance.default_locale):
