@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-09 14:59-0800\n"
-"PO-Revision-Date: 2016-02-12 03:31+0000\n"
-"Last-Translator: Artanto Ishaam <artanto.ishaam@gmail.com>\n"
+"PO-Revision-Date: 2016-02-17 01:35+0000\n"
+"Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -1287,15 +1287,15 @@ msgstr "Moderasi Tinjauan Aplikasi Dikembalikan"
 
 #: mkt/constants/base.py:250
 msgid "Tarako App Review"
-msgstr ""
+msgstr "Ulasan Aplikasi Tarako"
 
 #: mkt/constants/base.py:251
 msgid "App Abuse Report Read"
-msgstr ""
+msgstr "Laporan Penyalahgunaan Aplikasi Telah Dibaca"
 
 #: mkt/constants/base.py:252
 msgid "Website Abuse Report Read"
-msgstr ""
+msgstr "Laporan Penyalahgunaan Situs Telah Dibaca"
 
 #: mkt/constants/base.py:286
 msgid "Level 1"
@@ -1347,7 +1347,7 @@ msgstr "Pendidikan"
 
 #: mkt/constants/categories.py:8
 msgid "Entertainment"
-msgstr ""
+msgstr "Hiburan"
 
 #: mkt/constants/categories.py:9
 msgid "Food & Drink"
@@ -1355,7 +1355,7 @@ msgstr "Makanan & Minuman"
 
 #: mkt/constants/categories.py:10
 msgid "Kids"
-msgstr ""
+msgstr "Anak-anak"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:46
 msgid "Games"
@@ -1363,15 +1363,15 @@ msgstr "Permainan"
 
 #: mkt/constants/categories.py:12
 msgid "Health & Fitness"
-msgstr ""
+msgstr "Kesehatan & Kebugaran"
 
 #: mkt/constants/categories.py:13
 msgid "Humor"
-msgstr ""
+msgstr "Humor"
 
 #: mkt/constants/categories.py:14
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: mkt/constants/categories.py:15 mkt/constants/categories.py:47
 msgid "Lifestyle"
@@ -1379,7 +1379,7 @@ msgstr "Gaya hidup"
 
 #: mkt/constants/categories.py:16
 msgid "Maps & Navigation"
-msgstr ""
+msgstr "Peta & Navigasi"
 
 #: mkt/constants/categories.py:17
 msgid "Music"
@@ -1391,7 +1391,7 @@ msgstr "Berita"
 
 #: mkt/constants/categories.py:19
 msgid "Personalization"
-msgstr ""
+msgstr "Personalisasi"
 
 #: mkt/constants/categories.py:20
 msgid "Photo & Video"
@@ -1399,39 +1399,39 @@ msgstr "Foto & Video"
 
 #: mkt/constants/categories.py:21
 msgid "Productivity"
-msgstr ""
+msgstr "Produktivitas"
 
 #: mkt/constants/categories.py:22
 msgid "Reference"
-msgstr ""
+msgstr "Rujukan"
 
 #: mkt/constants/categories.py:23
 msgid "Science & Tech"
-msgstr ""
+msgstr "Sains & Teknologi"
 
 #: mkt/constants/categories.py:24
 msgid "Shopping"
-msgstr ""
+msgstr "Belanja"
 
 #: mkt/constants/categories.py:25
 msgid "Social"
-msgstr ""
+msgstr "Sosial"
 
 #: mkt/constants/categories.py:26
 msgid "Sports"
-msgstr ""
+msgstr "Olahraga"
 
 #: mkt/constants/categories.py:27
 msgid "Travel"
-msgstr ""
+msgstr "Perjalanan"
 
 #: mkt/constants/categories.py:28
 msgid "Utilities"
-msgstr ""
+msgstr "Keperluan"
 
 #: mkt/constants/categories.py:29
 msgid "Weather"
-msgstr ""
+msgstr "Cuaca"
 
 #: mkt/constants/categories.py:45
 #: mkt/ecosystem/templates/ecosystem/macros.html:134
@@ -1441,67 +1441,67 @@ msgstr "Perangkat"
 
 #: mkt/constants/comm.py:45
 msgid "No action"
-msgstr ""
+msgstr "Tidak ada tindakan"
 
 #: mkt/constants/comm.py:48
 msgid "Banned"
-msgstr ""
+msgstr "Dilarang"
 
 #: mkt/constants/comm.py:49
 msgid "Reviewer comment"
-msgstr ""
+msgstr "Komentar pengulas"
 
 #: mkt/constants/comm.py:50 mkt/reviewers/forms.py:197 mkt/site/log.py:196
 msgid "Escalated"
-msgstr ""
+msgstr "Eskalasi"
 
 #: mkt/constants/comm.py:51
 msgid "Private reviewer comment"
-msgstr ""
+msgstr "Komentar pengulas pribadi"
 
 #: mkt/constants/comm.py:52
 msgid "App resubmission"
-msgstr ""
+msgstr "Pendaftaran kembali aplikasi"
 
 #: mkt/constants/comm.py:54 mkt/site/log.py:424
 msgid "Escalation cleared"
-msgstr ""
+msgstr "Eskalasi dibersihkan"
 
 #: mkt/constants/comm.py:55
 msgid "Escalated due to High Abuse Reports"
-msgstr ""
+msgstr "Eskalasi karena Laporan Penyalahgunaan Tinggi"
 
 #: mkt/constants/comm.py:56
 msgid "Escalated due to High Refund Requests"
-msgstr ""
+msgstr "Eskalasi karena Permintaan Pengembalian Uang Tinggi"
 
 #: mkt/constants/comm.py:57 mkt/site/log.py:472
 msgid "Re-review cleared"
-msgstr ""
+msgstr "Pengulasan kembali dibersihkan"
 
 #: mkt/constants/comm.py:58
 msgid "App submission notes"
-msgstr ""
+msgstr "Catatan pendaftaran aplikasi"
 
 #: mkt/constants/comm.py:59
 msgid "Developer comment"
-msgstr ""
+msgstr "Komentar pengembang"
 
 #: mkt/constants/comm.py:60
 msgid "Device(s) changed by reviewer"
-msgstr ""
+msgstr "Gawai diubah oleh pengulas"
 
 #: mkt/constants/comm.py:61
 msgid "Requirement(s) changed by reviewer"
-msgstr ""
+msgstr "Permintaan diubah oleh pengulas"
 
 #: mkt/constants/comm.py:62
 msgid "Rereview due to Manifest Change"
-msgstr ""
+msgstr "Pengulasan ulang karena Perubahan Dokumen"
 
 #: mkt/constants/comm.py:63
 msgid "Rereview due to Manifest URL Change"
-msgstr ""
+msgstr "Pengulasan ulang karena Perubahan Tautan (URL) Dokumen"
 
 #: mkt/constants/comm.py:64
 msgid "Rereview due to Premium Type Upgrade"
