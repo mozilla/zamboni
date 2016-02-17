@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-02-09 14:59-0800\n"
+"POT-Creation-Date: 2016-02-17 09:07-0800\n"
 "PO-Revision-Date: 2016-01-28 04:41+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -2160,11 +2160,11 @@ msgstr "パッケージ型"
 msgid "Agreement"
 msgstr "規約"
 
-#: mkt/constants/submit.py:6 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:165
+#: mkt/constants/submit.py:6 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:194
 msgid "Submit"
 msgstr "登録"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1430
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1432
 msgid "Details"
 msgstr "詳細"
 
@@ -2242,7 +2242,7 @@ msgstr "このマニフェストはすでに登録されているようです。
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "このドメインにはすでにアプリが存在します。ドメインごとにひとつのアプリしか公開できません。"
 
-#: mkt/developers/forms.py:328 mkt/webapps/models.py:1339
+#: mkt/developers/forms.py:328 mkt/webapps/models.py:1341
 msgid "You must upload at least one screenshot or video."
 msgstr "スクリーンショットか動画を少なくともひとつアップロードしてください。"
 
@@ -2700,83 +2700,83 @@ msgstr "アイコンは正方形でなければなりません。"
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "プレビュー画像は最小でも {0} × {1} もしくは {1} × {0} ピクセルでなければなりません。"
 
-#: mkt/developers/views.py:157
+#: mkt/developers/views.py:156
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "有料アプリは削除できません。代わりにこのアプリを無効化してください。"
 
-#: mkt/developers/views.py:167
+#: mkt/developers/views.py:166
 msgid "App deleted."
 msgstr "アプリは削除されました。"
 
-#: mkt/developers/views.py:172
+#: mkt/developers/views.py:171
 msgid "Password was incorrect. App was not deleted."
 msgstr "パスワードが間違っています。アプリは削除されませんでした。"
 
-#: mkt/developers/views.py:216
+#: mkt/developers/views.py:215
 msgid "App successfully resubmitted."
 msgstr "アプリの再登録が完了しました。"
 
-#: mkt/developers/views.py:249
+#: mkt/developers/views.py:248
 msgid "New version successfully added."
 msgstr "新バージョンの追加が完了しました。"
 
-#: mkt/developers/views.py:297 mkt/developers/views.py:539 mkt/developers/views_payments.py:114 mkt/developers/views_payments.py:450 mkt/reviewers/views.py:679
+#: mkt/developers/views.py:296 mkt/developers/views.py:536 mkt/developers/views_payments.py:114 mkt/developers/views_payments.py:450 mkt/reviewers/views.py:679
 msgid "Changes successfully saved."
 msgstr "変更は正しく保存されました。"
 
-#: mkt/developers/views.py:304
+#: mkt/developers/views.py:303
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr "おめでとうございます。これでアプリの登録は完了です。審査はまもなく行われます。"
 
-#: mkt/developers/views.py:306
+#: mkt/developers/views.py:305
 msgid "Content ratings successfully saved."
 msgstr "コンテンツレーティングの保存が完了しました。"
 
-#: mkt/developers/views.py:443
+#: mkt/developers/views.py:440
 msgid "Version successfully edited."
 msgstr "バージョンの編集が完了しました。"
 
-#: mkt/developers/views.py:478
+#: mkt/developers/views.py:475
 msgid "Version successfully made active."
 msgstr "バージョンがアクティブになりました。"
 
-#: mkt/developers/views.py:492
+#: mkt/developers/views.py:489
 msgid "Version \"{0}\" deleted."
 msgstr "バージョン {0} は削除されました。"
 
-#: mkt/developers/views.py:627
+#: mkt/developers/views.py:624
 msgid "There was an error with the submission."
 msgstr "送信内容にエラーがありました。"
 
-#: mkt/developers/views.py:669
+#: mkt/developers/views.py:666
 msgid "An error occurred validating the manifest."
 msgstr "マニフェストの検証中に問題が発生しました。"
 
-#: mkt/developers/views.py:921
+#: mkt/developers/views.py:918
 msgid "There was an error uploading your preview."
 msgstr "プレビューのアップロード中に問題が発生しました。"
 
-#: mkt/developers/views.py:972
+#: mkt/developers/views.py:969
 msgid "Terms of service accepted."
 msgstr "利用規約が受諾されました。"
 
-#: mkt/developers/views.py:988
+#: mkt/developers/views.py:985
 msgid "Users with the admin role cannot use the API."
 msgstr "管理者権限を持ったユーザは API を使用できません。"
 
-#: mkt/developers/views.py:997
+#: mkt/developers/views.py:994
 msgid "No such API key."
 msgstr "該当する API キーはありません。"
 
-#: mkt/developers/views.py:1003
+#: mkt/developers/views.py:1000
 msgid "New API key generated."
 msgstr "新しい API キーが生成されました。"
 
-#: mkt/developers/views.py:1021
+#: mkt/developers/views.py:1018
 msgid "Created blocklisted version."
 msgstr "バージョンをブロックリストへ追加しました。"
 
-#: mkt/developers/views.py:1023
+#: mkt/developers/views.py:1020
 msgid "App already blocklisted."
 msgstr "アプリはすでにブロックリストへ追加されています。"
 
@@ -3968,7 +3968,7 @@ msgstr "ステータスとバージョン"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1437
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1439
 msgid "Content Ratings"
 msgstr "コンテンツレーティング"
 
@@ -4030,7 +4030,13 @@ msgstr "<a href=\"%(rating_url)s\">コンテンツレーティングを設定</a
 msgid "Get My App Rated"
 msgstr "アプリのレーティングを取得"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:26
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:27
+msgid ""
+"Your app has already been age rated and has an International Age Rating Coalition (IARC) certificate attached. To change the rating, click on the button below: that will open a new window where you "
+"can fill out a new questionnaire about the contents of your app. Upon completion, the window will close and your app will then have an new age rating and certificate."
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:38
 msgid ""
 "To have your app listed on the Marketplace, you must attain an International Age Rating Coalition (IARC) certificate. Clicking on the button below will open a new window where you can fill out a "
 "short yes-or-no questionnaire about the contents of your app. Upon completion, the window will close and your app will then have an age rating."
@@ -4038,62 +4044,70 @@ msgstr ""
 "アプリを Marketplace へ掲載するには、International Age Rating Coalition (IARC) 証明書を取得する必要があります。以下のボタンをクリックすると新しいウィンドウが開きますので、そこでアプリの内容に関する"
 "「はい」「いいえ」形式の短い質問に答えてください。回答が終わると、ウィンドウが閉じて、年齢を基準としたレーティングがアプリに付与されます。"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 #, python-format
 msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
 msgstr "IARC のレーティング証明書ツールを使用することで、IARC の <a href=\"%(privacy_url)s\">プライバシーポリシー</a> と <a href=\"%(tos_url)s\">サービス利用規約</a> に同意したことになります。"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:56
 #, python-format
 msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
 msgstr "IARC コンテンツレーティングの処理が完了しました。アプリの <a href=\"%(ratings_url)s\">コンテンツレーティングページ</a> へリダイレクトされます。"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:62
 msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
 msgstr "申し訳ありません。コンテンツレーティングの処理中にサイト側で問題が発生しました。再度試すか、また後で設定し直してください。"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:64 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:80
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:93
 msgid "Create an IARC Ratings Certificate"
 msgstr "IARC レーティング証明書を作成"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:88
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:103
+msgid "Already Have an IARC Certificate?"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Already Have Your App Rated?"
 msgstr "アプリのレーティングを取得済みですか？"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:93
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
 msgid ""
 "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC certificate, you can enter it here and we'll notify IARC to link your Marketplace "
 "submission with that certificate."
 msgstr ""
 "既に上記の IARC Global Ratings Tool を通じてアプリのレーティングを取得し、IARC 証明書をお持ちの場合は、ここに入力してください。Marketplace の登録内容とその証明書を関連付けるよう IARC に通知します。"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:100
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:121
+msgid "Warning: if a certificate is already attached to your app, this will overwrite it. Use with caution."
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:129
 msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
 msgstr "すでに上記の IARC Global Ratings Tool を通じてアプリのレーティングを取得し、IARC セキュリティコードをお持ちの場合は、ここに入力してください。"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:141
 msgid "Certificate ID"
 msgstr "証明書 ID"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:117
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:146
 msgid ""
 "The certificate ID is an unique identifier sent to you. It is a mix of letters, numbers and dashes following the UUID canonical hexadecimal format like &quot;adb3261b-c657-4fd2-a057-"
 "bc9f85310b80&quot;."
 msgstr "証明書 ID は、あなたに送られた固有の識別子です。「adb3261b-c657-4fd2-a057-bc9f85310b80」のように、UUID 正規 16 進数形式に従った、アルファベット、数字、ダッシュの組み合わせとなっています。"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:131
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:160
 msgid "Submission ID"
 msgstr "登録 ID"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:138
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:167
 msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
 msgstr "登録 ID はあなたのメールアドレス宛に送信された証明書に書かれています。「14」のような数字の形式です。"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:147
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:176
 msgid "Security Code"
 msgstr "セキュリティコード"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:154
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:183
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr "セキュリティコードはあなたのメールアドレス宛に送信された証明書に書かれています。「AB12CD3」のような英数字が混在した形式です。"
 
@@ -4117,7 +4131,7 @@ msgstr "レーティングのカテゴリ"
 msgid "Descriptors"
 msgstr "ディスクリプタ"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:60
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
 msgid "Interactive Elements"
 msgstr "インタラクティブ要素"
 
@@ -4790,7 +4804,7 @@ msgid "Developing Game Apps"
 msgstr "ゲームアプリの開発"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:110 mkt/lookup/templates/lookup/user_summary.html:56 mkt/lookup/templates/lookup/user_summary.html:60
-#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1443
+#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1445
 msgid "Payments"
 msgstr "決済"
 
@@ -8067,39 +8081,39 @@ msgstr "このアカウントの認証済みメールアドレスを使用して
 msgid "Listed"
 msgstr "表示"
 
-#: mkt/webapps/models.py:1330
+#: mkt/webapps/models.py:1332
 msgid "You must provide a support email or URL."
 msgstr "サポート用メールアドレスか URL を入力してください。"
 
-#: mkt/webapps/models.py:1332
+#: mkt/webapps/models.py:1334
 msgid "You must provide an app name."
 msgstr "アプリの名前を入力してください。"
 
-#: mkt/webapps/models.py:1334
+#: mkt/webapps/models.py:1336
 msgid "You must provide at least one device type."
 msgstr "少なくともひとつ端末の種類を選んでください。"
 
-#: mkt/webapps/models.py:1337
+#: mkt/webapps/models.py:1339
 msgid "You must provide at least one category."
 msgstr "少なくともひとつカテゴリを選んでください。"
 
-#: mkt/webapps/models.py:1404
+#: mkt/webapps/models.py:1406
 msgid "You must set up content ratings."
 msgstr "コンテンツレーティングを設定してください。"
 
-#: mkt/webapps/models.py:1406
+#: mkt/webapps/models.py:1408
 msgid "You must set up a payment account."
 msgstr "決済用アカウントを設定してください。"
 
-#: mkt/webapps/models.py:1431
+#: mkt/webapps/models.py:1433
 msgid "This app's submission process has not been fully completed."
 msgstr "このアプリの登録手続きはまだ完了していません。"
 
-#: mkt/webapps/models.py:1438
+#: mkt/webapps/models.py:1440
 msgid "This app needs to get a content rating."
 msgstr "このアプリはコンテンツレーティングを取得する必要があります。"
 
-#: mkt/webapps/models.py:1444
+#: mkt/webapps/models.py:1446
 msgid "This app needs a payment account set up."
 msgstr "このアプリは決済用アカウントを設定する必要があります。"
 

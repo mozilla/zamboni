@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-02-09 14:59-0800\n"
+"POT-Creation-Date: 2016-02-17 09:07-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2272,14 +2272,14 @@ msgid "Agreement"
 msgstr "Ȧɠřḗḗḿḗƞŧ"
 
 #: mkt/constants/submit.py:6
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:165
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:194
 msgid "Submit"
 msgstr "Şŭƀḿīŧ"
 
 #: mkt/constants/submit.py:7
 #: mkt/reviewers/templates/reviewers/includes/details.html:5
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:39
-#: mkt/webapps/models.py:1430
+#: mkt/webapps/models.py:1432
 msgid "Details"
 msgstr "Ḓḗŧȧīŀş"
 
@@ -2382,7 +2382,7 @@ msgid "An app already exists on this domain; only one app per domain is allowed.
 msgstr ""
 "Ȧƞ ȧƥƥ ȧŀřḗȧḓẏ ḗẋīşŧş ǿƞ ŧħīş ḓǿḿȧīƞ; ǿƞŀẏ ǿƞḗ ȧƥƥ ƥḗř ḓǿḿȧīƞ īş ȧŀŀǿẇḗḓ."
 
-#: mkt/developers/forms.py:328 mkt/webapps/models.py:1339
+#: mkt/developers/forms.py:328 mkt/webapps/models.py:1341
 msgid "You must upload at least one screenshot or video."
 msgstr "Ẏǿŭ ḿŭşŧ ŭƥŀǿȧḓ ȧŧ ŀḗȧşŧ ǿƞḗ şƈřḗḗƞşħǿŧ ǿř ṽīḓḗǿ."
 
@@ -2908,33 +2908,33 @@ msgstr "Īƈǿƞş ḿŭşŧ ƀḗ şɋŭȧřḗ."
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "Ȧƥƥ ƥřḗṽīḗẇş ḿŭşŧ ƀḗ ȧŧ ŀḗȧşŧ {0}ƥẋ ƀẏ {1}ƥẋ ǿř {1}ƥẋ ƀẏ {0}ƥẋ."
 
-#: mkt/developers/views.py:157
+#: mkt/developers/views.py:156
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "Ƥȧīḓ ȧƥƥş ƈȧƞƞǿŧ ƀḗ ḓḗŀḗŧḗḓ. Ḓīşȧƀŀḗ ŧħīş ȧƥƥ īƞşŧḗȧḓ."
 
-#: mkt/developers/views.py:167
+#: mkt/developers/views.py:166
 msgid "App deleted."
 msgstr "Ȧƥƥ ḓḗŀḗŧḗḓ."
 
-#: mkt/developers/views.py:172
+#: mkt/developers/views.py:171
 msgid "Password was incorrect. App was not deleted."
 msgstr "Ƥȧşşẇǿřḓ ẇȧş īƞƈǿřřḗƈŧ. Ȧƥƥ ẇȧş ƞǿŧ ḓḗŀḗŧḗḓ."
 
-#: mkt/developers/views.py:216
+#: mkt/developers/views.py:215
 msgid "App successfully resubmitted."
 msgstr "Ȧƥƥ şŭƈƈḗşşƒŭŀŀẏ řḗşŭƀḿīŧŧḗḓ."
 
-#: mkt/developers/views.py:249
+#: mkt/developers/views.py:248
 msgid "New version successfully added."
 msgstr "Ƞḗẇ ṽḗřşīǿƞ şŭƈƈḗşşƒŭŀŀẏ ȧḓḓḗḓ."
 
-#: mkt/developers/views.py:297 mkt/developers/views.py:539
+#: mkt/developers/views.py:296 mkt/developers/views.py:536
 #: mkt/developers/views_payments.py:114 mkt/developers/views_payments.py:450
 #: mkt/reviewers/views.py:679
 msgid "Changes successfully saved."
 msgstr "Ƈħȧƞɠḗş şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ."
 
-#: mkt/developers/views.py:304
+#: mkt/developers/views.py:303
 msgid ""
 "Congratulations, your app submission is now complete and will be reviewed "
 "shortly!"
@@ -2942,55 +2942,55 @@ msgstr ""
 "Ƈǿƞɠřȧŧŭŀȧŧīǿƞş, ẏǿŭř ȧƥƥ şŭƀḿīşşīǿƞ īş ƞǿẇ ƈǿḿƥŀḗŧḗ ȧƞḓ ẇīŀŀ ƀḗ řḗṽīḗẇḗḓ "
 "şħǿřŧŀẏ!"
 
-#: mkt/developers/views.py:306
+#: mkt/developers/views.py:305
 msgid "Content ratings successfully saved."
 msgstr "Ƈǿƞŧḗƞŧ řȧŧīƞɠş şŭƈƈḗşşƒŭŀŀẏ şȧṽḗḓ."
 
-#: mkt/developers/views.py:443
+#: mkt/developers/views.py:440
 msgid "Version successfully edited."
 msgstr "Ṽḗřşīǿƞ şŭƈƈḗşşƒŭŀŀẏ ḗḓīŧḗḓ."
 
-#: mkt/developers/views.py:478
+#: mkt/developers/views.py:475
 msgid "Version successfully made active."
 msgstr "Ṽḗřşīǿƞ şŭƈƈḗşşƒŭŀŀẏ ḿȧḓḗ ȧƈŧīṽḗ."
 
-#: mkt/developers/views.py:492
+#: mkt/developers/views.py:489
 msgid "Version \"{0}\" deleted."
 msgstr "Ṽḗřşīǿƞ \"{0}\" ḓḗŀḗŧḗḓ."
 
-#: mkt/developers/views.py:627
+#: mkt/developers/views.py:624
 msgid "There was an error with the submission."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ẇīŧħ ŧħḗ şŭƀḿīşşīǿƞ."
 
-#: mkt/developers/views.py:669
+#: mkt/developers/views.py:666
 msgid "An error occurred validating the manifest."
 msgstr "Ȧƞ ḗřřǿř ǿƈƈŭřřḗḓ ṽȧŀīḓȧŧīƞɠ ŧħḗ ḿȧƞīƒḗşŧ."
 
-#: mkt/developers/views.py:921
+#: mkt/developers/views.py:918
 msgid "There was an error uploading your preview."
 msgstr "Ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ŭƥŀǿȧḓīƞɠ ẏǿŭř ƥřḗṽīḗẇ."
 
-#: mkt/developers/views.py:972
+#: mkt/developers/views.py:969
 msgid "Terms of service accepted."
 msgstr "Ŧḗřḿş ǿƒ şḗřṽīƈḗ ȧƈƈḗƥŧḗḓ."
 
-#: mkt/developers/views.py:988
+#: mkt/developers/views.py:985
 msgid "Users with the admin role cannot use the API."
 msgstr "Ŭşḗřş ẇīŧħ ŧħḗ ȧḓḿīƞ řǿŀḗ ƈȧƞƞǿŧ ŭşḗ ŧħḗ ȦƤĪ."
 
-#: mkt/developers/views.py:997
+#: mkt/developers/views.py:994
 msgid "No such API key."
 msgstr "Ƞǿ şŭƈħ ȦƤĪ ķḗẏ."
 
-#: mkt/developers/views.py:1003
+#: mkt/developers/views.py:1000
 msgid "New API key generated."
 msgstr "Ƞḗẇ ȦƤĪ ķḗẏ ɠḗƞḗřȧŧḗḓ."
 
-#: mkt/developers/views.py:1021
+#: mkt/developers/views.py:1018
 msgid "Created blocklisted version."
 msgstr "Ƈřḗȧŧḗḓ ƀŀǿƈķŀīşŧḗḓ ṽḗřşīǿƞ."
 
-#: mkt/developers/views.py:1023
+#: mkt/developers/views.py:1020
 msgid "App already blocklisted."
 msgstr "Ȧƥƥ ȧŀřḗȧḓẏ ƀŀǿƈķŀīşŧḗḓ."
 
@@ -4566,7 +4566,7 @@ msgstr "Şŧȧŧŭş &amp; Ṽḗřşīǿƞş"
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:12
-#: mkt/webapps/models.py:1437
+#: mkt/webapps/models.py:1439
 msgid "Content Ratings"
 msgstr "Ƈǿƞŧḗƞŧ Řȧŧīƞɠş"
 
@@ -4634,7 +4634,21 @@ msgstr "<a href=\"%(rating_url)s\">Şḗŧ ŭƥ Ƈǿƞŧḗƞŧ Řȧŧīƞɠş</
 msgid "Get My App Rated"
 msgstr "Ɠḗŧ Ḿẏ Ȧƥƥ Řȧŧḗḓ"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:26
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:27
+msgid ""
+"Your app has already been age rated and has an International Age Rating "
+"Coalition (IARC) certificate attached. To change the rating, click on the "
+"button below: that will open a new window where you can fill out a new "
+"questionnaire about the contents of your app. Upon completion, the window "
+"will close and your app will then have an new age rating and certificate."
+msgstr ""
+"Ẏǿŭř ȧƥƥ ħȧş ȧŀřḗȧḓẏ ƀḗḗƞ ȧɠḗ řȧŧḗḓ ȧƞḓ ħȧş ȧƞ Īƞŧḗřƞȧŧīǿƞȧŀ Ȧɠḗ Řȧŧīƞɠ "
+"Ƈǿȧŀīŧīǿƞ (ĪȦŘƇ) ƈḗřŧīƒīƈȧŧḗ ȧŧŧȧƈħḗḓ. Ŧǿ ƈħȧƞɠḗ ŧħḗ řȧŧīƞɠ, ƈŀīƈķ ǿƞ ŧħḗ "
+"ƀŭŧŧǿƞ ƀḗŀǿẇ: ŧħȧŧ ẇīŀŀ ǿƥḗƞ ȧ ƞḗẇ ẇīƞḓǿẇ ẇħḗřḗ ẏǿŭ ƈȧƞ ƒīŀŀ ǿŭŧ ȧ ƞḗẇ "
+"ɋŭḗşŧīǿƞƞȧīřḗ ȧƀǿŭŧ ŧħḗ ƈǿƞŧḗƞŧş ǿƒ ẏǿŭř ȧƥƥ. Ŭƥǿƞ ƈǿḿƥŀḗŧīǿƞ, ŧħḗ ẇīƞḓǿẇ "
+"ẇīŀŀ ƈŀǿşḗ ȧƞḓ ẏǿŭř ȧƥƥ ẇīŀŀ ŧħḗƞ ħȧṽḗ ȧƞ ƞḗẇ ȧɠḗ řȧŧīƞɠ ȧƞḓ ƈḗřŧīƒīƈȧŧḗ."
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:38
 msgid ""
 "To have your app listed on the Marketplace, you must attain an International "
 "Age Rating Coalition (IARC) certificate. Clicking on the button below will "
@@ -4648,7 +4662,7 @@ msgstr ""
 "ȧƀǿŭŧ ŧħḗ ƈǿƞŧḗƞŧş ǿƒ ẏǿŭř ȧƥƥ. Ŭƥǿƞ ƈǿḿƥŀḗŧīǿƞ, ŧħḗ ẇīƞḓǿẇ ẇīŀŀ ƈŀǿşḗ ȧƞḓ "
 "ẏǿŭř ȧƥƥ ẇīŀŀ ŧħḗƞ ħȧṽḗ ȧƞ ȧɠḗ řȧŧīƞɠ."
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:36
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 #, python-format
 msgid ""
 "By using the IARC ratings certificate tool, you agree to abide by their <a "
@@ -4659,7 +4673,7 @@ msgstr ""
 "href=\"%(privacy_url)s\">Ƥřīṽȧƈẏ Ƥǿŀīƈẏ</a> ȧƞḓ <a href=\"%(tos_url)s\">"
 "Ŧḗřḿş ǿƒ Şḗřṽīƈḗ ȧɠřḗḗḿḗƞŧ</a>."
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:43
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:56
 #, python-format
 msgid ""
 "IARC content rating process complete, you will be redirected to your app's <a"
@@ -4668,7 +4682,7 @@ msgstr ""
 "ĪȦŘƇ ƈǿƞŧḗƞŧ řȧŧīƞɠ ƥřǿƈḗşş ƈǿḿƥŀḗŧḗ, ẏǿŭ ẇīŀŀ ƀḗ řḗḓīřḗƈŧḗḓ ŧǿ ẏǿŭř ȧƥƥ'ş <"
 "a href=\"%(ratings_url)s\">ƈǿƞŧḗƞŧ řȧŧīƞɠş ƥȧɠḗ</a>."
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:62
 msgid ""
 "Sorry, there was an error on our side processing content ratings. You can "
 "keep trying or try again later."
@@ -4676,16 +4690,20 @@ msgstr ""
 "Şǿřřẏ, ŧħḗřḗ ẇȧş ȧƞ ḗřřǿř ǿƞ ǿŭř şīḓḗ ƥřǿƈḗşşīƞɠ ƈǿƞŧḗƞŧ řȧŧīƞɠş. Ẏǿŭ ƈȧƞ "
 "ķḗḗƥ ŧřẏīƞɠ ǿř ŧřẏ ȧɠȧīƞ ŀȧŧḗř."
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:64
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:80
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:93
 msgid "Create an IARC Ratings Certificate"
 msgstr "Ƈřḗȧŧḗ ȧƞ ĪȦŘƇ Řȧŧīƞɠş Ƈḗřŧīƒīƈȧŧḗ"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:88
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:103
+msgid "Already Have an IARC Certificate?"
+msgstr "Ȧŀřḗȧḓẏ Ħȧṽḗ ȧƞ ĪȦŘƇ Ƈḗřŧīƒīƈȧŧḗ?"
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Already Have Your App Rated?"
 msgstr "Ȧŀřḗȧḓẏ Ħȧṽḗ Ẏǿŭř Ȧƥƥ Řȧŧḗḓ?"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:93
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
 msgid ""
 "If you have already gotten your app rated via the IARC Global Ratings Tool "
 "above and already have an IARC certificate, you can enter it here and we'll "
@@ -4695,7 +4713,15 @@ msgstr ""
 "ȧƀǿṽḗ ȧƞḓ ȧŀřḗȧḓẏ ħȧṽḗ ȧƞ ĪȦŘƇ ƈḗřŧīƒīƈȧŧḗ, ẏǿŭ ƈȧƞ ḗƞŧḗř īŧ ħḗřḗ ȧƞḓ ẇḗ'ŀŀ "
 "ƞǿŧīƒẏ ĪȦŘƇ ŧǿ ŀīƞķ ẏǿŭř Ḿȧřķḗŧƥŀȧƈḗ şŭƀḿīşşīǿƞ ẇīŧħ ŧħȧŧ ƈḗřŧīƒīƈȧŧḗ."
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:100
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:121
+msgid ""
+"Warning: if a certificate is already attached to your app, this will "
+"overwrite it. Use with caution."
+msgstr ""
+"Ẇȧřƞīƞɠ: īƒ ȧ ƈḗřŧīƒīƈȧŧḗ īş ȧŀřḗȧḓẏ ȧŧŧȧƈħḗḓ ŧǿ ẏǿŭř ȧƥƥ, ŧħīş ẇīŀŀ "
+"ǿṽḗřẇřīŧḗ īŧ. Ŭşḗ ẇīŧħ ƈȧŭŧīǿƞ."
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:129
 msgid ""
 "If you have already gotten your app rated via the IARC Global Ratings Tool "
 "above and already have an IARC security code, you can manually enter it here."
@@ -4703,11 +4729,11 @@ msgstr ""
 "Īƒ ẏǿŭ ħȧṽḗ ȧŀřḗȧḓẏ ɠǿŧŧḗƞ ẏǿŭř ȧƥƥ řȧŧḗḓ ṽīȧ ŧħḗ ĪȦŘƇ Ɠŀǿƀȧŀ Řȧŧīƞɠş Ŧǿǿŀ "
 "ȧƀǿṽḗ ȧƞḓ ȧŀřḗȧḓẏ ħȧṽḗ ȧƞ ĪȦŘƇ şḗƈŭřīŧẏ ƈǿḓḗ, ẏǿŭ ƈȧƞ ḿȧƞŭȧŀŀẏ ḗƞŧḗř īŧ ħḗřḗ."
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:141
 msgid "Certificate ID"
 msgstr "Ƈḗřŧīƒīƈȧŧḗ ĪḒ"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:117
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:146
 msgid ""
 "The certificate ID is an unique identifier sent to you. It is a mix of "
 "letters, numbers and dashes following the UUID canonical hexadecimal format "
@@ -4717,11 +4743,11 @@ msgstr ""
 "ŀḗŧŧḗřş, ƞŭḿƀḗřş ȧƞḓ ḓȧşħḗş ƒǿŀŀǿẇīƞɠ ŧħḗ ŬŬĪḒ ƈȧƞǿƞīƈȧŀ ħḗẋȧḓḗƈīḿȧŀ ƒǿřḿȧŧ "
 "ŀīķḗ &quot;ȧḓƀ3261ƀ-ƈ657-4ƒḓ2-ȧ057-ƀƈ9ƒ85310ƀ80&quot;."
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:131
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:160
 msgid "Submission ID"
 msgstr "Şŭƀḿīşşīǿƞ ĪḒ"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:138
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:167
 msgid ""
 "The submission ID can be found on the certificate sent to you. It is a "
 "numeric value like &quot;14&quot;."
@@ -4729,11 +4755,11 @@ msgstr ""
 "Ŧħḗ şŭƀḿīşşīǿƞ ĪḒ ƈȧƞ ƀḗ ƒǿŭƞḓ ǿƞ ŧħḗ ƈḗřŧīƒīƈȧŧḗ şḗƞŧ ŧǿ ẏǿŭ. Īŧ īş ȧ "
 "ƞŭḿḗřīƈ ṽȧŀŭḗ ŀīķḗ &quot;14&quot;."
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:147
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:176
 msgid "Security Code"
 msgstr "Şḗƈŭřīŧẏ Ƈǿḓḗ"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:154
+#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:183
 msgid ""
 "The security code can be found on the certificate sent to you. It is a mix of"
 " letters and numbers like &quot;AB12CD3&quot;."
@@ -4764,7 +4790,7 @@ msgstr "Řȧŧīƞɠ Ƈȧŧḗɠǿřẏ"
 msgid "Descriptors"
 msgstr "Ḓḗşƈřīƥŧǿřş"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:60
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
 msgid "Interactive Elements"
 msgstr "Īƞŧḗřȧƈŧīṽḗ Ḗŀḗḿḗƞŧş"
 
@@ -5632,7 +5658,7 @@ msgstr "Ḓḗṽḗŀǿƥīƞɠ Ɠȧḿḗ Ȧƥƥş"
 #: mkt/lookup/templates/lookup/user_summary.html:60
 #: mkt/reviewers/templates/reviewers/queue.html:35
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26
-#: mkt/webapps/models.py:1443
+#: mkt/webapps/models.py:1445
 msgid "Payments"
 msgstr "Ƥȧẏḿḗƞŧş"
 
@@ -9331,39 +9357,39 @@ msgstr "Ƥŀḗȧşḗ ŭşḗ ŧħḗ ṽḗřīƒīḗḓ ḗḿȧīŀ ƒǿř 
 msgid "Listed"
 msgstr "Ŀīşŧḗḓ"
 
-#: mkt/webapps/models.py:1330
+#: mkt/webapps/models.py:1332
 msgid "You must provide a support email or URL."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧ şŭƥƥǿřŧ ḗḿȧīŀ ǿř ŬŘĿ."
 
-#: mkt/webapps/models.py:1332
+#: mkt/webapps/models.py:1334
 msgid "You must provide an app name."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧƞ ȧƥƥ ƞȧḿḗ."
 
-#: mkt/webapps/models.py:1334
+#: mkt/webapps/models.py:1336
 msgid "You must provide at least one device type."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧŧ ŀḗȧşŧ ǿƞḗ ḓḗṽīƈḗ ŧẏƥḗ."
 
-#: mkt/webapps/models.py:1337
+#: mkt/webapps/models.py:1339
 msgid "You must provide at least one category."
 msgstr "Ẏǿŭ ḿŭşŧ ƥřǿṽīḓḗ ȧŧ ŀḗȧşŧ ǿƞḗ ƈȧŧḗɠǿřẏ."
 
-#: mkt/webapps/models.py:1404
+#: mkt/webapps/models.py:1406
 msgid "You must set up content ratings."
 msgstr "Ẏǿŭ ḿŭşŧ şḗŧ ŭƥ ƈǿƞŧḗƞŧ řȧŧīƞɠş."
 
-#: mkt/webapps/models.py:1406
+#: mkt/webapps/models.py:1408
 msgid "You must set up a payment account."
 msgstr "Ẏǿŭ ḿŭşŧ şḗŧ ŭƥ ȧ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ."
 
-#: mkt/webapps/models.py:1431
+#: mkt/webapps/models.py:1433
 msgid "This app's submission process has not been fully completed."
 msgstr "Ŧħīş ȧƥƥ'ş şŭƀḿīşşīǿƞ ƥřǿƈḗşş ħȧş ƞǿŧ ƀḗḗƞ ƒŭŀŀẏ ƈǿḿƥŀḗŧḗḓ."
 
-#: mkt/webapps/models.py:1438
+#: mkt/webapps/models.py:1440
 msgid "This app needs to get a content rating."
 msgstr "Ŧħīş ȧƥƥ ƞḗḗḓş ŧǿ ɠḗŧ ȧ ƈǿƞŧḗƞŧ řȧŧīƞɠ."
 
-#: mkt/webapps/models.py:1444
+#: mkt/webapps/models.py:1446
 msgid "This app needs a payment account set up."
 msgstr "Ŧħīş ȧƥƥ ƞḗḗḓş ȧ ƥȧẏḿḗƞŧ ȧƈƈǿŭƞŧ şḗŧ ŭƥ."
 
