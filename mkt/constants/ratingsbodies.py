@@ -282,13 +282,21 @@ class PEGI_18(RATING):
     adult = True
 
 
+class PEGI_PARENTAL_GUIDANCE(RATING):
+    id = 5
+    iarc_name = 'Parental Guidance'
+    label = 'parental-guidance'
+    name = _lazy(u'Parental Guidance')
+
+
 class PEGI(RATING_BODY):
     """
     The European game ratings body (i.e. GBR, Poland, Spain).
     """
     id = 4
     iarc_name = 'PEGI'
-    ratings = (PEGI_3, PEGI_7, PEGI_12, PEGI_16, PEGI_18)
+    ratings = (PEGI_3, PEGI_7, PEGI_12, PEGI_16, PEGI_18,
+               PEGI_PARENTAL_GUIDANCE)
 
     name = 'PEGI'
     description = _lazy(u'Europe')
@@ -416,6 +424,7 @@ IARC_ICONS = {
             '12': pth('pegi_12.png'),
             '16': pth('pegi_16.png'),
             '18': pth('pegi_18.png'),
+            'parental-guidance': pth('pegi_exclamation.png'),
         },
         'usk': {
             '0': pth('USK_0.png'),

@@ -102,7 +102,8 @@ class TestGetRatingChanges(TestCase):
         app2 = Webapp.objects.get(pk=app2.pk)
         eq_(app1.rating_descriptors.to_keys(), ['has_esrb_violence_ref'])
         eq_(app2.rating_descriptors.to_keys(),
-            ['has_classind_violence', 'has_esrb_violence', 'has_usk_violence'])
+            ['has_classind_violence', 'has_pegi_moderate_violence',
+             'has_esrb_violence', 'has_usk_violence'])
         eq_(res['Result']['ResponseCode'], 'Success')
         eq_(app1.content_ratings.all()[0].get_rating_class(), ESRB_10)
         eq_(app2.content_ratings.all()[0].get_rating_class(), CLASSIND_12)
@@ -270,14 +271,14 @@ class TestSearchCertsAndAttachToCert(TestCase):
         eq_(data,
             {'ResultCode': 'Success', 'ErrorMessage': None, 'ErrorID': None})
         eq_(UUID(app.iarc_cert.cert_id), UUID(cert_id))
-        # Note: the mock also contains PEGI_ParentalGuidanceRecommended but we
-        # don't currently map it to a descriptor, because it didn't exist in
-        # v1.
-        eq_(app.rating_descriptors.to_keys(), ['has_classind_lang'])
+        eq_(app.rating_descriptors.to_keys(),
+            ['has_classind_lang', 'has_pegi_parental_guidance_recommended'])
         eq_(app.rating_interactives.to_keys(),
             ['has_shares_location', 'has_digital_purchases',
              'has_users_interact'])
-        eq_(app.content_ratings.count(), 5)
+        eq_(app.get_content_ratings_by_body(),
+            {'generic': '3', 'esrb': '13', 'classind': '12', 'usk': '12',
+             'pegi': 'parental-guidance'})
 
     @responses.activate
     def test_search_and_attach_cert_invalid(self):
@@ -315,7 +316,8 @@ class TestSearchCertsAndAttachToCert(TestCase):
         # Compare with mock data. Force reload using .objects.get in order to
         # properly reset the related objects caching.
         app = Webapp.objects.get(pk=app.pk)
-        eq_(app.rating_descriptors.to_keys(), ['has_classind_lang'])
+        eq_(app.rating_descriptors.to_keys(),
+            ['has_classind_lang', 'has_pegi_parental_guidance_recommended'])
         eq_(app.rating_interactives.to_keys(),
             ['has_shares_location', 'has_digital_purchases',
              'has_users_interact'])
