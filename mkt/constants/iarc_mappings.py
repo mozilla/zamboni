@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import mkt.constants.ratingsbodies as ratingsbodies
 
 
@@ -47,6 +48,7 @@ RATINGS = {
         '12+': ratingsbodies.PEGI_12,
         '16+': ratingsbodies.PEGI_16,
         '18+': ratingsbodies.PEGI_18,
+        '!': ratingsbodies.PEGI_PARENTAL_GUIDANCE,
         'default': ratingsbodies.PEGI_3,
     },
     ratingsbodies.USK.id: {
@@ -95,6 +97,8 @@ DESCS = {
         u'Crime': 'has_esrb_crime',
         u'Criminal Instruction': 'has_esrb_crime_instruct',
         u'Crude Humor': 'has_esrb_crude_humor',
+        u'Diverse Content: Discretion Advised':
+            'has_esrb_diverse_content_discretion_advised',
         u'Drug and Alcohol Reference': 'has_esrb_drug_alcohol_ref',
         u'Drug and Tobacco Reference': 'has_esrb_drug_tobacco_ref',
         u'Drug Reference': 'has_esrb_drug_ref',
@@ -152,14 +156,28 @@ DESCS = {
     },
 
     ratingsbodies.PEGI.id: {
+        u'Criminal Technique Instructions':
+            'has_pegi_criminal_technique_instructions',
         u'Discrimination': 'has_pegi_discrimination',
         u'Drugs': 'has_pegi_drugs',
+        u'Extreme Violence': 'has_pegi_extreme_violence',
         u'Fear': 'has_pegi_scary',
         u'Gambling': 'has_pegi_gambling',
         u'Horror': 'has_pegi_horror',
+        u'Implied Violence': 'has_pegi_implied_violence',
         u'Language': 'has_pegi_lang',
+        u'Mild Swearing': 'has_pegi_mild_swearing',
+        u'Mild Violence': 'has_pegi_mild_violence',
+        u'Moderate Violence': 'has_pegi_moderate_violence',
+        u'Parental Guidance Recommended':
+            'has_pegi_parental_guidance_recommended',
         u'Online': 'has_pegi_online',
         u'Sex': 'has_pegi_sex_content',
+        u'Sexual Innuendo': 'has_pegi_sexual_innuendo',
+        u'Sexual Violence': 'has_pegi_sexual_violence',
+        u'Strong Language': 'has_pegi_strong_language',
+        u'Strong Violence': 'has_pegi_strong_violence',
+        u'Use of Alcohol/Tobacco': 'has_pegi_use_of_alcohol_and_tobacco',
         u'Violence': 'has_pegi_violence',
 
         # PEGI's versions of Interactive Elements.
@@ -187,6 +205,8 @@ DESCS = {
         u'Seltene Schreckmomente': 'has_usk_some_scares',
         u'Sexuelle Gewalt': 'has_usk_sex_violence',
         u'Sexuelle Andeutungen': 'has_usk_sex_ref',
+        u'Shop/ Streamingdienst – dynamische  Inhalte':
+            'has_usk_shop_streaming_service',
         u'Tabakkonsum': 'has_usk_tobacco',
     },
 }
@@ -231,7 +251,8 @@ DESCS_V2 = {
         'ESRB_CartoonViolence': 'has_esrb_cartoon_violence',
         'ESRB_ComicMischief': 'has_esrb_comic_mischief',
         'ESRB_CrudeHumor': 'has_esrb_crude_humor',
-        'ESRB_DiverseContentDiscretionAdvised': '',
+        'ESRB_DiverseContentDiscretionAdvised':
+            'has_esrb_diverse_content_discretion_advised',
         'ESRB_DrugAlcoholandTobaccoReference':
             'has_esrb_drug_alcohol_tobacco_ref',
         'ESRB_DrugandAlcoholReference': 'has_esrb_drug_alcohol_ref',
@@ -289,27 +310,29 @@ DESCS_V2 = {
     },
 
     ratingsbodies.PEGI.id: {
-        'PEGI_CriminalTechniqueInstructions': '',
+        'PEGI_CriminalTechniqueInstructions':
+            'has_pegi_criminal_technique_instructions',
         'PEGI_Discrimination': 'has_pegi_discrimination',
         'PEGI_Drugs': 'has_pegi_drugs',
-        'PEGI_ExtremeViolence': '',
+        'PEGI_ExtremeViolence': 'has_pegi_extreme_violence',
         'PEGI_Fear': 'has_pegi_scary',
         'PEGI_Gambling': 'has_pegi_gambling',
         'PEGI_Horror': 'has_pegi_horror',
-        'PEGI_ImpliedViolence': '',
+        'PEGI_ImpliedViolence': 'has_pegi_implied_violence',
         'PEGI_Language': 'has_pegi_lang',
-        'PEGI_MildSwearing': '',
-        'PEGI_MildViolence': '',
-        'PEGI_ModerateViolence': '',
+        'PEGI_MildSwearing': 'has_pegi_mild_swearing',
+        'PEGI_MildViolence': 'has_pegi_mild_violence',
+        'PEGI_ModerateViolence': 'has_pegi_moderate_violence',
         'PEGI_NoDescriptors': '',  # No descriptors.
         'PEGI_Online': 'has_pegi_online',
-        'PEGI_ParentalGuidanceRecommended': '',
+        'PEGI_ParentalGuidanceRecommended':
+            'has_pegi_parental_guidance_recommended',
         'PEGI_Sex': 'has_pegi_sex_content',
-        'PEGI_SexualInnuendo': '',
-        'PEGI_SexualViolence': '',
-        'PEGI_StrongLanguage': '',
-        'PEGI_StrongViolence': '',
-        'PEGI_UseofAlcoholTobacco': '',
+        'PEGI_SexualInnuendo': 'has_pegi_sexual_innuendo',
+        'PEGI_SexualViolence': 'has_pegi_sexual_violence',
+        'PEGI_StrongLanguage': 'has_pegi_strong_language',
+        'PEGI_StrongViolence': 'has_pegi_strong_violence',
+        'PEGI_UseofAlcoholTobacco': 'has_pegi_use_of_alcohol_and_tobacco',
         'PEGI_Violence': 'has_pegi_violence',
     },
 
@@ -331,7 +354,7 @@ DESCS_V2 = {
         'USK_SexErotik': 'has_usk_sex_content',  # 'Erotik/Sexuelle Inhalte'.
         'USK_SexuelleAndeutungen': 'has_usk_sex_ref',
         'USK_SexuelleGewalt': 'has_usk_sex_violence',
-        'USK_ShopStreamingService': '',
+        'USK_ShopStreamingService': 'has_usk_shop_streaming_service',
         'USK_Tabakkonsum': 'has_usk_tobacco',
     }
 }
@@ -353,6 +376,7 @@ INTERACTIVES = {
     'Shares Info': 'has_shares_info',
     'Shares Location': 'has_shares_location',
     'Digital Purchases': 'has_digital_purchases',
+    'Unrestricted Internet': 'has_unrestricted_internet',
 }
 
 REVERSE_INTERACTIVES = {v: k for k, v in INTERACTIVES.items()}
@@ -362,6 +386,7 @@ INTERACTIVES_V2 = {
     'IE_SharesInfo': 'has_shares_info',
     'IE_SharesLocation': 'has_shares_location',
     'IE_DigitalPurchases': 'has_digital_purchases',
+    'IE_UnrestrictedInternet': 'has_unrestricted_internet',
 }
 
 REVERSE_INTERACTIVES_V2 = {v: k for k, v in INTERACTIVES_V2.items()}
