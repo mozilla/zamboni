@@ -67,7 +67,8 @@ from mkt.users.models import UserProfile
 from mkt.users.views import _clean_next_url
 from mkt.versions.models import Version
 from mkt.webapps.decorators import app_view
-from mkt.webapps.models import AddonUser, ContentRating, IARCInfo, Webapp
+from mkt.webapps.models import (AddonUser, ContentRating, IARCInfo, IARCCert,
+                                Webapp)
 from mkt.webapps.tasks import _update_manifest, update_manifests
 from mkt.zadmin.models import set_config, unmemoized_get_config
 
@@ -347,8 +348,22 @@ def content_ratings(request, addon_id, addon):
         del session['ratings_edit'][app_id]  # Clear msg so not shown again.
         request.session.modified = True
 
-    return render(request, 'developers/apps/ratings/ratings_summary.html',
-                  {'addon': addon, 'ratings': ratings})
+    ctx = {
+        'addon': addon,
+        'cert': None,
+        'ratings': ratings,
+        'rating_descriptors': addon.rating_descriptors,
+        'rating_interactives': addon.rating_interactives,
+    }
+
+    if waffle.switch_is_active('iarc-upgrade-v2'):
+        # If there is a cert attached, we show it to the developer.
+        try:
+            ctx['cert'] = addon.iarc_cert
+        except IARCCert.DoesNotExist:
+            pass
+
+    return render(request, 'developers/apps/ratings/ratings_summary.html', ctx)
 
 
 @dev_required
@@ -358,6 +373,7 @@ def content_ratings_edit(request, addon_id, addon):
                        "DEBUG mode on; you may use IARC id 0 with any code")
     initial = {}
     data = request.POST if request.method == 'POST' else None
+    template_name = 'developers/apps/ratings/ratings_edit.html'
 
     if waffle.switch_is_active('iarc-upgrade-v2'):
         form_class = IARCV2ExistingCertificateForm
@@ -370,11 +386,23 @@ def content_ratings_edit(request, addon_id, addon):
             pass
         form_class = IARCGetAppInfoForm
 
+    ctx = {}
+
     form = form_class(data=data, initial=initial, app=addon)
     if request.method == 'POST' and form.is_valid():
         try:
-            form.save()
-            return redirect(addon.get_dev_url('ratings'))
+            if (waffle.switch_is_active('iarc-upgrade-v2') and
+                    not form.cleaned_data.get('confirmed')):
+                # We need to show a confirmation to the user using the summary
+                # template. If a ValidationError is raised, it means the Cert
+                # ID was not recognized by IARC - we want to show the error in
+                # the current template, so the cert_confirmation() call needs
+                # to happen before changing the template.
+                ctx.update(form.cert_confirmation())
+                template_name = 'developers/apps/ratings/ratings_summary.html'
+            else:
+                form.save()
+                return redirect(addon.get_dev_url('ratings'))
         except django_forms.ValidationError:
             pass  # Fall through to show the form error.
 
@@ -388,13 +416,13 @@ def content_ratings_edit(request, addon_id, addon):
     }
     request.session.modified = True
 
-    ctx = {
+    ctx.update({
         'addon': addon,
         'app_name': get_iarc_app_title(addon),
         'form': form,
         'company': addon.latest_version.developer_name,
         'now': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    }
+    })
 
     if waffle.switch_is_active('iarc-upgrade-v2'):
         try:
@@ -412,7 +440,7 @@ def content_ratings_edit(request, addon_id, addon):
                 app=addon, uuid=uuid.uuid4())
         ctx['iarc_request_id'] = unicode(uuid.UUID(iarc_request.uuid))
 
-    return render(request, 'developers/apps/ratings/ratings_edit.html', ctx)
+    return render(request, template_name, ctx)
 
 
 @dev_required

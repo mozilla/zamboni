@@ -12,7 +12,7 @@ from nose.tools import eq_
 
 from lib.iarc_v2.client import (_attach_to_cert, get_rating_changes,
                                 _iarc_app_data, IARCException, publish,
-                                refresh, unpublish, _search_cert,
+                                refresh, unpublish, search_cert,
                                 search_and_attach_cert)
 from mkt.constants.ratingsbodies import CLASSIND_12, ESRB_10
 from mkt.site.helpers import absolutify
@@ -198,7 +198,7 @@ class TestSearchCertsAndAttachToCert(TestCase):
     def test_search_cert_uuid_hex_string_w_separators(self):
         setup_mock_response('SearchCerts')
         fake_cert_id = unicode(uuid4())
-        serializer = _search_cert(mock.Mock(), fake_cert_id)
+        serializer = search_cert(mock.Mock(), fake_cert_id)
         eq_(serializer.is_valid(), True)
         eq_(len(responses.calls), 1)
         eq_(responses.calls[0].request.headers.get('StorePassword'),
@@ -213,7 +213,7 @@ class TestSearchCertsAndAttachToCert(TestCase):
     def test_search_cert_uuid_hex_string(self):
         setup_mock_response('SearchCerts')
         fake_cert = uuid4()
-        serializer = _search_cert(mock.Mock(), fake_cert.get_hex())
+        serializer = search_cert(mock.Mock(), fake_cert.get_hex())
         eq_(serializer.is_valid(), True)
         eq_(len(responses.calls), 1)
         eq_(responses.calls[0].request.headers.get('StorePassword'),

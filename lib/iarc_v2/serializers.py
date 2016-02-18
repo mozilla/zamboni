@@ -80,6 +80,36 @@ class IARCV2RatingListSerializer(object):
             raise ValidationError(self.errors)
         return valid
 
+    def to_objects(self):
+        """
+        Return the ratings, descriptors, interactives and cert model instances
+        from validated data, as a dict.
+
+        Note that these instances are not meant to be saved, they are just
+        meant to be shown to the developer for confirmation. To prevent
+        accidental saving they are not attached to an app.
+        """
+        # Work around recursive import issues.
+        from mkt.webapps.models import (ContentRating, IARCCert,
+                                        RatingDescriptors, RatingInteractives)
+
+        if not self.is_valid():
+            raise ParseError('Can not convert invalid data to objects.')
+
+        instances = {
+            'cert': IARCCert(cert_id=self.validated_data['cert_id']),
+            'ratings': sorted([
+                ContentRating(ratings_body=ratings_body.id, rating=rating.id)
+                for ratings_body, rating
+                in self.validated_data['ratings'].items()],
+                key=lambda r: r.get_body().name),
+            'rating_descriptors': RatingDescriptors(
+                **{k: True for k in self.validated_data['descriptors']}),
+            'rating_interactives': RatingInteractives(
+                **{k: True for k in self.validated_data['interactives']}),
+        }
+        return instances
+
     def save(self, force_update=False):
         if not self.object:
             raise ValueError('Can not save without an object.')

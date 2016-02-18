@@ -2443,7 +2443,10 @@ class IARCCert(ModelBase):
 
     def __unicode__(self):
         return u'IARC Cert %s for app %s' % (
-            uuid.UUID(self.cert_id), self.app)
+            self.pretty_cert_id(), self.app)
+
+    def pretty_cert_id(self):
+        return uuid.UUID(self.cert_id)
 
     class Meta:
         db_table = 'webapps_iarc_cert'

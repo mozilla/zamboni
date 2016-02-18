@@ -11,57 +11,87 @@
 
   <section id="ratings-summary" class="primary manage">
     <h2>
-      {{ _('Summary') }}
-      <a href="{{ addon.get_dev_url('ratings_edit') }}" class="button edit">
-        {{ _('Edit') }}</a>
+      {% if form %}
+        {{ _('Confirm your choice of IARC Certiticate') }}
+      {% else %}
+        {{ _('Summary') }}
+        <a href="{{ addon.get_dev_url('ratings_edit') }}" class="button edit">
+          {{ _('Edit') }}
+        </a>
+      {% endif %}
     </h2>
 
+    {% if cert %}
     <div class="island">
-      <h3>{{ _('Content Ratings') }}</h3>
-      <table class="ratings-summary data-grid">
-        <thead>
-          <th>{{ _('Rating System') }}</th>
-          <th>{{ _('Region') }}</th>
-          <th>{{ _('Rating Category') }}</th>
-          <th>{{ _('Descriptors') }}</th>
-        </thead>
-        <tbody>
-          {% for cr in ratings %}
-            {% set body = cr.get_body() %}
-            {% set rating = cr.get_rating() %}
-            <tr>
-              <td class="name">{{ body.name }}</td>
-              <td class="regions">{{ body.description or '&mdash;'|safe }}</td>
-              <td class="content-rating">
-                {% include "developers/includes/content_rating_icon.html" %}</td>
-              <td class="content-descriptors">
-                {% for descriptor in addon.rating_descriptors.to_keys_by_body(body.label) %}
-                  <span class="dot-sep descriptor">
-                    {{ mkt.iarc_mappings.HUMAN_READABLE_DESCS_AND_INTERACTIVES[descriptor] }}
-                  </span>
-                {% else %}
-                  &mdash;
-                {% endfor %}
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-
-      {% set interactives = addon.rating_interactives.to_keys() %}
-      {% if interactives %}
-        <h3>{{ _('Interactive Elements') }}</h3>
-        <div class="interactive-elements c">
-          <div class="names">
-            {% for interactive in interactives %}
-              <span class="dot-sep interactive">
-                {{ mkt.iarc_mappings.HUMAN_READABLE_DESCS_AND_INTERACTIVES[interactive] }}
-              </span>
-            {% endfor %}
-          </div>
-        </div>
-      {% endif %}
+        <h3>{{ _('IARC Certificate ID') }}</h3>
+        {% if form %}
+          <form method="POST">
+            <p>
+              {{ cert.pretty_cert_id() }}&nbsp;
+              {{ csrf() }}
+              <input type="hidden" name="cert_id" value="{{ form.data.cert_id }} " />
+              <input type="hidden" name="confirmed" value="1" />
+              <button>{{ _('Confirm') }}</button>
+            </p>
+          </form>
+        {% else %}
+          <p>
+            {{ cert.pretty_cert_id() }}
+          </p>
+        {% endif %}
     </div>
+    {% endif %}
+
+    {% if ratings %}
+      <div class="island">
+        <h3>{{ _('Content Ratings') }}</h3>
+        <table class="ratings-summary data-grid">
+          <thead>
+            <th>{{ _('Rating System') }}</th>
+            <th>{{ _('Region') }}</th>
+            <th>{{ _('Rating Category') }}</th>
+            <th>{{ _('Descriptors') }}</th>
+          </thead>
+          <tbody>
+            {% for cr in ratings %}
+              {% set body = cr.get_body() %}
+              {% set rating = cr.get_rating() %}
+              <tr>
+                <td class="name">{{ body.name }}</td>
+                <td class="regions">{{ body.description or '&mdash;'|safe }}</td>
+                <td class="content-rating">
+                  {% include "developers/includes/content_rating_icon.html" %}</td>
+                <td class="content-descriptors">
+                  {% if rating_descriptors %}
+                    {% for descriptor in rating_descriptors.to_keys_by_body(body.label) %}
+                      <span class="dot-sep descriptor">
+                        {{ mkt.iarc_mappings.HUMAN_READABLE_DESCS_AND_INTERACTIVES[descriptor] }}
+                      </span>
+                    {% else %}
+                      &mdash;
+                    {% endfor %}
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+        {% set interactives = rating_interactives.to_keys() if rating_interactives %}
+        {% if interactives %}
+          <h3>{{ _('Interactive Elements') }}</h3>
+          <div class="interactive-elements c">
+            <div class="names">
+              {% for interactive in interactives %}
+                <span class="dot-sep interactive">
+                  {{ mkt.iarc_mappings.HUMAN_READABLE_DESCS_AND_INTERACTIVES[interactive] }}
+                </span>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
   </section>
 
   {% include 'developers/includes/addons_edit_nav.html' %}

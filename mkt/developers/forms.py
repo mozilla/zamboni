@@ -29,7 +29,7 @@ from django.utils.translation import (ugettext as _, ugettext_lazy as _lazy,
 import lib.iarc
 import mkt
 from lib.iarc_v2.client import (IARCException, publish as iarc_publish,
-                                search_and_attach_cert)
+                                search_and_attach_cert, search_cert)
 from lib.video import tasks as vtasks
 from mkt import get_user
 from mkt.access import acl
@@ -1065,6 +1065,7 @@ class AppVersionForm(happyforms.ModelForm):
 
 class IARCV2ExistingCertificateForm(happyforms.Form):
     cert_id = forms.CharField(max_length=36, required=True)
+    confirmed = forms.BooleanField(required=False)
 
     def __init__(self, app, *args, **kwargs):
         self.app = app
@@ -1092,12 +1093,48 @@ class IARCV2ExistingCertificateForm(happyforms.Form):
         # Return as string separated by dashes.
         return unicode(value)
 
+    def _raise_cert_id_validation_error(self):
+        msg = _('This Certificate ID is not recognized by IARC, or is '
+                'already attached to another app in the Firefox Marketplace.')
+        self._errors['cert_id'] = self.error_class([msg])
+        raise forms.ValidationError(msg)
+
+    def cert_confirmation(self):
+        """Call search_cert() and return the ratings, descriptors, interactives
+        and cert objects to show the user as a dict to be used for the template
+        context.
+
+        Note that these instances are not meant to be saved, they are just
+        meant to be shown to the developer for confirmation. To prevent
+        accidental saving they are not attached to an app.
+
+        Can raise ValidationError."""
+        if not self.is_valid():
+            # Safeguard.
+            raise forms.ValidationError('Invalid Form')
+        if self.cleaned_data['cert_id'] is None:
+            # Dummy cert for local developement without IARC.
+            ctx = {
+                'cert': IARCCert(cert_id='00000000000000000000000000000000')
+            }
+        else:
+            serializer = search_cert(self.app, self.cleaned_data['cert_id'])
+            if not serializer.is_valid():
+                self._raise_cert_id_validation_error()
+            ctx = serializer.to_objects()
+        return ctx
+
     def save(self, *args, **kwargs):
         if not self.is_valid():
             # Safeguard.
             raise forms.ValidationError('Invalid Form')
         if self.cleaned_data['cert_id'] is None:
-            # Dummy rating for local developement without IARC.
+            # Dummy rating for local developement without IARC. Existing
+            # IARCCert is no longer relevant and has to be deleted. Since there
+            # is a unique constraint we can't hardcode something like
+            # 00000000-0000-0000-0000-000000000000 and we can't generate a fake
+            # one either, we might call IARC with it later on.
+            IARCCert.objects.filter(app=self.app).delete()
             self.app.set_descriptors([])
             self.app.set_interactives([])
             self.app.set_content_ratings({
@@ -1106,10 +1143,7 @@ class IARCV2ExistingCertificateForm(happyforms.Form):
         try:
             search_and_attach_cert(self.app, self.cleaned_data['cert_id'])
         except IARCException:
-            msg = _('This Certificate ID is not recognized by IARC, or is '
-                    'already attached to an app in the Firefox Marketplace.')
-            self._errors['cert_id'] = self.error_class([msg])
-            raise forms.ValidationError(msg)
+            self._raise_cert_id_validation_error()
 
 
 class IARCGetAppInfoForm(happyforms.Form):
