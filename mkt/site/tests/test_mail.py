@@ -243,10 +243,10 @@ class TestSendMail(TestCase):
             send_mail('test subject',
                       'test body',
                       recipient_list=['somebody@mozilla.org'])
-        assert send_mail('test subject',
-                         'test body',
-                         async=True,
-                         recipient_list=['somebody@mozilla.org'])
+        send_mail('test subject',
+                  'test body',
+                  async=True,
+                  recipient_list=['somebody@mozilla.org'])
 
     @mock.patch('mkt.site.tasks.EmailMessage')
     def test_async_will_stop_retrying(self, backend):

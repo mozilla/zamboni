@@ -8,7 +8,7 @@ from django.conf import settings
 from django.db import transaction
 
 import commonware.log
-from celery import task
+from post_request_task.task import task
 
 from lib.iarc_v2.serializers import IARCV2RatingListSerializer
 from mkt.site.helpers import absolutify

@@ -10,10 +10,10 @@ from django.test.client import RequestFactory
 
 from mock import patch
 from nose.tools import eq_, ok_
+from post_request_task import task as post_request_task
 
 import mkt
 import mkt.regions
-from lib.post_request_task.task import _send_tasks
 from mkt.access.middleware import ACLMiddleware
 from mkt.access.models import GroupUser
 from mkt.api.tests.test_oauth import RestOAuth, RestOAuthClient
@@ -896,7 +896,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         app2 = app_factory()
         app1.trending.get_or_create(value='2.0')
         app2.trending.get_or_create(value='12.0')
-        self.refresh('webapp')
+        self.reindex(Webapp)
         res = self.anon.get(self.url, {'sort': 'trending'})
         eq_(res.status_code, 200)
         eq_(res.json['objects'][0]['id'], app2.id)
@@ -1382,6 +1382,7 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
 
     def setUp(self):
         super(TestMultiSearchView, self).setUp()
+        post_request_task._start_queuing_tasks()
         self.url = reverse('api-v2:multi-search-api')
         self.webapp = Webapp.objects.get(pk=337141)
         self.webapp.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
@@ -1408,8 +1409,10 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         self.extension.versions.create(
             reviewed=self.days_ago(0), status=mkt.STATUS_PUBLIC)
         self.refresh(('webapp', 'website', 'extension'))
+        post_request_task._send_tasks_and_stop_queuing()
 
     def make_homescreen(self):
+        post_request_task._start_queuing_tasks()
         self.homescreen = app_factory(name=u'Elegant Waffle',
                                       description=u'homescreen runner',
                                       created=self.days_ago(5),
@@ -1417,14 +1420,14 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         Tag(tag_text='homescreen').save_tag(self.homescreen)
         self.homescreen.addondevicetype_set.create(
             device_type=mkt.DEVICE_GAIA.id)
-        self.homescreen.update(categories=['health-fitness', 'productivity'])
         self.homescreen.update_version()
-        _send_tasks()
+        self.homescreen.update(categories=['health-fitness', 'productivity'])
+        post_request_task._send_tasks_and_stop_queuing()
         self.refresh(('webapp', 'website', 'extension', 'homescreen'))
         return self.homescreen
 
     def tearDown(self):
-        for o in Webapp.objects.all():
+        for o in Webapp.with_deleted.all():
             o.delete()
         for o in Website.objects.all():
             o.delete()
@@ -1560,6 +1563,8 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
 
     def test_search_homescreen_sort_by_reviewed(self):
         self.make_homescreen()
+        self.reindex(Website)
+        self.reindex(Extension)
         res = self.anon.get(self.url, data={
             'doc_type': 'extension,webapp,website,homescreen', 'lang': 'en-US',
             'sort': 'reviewed'})

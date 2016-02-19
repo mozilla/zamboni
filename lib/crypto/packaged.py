@@ -8,8 +8,8 @@ from django.conf import settings
 
 import commonware.log
 import requests
-from celery import task
 from django_statsd.clients import statsd
+from post_request_task.task import task
 from signing_clients.apps import JarExtractor
 
 from mkt.versions.models import Version

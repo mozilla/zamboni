@@ -2,7 +2,7 @@ import logging
 
 from django.conf import settings
 
-from celery import task
+from post_request_task.task import task
 
 from mkt.site.mail import send_mail
 from mkt.zadmin.models import EmailPreviewTopic

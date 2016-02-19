@@ -1,13 +1,13 @@
-from datetime import datetime, timedelta
 import logging
 import os
 import tempfile
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.db import transaction
 
-from celery import task
 import requests
+from post_request_task.task import task
 
 from mkt.site.utils import ImageCheck, resize_image
 from mkt.site.storage_utils import (copy_stored_file, public_storage,

@@ -204,11 +204,3 @@ class Command(BaseCommand):
         # Skip first line, since it's explanatory, not a site.
         created_count = self.create_instances(data[1:])
         print 'Import phase done, created %d websites.' % created_count
-
-        # No need to manually call _send_tasks() even though we are in a
-        # management command. The only tasks we are using are fetch_icon() and
-        # fetch_promo_imgs(), for which we use original_apply_async() directly,
-        # and the indexation task, which would be useless to fire since the
-        # fetch icon task will trigger a save and a re-index anyway. Plus, we
-        # won't have many sites so it's probably simpler to trigger a full
-        # reindex.

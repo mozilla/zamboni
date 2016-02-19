@@ -25,12 +25,12 @@ from dateutil.parser import parse as dateutil_parser
 from django_browserid.tests import mock_browserid
 from nose.exc import SkipTest
 from nose.tools import eq_
+from post_request_task import task as post_request_task
 from pyquery import PyQuery as pq
 from waffle.models import Flag, Sample, Switch
 
 import mkt
 from lib.es.management.commands import reindex
-from lib.post_request_task import task as post_request_task
 from mkt.access.acl import check_ownership
 from mkt.access.models import Group, GroupUser
 from mkt.constants import regions
@@ -428,6 +428,7 @@ class TestCase(MockEsMixin, MockBrowserIdMixin, ClassFixtureTestCase):
         # Clean the slate.
         cache.clear()
         post_request_task._discard_tasks()
+        post_request_task._stop_queuing_tasks()
 
         trans_real.deactivate()
         trans_real._translations = {}  # Django fails to clear this cache.
@@ -915,7 +916,7 @@ class ESTestCase(TestCase):
         super(ESTestCase, cls).tearDownClass()
 
     def tearDown(self):
-        post_request_task._send_tasks()
+        post_request_task._send_tasks_and_stop_queuing()
         super(ESTestCase, self).tearDown()
 
     @classmethod
@@ -928,7 +929,7 @@ class ESTestCase(TestCase):
         If there are tasks in the post_request_task queue, they are processed
         first.
         """
-        post_request_task._send_tasks()
+        post_request_task._send_tasks_and_stop_queuing()
 
         if doctypes:
             if not isinstance(doctypes, (list, tuple)):

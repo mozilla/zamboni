@@ -5,7 +5,7 @@ from django.core.cache import cache
 from django.db import models
 
 import bleach
-from celery import task
+from post_request_task.task import task
 
 from django.utils.translation import ugettext_lazy as _
 

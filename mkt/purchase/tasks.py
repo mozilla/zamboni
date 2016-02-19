@@ -1,8 +1,9 @@
 import logging
 
-import jingo.helpers
-from celery import task
 from django.utils.translation import ugettext as _
+
+import jingo.helpers
+from post_request_task.task import task
 
 from mkt.purchase.models import Contribution
 from mkt.site.helpers import absolutify

@@ -4,9 +4,9 @@ import logging
 from django.conf import settings
 
 import waffle
+from post_request_task.task import task
 
 import mkt
-from lib.post_request_task.task import task as post_request_task
 from lib.video import library
 from mkt.site.storage_utils import (copy_stored_file, local_storage,
                                     private_storage, public_storage)
@@ -19,8 +19,8 @@ time_limits = settings.CELERY_TIME_LIMITS['lib.video.tasks.resize_video']
 
 
 # Video decoding can take a while, so let's increase these limits.
-@post_request_task(time_limit=time_limits['hard'],
-                   soft_time_limit=time_limits['soft'])
+@task(time_limit=time_limits['hard'],
+      soft_time_limit=time_limits['soft'])
 def resize_video(src, pk, user_pk=None, **kw):
     """Try and resize a video and cope if it fails."""
     instance = Preview.objects.get(pk=pk)

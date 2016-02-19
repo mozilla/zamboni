@@ -1,5 +1,6 @@
 import logging
-from celery import task
+
+from post_request_task.task import task
 
 from mkt.comm.utils_mail import save_from_email_reply
 

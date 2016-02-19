@@ -9,7 +9,6 @@ from nose.tools import eq_
 import mkt
 import mkt.site.tests
 
-from lib.post_request_task.task import _send_tasks
 from mkt.constants import MANIFEST_CONTENT_TYPE
 from mkt.webapps.models import Webapp
 from mkt.site.fixtures import fixture
@@ -33,9 +32,6 @@ class TestPackagedManifest(mkt.site.tests.TestCase):
         self.latest_file.update(hash=self.latest_file.generate_hash())
 
         self.url = self.app.get_manifest_url()
-        # Don't count things left over from setup, so assertNumQueries will be
-        # accurate.
-        _send_tasks()
 
     def tearDown(self):
         public_storage.delete(self.latest_file.file_path)

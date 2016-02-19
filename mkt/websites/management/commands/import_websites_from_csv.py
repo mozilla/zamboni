@@ -383,10 +383,3 @@ class Command(BaseCommand):
         if self.set_popularity:
             self.assign_popularity()
             self.assign_last_updated()
-
-        # No need to manually call _send_tasks() even though we are in a
-        # management command. The only tasks we are using are fetch_icon(),
-        # for which we use original_apply_async() directly, and the indexation
-        # task, which would be useless to fire since the fetch icon task will
-        # trigger a save and a re-index anyway. Plus, we won't have many sites
-        # so it's probably simpler to trigger a full reindex.

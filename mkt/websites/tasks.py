@@ -2,7 +2,8 @@ import logging
 
 from django.conf import settings
 
-from lib.post_request_task.task import task as post_request_task
+from post_request_task.task import task
+
 from mkt.developers.tasks import (_fetch_content, get_content_and_check_size,
                                   ResponseTooLargeException, save_icon,
                                   save_promo_imgs)
@@ -14,7 +15,7 @@ from mkt.websites.models import Website
 log = logging.getLogger('z.mkt.websites.tasks')
 
 
-@post_request_task
+@task
 @use_master
 def fetch_icon(pk, icon_url, sizes=mkt.CONTENT_ICON_SIZES, **kw):
     """
@@ -46,7 +47,7 @@ def fetch_icon(pk, icon_url, sizes=mkt.CONTENT_ICON_SIZES, **kw):
     return True
 
 
-@post_request_task
+@task
 @use_master
 def fetch_promo_imgs(pk, promo_img_url, **kw):
     """
