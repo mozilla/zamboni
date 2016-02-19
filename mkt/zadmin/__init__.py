@@ -1,4 +1,4 @@
-from django.template import loader
+from django.template import loader, RequestContext
 from django.template.backends.django import Template
 from django.template.response import SimpleTemplateResponse
 
@@ -19,7 +19,8 @@ def rendered_content(self):
 
     # Gross, let's figure out if we're in the admin.
     if getattr(self._request, 'current_app', None) == 'admin':
-        source = loader.render_to_string(template, context_instance)
+        source = loader.render_to_string(
+            template, RequestContext(self._request, context_instance))
         template = env.from_string(source)
         # This interferes with our media() helper.
         if 'media' in self.context_data:
