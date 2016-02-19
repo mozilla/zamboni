@@ -7,7 +7,6 @@ from mkt.abuse.serializers import (AppAbuseSerializer,
                                    UserAbuseSerializer,
                                    WebsiteAbuseSerializer)
 from mkt.api.authentication import (RestOAuthAuthentication,
-                                    RestAnonymousAuthentication,
                                     RestSharedSecretAuthentication)
 from mkt.api.base import CORSMixin
 
@@ -24,8 +23,7 @@ class BaseAbuseViewSet(CORSMixin, generics.CreateAPIView,
     throttle_classes = (AbuseThrottle,)
     throttle_scope = 'user'
     authentication_classes = [RestOAuthAuthentication,
-                              RestSharedSecretAuthentication,
-                              RestAnonymousAuthentication]
+                              RestSharedSecretAuthentication]
     permission_classes = (AllowAny,)
 
     def perform_create(self, serializer):

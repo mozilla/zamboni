@@ -157,6 +157,9 @@ class AnonymousUserMixin(object):
 
 
 class FeedbackView(CORSMixin, CreateAPIViewWithoutModel):
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
+
     class FeedbackThrottle(UserRateThrottle):
         THROTTLE_RATES = {
             'user': '30/hour',

@@ -190,8 +190,9 @@ class RatingViewSet(CORSMixin, MarketplaceView, ModelViewSet):
 class RatingFlagViewSet(CORSMixin, CreateModelMixin, GenericViewSet):
     queryset = ReviewFlag.objects.all()
     cors_allowed_methods = ('post',)
-    permission_classes = [AllowAny]
-    authentication_classes = [RestAnonymousAuthentication]
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [RestOAuthAuthentication,
+                              RestSharedSecretAuthentication]
     serializer_class = RatingFlagSerializer
 
     def post_save(self, obj, created=False):
