@@ -50,6 +50,9 @@ transaction_patterns = patterns(
 urlpatterns = patterns(
     '',
     url(r'^$', views.home, name='lookup.home'),
+    url(r'^bango-portal/(?P<package_id>[^/]+)/$',
+        views.bango_portal_from_package,
+        name='lookup.bango_portal_from_package'),
     url(r'^app_search$', views.AppLookupSearchView.as_view(),
         name='lookup.app_search'),
     url(r'^transaction_search$', views.transaction_search,

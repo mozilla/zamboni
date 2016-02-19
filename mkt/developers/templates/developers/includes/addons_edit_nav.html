@@ -12,8 +12,19 @@
   (addon.get_dev_url('ratings'), _('Content Ratings'))
 ) %}
 
+{% if addon.needs_payment() %}
+  {% do urls.append((addon.get_dev_url('payments'),
+                     _('Compatibility & Payments'))) %}
+  {% if addon.premium_type in mkt.ADDON_INAPPS %}
+    {% do urls.insert(4,
+      (addon.get_dev_url('in_app_payments'), _('In-App Payments'))
+    ) %}
+  {% endif %}
+{% else %}
   {% do urls.append((addon.get_dev_url('payments'),
                      _('Compatibility'))) %}
+{% endif %}
+
 {% do urls.append((addon.get_dev_url('owner'), _('Team Members'))) %}
 {% do urls.append((addon.get_url_path(), _('View Listing'))) %}
 

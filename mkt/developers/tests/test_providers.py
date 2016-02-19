@@ -226,6 +226,7 @@ class TestReference(Patcher, TestCase):
         self.ref_patcher.sellers.return_value = seller_mock
         account = self.make_account()
         self.ref.account_update(account, account_data)
+        eq_(self.ref.forms['account']().hidden_fields()[0].name, 'uuid')
         eq_(account.reload().name, 'Test')
         seller_mock.put.assert_called_with(account_data)
 

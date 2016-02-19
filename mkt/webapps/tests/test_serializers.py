@@ -13,11 +13,14 @@ import mkt.site.tests
 from mkt.api.tests.test_oauth import BaseOAuth
 from mkt.constants import APP_FEATURES, ratingsbodies, regions
 from mkt.constants.features import FeatureProfile
-from mkt.constants.payments import PROVIDER_REFERENCE
+from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
 from mkt.constants.regions import RESTOFWORLD
+from mkt.developers.models import (AddonPaymentAccount, PaymentAccount,
+                                   SolitudeSeller)
 from mkt.prices.models import PriceCurrency
 from mkt.regions.middleware import RegionMiddleware
 from mkt.site.fixtures import fixture
+from mkt.site.tests import user_factory
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
 from mkt.webapps.indexers import WebappIndexer
@@ -70,11 +73,38 @@ class TestSimpleAppSerializer(mkt.site.tests.TestCase):
         return SimpleAppSerializer(self.webapp,
                                    context={'request': self.request})
 
+    def add_pay_account(self, provider=PROVIDER_BANGO):
+        user = user_factory()
+        acct = PaymentAccount.objects.create(
+            solitude_seller=SolitudeSeller.objects.create(user=user),
+            provider=provider, user=user)
+        AddonPaymentAccount.objects.create(addon=self.webapp,
+                                           payment_account=acct)
+        return acct
+
     def test_regions_present(self):
         # Regression test for bug 964802.
         data = self.simple_app().data
         ok_('regions' in data)
         eq_(len(data['regions']), len(self.webapp.get_regions()))
+
+    def test_no_payment_account_when_not_premium(self):
+        eq_(self.app().data['payment_account'], None)
+
+    def test_no_payment_account(self):
+        self.make_premium(self.webapp)
+        eq_(self.app().data['payment_account'], None)
+
+    def test_no_bango_account(self):
+        self.make_premium(self.webapp)
+        self.add_pay_account(provider=PROVIDER_REFERENCE)
+        eq_(self.app().data['payment_account'], None)
+
+    def test_payment_account(self):
+        self.make_premium(self.webapp)
+        acct = self.add_pay_account()
+        eq_(self.app().data['payment_account'],
+            reverse('payment-account-detail', args=[acct.pk]))
 
 
 class TestAppSerializer(mkt.site.tests.TestCase):
@@ -639,6 +669,25 @@ class TestESAppSerializer(mkt.site.tests.ESTestCase):
         res = self.serialize()
         eq_(res['price'], None)
         eq_(res['price_locale'], None)
+
+    def test_no_payment_account(self):
+        eq_(self.serialize()['payment_account'], None)
+
+    def test_payment_account(self):
+        self.make_premium(self.app)
+        seller = SolitudeSeller.objects.create(
+            resource_uri='/path/to/sel', uuid='seller-id', user=self.profile)
+        account = PaymentAccount.objects.create(
+            user=self.profile, uri='asdf', name='test', inactive=False,
+            solitude_seller=seller, account_id=123)
+        AddonPaymentAccount.objects.create(
+            addon=self.app, account_uri='foo', payment_account=account,
+            product_uri='bpruri')
+        self.app.save()
+        self.refresh('webapp')
+
+        eq_(self.serialize()['payment_account'],
+            reverse('payment-account-detail', kwargs={'pk': account.pk}))
 
     def test_release_notes(self):
         res = self.serialize()

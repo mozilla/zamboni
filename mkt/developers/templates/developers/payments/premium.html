@@ -43,6 +43,7 @@
 
       <div class="hidden">
         {{ form.free_platforms }}
+        {{ form.paid_platforms }}
       </div>
 
       {% if not can_edit %}
@@ -52,10 +53,12 @@
       {% endif %}
 
       <section id="submit-payment-type">
-        <h2>{{ _('App Compatibility') }}</h2>
+        {% if not is_paid %}
+          <h2>{{ _('App Compatibility') }}</h2>
+        {% endif %}
 
         <div class="island hasappendix tabbable">
-          <div class="free tab active">
+          <div class="free tab {{ 'active' if not is_paid }}">
             <h2 id="free-tab-header"><a href="#">{{ _('Free') }}</a></h2>
             <div class="error">{{ form.errors.free_platforms }}</div>
             {% set free_platforms = form.fields['free_platforms'].choices %}
@@ -73,18 +76,198 @@
               </div>
             {% endif %}
           </div>
-          <div class="paid tab">
+
+          {% set paid_platforms = form.fields['paid_platforms'].choices %}
+          {% set has_multiple_paid_platforms = paid_platforms|length > 1 %}
+          <div class="paid tab {{ 'active' if is_paid }}">
             <h2 id="paid-tab-header">
+              {%- if cannot_be_paid -%}
                 <a href="#"
                      class="tooltip disabled"
-                     title="{{ _('Marketplace no longer supports paid apps.') }}"
+                     title="{{ _('Paid mode requires that your app only supports:') }} {{ paid_platform_names|join(', ') }}"
                   >{{ _('Paid / In-app') }}</a>
+              {%- else -%}
+                <a href="#">{{ _('Paid / In-app') }}</a>
+              {%- endif -%}
             </h2>
+            <div class="error">{{ form.errors.paid_platforms }}</div>
+            {%- for item in paid_platforms -%}
+              {{ button(form, item, can_change=has_multiple_paid_platforms and is_paid) }}
+            {%- endfor %}
+            {% if not is_paid and not cannot_be_paid %}
+              <div id="paid-tab-save" class="update-payment-type">
+                <button data-type="paid">{{ _('Change to Paid') }}</button>
+                {{ _('Changing to Paid will put your app back into review.') }}
+              </div>
+            {% else %}
+              <div id="compat-save-button" class="hidden update-payment-type">
+                <button>{{ _('Save Changes') }}</button>
+              </div>
+            {% endif %}
+            <div class="helpful-links">
+              {% trans payments_url='https://developer.mozilla.org/en-US/docs/Apps/Marketplace_Payments',
+                       receipts_url='https://developer.mozilla.org/en-US/docs/Apps/Validating_a_receipt' %}
+               Learn about <a href="{{ payments_url }}" target="_blank">different payment types</a>.<br />
+               Learn about <a href="{{ receipts_url }}" target="_blank">validating purchase receipts</a>.
+              {% endtrans %}
+            </div>
           </div>
         </div>
       </section>
 
+      {% if is_paid %}
+      <h2>{{ _('Payment Accounts') }}</h2>
 
+      <div id="paid-island">
+        <div id="paid-island-incomplete" class="island warning{% if addon.has_payment_account() %} hidden{% endif %}">
+          {%- trans %}
+            Your app is currently incomplete. Select a payment account and
+            price point to restore it.
+          {% endtrans -%}
+        </div>
+        <section class="island payments">
+          {{ account_list_formset.management_form }}
+          <table>
+            <tbody>
+              {% for account_list_form in account_list_formset.forms %}
+                {% with provider=account_list_form.provider %}
+                  <tr>
+                    <th>
+                      <label data-for="accounts">
+                        <img src="{{ MEDIA_URL }}img/developers/logo-{{ provider.name }}.png" title="{{ provider.full }}">
+                      </label>
+                    </th>
+                    <td>
+                      <div id="{{ provider.name }}-account-list" data-url="{{ url('mkt.developers.provider.payment_accounts_form') }}?provider={{ provider.name }}&app_slug={{ addon.app_slug }}">
+                        {{ account_list_form.errors }}
+                        {% include 'developers/payments/includes/accounts_list.html' %}
+                        <p class="provider-regions">{{ _('Countries') }}:
+                        {%- for region in provider_regions[provider.provider] %}
+                          {{ region.name }}{% if not loop.last %}, {% endif %}
+                        {% endfor -%}
+                        </p>
+                      </div>
+                    </td>
+                  </tr>
+                {% endwith %}
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="listing-footer">
+            {% if can_edit and account_list_forms[0].is_owner %}
+              <a href="#" class="payment-account-note" id="payment-account-action" data-action="add">
+                {{- _('Add, manage or view transactions for your payment accounts') -}}
+              </a>
+            {% endif %}
+            <button>{{ _('Save Changes') }}</button>
+          </div>
+        </section>
+      </div>
+      {% endif %}
+
+      {% if is_paid %}
+      <h2>{{ _('Prices and Countries') }}</h2>
+
+      <div id="paid-regions-island">
+        <section id="regions" class="island">
+          <table>
+            <tbody>
+              <tr>
+                <th><label data-for="price">{{ _('Price') }}</label></th>
+                <td>
+                  {{ form.price.errors }}
+                  {{ form.price }}
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  {{ tip(_('In-App Payments'),
+                         _("Does your app use Mozilla's in-app payments platform?")) }}
+                </th>
+                <td class="allow-inapp">
+                  {{ form.allow_inapp.errors }}
+                  {{ form.allow_inapp }}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="region-container">
+                  <div id="region-list" class="checkbox-choices regions"
+                       data-api-error-msg="{{ _('A server error occurred. Please try again later.') }}"
+                       data-all-paid-region-ids="{{ all_paid_region_ids_by_name|json }}"
+                       data-not-applicable-msg="{{ _('Not applicable') }}"
+                       data-payment-methods="{{ payment_methods|json }}"
+                       data-pricelist-api-url="{{ api_pricelist_url }}"
+                       data-tier-zero-id="{{ tier_zero_id }}"
+                       data-provider-lookup="{{ provider_lookup|json }}"
+                       data-enabled-provider-ids="{{ enabled_provider_ids|json }}">
+                    <h3>{{ _('Regions') }}</h3>
+                    {{ region_form.regions.errors }}
+
+                    {% include 'developers/payments/includes/regions_toggle.html' %}
+
+                    <div class="paid-regions">
+                      <h4>{{ _('Available Regions') }}</h4>
+
+                      <p class="hint note">
+                        {% trans status_url='https://developer.mozilla.org/docs/Mozilla/Marketplace/Payments_Status' %}
+                          Check out the <a href="{{ status_url }}" target="_blank">status page</a> to see which
+                          countries are currently enabled for sale.
+                        {% endtrans %}
+                      </p>
+
+                      <p class="hint note">
+                        {{ _('Your app will be available in the following selected regions:') }}
+                      </p>
+                      <table id="paid-regions">
+                        <thead>
+                          <tr>
+                            <th><span class="region-heading">{{ _('Region') }}</span></th>
+                            <th>{{ _('Retail price') }}
+                              <span class="local-currency-heading">({{ _('local currency') }})</span></th>
+                            <th>{{ _('Billing method') }}</th>
+                          </tr>
+                        </thead>
+                        <tbody class="checkbox-choices">
+                          {% for id in all_paid_region_ids_by_name %}
+                            <tr data-region="{{ id }}"></tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+
+                      <p class="hint no-payment-regions {% if addon.has_payment_account() %}hidden{% endif %}">
+                       <em>{{ _('Add a payment account to enable your app for sale in more regions') }}</em>
+                      </p>
+
+                      <p class="hint note rest-of-world">
+                        {% trans %}
+                          As "Rest of World" is selected your app will be
+                          available for purchase in all enabled
+                          "<a href="#regions-other">Other Regions</a>".
+                        {% endtrans %}
+                      </p>
+                    </div>
+
+                    <h4 id="regions-other">{{ _("Other regions") }}</h4>
+                    <p class="hint note">
+                      {% trans %}
+                        To exclude
+                        your app from appearing in a region, you may
+                        uncheck that region before saving.
+                      {% endtrans %}
+                    </p>
+                    {% include 'developers/payments/includes/region_form.html' %}
+
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="listing-footer">
+            <button class="button">{{ _('Save Changes') }}</button>
+          </div>
+        </section>
+      </div>
+      {% else %}
       {# Non-paid app region lists #}
       <h2 id="regions-and-listings">{{ _('Regions and Listings') }}</h2>
 
@@ -97,8 +280,56 @@
           </div>
         </section>
       </div>
+      {% endif %}
+
+      {% if is_paid %}
+      <h2>{{ _('Promote as upgrade to free version') }}</h2>
+
+      <div id="paid-upsell-island">
+        <section class="island upsell">
+          <table>
+            <tbody>
+              <tr>
+                <th>
+                  {{ tip(_('This is a paid upgrade of'),
+                         _('If you have a free app, you can link and promote '
+                           'your premium app next to the free version here.')) }}
+                </th>
+                <td>
+                  {% if upsell_form.fields['upsell_of'].queryset.count() %}
+                    {{ upsell_form.upsell_of.errors }}
+                    {{ upsell_form.upsell_of }}
+                    <p class="note">
+                      {% trans %}
+                        Linking this app will promote your premium app next to the free
+                        version.
+                      {% endtrans %}
+                    </p>
+                  {% else %}
+                    <div class="extra">
+                      {{- _('No free apps') -}}
+                    </div>
+                  {% endif %}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="listing-footer">
+            <button>{{ _('Save Changes') }}</button>
+          </div>
+        </section>
+      </div>
+      {% endif %}
     </form>
   </section>
 
   {% include 'developers/includes/addons_edit_nav.html' %}
+  {% include 'developers/payments/includes/account_list.html' %}
+  {% for provider in providers %}
+    {% with account_form=provider.forms['account']() %}
+      {% include provider.templates['add'] %}
+      {% include provider.templates['edit'] %}
+    {% endwith %}
+  {% endfor %}
+  {% include 'developers/payments/includes/accept_terms.html' %}
 {% endblock %}

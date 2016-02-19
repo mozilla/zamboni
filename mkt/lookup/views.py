@@ -1,3 +1,4 @@
+import json
 import uuid
 from datetime import datetime, timedelta
 
@@ -29,6 +30,7 @@ from mkt.constants.payments import (COMPLETED, FAILED, PENDING, PROVIDER_BANGO,
 from mkt.developers.models import ActivityLog, AddonPaymentAccount
 from mkt.developers.providers import get_provider
 from mkt.developers.utils import prioritize_app
+from mkt.developers.views_payments import _redirect_to_bango_portal
 from mkt.lookup.forms import (APIFileStatusForm, APIGroupMembershipFormSet,
                               APIStatusForm, DeleteUserForm,
                               TransactionRefundForm, TransactionSearchForm,
@@ -377,6 +379,19 @@ def app_activity(request, addon_id):
 
     return render(request, 'lookup/app_activity.html', {
         'admin_items': admin_items, 'app': app, 'user_items': user_items})
+
+
+@permission_required([('BangoPortal', 'Redirect')])
+def bango_portal_from_package(request, package_id):
+    response = _redirect_to_bango_portal(package_id,
+                                         'package_id: %s' % package_id)
+    if 'Location' in response:
+        return HttpResponseRedirect(response['Location'])
+    else:
+        message = (json.loads(response.content)
+                       .get('__all__', response.content)[0])
+        messages.error(request, message)
+        return HttpResponseRedirect(reverse('lookup.home'))
 
 
 @permission_required([('AccountLookup', 'View')])

@@ -1,0 +1,73 @@
+<script type="text/template" id="account-list-template">
+  <section class="account-list loading"
+           data-accounts-url="{{ url('mkt.developers.provider.payment_accounts') }}?app-slug={{ addon.app_slug }}">
+    <header>
+      <a class="close" title="{{ _('close') }}">&times;</a>
+      <h2>{{ _('Payment Accounts') }}</h2>
+    </header>
+
+    <table>
+        <tr>
+          <th></th>
+          <th>{{ _('Account Name') }}</th>
+          <th>{{ _('Provider') }}</th>
+          <th>{{ _('Modify') }}</th>
+          <th>{{ _('Delete') }}</th>
+          <th>{{ _('View transactions') }}</th>
+        </tr>
+
+        {# Payment accounts get added via JS here. #}
+
+    </table>
+
+    <div class="listing-footer">
+      {% for provider in providers %}
+        <a href="#" class="add-payment-account button" data-provider="{{ provider.name }}">
+          {{- _('Add a {provider} account').format(provider=provider.full) -}}
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+</script>
+
+<script type="text/template" id="account-row-template">
+  <tr class="{agreement}"
+      data-account="{id}"
+      data-account-name="{name}"
+      data-account-full-name="{provider-full}"
+      data-account-provider="{provider}"
+      data-account-url="{account-url}"
+      data-current-app-name="{current-app-name}"
+      data-app-names="{app-names}"
+      data-app-payment-accounts="{app-payment-accounts}"
+      data-agreement-url="{agreement-url}"
+      data-portal-url="{portal-url}"
+      data-delete-url="{delete-url}"
+      data-shared="{shared}">
+    <td><div class="terms-accepted {agreement}"></div></td>
+    <td>{name}</td>
+    <td class="portal-account-name">{provider-full}</td>
+    <td><a href="#" class="modify-account">{{ _('Modify') }}</a> <a href="#" class="accept-tos">{{ _('Accept Terms of Service') }}</a></td>
+    <td><a href="#" class="delete-account">{{ _('Delete') }}</a></td>
+    <td><a href="{portal-url}" class="portal-account portal-link portal-link-{provider}">{{ _('View transactions') }}</a></td>
+  </tr>
+</script>
+
+<script type="text/template" id="payment-account-delete-confirm-template">
+  <section>
+    <header>
+      <a class="close" title="{{ _('close') }}">&times;</a>
+      <h2>{{ _('Confirm deletion of payment account') }}</h2>
+    </header>
+    <div class="island">
+        <p></p>
+        <ul class="app-list"></ul>
+        <div class="listing-footer">
+            <a href="#" class="payment-account-delete-confirm button">{{ _('Delete Payment Account') }}</a>
+            {{ _('or') }}
+            <a href="#" class="close">{{ _('Cancel') }}</a>
+        </div>
+    </div>
+  </section>
+</script>
+

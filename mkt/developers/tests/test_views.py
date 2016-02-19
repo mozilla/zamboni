@@ -45,7 +45,8 @@ from mkt.submit.models import AppSubmissionChecklist
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
-from mkt.webapps.models import AddonDeviceType, AddonUser, IARCCert, Webapp
+from mkt.webapps.models import (AddonDeviceType, AddonUpsell, AddonUser,
+                                IARCCert, Webapp)
 from mkt.zadmin.models import get_config, set_config
 
 
@@ -180,6 +181,8 @@ class TestAppDashboard(AppHubTest):
             ('Add New Version', app.get_dev_url('versions')),
             ('Status & Versions', app.get_dev_url('versions')),
             ('Content Ratings', app.get_dev_url('ratings')),
+            ('Compatibility & Payments', app.get_dev_url('payments')),
+            ('In-App Payments', app.get_dev_url('in_app_payments')),
             ('Team Members', app.get_dev_url('owner')),
             ('View Listing', app.get_url_path()),
 
@@ -263,6 +266,7 @@ class TestDevRequired(AppHubTest):
     def setUp(self):
         self.webapp = Webapp.objects.get(id=337141)
         self.get_url = self.webapp.get_dev_url('payments')
+        self.post_url = self.webapp.get_dev_url('payments.disable')
         self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
         self.login(self.user.email)
         self.au = AddonUser.objects.get(user=self.user, addon=self.webapp)
@@ -278,6 +282,9 @@ class TestDevRequired(AppHubTest):
     def test_dev_get(self):
         eq_(self.client.get(self.get_url).status_code, 200)
 
+    def test_dev_post(self):
+        self.assert3xx(self.client.post(self.post_url), self.get_url)
+
     def test_viewer_get(self):
         self.au.role = mkt.AUTHOR_ROLE_VIEWER
         self.au.save()
@@ -287,6 +294,15 @@ class TestDevRequired(AppHubTest):
         self.au.role = mkt.AUTHOR_ROLE_VIEWER
         self.au.save()
         eq_(self.client.post(self.get_url).status_code, 403)
+
+    def test_disabled_post_dev(self):
+        self.webapp.update(status=mkt.STATUS_DISABLED)
+        eq_(self.client.post(self.get_url).status_code, 403)
+
+    def test_disabled_post_admin(self):
+        self.webapp.update(status=mkt.STATUS_DISABLED)
+        self.login('admin@mozilla.com')
+        self.assert3xx(self.client.post(self.post_url), self.get_url)
 
 
 @mock.patch('mkt.developers.forms_payments.PremiumForm.clean',
@@ -323,6 +339,7 @@ class TestMarketplace(mkt.site.tests.TestCase):
             'form-INITIAL_FORMS': 0,
             'form-MAX_NUM_FORMS': 0,
             'price': self.price.pk,
+            'upsell_of': self.other_addon.pk,
             'regions': mkt.regions.REGION_IDS,
         }
         data.update(kw)
@@ -333,6 +350,57 @@ class TestMarketplace(mkt.site.tests.TestCase):
             addon=self.addon, device_type=mkt.DEVICE_GAIA.id)
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
+        assert 'Change to Paid' in res.content
+
+    def test_initial_paid(self):
+        self.setup_premium()
+        res = self.client.get(self.url)
+        eq_(res.status_code, 200)
+        eq_(res.context['form'].initial['price'], self.price.pk)
+        assert 'Change to Free' in res.content
+
+    def test_set(self):
+        self.setup_premium()
+        res = self.client.post(
+            self.url, data=self.get_data(price=self.price_two.pk,
+                                         regions=self.paid_regions_two))
+        eq_(res.status_code, 302)
+        self.addon = Webapp.objects.get(pk=self.addon.pk)
+        eq_(self.addon.addonpremium.price, self.price_two)
+
+    def test_set_upsell(self):
+        self.setup_premium()
+        res = self.client.post(self.url,
+                               data=self.get_data(regions=self.paid_regions))
+        eq_(res.status_code, 302)
+        eq_(len(self.addon._upsell_to.all()), 1)
+
+    def test_remove_upsell(self):
+        self.setup_premium()
+        upsell = AddonUpsell.objects.create(
+            free=self.other_addon, premium=self.addon)
+        eq_(self.addon._upsell_to.all()[0], upsell)
+        self.client.post(self.url,
+                         data=self.get_data(upsell_of='',
+                                            regions=self.paid_regions))
+        eq_(len(self.addon._upsell_to.all()), 0)
+
+    def test_replace_upsell(self):
+        self.setup_premium()
+        # Make this add-on an upsell of some free add-on.
+        upsell = AddonUpsell.objects.create(free=self.other_addon,
+                                            premium=self.addon)
+        # And this will become our new upsell, replacing the one above.
+        new = Webapp.objects.create(premium_type=mkt.ADDON_FREE,
+                                    status=mkt.STATUS_PUBLIC)
+        AddonUser.objects.create(addon=new, user=self.addon.authors.all()[0])
+
+        eq_(self.addon._upsell_to.all()[0], upsell)
+        self.client.post(self.url, self.get_data(upsell_of=new.id,
+                                                 regions=self.paid_regions))
+        upsell = self.addon._upsell_to.all()
+        eq_(len(upsell), 1)
+        eq_(upsell[0].free, new)
 
 
 class TestPubliciseVersion(mkt.site.tests.TestCase):

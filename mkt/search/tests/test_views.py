@@ -287,6 +287,7 @@ class TestSearchView(RestOAuth, ESTestCase):
         eq_(obj['is_offline'], False)
         eq_(obj['manifest_url'], self.webapp.get_manifest_url())
         eq_(obj['package_path'], None)
+        eq_(obj['payment_account'], None)
         self.assertApiUrlEqual(obj['privacy_policy'],
                                '/apps/app/337141/privacy/')
         eq_(obj['public_stats'], self.webapp.public_stats)
@@ -655,8 +656,9 @@ class TestSearchView(RestOAuth, ESTestCase):
         # Reindex once we have everything.
         self.reindex(Webapp)
 
-        # There should be one query for the AddonPremium model.
-        with self.assertNumQueries(1):
+        # There should (sadly) be 2 queries: one for the AddonPremium model and
+        # price, and one for the AddonPaymentAccount.
+        with self.assertNumQueries(2):
             res = self.anon.get(self.url, data={'premium_types': 'premium'})
         eq_(res.status_code, 200)
         obj = res.json['objects'][0]

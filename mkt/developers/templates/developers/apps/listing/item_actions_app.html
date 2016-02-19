@@ -68,6 +68,24 @@
       {{ _('Content Ratings') }}</a>
   </li>
 
+  {% if addon.is_premium() %}
+    <li/>
+      {% set has_payments = addon.is_pending() and addon.is_premium() and addon.has_payment_account() %}
+      {% set no_payments = addon.is_premium() and not addon.has_payment_account() %}
+      <a class="action-link{{ ' alert' if addon.is_premium() }}{% if has_payments %} done{% elif no_payments %} not-done{% endif %}"
+         href="{{ addon.get_dev_url('payments') }}">
+        {{ _('Compatibility & Payments') }}</a>
+    </li>
+  {% endif %}
+
+  {% if addon.premium_type in mkt.ADDON_INAPPS %}
+    <li>
+      <a class="action-link" href="{{ addon.get_dev_url('in_app_payments') }}">
+        {{ _('In-App Payments') }}
+      </a>
+    </li>
+  {% endif %}
+
   <li>
     <a class="action-link" href="{{ addon.get_dev_url('owner') }}">{{ _('Team Members') }}</a>
   </li>
