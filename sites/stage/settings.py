@@ -256,6 +256,9 @@ IARC_ALLOW_CERT_REUSE = True
 # IARC V2
 IARC_V2_STORE_ID = env('IARC_V2_STORE_ID', default=None)
 IARC_V2_STORE_PASSWORD = env('IARC_V2_STORE_PASSWORD', default=None)
+IARC_V2_SERVICE_ENDPOINT = 'https://iarc-int.azurewebsites.net/api/Cert/'
+IARC_V2_SUBMISSION_ENDPOINT = 'https://iarc-int.azurewebsites.net/Hosted/Index'
+
 
 PAYMENT_PROVIDERS = env.list('PAYMENT_PROVIDERS', default=['bango'])
 
