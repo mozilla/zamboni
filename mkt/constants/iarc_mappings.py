@@ -40,6 +40,7 @@ RATINGS = {
         '16+': ratingsbodies.GENERIC_16,
         '18+': ratingsbodies.GENERIC_18,
         'RP': ratingsbodies.GENERIC_RP,
+        '!': ratingsbodies.GENERIC_12,
         'default': ratingsbodies.GENERIC_3,
     },
     ratingsbodies.PEGI.id: {
@@ -145,13 +146,28 @@ DESCS = {
     },
 
     ratingsbodies.GENERIC.id: {
+        u'Criminal Technique Instructions':
+            'has_generic_criminal_technique_instructions',
         u'Discrimination': 'has_generic_discrimination',
         u'Drugs': 'has_generic_drugs',
+        u'Extreme Violence': 'has_generic_extreme_violence',
         u'Fear': 'has_generic_scary',
         u'Gambling': 'has_generic_gambling',
+        u'Horror': 'has_generic_horror',
+        u'Implied Violence': 'has_generic_implied_violence',
         u'Language': 'has_generic_lang',
+        u'Mild Swearing': 'has_generic_mild_swearing',
+        u'Mild Violence': 'has_generic_mild_violence',
+        u'Moderate Violence': 'has_generic_moderate_violence',
+        u'Parental Guidance Recommended':
+            'has_generic_parental_guidance_recommended',
         u'Online': 'has_generic_online',
         u'Sex': 'has_generic_sex_content',
+        u'Sexual Innuendo': 'has_generic_sexual_innuendo',
+        u'Sexual Violence': 'has_generic_sexual_violence',
+        u'Strong Language': 'has_generic_strong_language',
+        u'Strong Violence': 'has_generic_strong_violence',
+        u'Use of Alcohol/Tobacco': 'has_generic_use_of_alcohol_and_tobacco',
         u'Violence': 'has_generic_violence',
     },
 
@@ -298,14 +314,31 @@ DESCS_V2 = {
     },
 
     ratingsbodies.GENERIC.id: {
-        # Yes, "Generic" seems to be using PEGI descriptors for some reason.
+        # Yes, "Generic" is using PEGI keys, that's not a typo: that's how it
+        # works on IARC side.
+        'PEGI_CriminalTechniqueInstructions':
+            'has_generic_criminal_technique_instructions',
         'PEGI_Discrimination': 'has_generic_discrimination',
         'PEGI_Drugs': 'has_generic_drugs',
+        'PEGI_ExtremeViolence': 'has_generic_extreme_violence',
         'PEGI_Fear': 'has_generic_scary',
         'PEGI_Gambling': 'has_generic_gambling',
+        'PEGI_Horror': 'has_generic_horror',
+        'PEGI_ImpliedViolence': 'has_generic_implied_violence',
         'PEGI_Language': 'has_generic_lang',
+        'PEGI_MildSwearing': 'has_generic_mild_swearing',
+        'PEGI_MildViolence': 'has_generic_mild_violence',
+        'PEGI_ModerateViolence': 'has_generic_moderate_violence',
+        'PEGI_NoDescriptors': '',  # No descriptors.
         'PEGI_Online': 'has_generic_online',
+        'PEGI_ParentalGuidanceRecommended':
+            'has_generic_parental_guidance_recommended',
         'PEGI_Sex': 'has_generic_sex_content',
+        'PEGI_SexualInnuendo': 'has_generic_sexual_innuendo',
+        'PEGI_SexualViolence': 'has_generic_sexual_violence',
+        'PEGI_StrongLanguage': 'has_generic_strong_language',
+        'PEGI_StrongViolence': 'has_generic_strong_violence',
+        'PEGI_UseofAlcoholTobacco': 'has_generic_use_of_alcohol_and_tobacco',
         'PEGI_Violence': 'has_generic_violence',
     },
 
