@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-02-17 09:07-0800\n"
+"POT-Creation-Date: 2016-02-24 12:50-0800\n"
 "PO-Revision-Date: 2014-09-05 18:47+0000\n"
 "Last-Translator: Belayet <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2052,11 +2052,15 @@ msgstr "ব্রাজিল ছাড়া সকল আমেরিকান
 msgid "Entertainment Software Rating Board"
 msgstr "বিনোদনমূলক সফ্টওয়্যার রেটিং বোর্ড"
 
-#: mkt/constants/ratingsbodies.py:294
+#: mkt/constants/ratingsbodies.py:289
+msgid "Parental Guidance"
+msgstr ""
+
+#: mkt/constants/ratingsbodies.py:302
 msgid "Europe"
 msgstr "ইউরোপ"
 
-#: mkt/constants/ratingsbodies.py:295
+#: mkt/constants/ratingsbodies.py:303
 msgid "Pan European Game Information"
 msgstr "ইউরোপীয় খেলা তথ্য ফলক"
 
@@ -2399,19 +2403,19 @@ msgstr "কমান্ড লাইন"
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr "পর্যালোচনা এবং অনুমোদন হওয়ার পর যত দ্রুত সম্ভব এটিকে আমার অ্যাপটির সক্রিয় সংস্করণ হিসাবে ব্যাবহার করুন।"
 
-#: mkt/developers/forms.py:1089 mkt/developers/forms.py:1147
+#: mkt/developers/forms.py:1090 mkt/developers/forms.py:1181
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr "এই IARC সার্টিফিকেট ইতিমধ্যেই অন্য অ্যাপ্লিকেশনের জন্য ব্যবহৃত হচ্ছে। অনুগ্রহ করে একটি নতুন IARC রেটিং সার্টিফিকেট তৈরি করুন।"
 
-#: mkt/developers/forms.py:1109
-msgid "This Certificate ID is not recognized by IARC, or is already attached to an app in the Firefox Marketplace."
+#: mkt/developers/forms.py:1097
+msgid "This Certificate ID is not recognized by IARC, or is already attached to another app in the Firefox Marketplace."
 msgstr ""
 
-#: mkt/developers/forms.py:1131
+#: mkt/developers/forms.py:1165
 msgid "Please enter a valid submission ID."
 msgstr "দয়া করে একটি কার্যকর আইডি লিখুন।"
 
-#: mkt/developers/forms.py:1182 mkt/developers/forms.py:1194
+#: mkt/developers/forms.py:1216 mkt/developers/forms.py:1228
 msgid "Invalid submission ID or security code."
 msgstr "অকার্যকর সাবমিশন আইডি অথবা নিরাপত্তা কোড।"
 
@@ -2608,37 +2612,37 @@ msgstr "সংস্করণ {0}"
 msgid "Reference Implementation"
 msgstr "রেফারেন্স বাস্তবায়ন"
 
-#: mkt/developers/tasks.py:477
+#: mkt/developers/tasks.py:476
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "এই ঠিকানায় কোন ম্যানিফেস্ট খুঁজে পাওয়া যায় নি। ঠিকানা পুনরায় পরীক্ষা করুন এবং আবার চেষ্টা করুন।"
 
-#: mkt/developers/tasks.py:483
+#: mkt/developers/tasks.py:482
 #, python-format
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr "ম্যানিফেস্ট অবশ্যই HTTP হেডারের সাথে সার্ভ করতে হবে \"Content-Type: application/x-web-app-manifest+json\"। আরও তথ্যের জন্য %s দেখুন।"
 
-#: mkt/developers/tasks.py:492
+#: mkt/developers/tasks.py:491
 #, python-format
 msgid "Your manifest must be less than %s bytes."
 msgstr "আপনার ম্যানিফেস্ট অবশ্যই %s বাইটের কম হতে হবে।"
 
-#: mkt/developers/tasks.py:500
+#: mkt/developers/tasks.py:499
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "আপনার ম্যানিফেস্ট ফাইল কার্যকর UTF-8 এ এনকোডেড নয়।"
 
-#: mkt/developers/tasks.py:511
+#: mkt/developers/tasks.py:510
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr "HTTP Content-Type এ প্রদান করা অক্ষরসেট ম্যানিফেস্ট এনকোডিং এর সাথে মেলে না।"
 
-#: mkt/developers/tasks.py:542 mkt/developers/tasks.py:548 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:541 mkt/developers/tasks.py:547 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "এবং"
 
-#: mkt/developers/tasks.py:562
+#: mkt/developers/tasks.py:561
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "{region} অঞ্চল ফায়ারফক্স মার্কেটপ্লেসে যোগ করা হয়েছে"
 
-#: mkt/developers/tasks.py:566
+#: mkt/developers/tasks.py:565
 msgid "New regions added to the Firefox Marketplace"
 msgstr "নতুন অঞ্চল ফায়ারফক্স মার্কেটপ্লেসে যোগ করা হয়েছে"
 
@@ -2693,83 +2697,83 @@ msgstr "আইকন স্কয়ার হতে হবে।"
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "অ্যাপ প্রিভিউ কমপক্ষে {0}px by {1}px বা {1}px by {0}px হতে হবে।"
 
-#: mkt/developers/views.py:156
+#: mkt/developers/views.py:157
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "ক্রয়যোগ্য অ্যাপ মুছে ফেলা যাবে না। পরিবর্তে এই অ্যাপ নিস্ক্রিয় করুন।"
 
-#: mkt/developers/views.py:166
+#: mkt/developers/views.py:167
 msgid "App deleted."
 msgstr "অ্যাপ মুছে ফেলা হয়েছে।"
 
-#: mkt/developers/views.py:171
+#: mkt/developers/views.py:172
 msgid "Password was incorrect. App was not deleted."
 msgstr "পাসওয়ার্ড ভুল ছিল। অ্যাপ মুছে ফেলা হয় নি।"
 
-#: mkt/developers/views.py:215
+#: mkt/developers/views.py:216
 msgid "App successfully resubmitted."
 msgstr "অ্যাপ সফলভাবে পুনরায় জমা হয়েছে।"
 
-#: mkt/developers/views.py:248
+#: mkt/developers/views.py:249
 msgid "New version successfully added."
 msgstr "নতুন সংস্করণ সফলভাবে যোগ করা হয়েছে।"
 
-#: mkt/developers/views.py:296 mkt/developers/views.py:536 mkt/developers/views_payments.py:114 mkt/developers/views_payments.py:450 mkt/reviewers/views.py:679
+#: mkt/developers/views.py:297 mkt/developers/views.py:564 mkt/developers/views_payments.py:114 mkt/developers/views_payments.py:450 mkt/reviewers/views.py:679
 msgid "Changes successfully saved."
 msgstr "পরিবর্তন সফলভাবে সংরক্ষিত হয়েছে।"
 
-#: mkt/developers/views.py:303
+#: mkt/developers/views.py:304
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr "অভিনন্দন, আপনার অ্যাপ্লিকেশন সাবমিশন এখন সম্পূর্ণ হয়েছে এবং খুব শীঘ্রই পর্যালোচনা করা হবে!"
 
-#: mkt/developers/views.py:305
+#: mkt/developers/views.py:306
 msgid "Content ratings successfully saved."
 msgstr "কন্টেন্ট রেটিং সফলভাবে সংরক্ষিত হয়েছে।"
 
-#: mkt/developers/views.py:440
+#: mkt/developers/views.py:468
 msgid "Version successfully edited."
 msgstr "সংস্করণ সফলভাবে সম্পাদিত হয়েছে।"
 
-#: mkt/developers/views.py:475
+#: mkt/developers/views.py:503
 msgid "Version successfully made active."
 msgstr "সংস্করণ সফলভাবে সক্রিয় করা হয়েছে"
 
-#: mkt/developers/views.py:489
+#: mkt/developers/views.py:517
 msgid "Version \"{0}\" deleted."
 msgstr "\"{0}\" সংস্করণটি মুছে ফেলা হয়েছে।"
 
-#: mkt/developers/views.py:624
+#: mkt/developers/views.py:652
 msgid "There was an error with the submission."
 msgstr "সাবমিশনে কোন ত্রুটি ছিলো।"
 
-#: mkt/developers/views.py:666
+#: mkt/developers/views.py:694
 msgid "An error occurred validating the manifest."
 msgstr ""
 
-#: mkt/developers/views.py:918
+#: mkt/developers/views.py:946
 msgid "There was an error uploading your preview."
 msgstr "আপনার প্রিভিউ আপলোডে কোন ত্রুটি ছিলো।"
 
-#: mkt/developers/views.py:969
+#: mkt/developers/views.py:997
 msgid "Terms of service accepted."
 msgstr "সেবাগ্রহণের শর্তাবলী গৃহীত হয়েছে।"
 
-#: mkt/developers/views.py:985
+#: mkt/developers/views.py:1013
 msgid "Users with the admin role cannot use the API."
 msgstr "অ্যাডমিন অধিকার প্রাপ্ত ব্যবহারকারীরা এই API ব্যবহার করতে পারবে না।"
 
-#: mkt/developers/views.py:994
+#: mkt/developers/views.py:1022
 msgid "No such API key."
 msgstr "এমন API key নেই।"
 
-#: mkt/developers/views.py:1000
+#: mkt/developers/views.py:1028
 msgid "New API key generated."
 msgstr "নতুন API key উৎপন্ন হয়েছে।"
 
-#: mkt/developers/views.py:1018
+#: mkt/developers/views.py:1046
 msgid "Created blocklisted version."
 msgstr "ব্লকলিস্টেড সংস্করণ তৈরি হয়েছে।"
 
-#: mkt/developers/views.py:1020
+#: mkt/developers/views.py:1048
 msgid "App already blocklisted."
 msgstr "অ্যাপটি ইতিমধ্যে ব্লকলিস্টে রয়েছে।"
 
@@ -3115,7 +3119,7 @@ msgstr "এই ঘোষণা খারিজ করুন"
 #: mkt/developers/templates/developers/apps/dashboard.html:15 mkt/developers/templates/developers/apps/edit/admin.html:9 mkt/developers/templates/developers/apps/edit/basic.html:10
 #: mkt/developers/templates/developers/apps/edit/details.html:8 mkt/developers/templates/developers/apps/edit/media.html:6 mkt/developers/templates/developers/apps/edit/support.html:7
 #: mkt/developers/templates/developers/apps/edit/technical.html:8 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:12
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:16 mkt/developers/templates/developers/payments/in-app-product-row.html:31 mkt/submit/templates/submit/details.html:91
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:19 mkt/developers/templates/developers/payments/in-app-product-row.html:31 mkt/submit/templates/submit/details.html:91
 msgid "Edit"
 msgstr "সম্পাদনা"
 
@@ -3951,7 +3955,7 @@ msgstr "অবস্থা এবং আম্প ;সংস্করণ"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1439
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:47 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1439
 msgid "Content Ratings"
 msgstr "বিষয়বস্তুর রেটিং"
 
@@ -4091,27 +4095,39 @@ msgstr ""
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:15 mkt/lookup/templates/lookup/helpers/website_header.html:16
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:15
+msgid "Confirm your choice of IARC Certiticate"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:17 mkt/lookup/templates/lookup/helpers/app_header.html:15 mkt/lookup/templates/lookup/helpers/website_header.html:16
 msgid "Summary"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
+msgid "IARC Certificate ID"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:34
+msgid "Confirm"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:50
 msgid "Rating System"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:224
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:51 mkt/developers/templates/developers/payments/premium.html:224
 msgid "Region"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:52
 msgid "Rating Category"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
 msgid "Descriptors"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:82
 msgid "Interactive Elements"
 msgstr ""
 
@@ -5828,7 +5844,7 @@ msgid "Tier %s"
 msgstr ""
 
 #. L10n: {0} is the app name.
-#: mkt/purchase/tasks.py:28
+#: mkt/purchase/tasks.py:29
 msgid "Receipt for {0}"
 msgstr ""
 
@@ -8082,7 +8098,7 @@ msgstr "এই অ্যাপের একটি কন্টেন্ট র�
 msgid "This app needs a payment account set up."
 msgstr "এই অ্যাপের জন্য একটি পেমেন্ট অ্যাকাউন্ট সেটাপ করা প্রয়োজন।"
 
-#: mkt/webapps/tasks.py:144
+#: mkt/webapps/tasks.py:143
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
 msgstr ""
 

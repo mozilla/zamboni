@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-02-17 09:07-0800\n"
+"POT-Creation-Date: 2016-02-24 12:50-0800\n"
 "PO-Revision-Date: 2016-01-19 21:30+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -2059,11 +2059,15 @@ msgstr "Všetky štáty Ameriky s výnimkou Brazílie"
 msgid "Entertainment Software Rating Board"
 msgstr ""
 
-#: mkt/constants/ratingsbodies.py:294
+#: mkt/constants/ratingsbodies.py:289
+msgid "Parental Guidance"
+msgstr ""
+
+#: mkt/constants/ratingsbodies.py:302
 msgid "Europe"
 msgstr "Európa"
 
-#: mkt/constants/ratingsbodies.py:295
+#: mkt/constants/ratingsbodies.py:303
 msgid "Pan European Game Information"
 msgstr ""
 
@@ -2407,19 +2411,19 @@ msgstr "Príkazový riadok"
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr "Nastaviť ako aktívnu verziu mojej aplikácie ihneď, ako bude skontrolovaná a schválená."
 
-#: mkt/developers/forms.py:1089 mkt/developers/forms.py:1147
+#: mkt/developers/forms.py:1090 mkt/developers/forms.py:1181
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr "IARC certifikát je už použitý pre inú aplikáciu. Vytvorte prosím nový certifikát hodnotenia IARC."
 
-#: mkt/developers/forms.py:1109
-msgid "This Certificate ID is not recognized by IARC, or is already attached to an app in the Firefox Marketplace."
+#: mkt/developers/forms.py:1097
+msgid "This Certificate ID is not recognized by IARC, or is already attached to another app in the Firefox Marketplace."
 msgstr ""
 
-#: mkt/developers/forms.py:1131
+#: mkt/developers/forms.py:1165
 msgid "Please enter a valid submission ID."
 msgstr "Zadajte prosím platné ID odoslania."
 
-#: mkt/developers/forms.py:1182 mkt/developers/forms.py:1194
+#: mkt/developers/forms.py:1216 mkt/developers/forms.py:1228
 msgid "Invalid submission ID or security code."
 msgstr "Neplatné ID odoslania alebo neplatný bezpečnostný kód."
 
@@ -2616,37 +2620,37 @@ msgstr "Verzia {0}"
 msgid "Reference Implementation"
 msgstr "Referenčná implementácia"
 
-#: mkt/developers/tasks.py:477
+#: mkt/developers/tasks.py:476
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "Na zadanej URL adrese nebol nájdený žiadny manifest. Skontrolujte adresu a skúste to znova."
 
-#: mkt/developers/tasks.py:483
+#: mkt/developers/tasks.py:482
 #, python-format
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr ""
 
-#: mkt/developers/tasks.py:492
+#: mkt/developers/tasks.py:491
 #, python-format
 msgid "Your manifest must be less than %s bytes."
 msgstr "Váš manifest musí mať menej ako %s bajtov."
 
-#: mkt/developers/tasks.py:500
+#: mkt/developers/tasks.py:499
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr ""
 
-#: mkt/developers/tasks.py:511
+#: mkt/developers/tasks.py:510
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr ""
 
-#: mkt/developers/tasks.py:542 mkt/developers/tasks.py:548 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:541 mkt/developers/tasks.py:547 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "a"
 
-#: mkt/developers/tasks.py:562
+#: mkt/developers/tasks.py:561
 msgid "{region} region added to the Firefox Marketplace"
 msgstr ""
 
-#: mkt/developers/tasks.py:566
+#: mkt/developers/tasks.py:565
 msgid "New regions added to the Firefox Marketplace"
 msgstr ""
 
@@ -2704,91 +2708,91 @@ msgstr "Ikony musí být čtvercové."
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr ""
 
-#: mkt/developers/views.py:156
+#: mkt/developers/views.py:157
 #, fuzzy
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "Placené aplikace nemohou být smazány. Na místo toho aplikaci zakažte."
 
-#: mkt/developers/views.py:166
+#: mkt/developers/views.py:167
 #, fuzzy
 msgid "App deleted."
 msgstr "Aplikace byla smazána."
 
-#: mkt/developers/views.py:171
+#: mkt/developers/views.py:172
 msgid "Password was incorrect. App was not deleted."
 msgstr "Heslo bylo zadáno nekorektně. Aplikace nebyla smazána."
 
-#: mkt/developers/views.py:215
+#: mkt/developers/views.py:216
 #, fuzzy
 msgid "App successfully resubmitted."
 msgstr "Aplikace byla znovu úspěšně odeslána."
 
-#: mkt/developers/views.py:248
+#: mkt/developers/views.py:249
 #, fuzzy
 msgid "New version successfully added."
 msgstr "Nová verze byla úspěšně přidána."
 
-#: mkt/developers/views.py:296 mkt/developers/views.py:536 mkt/developers/views_payments.py:114 mkt/developers/views_payments.py:450 mkt/reviewers/views.py:679
+#: mkt/developers/views.py:297 mkt/developers/views.py:564 mkt/developers/views_payments.py:114 mkt/developers/views_payments.py:450 mkt/reviewers/views.py:679
 msgid "Changes successfully saved."
 msgstr "Zmeny boli úspešne uložené."
 
-#: mkt/developers/views.py:303
+#: mkt/developers/views.py:304
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr ""
 
-#: mkt/developers/views.py:305
+#: mkt/developers/views.py:306
 msgid "Content ratings successfully saved."
 msgstr ""
 
-#: mkt/developers/views.py:440
+#: mkt/developers/views.py:468
 #, fuzzy
 msgid "Version successfully edited."
 msgstr "Verze byla úspěšně upravena."
 
-#: mkt/developers/views.py:475
+#: mkt/developers/views.py:503
 msgid "Version successfully made active."
 msgstr ""
 
 # 77%
-#: mkt/developers/views.py:489
+#: mkt/developers/views.py:517
 #, fuzzy
 msgid "Version \"{0}\" deleted."
 msgstr "Verze \"{0}\" byla smazána."
 
-#: mkt/developers/views.py:624
+#: mkt/developers/views.py:652
 msgid "There was an error with the submission."
 msgstr "Pri odosielaní sa vyskytla chyba."
 
-#: mkt/developers/views.py:666
+#: mkt/developers/views.py:694
 msgid "An error occurred validating the manifest."
 msgstr ""
 
-#: mkt/developers/views.py:918
+#: mkt/developers/views.py:946
 msgid "There was an error uploading your preview."
 msgstr "Pri odosielaní ukážky sa vyskytla chyba."
 
-#: mkt/developers/views.py:969
+#: mkt/developers/views.py:997
 #, fuzzy
 msgid "Terms of service accepted."
 msgstr "Podmínky služby byly odsouhlaseny."
 
-#: mkt/developers/views.py:985
+#: mkt/developers/views.py:1013
 msgid "Users with the admin role cannot use the API."
 msgstr ""
 
-#: mkt/developers/views.py:994
+#: mkt/developers/views.py:1022
 msgid "No such API key."
 msgstr "Tento kľúč k API neexistuje."
 
-#: mkt/developers/views.py:1000
+#: mkt/developers/views.py:1028
 msgid "New API key generated."
 msgstr "Nový kľúč k API bol vygenerovaný."
 
-#: mkt/developers/views.py:1018
+#: mkt/developers/views.py:1046
 msgid "Created blocklisted version."
 msgstr "Vytvorená blokovaná verzia."
 
-#: mkt/developers/views.py:1020
+#: mkt/developers/views.py:1048
 msgid "App already blocklisted."
 msgstr "Aplikácia je už blokovaná."
 
@@ -3137,7 +3141,7 @@ msgstr "Skrýt toto oznámení"
 #: mkt/developers/templates/developers/apps/dashboard.html:15 mkt/developers/templates/developers/apps/edit/admin.html:9 mkt/developers/templates/developers/apps/edit/basic.html:10
 #: mkt/developers/templates/developers/apps/edit/details.html:8 mkt/developers/templates/developers/apps/edit/media.html:6 mkt/developers/templates/developers/apps/edit/support.html:7
 #: mkt/developers/templates/developers/apps/edit/technical.html:8 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:12
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:16 mkt/developers/templates/developers/payments/in-app-product-row.html:31 mkt/submit/templates/submit/details.html:91
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:19 mkt/developers/templates/developers/payments/in-app-product-row.html:31 mkt/submit/templates/submit/details.html:91
 msgid "Edit"
 msgstr "Upraviť"
 
@@ -4018,7 +4022,7 @@ msgstr "Stav a verzie"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1439
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:47 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1439
 msgid "Content Ratings"
 msgstr "Hodnotenie obsahu"
 
@@ -4159,27 +4163,39 @@ msgstr ""
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:15 mkt/lookup/templates/lookup/helpers/website_header.html:16
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:15
+msgid "Confirm your choice of IARC Certiticate"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:17 mkt/lookup/templates/lookup/helpers/app_header.html:15 mkt/lookup/templates/lookup/helpers/website_header.html:16
 msgid "Summary"
 msgstr "Súhrn"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
+msgid "IARC Certificate ID"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:34
+msgid "Confirm"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:50
 msgid "Rating System"
 msgstr "Systém hodnotenia"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:224
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:51 mkt/developers/templates/developers/payments/premium.html:224
 msgid "Region"
 msgstr "Región"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:52
 msgid "Rating Category"
 msgstr "Kategórie hodnotenia"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
 msgid "Descriptors"
 msgstr "Popisy"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:82
 msgid "Interactive Elements"
 msgstr "Interaktívne prvky"
 
@@ -5941,7 +5957,7 @@ msgid "Tier %s"
 msgstr ""
 
 #. L10n: {0} is the app name.
-#: mkt/purchase/tasks.py:28
+#: mkt/purchase/tasks.py:29
 msgid "Receipt for {0}"
 msgstr ""
 
@@ -8292,7 +8308,7 @@ msgstr "Táto aplikácia potrebuje hodnotenie obsahu."
 msgid "This app needs a payment account set up."
 msgstr "Táto aplikácia potrebuje nastavenie účtu pre platby."
 
-#: mkt/webapps/tasks.py:144
+#: mkt/webapps/tasks.py:143
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
 msgstr "Problém s vašou aplikáciou \"{app}\" na Firefox Marketplace"
 

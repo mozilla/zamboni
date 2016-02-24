@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-02-17 09:07-0800\n"
+"POT-Creation-Date: 2016-02-24 12:50-0800\n"
 "PO-Revision-Date: 2016-01-29 05:17+0000\n"
 "Last-Translator: Vanja Tumbas <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -2195,11 +2195,15 @@ msgstr "Sve američke zemlje osim Brazila"
 msgid "Entertainment Software Rating Board"
 msgstr "Tabla za ocenjivanje zabavnog softvera"
 
-#: mkt/constants/ratingsbodies.py:294
+#: mkt/constants/ratingsbodies.py:289
+msgid "Parental Guidance"
+msgstr ""
+
+#: mkt/constants/ratingsbodies.py:302
 msgid "Europe"
 msgstr "Evropa"
 
-#: mkt/constants/ratingsbodies.py:295
+#: mkt/constants/ratingsbodies.py:303
 msgid "Pan European Game Information"
 msgstr "Panevropske informacije o igrici"
 
@@ -2619,7 +2623,7 @@ msgstr ""
 "Napravite da ova verzija aplikacije bude aktivna čim je pregledana i "
 "odobrena."
 
-#: mkt/developers/forms.py:1089 mkt/developers/forms.py:1147
+#: mkt/developers/forms.py:1090 mkt/developers/forms.py:1181
 msgid ""
 "This IARC certificate is already being used for another app. Please create a "
 "new IARC Ratings Certificate."
@@ -2627,17 +2631,17 @@ msgstr ""
 "Ovaj IARC sertifikat je već upotrebljen za drugu aplikaciju. Napravite novi "
 "IARC Ratings sertifikat."
 
-#: mkt/developers/forms.py:1109
+#: mkt/developers/forms.py:1097
 msgid ""
-"This Certificate ID is not recognized by IARC, or is already attached to an "
-"app in the Firefox Marketplace."
+"This Certificate ID is not recognized by IARC, or is already attached to "
+"another app in the Firefox Marketplace."
 msgstr ""
 
-#: mkt/developers/forms.py:1131
+#: mkt/developers/forms.py:1165
 msgid "Please enter a valid submission ID."
 msgstr "Unesite validan ID za podnošenje."
 
-#: mkt/developers/forms.py:1182 mkt/developers/forms.py:1194
+#: mkt/developers/forms.py:1216 mkt/developers/forms.py:1228
 msgid "Invalid submission ID or security code."
 msgstr "Neispravan ID za podnošenje ili sigurnosna lozinka."
 
@@ -2849,12 +2853,12 @@ msgstr "Verzija {0}"
 msgid "Reference Implementation"
 msgstr "Referentna implementacija"
 
-#: mkt/developers/tasks.py:477
+#: mkt/developers/tasks.py:476
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr ""
 "Nije pronađen manifest na ovoj adresi. Proverite adresu i pokušajte ponovo."
 
-#: mkt/developers/tasks.py:483
+#: mkt/developers/tasks.py:482
 #, python-format
 msgid ""
 "Manifests must be served with the HTTP header \"Content-Type: application/x-"
@@ -2863,16 +2867,16 @@ msgstr ""
 "Manifesti moraju da imaju HTTP zaglavlje \"Content-Type: application/x-web-"
 "app-manifest+json\". Pogledajte %s za više informacija."
 
-#: mkt/developers/tasks.py:492
+#: mkt/developers/tasks.py:491
 #, python-format
 msgid "Your manifest must be less than %s bytes."
 msgstr "Manifest mora biti manji od %s bajtova."
 
-#: mkt/developers/tasks.py:500
+#: mkt/developers/tasks.py:499
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "Vaša manifest datoteka nije enkodirana kao validan UTF-8."
 
-#: mkt/developers/tasks.py:511
+#: mkt/developers/tasks.py:510
 msgid ""
 "The manifest's encoding does not match the charset provided in the HTTP "
 "Content-Type."
@@ -2880,16 +2884,16 @@ msgstr ""
 "Kodiranje manifesta ne odgovara šemi kodiranja koja je obezbeđen u HTTP "
 "Content-Type."
 
-#: mkt/developers/tasks.py:542 mkt/developers/tasks.py:548
+#: mkt/developers/tasks.py:541 mkt/developers/tasks.py:547
 #: mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "i"
 
-#: mkt/developers/tasks.py:562
+#: mkt/developers/tasks.py:561
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "{region} region je dodat na Firefox Marketplace"
 
-#: mkt/developers/tasks.py:566
+#: mkt/developers/tasks.py:565
 msgid "New regions added to the Firefox Marketplace"
 msgstr "Novi regioni su dodati na Firefox Marketplace"
 
@@ -2945,88 +2949,88 @@ msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr ""
 "Prikaz aplikacije mora biti barem {0}px puta {1}px ili {1}px puta {0}px."
 
-#: mkt/developers/views.py:156
+#: mkt/developers/views.py:157
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "Plaćene aplikacije ne mogu biti obrisane. Onemogućite ih."
 
-#: mkt/developers/views.py:166
+#: mkt/developers/views.py:167
 msgid "App deleted."
 msgstr "Aplikacija je izbrisana."
 
-#: mkt/developers/views.py:171
+#: mkt/developers/views.py:172
 msgid "Password was incorrect. App was not deleted."
 msgstr "Lozinka je netačna. Aplikacija nije obrisana."
 
-#: mkt/developers/views.py:215
+#: mkt/developers/views.py:216
 msgid "App successfully resubmitted."
 msgstr "Aplikacija je uspešno ponovo poslata."
 
-#: mkt/developers/views.py:248
+#: mkt/developers/views.py:249
 msgid "New version successfully added."
 msgstr "Nova verzija je uspešno dodata."
 
-#: mkt/developers/views.py:296 mkt/developers/views.py:536
+#: mkt/developers/views.py:297 mkt/developers/views.py:564
 #: mkt/developers/views_payments.py:114 mkt/developers/views_payments.py:450
 #: mkt/reviewers/views.py:679
 msgid "Changes successfully saved."
 msgstr "Izmene su uspešno sačuvane."
 
-#: mkt/developers/views.py:303
+#: mkt/developers/views.py:304
 msgid ""
 "Congratulations, your app submission is now complete and will be reviewed "
 "shortly!"
 msgstr ""
 "Čestitamo, vaše podnošenje aplikacije je završeno i ubrzo će biti pregledana!"
 
-#: mkt/developers/views.py:305
+#: mkt/developers/views.py:306
 msgid "Content ratings successfully saved."
 msgstr "Ocene sadržaja su uspešno snimljene."
 
-#: mkt/developers/views.py:440
+#: mkt/developers/views.py:468
 msgid "Version successfully edited."
 msgstr "Verzija je uspešno izmenjena."
 
-#: mkt/developers/views.py:475
+#: mkt/developers/views.py:503
 msgid "Version successfully made active."
 msgstr "Aktivna verzija je uspešno napravljena."
 
-#: mkt/developers/views.py:489
+#: mkt/developers/views.py:517
 msgid "Version \"{0}\" deleted."
 msgstr "Verzija \"{0}\" je izbrisana."
 
-#: mkt/developers/views.py:624
+#: mkt/developers/views.py:652
 msgid "There was an error with the submission."
 msgstr "Došlo je do greške sa dostavom."
 
-#: mkt/developers/views.py:666
+#: mkt/developers/views.py:694
 msgid "An error occurred validating the manifest."
 msgstr "Desila se greška tokom validacije manifesta."
 
-#: mkt/developers/views.py:918
+#: mkt/developers/views.py:946
 msgid "There was an error uploading your preview."
 msgstr "Došlo je do greške prilikom otpremanja pregleda."
 
-#: mkt/developers/views.py:969
+#: mkt/developers/views.py:997
 msgid "Terms of service accepted."
 msgstr "Uslovi korišćenja su prihvaćeni."
 
-#: mkt/developers/views.py:985
+#: mkt/developers/views.py:1013
 msgid "Users with the admin role cannot use the API."
 msgstr "Korisnici sa ulogom admina ne mogu da koriste API-je."
 
-#: mkt/developers/views.py:994
+#: mkt/developers/views.py:1022
 msgid "No such API key."
 msgstr "Ne postoji takav API ključ."
 
-#: mkt/developers/views.py:1000
+#: mkt/developers/views.py:1028
 msgid "New API key generated."
 msgstr "Novi API ključ je generisan."
 
-#: mkt/developers/views.py:1018
+#: mkt/developers/views.py:1046
 msgid "Created blocklisted version."
 msgstr "Napravljena je blokirana verzija."
 
-#: mkt/developers/views.py:1020
+#: mkt/developers/views.py:1048
 msgid "App already blocklisted."
 msgstr "Aplikacija je već blokirana."
 
@@ -3483,7 +3487,7 @@ msgstr "Odbaci ovo saopštenje"
 #: mkt/developers/templates/developers/apps/edit/support.html:7
 #: mkt/developers/templates/developers/apps/edit/technical.html:8
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:12
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:16
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:19
 #: mkt/developers/templates/developers/payments/in-app-product-row.html:31
 #: mkt/submit/templates/submit/details.html:91
 msgid "Edit"
@@ -4627,7 +4631,7 @@ msgstr "Status &amp; verzije"
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:47
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:12
 #: mkt/webapps/models.py:1439
 msgid "Content Ratings"
@@ -4817,30 +4821,42 @@ msgstr ""
 "Sigurnosni kod može biti nađen na sertifikatu koji je poslat. To je mešavina "
 "slova i brojeva kao &quot;AB12CD3&quot;."
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:15
+msgid "Confirm your choice of IARC Certiticate"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:17
 #: mkt/lookup/templates/lookup/helpers/app_header.html:15
 #: mkt/lookup/templates/lookup/helpers/website_header.html:16
 msgid "Summary"
 msgstr "Rezime"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
+msgid "IARC Certificate ID"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:34
+msgid "Confirm"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:50
 msgid "Rating System"
 msgstr "Sistem ocenjivanja"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:51
 #: mkt/developers/templates/developers/payments/premium.html:224
 msgid "Region"
 msgstr "Region"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:52
 msgid "Rating Category"
 msgstr "Kategorija ocenjivanja"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
 msgid "Descriptors"
 msgstr "Opisi"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:82
 msgid "Interactive Elements"
 msgstr "Interaktivni elementi"
 
@@ -6972,7 +6988,7 @@ msgid "Tier %s"
 msgstr "Red %s"
 
 #. L10n: {0} is the app name.
-#: mkt/purchase/tasks.py:28
+#: mkt/purchase/tasks.py:29
 msgid "Receipt for {0}"
 msgstr "Račun za {0}"
 
@@ -9499,7 +9515,7 @@ msgstr "Ova aplikacija treba da dobije ocenu sadržaja."
 msgid "This app needs a payment account set up."
 msgstr "Ovoj aplikaciji je potreban podešen račun za plaćanje."
 
-#: mkt/webapps/tasks.py:144
+#: mkt/webapps/tasks.py:143
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
 msgstr "Greška sa aplikacijom \"{app}\" na Firefox Marketplace-u"
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-02-17 09:07-0800\n"
+"POT-Creation-Date: 2016-02-24 12:50-0800\n"
 "PO-Revision-Date: 2015-11-13 10:41+0000\n"
 "Last-Translator: Jobava <jobaval10n@gmail.com>\n"
 "Language-Team: Romanian <dev-l10n-web@lists.mozilla.org>\n"
@@ -2062,11 +2062,15 @@ msgstr "Toate statele din America cu excepția Braziliei"
 msgid "Entertainment Software Rating Board"
 msgstr "Entertainment Software Rating Board"
 
-#: mkt/constants/ratingsbodies.py:294
+#: mkt/constants/ratingsbodies.py:289
+msgid "Parental Guidance"
+msgstr ""
+
+#: mkt/constants/ratingsbodies.py:302
 msgid "Europe"
 msgstr "Europa"
 
-#: mkt/constants/ratingsbodies.py:295
+#: mkt/constants/ratingsbodies.py:303
 msgid "Pan European Game Information"
 msgstr "Pan European Game Information"
 
@@ -2410,19 +2414,19 @@ msgstr "Linie de comandă"
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr "Faceți din aceasta versiunea Activă a aplicației mele imediat ce a fost recenzată și aprobată."
 
-#: mkt/developers/forms.py:1089 mkt/developers/forms.py:1147
+#: mkt/developers/forms.py:1090 mkt/developers/forms.py:1181
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr "Acest certificat IARC este deja folosit de o altă aplicație. Creează un nou certificat de evaluare IARC."
 
-#: mkt/developers/forms.py:1109
-msgid "This Certificate ID is not recognized by IARC, or is already attached to an app in the Firefox Marketplace."
+#: mkt/developers/forms.py:1097
+msgid "This Certificate ID is not recognized by IARC, or is already attached to another app in the Firefox Marketplace."
 msgstr ""
 
-#: mkt/developers/forms.py:1131
+#: mkt/developers/forms.py:1165
 msgid "Please enter a valid submission ID."
 msgstr "Introdu un ID de propunere (submission) valid."
 
-#: mkt/developers/forms.py:1182 mkt/developers/forms.py:1194
+#: mkt/developers/forms.py:1216 mkt/developers/forms.py:1228
 msgid "Invalid submission ID or security code."
 msgstr "ID-ul de propunere este invalid sau codul de securitate."
 
@@ -2619,38 +2623,38 @@ msgstr "Versiune {0}"
 msgid "Reference Implementation"
 msgstr "Implementare de referință"
 
-#: mkt/developers/tasks.py:477
+#: mkt/developers/tasks.py:476
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "Nu a fost găsit un manifest la acel URL. Verificați adresa și reîncercați."
 
-#: mkt/developers/tasks.py:483
+#: mkt/developers/tasks.py:482
 #, python-format
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr "Manifestul trebuie servit cu un header HTTP „Content-Type: application/x-web-app-manifest+json”. Vezi %s pentru mai multe informații."
 
-#: mkt/developers/tasks.py:492
+#: mkt/developers/tasks.py:491
 #, python-format
 msgid "Your manifest must be less than %s bytes."
 msgstr "Manifestul trebuie să fie mai mic de %s bytes."
 
-#: mkt/developers/tasks.py:500
+#: mkt/developers/tasks.py:499
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "Manifestul nu este codat valid ca UTF-8."
 
 # charset și Content-Type nu trebuie traduși
-#: mkt/developers/tasks.py:511
+#: mkt/developers/tasks.py:510
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr "Codificarea manifestului nu se potrivește cu charset-ul din headerul HTTP Content-Type."
 
-#: mkt/developers/tasks.py:542 mkt/developers/tasks.py:548 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:541 mkt/developers/tasks.py:547 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "și"
 
-#: mkt/developers/tasks.py:562
+#: mkt/developers/tasks.py:561
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "Regiunea {region} a fost adăugată la Firefox Marketplace"
 
-#: mkt/developers/tasks.py:566
+#: mkt/developers/tasks.py:565
 msgid "New regions added to the Firefox Marketplace"
 msgstr "Noi regiuni au fost adăugate la Firefox Marketplace"
 
@@ -2705,83 +2709,83 @@ msgstr "Iconițele trebuie să fie pătrate."
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "Previzualizările aplicațiilor trebuie să fie cel puțin {0}px pe {1}px sau {1}px pe {0}px."
 
-#: mkt/developers/views.py:156
+#: mkt/developers/views.py:157
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "Aplicațiile plătite nu pot fi șterse. Dezactivați aplicația în loc."
 
-#: mkt/developers/views.py:166
+#: mkt/developers/views.py:167
 msgid "App deleted."
 msgstr "Aplicație ștearsă."
 
-#: mkt/developers/views.py:171
+#: mkt/developers/views.py:172
 msgid "Password was incorrect. App was not deleted."
 msgstr "Parolă incorectă. Aplicația nu a fost ștearsă."
 
-#: mkt/developers/views.py:215
+#: mkt/developers/views.py:216
 msgid "App successfully resubmitted."
 msgstr "Aplicație repropusă cu succes."
 
-#: mkt/developers/views.py:248
+#: mkt/developers/views.py:249
 msgid "New version successfully added."
 msgstr "Noua versiune a fost adăugată cu succes."
 
-#: mkt/developers/views.py:296 mkt/developers/views.py:536 mkt/developers/views_payments.py:114 mkt/developers/views_payments.py:450 mkt/reviewers/views.py:679
+#: mkt/developers/views.py:297 mkt/developers/views.py:564 mkt/developers/views_payments.py:114 mkt/developers/views_payments.py:450 mkt/reviewers/views.py:679
 msgid "Changes successfully saved."
 msgstr "Schimbările au fost salvate cu succes."
 
-#: mkt/developers/views.py:303
+#: mkt/developers/views.py:304
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr "Felicitări, aplicația a fost propusă și va fi recenzată în scurt timp!"
 
-#: mkt/developers/views.py:305
+#: mkt/developers/views.py:306
 msgid "Content ratings successfully saved."
 msgstr "Evaluare de conținut salvată cu succes."
 
-#: mkt/developers/views.py:440
+#: mkt/developers/views.py:468
 msgid "Version successfully edited."
 msgstr "Versiune editată cu succes."
 
-#: mkt/developers/views.py:475
+#: mkt/developers/views.py:503
 msgid "Version successfully made active."
 msgstr "Versiunea a fost activată cu succes."
 
-#: mkt/developers/views.py:489
+#: mkt/developers/views.py:517
 msgid "Version \"{0}\" deleted."
 msgstr "Versiunea „{0}” a fost ștearsă."
 
-#: mkt/developers/views.py:624
+#: mkt/developers/views.py:652
 msgid "There was an error with the submission."
 msgstr "Propunerea a întâmpinat o eroare."
 
-#: mkt/developers/views.py:666
+#: mkt/developers/views.py:694
 msgid "An error occurred validating the manifest."
 msgstr "S-a produs o eroare la validarea manifestului."
 
-#: mkt/developers/views.py:918
+#: mkt/developers/views.py:946
 msgid "There was an error uploading your preview."
 msgstr "S-a produs o eroare la încărcarea previzualizării."
 
-#: mkt/developers/views.py:969
+#: mkt/developers/views.py:997
 msgid "Terms of service accepted."
 msgstr "Termenii serviciului au fost acceptați."
 
-#: mkt/developers/views.py:985
+#: mkt/developers/views.py:1013
 msgid "Users with the admin role cannot use the API."
 msgstr "Utilizatorii cu rolul de admin nu pot folosi API-ul."
 
-#: mkt/developers/views.py:994
+#: mkt/developers/views.py:1022
 msgid "No such API key."
 msgstr "Nu există cheia API."
 
-#: mkt/developers/views.py:1000
+#: mkt/developers/views.py:1028
 msgid "New API key generated."
 msgstr "A fost generată o nouă cheie API."
 
-#: mkt/developers/views.py:1018
+#: mkt/developers/views.py:1046
 msgid "Created blocklisted version."
 msgstr "S-a creat o versiune blocklistată."
 
-#: mkt/developers/views.py:1020
+#: mkt/developers/views.py:1048
 msgid "App already blocklisted."
 msgstr "Aplicația este deja blocklistată."
 
@@ -3130,7 +3134,7 @@ msgstr "Îndepărtează acest anunț"
 #: mkt/developers/templates/developers/apps/dashboard.html:15 mkt/developers/templates/developers/apps/edit/admin.html:9 mkt/developers/templates/developers/apps/edit/basic.html:10
 #: mkt/developers/templates/developers/apps/edit/details.html:8 mkt/developers/templates/developers/apps/edit/media.html:6 mkt/developers/templates/developers/apps/edit/support.html:7
 #: mkt/developers/templates/developers/apps/edit/technical.html:8 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:12
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:16 mkt/developers/templates/developers/payments/in-app-product-row.html:31 mkt/submit/templates/submit/details.html:91
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:19 mkt/developers/templates/developers/payments/in-app-product-row.html:31 mkt/submit/templates/submit/details.html:91
 msgid "Edit"
 msgstr "Editare"
 
@@ -3978,7 +3982,7 @@ msgstr "Stare și versiuni"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1439
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:47 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1439
 msgid "Content Ratings"
 msgstr "Evaluări de conținut"
 
@@ -4122,27 +4126,39 @@ msgstr "Cod de securitate"
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr "Codul de securitate poate fi găsit pe certificatul pe care l-ați primit. Este format dintr-o combinație de litere și numere ca &quot;AB12CD3&quot;."
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:15 mkt/lookup/templates/lookup/helpers/website_header.html:16
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:15
+msgid "Confirm your choice of IARC Certiticate"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:17 mkt/lookup/templates/lookup/helpers/app_header.html:15 mkt/lookup/templates/lookup/helpers/website_header.html:16
 msgid "Summary"
 msgstr "Sumar"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
+msgid "IARC Certificate ID"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:34
+msgid "Confirm"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:50
 msgid "Rating System"
 msgstr "Sistem de evaluare (rating)"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:224
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:51 mkt/developers/templates/developers/payments/premium.html:224
 msgid "Region"
 msgstr "Regiune"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:52
 msgid "Rating Category"
 msgstr "Categorie de evaluare"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
 msgid "Descriptors"
 msgstr "Descriptori"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:82
 msgid "Interactive Elements"
 msgstr "Elemente interactive"
 
@@ -5882,7 +5898,7 @@ msgid "Tier %s"
 msgstr "Nivel %s"
 
 #. L10n: {0} is the app name.
-#: mkt/purchase/tasks.py:28
+#: mkt/purchase/tasks.py:29
 msgid "Receipt for {0}"
 msgstr "Chitanță pentru {0}"
 
@@ -8162,7 +8178,7 @@ msgstr "Această aplicație are nevoie de o evaluare de conținut."
 msgid "This app needs a payment account set up."
 msgstr "Aplicația are nevoie de setarea unui cont de plăți."
 
-#: mkt/webapps/tasks.py:144
+#: mkt/webapps/tasks.py:143
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
 msgstr "Problema cu aplicața „{app}” pe Firefox Marketplace"
 

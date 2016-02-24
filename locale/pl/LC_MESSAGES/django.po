@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-02-17 09:07-0800\n"
+"POT-Creation-Date: 2016-02-24 12:50-0800\n"
 "PO-Revision-Date: 2015-11-04 12:28+0100\n"
 "Last-Translator: Wojciech Szczęsny\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -2065,11 +2065,15 @@ msgstr "Cała Ameryka oprócz Brazylii"
 msgid "Entertainment Software Rating Board"
 msgstr ""
 
-#: mkt/constants/ratingsbodies.py:294
+#: mkt/constants/ratingsbodies.py:289
+msgid "Parental Guidance"
+msgstr ""
+
+#: mkt/constants/ratingsbodies.py:302
 msgid "Europe"
 msgstr "Europa"
 
-#: mkt/constants/ratingsbodies.py:295
+#: mkt/constants/ratingsbodies.py:303
 msgid "Pan European Game Information"
 msgstr ""
 
@@ -2413,19 +2417,19 @@ msgstr "Wiersz poleceń"
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr "Ustaw tę wersję aplikacji jako aktywną, gdy tylko zostanie sprawdzona i zaakceptowana."
 
-#: mkt/developers/forms.py:1089 mkt/developers/forms.py:1147
+#: mkt/developers/forms.py:1090 mkt/developers/forms.py:1181
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr ""
 
-#: mkt/developers/forms.py:1109
-msgid "This Certificate ID is not recognized by IARC, or is already attached to an app in the Firefox Marketplace."
+#: mkt/developers/forms.py:1097
+msgid "This Certificate ID is not recognized by IARC, or is already attached to another app in the Firefox Marketplace."
 msgstr ""
 
-#: mkt/developers/forms.py:1131
+#: mkt/developers/forms.py:1165
 msgid "Please enter a valid submission ID."
 msgstr "Wprowadź poprawnie ID zgłoszenia."
 
-#: mkt/developers/forms.py:1182 mkt/developers/forms.py:1194
+#: mkt/developers/forms.py:1216 mkt/developers/forms.py:1228
 msgid "Invalid submission ID or security code."
 msgstr "Niepoprawne ID zgłoszenia lub kod bezpieczeństwa."
 
@@ -2622,37 +2626,37 @@ msgstr "Wersja {0}"
 msgid "Reference Implementation"
 msgstr ""
 
-#: mkt/developers/tasks.py:477
+#: mkt/developers/tasks.py:476
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "Nie znaleziono manifestu pod tym adresem URL. Sprawdź adres i spróbuj ponownie."
 
-#: mkt/developers/tasks.py:483
+#: mkt/developers/tasks.py:482
 #, python-format
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr "Manifesty muszą być wysyłane z nagłówkiem HTTP „Content-Type: application/x-web-app-manifest+json”. Zobacz %s, by dowiedzieć się więcej."
 
-#: mkt/developers/tasks.py:492
+#: mkt/developers/tasks.py:491
 #, python-format
 msgid "Your manifest must be less than %s bytes."
 msgstr "Twoja deklaracja musi mieć mniej niż %s bajtów."
 
-#: mkt/developers/tasks.py:500
+#: mkt/developers/tasks.py:499
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "Twój plik manifestu nie został zakodowany jako poprawny UTF-8."
 
-#: mkt/developers/tasks.py:511
+#: mkt/developers/tasks.py:510
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr "Kodowanie manifestu nie pasuje do zestawu znaków podanego w nagłówku HTTP Content-Type."
 
-#: mkt/developers/tasks.py:542 mkt/developers/tasks.py:548 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:541 mkt/developers/tasks.py:547 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "i"
 
-#: mkt/developers/tasks.py:562
+#: mkt/developers/tasks.py:561
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "Dodano region {region} do Firefox Marketplace"
 
-#: mkt/developers/tasks.py:566
+#: mkt/developers/tasks.py:565
 msgid "New regions added to the Firefox Marketplace"
 msgstr "Dodano nowe regiony do Firefox Marketplace"
 
@@ -2707,83 +2711,83 @@ msgstr "Ikony muszą być kwadratowe."
 msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "Obrazki aplikacji muszą mieć wymiary przynajmniej {0}px na {1}px lub {1}px na {0}px."
 
-#: mkt/developers/views.py:156
+#: mkt/developers/views.py:157
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "Płatne aplikacje nie mogą być usuwane. Zamiast tego wyłącz ją."
 
-#: mkt/developers/views.py:166
+#: mkt/developers/views.py:167
 msgid "App deleted."
 msgstr "Aplikacja usunięta."
 
-#: mkt/developers/views.py:171
+#: mkt/developers/views.py:172
 msgid "Password was incorrect. App was not deleted."
 msgstr "Hasło jest nieprawidłowe. Aplikacja nie została usunięta."
 
-#: mkt/developers/views.py:215
+#: mkt/developers/views.py:216
 msgid "App successfully resubmitted."
 msgstr "Ponowne przesłanie aplikacji powiodło się."
 
-#: mkt/developers/views.py:248
+#: mkt/developers/views.py:249
 msgid "New version successfully added."
 msgstr "Dodano nową wersję."
 
-#: mkt/developers/views.py:296 mkt/developers/views.py:536 mkt/developers/views_payments.py:114 mkt/developers/views_payments.py:450 mkt/reviewers/views.py:679
+#: mkt/developers/views.py:297 mkt/developers/views.py:564 mkt/developers/views_payments.py:114 mkt/developers/views_payments.py:450 mkt/reviewers/views.py:679
 msgid "Changes successfully saved."
 msgstr "Zmiany zostały zapisane."
 
-#: mkt/developers/views.py:303
+#: mkt/developers/views.py:304
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr "Gratulacje, twoje zgłoszenie aplikacji jest teraz kompletne i niebawem zostanie ocenione!"
 
-#: mkt/developers/views.py:305
+#: mkt/developers/views.py:306
 msgid "Content ratings successfully saved."
 msgstr "Ocenę treści zapisano pomyślnie."
 
-#: mkt/developers/views.py:440
+#: mkt/developers/views.py:468
 msgid "Version successfully edited."
 msgstr "Wersja pomyślnie edytowana."
 
-#: mkt/developers/views.py:475
+#: mkt/developers/views.py:503
 msgid "Version successfully made active."
 msgstr "Uaktywniono wersję."
 
-#: mkt/developers/views.py:489
+#: mkt/developers/views.py:517
 msgid "Version \"{0}\" deleted."
 msgstr "Usunięto wersję „{0}”."
 
-#: mkt/developers/views.py:624
+#: mkt/developers/views.py:652
 msgid "There was an error with the submission."
 msgstr "Wystąpił błąd w trakcie wysyłania."
 
-#: mkt/developers/views.py:666
+#: mkt/developers/views.py:694
 msgid "An error occurred validating the manifest."
 msgstr "Wystąpił błąd podczas sprawdzania manifestu."
 
-#: mkt/developers/views.py:918
+#: mkt/developers/views.py:946
 msgid "There was an error uploading your preview."
 msgstr "Wystąpił błąd podczas przesyłania obrazka."
 
-#: mkt/developers/views.py:969
+#: mkt/developers/views.py:997
 msgid "Terms of service accepted."
 msgstr "Zaakceptowano warunki korzystania."
 
-#: mkt/developers/views.py:985
+#: mkt/developers/views.py:1013
 msgid "Users with the admin role cannot use the API."
 msgstr "Użytkownicy z uprawnieniami administratora nie mogą używać API."
 
-#: mkt/developers/views.py:994
+#: mkt/developers/views.py:1022
 msgid "No such API key."
 msgstr "Nie ma takiego klucza API."
 
-#: mkt/developers/views.py:1000
+#: mkt/developers/views.py:1028
 msgid "New API key generated."
 msgstr "Wygenerowano nowy klucz API."
 
-#: mkt/developers/views.py:1018
+#: mkt/developers/views.py:1046
 msgid "Created blocklisted version."
 msgstr "Utworzono zablokowaną wersję."
 
-#: mkt/developers/views.py:1020
+#: mkt/developers/views.py:1048
 msgid "App already blocklisted."
 msgstr "Aplikacja jest już zablokowana."
 
@@ -3127,7 +3131,7 @@ msgstr "Zamknij komunikat"
 #: mkt/developers/templates/developers/apps/dashboard.html:15 mkt/developers/templates/developers/apps/edit/admin.html:9 mkt/developers/templates/developers/apps/edit/basic.html:10
 #: mkt/developers/templates/developers/apps/edit/details.html:8 mkt/developers/templates/developers/apps/edit/media.html:6 mkt/developers/templates/developers/apps/edit/support.html:7
 #: mkt/developers/templates/developers/apps/edit/technical.html:8 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:12
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:16 mkt/developers/templates/developers/payments/in-app-product-row.html:31 mkt/submit/templates/submit/details.html:91
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:19 mkt/developers/templates/developers/payments/in-app-product-row.html:31 mkt/submit/templates/submit/details.html:91
 msgid "Edit"
 msgstr "Edytuj"
 
@@ -3971,7 +3975,7 @@ msgstr "Status i wersje"
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:20 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1439
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:47 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1439
 msgid "Content Ratings"
 msgstr "Oceny treści"
 
@@ -4111,27 +4115,39 @@ msgstr "Kod bezpieczeństwa"
 msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
 msgstr "Kod bezpieczeństwa można znaleźć na certyfikacie przesłanym do ciebie. Jest to zestaw liter i liczba jak  &quot;AB12CD3&quot;."
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:15 mkt/lookup/templates/lookup/helpers/website_header.html:16
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:15
+msgid "Confirm your choice of IARC Certiticate"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:17 mkt/lookup/templates/lookup/helpers/app_header.html:15 mkt/lookup/templates/lookup/helpers/website_header.html:16
 msgid "Summary"
 msgstr "Podsumowanie"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:23
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
+msgid "IARC Certificate ID"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:34
+msgid "Confirm"
+msgstr ""
+
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:50
 msgid "Rating System"
 msgstr "System oceny"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:24 mkt/developers/templates/developers/payments/premium.html:224
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:51 mkt/developers/templates/developers/payments/premium.html:224
 msgid "Region"
 msgstr "Region"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:25
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:52
 msgid "Rating Category"
 msgstr "Kategoria oceny"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
 msgid "Descriptors"
 msgstr ""
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:82
 msgid "Interactive Elements"
 msgstr "Elementy interaktywne"
 
@@ -5864,7 +5880,7 @@ msgid "Tier %s"
 msgstr "Poziom %s"
 
 #. L10n: {0} is the app name.
-#: mkt/purchase/tasks.py:28
+#: mkt/purchase/tasks.py:29
 msgid "Receipt for {0}"
 msgstr "Potwierdzenie dla: {0}"
 
@@ -8141,7 +8157,7 @@ msgstr "Ta aplikacja potrzebuje uzyskać ocenę treści."
 msgid "This app needs a payment account set up."
 msgstr "Ta aplikacja potrzebuje ustawienia rachunku płatniczego."
 
-#: mkt/webapps/tasks.py:144
+#: mkt/webapps/tasks.py:143
 msgid "Issue with your app \"{app}\" on the Firefox Marketplace"
 msgstr "Problem z aplikacją „{app}” w Firefox Marketplace"
 
