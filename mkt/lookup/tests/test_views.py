@@ -26,8 +26,6 @@ from mkt.constants.payments import (FAILED, PENDING, PROVIDER_BANGO,
 from mkt.developers.models import (ActivityLog, AddonPaymentAccount,
                                    PaymentAccount, SolitudeSeller)
 from mkt.developers.providers import get_provider
-from mkt.developers.tests.test_views_payments import (setup_payment_account,
-                                                      TEST_PACKAGE_ID)
 from mkt.lookup.views import (_transaction_summary, app_summary,
                               transaction_refund, user_delete, user_summary)
 from mkt.prices.models import AddonPaymentData, Refund
@@ -290,57 +288,6 @@ class TestAcctSummary(SummaryTest):
         eq_(add_button.attr('data-api-method'), 'POST')
         eq_(add_button.attr('data-api-url'),
             reverse('account-groups', kwargs={'pk': self.user.id}))
-
-
-class TestBangoRedirect(TestCase):
-    fixtures = fixture('user_support_staff', 'user_999', 'webapp_337141',
-                       'user_operator')
-
-    def setUp(self):
-        super(TestBangoRedirect, self).setUp()
-        self.user = UserProfile.objects.get(email='steamcube@mozilla.com')
-        self.steamcube = Webapp.objects.get(pk=337141)
-        self.otherapp = app_factory(app_slug='otherapp')
-        self.reg_user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.summary_url = reverse('lookup.user_summary', args=[self.user.pk])
-        self.login(UserProfile.objects.get(email='support-staff@mozilla.com'))
-        self.steamcube.update(premium_type=mkt.ADDON_PREMIUM)
-        self.account = setup_payment_account(self.steamcube, self.user)
-        self.portal_url = reverse(
-            'lookup.bango_portal_from_package',
-            args=[self.account.payment_account.account_id])
-        self.authentication_token = u'D0A44686-D4A3-4B2F-9BEB-5E4975E35192'
-
-    @mock.patch('mkt.developers.views_payments.client.api')
-    def test_bango_portal_redirect(self, api):
-        api.bango.login.post.return_value = {
-            'person_id': 600925,
-            'email_address': u'admin@place.com',
-            'authentication_token': self.authentication_token,
-        }
-        res = self.client.get(self.portal_url)
-        eq_(res.status_code, 302)
-        eq_(api.bango.login.post.call_args[0][0]['packageId'],
-            int(TEST_PACKAGE_ID))
-        redirect_url = res['Location']
-        assert self.authentication_token in redirect_url, redirect_url
-        assert 'emailAddress=admin%40place.com' in redirect_url, redirect_url
-
-    @mock.patch('mkt.developers.views_payments.client.api')
-    def test_bango_portal_redirect_api_error(self, api):
-        message = 'Something went wrong.'
-        error = {'__all__': [message]}
-        api.bango.login.post.side_effect = exceptions.HttpClientError(
-            content=error)
-        res = self.client.get(self.portal_url, follow=True)
-        eq_(res.redirect_chain, [('http://testserver/lookup/', 302)])
-        ok_(message in [msg.message for msg in res.context['messages']][0])
-
-    @mock.patch('mkt.developers.views_payments.client.api')
-    def test_bango_portal_redirect_role_error(self, api):
-        self.login(self.user)
-        res = self.client.get(self.portal_url)
-        eq_(res.status_code, 403)
 
 
 class SearchTestMixin(object):

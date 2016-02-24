@@ -7,9 +7,8 @@ from rest_framework.routers import SimpleRouter
 import mkt
 from lib.misc.urlconf_decorator import decorate
 from mkt.api.base import SubRouter
-from mkt.developers.api_payments import (
-    AddonPaymentAccountViewSet, PaymentAccountViewSet, PaymentCheckViewSet,
-    PaymentDebugViewSet, UpsellViewSet)
+from mkt.developers.api_payments import (PaymentCheckViewSet,
+                                         PaymentDebugViewSet)
 from mkt.developers.views import (ContentRatingList, ContentRatingsPingback,
                                   ContentRatingsPingbackV2)
 from mkt.inapp.views import InAppProductViewSet, StubInAppProductViewSet
@@ -18,31 +17,6 @@ from mkt.site.decorators import use_master
 
 from . import views
 from . import views_payments
-
-
-def provider_patterns(prefix):
-    return patterns(
-        '',
-        url('^accounts$', views_payments.payment_accounts,
-            name='mkt.developers.%s.payment_accounts' % prefix),
-
-        url('^accounts/form$', views_payments.payment_accounts_form,
-            name='mkt.developers.%s.payment_accounts_form' % prefix),
-
-        url('^accounts/add$', views_payments.payments_accounts_add,
-            name='mkt.developers.%s.add_payment_account' % prefix),
-
-        url('^accounts/(?P<id>\d+)/delete$',
-            views_payments.payments_accounts_delete,
-            name='mkt.developers.%s.delete_payment_account' % prefix),
-
-        url('^accounts/(?P<id>\d+)$',
-            views_payments.payments_account,
-            name='mkt.developers.%s.payment_account' % prefix),
-
-        url('^accounts/(?P<id>\d+)/agreement/$', views_payments.agreement,
-            name='mkt.developers.%s.agreement' % prefix)
-    )
 
 
 # These will all start with /app/<app_slug>/
@@ -79,19 +53,8 @@ app_detail_patterns = patterns(
 
     url('^payments/$', views_payments.payments,
         name='mkt.developers.apps.payments'),
-    url('^payments/disable$', views_payments.disable_payments,
-        name='mkt.developers.apps.payments.disable'),
     url('^payments/bango-portal$', views_payments.bango_portal_from_addon,
         name='mkt.developers.apps.payments.bango_portal_from_addon'),
-    # in-app payments.
-    url('^in-app-payments/$', views_payments.in_app_payments,
-        name='mkt.developers.apps.in_app_payments'),
-    url('^in-app-payments/in-app-config/$', views_payments.in_app_config,
-        name='mkt.developers.apps.in_app_config'),
-    url('^in-app-payments/in-app-products/$', views_payments.in_app_products,
-        name='mkt.developers.apps.in_app_products'),
-    url('^in-app-secret/$', views_payments.in_app_secret,
-        name='mkt.developers.apps.in_app_secret'),
     # Old stuff.
 
     url('^upload_preview$', views.upload_media, {'upload_type': 'preview'},
@@ -147,10 +110,6 @@ urlpatterns = decorate(use_master, patterns(
         name='mkt.developers.validate_app'),
     url('^upload-manifest$', views.upload_manifest,
         name='mkt.developers.upload_manifest'),
-    url('^in-app-keys/$', views_payments.in_app_keys,
-        name='mkt.developers.apps.in_app_keys'),
-    url('^in-app-key-secret/([^/]+)$', views_payments.in_app_key_secret,
-        name='mkt.developers.apps.in_app_key_secret'),
 
     # URLs for a single app.
     url('^app/%s/' % mkt.APP_SLUG, include(app_detail_patterns)),
@@ -173,19 +132,11 @@ urlpatterns = decorate(use_master, patterns(
     url('^transactions/', views.transactions,
         name='mkt.developers.transactions'),
 
-    # Bango-specific stuff.
-    url('^provider/', include(provider_patterns('provider'))),
-
     url('^test/$', views.testing, name='mkt.developers.apps.testing'),
     url('^test/receipts/', include(test_patterns)),
 ))
 
 api_payments = SimpleRouter()
-api_payments.register(r'account', PaymentAccountViewSet,
-                      base_name='payment-account')
-api_payments.register(r'upsell', UpsellViewSet, base_name='app-upsell')
-api_payments.register(r'app', AddonPaymentAccountViewSet,
-                      base_name='app-payment-account')
 api_payments.register(r'stub-in-app-products', StubInAppProductViewSet,
                       base_name='stub-in-app-products')
 

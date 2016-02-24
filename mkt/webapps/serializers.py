@@ -15,7 +15,6 @@ from mkt.api.fields import (ESTranslationSerializerField, LargeTextField,
 from mkt.constants.applications import DEVICE_TYPES
 from mkt.constants.categories import CATEGORY_CHOICES
 from mkt.constants.iarc_mappings import HUMAN_READABLE_DESCS_AND_INTERACTIVES
-from mkt.constants.payments import PROVIDER_BANGO
 from mkt.features.utils import load_feature_profile
 from mkt.prices.models import AddonPremium, Price
 from mkt.search.serializers import BaseESSerializer, es_to_datetime
@@ -98,7 +97,6 @@ class BaseAppSerializer(serializers.ModelSerializer):
     name = TranslationSerializerField(required=False)
     package_path = serializers.CharField(source='get_package_path',
                                          read_only=True)
-    payment_account = serializers.SerializerMethodField()
     payment_required = serializers.SerializerMethodField()
     premium_type = ReverseChoiceField(
         choices_dict=mkt.ADDON_PREMIUM_API, required=False)
@@ -141,7 +139,7 @@ class AppSerializer(BaseAppSerializer):
             'feature_compatibility', 'file_size', 'homepage',
             'icons', 'id', 'is_disabled', 'is_homescreen', 'is_offline',
             'is_packaged', 'last_updated', 'manifest_url', 'name',
-            'package_path', 'payment_account', 'payment_required',
+            'package_path', 'payment_required',
             'premium_type', 'previews', 'price', 'price_locale',
             'privacy_policy', 'promo_imgs', 'public_stats', 'release_notes',
             'ratings', 'regions', 'resource_uri', 'slug', 'status',
@@ -196,20 +194,6 @@ class AppSerializer(BaseAppSerializer):
             return None
         app_features = app.current_version.features.to_list()
         return request.feature_profile.has_features(app_features)
-
-    def get_payment_account(self, app):
-        # Avoid a query for payment_account if the app is not premium.
-        if not app.is_premium():
-            return None
-
-        try:
-            # This is a soon to be deprecated API property that only
-            # returns the Bango account for historic compatibility.
-            app_acct = app.payment_account(PROVIDER_BANGO)
-            return reverse('payment-account-detail',
-                           args=[app_acct.payment_account.pk])
-        except app.PayAccountDoesNotExist:
-            return None
 
     def get_payment_required(self, app):
         if app.has_premium():
@@ -617,8 +601,7 @@ class SimpleAppSerializer(AppSerializer):
         fields = list(
             set(AppSerializer.Meta.fields) - set(
                 ['absolute_url', 'app_type', 'created', 'default_locale',
-                 'package_path', 'payment_account', 'supported_locales',
-                 'upsold', 'tags']))
+                 'package_path', 'supported_locales', 'upsold', 'tags']))
 
 
 class SimpleESAppSerializer(ESAppSerializer):
