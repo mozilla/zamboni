@@ -11,7 +11,7 @@ from django.utils.translation import ugettext as _, ugettext_lazy as _lazy
 
 import mkt
 from mkt.comm.utils import create_comm_note
-from mkt.constants import APP_FEATURES, comm, FREE_PLATFORMS, PAID_PLATFORMS
+from mkt.constants import APP_FEATURES, comm
 from mkt.developers.forms import AppSupportFormMixin, verify_app_domain
 from mkt.files.models import FileUpload
 from mkt.files.utils import parse_addon
@@ -42,81 +42,6 @@ def mark_for_rereview_features_change(addon, added_features, removed_features):
         [_(u'Added {0}').format(f) for f in added_features] +
         [_(u'Removed {0}').format(f) for f in removed_features]))
     RereviewQueue.flag(addon, mkt.LOG.REREVIEW_FEATURES_CHANGED, msg)
-
-
-class DeviceTypeForm(happyforms.Form):
-    ERRORS = {
-        'both': _lazy(u'Cannot be free and paid.'),
-        'none': _lazy(u'Please select a device.'),
-    }
-
-    free_platforms = forms.MultipleChoiceField(
-        choices=FREE_PLATFORMS(), required=False)
-    paid_platforms = forms.MultipleChoiceField(
-        choices=PAID_PLATFORMS(), required=False)
-
-    def save(self, addon, is_paid):
-        data = self.cleaned_data[
-            'paid_platforms' if is_paid else 'free_platforms']
-        submitted_data = self.get_devices(t.split('-', 1)[1] for t in data)
-
-        new_types = set(dev.id for dev in submitted_data)
-        old_types = set(mkt.DEVICE_TYPES[x.id].id for x in addon.device_types)
-
-        added_devices = new_types - old_types
-        removed_devices = old_types - new_types
-
-        for d in added_devices:
-            addon.addondevicetype_set.create(device_type=d)
-        for d in removed_devices:
-            addon.addondevicetype_set.filter(device_type=d).delete()
-
-        # Send app to re-review queue if public and new devices are added.
-        if added_devices and addon.status in mkt.WEBAPPS_APPROVED_STATUSES:
-            mark_for_rereview(addon, added_devices, removed_devices)
-
-    def _add_error(self, msg):
-        self._errors['free_platforms'] = self._errors['paid_platforms'] = (
-            self.ERRORS[msg])
-
-    def _get_combined(self):
-        devices = (self.cleaned_data.get('free_platforms', []) +
-                   self.cleaned_data.get('paid_platforms', []))
-        return set(d.split('-', 1)[1] for d in devices)
-
-    def clean(self):
-        data = self.cleaned_data
-        paid = data.get('paid_platforms', [])
-        free = data.get('free_platforms', [])
-
-        # Check that they didn't select both.
-        if free and paid:
-            self._add_error('both')
-            return data
-
-        # Check that they selected one.
-        if not free and not paid:
-            self._add_error('none')
-            return data
-
-        return super(DeviceTypeForm, self).clean()
-
-    def get_devices(self, source=None):
-        """Returns a device based on the requested free or paid."""
-        if source is None:
-            source = self._get_combined()
-        return map(mkt.DEVICE_LOOKUP.get, source)
-
-    def is_paid(self):
-        return bool(self.cleaned_data.get('paid_platforms', False))
-
-    def get_paid(self):
-        """Returns the premium type. Should not be used if the form is used to
-        modify an existing app.
-
-        """
-
-        return mkt.ADDON_PREMIUM if self.is_paid() else mkt.ADDON_FREE
 
 
 class DevAgreementForm(happyforms.Form):
@@ -217,11 +142,10 @@ class NewWebappVersionForm(happyforms.Form):
         return self._is_packaged
 
 
-class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
-    ERRORS = DeviceTypeForm.ERRORS.copy()
-    ERRORS['user'] = _lazy('User submitting validation does not match.')
-    ERRORS['homescreen'] = _lazy('Homescreens can only be submitted for '
-                                 'Firefox OS.')
+class NewWebappForm(NewWebappVersionForm):
+    ERRORS = {
+        'user': _lazy('User submitting validation does not match.')
+    }
     upload = forms.ModelChoiceField(
         widget=forms.HiddenInput,
         queryset=FileUpload.objects.filter(valid=True),
@@ -232,13 +156,6 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super(NewWebappForm, self).__init__(*args, **kwargs)
-        if 'paid_platforms' in self.fields:
-            self.fields['paid_platforms'].choices = PAID_PLATFORMS(
-                self.request)
-
-    def _add_error(self, msg):
-        self._errors['free_platforms'] = self._errors['paid_platforms'] = (
-            self.ERRORS[msg])
 
     def clean(self):
         data = super(NewWebappForm, self).clean()
@@ -248,10 +165,7 @@ class NewWebappForm(DeviceTypeForm, NewWebappVersionForm):
         upload = data.get('upload')
         if self.request and upload:
             if not (upload.user and upload.user.pk == self.request.user.pk):
-                self._add_error('user')
-
-            if self.is_homescreen and self.get_devices() != [mkt.DEVICE_GAIA]:
-                self._add_error('homescreen')
+                self._errors['upload'] = self.ERRORS['user']
         return data
 
     def is_packaged(self):

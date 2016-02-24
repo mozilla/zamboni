@@ -22,10 +22,16 @@
       <div class="notification-box">
         <p>
           {% if addon.has_incomplete_status() %}
+          {% if addon.addondevicetype_set.count() == 0 %}
+          {% trans %}
+            You must <a href="payments">enable your app for Firefox OS</a> before it can be reviewed or published.
+          {% endtrans %}
+          {% else %}
             {# L10n: `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings'). #}
             {% trans next_url=next_step['url'], next_step_name=next_step['name'] %}
               You must set up <a href="{{ next_url }}">{{ next_step_name }}</a> before your app can be reviewed or published.
             {% endtrans %}
+          {% endif %}
           {% else %}
             {# Pre-IARC public/pending apps. #}
             {# L10n: `next_step_name` is a plural noun, the title of the page of the next step of the submission process (e.g. 'Payments' or 'Content Ratings'). #}

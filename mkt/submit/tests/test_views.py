@@ -359,21 +359,10 @@ class TestCreateWebApp(BaseWebAppTest):
         eq_(len(files), 1)
         eq_(files[0].status, mkt.STATUS_PENDING)
 
-    def test_set_platform(self):
-        app = self.post_addon(
-            {'free_platforms': ['free-android-tablet', 'free-desktop']})
-        self.assertSetEqual(app.device_types,
-                            [mkt.DEVICE_TABLET, mkt.DEVICE_DESKTOP])
-
     def test_free(self):
         app = self.post_addon({'free_platforms': ['free-firefoxos']})
         self.assertSetEqual(app.device_types, [mkt.DEVICE_GAIA])
         eq_(app.premium_type, mkt.ADDON_FREE)
-
-    def test_premium(self):
-        app = self.post_addon({'paid_platforms': ['paid-firefoxos']})
-        self.assertSetEqual(app.device_types, [mkt.DEVICE_GAIA])
-        eq_(app.premium_type, mkt.ADDON_PREMIUM)
 
     def test_supported_locales(self):
         addon = self.post_addon()

@@ -25,19 +25,8 @@
     {{ progress(request, addon=None, step=step) }}
   </header>
 
-  <section id="submit-payment-type" class="island tabbable">
-    <div class="free tab active">
-      <h2 id="free-tab-header"><a href="#">{{ _('Free') }}</a></h2>
-      <div class="error">{{ form.errors.free_platforms }}</div>
-      {%- for item in form.fields['free_platforms'].choices -%}
-        {{ button(form, item) }}
-      {%- endfor %}
-    </div>
 
-  </section>
-
-  <section id="upload-file" class="island tabbable spacer"
-           data-packaged-platforms="{{ 'android' if waffle.flag('android-packaged') }} {{ 'desktop' if waffle.flag('desktop-packaged') }}">
+  <section id="upload-file" class="island tabbable spacer">
     <div class="hosted tab active">
       <h2 id="hosted-tab-header"><a href="#">{{ _('Hosted') }}</a></h2>
       <h3>{{ _("Submit your app manifest URL") }}</h3>
@@ -81,11 +70,10 @@
       {{ csrf() }}
       <!--
       {{ form.non_field_errors() }}
-      {{ form.upload.errors }}
       -->
+      {{ form.upload.errors }}
       <div class="hidden">
         {{ form.upload }}
-        {{ form.free_platforms }}
         {{ form.packaged }}
       </div>
 

@@ -1,4 +1,4 @@
-from mkt.constants import FREE_PLATFORMS
+from mkt.constants.applications import DEVICE_GAIA
 from django.core.exceptions import ValidationError
 
 import commonware
@@ -10,7 +10,6 @@ import mkt
 from mkt.api.forms import SluggableModelChoiceField
 from mkt.developers.models import AddonPaymentAccount
 from mkt.prices.models import AddonPremium
-from mkt.submit.forms import DeviceTypeForm
 from mkt.webapps.models import Webapp
 
 
@@ -31,7 +30,7 @@ def _restore_app_status(app, save=True):
         app.save()
 
 
-class PremiumForm(DeviceTypeForm, happyforms.Form):
+class PremiumForm(happyforms.Form):
     """
     The premium details for an addon, which is unfortunately
     distributed across a few models.
@@ -54,21 +53,8 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
         super(PremiumForm, self).__init__(*args, **kw)
 
-        self.fields['free_platforms'].choices = FREE_PLATFORMS()
-
-        # Get the list of supported devices and put them in the data.
-        self.device_data = {}
-        supported_devices = [mkt.REVERSE_DEVICE_LOOKUP[dev.id] for dev in
-                             self.addon.device_types]
         self.initial.setdefault('free_platforms', [])
         self.initial.setdefault('paid_platforms', [])
-
-        for platform in set(x[0].split('-', 1)[1] for x in FREE_PLATFORMS()):
-            supported = platform in supported_devices
-            self.device_data['free-%s' % platform] = supported
-
-            if supported:
-                self.initial['free_platforms'].append('free-%s' % platform)
 
     def is_paid(self):
         is_paid = (self.addon.premium_type in mkt.ADDON_PREMIUMS or
@@ -114,10 +100,8 @@ class PremiumForm(DeviceTypeForm, happyforms.Form):
 
             is_paid = False
 
-        else:
-            # Save the device compatibility information when we're not
-            # toggling.
-            super(PremiumForm, self).save(self.addon, is_paid)
+        elif 'firefoxos' in self.data['free_platforms']:
+            self.addon.addondevicetype_set.create(device_type=DEVICE_GAIA.id)
 
         log.info('Saving app payment changes for addon %s.' % self.addon.pk)
         self.addon.save()

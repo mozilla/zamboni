@@ -1,35 +1,13 @@
 {% extends 'developers/base_impala.html' %}
 {% from 'developers/includes/macros.html' import empty_unless, required, some_html_tip, tip %}
 
-{% set title = _('Compatibility & Payments') %}
+{% set title = _('Compatibility') %}
 {% block title %}{{ hub_page_title(title, addon) }}{% endblock %}
 
 {% set can_edit = check_addon_ownership(request, addon) %}
 {% block bodyclass %}
   {{ super() }}{% if not can_edit %} no-edit{% endif %}
 {% endblock %}
-
-{%- macro button(form, item, can_change=True) -%}
-  {% set tag = 'a' if can_change else 'span' %}
-  <div class="wrapper">
-    <{{ tag }}
-     {{ {'href': '#',
-         'id': item[0],
-         'class': 'island choice' +
-                  (' selected' if form.device_data[item[0]] else '') +
-                  (' unclickable' if not can_change else ''),
-         'data-value': item[0],
-         'title': PLATFORMS_NAMES[item[0]]
-        }|xmlattr }}>
-      <h3>{{ item[1] }}</h3>
-      {%- if can_change -%}
-        <div class="listing-footer">
-          <input type="checkbox" {{ 'checked' if form.device_data[item[0]] }}>
-        </div>
-      {%- endif -%}
-    </{{ tag }}>
-  </div>
-{%- endmacro %}
 
 {% block content %}
   <header>
@@ -40,49 +18,48 @@
     <form action="{{ addon.get_dev_url('payments') }}" method="post">
       {{ csrf() }}
       <input type="hidden" name="toggle-paid" value="" />
-
       <div class="hidden">
-        {{ form.free_platforms }}
+        <select multiple="multiple" id="id_free_platforms" name="free_platforms">
+          <option value="free-firefoxos">Firefox OS</option>
+        </select>
       </div>
-
       {% if not can_edit %}
         <div class="notification-box">
           <p>{{ _('Only the app owner(s) can edit this page.') }}</p>
         </div>
       {% endif %}
-
+      {% if is_paid or not is_fxos %}
       <section id="submit-payment-type">
         <h2>{{ _('App Compatibility') }}</h2>
-
         <div class="island hasappendix tabbable">
           <div class="free tab active">
-            <h2 id="free-tab-header"><a href="#">{{ _('Free') }}</a></h2>
-            <div class="error">{{ form.errors.free_platforms }}</div>
-            {% set free_platforms = form.fields['free_platforms'].choices %}
-            {% set has_multiple_free_platforms = free_platforms|length > 1 %}
-            {%- for item in free_platforms -%}
-              {{ button(form, item, can_change=has_multiple_free_platforms and not is_paid) }}
-            {%- endfor %}
             {% if is_paid %}
               <div id="free-tab-save" class="update-payment-type">
                 <button data-type="free">{{ _('Change to Free') }}</button>
               </div>
             {% else %}
+              <div class="wrapper">
+                <a
+                 {{ {'href': '#',
+                     'id': 'free-firefoxos',
+                     'class': 'island choice',
+                     'data-value': 'free-firefoxos',
+                     'title': PLATFORMS_NAMES['free-firefoxos'],
+                    }|xmlattr }}>
+                  <h3>Firefox OS</h3>
+                  <div class="listing-footer">
+                    <input type="checkbox">
+                  </div>
+                </a>
+              </div>
               <div id="compat-save-button" class="hidden update-payment-type">
                 <button>{{ _('Save Changes') }}</button>
               </div>
             {% endif %}
           </div>
-          <div class="paid tab">
-            <h2 id="paid-tab-header">
-                <a href="#"
-                     class="tooltip disabled"
-                     title="{{ _('Marketplace no longer supports paid apps.') }}"
-                  >{{ _('Paid / In-app') }}</a>
-            </h2>
-          </div>
         </div>
       </section>
+      {% endif %}
 
 
       {# Non-paid app region lists #}

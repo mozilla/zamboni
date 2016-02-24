@@ -10,6 +10,7 @@ from django.shortcuts import redirect
 from django.utils.translation import ugettext as _
 from lib.pay_server import client
 from mkt.constants import PLATFORMS_NAMES
+from mkt.constants.applications import DEVICE_GAIA
 from mkt.constants.payments import PROVIDER_BANGO
 from mkt.developers import forms, forms_payments
 from mkt.developers.decorators import dev_required
@@ -43,6 +44,9 @@ def payments(request, addon_id, addon, webapp=False):
                    'is_paid': (addon.premium_type in mkt.ADDON_PREMIUMS or
                                addon.premium_type == mkt.ADDON_FREE_INAPP),
                    'form': premium_form,
+                   'is_fxos': DEVICE_GAIA.id in (
+                       addon.addondevicetype_set.values_list('device_type',
+                                                             flat=True)),
                    'PLATFORMS_NAMES': PLATFORMS_NAMES})
 
 
