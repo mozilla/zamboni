@@ -18,7 +18,7 @@ from mkt.site.fixtures import fixture
 from mkt.site.helpers import absolutify
 from mkt.site.tests import TestCase
 from mkt.site.utils import app_factory
-from mkt.webapps.models import ContentRating, Geodata
+from mkt.webapps.models import ContentRating, Geodata, Webapp
 from mkt.users.models import UserProfile
 
 
@@ -403,7 +403,10 @@ class TestContentRatingPingbackV2(RestOAuth):
              'DeveloperEmail': self.profile.email,
              'Publish': False,
              'ProductName': self.app.name})
-        self.app.reload()
+        # Don't use .reload(), it doesn't clear cached one-to-one relations.
+        self.app = Webapp.objects.get(pk=self.app.pk)
+        with self.assertRaises(IARCRequest.DoesNotExist):
+            self.app.iarc_request
         eq_(self.app.status, mkt.STATUS_PENDING)
         eq_(self.app.is_fully_complete(), True)
         eq_(uuid.UUID(self.app.iarc_cert.cert_id), uuid.UUID(data['CertID']))
