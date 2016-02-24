@@ -1246,6 +1246,11 @@ class ContentRatingsPingbackV2(CORSMixin, UpdateModelMixin, GenericAPIView):
             # not care about our serialized data.
             response.data = _iarc_app_data(self.object)
             response.data['StatusCode'] = 'Success'
+            # Delete IARCRequest object now that we've been successful.
+            try:
+                self.object.iarc_request.delete()
+            except IARCRequest.DoesNotExist:
+                pass
         else:
             response.data['StatusCode'] = 'InvalidRequest'
         return super(ContentRatingsPingbackV2, self).finalize_response(
