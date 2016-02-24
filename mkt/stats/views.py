@@ -112,7 +112,6 @@ APP_STATS = {
     },
     'average_rating': {
         'metric': 'apps_average_rating',
-        'coerce': {'count': lambda c: c or 0.0},
     },
     'abuse_reports': {
         'metric': 'apps_abuse_reports',

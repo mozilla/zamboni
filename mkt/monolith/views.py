@@ -27,7 +27,7 @@ STATS = {
         'qs': Review.objects
         .filter(editorreview=0)
         .values('addon')
-        .annotate(count=Count('addon')),
+        .annotate(count=Count('addon')).order_by(),
         'type': 'slice',
         'field_map': {
             'count': 'count',
@@ -37,7 +37,7 @@ STATS = {
         'qs': Review.objects
         .filter(editorreview=0)
         .values('addon')
-        .annotate(avg=Avg('rating')),
+        .annotate(avg=Avg('rating')).order_by(),
         'type': 'total',
         'field_map': {
             'count': 'avg',
@@ -46,7 +46,7 @@ STATS = {
     'apps_abuse_reports': {
         'qs': AbuseReport.objects
         .values('addon')
-        .annotate(count=Count('addon')),
+        .annotate(count=Count('addon')).order_by(),
         'type': 'slice',
         'field_map': {
             'count': 'count',
