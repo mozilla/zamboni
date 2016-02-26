@@ -251,6 +251,7 @@ IARC_ALLOW_CERT_REUSE = True
 # IARC V2
 IARC_V2_STORE_ID = env('IARC_V2_STORE_ID', default=None)
 IARC_V2_STORE_PASSWORD = env('IARC_V2_STORE_PASSWORD', default=None)
+IARC_V2_SERVICE_ENDPOINT = env('IARC_V2_SERVICE_ENDPOINT', default=None)
 IARC_V2_SUBMISSION_ENDPOINT = 'https://iarcdemo.azurewebsites.net/Hosted/Index'  # noqa
 
 # We'll use zippy, the reference implementation on -dev.
