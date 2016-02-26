@@ -150,9 +150,9 @@
       "RatingAuthorityID": 6,
       "RatingAuthorityShortText": "Generic",
       "RatingLogicVersion": "6.3",
-      "AgeRatingID": 55,
-      "AgeRatingText": "!",
-      "AgeRatingShortText": "EXC",
+      "AgeRatingID": 8,
+      "AgeRatingShortText": "12",
+      "AgeRatingText": "12",
       "NumericLevel": 3,
       "DateCreated": "2015-09-03T18:00:36.747Z",
       "DescriptorList": [
