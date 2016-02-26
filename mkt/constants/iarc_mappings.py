@@ -40,7 +40,15 @@ RATINGS = {
         '16+': ratingsbodies.GENERIC_16,
         '18+': ratingsbodies.GENERIC_18,
         'RP': ratingsbodies.GENERIC_RP,
-        '!': ratingsbodies.GENERIC_12,
+
+        # Generic AgeRatingText seem to be different from PEGI for some reason,
+        # not including the +, let's have both variants.
+        '3': ratingsbodies.GENERIC_3,
+        '7': ratingsbodies.GENERIC_7,
+        '12': ratingsbodies.GENERIC_12,
+        '16': ratingsbodies.GENERIC_16,
+        '18': ratingsbodies.GENERIC_18,
+
         'default': ratingsbodies.GENERIC_3,
     },
     ratingsbodies.PEGI.id: {
