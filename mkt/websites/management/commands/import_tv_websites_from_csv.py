@@ -135,7 +135,7 @@ class Command(BaseCommand):
 
     def set_featured(self, instance, row):
         featuredNum = row.get(
-            "BD Featured 1-q7 \n"
+            "BD Featured 1-7 \n"
             "(# featured apps 1-7; the remainder, leave blank)")
         if featuredNum:
             instance.update(tv_featured=abs(int(featuredNum) - 8))
