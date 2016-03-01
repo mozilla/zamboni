@@ -80,6 +80,8 @@ def get_rating_changes(date=None):
 
     start_date = date or datetime.datetime.utcnow()
     end_date = start_date - datetime.timedelta(days=1)
+    log.info('Calling IARC GetRatingChanges from %s to %s',
+             start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
     data = _iarc_request('GetRatingChanges', {
         'StartDate': start_date.strftime('%Y-%m-%d'),
         'EndDate': end_date.strftime('%Y-%m-%d'),
@@ -118,6 +120,8 @@ def search_and_attach_cert(app, cert_id):
 
 def search_cert(app, cert_id):
     """Ask IARC for information about a cert."""
+    log.info('Calling IARC SearchCert for app %s, cert %s',
+             app.pk, unicode(UUID(cert_id)))
     data = _iarc_request('SearchCerts', {'CertID': unicode(UUID(cert_id))})
     # We don't care about MatchFound, serializer won't find the right fields
     # if no match is found.
@@ -129,6 +133,8 @@ def _attach_to_cert(app, cert_id):
     """Tell IARC to attach a cert to an app."""
     data = _iarc_app_data(app)
     data['CertID'] = unicode(UUID(cert_id))
+    log.info('Calling IARC AttachToCert for app %s, cert %s',
+             app.pk, data['CertID'])
     return _iarc_request('AttachToCert', data)
 
 
@@ -143,7 +149,7 @@ def publish(app_id):
         return
     try:
         cert_id = app.iarc_cert.cert_id
-        data = _update_certs(cert_id, 'Publish')
+        data = _update_certs(app_id, cert_id, 'Publish')
     except IARCCert.DoesNotExist:
         data = None
     return data
@@ -160,7 +166,7 @@ def unpublish(app_id):
         return
     try:
         cert_id = app.iarc_cert.cert_id
-        data = _update_certs(cert_id, 'RemoveProduct')
+        data = _update_certs(app_id, cert_id, 'RemoveProduct')
     except IARCCert.DoesNotExist:
         data = None
     return data
@@ -176,7 +182,7 @@ def refresh(app):
 # changes.
 
 
-def _update_certs(cert_id, action):
+def _update_certs(app_id, cert_id, action):
     """
     UpdateCerts to tell IARC when we publish or unpublish a product.
     Endpoint can handle batch updates, but we only need one at a time.
@@ -198,4 +204,6 @@ def _update_certs(cert_id, action):
             'Action': action,
         }]
     }
+    log.info('Calling IARC UpdateCert %s for app %s, cert %s',
+             action, app_id, data['UpdateList'][0]['CertID'])
     return _iarc_request('UpdateCerts', data)
