@@ -36,7 +36,11 @@ def _iarc_request(endpoint_name, data):
     url = urljoin(settings.IARC_V2_SERVICE_ENDPOINT, endpoint_name)
     headers = _iarc_headers()
     response = requests.post(url, headers=headers, json=data)
-    return response.json()
+    try:
+        value = response.json()
+    except ValueError:
+        value = {}
+    return value
 
 
 def _iarc_app_data(app):

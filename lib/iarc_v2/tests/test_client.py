@@ -198,6 +198,12 @@ class TestSearchCertsAndAttachToCert(TestCase):
                  'ProductName': unicode(self.app.name)})
 
     @responses.activate
+    def test_search_cert_error(self):
+        setup_mock_response('SearchCerts', data='<!DOCTYPE html>error')
+        serializer = search_cert(mock.Mock(), unicode(uuid4()))
+        eq_(serializer.is_valid(), False)
+
+    @responses.activate
     def test_search_cert_uuid_hex_string_w_separators(self):
         setup_mock_response('SearchCerts')
         fake_cert_id = unicode(uuid4())
