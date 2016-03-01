@@ -138,7 +138,10 @@ class Command(BaseCommand):
             "BD Featured 1-7 \n"
             "(# featured apps 1-7; the remainder, leave blank)")
         if featuredNum:
-            instance.update(tv_featured=abs(int(featuredNum) - 8))
+            featuredNum = abs(int(featuredNum) - 8)
+        else:
+            featuredNum = None
+        instance.update(tv_featured=featuredNum)
 
     def parse(self, filename):
         try:
