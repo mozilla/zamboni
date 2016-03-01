@@ -36,8 +36,7 @@ class TestNewWebappForm(mkt.site.tests.TestCase):
                                     'upload': self.file.uuid},
                                    request=self.request)
         assert not form.is_valid()
-        eq_(form.ERRORS['user'], form.errors['free_platforms'])
-        eq_(form.ERRORS['user'], form.errors['paid_platforms'])
+        eq_(form.ERRORS['user'], form.errors['upload'])
 
     def test_correct_user(self):
         form = forms.NewWebappForm({'free_platforms': ['free-firefoxos'],
@@ -51,58 +50,7 @@ class TestNewWebappForm(mkt.site.tests.TestCase):
         form = forms.NewWebappForm({'upload': self.file.uuid},
                                    request=self.request)
         assert not form.is_valid()
-        eq_(form.ERRORS['user'], form.errors['free_platforms'])
-        eq_(form.ERRORS['user'], form.errors['paid_platforms'])
-
-    def test_not_free_or_paid(self):
-        form = forms.NewWebappForm({})
-        assert not form.is_valid()
-        eq_(form.ERRORS['none'], form.errors['free_platforms'])
-        eq_(form.ERRORS['none'], form.errors['paid_platforms'])
-
-    def test_paid(self):
-        form = forms.NewWebappForm({'paid_platforms': ['paid-firefoxos'],
-                                    'upload': self.file.uuid},
-                                   request=self.request)
-        assert form.is_valid()
-        eq_(form.get_paid(), mkt.ADDON_PREMIUM)
-
-    def test_free(self):
-        form = forms.NewWebappForm({'free_platforms': ['free-firefoxos'],
-                                    'upload': self.file.uuid})
-        assert form.is_valid()
-        eq_(form.get_paid(), mkt.ADDON_FREE)
-
-    def test_platform(self):
-        mappings = (
-            ({'free_platforms': ['free-firefoxos']}, [mkt.DEVICE_GAIA]),
-            ({'paid_platforms': ['paid-firefoxos']}, [mkt.DEVICE_GAIA]),
-            ({'free_platforms': ['free-firefoxos',
-                                 'free-android-mobile']},
-             [mkt.DEVICE_GAIA, mkt.DEVICE_MOBILE]),
-            ({'free_platforms': ['free-android-mobile',
-                                 'free-android-tablet']},
-             [mkt.DEVICE_MOBILE, mkt.DEVICE_TABLET]),
-        )
-        for data, res in mappings:
-            data['upload'] = self.file.uuid
-            form = forms.NewWebappForm(data)
-            assert form.is_valid(), form.errors
-            self.assertSetEqual(res, form.get_devices())
-
-    def test_both(self):
-        form = forms.NewWebappForm({'paid_platforms': ['paid-firefoxos'],
-                                    'free_platforms': ['free-firefoxos']},
-                                   request=self.request)
-        assert not form.is_valid()
-        eq_(form.ERRORS['both'], form.errors['free_platforms'])
-        eq_(form.ERRORS['both'], form.errors['paid_platforms'])
-
-    def test_multiple(self):
-        form = forms.NewWebappForm({'free_platforms': ['free-firefoxos',
-                                                       'free-desktop'],
-                                    'upload': self.file.uuid})
-        assert form.is_valid()
+        eq_(form.ERRORS['user'], form.errors['upload'])
 
     def test_not_packaged(self):
         form = forms.NewWebappForm({'free_platforms': ['free-firefoxos'],
@@ -123,27 +71,6 @@ class TestNewWebappForm(mkt.site.tests.TestCase):
                                        request=self.request)
             assert form.is_valid(), form.errors
             assert form.is_packaged()
-
-    @mock.patch('mkt.submit.forms.parse_addon',
-                lambda *args: {'version': None, 'role': 'homescreen'})
-    def test_homescreen_device(self):
-        form = forms.NewWebappForm({'upload': self.file.uuid,
-                                    'free_platforms': ['free-firefoxos'],
-                                    'packaged': True},
-                                   request=self.request)
-        assert form.is_valid()
-
-    @mock.patch('mkt.submit.forms.parse_addon',
-                lambda *args: {'version': None, 'role': 'homescreen'})
-    def test_homescreen_wrong_device(self):
-        form = forms.NewWebappForm({'upload': self.file.uuid,
-                                    'free_platforms': ['free-firefoxos',
-                                                       'free-desktop'],
-                                    'packaged': True},
-                                   request=self.request)
-        assert not form.is_valid()
-        eq_(form.ERRORS['homescreen'], form.errors['free_platforms'])
-        eq_(form.ERRORS['homescreen'], form.errors['paid_platforms'])
 
 
 class TestNewWebappVersionForm(mkt.site.tests.TestCase):

@@ -15,7 +15,6 @@ from lib.crypto import generate_key
 from lib.pay_server import client as pay_client
 from mkt.constants.payments import ACCESS_PURCHASE
 from mkt.constants.payments import PROVIDER_BANGO, PROVIDER_REFERENCE
-from mkt.developers import forms_payments
 from mkt.developers.models import PaymentAccount, SolitudeSeller
 from mkt.developers.utils import uri_to_pk
 from mkt.webpay.utils import make_external_id
@@ -161,9 +160,6 @@ class Bango(Provider):
     client = pay_client.api.bango
     # This is at the new provider API.
     client_provider = pay_client.api.provider.bango
-    forms = {
-        'account': forms_payments.BangoPaymentAccountForm,
-    }
     full = 'Bango'
     name = 'bango'
     package_values = (
@@ -278,9 +274,6 @@ class Reference(Provider):
     just inherit from this with minor changes.
     """
     client = pay_client.api.provider.reference
-    forms = {
-        'account': forms_payments.ReferenceAccountForm,
-    }
     full = unicode(_(u'Reference Implementation'))
     name = 'reference'
     provider = PROVIDER_REFERENCE

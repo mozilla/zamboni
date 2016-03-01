@@ -23,7 +23,7 @@ from mkt.api.base import CORSMixin, MarketplaceView
 from mkt.api.forms import NewPackagedForm, PreviewJSONForm
 from mkt.api.permissions import (AllowAppOwner, AllowRelatedAppOwner, AnyOf,
                                  GroupPermission)
-from mkt.constants import PLATFORMS_NAMES
+from mkt.constants.applications import DEVICE_GAIA
 from mkt.developers import tasks
 from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (AppFormMedia, CategoryForm, NewManifestForm,
@@ -111,15 +111,8 @@ def manifest(request):
             escalate_prerelease_permissions(
                 addon, validation, addon.latest_version)
 
-        # Set the device type.
-        for device in form.get_devices():
-            addon.addondevicetype_set.get_or_create(
-                device_type=device.id)
-
-        # Set the premium type, only bother if it's not free.
-        premium = form.get_paid()
-        if premium:
-            addon.update(premium_type=premium)
+        addon.addondevicetype_set.get_or_create(
+            device_type=DEVICE_GAIA.id)
 
         if addon.has_icon_in_manifest(file_obj):
             # Fetch the icon, do polling.
@@ -142,7 +135,7 @@ def manifest(request):
 
     return render(request, 'submit/manifest.html',
                   {'step': 'manifest', 'features_form': features_form,
-                   'form': form, 'PLATFORMS_NAMES': PLATFORMS_NAMES})
+                   'form': form})
 
 
 @dev_required
