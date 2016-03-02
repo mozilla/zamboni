@@ -50,10 +50,6 @@
               <a href="{{ addon.get_dev_url('payments') }}">{{ _('Set up Payment Account') }}</a>
             {% endif %}
           </li>
-          <li class="item-devices">
-            {{ device_list(addon) }}
-            <a href="{{ addon.get_dev_url('payments') }}#edit-app-basic">{{ _('Change Devices') }}</a>
-          </li>
 
           {% if not addon.is_rated() and addon.is_public() or addon.is_approved() %}
             <li class="ratings">
