@@ -78,8 +78,9 @@ def get_rating_changes(date=None):
     """
     from mkt.webapps.models import IARCCert
 
-    start_date = date or datetime.datetime.utcnow()
-    end_date = start_date - datetime.timedelta(days=1)
+    # EndDate should be the most recent one.
+    end_date = date or datetime.datetime.utcnow()
+    start_date = end_date - datetime.timedelta(days=1)
     log.info('Calling IARC GetRatingChanges from %s to %s',
              start_date.strftime('%Y-%m-%d'), end_date.strftime('%Y-%m-%d'))
     data = _iarc_request('GetRatingChanges', {
