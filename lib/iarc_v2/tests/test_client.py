@@ -49,9 +49,10 @@ class TestGetRatingChanges(TestCase):
     @responses.activate
     def test_with_date(self):
         setup_mock_response('GetRatingChanges')
-        expected_start_date = self.days_ago(2)
-        expected_end_date = expected_start_date - datetime.timedelta(days=1)
-        get_rating_changes(date=expected_start_date)
+        expected_end_date = (datetime.datetime.utcnow() -
+                             datetime.timedelta(days=2))
+        expected_start_date = expected_end_date - datetime.timedelta(days=1)
+        get_rating_changes(date=expected_end_date)
         eq_(len(responses.calls), 1)
         eq_(responses.calls[0].request.headers.get('StorePassword'),
             settings.IARC_V2_STORE_PASSWORD)
@@ -76,8 +77,8 @@ class TestGetRatingChanges(TestCase):
         eq_(RatingDescriptors.objects.filter(addon=app1).count(), 0)
         RatingDescriptors.objects.create(addon=app2, has_esrb_lang=True)
         eq_(app2.rating_descriptors.to_keys(), ['has_esrb_lang'])
-        expected_start_date = datetime.datetime.utcnow()
-        expected_end_date = expected_start_date - datetime.timedelta(days=1)
+        expected_end_date = datetime.datetime.utcnow()
+        expected_start_date = expected_end_date - datetime.timedelta(days=1)
 
         res = get_rating_changes()
 
