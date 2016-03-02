@@ -34,7 +34,7 @@ curling==0.5.1
 # defusedxml is required by djangorestframework
 defusedxml==0.4.1
 dennis==0.7
-Django==1.8.7
+Django==1.8.10
 dj-database-url==0.3.0
 django-aesfield==0.2
 django-cache-nuggets==0.1.1
