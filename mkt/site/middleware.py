@@ -204,7 +204,7 @@ class DeviceDetectionMiddleware(object):
 
 class CacheHeadersMiddleware(object):
     """
-    Unlike the `django.middleware.cache` middlewares, this middleware
+      Unlike the `django.middleware.cache` middlewares, this middleware
     simply sets the `Cache-Control`, `ETag`, `Expires`, and `Last-Modified`
     headers and doesn't do any caching of the response object.
 
@@ -309,3 +309,10 @@ class CommonMiddleware(common.CommonMiddleware):
     def process_request(self, request):
         with safe_query_string(request):
             return super(CommonMiddleware, self).process_request(request)
+
+
+class NoFrameMiddleware(object):
+    def process_response(self, request, response):
+        if request.path_info.startswith('/developers'):
+            response['X-Frame-Options'] = 'SAMEORIGIN'
+        return response

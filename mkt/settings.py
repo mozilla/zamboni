@@ -204,6 +204,7 @@ MIDDLEWARE_CLASSES = (
     'mkt.api.middleware.CORSMiddleware',
     'mkt.api.middleware.APIPinningMiddleware',
     'mkt.api.middleware.APIFilterMiddleware',
+    'mkt.site.middleware.NoFrameMiddleware',
     # Middleware that redirects needs to go after all the stuff, because if
     # a middleware causes a redirect, then other middleware stops processing.
     'mkt.site.middleware.RemoveSlashMiddleware',
