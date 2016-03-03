@@ -437,4 +437,12 @@ REVERSE_INTERACTIVES_V2 = {v: k for k, v in INTERACTIVES_V2.items()}
 # the V1 descriptors and interactives, since V1 used text instead of constants.
 # When we phase out v1, we'll just add a dict of strings here instead.
 HUMAN_READABLE_DESCS_AND_INTERACTIVES = dict(
-    REVERSE_DESCS.items() + REVERSE_INTERACTIVES.items())
+    REVERSE_DESCS.items() + REVERSE_INTERACTIVES.items() + [
+        # These descriptors translations changed in V2.
+        ('has_usk_sex_violence_ref', u'Verweise auf sexuelle Gewalt'),
+        ('has_usk_lang', u'Derbe Sprache'),
+        ('has_usk_some_swearing',
+            u'Gelegentliche Verwendung von Kraftausdrücken'),
+        ('has_usk_horror', u'Schock- und/oder Horrorelemente'),
+    ]
+)
