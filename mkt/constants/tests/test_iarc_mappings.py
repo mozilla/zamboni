@@ -19,4 +19,4 @@ class TestIARCMappings(mkt.site.tests.TestCase):
         for key in REVERSE_INTERACTIVES_V2:
             ok_(key in HUMAN_READABLE_DESCS_AND_INTERACTIVES)
         for value in HUMAN_READABLE_DESCS_AND_INTERACTIVES.values():
-            ok_('__proxy__' not in unicode(value))
+            ok_(value)
