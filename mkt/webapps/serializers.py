@@ -256,7 +256,7 @@ class AppSerializer(BaseAppSerializer):
         if request and request.user.is_authenticated():
             user = request.user
             return {
-                'developed': app.addonuser_set.filter(
+                'developed': user.is_staff or app.addonuser_set.filter(
                     user=user, role=mkt.AUTHOR_ROLE_OWNER).exists(),
                 'installed': app.has_installed(user),
                 'purchased': app.pk in user.purchase_ids(),
