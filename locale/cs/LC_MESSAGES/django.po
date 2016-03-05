@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 12:50-0800\n"
-"PO-Revision-Date: 2016-02-20 13:21+0000\n"
+"PO-Revision-Date: 2016-03-05 14:44+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -2634,6 +2634,8 @@ msgid ""
 "This Certificate ID is not recognized by IARC, or is already attached to "
 "another app in the Firefox Marketplace."
 msgstr ""
+"ID certifikátu nebylo rozpoznáno IARC nebo je již přidruženo k jiné aplikaci"
+" na Firefox Marketplace."
 
 #: mkt/developers/forms.py:1165
 msgid "Please enter a valid submission ID."
@@ -4833,7 +4835,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:15
 msgid "Confirm your choice of IARC Certiticate"
-msgstr ""
+msgstr "Potvrďte svůj výběr certifikátu IARC"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:17
 #: mkt/lookup/templates/lookup/helpers/app_header.html:15
@@ -4843,11 +4845,11 @@ msgstr "Souhrn"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
 msgid "IARC Certificate ID"
-msgstr ""
+msgstr "ID certifikátu IARC"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:34
 msgid "Confirm"
-msgstr ""
+msgstr "Potvrdit"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:50
 msgid "Rating System"
