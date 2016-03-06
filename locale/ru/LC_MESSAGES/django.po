@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 12:50-0800\n"
-"PO-Revision-Date: 2016-02-27 19:31+0000\n"
-"Last-Translator: bychek.ru <a@bychek.ru>\n"
+"PO-Revision-Date: 2016-03-06 15:40+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -1279,7 +1279,7 @@ msgstr "Проверка обновленного упакованного пр�
 
 #: mkt/constants/base.py:247
 msgid "Updated Privileged App Review"
-msgstr ""
+msgstr "Проверка обновленного привелегированного приложения"
 
 #: mkt/constants/base.py:248
 msgid "Moderated App Review"
@@ -1287,7 +1287,7 @@ msgstr "Проверка модерируемого приложения"
 
 #: mkt/constants/base.py:249
 msgid "App Review Moderation Reverted"
-msgstr ""
+msgstr "Отчет о модерировании приложения возвращен"
 
 #: mkt/constants/base.py:250
 msgid "Tarako App Review"
@@ -1299,7 +1299,7 @@ msgstr "Отчёт о нарушениях приложения прочитан
 
 #: mkt/constants/base.py:252
 msgid "Website Abuse Report Read"
-msgstr ""
+msgstr "Сообщение о злоумышленном использовании сайта прочитано"
 
 #: mkt/constants/base.py:286
 msgid "Level 1"
@@ -1662,7 +1662,7 @@ msgstr ""
 
 #: mkt/constants/features.py:90
 msgid "Idle"
-msgstr ""
+msgstr "Неактивный"
 
 #: mkt/constants/features.py:91
 msgid "The app requires the platform to support the `addIdleObserver` API."
@@ -1898,6 +1898,8 @@ msgid ""
 "The app requires the platform to allow peer-to-peer exchange of data other "
 "than audio and video."
 msgstr ""
+"Приложению требуется платформа, поддерживающая P2P обмен данными, кроме "
+"аудио и видео."
 
 #: mkt/constants/features.py:251
 msgid "WebRTC PeerConnection"
@@ -1908,6 +1910,7 @@ msgid ""
 "The app requires the platform to allow communication of streaming data "
 "between peers."
 msgstr ""
+"Приложению требуется платформа для коммуникации потоков данных между пирами."
 
 #: mkt/constants/features.py:258
 msgid "Web Speech Synthesis"
@@ -1946,6 +1949,8 @@ msgid ""
 "The app requires the platform to allow the displaying phone and desktop "
 "notifications to the user."
 msgstr ""
+"Приложению требуется платформа, позволяющая отображать телефонные и "
+"десктопные уведомления пользователям."
 
 #: mkt/constants/features.py:284
 msgid "Alarms"
@@ -1956,6 +1961,8 @@ msgid ""
 "The app requires the platform to provide access to the device alarm settings"
 " to schedule notifications and events at specific time."
 msgstr ""
+"Приложению требуется платформа, предоставляющая доступ к настрокам "
+"будильника устройства для оповещений и событий в заданное время."
 
 #: mkt/constants/features.py:292
 msgid "SystemXHR"
@@ -2154,7 +2161,7 @@ msgstr "Общее"
 
 #: mkt/constants/ratingsbodies.py:198
 msgid "Entertainment Software Self-Regulation Body"
-msgstr ""
+msgstr "Саморегулируемая организация в сфере развлекательного ПО"
 
 #: mkt/constants/ratingsbodies.py:207
 msgid "Everyone"
@@ -2196,7 +2203,7 @@ msgstr "Европа"
 
 #: mkt/constants/ratingsbodies.py:303
 msgid "Pan European Game Information"
-msgstr ""
+msgstr "Информация о пан-европейской игре"
 
 #: mkt/constants/regions.py:61
 msgid "Rest of World"
@@ -2619,12 +2626,16 @@ msgid ""
 "This IARC certificate is already being used for another app. Please create a"
 " new IARC Ratings Certificate."
 msgstr ""
+"Этот IARC сертификат уже используется другим приложением. Пожалуйста, "
+"создайте новый IARC сертификат рейтингов."
 
 #: mkt/developers/forms.py:1097
 msgid ""
 "This Certificate ID is not recognized by IARC, or is already attached to "
 "another app in the Firefox Marketplace."
 msgstr ""
+"Этот ID сертификата не распознаётся IARC или уже прикреплён к другому "
+"приложению в Firefox Marketplace."
 
 #: mkt/developers/forms.py:1165
 msgid "Please enter a valid submission ID."
@@ -2648,7 +2659,7 @@ msgstr "Рекламные цены"
 
 #: mkt/developers/forms_payments.py:135
 msgid "Only supports carrier billing"
-msgstr ""
+msgstr "Поддерживает только оплату через мобильного оператора"
 
 #: mkt/developers/forms_payments.py:138
 msgid "Only supports credit-card billing"
@@ -3091,6 +3102,13 @@ msgid ""
 "://marketplace-dev.allizom.org\">development server</a> and not the "
 "production server. </p>"
 msgstr ""
+"<p>Есть два основных способа применения Marketplace API. С другого веб-"
+"сайта, используя традиционный OAuth или из командной строки. Разница "
+"обсуждается в <a href=\"https://firefox-marketplace-"
+"api.readthedocs.org/en/latest/topics/authentication.html#oauth\">документации"
+" Marketplace</a>. Любое тестирование должно происходить на <a href=\"https"
+"://marketplace-dev.allizom.org\">девелопмент сервере</a>, а не на продакшн "
+"сервере.</p>"
 
 #: mkt/developers/templates/developers/api.html:37
 msgid "Client type"
@@ -3144,6 +3162,8 @@ msgid ""
 "<p>Example using a Python library for the command-line on Mac OS X/Linux "
 "using your OAuth credentials:</p>"
 msgstr ""
+"<p>Пример использования Python библиотеки для командной строки на Mac OS "
+"X/Linux, используя ваши OAuth креденциалы:</p>"
 
 #. `next_step_name` is a plural noun, the title of the page of the next step
 #. of the
@@ -3430,6 +3450,10 @@ msgid ""
 "would like to run a copy of your own, the source code is available <a "
 "href=\"%(repo)s\">on Github</a>."
 msgstr ""
+"Валидатор - инструмент, который поможет протестировать ваше приложение на "
+"ошибки, лучшие практики и соответствие с гайдлайнами до проверки вашего "
+"приложения. Если вам интересно, как он работает или вы хотите запустить "
+"копию кода у себя, исходный код доступен <a href=\"%(repo)s\">на GitHub</a>."
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 #: mkt/developers/templates/developers/validation.html:5
@@ -4092,6 +4116,10 @@ msgid ""
 "sure you’ve included a descriptive name in your app manifest. If you want to"
 " change the app name, you’ll need to do that in your app manifest."
 msgstr ""
+"Имя приложения одно из полей, используемое в поисковых результатах на "
+"Firefox Marketplace. Имя содержится на странице приложения. Убедитесь, что "
+"добавили имя в манифест вашего приложения. Если вы хотите изменить имя "
+"приложения, вам нужно делать это в манифесте."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:38
 #: mkt/reviewers/templates/reviewers/includes/details.html:40
@@ -4177,6 +4205,9 @@ msgid ""
 "detail page. Be sure to include a description that accurately represents "
 "your app."
 msgstr ""
+"Описание приложения одно из полей, используемых в поиске на Firefox "
+"Marketplace. Описание также отображается на странице приложения. Убедитесь, "
+"что описание точно соответствует вашему приложению."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:129
 #: mkt/reviewers/templates/reviewers/includes/details.html:63
@@ -4193,6 +4224,8 @@ msgid ""
 "Information about changes in the latest release, new features, known bugs, "
 "and other useful information specific to this release/version."
 msgstr ""
+"Информация об изменениях в последнем релизе, новых возможностях, известных "
+"ошибках и другая полезная информация, относящаяся к релизу/версии."
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:179
 msgid ""
@@ -4675,6 +4708,11 @@ msgid ""
 "questionnaire about the contents of your app. Upon completion, the window "
 "will close and your app will then have an new age rating and certificate."
 msgstr ""
+"У приложения уже есть рейтинг и сертификат Международной Коалиции "
+"Возрастного Рейтинга (IARC). Нажмите на кнопку ниже, откроется новое окно, "
+"где вы должны заполнить новую анкету о содержании вашего приложения. После "
+"завершения, окно закроется и у вашего приложения будет новый возрастной "
+"рейтинг и сертификат."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:38
 msgid ""
@@ -4684,6 +4722,11 @@ msgid ""
 "about the contents of your app. Upon completion, the window will close and "
 "your app will then have an age rating."
 msgstr ""
+"Чтобы ваше приложение отображалось на Marketplace, вы получить сертификат "
+"Международной Коалиции Возрастного Рейтинга (IARC). Нажмите на кнопку ниже, "
+"откроется новое окно, где вы должны заполнить небольшую анкету о содержании "
+"вашего приложения. После завершения, окно закроется и у вашего приложения "
+"будет возрастной рейтинг."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 #, python-format
@@ -4692,6 +4735,9 @@ msgid ""
 "href=\"%(privacy_url)s\">Privacy Policy</a> and <a "
 "href=\"%(tos_url)s\">Terms of Service agreement</a>."
 msgstr ""
+"Используя инструмент сертификатов рейтингов IARC, вы соглащаетесь соблюдать "
+"его <a href=\"%(privacy_url)s\">Политику приватности</a> и <a "
+"href=\"%(tos_url)s\">Соглашение о предоставлении услуг</a>."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:56
 #, python-format
@@ -4699,6 +4745,8 @@ msgid ""
 "IARC content rating process complete, you will be redirected to your app's "
 "<a href=\"%(ratings_url)s\">content ratings page</a>."
 msgstr ""
+"Процесс создания рейтинга IARC завершен, вы будете перенаправлены на <a "
+"href=\"%(ratings_url)s\">страницу рейтингов контента</a> вашего приложения."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:62
 msgid ""
@@ -4733,6 +4781,8 @@ msgid ""
 "Warning: if a certificate is already attached to your app, this will "
 "overwrite it. Use with caution."
 msgstr ""
+"Предупреждение: если сертификат уже прикреплён к вашему приложению, то он "
+"перезапишется. Используйте с осторожностью."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:129
 msgid ""
@@ -4740,6 +4790,9 @@ msgid ""
 "above and already have an IARC security code, you can manually enter it "
 "here."
 msgstr ""
+"Если вы уже получили рейтинг вашего приложения через инструмент глобальных "
+"рейтингов IARC ниже и у вас уже есть код безопасности, вы можете ввести его "
+"вручную здесь."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:141
 msgid "Certificate ID"
@@ -4751,6 +4804,9 @@ msgid ""
 "letters, numbers and dashes following the UUID canonical hexadecimal format "
 "like &quot;adb3261b-c657-4fd2-a057-bc9f85310b80&quot;."
 msgstr ""
+"ID сертификата - уникальный индентификатор, отправленный вам. Это смесь "
+"букв, цифр, и тире, соответствующая каноническому шестнадцатиричному UUID "
+"формату, типа &quot;adb3261b-c657-4fd2-a057-bc9f85310b80&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:160
 msgid "Submission ID"
@@ -5098,6 +5154,8 @@ msgid ""
 "Your app is currently incomplete. Select a payment account and price point "
 "to restore it."
 msgstr ""
+"Ваше приложение ещё не завершено. Выберите платёжный аккаунт и установите "
+"цену для оплаты."
 
 #: mkt/developers/templates/developers/payments/premium.html:144
 msgid "Countries"
@@ -5178,6 +5236,8 @@ msgid ""
 "As \"Rest of World\" is selected your app will be available for purchase in "
 "all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
 msgstr ""
+"При выборе \"Остальной мир\" ваше приложение будет доступно для покупки во "
+"всех включенных \"<a href=\"#regions-other\">Других регионах</a>\"."
 
 #: mkt/developers/templates/developers/payments/premium.html:250
 msgid "Other regions"
@@ -5370,6 +5430,8 @@ msgid ""
 "(Subject to payments being available in that region for the selected price "
 "point or \"Rest of World\" being selected as a payment option)."
 msgstr ""
+"(Предмет оплаты доступный в регионе для выбранной цены или \"Остальной "
+"мир\", выбранный в качестве способа оплаты)."
 
 #: mkt/developers/templates/developers/payments/includes/regions_other.html:9
 msgid "You will receive an email notification when a new region is added."
@@ -5517,6 +5579,10 @@ msgid ""
 "Mozilla? <a href=\"%(partner_url)s\">Check out our Partners page for more "
 "info.</a>"
 msgstr ""
+"Вы Веб-компания, поставщик сторонних услуг или оригинальный производитель "
+"оборудования, хотящий сотрудничать с Mozilla? <a "
+"href=\"%(partner_url)s\">Посетите нашу страницу Партнеров для дополнительной"
+" информации.</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:132
 msgid "The Mozilla apps platform"
@@ -5528,6 +5594,9 @@ msgid ""
 "content, functionality and how apps are distributed, including access to "
 "hundreds of millions of Firefox users through the Firefox Marketplace."
 msgstr ""
+"Стройте приложения для Веб, предоставляя разработчикам полный контроль над "
+"контентом, функциональностью, составом поставляемых приложений, включая "
+"доступ к сотням миллионов пользователей Firefox через Firefox Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:142
 msgid ""
@@ -5535,6 +5604,10 @@ msgid ""
 "can be delivered across multiple platforms, devices and operating systems "
 "&mdash; closing the gap between Web and native apps for the first time."
 msgstr ""
+"Используя открытые Веб-стандарты, созданные Mozilla API и богатый опыт "
+"разработки, приложения могут быть доставлены на множество платформ, "
+"устройств и операционных систем &mdash; впервые стирая грань между Веб и "
+"нативными приложениями."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:173
 msgid ""
@@ -5543,6 +5616,11 @@ msgid ""
 "high-quality Apps relevant to local markets across all categories that users"
 " can use to get the most out of their daily lives."
 msgstr ""
+"Firefox Marketplace даёт пользователям возможность искать, пробовать и "
+"покупать приложения и контент, наиболее важный для них. Это означает "
+"захватывающие, полезные и качественные приложения соответствующие местным "
+"рынкам во всех категориях, которые пользователи могут использовать, чтобы "
+"получить максимальную отдачу от их повседневной жизни."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:182
 msgid ""
@@ -5573,7 +5651,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:232
 msgid "Firefox Apps & Hacks"
-msgstr ""
+msgstr "Новости и Хаки Firefox"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:234
 #, python-format
@@ -5582,6 +5660,9 @@ msgid ""
 "apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone "
 "preview</a>"
 msgstr ""
+"Подпишитесь на ежемесячные новости о Firefox OS, Firefox Marketplace и "
+"экосистеме приложений. <a href=\"%(dev_phone_url)s\">Проверьте превью сборку"
+" для телефона</a>"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:245
 msgid "Developer Devices"
@@ -5836,12 +5917,17 @@ msgid ""
 " \"Download on the App Store\"), the Firefox Marketplace badge should be of "
 "equal or greater size"
 msgstr ""
+"Когда используется рядом с логотипами других магазинов (\"Доступно на Google"
+" Play\", \"Скачать на App Store\"), значок Firefox Marketplace должен быть "
+"больше или равного размера"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:38
 msgid ""
 "The badge should link to an app details page within the Firefox "
 "Marketplace<br> For example: https://marketplace.firefox.com/app/twitter"
 msgstr ""
+"Значок должен быть ссылкой на страницу приложения в Firefox "
+"Marketplace<br>Например: https://marketplace.firefox.com/app/twitter"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:47
 msgid "Orange"
@@ -5920,6 +6006,8 @@ msgid ""
 "If you want to engage with other developers, join our vibrant communities in"
 " these mailing lists:"
 msgstr ""
+"Если вы хотите взаимодействовать с другими разработчиками, присоединяйтесь к"
+" нашим активным сообществам в этих списках рассылки:"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:71
 msgid "Mozilla Web apps (English)"
@@ -6361,7 +6449,7 @@ msgstr "Обработать ручное возмещение"
 
 #: mkt/lookup/forms.py:52
 msgid "Enter refund details to refund transaction"
-msgstr ""
+msgstr "Введите детали для возмещения транзакции"
 
 #: mkt/lookup/forms.py:65
 msgid "Reason for Deletion"
@@ -6381,7 +6469,7 @@ msgstr "Возмещение уже обработано."
 
 #: mkt/lookup/views.py:224
 msgid "You cannot make a refund request for this transaction."
-msgstr ""
+msgstr "Вы не можете запросить возмещение для этой транзакции."
 
 #: mkt/lookup/views.py:248
 msgid "Refund for this transaction now pending."
@@ -6629,6 +6717,8 @@ msgid ""
 "This payment was made through the <b>reference implementation</b>. It wasn't"
 " a real transaction."
 msgstr ""
+"Этот платёж был сделан через <b>эталонную реализацию</b>. Это не реальная "
+"транзакция."
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:87
 msgid "Refund information"
@@ -7018,6 +7108,8 @@ msgid ""
 "Test installation of your app before uploading to the marketplace. You can "
 "choose different kinds of receipts to test your receipt handling."
 msgstr ""
+"Протестировать установку вашего приложения после загрузки на Marketplace. Вы"
+" можете выбрать различные виды отчётов для тестирования их обработки."
 
 #: mkt/receipts/templates/receipts/test_manifest.html:26
 msgid "Receipt type"
@@ -7290,6 +7382,8 @@ msgid ""
 "Clear this app from the escalation queue. The author(s) will get no email or"
 " see comments here."
 msgstr ""
+"Убрать это приложение из очереди на эскалацию. Автор(ы) не получит(ат) писем"
+" и не увидят комментариев."
 
 #: mkt/reviewers/utils.py:459
 msgid "Clear Re-review"
@@ -7798,7 +7892,7 @@ msgstr "Фильтр"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:68
 msgid "App origin"
-msgstr ""
+msgstr "Домен приложения"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:73
 #, python-format
@@ -8558,6 +8652,7 @@ msgstr "Переотправка приложения"
 #: mkt/site/log.py:519
 msgid "{addon} auto-escalated because its a VIP app."
 msgstr ""
+"{addon} автоматически эскалировано из-за того, что это VIP приложение."
 
 #: mkt/site/log.py:520
 msgid "VIP auto-escalation"
@@ -8582,6 +8677,7 @@ msgstr "Автоэскалация пререлиза"
 #: mkt/site/log.py:543
 msgid "{addon} re-reviewed because abuse reports need investigation."
 msgstr ""
+"{addon} перепроверено из-за отчётов о нарушениях ожидающих рассмотрения."
 
 #: mkt/site/log.py:552
 msgid "{addon} manually flagged for re-review."
@@ -8815,11 +8911,11 @@ msgstr "Изменения в \"origin\" не разрешены."
 
 #: mkt/submit/forms.py:222
 msgid "User submitting validation does not match."
-msgstr ""
+msgstr "Введённые данные не совпадают."
 
 #: mkt/submit/forms.py:223
 msgid "Homescreens can only be submitted for Firefox OS."
-msgstr ""
+msgstr "Домашние экраны могут быть загружены только для Firefox OS."
 
 #: mkt/submit/forms.py:270
 msgid ""
@@ -8851,6 +8947,14 @@ msgid ""
 "privacy policy, <a href=\"{url}\" target=\"_blank\">learn more on how to "
 "write one.</a>"
 msgstr ""
+"Политика конфиденциальности объясняет, как вы обрабатываете данные, "
+"полученные через ваше приложение. Например: какие данные вы получаете? Как "
+"вы используете их? С кем вы ими делитесь? Получаете ли вы личную информацию?"
+" Предпринимаете ли вы шаги, чтобы сделать её анонимной? Какой выбор есть у "
+"пользователей для контроля того, какие данные получаете вы и другие? Введите"
+" ссылку на вашу политику конфиденциальности или текст выше.  Если у вас нет "
+"политики конфиденциальности, <a href=\"{url}\" target=\"_blank\">узнайте "
+"больше о том, как написать её</a>"
 
 #: mkt/submit/forms.py:308
 msgid "Homepage:"
@@ -8881,6 +8985,10 @@ msgid ""
 "end users to contact you with support issues. This email address will be "
 "listed publicly on your app details page."
 msgstr ""
+"Этот адрес электронной почты будет публично отображен на Marketplace и "
+"использоваться конечными пользователями для связи с вами по проблемам "
+"поддержки. Это адрес будет публично отображаться на странице вашего "
+"приложения."
 
 #: mkt/submit/forms.py:327
 msgid "Your comments for reviewers:"
@@ -8927,6 +9035,8 @@ msgid ""
 "Please review your listing information below. We've pre-filled as much as we"
 " can from your manifest."
 msgstr ""
+"Пожалуйста, проверьте информацию листинга ниже. Мы предварительно заполнили "
+"из вашего манифеста сколько смогли."
 
 #: mkt/submit/templates/submit/details.html:50
 msgid "Open details page"
@@ -8978,6 +9088,9 @@ msgid ""
 "you've added a payment account and price, your app will be submitted for "
 "review."
 msgstr ""
+"До того, как ваше приложение будет включено, вы должны предоставить "
+"платёжную информацию. Когда вы добавите платёжный аккаунт и цену, ваше "
+"приложение будет загружено для проверки."
 
 #: mkt/submit/templates/submit/done.html:35
 msgid ""
@@ -9041,6 +9154,8 @@ msgstr "В любой момент, вы можете"
 #, python-format
 msgid "Revise your app details on <a href=\"%(url)s\">Edit Listing</a>"
 msgstr ""
+"Измените детали вашего приложения на <a href=\"%(url)s\">Изменить "
+"листинг</a>"
 
 #: mkt/submit/templates/submit/next_steps.html:53
 #, python-format
@@ -9116,6 +9231,11 @@ msgid ""
 "it across their devices. First, you'll need to join the Marketplace "
 "Developer Program below."
 msgstr ""
+"Мы рады, что вы создали приложение, используя веб-технологии, и "
+"представляете его на Firefox Marketplace, как лучший способ для "
+"пользователей открыть его для себя и насладиться им на своих устройствах. "
+"Для начала, вам нужно присоединиться ниже к Программе Разработчиков "
+"Marketplace."
 
 #: mkt/submit/templates/submit/terms.html:24
 msgid ""
@@ -9365,7 +9485,7 @@ msgstr ""
 
 #: mkt/users/views.py:87
 msgid "Native FxA authentication failure."
-msgstr ""
+msgstr "Нативная FxA аутенфикация неуспешна."
 
 #: mkt/users/views.py:111
 msgid "Please use the verified email for this account."
