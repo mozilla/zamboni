@@ -14,16 +14,6 @@ class BaseFireplaceAppSerializer(object):
             128: app.get_icon_url(128)
         }
 
-    # We don't care about the integer value of the file size in fireplace, we
-    # just want to display it to the user in a human-readable way.
-    def to_representation(self, obj):
-        data = super(BaseFireplaceAppSerializer, self).to_representation(obj)
-        if obj.file_size:
-            data['file_size'] = filesizeformat(obj.file_size)
-        else:
-            data['file_size'] = None
-        return data
-
 
 class FireplaceAppSerializer(BaseFireplaceAppSerializer, SimpleAppSerializer):
 
