@@ -133,7 +133,6 @@ class TestAppDashboard(AppHubTest):
         app = self.get_app()
         doc = pq(self.client.get(self.url).content)
         item = doc('.item[data-addonid="%s"]' % app.id)
-        assert item.find('.price'), 'Expected price'
         assert item.find('.item-details'), 'Expected item details'
         assert not item.find('p.incomplete'), (
             'Unexpected message about incomplete add-on')

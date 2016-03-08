@@ -1,5 +1,3 @@
-from django.template.defaultfilters import filesizeformat
-
 from rest_framework import serializers
 
 from mkt.webapps.serializers import SimpleAppSerializer, SimpleESAppSerializer

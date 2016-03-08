@@ -78,18 +78,18 @@ class TestAppDetail(BaseAPI):
 
         res = self.client.get(self.url)
         data = json.loads(res.content)
-        eq_(data['file_size'], u'379.0\xa0KB')
+        eq_(data['file_size'], 388096)
 
         file_ = self.app.current_version.all_files[0]
         file_.update(size=1024 * 1024 * 1.1)
         res = self.client.get(self.url)
         data = json.loads(res.content)
-        eq_(data['file_size'], u'1.1\xa0MB')
+        eq_(data['file_size'], 1153433)
 
         file_.update(size=0)
         res = self.client.get(self.url)
         data = json.loads(res.content)
-        eq_(data['file_size'], None)
+        eq_(data['file_size'], 0)
 
 
 class TestFeaturedSearchView(RestOAuth, ESTestCase):
