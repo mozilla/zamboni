@@ -18,14 +18,6 @@
           {{ _('Set Up Content Ratings') }}</a>
         </li>
       {% endif %}
-      {% if addon.needs_payment() and not addon.has_payment_account() %}
-        {# The app needs payments information. #}
-        <li>
-          <a href="{{ addon.get_dev_url('payments') }}" class="tooltip"
-             title="{{ _('Provide payment information for the app.') }}">
-          {{ _('Set Up Payments') }}</a>
-        </li>
-      {% endif %}
     {% endif %}
   {% endif %}
 

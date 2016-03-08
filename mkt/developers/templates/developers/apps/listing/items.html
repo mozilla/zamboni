@@ -43,13 +43,6 @@
           {% if addon.is_pending() or addon.current_version != addon.latest_version %}
             {{ queue_position(addon, 'li') }}
           {% endif %}
-          <li class="payments">
-            <strong>{{ _('Price:') }}</strong>
-            {{ price(request, addon) }}
-            {% if addon.is_premium() and not addon.has_payment_account() %}
-              <a href="{{ addon.get_dev_url('payments') }}">{{ _('Set up Payment Account') }}</a>
-            {% endif %}
-          </li>
 
           {% if not addon.is_rated() and addon.is_public() or addon.is_approved() %}
             <li class="ratings">

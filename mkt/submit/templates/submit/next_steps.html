@@ -31,13 +31,6 @@
             <span>Set up <a href="{{ rating_url }}">Content Ratings</a></span>
           {% endtrans -%}
         </li>
-        {% if addon.is_premium() %}
-          <li{% if addon.payments_complete() %} class="done"{% endif %}>
-            {%- trans pay_url=addon.get_dev_url('payments') %}
-              <span>Set up <a href="{{ pay_url }}">Payments</a></span>
-            {% endtrans %}
-          </li>
-        {% endif %}
         <li{% if public or addon.is_approved() %} class="done"{% endif %}><span>{{ _('Wait for Review') }}</span></li>
         <li{% if public %} class="done"{% endif %}><span>{{ _('Publish') }}</span></li>
       </ol>
