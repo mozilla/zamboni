@@ -195,6 +195,7 @@ class RatingFlagViewSet(CORSMixin, CreateModelMixin, GenericViewSet):
                               RestSharedSecretAuthentication]
     serializer_class = RatingFlagSerializer
 
-    def post_save(self, obj, created=False):
-        review = self.kwargs['review']
-        Review.objects.filter(id=review).update(editorreview=True)
+    def perform_create(self, serializer):
+        serializer.save()
+        Review.objects.filter(id=serializer.data['review_id']).update(
+            editorreview=True)
