@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 12:50-0800\n"
-"PO-Revision-Date: 2016-03-06 15:40+0000\n"
+"PO-Revision-Date: 2016-03-12 18:35+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -2195,7 +2195,7 @@ msgstr "Рейтинг развлекательного ПО"
 
 #: mkt/constants/ratingsbodies.py:289
 msgid "Parental Guidance"
-msgstr ""
+msgstr "Контроль со стороны взрослых"
 
 #: mkt/constants/ratingsbodies.py:302
 msgid "Europe"
