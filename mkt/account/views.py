@@ -450,6 +450,7 @@ class GroupsViewSet(CORSMixin, ListModelMixin, DestroyModelMixin,
     def perform_destroy(self, instance):
         if instance.group.restricted:
             raise ParseError('Restricted groups can\'t be unset via the API.')
+        instance.delete()
 
     def create(self, request, **kwargs):
         user = self.get_user()
