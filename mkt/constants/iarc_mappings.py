@@ -219,7 +219,7 @@ DESCS = {
         u'Diskriminierung': 'has_usk_discrimination',
         u'Drogen': 'has_usk_drugs',
         u'Drogenkonsum': 'has_usk_drug_use',
-        u'Erotik/Sexuelle Inhalte': 'has_usk_sex_content',
+        u'Sex/Erotik': 'has_usk_sex_content',
         u'Explizite Sprache': 'has_usk_lang',
         u'Explizite Gewalt': 'has_usk_explicit_violence',
         u'Gelegentliches Fluchen': 'has_usk_some_swearing',
@@ -392,7 +392,7 @@ DESCS_V2 = {
         'USK_NacktheitErotik': 'has_usk_nudity',
         'USK_NoDescriptors': '',    # No Descriptors.
         'USK_SelteneSchreckmomente': 'has_usk_some_scares',
-        'USK_SexErotik': 'has_usk_sex_content',  # 'Erotik/Sexuelle Inhalte'.
+        'USK_SexErotik': 'has_usk_sex_content',
         'USK_SexuelleAndeutungen': 'has_usk_sex_ref',
         'USK_SexuelleGewalt': 'has_usk_sex_violence',
         'USK_ShopStreamingService': 'has_usk_shop_streaming_service',
@@ -444,5 +444,13 @@ HUMAN_READABLE_DESCS_AND_INTERACTIVES = dict(
         ('has_usk_some_swearing',
             u'Gelegentliche Verwendung von Kraftausdrücken'),
         ('has_usk_horror', u'Schock- und/oder Horrorelemente'),
+
+        ('has_classind_criminal_acts', u'Atos criminosos'),
+        ('has_classind_sex_content', u'Conteúdo sexual'),
+        ('has_classind_drugs_illegal', u'Drogas ilícitas'),
+        ('has_classind_drugs_legal', u'Drogas lícitas'),
+        ('has_classind_lang', u'Linguagem imprópria'),
+        ('has_classind_sex_explicit', u'Sexo explícito'),
+        ('has_classind_violence_extreme', u'Violência extrema'),
     ]
 )
