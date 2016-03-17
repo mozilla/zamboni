@@ -6,8 +6,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 12:50-0800\n"
-"PO-Revision-Date: 2016-03-03 16:03+0000\n"
-"Last-Translator: Branislav Rozbora <rozbora@mozilla.sk>\n"
+"PO-Revision-Date: 2016-03-17 15:14+0000\n"
+"Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -137,7 +137,7 @@ msgstr "Firefox OS"
 
 #: mkt/constants/applications.py:34 mkt/search/forms.py:48
 msgid "Firefox OS TV"
-msgstr ""
+msgstr "Firefox OS TV"
 
 #: mkt/constants/apps.py:9
 msgid "User"
@@ -1354,7 +1354,7 @@ msgstr "Jedlo a nápoje"
 
 #: mkt/constants/categories.py:10
 msgid "Kids"
-msgstr ""
+msgstr "Deti"
 
 #: mkt/constants/categories.py:11 mkt/constants/categories.py:46
 msgid "Games"
@@ -1370,7 +1370,7 @@ msgstr ""
 
 #: mkt/constants/categories.py:14
 msgid "Internet"
-msgstr ""
+msgstr "Internet"
 
 #: mkt/constants/categories.py:15 mkt/constants/categories.py:47
 msgid "Lifestyle"
@@ -7542,9 +7542,8 @@ msgstr "Ďalšie informácie"
 
 #: mkt/reviewers/templates/reviewers/review.html:60
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:2
-#, fuzzy
 msgid "App History"
-msgstr "Historie aplikace"
+msgstr "História aplikácie"
 
 #: mkt/reviewers/templates/reviewers/review.html:61
 #, fuzzy
@@ -8888,9 +8887,8 @@ msgstr ""
 "nastavenia."
 
 #: mkt/submit/templates/submit/done.html:51
-#, fuzzy
 msgid "Manage My App"
-msgstr "Správa aplikace"
+msgstr "Správa aplikácie"
 
 #: mkt/submit/templates/submit/done.html:54
 #, fuzzy
