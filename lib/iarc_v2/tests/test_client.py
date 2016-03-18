@@ -67,6 +67,7 @@ class TestGetRatingChanges(TestCase):
 
     @responses.activate
     def test_with_existing_cert_valid(self):
+        # Set up. app1 has no rating descriptors, app2 has one.
         data = setup_mock_response('GetRatingChanges')
         cert_id_1 = data['CertList'][0]['CertID']
         cert_id_2 = data['CertList'][1]['CertID']
@@ -80,8 +81,10 @@ class TestGetRatingChanges(TestCase):
         expected_end_date = datetime.datetime.utcnow()
         expected_start_date = expected_end_date - datetime.timedelta(days=1)
 
+        # GetRatingChanges Call.
         res = get_rating_changes()
 
+        # Check that we called IARC as expected.
         eq_(len(responses.calls), 1)
         eq_(responses.calls[0].request.headers.get('StorePassword'),
             settings.IARC_V2_STORE_PASSWORD)
@@ -93,12 +96,16 @@ class TestGetRatingChanges(TestCase):
             'MaxRows': 500,
             'StartRowIndex': 0
         })
+        eq_(res['Result']['ResponseCode'], 'Success')
 
+        # Check that Cert IDs are still correct.
         eq_(UUID(app1.iarc_cert.cert_id), UUID(cert_id_1))
         eq_(UUID(app2.iarc_cert.cert_id), UUID(cert_id_2))
 
         # Compare with mock data. Force reload using .objects.get in order to
-        # properly reset the related objects caching.
+        # properly reset the related objects caching. App1 should have gained
+        # a descriptor, and app2 should have lost its original descriptor and
+        # gained a few.
         app1 = Webapp.objects.get(pk=app1.pk)
         app2 = Webapp.objects.get(pk=app2.pk)
         eq_(app1.rating_descriptors.to_keys(), ['has_esrb_violence_ref'])
@@ -107,9 +114,26 @@ class TestGetRatingChanges(TestCase):
             ['has_classind_violence', 'has_generic_moderate_violence',
              'has_pegi_moderate_violence', 'has_esrb_violence',
              'has_usk_violence'])
-        eq_(res['Result']['ResponseCode'], 'Success')
         eq_(app1.content_ratings.all()[0].get_rating_class(), ESRB_10)
         eq_(app2.content_ratings.all()[0].get_rating_class(), CLASSIND_12)
+
+    @responses.activate
+    def test_with_existing_descriptors_that_should_be_kept(self):
+        data = setup_mock_response('GetRatingChanges')
+        cert_id = data['CertList'][0]['CertID']
+        app = app_factory()
+        IARCCert.objects.create(app=app, cert_id=UUID(cert_id))
+        RatingDescriptors.objects.create(addon=app, has_classind_violence=True)
+
+        get_rating_changes()
+
+        eq_(UUID(app.iarc_cert.cert_id), UUID(cert_id))
+        app = Webapp.objects.get(pk=app.pk)
+        # Original descriptor belongs to a rating body that wasn't part of the
+        # changes returned by GetRatingChanges for this cert, so it should have
+        # been kept.
+        self.assertSetEqual(app.rating_descriptors.to_keys(),
+                            ['has_classind_violence', 'has_esrb_violence_ref'])
 
 
 class TestUpdateCerts(TestCase):

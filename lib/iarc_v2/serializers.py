@@ -110,7 +110,7 @@ class IARCV2RatingListSerializer(object):
         }
         return instances
 
-    def save(self, force_update=False):
+    def save(self, force_update=False, rating_bodies=None):
         if not self.object:
             raise ValueError('Can not save without an object.')
 
@@ -118,7 +118,9 @@ class IARCV2RatingListSerializer(object):
             raise ParseError('Can not save with invalid data.')
 
         self.object.set_iarc_certificate(self.validated_data['cert_id'])
-        self.object.set_descriptors(self.validated_data['descriptors'])
+        self.object.set_descriptors(
+            self.validated_data['descriptors'],
+            rating_bodies=rating_bodies)
         self.object.set_interactives(self.validated_data['interactives'])
         self.object.set_content_ratings(self.validated_data['ratings'])
         # App status should automatically be updated if necessary when saving

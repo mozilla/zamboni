@@ -37,7 +37,8 @@ from lib.utils import static_url
 from mkt.access import acl
 from mkt.constants import APP_FEATURES, apps
 from mkt.constants.applications import DEVICE_TYPES
-from mkt.constants.iarc_mappings import (HUMAN_READABLE_DESCS_AND_INTERACTIVES,
+from mkt.constants.iarc_mappings import (DESCS_V2,
+                                         HUMAN_READABLE_DESCS_AND_INTERACTIVES,
                                          REVERSE_DESCS, REVERSE_DESCS_V2,
                                          REVERSE_INTERACTIVES,
                                          REVERSE_INTERACTIVES_V2)
@@ -2063,14 +2064,28 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         tasks.index_webapps.delay([self.id])
 
     @use_master
-    def set_descriptors(self, data):
+    def set_descriptors(self, data, rating_bodies=None):
         """
         Sets IARC rating descriptors on this app.
 
         data -- list of database flags ('has_usk_lang')
+        rating_bodies -- list of rating body ids to consider. If not None, will
+            only set descriptors belonging to these particular bodies.
         """
         create_kwargs = {}
-        for db_flag in set(REVERSE_DESCS.keys() + REVERSE_DESCS_V2.keys()):
+        if rating_bodies is None:
+            available_flags = set(REVERSE_DESCS.keys() +
+                                  REVERSE_DESCS_V2.keys())
+        else:
+            available_flags = set(
+                itertools.chain.from_iterable(
+                    [unicode(v) for k, v in mapping.items() if v]
+                    for body, mapping in DESCS_V2.items()
+                    if body in rating_bodies
+                )
+            )
+
+        for db_flag in available_flags:
             create_kwargs[db_flag] = db_flag in data
 
         instance, created = RatingDescriptors.objects.get_or_create(

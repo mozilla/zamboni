@@ -97,7 +97,9 @@ def get_rating_changes(date=None):
             continue
         serializer = IARCV2RatingListSerializer(instance=cert.app, data=row)
         if serializer.is_valid():
-            serializer.save()
+            rating_bodies = [body.id for body
+                             in serializer.validated_data['ratings'].keys()]
+            serializer.save(rating_bodies=rating_bodies)
     return data
 
 
