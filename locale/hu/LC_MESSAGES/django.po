@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 12:50-0800\n"
-"PO-Revision-Date: 2016-02-26 14:46+0000\n"
+"PO-Revision-Date: 2016-03-19 00:09+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2224,7 +2224,7 @@ msgstr "Szórakoztató Szoftvereket Értékelő Bizottság"
 
 #: mkt/constants/ratingsbodies.py:289
 msgid "Parental Guidance"
-msgstr ""
+msgstr "Szülői felügyelet"
 
 #: mkt/constants/ratingsbodies.py:302
 msgid "Europe"
@@ -2480,6 +2480,9 @@ msgid ""
 "The search keywords are used to return search results in the Firefox "
 "Marketplace. Be sure to include a keywords that accurately reflect your app."
 msgstr ""
+"A keresési kulcsszavak a találatok megkapásához szükségesek a Firefox "
+"Marketplace-en. Győződjön meg róla, hogy legyenek köztük azok a kulcsszavak,"
+" amelyek az alkalmazását pontosan leírják."
 
 #: mkt/developers/forms.py:526 mkt/submit/forms.py:368
 msgid "This slug is already in use. Please choose another."
@@ -2659,6 +2662,8 @@ msgid ""
 "This Certificate ID is not recognized by IARC, or is already attached to "
 "another app in the Firefox Marketplace."
 msgstr ""
+"Ezt a tanúsítvány azonosítót az IARC nem ismeri, vagy a Firefox Marketplace-"
+"en már egy alkalmazáshoz csatolták."
 
 #: mkt/developers/forms.py:1165
 msgid "Please enter a valid submission ID."
@@ -3053,11 +3058,11 @@ msgstr "Új API kulcs létrehozva."
 
 #: mkt/developers/views.py:1046
 msgid "Created blocklisted version."
-msgstr ""
+msgstr "Tiltólistás változat létrehozva."
 
 #: mkt/developers/views.py:1048
 msgid "App already blocklisted."
-msgstr ""
+msgstr "Az alkalmazás már tiltólistázott."
 
 #: mkt/developers/views_payments.py:89 mkt/developers/views_payments.py:107
 msgid "We encountered a problem connecting to the payment server."
@@ -3081,7 +3086,7 @@ msgstr ""
 
 #: mkt/developers/views_payments.py:337
 msgid "Secret was reset successfully."
-msgstr ""
+msgstr "A titok sikeresen vissza lett állítva."
 
 #: mkt/developers/views_payments.py:341
 msgid "Key and secret were created successfully."
@@ -3587,7 +3592,7 @@ msgstr "bezárás"
 
 #: mkt/developers/templates/developers/apps/owner.html:84
 msgid "About Team Member Roles"
-msgstr ""
+msgstr "A csapat tagjainak szerepeiről"
 
 #: mkt/developers/templates/developers/apps/owner.html:86
 msgid "Apps can have any number of team members with 4 possible roles:"
@@ -3642,7 +3647,7 @@ msgstr "Jelenlegi állapot"
 
 #: mkt/developers/templates/developers/apps/status.html:29
 msgid "You have <b>delisted</b> this app."
-msgstr ""
+msgstr "Ezt az alkalmazást <b>eltávolította a listáról</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:33
 msgid "This app is <b>incomplete</b>."
@@ -3650,7 +3655,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:43
 msgid "This app has been <b>disabled by Mozilla</b>."
-msgstr ""
+msgstr "Ezt az alkalmazást <b>letiltotta a Mozilla</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:44
 #, python-format
@@ -3673,7 +3678,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/status.html:58
 msgid "Your app has been <b>blocked by Mozilla</b>."
-msgstr ""
+msgstr "<b>A Mozilla blokkolta</b> az Ön alkalmazását."
 
 #: mkt/developers/templates/developers/apps/status.html:59
 #, python-format
@@ -4820,7 +4825,7 @@ msgstr "Összes megjelenítése"
 
 #: mkt/developers/templates/developers/includes/macros.html:126
 msgid "Hide all"
-msgstr ""
+msgstr "Az összes elrejtése"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:3
 #: mkt/receipts/templates/receipts/test_manifest.html:3
@@ -4856,7 +4861,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/in-app-keys.html:33
 #: mkt/developers/templates/developers/payments/in-app-keys.html:46
 msgid "Not yet generated."
-msgstr ""
+msgstr "Még nem jött létre."
 
 #: mkt/developers/templates/developers/payments/in-app-config.html:39
 #: mkt/developers/templates/developers/payments/in-app-keys.html:37
@@ -5015,7 +5020,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/premium.html:119
 #: mkt/developers/templates/developers/payments/includes/account_list.html:6
 msgid "Payment Accounts"
-msgstr ""
+msgstr "Fizetési számlák"
 
 #: mkt/developers/templates/developers/payments/premium.html:123
 msgid ""
@@ -5082,11 +5087,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:226
 msgid "local currency"
-msgstr ""
+msgstr "helyi pénznem"
 
 #: mkt/developers/templates/developers/payments/premium.html:227
 msgid "Billing method"
-msgstr ""
+msgstr "Számlázás módja"
 
 #: mkt/developers/templates/developers/payments/premium.html:238
 msgid "Add a payment account to enable your app for sale in more regions"
@@ -5100,7 +5105,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:250
 msgid "Other regions"
-msgstr ""
+msgstr "Egyéb régiók"
 
 #: mkt/developers/templates/developers/payments/premium.html:252
 msgid ""
@@ -5129,7 +5134,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/premium.html:310
 msgid "No free apps"
-msgstr ""
+msgstr "Nem ingyenes alkalmazások"
 
 #: mkt/developers/templates/developers/payments/includes/accept_terms.html:4
 msgid "Terms of Agreement"
@@ -5141,7 +5146,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:13
 msgid "Provider"
-msgstr ""
+msgstr "Szolgáltató"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:14
 #: mkt/developers/templates/developers/payments/includes/account_list.html:50
@@ -5152,15 +5157,15 @@ msgstr "Módosítás"
 #: mkt/developers/templates/developers/payments/includes/account_list.html:52
 #: mkt/lookup/templates/lookup/includes/provider_portals.html:6
 msgid "View transactions"
-msgstr ""
+msgstr "Tranzakciók megtekintése"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:26
 msgid "Add a {provider} account"
-msgstr ""
+msgstr "{provider} fiók hozzáadása"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:50
 msgid "Accept Terms of Service"
-msgstr ""
+msgstr "Szolgáltatási feltételek elfogadása"
 
 #: mkt/developers/templates/developers/payments/includes/account_list.html:60
 msgid "Confirm deletion of payment account"
@@ -5188,7 +5193,7 @@ msgstr "Nem állított be fizetési számlát."
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:5
 msgid "Add Bango Account"
-msgstr ""
+msgstr "Bango fiók hozzáadása"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:8
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:8
@@ -5209,7 +5214,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:42
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:36
 msgid "Optional"
-msgstr ""
+msgstr "Opcionális"
 
 #: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:109
 msgid "Name of registered company or individual."
@@ -5244,7 +5249,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:5
 msgid "Modify Bango Account"
-msgstr ""
+msgstr "Bango fiók módosítása"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
 msgid "A name to refer to the account on the Marketplace, not sent to Bango."
@@ -5253,7 +5258,7 @@ msgstr ""
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
 msgid "Update Account"
-msgstr ""
+msgstr "Fiók frissítése"
 
 #: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
 msgid "Modify Reference Account"
@@ -5284,11 +5289,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/payments/includes/regions_toggle.html:6
 msgid "Select All"
-msgstr ""
+msgstr "Az összes kijelölése"
 
 #: mkt/ecosystem/views.py:54
 msgid "Thank you for subscribing!"
-msgstr ""
+msgstr "Köszönjük, hogy feliratkozott!"
 
 #: mkt/ecosystem/views.py:60
 msgid ""
@@ -5299,7 +5304,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/landing.html:14
 #: mkt/ecosystem/templates/ecosystem/macros.html:6
 msgid "Design"
-msgstr ""
+msgstr "Tervezés"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:20
 #: mkt/ecosystem/templates/ecosystem/landing.html:23
@@ -5311,7 +5316,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/landing.html:25
 #: mkt/ecosystem/templates/ecosystem/macros.html:14
 msgid "Design Fundamentals"
-msgstr ""
+msgstr "Tervezési alapok"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:28
 #: mkt/ecosystem/templates/ecosystem/landing.html:27
@@ -5323,13 +5328,13 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/landing.html:31
 #: mkt/ecosystem/templates/ecosystem/macros.html:25
 msgid "Build"
-msgstr ""
+msgstr "Összeállítás"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:37
 #: mkt/ecosystem/templates/ecosystem/landing.html:40
 #: mkt/ecosystem/templates/ecosystem/macros.html:29
 msgid "Quick Start"
-msgstr ""
+msgstr "Első lépések"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:41
 #: mkt/ecosystem/templates/ecosystem/landing.html:42
@@ -5341,14 +5346,14 @@ msgstr "Firefox OS szimulátor"
 #: mkt/ecosystem/templates/ecosystem/landing.html:44
 #: mkt/ecosystem/templates/ecosystem/macros.html:48
 msgid "Reference Apps"
-msgstr ""
+msgstr "Referenciák"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:50
 #: mkt/ecosystem/templates/ecosystem/landing.html:48
 #: mkt/ecosystem/templates/ecosystem/macros.html:162
 #: mkt/submit/templates/submit/next_steps.html:42
 msgid "Publish"
-msgstr ""
+msgstr "Közzététel"
 
 #: mkt/ecosystem/templates/ecosystem/base.html:54
 #: mkt/ecosystem/templates/ecosystem/landing.html:57
@@ -5371,7 +5376,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/base.html:66
 #: mkt/ecosystem/templates/ecosystem/macros.html:197
 msgid "Badges, Banners, and Icons"
-msgstr ""
+msgstr "Jelvények, zászlók, és ikonok"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:11
 msgid "Develop HTML5 Web Apps for an open marketplace."
@@ -5405,7 +5410,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:115
 msgid "Join the community"
-msgstr ""
+msgstr "Csatlakozás a közösséghez"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:117
 msgid "Look who's already here"
@@ -5488,7 +5493,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:249
 msgid "Code & Tools"
-msgstr ""
+msgstr "Kód és eszközök"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:253
 msgid "Events & Meetups"
@@ -5503,7 +5508,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:279
 msgid "Sign me up!"
-msgstr ""
+msgstr "Feliratkozom!"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:33
 msgid "Intro to Open Web Apps"
@@ -5511,23 +5516,23 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:37
 msgid "Intro to Firefox OS"
-msgstr ""
+msgstr "A Firefox OS-ről"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:57
 msgid "Chrono"
-msgstr ""
+msgstr "Időrend"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:65
 msgid "Face Value"
-msgstr ""
+msgstr "Névérték"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:73
 msgid "Podcasts"
-msgstr ""
+msgstr "Podcastok"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:81
 msgid "Roller"
-msgstr ""
+msgstr "Roller"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:89
 msgid "Webfighter"
@@ -5565,7 +5570,7 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26
 #: mkt/webapps/models.py:1445
 msgid "Payments"
-msgstr ""
+msgstr "Kifizetések"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:139
 msgid "App Generator"
@@ -5581,7 +5586,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:155
 msgid "Firefox Developer Tools"
-msgstr ""
+msgstr "Firefox fejlesztői eszközök"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:166
 msgid "Marketplace Submission"
@@ -5675,7 +5680,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:112
 msgid "Stay connected."
-msgstr ""
+msgstr "Maradjon kapcsolatban."
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:116
 msgid "The Apps Blog"
@@ -5683,7 +5688,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:118
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:121
 msgid "YouTube"
@@ -5695,7 +5700,7 @@ msgstr "Firefox Marketplace YouTube csatorna"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:4
 msgid "Badges, banners, and icons"
-msgstr ""
+msgstr "Jelvények, zászlók, és ikonok"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:17
 msgid ""
@@ -5706,7 +5711,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:23
 msgid "Guidelines"
-msgstr ""
+msgstr "Irányelvek"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:26
 msgid "You may not alter the badge in any way"
@@ -5790,7 +5795,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/support.html:58
 #: mkt/ecosystem/templates/ecosystem/support.html:60
 msgid "Stack Overflow"
-msgstr ""
+msgstr "Stack Overflow"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:64
 msgid ""
@@ -6120,32 +6125,32 @@ msgstr "Tabulátorpozíció:"
 #: mkt/files/templates/fileviewer/viewer.html:72
 #: mkt/files/templates/fileviewer/viewer.html:73
 msgid "Up file"
-msgstr ""
+msgstr "Felmenő fájl"
 
 #: mkt/files/templates/fileviewer/viewer.html:77
 #: mkt/files/templates/fileviewer/viewer.html:78
 msgid "Down file"
-msgstr ""
+msgstr "Lemenő fájl"
 
 #: mkt/files/templates/fileviewer/viewer.html:83
 #: mkt/files/templates/fileviewer/viewer.html:84
 msgid "Previous diff"
-msgstr ""
+msgstr "Előző diff"
 
 #: mkt/files/templates/fileviewer/viewer.html:86
 #: mkt/files/templates/fileviewer/viewer.html:87
 msgid "Previous note"
-msgstr ""
+msgstr "Előző jegyzet"
 
 #: mkt/files/templates/fileviewer/viewer.html:93
 #: mkt/files/templates/fileviewer/viewer.html:94
 msgid "Next diff"
-msgstr ""
+msgstr "Következő diff"
 
 #: mkt/files/templates/fileviewer/viewer.html:96
 #: mkt/files/templates/fileviewer/viewer.html:97
 msgid "Next note"
-msgstr ""
+msgstr "Következő jegyzet"
 
 #: mkt/files/templates/fileviewer/viewer.html:102
 #: mkt/files/templates/fileviewer/viewer.html:103
@@ -6224,7 +6229,7 @@ msgstr ""
 
 #: mkt/lookup/forms.py:65
 msgid "Reason for Deletion"
-msgstr ""
+msgstr "Törlés oka"
 
 #: mkt/lookup/forms.py:81
 msgid "Promo Image"
@@ -6232,7 +6237,7 @@ msgstr ""
 
 #: mkt/lookup/forms.py:82
 msgid "Minimum size: {0}x{1}"
-msgstr ""
+msgstr "Minimális méret: {0} × {1}"
 
 #: mkt/lookup/views.py:201
 msgid "A refund has already been processed."
@@ -6279,15 +6284,15 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/app_summary.html:10
 msgid "last 24 hours"
-msgstr ""
+msgstr "utolsó 24 óra"
 
 #: mkt/lookup/templates/lookup/app_summary.html:11
 msgid "last 7 days"
-msgstr ""
+msgstr "utolsó 7 nap"
 
 #: mkt/lookup/templates/lookup/app_summary.html:12
 msgid "all time"
-msgstr ""
+msgstr "az összes"
 
 #: mkt/lookup/templates/lookup/app_summary.html:19
 msgid "Authors"
@@ -6301,7 +6306,7 @@ msgstr "Jegyzékfájl"
 #: mkt/reviewers/templates/reviewers/includes/details.html:35
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:57
 msgid "View"
-msgstr ""
+msgstr "Megtekintés"
 
 #: mkt/lookup/templates/lookup/app_summary.html:47
 #: mkt/reviewers/templates/reviewers/includes/details.html:13
@@ -6328,7 +6333,7 @@ msgstr "Elküldve"
 #: mkt/lookup/templates/lookup/app_summary.html:71
 #: mkt/lookup/templates/lookup/app_summary.html:162
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: mkt/lookup/templates/lookup/app_summary.html:78
 msgid "Review Prioritized"
@@ -6359,11 +6364,11 @@ msgstr "Visszaélés-jelentések"
 
 #: mkt/lookup/templates/lookup/app_summary.html:94
 msgid "Permissions"
-msgstr ""
+msgstr "Jogosultságok"
 
 #: mkt/lookup/templates/lookup/app_summary.html:98
 msgid "No reason given"
-msgstr ""
+msgstr "Nincs ok megadva"
 
 #: mkt/lookup/templates/lookup/app_summary.html:100
 msgid "No permissions requested"
@@ -6377,7 +6382,7 @@ msgstr ""
 #: mkt/lookup/templates/lookup/app_summary.html:122
 #: mkt/lookup/templates/lookup/user_summary.html:63
 msgid "Refunds"
-msgstr ""
+msgstr "Visszatérítések"
 
 #. first argument is number of refunds, second argument is percentage of
 #. purchases.
@@ -6406,11 +6411,11 @@ msgstr "Verziótörténet"
 
 #: mkt/lookup/templates/lookup/app_summary.html:145
 msgid "Version (ID)"
-msgstr ""
+msgstr "Verzió (ID)"
 
 #: mkt/lookup/templates/lookup/app_summary.html:146
 msgid "Filename (ID, Size)"
-msgstr ""
+msgstr "Fájlnév (ID, méret)"
 
 #: mkt/lookup/templates/lookup/base.html:3 mkt/site/context_processors.py:74
 msgid "Lookup Tool"
@@ -6426,19 +6431,19 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/group_summary.html:13
 msgid "Group Summary"
-msgstr ""
+msgstr "Csoportösszesítés"
 
 #: mkt/lookup/templates/lookup/group_summary.html:18
 msgid "Group Details"
-msgstr ""
+msgstr "Csoport részletei"
 
 #: mkt/lookup/templates/lookup/group_summary.html:22
 msgid "Rules"
-msgstr ""
+msgstr "Szabályok"
 
 #: mkt/lookup/templates/lookup/group_summary.html:24
 msgid "Notes"
-msgstr ""
+msgstr "Jegyzetek"
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
@@ -6454,11 +6459,11 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:23
 msgid "Buyer"
-msgstr ""
+msgstr "Vásárló"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:31
 msgid "Price Tier"
-msgstr ""
+msgstr "Árkategória"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:33
 msgid "Related Transaction"
@@ -6535,7 +6540,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:13
 msgid "General"
-msgstr ""
+msgstr "Általános"
 
 #: mkt/lookup/templates/lookup/user_summary.html:15
 msgid "Display Name"
@@ -6543,19 +6548,19 @@ msgstr "Megjelenő név"
 
 #: mkt/lookup/templates/lookup/user_summary.html:17
 msgid "Firefox Accounts Identifier"
-msgstr ""
+msgstr "Firefox fiók azonosító"
 
 #: mkt/lookup/templates/lookup/user_summary.html:21
 msgid "Registered"
-msgstr ""
+msgstr "Regisztrálva"
 
 #: mkt/lookup/templates/lookup/user_summary.html:25
 msgid "Groups"
-msgstr ""
+msgstr "Csoportok"
 
 #: mkt/lookup/templates/lookup/user_summary.html:33
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: mkt/lookup/templates/lookup/user_summary.html:58
 msgid "Marketplace Credit"
@@ -6567,11 +6572,11 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:64
 msgid "requested"
-msgstr ""
+msgstr "kérelmezve"
 
 #: mkt/lookup/templates/lookup/user_summary.html:65
 msgid "auto-approved"
-msgstr ""
+msgstr "automatikusan jóváhagyott"
 
 #: mkt/lookup/templates/lookup/user_summary.html:71
 msgid "Developer Program"
@@ -6583,22 +6588,22 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:81
 msgid "Addresses"
-msgstr ""
+msgstr "Címek"
 
 #: mkt/lookup/templates/lookup/user_summary.html:100
 msgid "Submissions"
-msgstr ""
+msgstr "Beküldések"
 
 #: mkt/lookup/templates/lookup/user_summary.html:108
 msgid "Unnamed"
-msgstr ""
+msgstr "Névtelen"
 
 #: mkt/lookup/templates/lookup/user_summary.html:119
 #: mkt/lookup/templates/lookup/user_summary.html:127
 #: mkt/lookup/templates/lookup/user_summary.html:131
 #: mkt/lookup/templates/lookup/user_summary.html:135
 msgid "Delete User"
-msgstr ""
+msgstr "Felhasználó törlése"
 
 #: mkt/lookup/templates/lookup/user_summary.html:122
 msgid ""
@@ -6616,27 +6621,27 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:144
 msgid "Deleted by"
-msgstr ""
+msgstr "Törölte"
 
 #: mkt/lookup/templates/lookup/user_summary.html:147
 msgid "Reason"
-msgstr ""
+msgstr "Ok"
 
 #: mkt/lookup/templates/lookup/website_edit.html:27 mkt/websites/forms.py:36
 msgid "Short Name"
-msgstr ""
+msgstr "Rövid név"
 
 #: mkt/lookup/templates/lookup/website_edit.html:34
 #: mkt/lookup/templates/lookup/website_summary.html:16
 #: mkt/websites/forms.py:38
 msgid "Title"
-msgstr ""
+msgstr "Cím"
 
 #: mkt/lookup/templates/lookup/website_edit.html:48
 #: mkt/lookup/templates/lookup/website_summary.html:28
 #: mkt/websites/forms.py:40
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: mkt/lookup/templates/lookup/website_edit.html:55
 #: mkt/lookup/templates/lookup/website_summary.html:32
@@ -6652,19 +6657,19 @@ msgstr ""
 #: mkt/lookup/templates/lookup/website_summary.html:40
 #: mkt/websites/forms.py:30
 msgid "Keywords"
-msgstr ""
+msgstr "Kulcsszavak"
 
 #: mkt/lookup/templates/lookup/website_edit.html:77
 #: mkt/lookup/templates/lookup/website_summary.html:44
 #: mkt/websites/forms.py:34
 msgid "Preferred Regions"
-msgstr ""
+msgstr "Preferált régiók"
 
 #: mkt/lookup/templates/lookup/website_edit.html:96
 #: mkt/lookup/templates/lookup/website_summary.html:52
 #: mkt/websites/forms.py:28
 msgid "Compatible Devices"
-msgstr ""
+msgstr "Kompatibilis eszközök"
 
 #: mkt/lookup/templates/lookup/website_summary.html:20
 msgid "Name - Short Name"
@@ -6672,7 +6677,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/website_summary.html:60
 msgid "disabled"
-msgstr ""
+msgstr "letiltva"
 
 #: mkt/lookup/templates/lookup/helpers/app_header.html:2
 msgid "App Lookup results for"
@@ -6704,7 +6709,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/helpers/website_header.html:5
 msgid "Edit Website"
-msgstr ""
+msgstr "Webhely szerkesztése"
 
 #: mkt/lookup/templates/lookup/includes/app_search.html:5
 msgid "App Lookup"
@@ -6725,7 +6730,7 @@ msgstr "Keresés"
 
 #: mkt/lookup/templates/lookup/includes/group_search.html:4
 msgid "Group Lookup"
-msgstr ""
+msgstr "Csoport keresése"
 
 #: mkt/lookup/templates/lookup/includes/promo_img_form.html:5
 msgid "Save Promo Image"
@@ -6760,7 +6765,7 @@ msgstr ""
 
 #: mkt/purchase/templates/purchase/receipt.html:19
 msgid "Receipt"
-msgstr ""
+msgstr "Nyugta"
 
 #: mkt/purchase/templates/purchase/receipt.html:21
 msgid "Billed To:"
@@ -6776,11 +6781,11 @@ msgstr ""
 
 #: mkt/purchase/templates/purchase/receipt.html:37
 msgid "Item"
-msgstr ""
+msgstr "Tétel"
 
 #: mkt/purchase/templates/purchase/receipt.html:38
 msgid "Seller"
-msgstr ""
+msgstr "Eladó"
 
 #: mkt/purchase/templates/purchase/receipt.html:61
 msgid "For the Firefox Marketplace Terms of Service please visit:"
@@ -6792,7 +6797,7 @@ msgstr ""
 
 #: mkt/purchase/templates/purchase/receipt.html:71
 msgid "Your purchase history:"
-msgstr ""
+msgstr "A vásárlási előzményei:"
 
 #: mkt/ratings/forms.py:66
 msgid "Keep review; remove flags"
@@ -6805,7 +6810,7 @@ msgstr "Értékelés törlése"
 #: mkt/ratings/helpers.py:12
 #: mkt/reviewers/templates/reviewers/includes/reviews_link.html:7
 msgid "Not yet reviewed"
-msgstr ""
+msgstr "Még nincs értékelve"
 
 #: mkt/ratings/helpers.py:15
 #, python-format
@@ -6830,7 +6835,7 @@ msgstr "Egyéb (adja meg)"
 
 #: mkt/receipts/forms.py:18
 msgid "No receipt"
-msgstr ""
+msgstr "Nincs nyugta"
 
 #: mkt/receipts/forms.py:19
 msgid "Test receipt"
@@ -6872,7 +6877,7 @@ msgstr ""
 
 #: mkt/receipts/templates/receipts/test_manifest.html:26
 msgid "Receipt type"
-msgstr ""
+msgstr "Nyugta típusa"
 
 #: mkt/receipts/templates/receipts/test_manifest.html:30
 msgid "Manifest location"
@@ -6897,7 +6902,7 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:34 mkt/search/forms.py:44
 msgid "Any Device"
-msgstr ""
+msgstr "Bármely eszköz"
 
 #: mkt/reviewers/forms.py:40 mkt/reviewers/forms.py:65
 msgid "View entries between"
@@ -6909,17 +6914,17 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:67
 msgid "containing"
-msgstr ""
+msgstr "tartalmazza"
 
 #. L10n: start, as in "start date"
 #: mkt/reviewers/forms.py:73
 msgid "start"
-msgstr ""
+msgstr "indítás"
 
 #. L10n: end, as in "end date"
 #: mkt/reviewers/forms.py:77
 msgid "end"
-msgstr ""
+msgstr "vége"
 
 #. L10n: Descript of what can be searched for.
 #: mkt/reviewers/forms.py:81
@@ -6932,11 +6937,11 @@ msgstr ""
 
 #: mkt/reviewers/forms.py:105
 msgid "Device:"
-msgstr ""
+msgstr "Eszköz:"
 
 #: mkt/reviewers/forms.py:106
 msgid "Firefox Version:"
-msgstr ""
+msgstr "Firefox verzió:"
 
 #: mkt/reviewers/forms.py:118
 msgid "Comments:"
@@ -6965,7 +6970,7 @@ msgstr ""
 #: mkt/reviewers/forms.py:201 mkt/reviewers/helpers.py:46
 #: mkt/search/forms.py:105
 msgid "Device"
-msgstr ""
+msgstr "Eszköz"
 
 #: mkt/reviewers/helpers.py:39 mkt/reviewers/helpers.py:70
 #: mkt/site/context_processors.py:70
@@ -7094,7 +7099,7 @@ msgstr ""
 
 #: mkt/reviewers/utils.py:429
 msgid "Escalate"
-msgstr ""
+msgstr "Eszkalálás"
 
 #: mkt/reviewers/utils.py:431
 msgid ""
@@ -7180,7 +7185,7 @@ msgstr "Hozzáadva: {0}"
 #: mkt/reviewers/views.py:302 mkt/reviewers/views.py:325
 #: mkt/submit/forms.py:34 mkt/submit/forms.py:43
 msgid "Removed {0}"
-msgstr ""
+msgstr "{0} eltávolítva"
 
 #: mkt/reviewers/views.py:305
 msgid "Device(s) changed by reviewer: {0}"
@@ -7226,12 +7231,12 @@ msgstr "Jelzők"
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:25
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:6
 msgid "Devices"
-msgstr ""
+msgstr "Eszközök"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:34
 #: mkt/reviewers/templates/reviewers/includes/macros.html:87
 msgid "Packaged App"
-msgstr ""
+msgstr "Csomagolt alkalmazás"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:37
 #: mkt/reviewers/templates/reviewers/includes/macros.html:93
@@ -7241,21 +7246,21 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:40
 #: mkt/reviewers/templates/reviewers/includes/macros.html:101
 msgid "Premium App"
-msgstr ""
+msgstr "Prémium alakalmazás"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:43
 #: mkt/reviewers/templates/reviewers/includes/macros.html:105
 msgid "More Information Requested"
-msgstr ""
+msgstr "További információ szükséges"
 
 #: mkt/reviewers/templates/reviewers/apps_reviewing.html:46
 #: mkt/reviewers/templates/reviewers/includes/macros.html:108
 msgid "Contains Editor Comment"
-msgstr ""
+msgstr "Szerkesztői hozzászólást tartalmaz"
 
 #: mkt/reviewers/templates/reviewers/base.html:11
 msgid "<small>Marketplace</small> Reviewer Tools"
-msgstr ""
+msgstr "<small>Marketplace</small> ellenőrző eszközök"
 
 #: mkt/reviewers/templates/reviewers/base.html:29
 #: mkt/reviewers/templates/reviewers/base.html:69
@@ -7308,8 +7313,8 @@ msgstr "Jelenlegi várakozási idő:"
 #: mkt/reviewers/templates/reviewers/home.html:61
 msgid "{0} app"
 msgid_plural "{0} apps"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} alkalmazás"
+msgstr[1] "{0} alkalmazás"
 
 #: mkt/reviewers/templates/reviewers/home.html:77
 msgid "Total Reviews"
@@ -7335,7 +7340,7 @@ msgstr "Helyezés"
 
 #: mkt/reviewers/templates/reviewers/leaderboard.html:25
 msgid "Score"
-msgstr ""
+msgstr "Pontszám"
 
 #: mkt/reviewers/templates/reviewers/logs.html:4
 msgid "App Review Log"
@@ -7348,7 +7353,7 @@ msgstr "Esemény"
 
 #: mkt/reviewers/templates/reviewers/logs.html:38
 msgid "App has been deleted."
-msgstr ""
+msgstr "Az alkalmazás törölve."
 
 #: mkt/reviewers/templates/reviewers/logs.html:44
 msgid "Show Comments"
@@ -7369,19 +7374,19 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:31
 msgid "More details."
-msgstr ""
+msgstr "További részletek."
 
 #: mkt/reviewers/templates/reviewers/moderatelog.html:40
 msgid "No events found for this period."
-msgstr ""
+msgstr "A megadott időtartamban nem található esemény."
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:6
 msgid "Log Details"
-msgstr ""
+msgstr "Naplórészletek"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:12
 msgid "Log details"
-msgstr ""
+msgstr "Naplórészletek"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:16
 msgid "Moderation date"
@@ -7389,15 +7394,15 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:18
 msgid "App title"
-msgstr ""
+msgstr "Alkalmazás címe"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:20
 msgid "Review title"
-msgstr ""
+msgstr "Értékelés címe"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:22
 msgid "Review text"
-msgstr ""
+msgstr "Értékelés szövege"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:26
 msgid "Review was flagged prior to moderation."
@@ -7409,11 +7414,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:33
 msgid "Alive"
-msgstr ""
+msgstr "Él"
 
 #: mkt/reviewers/templates/reviewers/moderatelog_detail.html:40
 msgid "Undelete"
-msgstr ""
+msgstr "Törlés visszavonása"
 
 #: mkt/reviewers/templates/reviewers/motd.html:12
 msgid "Update message of the day"
@@ -7429,19 +7434,19 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/performance.html:25
 msgid "Points"
-msgstr ""
+msgstr "Pontok"
 
 #: mkt/reviewers/templates/reviewers/performance.html:30 mkt/stats/forms.py:11
 msgid "Month"
-msgstr ""
+msgstr "Hónap"
 
 #: mkt/reviewers/templates/reviewers/performance.html:34 mkt/stats/forms.py:13
 msgid "Year"
-msgstr ""
+msgstr "Év"
 
 #: mkt/reviewers/templates/reviewers/performance.html:38
 msgid "All-Time"
-msgstr ""
+msgstr "Az összes"
 
 #: mkt/reviewers/templates/reviewers/queue.html:33
 #: mkt/reviewers/templates/reviewers/includes/additional_review_table.html:24
@@ -7451,7 +7456,7 @@ msgstr "Várakozási idő"
 #: mkt/reviewers/templates/reviewers/queue.html:52
 #: mkt/reviewers/templates/reviewers/queue.html:73
 msgid "Payment Category:"
-msgstr ""
+msgstr "Fizetési kategória:"
 
 #: mkt/reviewers/templates/reviewers/queue.html:88
 msgid "There are currently no items of this type to review."
@@ -7490,11 +7495,11 @@ msgstr "További információ"
 #: mkt/reviewers/templates/reviewers/review.html:60
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:2
 msgid "App History"
-msgstr ""
+msgstr "Alkalmazáselőzmények"
 
 #: mkt/reviewers/templates/reviewers/review.html:61
 msgid "Resolution"
-msgstr ""
+msgstr "Felbontás"
 
 #: mkt/reviewers/templates/reviewers/review.html:93
 msgid "App submission incomplete"
@@ -7514,19 +7519,19 @@ msgstr "Konzervválasz beszúrása…"
 
 #: mkt/reviewers/templates/reviewers/review.html:126
 msgid "Tested on:"
-msgstr ""
+msgstr "Tesztelve:"
 
 #: mkt/reviewers/templates/reviewers/review.html:152
 msgid "Add device"
-msgstr ""
+msgstr "Eszköz hozzáadása"
 
 #: mkt/reviewers/templates/reviewers/review.html:169
 msgid "Browse"
-msgstr ""
+msgstr "Tallózás"
 
 #: mkt/reviewers/templates/reviewers/review.html:181
 msgid "Attach another file"
-msgstr ""
+msgstr "Másik fájl csatolása"
 
 #: mkt/reviewers/templates/reviewers/review.html:184
 msgid "Device Override:"
@@ -7534,7 +7539,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/review.html:197
 msgid "Minimum Requirements Override:"
-msgstr ""
+msgstr "Minimális követelmények felülírása:"
 
 #: mkt/reviewers/templates/reviewers/review.html:207
 msgid ""
@@ -7545,20 +7550,20 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:9
 msgid "Attachments"
-msgstr ""
+msgstr "Csatolmányok"
 
 #: mkt/reviewers/templates/reviewers/includes/commbadge_note_template.html:28
 msgid "This version has not been reviewed"
-msgstr ""
+msgstr "Ez a verzió még nem lett értékelve"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:7
 msgid "ID"
-msgstr ""
+msgstr "Azonosító"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:46
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:111
 msgid "Device Types"
-msgstr ""
+msgstr "Eszköztípusok"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:58
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:123
@@ -7567,11 +7572,11 @@ msgstr "Adatvédelmi irányelvek megtekintése"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:61
 msgid "Requirements"
-msgstr ""
+msgstr "Követelmények"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:67
 msgid "Show more"
-msgstr ""
+msgstr "Több megjelenítése"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:74
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:61
@@ -7581,12 +7586,12 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/details.html:87
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:76
 msgid "Ratings"
-msgstr ""
+msgstr "Értékelések"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:94
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:83
 msgid "This app has not yet been rated"
-msgstr ""
+msgstr "Ezt az alkalmazást még nem értékelték"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:97
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:86
@@ -7605,7 +7610,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:132
 msgid "Show less"
-msgstr ""
+msgstr "Kevesebb megjelenítése"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:142
 msgid "Images"
@@ -7613,7 +7618,7 @@ msgstr "Képek"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:152
 msgid "More about this app"
-msgstr ""
+msgstr "További tudnivalók erről az alkalmazásról"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:155
 msgid "Nothing to see here! The developer did not include any details."
@@ -7627,7 +7632,7 @@ msgstr "Szűrő"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:68
 msgid "App origin"
-msgstr ""
+msgstr "Alkalmazás eredete"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:73
 #, python-format
@@ -7640,7 +7645,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:89
 msgid "Privileged App"
-msgstr ""
+msgstr "Privilegizált alkalmazás"
 
 #: mkt/reviewers/templates/reviewers/includes/macros.html:97
 msgid "Premium with In-App"
@@ -7654,34 +7659,35 @@ msgstr ""
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:31
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:145
 msgid "more..."
-msgstr ""
+msgstr "tovább…"
 
 #: mkt/reviewers/templates/reviewers/includes/paginator_history.html:3
 msgid "Older versions"
-msgstr ""
+msgstr "Korábbi verziók"
 
 #: mkt/reviewers/templates/reviewers/includes/paginator_history.html:6
 msgid "Newer versions"
-msgstr ""
+msgstr "Újabb verziók"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:5
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:65
 msgid "Process"
-msgstr ""
+msgstr "Folyamat"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:14
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:55
 msgid "Actions:"
-msgstr ""
+msgstr "Műveletek:"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:23
 msgid "Review page"
-msgstr ""
+msgstr "Felülvizsgálati oldal"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:25
 #, python-format
 msgid "<a href=\"%(abuses_url)s\">All abuse reports (%(abuses_count)s)</a>]"
 msgstr ""
+"<a href=\"%(abuses_url)s\">Minden visszaélés jelentés (%(abuses_count)s)</a>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:34
 #, python-format
@@ -7741,7 +7747,7 @@ msgstr "Speciális keresés"
 #: mkt/reviewers/templates/reviewers/includes/queue_search.html:12
 #: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:14
 msgid "Clear Search"
-msgstr ""
+msgstr "Keresés törlése"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_search_mobile.html:72
 msgid "Close"
@@ -7777,11 +7783,11 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:78
 msgid "Next Comments"
-msgstr ""
+msgstr "Következő megjegyzések"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:79
 msgid "Previous Comments"
-msgstr ""
+msgstr "Előző megjegyzések"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_paginator.html:6
 #: mkt/site/templates/site/impala_paginator.html:16
@@ -7818,7 +7824,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:4
 msgid "Recent Points"
-msgstr ""
+msgstr "Legutóbbi pontok"
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:17
 msgid "No points awarded yet."
@@ -7834,7 +7840,7 @@ msgstr ""
 
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:53
 msgid "All Time"
-msgstr ""
+msgstr "Az összes"
 
 #. {0} is a number, like "480".
 #: mkt/reviewers/templates/reviewers/includes/reviewers_score_bar.html:55
@@ -7848,7 +7854,7 @@ msgstr "Nincs találat"
 
 #: mkt/search/forms.py:14
 msgid "Relevance"
-msgstr ""
+msgstr "Relevancia"
 
 #: mkt/search/forms.py:15
 msgid "Popularity"
@@ -7868,11 +7874,11 @@ msgstr "Legújabb"
 
 #: mkt/search/forms.py:20
 msgid "Reviewed"
-msgstr ""
+msgstr "Ellenőrizve"
 
 #: mkt/search/forms.py:22
 msgid "Trending"
-msgstr ""
+msgstr "Népszerű"
 
 #: mkt/search/forms.py:28
 msgid "Any App Type"
@@ -7896,11 +7902,11 @@ msgstr "Egyéb rendszer alkalmazásbelivel"
 
 #: mkt/search/forms.py:46
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: mkt/search/forms.py:54
 msgid "Any Device Type"
-msgstr ""
+msgstr "Bármilyen eszköztípus"
 
 #: mkt/search/forms.py:56
 msgid "Mobile"
@@ -7908,27 +7914,27 @@ msgstr "Mobile"
 
 #: mkt/search/forms.py:57
 msgid "Tablet"
-msgstr ""
+msgstr "Táblagép"
 
 #: mkt/search/forms.py:64
 msgid "All Categories"
-msgstr ""
+msgstr "Minden kategória"
 
 #: mkt/search/forms.py:91
 msgid "Search for apps"
-msgstr ""
+msgstr "Alkalmazások keresése"
 
 #: mkt/search/forms.py:107
 msgid "Device type"
-msgstr ""
+msgstr "Eszköz típusa"
 
 #: mkt/search/forms.py:151
 msgid "Premium types"
-msgstr ""
+msgstr "Prémium típusok"
 
 #: mkt/search/forms.py:155
 msgid "App type"
-msgstr ""
+msgstr "Alkalmazástípus"
 
 #: mkt/search/forms.py:159
 msgid "Installs allowed from"
@@ -7936,15 +7942,15 @@ msgstr ""
 
 #: mkt/search/forms.py:160
 msgid "Everywhere"
-msgstr ""
+msgstr "Mindenhol"
 
 #: mkt/search/forms.py:162
 msgid "Works offline"
-msgstr ""
+msgstr "Működik kapcsolat nélkül"
 
 #: mkt/search/forms.py:164
 msgid "Supported languages"
-msgstr ""
+msgstr "Támogatott nyelvek"
 
 #: mkt/search/forms.py:165
 msgid "Author name"
