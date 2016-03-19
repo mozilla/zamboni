@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 12:50-0800\n"
-"PO-Revision-Date: 2016-03-19 00:09+0000\n"
+"PO-Revision-Date: 2016-03-19 00:38+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -3651,7 +3651,7 @@ msgstr "Ezt az alkalmazást <b>eltávolította a listáról</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:33
 msgid "This app is <b>incomplete</b>."
-msgstr ""
+msgstr "Ez az alkalmazás <b>nem teljes</b>."
 
 #: mkt/developers/templates/developers/apps/status.html:43
 msgid "This app has been <b>disabled by Mozilla</b>."
@@ -7954,7 +7954,7 @@ msgstr "Támogatott nyelvek"
 
 #: mkt/search/forms.py:165
 msgid "Author name"
-msgstr ""
+msgstr "Szerző neve"
 
 #: mkt/search/forms.py:166
 msgid "Tags"
@@ -7962,11 +7962,12 @@ msgstr "Címkék"
 
 #: mkt/search/templates/search/down.html:3
 msgid "Search Unavailable"
-msgstr ""
+msgstr "A keresés nem érhető el"
 
 #: mkt/search/templates/search/down.html:10
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
 msgstr ""
+"A keresés átmenetileg nem elérhető. Kérjük próbálja meg pár perccel később."
 
 #: mkt/site/context_processors.py:57
 msgid "Account Settings"
@@ -7978,7 +7979,7 @@ msgstr "Jelszó megváltoztatása"
 
 #: mkt/site/context_processors.py:60
 msgid "Sign out"
-msgstr ""
+msgstr "Kijelentkezés"
 
 #: mkt/site/context_processors.py:63
 msgid "Developer Hub"
@@ -7994,7 +7995,7 @@ msgstr "Legalább egy értéket meg kell adni."
 
 #: mkt/site/fields.py:53
 msgid "Hexadecimal color"
-msgstr ""
+msgstr "Hexadecimális színérték"
 
 #: mkt/site/fields.py:58
 msgid "Must be a valid hex color code, e.g. #FF0035."
@@ -8002,7 +8003,7 @@ msgstr ""
 
 #: mkt/site/forms.py:9
 msgid "As soon as it is approved."
-msgstr ""
+msgstr "Amint jóváhagyják."
 
 #: mkt/site/forms.py:10
 msgid "Not until I manually make it public."
@@ -8010,7 +8011,7 @@ msgstr ""
 
 #: mkt/site/helpers.py:159
 msgid "Home"
-msgstr ""
+msgstr "Kezdőlap"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: mkt/site/helpers.py:312
@@ -8368,7 +8369,7 @@ msgstr ""
 
 #: mkt/site/log.py:496
 msgid "Device(s) Added"
-msgstr ""
+msgstr "Hozzáadott eszköz(ök)"
 
 #: mkt/site/log.py:503
 msgid "{addon} device support manually changed by reviewer."
@@ -8392,7 +8393,7 @@ msgstr ""
 
 #: mkt/site/log.py:520
 msgid "VIP auto-escalation"
-msgstr ""
+msgstr "VIP automatikus eszkaláció"
 
 #: mkt/site/log.py:527
 msgid "{addon} re-reviewed because of manifest URL change."
@@ -8535,11 +8536,11 @@ msgstr ""
 
 #: mkt/site/templates/site/403.html:4
 msgid "Not Allowed"
-msgstr ""
+msgstr "Nem engedélyezett"
 
 #: mkt/site/templates/site/403.html:8
 msgid "Oops! Not allowed."
-msgstr ""
+msgstr "Hoppá! Nem engedélyezett."
 
 #: mkt/site/templates/site/403.html:9
 msgid "You tried to do something that you weren't allowed to."
@@ -8551,7 +8552,7 @@ msgstr ""
 
 #: mkt/site/templates/site/404.html:4
 msgid "Page Not Found"
-msgstr ""
+msgstr "Az oldal nem található"
 
 #: mkt/site/templates/site/404.html:8
 msgid "We're sorry, but we can't find what you're looking for."
@@ -8576,7 +8577,7 @@ msgstr ""
 
 #: mkt/site/templates/site/500.html:4
 msgid "Server Error"
-msgstr ""
+msgstr "Kiszolgálóhiba"
 
 #: mkt/site/templates/site/500.html:8
 msgid "Oops! We had an error."
@@ -8592,15 +8593,15 @@ msgstr ""
 
 #: mkt/stats/forms.py:9
 msgid "Day"
-msgstr ""
+msgstr "Nap"
 
 #: mkt/stats/forms.py:10
 msgid "Week"
-msgstr ""
+msgstr "Hét"
 
 #: mkt/stats/forms.py:12
 msgid "Quarter"
-msgstr ""
+msgstr "Negyedév"
 
 #: mkt/submit/forms.py:31
 msgid "Device(s) changed: {0}"
@@ -8613,15 +8614,15 @@ msgstr ""
 
 #: mkt/submit/forms.py:49
 msgid "Cannot be free and paid."
-msgstr ""
+msgstr "Nem lehet ingyenes és fizetett."
 
 #: mkt/submit/forms.py:50
 msgid "Please select a device."
-msgstr ""
+msgstr "Kérjük válasszon egy eszközt."
 
 #: mkt/submit/forms.py:123
 msgid "Agree and Continue"
-msgstr ""
+msgstr "Elfogadás és tovább"
 
 #: mkt/submit/forms.py:150 mkt/submit/forms.py:228
 msgid "There was an error with your upload. Please try again."
@@ -8658,7 +8659,7 @@ msgstr ""
 
 #: mkt/submit/forms.py:295
 msgid "Privacy Policy:"
-msgstr ""
+msgstr "Adatvédelmi nyilatkozat:"
 
 #: mkt/submit/forms.py:297
 msgid ""
@@ -8673,7 +8674,7 @@ msgstr ""
 
 #: mkt/submit/forms.py:308
 msgid "Homepage:"
-msgstr ""
+msgstr "Kezdőlap:"
 
 #: mkt/submit/forms.py:310
 msgid "If your app has another homepage, enter its address here."
@@ -8681,7 +8682,7 @@ msgstr ""
 
 #: mkt/submit/forms.py:313
 msgid "Website:"
-msgstr ""
+msgstr "Weboldal:"
 
 #: mkt/submit/forms.py:315
 msgid "If your app has a support website or forum, enter its address here."
@@ -8689,7 +8690,7 @@ msgstr ""
 
 #: mkt/submit/forms.py:319
 msgid "Email:"
-msgstr ""
+msgstr "E-mail cím:"
 
 #: mkt/submit/forms.py:321
 msgid ""
@@ -8745,11 +8746,11 @@ msgstr ""
 
 #: mkt/submit/templates/submit/details.html:50
 msgid "Open details page"
-msgstr ""
+msgstr "Részletek megnyitása"
 
 #: mkt/submit/templates/submit/details.html:127
 msgid "Support Information:"
-msgstr ""
+msgstr "Támogatási információ:"
 
 #: mkt/submit/templates/submit/details.html:136
 msgid "Screenshot or video of your app:"
@@ -8768,7 +8769,7 @@ msgstr ""
 
 #: mkt/submit/templates/submit/done.html:3
 msgid "Finished!"
-msgstr ""
+msgstr "Kész!"
 
 #: mkt/submit/templates/submit/done.html:14
 msgid "Success! What happens now?"
@@ -8816,11 +8817,11 @@ msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:22
 msgid "Published!"
-msgstr ""
+msgstr "Közzétéve!"
 
 #: mkt/submit/templates/submit/next_steps.html:24
 msgid "Almost There!"
-msgstr ""
+msgstr "Mindjárt megvagyunk!"
 
 #: mkt/submit/templates/submit/next_steps.html:27
 msgid "Submit App Manifest"
@@ -8929,7 +8930,7 @@ msgstr ""
 
 #: mkt/submit/tests/test_forms.py:342
 msgid "Héllo"
-msgstr ""
+msgstr "Helló"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 #: mkt/tags/utils.py:29
@@ -8967,15 +8968,15 @@ msgstr[1] "A címkéknek legalább {0} karakterből kell állnia."
 
 #: mkt/templates/mkt/account-links.html:7
 msgid "Edit Account Settings"
-msgstr ""
+msgstr "Fiókbeállítások szerkesztése"
 
 #: mkt/templates/mkt/account-links.html:11
 msgid "Return to the Marketplace"
-msgstr ""
+msgstr "Vissza a Marketplace-re"
 
 #: mkt/templates/mkt/account-links.html:13
 msgid "Sign Out"
-msgstr ""
+msgstr "Kijelentkezés"
 
 #: mkt/templates/mkt/footer.html:5
 #, python-format
@@ -8987,7 +8988,7 @@ msgstr ""
 
 #: mkt/templates/mkt/footer.html:17
 msgid "Terms of Use"
-msgstr ""
+msgstr "Használati feltételek"
 
 #: mkt/templates/mkt/footer.html:19
 msgid "Report Trademark Abuse"
@@ -8995,15 +8996,15 @@ msgstr "Védjeggyel való visszaélés jelentése"
 
 #: mkt/templates/mkt/header.html:5
 msgid "Back"
-msgstr ""
+msgstr "Vissza"
 
 #: mkt/templates/mkt/header.html:14
 msgid "Clear"
-msgstr ""
+msgstr "Törlés"
 
 #: mkt/templates/mkt/header.html:17
 msgid "Expand"
-msgstr ""
+msgstr "Kibontás"
 
 #. {0} is a language name, like 'French'
 #: mkt/translations/templates/translations/trans-menu.html:7
@@ -9109,7 +9110,7 @@ msgstr ""
 
 #: mkt/users/notifications.py:126
 msgid "my app is reviewed by an editor"
-msgstr ""
+msgstr "az alkalmazásomat egy szerkesztő értékelte"
 
 #: mkt/users/notifications.py:132
 msgid "Mozilla needs to contact me about my individual app"
@@ -9134,13 +9135,15 @@ msgstr ""
 
 #: mkt/users/views.py:47
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Ezzel az e-mail címmel nem létezik felhasználó."
 
 #: mkt/users/views.py:48
 msgid ""
 "A user with that email address does not exist, or the user has not yet "
 "accepted the developer agreement."
 msgstr ""
+"Ezzel az e-mail címmel rendelkező felhasználó nem létezik, vagy a "
+"felhasználó még nem fogadta el a fejlesztői megállapodást."
 
 #: mkt/users/views.py:87
 msgid "Native FxA authentication failure."
