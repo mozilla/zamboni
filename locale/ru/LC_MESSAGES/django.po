@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-02-24 12:50-0800\n"
-"PO-Revision-Date: 2016-03-12 18:35+0000\n"
+"PO-Revision-Date: 2016-03-20 14:01+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -1529,11 +1529,11 @@ msgstr "Запрошена ручная проверка"
 
 #: mkt/constants/comm.py:69
 msgid "Escalation due to VIP App"
-msgstr ""
+msgstr "Эскалировано как VIP Приложение"
 
 #: mkt/constants/comm.py:70
 msgid "Escalation due to Prelease App"
-msgstr ""
+msgstr "Эскалировано как пререлиз приложения"
 
 #: mkt/constants/comm.py:71
 msgid "Priority review requested"
@@ -2153,7 +2153,7 @@ msgstr "В ожидании рейтинга"
 
 #: mkt/constants/ratingsbodies.py:91
 msgid "Department of Justice, Rating, Titles and Qualification"
-msgstr ""
+msgstr "Департамент юстиции, рейтингов, титулов и квалификаций"
 
 #: mkt/constants/ratingsbodies.py:144 mkt/constants/ratingsbodies.py:146
 msgid "Generic"
@@ -4097,7 +4097,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/admin.html:114
 msgid "This will persist until first approval"
-msgstr ""
+msgstr "Это будет сохраняться до первого одобрения"
 
 #: mkt/developers/templates/developers/apps/edit/basic.html:7
 msgid "Basic Information"
@@ -5257,7 +5257,7 @@ msgstr "Регионы и листинги"
 
 #: mkt/developers/templates/developers/payments/premium.html:286
 msgid "Promote as upgrade to free version"
-msgstr ""
+msgstr "Продвигать как обновление для бесплатной версии"
 
 #: mkt/developers/templates/developers/payments/premium.html:295
 msgid ""
@@ -5647,7 +5647,7 @@ msgstr "Постройте раннюю базу фанатов и зарабо�
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:206
 msgid "Target tech savvy consumers with your app."
-msgstr ""
+msgstr "Нацеливать ваше приложение на технически подкованных потребителей."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:232
 msgid "Firefox Apps & Hacks"
@@ -5909,7 +5909,7 @@ msgstr "Руководства"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:26
 msgid "You may not alter the badge in any way"
-msgstr ""
+msgstr "Вы не можете изменять значок каким-либо способом"
 
 #: mkt/ecosystem/templates/ecosystem/publish_badges.html:31
 msgid ""
@@ -6249,6 +6249,8 @@ msgid ""
 "The \"langpack\" role is invalid for Web Apps. Please submit this app as a "
 "language pack instead."
 msgstr ""
+"Роль \"langpack\" является недопустимой для веб-приложений. Вместо этого "
+"представьте это приложение как языковой пакет."
 
 #: mkt/files/utils.py:123
 msgid "Your specified app locales are not in the correct format."
