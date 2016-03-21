@@ -167,7 +167,7 @@ def unpublish(app_id):
         return
     try:
         cert_id = app.iarc_cert.cert_id
-        data = _update_certs(app_id, cert_id, 'RemoveProduct')
+        data = _update_certs(app_id, cert_id, 'Unpublish')
     except IARCCert.DoesNotExist:
         data = None
     return data
@@ -190,7 +190,7 @@ def _update_certs(app_id, cert_id, action):
 
     Arguments:
     cert_id -- Globally unique ID for certificate.
-    action -- One of [InvalidateCert, RemoveProduct, UpdateStoreAttributes,
+    action -- One of [InvalidateCert, Unpublish, UpdateStoreAttributes,
                       Publish].
 
     Return:
