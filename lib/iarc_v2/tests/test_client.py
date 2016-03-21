@@ -155,7 +155,7 @@ class TestUpdateCerts(TestCase):
             settings.IARC_V2_STORE_ID)
         eq_(json.loads(responses.calls[0].request.body), {
             'UpdateList': [{
-                'Action': 'RemoveProduct',
+                'Action': 'Unpublish',
                 'CertID': 'adb3261b-c657-4fd2-a057-bc9f85310b80'
             }]
         })
