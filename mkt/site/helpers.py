@@ -236,9 +236,9 @@ def get_doc_template(context, template):
         except jinja2.TemplateNotFound:
             pass
         else:
-            return jinja2.Markup(template.render())
+            return jinja2.Markup(template.render(context))
     template = env.get_template('%s/en-US.html' % template)
-    return jinja2.Markup(template.render())
+    return jinja2.Markup(template.render(context))
 
 
 @register.function
