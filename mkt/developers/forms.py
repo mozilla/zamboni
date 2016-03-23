@@ -839,7 +839,7 @@ class RegionForm(forms.Form):
     def is_toggling(self):
         if not self.request or not hasattr(self.request, 'POST'):
             return False
-        return 'free'
+        return self.product.premium_type != mkt.ADDON_FREE
 
     def _product_is_paid(self):
         return (self.product.premium_type in mkt.ADDON_PREMIUMS or

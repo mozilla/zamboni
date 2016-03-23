@@ -100,10 +100,13 @@ class PremiumForm(happyforms.Form):
 
             is_paid = False
 
-        elif 'firefoxos' in self.data['free_platforms']:
+        elif 'firefoxos' in self.data.get('free_platforms', ()):
             self.addon.addondevicetype_set.create(device_type=DEVICE_GAIA.id)
 
         log.info('Saving app payment changes for addon %s.' % self.addon.pk)
+        log.error('Form data ' + str(self.data))
+        # Everything in this method above this line can be deleted once all
+        # paid and non-fxos apps have been dealt with.
         self.addon.save()
 
 
