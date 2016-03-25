@@ -1,7 +1,4 @@
-from rest_framework import serializers
-
 from mkt.webapps.serializers import SimpleAppSerializer, SimpleESAppSerializer
-from mkt.websites.serializers import ESWebsiteSerializer, WebsiteSerializer
 
 
 class BaseFireplaceAppSerializer(object):

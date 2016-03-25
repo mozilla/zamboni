@@ -33,6 +33,10 @@ class MultiSearchView(BaseMultiSearchView):
         'homescreen': FireplaceESAppSerializer,
     }
 
+    @classmethod
+    def get_default_indices(cls):
+        return [cls.mapping_names_and_indices['webapp']]
+
 
 class ConsumerInfoView(CORSMixin, RetrieveAPIView):
     authentication_classes = [RestOAuthAuthentication,

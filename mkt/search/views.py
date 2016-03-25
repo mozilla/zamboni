@@ -101,6 +101,13 @@ class MultiSearchView(SearchView):
         'website': ESWebsiteSerializer
     }
 
+    @classmethod
+    def get_default_indices(cls):
+        return [
+            cls.mapping_names_and_indices['webapp'],
+            cls.mapping_names_and_indices['website'],
+        ]
+
     def get_doc_types_and_indices(self):
         """
         Return a dict with the index and doc_type keys to use for this request,
@@ -116,10 +123,7 @@ class MultiSearchView(SearchView):
             in cls.mapping_names_and_indices if key in requested_doc_types]
         if not filtered_names_and_indices:
             # Default is to include only webapp and website for now.
-            filtered_names_and_indices = [
-                cls.mapping_names_and_indices['webapp'],
-                cls.mapping_names_and_indices['website'],
-            ]
+            filtered_names_and_indices = cls.get_default_indices()
         # Now regroup to produce a dict with doc_type: [...], index: [...].
         return {key: [item[key] for item in filtered_names_and_indices]
                 for key in ['doc_type', 'index']}
