@@ -32,7 +32,6 @@ class MultiSearchView(BaseMultiSearchView):
         'extension': ESExtensionSerializer,
         'webapp': FireplaceESAppSerializer,
         'homescreen': FireplaceESAppSerializer,
-        'website': FireplaceESWebsiteSerializer
     }
 
 

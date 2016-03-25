@@ -14,16 +14,12 @@ from mkt.api.tests import BaseAPI
 from mkt.api.tests.test_oauth import RestOAuth
 from mkt.constants.base import STATUS_PUBLIC
 from mkt.extensions.models import Extension, ExtensionPopularity
-from mkt.fireplace.serializers import (FireplaceAppSerializer,
-                                       FireplaceWebsiteSerializer)
-from mkt.search.forms import COLOMBIA_WEBSITE
+from mkt.fireplace.serializers import FireplaceAppSerializer
 from mkt.site.fixtures import fixture
 from mkt.site.tests import app_factory, ESTestCase, TestCase
 from mkt.tags.models import Tag
 from mkt.webapps.indexers import HomescreenIndexer
 from mkt.webapps.models import AddonUser, Installed, Webapp
-from mkt.websites.models import Website, WebsitePopularity
-from mkt.websites.utils import website_factory
 
 
 # https://bugzilla.mozilla.org/show_bug.cgi?id=958608#c1 and #c2.
@@ -31,20 +27,11 @@ FIREPLACE_APP_EXCLUDED_FIELDS = (
     'absolute_url', 'app_type', 'created', 'default_locale', 'payment_account',
     'regions', 'resource_uri', 'supported_locales', 'upsold', 'versions')
 
-FIREPLACE_WEBSITE_EXCLUDED_FIELDS = ('title', 'tv_url')
-
 
 def assert_fireplace_app(data):
     for field in FIREPLACE_APP_EXCLUDED_FIELDS:
         ok_(field not in data, field)
     for field in FireplaceAppSerializer.Meta.fields:
-        ok_(field in data, field)
-
-
-def assert_fireplace_website(data):
-    for field in FIREPLACE_WEBSITE_EXCLUDED_FIELDS:
-        ok_(field not in data, field)
-    for field in FireplaceWebsiteSerializer.Meta.fields:
         ok_(field in data, field)
 
 
@@ -169,9 +156,6 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         super(TestMultiSearchView, self).setUp()
         post_request_task._start_queuing_tasks()
         self.url = reverse('fireplace-multi-search-api')
-        self.website = website_factory()
-        self.website.popularity.add(WebsitePopularity(region=0, value=666))
-        self.website.save()
         self.webapp = Webapp.objects.get(pk=337141)
         self.webapp.save()
         self.extension = Extension.objects.create(name='test-ext-lol')
@@ -179,13 +163,10 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         self.extension.popularity.add(ExtensionPopularity(region=0, value=999))
         self.extension.save()
         post_request_task._send_tasks_and_stop_queuing()
-        self.refresh(doctypes=('extension', 'webapp', 'website',
-                               'homescreen'))
+        self.refresh(doctypes=('extension', 'webapp', 'homescreen'))
 
     def tearDown(self):
         for o in Webapp.objects.all():
-            o.delete()
-        for o in Website.objects.all():
             o.delete()
         for o in Extension.objects.all():
             o.delete()
@@ -198,10 +179,9 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         # indexing tasks that should happen post_request, and we need to wait
         # for ES to have done everything before continuing.
         Webapp.get_indexer().unindexer(_all=True)
-        Website.get_indexer().unindexer(_all=True)
         Extension.get_indexer().unindexer(_all=True)
         HomescreenIndexer.unindexer(_all=True)
-        self.refresh(('webapp', 'website', 'extension', 'homescreen'))
+        self.refresh(('webapp', 'extension', 'homescreen'))
 
     def make_homescreen(self):
         post_request_task._start_queuing_tasks()
@@ -215,81 +195,46 @@ class TestMultiSearchView(RestOAuth, ESTestCase):
         self.homescreen.update_version()
         self.homescreen.update(categories=['health-fitness', 'productivity'])
         post_request_task._send_tasks_and_stop_queuing()
-        self.refresh(('webapp', 'website', 'extension', 'homescreen'))
+        self.refresh(('webapp', 'extension', 'homescreen'))
         return self.homescreen
-
-    def _add_co_tag(self, website):
-        co = Tag.objects.get_or_create(tag_text=COLOMBIA_WEBSITE)[0]
-        website.keywords.add(co)
-        self.reindex(Website)
 
     def test_get_multi(self):
         res = self.client.get(self.url)
         objects = res.json['objects']
-        eq_(len(objects), 2)  # By default we don't include extensions for now.
+        eq_(len(objects), 1)  # By default we don't include extensions for now.
 
-        eq_(objects[0]['doc_type'], 'website')
-        assert_fireplace_website(objects[0])
-        eq_(objects[0]['slug'], '{website-%d}' % self.website.pk)
-
-        eq_(objects[1]['doc_type'], 'webapp')
-        assert_fireplace_app(objects[1])
+        eq_(objects[0]['doc_type'], 'webapp')
+        assert_fireplace_app(objects[0])
 
     def test_multi_with_extensions(self):
-        res = self.client.get(self.url + '?doc_type=webapp,extension,website')
+        res = self.client.get(self.url + '?doc_type=webapp,extension')
         objects = res.json['objects']
-        eq_(len(objects), 3)
+        eq_(len(objects), 2)
 
         eq_(objects[0]['doc_type'], 'extension')
         eq_(objects[0]['slug'], self.extension.slug)
 
-        eq_(objects[1]['doc_type'], 'website')
-        assert_fireplace_website(objects[1])
-        eq_(objects[1]['slug'], '{website-%d}' % self.website.pk)
-
-        eq_(objects[2]['doc_type'], 'webapp')
-        assert_fireplace_app(objects[2])
-
-    def test_multi_with_homescreen(self):
-        h = self.make_homescreen()
-        res = self.client.get(self.url + '?doc_type=webapp,homescreen,website')
-        objects = res.json['objects']
-        eq_(len(objects), 3)
-
-        eq_(objects[0]['doc_type'], 'website')
-        assert_fireplace_website(objects[0])
-        eq_(objects[0]['slug'], '{website-%d}' % self.website.pk)
-
         eq_(objects[1]['doc_type'], 'webapp')
         assert_fireplace_app(objects[1])
 
-        eq_(objects[2]['doc_type'], 'homescreen')
-        eq_(objects[2]['slug'], h.app_slug)
+    def test_multi_with_homescreen(self):
+        h = self.make_homescreen()
+        res = self.client.get(self.url + '?doc_type=webapp,homescreen')
+        objects = res.json['objects']
+        eq_(len(objects), 2)
 
-    def test_get_multi_colombia(self):
-        self._add_co_tag(self.website)
-        res = self.client.get(self.url, {'doc_type': 'website',
-                                         'region': 'mx'})
-        eq_(res.json['meta']['total_count'], 0)
-        res_co = self.client.get(self.url, {'doc_type': 'website',
-                                            'region': 'co'})
-        eq_(res_co.json['meta']['total_count'], 1)
-        ok_(COLOMBIA_WEBSITE in res_co.json['objects'][0]['keywords'])
-        assert_fireplace_website(res_co.json['objects'][0])
+        eq_(objects[0]['doc_type'], 'webapp')
+        assert_fireplace_app(objects[0])
+
+        eq_(objects[1]['doc_type'], 'homescreen')
+        eq_(objects[1]['slug'], h.app_slug)
 
     def test_icons(self):
         res = self.client.get(self.url)
         eq_(res.status_code, 200)
         objects = res.json['objects']
-        eq_(objects[0]['doc_type'], 'website')
+        eq_(objects[0]['doc_type'], 'webapp')
         data = objects[0]['icons']
-        eq_(len(data), 2)
-        eq_(urlparse(data['64'])[0:3],
-            urlparse(self.website.get_icon_url(64))[0:3])
-        eq_(urlparse(data['128'])[0:3],
-            urlparse(self.website.get_icon_url(128))[0:3])
-        eq_(objects[1]['doc_type'], 'webapp')
-        data = objects[1]['icons']
         eq_(len(data), 2)
         eq_(urlparse(data['64'])[0:3],
             urlparse(self.webapp.get_icon_url(64))[0:3])
