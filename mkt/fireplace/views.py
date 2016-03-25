@@ -10,8 +10,7 @@ from mkt.api.authentication import (RestAnonymousAuthentication,
 from mkt.api.base import CORSMixin
 from mkt.extensions.serializers import ESExtensionSerializer
 from mkt.fireplace.serializers import (FireplaceAppSerializer,
-                                       FireplaceESAppSerializer,
-                                       FireplaceESWebsiteSerializer)
+                                       FireplaceESAppSerializer)
 from mkt.search.views import (
     SearchView as BaseSearchView,
     MultiSearchView as BaseMultiSearchView)
