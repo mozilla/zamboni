@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-02-24 12:50-0800\n"
+"POT-Creation-Date: 2016-03-31 09:58-0700\n"
 "PO-Revision-Date: 2016-02-14 16:00+0000\n"
 "Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -61,11 +61,11 @@ msgstr "Clé primaire ou identifiant généré « %s » invalide. L'objet n'ex
 msgid "Unknown"
 msgstr "Inconnu"
 
-#: mkt/api/forms.py:111 mkt/developers/forms_payments.py:54 mkt/developers/templates/developers/apps/edit/technical.html:53 mkt/reviewers/forms.py:208
+#: mkt/api/forms.py:111 mkt/developers/templates/developers/apps/edit/technical.html:53 mkt/reviewers/forms.py:208
 msgid "Yes"
 msgstr "Oui"
 
-#: mkt/api/forms.py:112 mkt/developers/forms_payments.py:54 mkt/developers/templates/developers/apps/edit/technical.html:55 mkt/lookup/templates/lookup/user_summary.html:78 mkt/reviewers/forms.py:209
+#: mkt/api/forms.py:112 mkt/developers/templates/developers/apps/edit/technical.html:55 mkt/lookup/templates/lookup/user_summary.html:78 mkt/reviewers/forms.py:209
 msgid "No"
 msgstr "Non"
 
@@ -90,7 +90,7 @@ msgstr "La version %s n'existe pas"
 msgid "Attachment:"
 msgstr "Pièce jointe :"
 
-#: mkt/comm/forms.py:52 mkt/submit/forms.py:280
+#: mkt/comm/forms.py:52 mkt/submit/forms.py:194
 msgid "Description:"
 msgstr "Description :"
 
@@ -1144,7 +1144,7 @@ msgstr "Zambie"
 msgid "Zimbabwe"
 msgstr "Zimbabwe"
 
-#: mkt/constants/base.py:27 mkt/lookup/views.py:184
+#: mkt/constants/base.py:27 mkt/lookup/views.py:182
 msgid "Incomplete"
 msgstr "Incomplet"
 
@@ -1203,8 +1203,7 @@ msgstr "Visualiseur"
 msgid "Support"
 msgstr "Assistance"
 
-#: mkt/constants/base.py:173 mkt/detail/templates/detail/includes/price.html:6 mkt/developers/templates/developers/payments/premium.html:62 mkt/search/forms.py:35
-#: mkt/submit/templates/submit/manifest.html:30
+#: mkt/constants/base.py:173 mkt/detail/templates/detail/includes/price.html:6 mkt/search/forms.py:35
 msgid "Free"
 msgstr "Gratuite"
 
@@ -2158,11 +2157,11 @@ msgstr "Saint-Siège"
 msgid "Venezuela"
 msgstr "Venezuela"
 
-#: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_app.html:16 mkt/search/forms.py:29 mkt/submit/templates/submit/manifest.html:49
+#: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_app.html:16 mkt/search/forms.py:29 mkt/submit/templates/submit/manifest.html:31
 msgid "Hosted"
 msgstr "Hébergée"
 
-#: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_app.html:54 mkt/search/forms.py:30 mkt/submit/templates/submit/manifest.html:83
+#: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_app.html:54 mkt/search/forms.py:30 mkt/submit/templates/submit/manifest.html:65
 msgid "Packaged"
 msgstr "Empaquetée"
 
@@ -2174,7 +2173,7 @@ msgstr "Accord"
 msgid "Submit"
 msgstr "Proposer"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1432
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1433
 msgid "Details"
 msgstr "Détails"
 
@@ -2185,14 +2184,6 @@ msgstr "Prochaînes étapes"
 #: mkt/detail/templates/detail/helpers/device_list.html:10
 msgid "(Unsupported)"
 msgstr "(Non pris en charge)"
-
-#: mkt/developers/api_payments.py:105
-msgid "Could not connect to payment server."
-msgstr "Impossible de se connecter au serveur de paiement."
-
-#: mkt/developers/api_payments.py:129
-msgid "Cannot delete shared account"
-msgstr "Impossible de supprimer le compte partagé"
 
 #: mkt/developers/cron.py:140
 msgid "Content rating changed to Adult."
@@ -2252,7 +2243,7 @@ msgstr "Oops, il semble que vous avez déjà envoyé un manifeste pour %s. qui e
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "Une application existe déjà sur ce domaine ; une seule application est autorisée par domaine."
 
-#: mkt/developers/forms.py:328 mkt/webapps/models.py:1341
+#: mkt/developers/forms.py:328 mkt/webapps/models.py:1342
 msgid "You must upload at least one screenshot or video."
 msgstr "Vous devez envoyer au moins une capture d'écran ou vidéo."
 
@@ -2273,19 +2264,19 @@ msgstr "Fournissez une description détaillée de votre application"
 msgid "This description will appear on the details page."
 msgstr "Cette description sera affichée sur la page de détails."
 
-#: mkt/developers/forms.py:467 mkt/submit/forms.py:288
+#: mkt/developers/forms.py:467 mkt/submit/forms.py:202
 msgid "Search Keywords:"
 msgstr "Mots-clés de recherche :"
 
-#: mkt/developers/forms.py:469 mkt/developers/templates/developers/apps/edit/basic.html:131 mkt/submit/forms.py:290
+#: mkt/developers/forms.py:469 mkt/developers/templates/developers/apps/edit/basic.html:131 mkt/submit/forms.py:204
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
 msgstr "Les mots-clés de recherche sont utilisés pour renvoyer des résultats de recherche dans le Firefox Marketplace. Assurez-vous d'utiliser des mots-clés qui représentent bien votre application."
 
-#: mkt/developers/forms.py:526 mkt/submit/forms.py:368
+#: mkt/developers/forms.py:526 mkt/submit/forms.py:282
 msgid "This slug is already in use. Please choose another."
 msgstr "Ce racourcis est déjà utilisé. Merci d'en choisir un autre."
 
-#: mkt/developers/forms.py:529 mkt/submit/forms.py:372
+#: mkt/developers/forms.py:529 mkt/submit/forms.py:286
 #, python-format
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "Ce racourcis ne peut être « %s ». Merci d'en choisir un autre."
@@ -2331,7 +2322,7 @@ msgstr "<b>Limité à l'équipe</b> : Visible uniquement aux membres de l'équip
 msgid "Choose the regions your app will be listed in:"
 msgstr "Choisissez les régions où votre application sera présente :"
 
-#: mkt/developers/forms.py:799 mkt/developers/forms.py:854
+#: mkt/developers/forms.py:799 mkt/developers/forms.py:853
 msgid "You must select at least one region."
 msgstr "Vous devez sélectionner au moins une région."
 
@@ -2347,257 +2338,93 @@ msgstr "Rendre mon application disponible dans la plupart des régions"
 msgid "Choose where my app is made available"
 msgstr "Choisir où mon application est disponible"
 
-#: mkt/developers/forms.py:908 mkt/developers/templates/developers/apps/edit/basic.html:178 mkt/lookup/templates/lookup/website_edit.html:84 mkt/lookup/templates/lookup/website_summary.html:48
+#: mkt/developers/forms.py:907 mkt/developers/templates/developers/apps/edit/basic.html:178 mkt/lookup/templates/lookup/website_edit.html:84 mkt/lookup/templates/lookup/website_summary.html:48
 #: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:102 mkt/websites/forms.py:23
 msgid "Categories"
 msgstr "Catégories"
 
 #. L10n: {0} is the number of categories.
-#: mkt/developers/forms.py:933 mkt/webapps/serializers.py:299 mkt/websites/forms.py:62
+#: mkt/developers/forms.py:932 mkt/webapps/serializers.py:283 mkt/websites/forms.py:62
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Vous ne pouvez avoir que {0} catégorie."
 msgstr[1] "Vous ne pouvez avoir que {0} catégories."
 
-#: mkt/developers/forms.py:946
+#: mkt/developers/forms.py:945
 msgid "Agree"
 msgstr "Accepter"
 
-#: mkt/developers/forms.py:963
+#: mkt/developers/forms.py:962
 msgid "Please enter a valid email address."
 msgstr "Merci d'indiquer une adresse courriel valide."
 
-#: mkt/developers/forms.py:966
+#: mkt/developers/forms.py:965
 msgid "Your email address"
 msgstr "Votre adresse de courriel"
 
-#: mkt/developers/forms.py:969
+#: mkt/developers/forms.py:968
 msgid "Text"
 msgstr "Texte"
 
-#: mkt/developers/forms.py:973
+#: mkt/developers/forms.py:972
 msgid "You must agree to the Privacy Policy."
 msgstr "Vous devez accepter la politique de vie privée."
 
-#: mkt/developers/forms.py:974 mkt/developers/forms_payments.py:397 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:973 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "Pays"
 
-#: mkt/developers/forms.py:995 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27 mkt/reviewers/templates/reviewers/apps_reviewing.html:21
+#: mkt/developers/forms.py:994 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27 mkt/reviewers/templates/reviewers/apps_reviewing.html:21
 #: mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:18 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:20
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
 msgstr "App"
 
-#: mkt/developers/forms.py:997
+#: mkt/developers/forms.py:996
 msgid "Transaction Type"
 msgstr "Type de transaction"
 
-#: mkt/developers/forms.py:1000 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
+#: mkt/developers/forms.py:999 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
 msgid "Transaction ID"
 msgstr "Identifiant de transaction"
 
-#: mkt/developers/forms.py:1006
+#: mkt/developers/forms.py:1005
 msgid "From"
 msgstr "De"
 
-#: mkt/developers/forms.py:1009
+#: mkt/developers/forms.py:1008
 msgid "To"
 msgstr "À"
 
-#: mkt/developers/forms.py:1020
+#: mkt/developers/forms.py:1019
 msgid "Web site"
 msgstr "Site web"
 
-#: mkt/developers/forms.py:1021
+#: mkt/developers/forms.py:1020
 msgid "Command line"
 msgstr "Ligne de commande"
 
-#: mkt/developers/forms.py:1042
+#: mkt/developers/forms.py:1041
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr "Faire de cette version celle active dès qu'elle est vérifiée et approuvée."
 
-#: mkt/developers/forms.py:1090 mkt/developers/forms.py:1181
+#: mkt/developers/forms.py:1089 mkt/developers/forms.py:1180
 msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
 msgstr "Ce certificat IARC est déjà utilisé pour une autre application. Merci de créer un nouveau certificat IARC."
 
-#: mkt/developers/forms.py:1097
+#: mkt/developers/forms.py:1096
 msgid "This Certificate ID is not recognized by IARC, or is already attached to another app in the Firefox Marketplace."
 msgstr ""
 
-#: mkt/developers/forms.py:1165
+#: mkt/developers/forms.py:1164
 msgid "Please enter a valid submission ID."
 msgstr "Merci de fournir un identifiant de soumission valide."
 
-#: mkt/developers/forms.py:1216 mkt/developers/forms.py:1228
+#: mkt/developers/forms.py:1215 mkt/developers/forms.py:1227
 msgid "Invalid submission ID or security code."
 msgstr "Identifiant d'envoi ou code de sécurité invalide."
 
-#: mkt/developers/forms_payments.py:57
-msgid "App Price"
-msgstr "Tarif de l'application"
-
-#: mkt/developers/forms_payments.py:110
-msgid "Free (with in-app payments)"
-msgstr "Gratuit (avec micro-paiements)"
-
 #: mkt/developers/forms_payments.py:122
-msgid "Promotional Pricing"
-msgstr "Prix promotionnel"
-
-#: mkt/developers/forms_payments.py:135
-msgid "Only supports carrier billing"
-msgstr "Ne prends en charge que la facturation par l'opérateur"
-
-#: mkt/developers/forms_payments.py:138
-msgid "Only supports credit-card billing"
-msgstr "Ne prends en charge que la facturation par carte de crédit"
-
-#: mkt/developers/forms_payments.py:142
-msgid "Supports all billing methods"
-msgstr "Prendre en charge toutes les méthodes de facturation"
-
-#: mkt/developers/forms_payments.py:214
-msgid "If app is Free, in-app payments must be enabled"
-msgstr "Si l'application est gratuite, les micro-paiements doivent être activés"
-
-#: mkt/developers/forms_payments.py:221
-msgid "Not a valid choice"
-msgstr "Choix invalide"
-
-#: mkt/developers/forms_payments.py:326 mkt/developers/templates/developers/payments/premium.html:294
-msgid "This is a paid upgrade of"
-msgstr "Ceci est une mise à jour payante de"
-
-#: mkt/developers/forms_payments.py:327
-msgid "Not an upgrade"
-msgstr "N'est pas une mise à jour"
-
-#: mkt/developers/forms_payments.py:369
-msgid "Bank Account Holder Name"
-msgstr "Nom du titulaire du compte"
-
-#: mkt/developers/forms_payments.py:371
-msgid "Company Name"
-msgstr "Nom de la société"
-
-#: mkt/developers/forms_payments.py:373
-msgid "Vendor Name"
-msgstr "Nom du vendeur"
-
-#: mkt/developers/forms_payments.py:375
-msgid "Financial Email"
-msgstr "Courriel financier"
-
-#: mkt/developers/forms_payments.py:378
-msgid "Administrative Email"
-msgstr "Courriel administratif"
-
-#: mkt/developers/forms_payments.py:381
-msgid "Support Email"
-msgstr "Courriel d'assistance"
-
-#: mkt/developers/forms_payments.py:385
-msgid "Address"
-msgstr "Adresse"
-
-#: mkt/developers/forms_payments.py:387
-msgid "Address 2"
-msgstr "Adresse (2)"
-
-#: mkt/developers/forms_payments.py:389
-msgid "City/Municipality"
-msgstr "Ville/Municipalité"
-
-#: mkt/developers/forms_payments.py:391
-msgid "State/Province/Region"
-msgstr "État/Province/Région"
-
-#: mkt/developers/forms_payments.py:393
-msgid "Zip/Postal Code"
-msgstr "Code postal"
-
-#: mkt/developers/forms_payments.py:395
-msgid "Phone"
-msgstr "Téléphone"
-
-#: mkt/developers/forms_payments.py:400
-msgid "I prefer to be paid in"
-msgstr "Je préfère être payé en"
-
-#: mkt/developers/forms_payments.py:403
-msgid "VAT Number"
-msgstr "Numéro TVA"
-
-#: mkt/developers/forms_payments.py:406
-msgid "Bank Account Number"
-msgstr "Numéro de compte en banque"
-
-#. l10n: SWIFT is http://bit.ly/15e7RJx and might not need translating.
-#: mkt/developers/forms_payments.py:409
-msgid "SWIFT code"
-msgstr "Code SWIFT"
-
-#: mkt/developers/forms_payments.py:411
-msgid "Bank Name"
-msgstr "Nom de la banque"
-
-#: mkt/developers/forms_payments.py:413
-msgid "Bank Address"
-msgstr "Adresse de la banque"
-
-#: mkt/developers/forms_payments.py:415
-msgid "Bank Address 2"
-msgstr "Adresse (suite) de la banque"
-
-#: mkt/developers/forms_payments.py:417
-msgid "Bank City/Municipality"
-msgstr "Ville/Municipalité de la banque"
-
-#: mkt/developers/forms_payments.py:420
-msgid "Bank State/Province/Region"
-msgstr "État/Province/Région de la banque"
-
-#: mkt/developers/forms_payments.py:422
-msgid "Bank Zip/Postal Code"
-msgstr "Code postal de la banque"
-
-#: mkt/developers/forms_payments.py:424
-msgid "Bank Country"
-msgstr "Pays de la banque"
-
-#: mkt/developers/forms_payments.py:426 mkt/developers/templates/developers/payments/includes/account_list.html:12
-msgid "Account Name"
-msgstr "Nom du compte"
-
-#: mkt/developers/forms_payments.py:455
-msgid "Payment Account"
-msgstr "Compte de paiement"
-
-#: mkt/developers/forms_payments.py:526
-msgid "You cannot remove a payment account from an app."
-msgstr "Vous ne pouvez pas supprimer un compte de paiement d'une application."
-
-#: mkt/developers/forms_payments.py:530
-msgid "You are not permitted to change payment accounts."
-msgstr "Vous n'avez pas les droits pour changer les comptes de paiement."
-
-#: mkt/developers/forms_payments.py:619
-msgid "Account name"
-msgstr "Nom du compte"
-
-#: mkt/developers/forms_payments.py:620 mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/developers/templates/developers/payments/in-app-products.html:49
-#: mkt/lookup/templates/lookup/group_summary.html:20 mkt/lookup/templates/lookup/website_edit.html:20 mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:21
-#: mkt/submit/templates/submit/details.html:57 mkt/webapps/templates/webapps/impala/listing/sorter.html:5 mkt/websites/forms.py:32
-msgid "Name"
-msgstr "Nom"
-
-#: mkt/developers/forms_payments.py:621 mkt/developers/templates/developers/apps/edit/support.html:21 mkt/ecosystem/templates/ecosystem/partners.html:126
-#: mkt/ecosystem/templates/ecosystem/partners.html:127 mkt/lookup/templates/lookup/user_summary.html:19
-msgid "Email"
-msgstr "Courriel"
-
-#: mkt/developers/forms_payments.py:642
 msgid "No payment account set up for that app"
 msgstr "Pas de compte de paiement configuré pour cette application"
 
@@ -2622,7 +2449,7 @@ msgstr "Critique"
 msgid "Version {0}"
 msgstr "Version {0}"
 
-#: mkt/developers/providers.py:284
+#: mkt/developers/providers.py:277
 msgid "Reference Implementation"
 msgstr "Implémentation de référence"
 
@@ -2731,7 +2558,7 @@ msgstr "Application renvoyée avec succès."
 msgid "New version successfully added."
 msgstr "Nouvelle version ajoutée avec succès."
 
-#: mkt/developers/views.py:297 mkt/developers/views.py:564 mkt/developers/views_payments.py:114 mkt/developers/views_payments.py:450 mkt/reviewers/views.py:679
+#: mkt/developers/views.py:297 mkt/developers/views.py:564 mkt/developers/views_payments.py:38 mkt/reviewers/views.py:679
 msgid "Changes successfully saved."
 msgstr "Modifications enregistrées avec succès."
 
@@ -2791,42 +2618,6 @@ msgstr "Version bloquée créée."
 msgid "App already blocklisted."
 msgstr "L'application est déjà bloquée."
 
-#: mkt/developers/views_payments.py:89 mkt/developers/views_payments.py:107
-msgid "We encountered a problem connecting to the payment server."
-msgstr "Nous avons rencontré un problème pendant la connexion au serveur de paiement."
-
-#: mkt/developers/views_payments.py:176 mkt/files/forms.py:28
-msgid "All"
-msgstr "Toutes"
-
-#: mkt/developers/views_payments.py:177
-msgid "Credit card"
-msgstr "Carte de crédit"
-
-#: mkt/developers/views_payments.py:178
-msgid "Carrier"
-msgstr "Opérateur"
-
-#: mkt/developers/views_payments.py:330
-msgid "A server error occurred when retrieving the application key."
-msgstr "Une erreur serveur est survenu en essayant d'accéder à la clef de l'application."
-
-#: mkt/developers/views_payments.py:337
-msgid "Secret was reset successfully."
-msgstr "Le secret a été remis à zéro avec succès."
-
-#: mkt/developers/views_payments.py:341
-msgid "Key and secret were created successfully."
-msgstr "La clé et le secret ont été créés avec succès."
-
-#: mkt/developers/views_payments.py:367
-msgid "Your app is not configured for in-app payments."
-msgstr "Votre application n'est pas configurée pour les micro-paiements."
-
-#: mkt/developers/views_payments.py:370
-msgid "No payment account for this app."
-msgstr "Pas de compte de paiement pour cette application."
-
 #: mkt/developers/templates/developers/api.html:2 mkt/developers/templates/developers/nav.html:12
 msgid "Marketplace API"
 msgstr "API Marketplace"
@@ -2879,8 +2670,7 @@ msgid "Secret"
 msgstr "Secret"
 
 #: mkt/developers/templates/developers/api.html:80 mkt/developers/templates/developers/apps/status.html:236 mkt/developers/templates/developers/apps/listing/item_actions.html:14
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35 mkt/developers/templates/developers/payments/includes/account_list.html:15
-#: mkt/developers/templates/developers/payments/includes/account_list.html:51
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:27
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -2896,21 +2686,25 @@ msgstr "Exemple OAuth"
 msgid "<p>Example using a Python library for the command-line on Mac OS X/Linux using your OAuth credentials:</p>"
 msgstr "<p>Exemple utilisant une bibliothèque Python depuis l'interface en ligne de commande Mac OS X/Linux avec les informations d'authentification OAuth&nbsp;:</p>"
 
+#: mkt/developers/templates/developers/base_impala.html:26
+msgid "You must <a href=\"payments\">enable your app for Firefox OS</a> before it can be reviewed or published."
+msgstr ""
+
 #. `next_step_name` is a plural noun, the title of the page of the next step of the
 #. submission process (e.g. 'Payments' or 'Content Ratings').
-#: mkt/developers/templates/developers/base_impala.html:26 mkt/developers/templates/developers/apps/status.html:36
+#: mkt/developers/templates/developers/base_impala.html:31 mkt/developers/templates/developers/apps/status.html:36
 #, python-format
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a> before your app can be reviewed or published."
 msgstr "Vous devez configurer <a href=\"%(next_url)s\">%(next_step_name)s</a> avant que votre application ne puisse être validée ou publiée."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the
 #. submission process (e.g. 'Payments' or 'Content Ratings').
-#: mkt/developers/templates/developers/base_impala.html:32
+#: mkt/developers/templates/developers/base_impala.html:38
 #, python-format
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
 msgstr "Vous devez configurer <a href=\"%(next_url)s\">%(next_step_name)s</a>."
 
-#: mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:13 mkt/ecosystem/templates/ecosystem/landing.html:171
+#: mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:13 mkt/ecosystem/templates/ecosystem/landing.html:94
 #: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:302
 #: mkt/zadmin/templates/admin/base.html:19 templates/base.html:13
 msgid "Firefox Marketplace"
@@ -2936,12 +2730,11 @@ msgstr "Message du jour"
 msgid "Update Message of the Day"
 msgstr "Mise à jour du message du jour"
 
-#: mkt/developers/templates/developers/motd.html:14 mkt/developers/templates/developers/payments/in-app-product-row.html:32 mkt/reviewers/templates/reviewers/motd.html:15
-#: mkt/reviewers/templates/reviewers/review.html:211
+#: mkt/developers/templates/developers/motd.html:14 mkt/reviewers/templates/reviewers/motd.html:15 mkt/reviewers/templates/reviewers/review.html:211
 msgid "Save"
 msgstr "Sauvegarder"
 
-#: mkt/developers/templates/developers/nav.html:6 mkt/developers/templates/developers/payments/in-app-payments.html:25 mkt/developers/templates/developers/payments/in-app-payments.html:43
+#: mkt/developers/templates/developers/nav.html:6
 msgid "Documentation"
 msgstr "Documentation"
 
@@ -3028,8 +2821,8 @@ msgstr "Politiques supplémentaire de Marketplace"
 msgid "You have already agreed to this developer agreement."
 msgstr "Vous avez déjà accepté cet accord développeur."
 
-#: mkt/developers/templates/developers/testing.html:8 mkt/developers/templates/developers/validate_app.html:9 mkt/developers/templates/developers/payments/in-app-keys.html:9
-#: mkt/receipts/templates/receipts/test_details.html:8 mkt/receipts/templates/receipts/test_manifest.html:8
+#: mkt/developers/templates/developers/testing.html:8 mkt/developers/templates/developers/validate_app.html:9 mkt/receipts/templates/receipts/test_details.html:8
+#: mkt/receipts/templates/receipts/test_manifest.html:8
 msgid "Testing"
 msgstr "Test"
 
@@ -3077,24 +2870,24 @@ msgstr "Montant"
 msgid "Test App Validation"
 msgstr "Tester la validation de l'application"
 
-#: mkt/developers/templates/developers/validate_app.html:17 mkt/submit/templates/submit/manifest.html:50
+#: mkt/developers/templates/developers/validate_app.html:17 mkt/submit/templates/submit/manifest.html:32
 msgid "Submit your app manifest URL"
 msgstr "Envoyez l'adresse du manifeste de votre application"
 
-#: mkt/developers/templates/developers/validate_app.html:27 mkt/submit/templates/submit/manifest.html:59
+#: mkt/developers/templates/developers/validate_app.html:27 mkt/submit/templates/submit/manifest.html:41
 msgid "Validate"
 msgstr "Valider"
 
-#: mkt/developers/templates/developers/validate_app.html:35 mkt/submit/templates/submit/manifest.html:67
+#: mkt/developers/templates/developers/validate_app.html:35 mkt/submit/templates/submit/manifest.html:49
 #, python-format
 msgid "<strong>Don't forget a protocol!</strong> Try adding either <a href=\"#\">%(http)s</a> or <a href=\"#\">%(https)s</a>."
 msgstr "<strong>N'oubliez pas le protocole !</strong> Essayer d'ajouter soit <a href=\"#\">%(http)s</a> soit <a href=\"#\">%(https)s</a>."
 
-#: mkt/developers/templates/developers/validate_app.html:43 mkt/submit/templates/submit/manifest.html:75
+#: mkt/developers/templates/developers/validate_app.html:43 mkt/submit/templates/submit/manifest.html:57
 msgid "Manifest URLs must start with a protocol (for example, <code>http://</code> or <code>https://</code>) and typically use the <code>.webapp</code> extension."
 msgstr "Les adresses de manifeste doivent commencer avec un protocole (par exemple, <code>http://</code> ou <code>https://</code>) et en général utiliser l'extension <code>.webapp</code>."
 
-#: mkt/developers/templates/developers/validate_app.html:61 mkt/submit/templates/submit/manifest.html:117
+#: mkt/developers/templates/developers/validate_app.html:61 mkt/submit/templates/submit/manifest.html:97
 msgid "Learn more about submitting an app."
 msgstr "En savoir plus sur l'envoi d'application."
 
@@ -3136,7 +2929,7 @@ msgstr "Rejeter cette annonce"
 #: mkt/developers/templates/developers/apps/dashboard.html:15 mkt/developers/templates/developers/apps/edit/admin.html:9 mkt/developers/templates/developers/apps/edit/basic.html:10
 #: mkt/developers/templates/developers/apps/edit/details.html:8 mkt/developers/templates/developers/apps/edit/media.html:6 mkt/developers/templates/developers/apps/edit/support.html:7
 #: mkt/developers/templates/developers/apps/edit/technical.html:8 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:12
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:19 mkt/developers/templates/developers/payments/in-app-product-row.html:31 mkt/submit/templates/submit/details.html:91
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:19 mkt/submit/templates/submit/details.html:91
 msgid "Edit"
 msgstr "Éditer"
 
@@ -3153,7 +2946,7 @@ msgstr "Vous n'avez pas encore envoyé d'application sur le Marketplace Firefox.
 msgid "Submit An App"
 msgstr "Envoyer une application"
 
-#: mkt/developers/templates/developers/apps/edit.html:3 mkt/developers/templates/developers/apps/listing/item_actions.html:25 mkt/developers/templates/developers/apps/listing/item_actions_app.html:46
+#: mkt/developers/templates/developers/apps/edit.html:3 mkt/developers/templates/developers/apps/listing/item_actions.html:25 mkt/developers/templates/developers/apps/listing/item_actions_app.html:38
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:2 mkt/lookup/templates/lookup/helpers/app_header.html:33 mkt/lookup/templates/lookup/helpers/website_header.html:22
 #: mkt/reviewers/templates/reviewers/review.html:54
 msgid "Edit Listing"
@@ -3165,12 +2958,12 @@ msgstr "Modifier les informations"
 msgid "None"
 msgstr "Aucun"
 
-#: mkt/developers/templates/developers/apps/owner.html:3 mkt/developers/templates/developers/apps/owner.html:26 mkt/developers/templates/developers/apps/listing/item_actions_app.html:90
-#: mkt/developers/templates/developers/includes/addons_edit_nav.html:28 mkt/reviewers/templates/reviewers/includes/details.html:118 mkt/reviewers/templates/reviewers/includes/mobile_details.html:128
+#: mkt/developers/templates/developers/apps/owner.html:3 mkt/developers/templates/developers/apps/owner.html:26 mkt/developers/templates/developers/apps/listing/item_actions_app.html:64
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:17 mkt/reviewers/templates/reviewers/includes/details.html:118 mkt/reviewers/templates/reviewers/includes/mobile_details.html:128
 msgid "Team Members"
 msgstr "Membres de l'équipe"
 
-#: mkt/developers/templates/developers/apps/owner.html:22 mkt/developers/templates/developers/payments/premium.html:51
+#: mkt/developers/templates/developers/apps/owner.html:22 mkt/developers/templates/developers/payments/premium.html:28
 msgid "Only the app owner(s) can edit this page."
 msgstr "Seuls le(s) propriétaire(s) peut modifier cette page."
 
@@ -3180,17 +2973,12 @@ msgstr "À propos des rôles des membres de l'équipe"
 
 #: mkt/developers/templates/developers/apps/owner.html:58 mkt/developers/templates/developers/apps/version_edit.html:67 mkt/developers/templates/developers/apps/edit/admin.html:130
 #: mkt/developers/templates/developers/apps/edit/basic.html:200 mkt/developers/templates/developers/apps/edit/details.html:79 mkt/developers/templates/developers/apps/edit/support.html:62
-#: mkt/developers/templates/developers/apps/edit/technical.html:94 mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/payments/premium.html:75
-#: mkt/developers/templates/developers/payments/premium.html:104 mkt/developers/templates/developers/payments/premium.html:162 mkt/developers/templates/developers/payments/premium.html:266
-#: mkt/developers/templates/developers/payments/premium.html:279 mkt/developers/templates/developers/payments/premium.html:318 mkt/lookup/templates/lookup/website_edit.html:121
-#: mkt/translations/templates/translations/trans-menu.html:48
+#: mkt/developers/templates/developers/apps/edit/technical.html:94 mkt/developers/templates/developers/apps/forms_shared/media.html:164 mkt/developers/templates/developers/payments/premium.html:59
+#: mkt/developers/templates/developers/payments/premium.html:76 mkt/lookup/templates/lookup/website_edit.html:121 mkt/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
 msgstr "Enregistrer les modifications"
 
-#: mkt/developers/templates/developers/apps/owner.html:83 mkt/developers/templates/developers/payments/includes/account_list.html:5
-#: mkt/developers/templates/developers/payments/includes/account_list.html:59 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:4
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:4 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:4
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:4
+#: mkt/developers/templates/developers/apps/owner.html:83
 msgid "close"
 msgstr "fermer"
 
@@ -3222,11 +3010,11 @@ msgstr "Peut voir les paramètres de l'application"
 msgid "Status & Versions"
 msgstr "Statut et versions"
 
-#: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
-#: mkt/developers/templates/developers/includes/addons_edit_nav.html:8 mkt/developers/templates/developers/payments/in-app-products.html:52 mkt/lookup/forms.py:71 mkt/lookup/forms.py:76
-#: mkt/lookup/templates/lookup/app_summary.html:61 mkt/lookup/templates/lookup/app_summary.html:147 mkt/lookup/templates/lookup/website_edit.html:105
-#: mkt/lookup/templates/lookup/website_summary.html:56 mkt/reviewers/forms.py:186 mkt/reviewers/forms.py:231 mkt/reviewers/templates/reviewers/review.html:29
-#: mkt/reviewers/templates/reviewers/includes/details.html:21 mkt/reviewers/templates/reviewers/includes/search_results.html:8
+#: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:52
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:8 mkt/lookup/forms.py:71 mkt/lookup/forms.py:76 mkt/lookup/templates/lookup/app_summary.html:61
+#: mkt/lookup/templates/lookup/app_summary.html:147 mkt/lookup/templates/lookup/website_edit.html:105 mkt/lookup/templates/lookup/website_summary.html:56 mkt/reviewers/forms.py:186
+#: mkt/reviewers/forms.py:231 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
+#: mkt/reviewers/templates/reviewers/includes/search_results.html:8
 msgid "Status"
 msgstr "Statut"
 
@@ -3378,7 +3166,7 @@ msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings<
 msgstr "Souvenez-vous de revalider <a href=\"%(ratings_url)s\">la classification du contenu</a> si votre application a beaucoup évolué."
 
 #: mkt/developers/templates/developers/apps/status.html:275 mkt/developers/templates/developers/apps/forms_shared/media.html:171 mkt/submit/templates/submit/details.html:191
-#: mkt/submit/templates/submit/manifest.html:110 mkt/submit/templates/submit/next_steps.html:110
+#: mkt/submit/templates/submit/manifest.html:90 mkt/submit/templates/submit/next_steps.html:103
 msgid "Continue"
 msgstr "Continuer"
 
@@ -3443,14 +3231,10 @@ msgstr "Êtes-vous sûr de vouloir désactiver l'application ? "
 
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
-#. This 'or' goes between two choices in a dialog.
 #: mkt/developers/templates/developers/apps/status.html:389 mkt/developers/templates/developers/apps/status.html:411 mkt/developers/templates/developers/apps/version_edit.html:67
 #: mkt/developers/templates/developers/apps/edit/admin.html:130 mkt/developers/templates/developers/apps/edit/basic.html:200 mkt/developers/templates/developers/apps/edit/details.html:79
 #: mkt/developers/templates/developers/apps/edit/support.html:62 mkt/developers/templates/developers/apps/edit/technical.html:94 mkt/developers/templates/developers/apps/forms_shared/media.html:164
-#: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/payments/includes/accept_terms.html:11
-#: mkt/developers/templates/developers/payments/includes/account_list.html:67 mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:141
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:28 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:126
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:29 mkt/lookup/templates/lookup/website_edit.html:121 mkt/submit/templates/submit/done.html:48
+#: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/lookup/templates/lookup/website_edit.html:121 mkt/submit/templates/submit/done.html:48
 #: mkt/translations/templates/translations/trans-menu.html:50 mkt/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "ou"
@@ -3458,12 +3242,9 @@ msgstr "ou"
 #: mkt/developers/templates/developers/apps/status.html:389 mkt/developers/templates/developers/apps/status.html:411 mkt/developers/templates/developers/apps/version_edit.html:68
 #: mkt/developers/templates/developers/apps/edit/admin.html:132 mkt/developers/templates/developers/apps/edit/basic.html:202 mkt/developers/templates/developers/apps/edit/details.html:81
 #: mkt/developers/templates/developers/apps/edit/support.html:64 mkt/developers/templates/developers/apps/edit/technical.html:96 mkt/developers/templates/developers/apps/forms_shared/media.html:166
-#: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/apps/listing/delete_form.html:27
-#: mkt/developers/templates/developers/payments/includes/accept_terms.html:12 mkt/developers/templates/developers/payments/includes/account_list.html:68
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:142 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:29
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:127 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:30
-#: mkt/lookup/templates/lookup/user_summary.html:136 mkt/lookup/templates/lookup/user_summary.html:139 mkt/lookup/templates/lookup/website_edit.html:122
-#: mkt/reviewers/templates/reviewers/includes/macros.html:31 mkt/translations/templates/translations/trans-menu.html:50 mkt/translations/templates/translations/trans-menu.html:62
+#: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/apps/listing/delete_form.html:27 mkt/lookup/templates/lookup/user_summary.html:136
+#: mkt/lookup/templates/lookup/user_summary.html:139 mkt/lookup/templates/lookup/website_edit.html:122 mkt/reviewers/templates/reviewers/includes/macros.html:31
+#: mkt/translations/templates/translations/trans-menu.html:50 mkt/translations/templates/translations/trans-menu.html:62
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -3575,6 +3356,12 @@ msgstr "Informations de base"
 msgid "Basic Information for {0}"
 msgstr "Informations de base sur {0}"
 
+#: mkt/developers/templates/developers/apps/edit/basic.html:21 mkt/lookup/templates/lookup/group_summary.html:20 mkt/lookup/templates/lookup/website_edit.html:20
+#: mkt/reviewers/templates/reviewers/leaderboard.html:24 mkt/search/forms.py:21 mkt/submit/templates/submit/details.html:57 mkt/webapps/templates/webapps/impala/listing/sorter.html:5
+#: mkt/websites/forms.py:32
+msgid "Name"
+msgstr "Nom"
+
 #: mkt/developers/templates/developers/apps/edit/basic.html:23 mkt/submit/templates/submit/details.html:60
 msgid ""
 "The app name is one of the fields used to return search results in the Firefox Marketplace. The app name also appears on the app’s detail page. Be sure you’ve included a descriptive name in your "
@@ -3600,8 +3387,8 @@ msgstr "Adresse de l'application"
 msgid "Select a unique URL for your detail page. By default we use your app name to create this URL."
 msgstr "Sélectionnez une adresse unique pour votre page de détail. Par défaut le nom de votre application est utilisé."
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:64 mkt/developers/templates/developers/apps/listing/item_actions_app.html:94
-#: mkt/developers/templates/developers/includes/addons_edit_nav.html:29 mkt/reviewers/templates/reviewers/review.html:51
+#: mkt/developers/templates/developers/apps/edit/basic.html:64 mkt/developers/templates/developers/apps/listing/item_actions_app.html:68
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:18 mkt/reviewers/templates/reviewers/review.html:51
 msgid "View Listing"
 msgstr "Page de l'application"
 
@@ -3640,7 +3427,7 @@ msgstr ""
 msgid "Description"
 msgstr "Description"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:106 mkt/submit/forms.py:281
+#: mkt/developers/templates/developers/apps/edit/basic.html:106 mkt/submit/forms.py:195
 msgid ""
 "The app description is one of the fields used to return search results in the Firefox Marketplace. The app description also appears on the app's detail page. Be sure to include a description that "
 "accurately represents your app."
@@ -3732,6 +3519,11 @@ msgstr "Informations d'assistance"
 #: mkt/developers/templates/developers/apps/edit/support.html:16
 msgid "Support Information for {0}"
 msgstr "Informations d'assistance pour {0}"
+
+#: mkt/developers/templates/developers/apps/edit/support.html:21 mkt/ecosystem/templates/ecosystem/partners.html:126 mkt/ecosystem/templates/ecosystem/partners.html:127
+#: mkt/lookup/templates/lookup/user_summary.html:19
+msgid "Email"
+msgstr "Courriel"
 
 #: mkt/developers/templates/developers/apps/edit/support.html:23
 msgid "The email address used by end users to contact you with support issues. If you have different addresses for each language multiple translations of this field can be added."
@@ -3935,8 +3727,7 @@ msgstr "Plus"
 msgid "Team Members & License"
 msgstr "Membres de l'équipe et Licence"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions.html:47 mkt/developers/templates/developers/apps/listing/item_actions_app.html:77
-#: mkt/developers/templates/developers/includes/addons_edit_nav.html:17 mkt/developers/templates/developers/payments/premium.html:4
+#: mkt/developers/templates/developers/apps/listing/item_actions.html:47
 msgid "Compatibility & Payments"
 msgstr "Compatibilité et paiements"
 
@@ -3956,58 +3747,42 @@ msgstr "Obtenez la classification du contenu pour l'application."
 msgid "Set Up Content Ratings"
 msgstr "Configuration de la classification du contenu"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:25
-msgid "Provide payment information for the app."
-msgstr "Fournir des informations de paiement pour l'application."
-
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:26 mkt/submit/templates/submit/done.html:47
-msgid "Set Up Payments"
-msgstr "Configurer les paiements"
-
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:27
 msgid "Delete this app."
 msgstr "Supprimer cette application."
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:37
 msgid "Edit details for this app's listing page."
 msgstr "Éditer les détails de cette application pour la page de "
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:53
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
 msgid "Add a new version of the packaged app."
 msgstr "Ajouter une nouvelle version de l'application empaquetée."
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:54
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:46
 msgid "Add New Version"
 msgstr "Ajouter une nouvelle version"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:52
 msgid "Status &amp; Versions"
 msgstr "Statut &amp; versions"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:68 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:47 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1439
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:47 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1440
 msgid "Content Ratings"
 msgstr "Classification du contenu"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:84 mkt/developers/templates/developers/includes/addons_edit_nav.html:20
-#: mkt/developers/templates/developers/payments/in-app-config.html:14 mkt/developers/templates/developers/payments/in-app-payments.html:4
-#: mkt/developers/templates/developers/payments/in-app-payments.html:19 mkt/developers/templates/developers/payments/in-app-products.html:22
-#: mkt/developers/templates/developers/payments/premium.html:184
-msgid "In-App Payments"
-msgstr "Micro-paiements"
-
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:99 mkt/developers/templates/developers/includes/addons_edit_nav.html:33
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:73 mkt/developers/templates/developers/includes/addons_edit_nav.html:22
 msgid "Messages"
 msgstr "Messages"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:103 mkt/developers/templates/developers/includes/addons_edit_nav.html:34
-#: mkt/lookup/templates/lookup/helpers/app_header.html:27
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:77 mkt/developers/templates/developers/includes/addons_edit_nav.html:23 mkt/lookup/templates/lookup/helpers/app_header.html:27
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:109 mkt/developers/templates/developers/includes/addons_edit_nav.html:39
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:83 mkt/developers/templates/developers/includes/addons_edit_nav.html:28
 msgid "Transactions"
 msgstr "Transactions"
 
@@ -4028,19 +3803,7 @@ msgstr "Version de l'application empaquetée :"
 msgid "Pending Version:"
 msgstr "Version en attente :"
 
-#: mkt/developers/templates/developers/apps/listing/items.html:47
-msgid "Price:"
-msgstr "Tarif :"
-
-#: mkt/developers/templates/developers/apps/listing/items.html:50
-msgid "Set up Payment Account"
-msgstr "Configuration du compte de paiement"
-
-#: mkt/developers/templates/developers/apps/listing/items.html:55
-msgid "Change Devices"
-msgstr "Changer de périphérique"
-
-#: mkt/developers/templates/developers/apps/listing/items.html:60
+#: mkt/developers/templates/developers/apps/listing/items.html:49
 #, python-format
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
 msgstr "<a href=\"%(rating_url)s\">Configurer la classification du contenu</a>"
@@ -4155,7 +3918,7 @@ msgstr ""
 msgid "Rating System"
 msgstr "Système de classification"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:51 mkt/developers/templates/developers/payments/premium.html:224
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:51
 msgid "Region"
 msgstr "Région"
 
@@ -4176,7 +3939,7 @@ msgstr "Éléments interactifs"
 msgid "Developer Agreement"
 msgstr "Accord développeur"
 
-#: mkt/developers/templates/developers/includes/addons_edit_nav.html:25
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:16 mkt/developers/templates/developers/payments/premium.html:4
 msgid "Compatibility"
 msgstr "Compatibilité"
 
@@ -4235,368 +3998,17 @@ msgstr "Tout cacher"
 msgid "Test App Installation"
 msgstr "Tester l'installation de l'application"
 
-#: mkt/developers/templates/developers/includes/testing_nav.html:4 mkt/developers/templates/developers/payments/in-app-keys.html:4
-msgid "Test In-App Payments"
-msgstr "Tester les micro-paiements"
-
-#: mkt/developers/templates/developers/payments/in-app-config.html:4
-msgid "In-App Payments Keys"
-msgstr "Clés de paiement in-app"
-
-#: mkt/developers/templates/developers/payments/in-app-config.html:23
-msgid "The Firefox Marketplace allows your app to take in-app payments. The <a href=\"{guide}\">in-app payment guide</a> explains how to configure your app for payments with the parameters below."
-msgstr ""
-"Le Marketplace Firefox permet les micro-paiements. Le <a href=\"{guide}\">guide de ces paiements</a> explique comment configurer votre application pour les paiements avec les paramètres ci-dessous."
-
-#: mkt/developers/templates/developers/payments/in-app-config.html:31 mkt/developers/templates/developers/payments/in-app-keys.html:29
-msgid "Application Key"
-msgstr "Clé de l'application"
-
-#: mkt/developers/templates/developers/payments/in-app-config.html:35 mkt/developers/templates/developers/payments/in-app-config.html:47
-#: mkt/developers/templates/developers/payments/in-app-keys.html:33 mkt/developers/templates/developers/payments/in-app-keys.html:46
-msgid "Not yet generated."
-msgstr "Pas encore généré."
-
-#: mkt/developers/templates/developers/payments/in-app-config.html:39 mkt/developers/templates/developers/payments/in-app-keys.html:37
-msgid "Application Secret"
-msgstr "Secret de l'application"
-
-#: mkt/developers/templates/developers/payments/in-app-config.html:43 mkt/developers/templates/developers/payments/in-app-keys.html:42
-msgid "Show secret"
-msgstr "Afficher le secret"
-
-#: mkt/developers/templates/developers/payments/in-app-config.html:53 mkt/developers/templates/developers/payments/in-app-keys.html:51
-msgid "Reset secret"
-msgstr "Remettre à zéro le secret"
-
-#: mkt/developers/templates/developers/payments/in-app-keys.html:17
-msgid "Learn more about <b>in-app payments</b> on MDN."
-msgstr "En savoir plus à propos des <b>micro-paiements</b> sur MDN."
-
-#: mkt/developers/templates/developers/payments/in-app-keys.html:20
-#, python-format
-msgid ""
-"The following key/secret will only allow you to simulate in-app payments while you develop your app. To generate a key for real in-app payments you must <a href=\"%(submit)s\">submit</a> your app, "
-"set up your payment credentials, and generate a new key specifically for that app."
-msgstr ""
-"La clé et le secret suivant seront uniquement utilisables pour simuler des micro-paiements pendant votre développement. Pour générer une clé utilisable en production vous devez <a href=\"%(submit)s"
-"\">envoyer</a> votre application, configurer vos crédentiaux et générer une nouvelle clé spécifiquement pour cette application."
-
-#: mkt/developers/templates/developers/payments/in-app-keys.html:51
-msgid "Generate Keys"
-msgstr "Générer les clés"
-
-#: mkt/developers/templates/developers/payments/in-app-payments.html:22 mkt/developers/templates/developers/payments/in-app-products.html:4
-msgid "In-App Products"
-msgstr "Produits dans l'application"
-
-#: mkt/developers/templates/developers/payments/in-app-payments.html:22
-msgid "Recommended"
-msgstr "Recommandé"
-
-#: mkt/developers/templates/developers/payments/in-app-payments.html:29
-msgid "In-App Products allow you to take payments in your application and simplifies the process by allowing you to create and manage your products in the Firefox Marketplace Developer Hub."
-msgstr ""
-"Les produits in-app permettent de recevoir des paiements dans votre application et simplifient le processus en vous permettant de créer et gérer vos produits dans le Hub développeurs du Firefox "
-"Marketplace."
-
-#: mkt/developers/templates/developers/payments/in-app-payments.html:34
-msgid "Configure In-App Products"
-msgstr "Configuration des produits in-app"
-
-#: mkt/developers/templates/developers/payments/in-app-payments.html:40
-msgid "In-App Keys"
-msgstr "Clés in-app"
-
-#: mkt/developers/templates/developers/payments/in-app-payments.html:47
-msgid "In-App Payments Keys allow you to take payments in your application for any arbitrary price point. You are responsible for the definition and management of products."
-msgstr "Les clés de paiement in-app permettent de recevoir des paiements dans votre application pour un prix choisi. Vous êtes responsable de la définition et de la gestion de vos produits."
-
-#: mkt/developers/templates/developers/payments/in-app-payments.html:53
-msgid "Note: If you're wanting to provide in-app products to Firefox for Desktop users then please use in-app products."
-msgstr ""
-"Remarque: si vous souhaitez proposer des produits intégrés à votre application (in-app) pour Firefox à destination des utilisateurs d'ordinateurs, veuillez utiliser les produits intégrés (in-app "
-"products)."
-
-#: mkt/developers/templates/developers/payments/in-app-payments.html:60
-msgid "Configure In-App Keys"
-msgstr "Configuration des clés in-app"
-
-#: mkt/developers/templates/developers/payments/in-app-product-row.html:27
-msgid "Enable"
-msgstr "Activer"
-
-#: mkt/developers/templates/developers/payments/in-app-products.html:30
-#, python-format
-msgid "This feature is under active development. Please refer to the <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> for more information."
-msgstr "Cette fonctionnalité est encore en cours de développement. Merci de vous reportez à la <a target=\"_blank\" href=\"%(doc_link)s\">documentation</a> pour en savoir plus."
-
-#: mkt/developers/templates/developers/payments/in-app-products.html:35
-#, python-format
-msgid "If you find a problem please <a target=\"_blank\" href=\"%(bug_link)s\">report a bug</a>."
-msgstr "Si vous rencontrez un soucis, merci de <a target=\"_blank\" href=\"%(bug_link)s\">remonter le problème</a>."
-
-#: mkt/developers/templates/developers/payments/in-app-products.html:48
-msgid "Icon"
-msgstr "Icône"
-
-#: mkt/developers/templates/developers/payments/in-app-products.html:50
-msgid "Price Point"
-msgstr "Point prix"
-
-#: mkt/developers/templates/developers/payments/in-app-products.html:51
-msgid "Product ID"
-msgstr "Identifiant produit"
-
-#: mkt/developers/templates/developers/payments/in-app-products.html:63
-msgid "Add a product"
-msgstr "Ajouter un produit"
-
-#: mkt/developers/templates/developers/payments/premium.html:57
+#: mkt/developers/templates/developers/payments/premium.html:33
 msgid "App Compatibility"
 msgstr "Compatibilité d'application"
 
-#: mkt/developers/templates/developers/payments/premium.html:71
+#: mkt/developers/templates/developers/payments/premium.html:41
 msgid "Change to Free"
 msgstr "Changer en Gratuit"
 
-#: mkt/developers/templates/developers/payments/premium.html:87
-msgid "Paid mode requires that your app only supports:"
-msgstr "Le mode payant nécessite que votre application ne prenne en charge uniquement :"
-
-#: mkt/developers/templates/developers/payments/premium.html:88 mkt/developers/templates/developers/payments/premium.html:90 mkt/submit/templates/submit/manifest.html:38
-msgid "Paid / In-app"
-msgstr "Payante / Micro-paiement"
-
-#: mkt/developers/templates/developers/payments/premium.html:99
-msgid "Change to Paid"
-msgstr "Changer en Payant"
-
-#: mkt/developers/templates/developers/payments/premium.html:100
-msgid "Changing to Paid will put your app back into review."
-msgstr "Changer en Payant replacera votre application en validation."
-
-#: mkt/developers/templates/developers/payments/premium.html:108
-#, python-format
-msgid "Learn about <a href=\"%(payments_url)s\" target=\"_blank\">different payment types</a>.<br /> Learn about <a href=\"%(receipts_url)s\" target=\"_blank\">validating purchase receipts</a>."
-msgstr ""
-"En savoir plus à propos des <a href=\"%(payments_url)s\" target=\"_blank\">différent modes de paiement</a>.<br /> En savoir plus à propos de <a href=\"%(receipts_url)s\" target=\"_blank\">la "
-"validation des reçus d'achats</a>."
-
-#: mkt/developers/templates/developers/payments/premium.html:119 mkt/developers/templates/developers/payments/includes/account_list.html:6
-msgid "Payment Accounts"
-msgstr "Comptes de paiement"
-
-#: mkt/developers/templates/developers/payments/premium.html:123
-msgid "Your app is currently incomplete. Select a payment account and price point to restore it."
-msgstr "Votre application est actuellement incomplète. Sélectionnez un compte de paiement et un prix pour la restaurer."
-
-#: mkt/developers/templates/developers/payments/premium.html:144
-msgid "Countries"
-msgstr "Pays"
-
-#: mkt/developers/templates/developers/payments/premium.html:159
-msgid "Add, manage or view transactions for your payment accounts"
-msgstr "Ajouter, gérer ou consulter les transactions pour vos comptes de paiement"
-
-#: mkt/developers/templates/developers/payments/premium.html:169
-msgid "Prices and Countries"
-msgstr "Tarifs et pays"
-
-#: mkt/developers/templates/developers/payments/premium.html:176 mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:79
-#: mkt/reviewers/templates/reviewers/includes/mobile_details.html:68 mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:18
-msgid "Price"
-msgstr "Prix"
-
-#: mkt/developers/templates/developers/payments/premium.html:185
-msgid "Does your app use Mozilla's in-app payments platform?"
-msgstr "Votre application utilise-t-elle la plateforme de micro-paiements de Mozilla ?"
-
-#: mkt/developers/templates/developers/payments/premium.html:195
-msgid "A server error occurred. Please try again later."
-msgstr "Une erreur serveur est survenue. Merci de réessayer plus tard."
-
-#: mkt/developers/templates/developers/payments/premium.html:197
-msgid "Not applicable"
-msgstr "Non applicable"
-
-#: mkt/developers/templates/developers/payments/premium.html:203
-msgid "Regions"
-msgstr "Régions"
-
-#: mkt/developers/templates/developers/payments/premium.html:209
-msgid "Available Regions"
-msgstr "Régions disponibles"
-
-#: mkt/developers/templates/developers/payments/premium.html:212
-#, python-format
-msgid "Check out the <a href=\"%(status_url)s\" target=\"_blank\">status page</a> to see which countries are currently enabled for sale."
-msgstr "Vérifier la <a href=\"%(status_url)s\" target=\"_blank\">page d'état</a> pour voir quels sont les pays où les ventes sont actuellement activées."
-
-#: mkt/developers/templates/developers/payments/premium.html:219
-msgid "Your app will be available in the following selected regions:"
-msgstr "Votre application sera accessible dans les régions sélectionnées suivantes :"
-
-#: mkt/developers/templates/developers/payments/premium.html:225
-msgid "Retail price"
-msgstr "Prix de vente"
-
-#: mkt/developers/templates/developers/payments/premium.html:226
-msgid "local currency"
-msgstr "monnaie locale"
-
-#: mkt/developers/templates/developers/payments/premium.html:227
-msgid "Billing method"
-msgstr "Méthode de facturation"
-
-#: mkt/developers/templates/developers/payments/premium.html:238
-msgid "Add a payment account to enable your app for sale in more regions"
-msgstr "Ajoutez un compte de paiement pour permettre la vente de votre application dans d'autres régions"
-
-#: mkt/developers/templates/developers/payments/premium.html:242
-msgid "As \"Rest of World\" is selected your app will be available for purchase in all enabled \"<a href=\"#regions-other\">Other Regions</a>\"."
-msgstr ""
-"La catégorie « Reste du monde » étant sélectionnée, votre application sera disponible à l'achat dans toutes les zones géographiques définies comme <a href=\"#regions-other\">« Autres régions »</a>."
-
-#: mkt/developers/templates/developers/payments/premium.html:250
-msgid "Other regions"
-msgstr "Autres régions"
-
-#: mkt/developers/templates/developers/payments/premium.html:252
-msgid "To exclude your app from appearing in a region, you may uncheck that region before saving."
-msgstr "Afin de ne pas diffuser votre application dans certaines régions, vous devrez les décocher avant de sauvegarder."
-
-#: mkt/developers/templates/developers/payments/premium.html:272
+#: mkt/developers/templates/developers/payments/premium.html:69
 msgid "Regions and Listings"
 msgstr "Régions et listings"
-
-#: mkt/developers/templates/developers/payments/premium.html:286
-msgid "Promote as upgrade to free version"
-msgstr "Promouvoir en tant que mise à jour de la version gratuite"
-
-#: mkt/developers/templates/developers/payments/premium.html:295
-msgid "If you have a free app, you can link and promote your premium app next to the free version here."
-msgstr "Si vous avez une application gratuite, vous pouvez lier et promouvoir votre application premium à côté de la version gratuite ici."
-
-#: mkt/developers/templates/developers/payments/premium.html:303
-msgid "Linking this app will promote your premium app next to the free version."
-msgstr "Lier cette application fera la publicité de votre application premium à côté de la version gratuite."
-
-#: mkt/developers/templates/developers/payments/premium.html:310
-msgid "No free apps"
-msgstr "Pas d'applications gratuite"
-
-#: mkt/developers/templates/developers/payments/includes/accept_terms.html:4
-msgid "Terms of Agreement"
-msgstr "Conditions de l'accord"
-
-#: mkt/developers/templates/developers/payments/includes/accept_terms.html:9
-msgid "Agree to the Terms"
-msgstr "Accepter les conditions"
-
-#: mkt/developers/templates/developers/payments/includes/account_list.html:13
-msgid "Provider"
-msgstr "Fournisseur"
-
-#: mkt/developers/templates/developers/payments/includes/account_list.html:14 mkt/developers/templates/developers/payments/includes/account_list.html:50
-msgid "Modify"
-msgstr "Modifier"
-
-#: mkt/developers/templates/developers/payments/includes/account_list.html:16 mkt/developers/templates/developers/payments/includes/account_list.html:52
-#: mkt/lookup/templates/lookup/includes/provider_portals.html:6
-msgid "View transactions"
-msgstr "Voir les transactions"
-
-#: mkt/developers/templates/developers/payments/includes/account_list.html:26
-msgid "Add a {provider} account"
-msgstr "Ajouter un compte {provider}"
-
-#: mkt/developers/templates/developers/payments/includes/account_list.html:50
-msgid "Accept Terms of Service"
-msgstr "Accepter les conditions de service"
-
-#: mkt/developers/templates/developers/payments/includes/account_list.html:60
-msgid "Confirm deletion of payment account"
-msgstr "Confirmer la suppression du compte de payement"
-
-#: mkt/developers/templates/developers/payments/includes/account_list.html:66
-msgid "Delete Payment Account"
-msgstr "Suppression du compte de payement"
-
-#: mkt/developers/templates/developers/payments/includes/accounts_list.html:5
-msgid "The current payment account was associated with the app by an app owner."
-msgstr "Le compte de paiement actuel a été associé avec l'application par un propriétaire."
-
-#: mkt/developers/templates/developers/payments/includes/accounts_list.html:15
-msgid "You have an incomplete payment account. Complete it or set up a new one below."
-msgstr "Votre compte de paiement est incomplet. Veuillez le compléter ou en définir un nouveau ci-dessous."
-
-#: mkt/developers/templates/developers/payments/includes/accounts_list.html:17 mkt/developers/templates/developers/payments/includes/bango_accounts_form.html:4
-msgid "You don't have any payment accounts set up."
-msgstr "Vous n'avez pas configuré de compte de paiement."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:5
-msgid "Add Bango Account"
-msgstr "Ajouter un compte Bango"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:8 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:8
-#, python-format
-msgid "Please see the <a target=\"_blank\" href=\"%(url)s\">documentation on Payment Accounts</a>."
-msgstr "Veuillez consulter la <a target=\"_blank\" href=\"%(url)s\">documentation sur les comptes de paiement</a>."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:25
-msgid "Usually 9, 10 or 11 digits. Example: 0114584906."
-msgstr "Généralement 9, 10 ou 11 chiffres. Exemple : 0114584906."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:32
-msgid "Either 8 or 11 characters. Example: WFBIUS6WPDX."
-msgstr "Soit 8 ou 11 caractères. Exemple : WFBIUS6WPDX."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:42 mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:36
-msgid "Optional"
-msgstr "Optionnel"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:109
-msgid "Name of registered company or individual."
-msgstr "Nom de la société ou de la personne physique."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:134
-msgid "Name of account on the Marketplace (not sent to Bango)."
-msgstr "Nom du compte sur le Marketplace (non envoyé à Bango)."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:139 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:26
-msgid "Register Payment Account"
-msgstr "Enregistrer le compte de paiement"
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:150 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:37
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:135 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:38
-msgid "Processing Request..."
-msgstr "Traitement de la requête ..."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_bango.html:152 mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:38
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:137 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:39
-msgid "Please wait while we contact the payment server."
-msgstr "Merci de patienter pendant le contact du serveur de paiement."
-
-#: mkt/developers/templates/developers/payments/includes/add_payment_account_reference.html:5
-msgid "Add Reference Account"
-msgstr "Ajouter un compte de référence"
-
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:5
-msgid "Modify Bango Account"
-msgstr "Modifier le compte Bango"
-
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:119
-msgid "A name to refer to the account on the Marketplace, not sent to Bango."
-msgstr "Un nom de référence pour le compte sur le Marketplace, non envoyé à Bango."
-
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_bango.html:124 mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:27
-msgid "Update Account"
-msgstr "Mettre à jour mon compte"
-
-#: mkt/developers/templates/developers/payments/includes/edit_payment_account_reference.html:5
-msgid "Modify Reference Account"
-msgstr "Modifier le compte de référence"
 
 #: mkt/developers/templates/developers/payments/includes/regions_inappropriate.html:2
 msgid "Your app will no longer be listed in certain regions because those regions do not support payments. We have transferred your region choices. Please review the changes before saving."
@@ -4660,7 +4072,7 @@ msgstr "Simulateur Firefox OS"
 msgid "Reference Apps"
 msgstr "Applications de référence"
 
-#: mkt/ecosystem/templates/ecosystem/base.html:50 mkt/ecosystem/templates/ecosystem/landing.html:48 mkt/ecosystem/templates/ecosystem/macros.html:162 mkt/submit/templates/submit/next_steps.html:42
+#: mkt/ecosystem/templates/ecosystem/base.html:50 mkt/ecosystem/templates/ecosystem/landing.html:48 mkt/ecosystem/templates/ecosystem/macros.html:162 mkt/submit/templates/submit/next_steps.html:35
 msgid "Publish"
 msgstr "Publier"
 
@@ -4685,8 +4097,8 @@ msgid "Develop HTML5 Web Apps for an open marketplace."
 msgstr "Développer des Web Apps HTML5 pour un marketplace ouvert."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:16
-msgid "Learn how to design apps that provide a user experience optimized for Firefox OS &amp; Mobile"
-msgstr "Découvrez comment construire des applications qui fournissent une expérience utilisateur optimale pour Firefox OS &amp; Mobile"
+msgid "Learn how to design apps that provide a user experience optimized for Firefox OS"
+msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid "All the tools, docs and references you'll need for development and testing of your app"
@@ -4696,48 +4108,21 @@ msgstr "Tous les outils, documentations et références nécessaires pour le dé
 msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
 msgstr "Découvrez comment distribuer vos applications sur une plateforme ouverte qui met en avant utilisateurs et développeurs"
 
-#: mkt/ecosystem/templates/ecosystem/landing.html:74
-msgid "Do you have an app ready for liftoff?"
-msgstr "Vous avez une application prête pour le décollage ?"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:76
+#: mkt/ecosystem/templates/ecosystem/landing.html:75
 msgid "Submit your app to the Marketplace"
 msgstr "Envoyez votre application sur le Marketplace"
 
-#: mkt/ecosystem/templates/ecosystem/landing.html:115
-msgid "Join the community"
-msgstr "Rejoignez la communauté"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:117
-msgid "Look who's already here"
-msgstr "Voir qui est déjà là"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:120
-#, python-format
-msgid "Are you a Web Company, Third-Party Service, or OEM looking to partner with Mozilla? <a href=\"%(partner_url)s\">Check out our Partners page for more info.</a>"
-msgstr "Vous êtes une société du Web, service tiers, ou un OEM souhaitant travailler avec Mozilla ? <a href=\"%(partner_url)s\">Jetez un œil sur notre page Partenaires pour plus d'informations.</a>"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:132
+#: mkt/ecosystem/templates/ecosystem/landing.html:83
 msgid "The Mozilla apps platform"
 msgstr "La plateforme d'applications Mozilla"
 
-#: mkt/ecosystem/templates/ecosystem/landing.html:134
+#: mkt/ecosystem/templates/ecosystem/landing.html:85
 msgid ""
-"Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to hundreds of millions of Firefox users through the "
-"Firefox Marketplace."
+"Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to millions of Firefox OS users through the Firefox "
+"Marketplace."
 msgstr ""
-"Construire des applications Web permet aux développeurs de garder un contrôle complet sur le contenu, les fonctionnalités ainsi que la distribution des applications, et de bénéficier des centaines "
-"de millions d'utilisateurs de Firefox via le Marketplace Firefox."
 
-#: mkt/ecosystem/templates/ecosystem/landing.html:142
-msgid ""
-"Using open Web standards and Mozilla-designed APIs, great app experiences can be delivered across multiple platforms, devices and operating systems &mdash; closing the gap between Web and native "
-"apps for the first time."
-msgstr ""
-"En utilisant des standards du Web et des API Mozilla, d'excellentes applications peuvent être fournies sur différentes plateformes, appareils et systèmes d'exploitation &mdash; comblant le fossé "
-"entre les applications web et natives pour la première fois."
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:173
+#: mkt/ecosystem/templates/ecosystem/landing.html:96
 msgid ""
 "The Firefox Marketplace gives users the opportunity to find, try and buy apps and content that matters most to them. This means exciting, useful and high-quality Apps relevant to local markets "
 "across all categories that users can use to get the most out of their daily lives."
@@ -4745,61 +4130,13 @@ msgstr ""
 "Le Marketplace Firefox permet aux utilisateurs de trouver, essayer et acheter des applications et contenus qui leur plaisent. Cela veut dire des applications qui soient excitantes, utiles, de bonne "
 "qualité, adaptées aux marchés locaux parmi toutes les catégories que les utilisateurs utilisent."
 
-#: mkt/ecosystem/templates/ecosystem/landing.html:182
+#: mkt/ecosystem/templates/ecosystem/landing.html:105
 msgid ""
 "Mozilla's global reach extends to hundreds of millions of Firefox users worldwide. Through intelligent Marketplace curation and effective use of Mozilla’s marketing channels, Mozilla can help "
 "developers can get their app into the hands of their target users around the world."
 msgstr ""
 "Mozilla touche plusieurs centaines de millions d'utilisateurs de Firefox dans le monde entier. En exploitant intelligemment le Marketplace et les canaux de diffusion marketing de Mozilla, nous "
 "pouvons aider les développeurs à mettre leurs applications entre les mains de leur cible dans le monde entier."
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:191
-msgid "The Firefox Marketplace is now open and accepting apps. Submit your app to:"
-msgstr "Le Marketplace Firefox est maintenant ouvert et accepte les applications. Envoyez vos applications à :"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:198
-msgid "Test your app with a committed group of early adopters."
-msgstr "Testez votre application avec un groupe d'utilisateurs très actifs."
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:203
-msgid "Build an early fan base and gain popularity."
-msgstr "Construisez une base de fans et gagnez en popularité."
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:206
-msgid "Target tech savvy consumers with your app."
-msgstr "Visez les utilisateurs technophiles avec votre application."
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:232
-msgid "Firefox Apps & Hacks"
-msgstr "Applications et astuces pour Firefox"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:234
-#, python-format
-msgid "Sign up for our monthly newsletter about Firefox OS, Marketplace and the apps ecosystem. <a href=\"%(dev_phone_url)s\">Check out the developer phone preview</a>"
-msgstr ""
-"Inscrivez-vous à notre lettre d'information mensuelle à propos de Firefox OS, du Marketplace et de l'écosystème d'applications. <a href=\"%(dev_phone_url)s\">Jetez un œil au téléphone développeur</"
-"a>"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:245
-msgid "Developer Devices"
-msgstr "Appareils développeurs"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:249
-msgid "Code & Tools"
-msgstr "Code & Outils"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:253
-msgid "Events & Meetups"
-msgstr "Évènements et réunions"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:271
-#, python-format
-msgid "I'm okay with Mozilla handling this information as explained in the <a href=\"%(privacy_link)s\">Privacy Policy</a>."
-msgstr "Je suis d'accord pour que Mozilla traite cette information comme expliqué dans la <a href=\"%(privacy_link)s\">politique de vie privée</a>."
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:279
-msgid "Sign me up!"
-msgstr "Me connecter !"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:33
 msgid "Intro to Open Web Apps"
@@ -4854,7 +4191,7 @@ msgid "Developing Game Apps"
 msgstr "Développer des jeux"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:110 mkt/lookup/templates/lookup/user_summary.html:56 mkt/lookup/templates/lookup/user_summary.html:60
-#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1445
+#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1446
 msgid "Payments"
 msgstr "Paiements"
 
@@ -5211,6 +4548,10 @@ msgstr "Erreur pendant le téléchargement de l'image depuis %(url)s"
 msgid "Image from %(url)s could not be parsed"
 msgstr "L'image %(url)s ne peut être lue"
 
+#: mkt/files/forms.py:28
+msgid "All"
+msgstr "Toutes"
+
 #: mkt/files/forms.py:94
 msgid "Cannot diff a version against itself"
 msgstr "Impossible de calculer une différence entre deux versions identiques"
@@ -5439,27 +4780,27 @@ msgstr "Image pour la promotion"
 msgid "Minimum size: {0}x{1}"
 msgstr "Taille minimale : {0}x{1}"
 
-#: mkt/lookup/views.py:201
+#: mkt/lookup/views.py:199
 msgid "A refund has already been processed."
 msgstr "Un remboursement a déjà été réalisé."
 
-#: mkt/lookup/views.py:224
+#: mkt/lookup/views.py:222
 msgid "You cannot make a refund request for this transaction."
 msgstr "Vous ne pouvez pas faire de remboursement pour cette transaction."
 
-#: mkt/lookup/views.py:248
+#: mkt/lookup/views.py:246
 msgid "Refund for this transaction now pending."
 msgstr "Remboursement pour cette transaction en attente."
 
-#: mkt/lookup/views.py:256
+#: mkt/lookup/views.py:254
 msgid "Refund for this transaction successfully approved."
 msgstr "Remboursement pour cette transaction approuvé avec succès."
 
-#: mkt/lookup/views.py:261
+#: mkt/lookup/views.py:259
 msgid "Refund request for this transaction failed."
 msgstr "Échec de la demande de remboursement pour cette transaction."
 
-#: mkt/lookup/views.py:357
+#: mkt/lookup/views.py:355
 msgid "Website saved."
 msgstr "Site web enregistré."
 
@@ -5892,6 +5233,10 @@ msgstr "Enregistrer l'image pour la promotion"
 msgid "App: {0}"
 msgstr "Application&nbsp;: {0}"
 
+#: mkt/lookup/templates/lookup/includes/provider_portals.html:6
+msgid "View transactions"
+msgstr "Voir les transactions"
+
 #: mkt/lookup/templates/lookup/includes/user_search.html:4
 msgid "Account Lookup"
 msgstr "Résolution du compte"
@@ -5938,6 +5283,11 @@ msgstr "Élément"
 #: mkt/purchase/templates/purchase/receipt.html:38
 msgid "Seller"
 msgstr "Vendeur"
+
+#: mkt/purchase/templates/purchase/receipt.html:39 mkt/reviewers/templates/reviewers/includes/details.html:79 mkt/reviewers/templates/reviewers/includes/mobile_details.html:68
+#: mkt/reviewers/templates/reviewers/includes/search_results.html:9 mkt/search/forms.py:18
+msgid "Price"
+msgstr "Prix"
 
 #: mkt/purchase/templates/purchase/receipt.html:61
 msgid "For the Firefox Marketplace Terms of Service please visit:"
@@ -7653,52 +7003,40 @@ msgstr "Périphérique(s) changé(s) : {0}"
 msgid "Requirements changed: {0}"
 msgstr "Prérequis changés : {0}"
 
-#: mkt/submit/forms.py:49
-msgid "Cannot be free and paid."
-msgstr "Ne peut être gratuit et payé."
-
-#: mkt/submit/forms.py:50
-msgid "Please select a device."
-msgstr "Merci de choisir un périphérique."
-
-#: mkt/submit/forms.py:123
+#: mkt/submit/forms.py:48
 msgid "Agree and Continue"
 msgstr "Accepter et continuer"
 
-#: mkt/submit/forms.py:150 mkt/submit/forms.py:228
+#: mkt/submit/forms.py:75 mkt/submit/forms.py:152
 msgid "There was an error with your upload. Please try again."
 msgstr "Il y a eu une erreur avec votre envoi. Merci de réessayer."
 
-#: mkt/submit/forms.py:186
+#: mkt/submit/forms.py:111
 #, python-format
 msgid "Version %s already exists."
 msgstr "La version %s existe déjà."
 
-#: mkt/submit/forms.py:197
+#: mkt/submit/forms.py:122
 msgid "Changes to \"origin\" are not allowed."
 msgstr "Les modifications d'origine ne sont pas permises."
 
-#: mkt/submit/forms.py:222
+#: mkt/submit/forms.py:147
 msgid "User submitting validation does not match."
 msgstr "L'utilisateur envoyant la validation ne correspond pas."
 
-#: mkt/submit/forms.py:223
-msgid "Homescreens can only be submitted for Firefox OS."
-msgstr "Les écrans d'accueil peuvent uniquement être proposés pour Firefox OS."
-
-#: mkt/submit/forms.py:270
+#: mkt/submit/forms.py:184
 msgid "Publish my app and make it visible to everyone in the Marketplace and include it in search results."
 msgstr "Publier mon application la rends visible à tout le monde sur le Marketplace et l'inclus dans les résultats de recherche."
 
-#: mkt/submit/forms.py:273
+#: mkt/submit/forms.py:187
 msgid "Do not publish my app. Notify me and I will adjust app visibility after it is approved."
 msgstr "Ne pas publier mon application. M'avertir et j'adapterais la visibilité après l'approbation."
 
-#: mkt/submit/forms.py:295
+#: mkt/submit/forms.py:209
 msgid "Privacy Policy:"
 msgstr "Politique de confidentialité"
 
-#: mkt/submit/forms.py:297
+#: mkt/submit/forms.py:211
 msgid ""
 "A privacy policy explains how you handle data received through your app. For example: what data do you receive? How do you use it? Who do you share it with? Do you receive personal information? Do "
 "you take steps to make it anonymous? What choices do users have to control what data you and others receive? Enter your privacy policy link or text above.  If you don't have a privacy policy, <a "
@@ -7708,45 +7046,45 @@ msgstr ""
 "partagées, recevez-vous des informations personnelles, que faites-vous pour les rendre anonymes, quels sont les choix de l'utilisateur pour contrôler les données que vous et d'autres reçoivent. "
 "Donnez le lien ou texte de votre politique de confidentialité ci-dessus. Si vous n'en avez pas, <a href=\"{url}\" target=\"_blank\">découvrez comment écrire une politique de confidentialité</a>."
 
-#: mkt/submit/forms.py:308
+#: mkt/submit/forms.py:222
 msgid "Homepage:"
 msgstr "Page d'accueil :"
 
-#: mkt/submit/forms.py:310
+#: mkt/submit/forms.py:224
 msgid "If your app has another homepage, enter its address here."
 msgstr "Si votre application a une autre page d'accueil, indiquez l'adresse ici."
 
-#: mkt/submit/forms.py:313
+#: mkt/submit/forms.py:227
 msgid "Website:"
 msgstr "Site web :"
 
-#: mkt/submit/forms.py:315
+#: mkt/submit/forms.py:229
 msgid "If your app has a support website or forum, enter its address here."
 msgstr "Si votre application a un site web d'assistance ou un forum, indiquez l'adresse ici."
 
-#: mkt/submit/forms.py:319
+#: mkt/submit/forms.py:233
 msgid "Email:"
 msgstr "Courriel :"
 
-#: mkt/submit/forms.py:321
+#: mkt/submit/forms.py:235
 msgid "This email address will be listed publicly on the Marketplace and used by end users to contact you with support issues. This email address will be listed publicly on your app details page."
 msgstr ""
 "Cette adresse courriel doit être listée publiquement sur le Marketplace et utilisée par les utilisateurs pour vous contacter en cas de soucis. Cette adresse sera également disponible sur la page de "
 "détails de votre application."
 
-#: mkt/submit/forms.py:327
+#: mkt/submit/forms.py:241
 msgid "Your comments for reviewers:"
 msgstr "Vos commentaires pour les modérateurs :"
 
-#: mkt/submit/forms.py:329
+#: mkt/submit/forms.py:243
 msgid "Your app will be reviewed by Mozilla before it becomes publicly listed on the Marketplace. Enter any special instructions for the app reviewers here."
 msgstr "Votre application sera vérifiée par Mozilla avant qu'elle soit disponible publiquement sur le Marketplace. Merci de renseigner ici les indications spécifiques pour les validateurs."
 
-#: mkt/submit/forms.py:334
+#: mkt/submit/forms.py:248
 msgid "Once your app is approved, choose a publishing option:"
 msgstr "Une fois votre application approuvée, merci de choisir une méthode de publication :"
 
-#: mkt/submit/forms.py:338
+#: mkt/submit/forms.py:252
 msgid "My app works without an Internet connection."
 msgstr "Mon application fonctionne sans connexion Internet."
 
@@ -7818,6 +7156,10 @@ msgstr ""
 "Nous avons votre application et tout est prêt ! Elle est actuellement en attente de vérification et apparaîtra dans les pages de listing et de recherche une fois vérifiée. En attendant vous pouvez "
 "toujours améliorer votre page de détails et vos paramètres."
 
+#: mkt/submit/templates/submit/done.html:47
+msgid "Set Up Payments"
+msgstr "Configurer les paiements"
+
 #: mkt/submit/templates/submit/done.html:51
 msgid "Manage My App"
 msgstr "Gérer mon application"
@@ -7826,13 +7168,17 @@ msgstr "Gérer mon application"
 msgid "Submit Another App"
 msgstr "Envoyer une autre application"
 
-#: mkt/submit/templates/submit/manifest.html:101
+#: mkt/submit/templates/submit/manifest.html:81
 msgid "App Minimum Requirements"
 msgstr "Prérequis minimums de l'application"
 
-#: mkt/submit/templates/submit/manifest.html:106
+#: mkt/submit/templates/submit/manifest.html:86
 msgid "<b>What's next:</b> fill out the rest of your app's details"
 msgstr "<b>La suite :</b> remplissez le reste des détails de votre application"
+
+#: mkt/submit/templates/submit/manifest.html:100
+msgid "Submit a website for TVs."
+msgstr ""
 
 #: mkt/submit/templates/submit/next_steps.html:22
 msgid "Published!"
@@ -7855,62 +7201,57 @@ msgstr "Saisissez les détails de l'application"
 msgid "<span>Set up <a href=\"%(rating_url)s\">Content Ratings</a></span>"
 msgstr "<span>Configurer <a href=\"%(rating_url)s\">la classification du contenu</a></span>"
 
-#: mkt/submit/templates/submit/next_steps.html:36
-#, python-format
-msgid "<span>Set up <a href=\"%(pay_url)s\">Payments</a></span>"
-msgstr "<span>Configurer <a href=\"%(pay_url)s\">les paiements</a></span>"
-
-#: mkt/submit/templates/submit/next_steps.html:41
+#: mkt/submit/templates/submit/next_steps.html:34
 msgid "Wait for Review"
 msgstr "Attendez la validation"
 
-#: mkt/submit/templates/submit/next_steps.html:45
+#: mkt/submit/templates/submit/next_steps.html:38
 msgid "At any point, you can"
 msgstr "À chaque étape, vous pouvez"
 
-#: mkt/submit/templates/submit/next_steps.html:48
+#: mkt/submit/templates/submit/next_steps.html:41
 #, python-format
 msgid "Revise your app details on <a href=\"%(url)s\">Edit Listing</a>"
 msgstr "Modifier les détails de votre application sur <a href=\"%(url)s\">édition du listing</a>"
 
-#: mkt/submit/templates/submit/next_steps.html:53
+#: mkt/submit/templates/submit/next_steps.html:46
 #, python-format
 msgid "View a list of all of your submissions on <a href=\"%(url)s\">My Submissions</a>"
 msgstr "Voir une liste de vos envois sur <a href=\"%(url)s\">mes envois</a>"
 
-#: mkt/submit/templates/submit/next_steps.html:60
+#: mkt/submit/templates/submit/next_steps.html:53
 #, python-format
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status &amp; Versions</a>"
 msgstr "Demander à ce que votre application soit accessible sur les périphériques avec peu de mémoire pour <a href=\"%(status_url)s\">Statut &amp; versions</a>"
 
-#: mkt/submit/templates/submit/next_steps.html:64
+#: mkt/submit/templates/submit/next_steps.html:57
 #, python-format
 msgid "Request that your app be shown on low-memory devices on <a href=\"%(status_url)s\">Status</a>"
 msgstr "Demander à ce que votre application soit accessible sur les périphériques avec peu de mémoire pour <a href=\"%(status_url)s\">Status</a>"
 
-#: mkt/submit/templates/submit/next_steps.html:74
+#: mkt/submit/templates/submit/next_steps.html:67
 #, python-format
 msgid "Once your app is reviewed, you will have to manually publish your app from <a href=\"%(url)s\">Manage Status</a>. It would then show up on listing pages and in search for others to enjoy."
 msgstr ""
 "Une fois que votre application est validée, vous devrez la publier manuellement sur <a href=\"%(url)s\">gestion de l'état</a>. Elle sera ensuite disponible à tous les utilisateurs dans les listes "
 "et résultats de recherche."
 
-#: mkt/submit/templates/submit/next_steps.html:81
+#: mkt/submit/templates/submit/next_steps.html:74
 msgid "Your app has been approved! It is now showing up on listing pages and in search for others to enjoy."
 msgstr "Votre application a été acceptée ! Et elle est maintenant visible dans les pages de listing et de recherche."
 
-#: mkt/submit/templates/submit/next_steps.html:86
+#: mkt/submit/templates/submit/next_steps.html:79
 msgid "Once your app is reviewed, it will show up on listing pages and in search for others to enjoy."
 msgstr "Votre application est validée, elle sera visible dans les pages de listing et de recherche."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the
 #. submission process (e.g. 'Payments' or 'Content Ratings').
-#: mkt/submit/templates/submit/next_steps.html:99
+#: mkt/submit/templates/submit/next_steps.html:92
 #, python-format
 msgid "<strong>What's next:</strong> Set up %(next_step_name)s"
 msgstr "<strong>Prochaine étape :</strong> configurer %(next_step_name)s"
 
-#: mkt/submit/templates/submit/next_steps.html:105
+#: mkt/submit/templates/submit/next_steps.html:98
 msgid "<strong>What's next:</strong> Publish Your App"
 msgstr "<strong>Ensuite :</strong> publication de votre application"
 
@@ -7934,7 +7275,7 @@ msgstr "Pour commencer, merci de lire et d'accepter notre <strong>accord dévelo
 msgid "Mozilla may email me with relevant App Developer news and surveys"
 msgstr "Mozilla peut m'envoyer des courriels avec les nouvelles pour les développeurs d'application et des sondages"
 
-#: mkt/submit/tests/test_forms.py:342
+#: mkt/submit/tests/test_forms.py:269
 msgid "Héllo"
 msgstr "Héllo"
 
@@ -8143,43 +7484,43 @@ msgid "Please use the verified email for this account."
 msgstr "Veuillez utiliser l'adresse électronique vérifiée pour ce compte."
 
 # Column name in a table.
-#: mkt/webapps/models.py:206
+#: mkt/webapps/models.py:207
 msgid "Listed"
 msgstr "Listé"
 
-#: mkt/webapps/models.py:1332
+#: mkt/webapps/models.py:1333
 msgid "You must provide a support email or URL."
 msgstr "Vous devez fournir une adresse électronique ou une URL d'assistance."
 
-#: mkt/webapps/models.py:1334
+#: mkt/webapps/models.py:1335
 msgid "You must provide an app name."
 msgstr "Vous devez fournir un nom d'application."
 
-#: mkt/webapps/models.py:1336
+#: mkt/webapps/models.py:1337
 msgid "You must provide at least one device type."
 msgstr "Vous devez fournir au moins un type de périphérique."
 
-#: mkt/webapps/models.py:1339
+#: mkt/webapps/models.py:1340
 msgid "You must provide at least one category."
 msgstr "Vous devez fournir au moins une catégorie."
 
-#: mkt/webapps/models.py:1406
+#: mkt/webapps/models.py:1407
 msgid "You must set up content ratings."
 msgstr "Vous devez configurer la classification du contenu."
 
-#: mkt/webapps/models.py:1408
+#: mkt/webapps/models.py:1409
 msgid "You must set up a payment account."
 msgstr "Vous devez configurer un compte de paiement."
 
-#: mkt/webapps/models.py:1433
+#: mkt/webapps/models.py:1434
 msgid "This app's submission process has not been fully completed."
 msgstr "Le processus d'envoi pour cette application n'a pas été complètement terminé."
 
-#: mkt/webapps/models.py:1440
+#: mkt/webapps/models.py:1441
 msgid "This app needs to get a content rating."
 msgstr "Cette application a besoin d'une classification du contenu."
 
-#: mkt/webapps/models.py:1446
+#: mkt/webapps/models.py:1447
 msgid "This app needs a payment account set up."
 msgstr "Cette application a besoin de la configuration d'un compte de paiement."
 
