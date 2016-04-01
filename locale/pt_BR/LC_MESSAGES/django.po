@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-03-31 09:58-0700\n"
-"PO-Revision-Date: 2016-04-01 01:25+0000\n"
-"Last-Translator: Rodrigo Silva <rdrgwtrs@gmail.com>\n"
+"PO-Revision-Date: 2016-04-01 12:36+0000\n"
+"Last-Translator: Marco Aurélio <fxhelp@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -2972,6 +2972,8 @@ msgid ""
 "You must <a href=\"payments\">enable your app for Firefox OS</a> before it "
 "can be reviewed or published."
 msgstr ""
+"Você deve <a href=\"payments\">ativar seu aplicativo para Firefox OS</a> "
+"antes que este possa ser revisado ou publicado."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step
 #. of the
@@ -4918,6 +4920,10 @@ msgid ""
 "content, functionality and how apps are distributed, including access to "
 "millions of Firefox OS users through the Firefox Marketplace."
 msgstr ""
+"Construir aplicativos para a Web providencia aos desenvolvedores controle "
+"total sobre conteúdo, funcionalidade e como os aplicativos são distribuídos,"
+" incluindo o acesso a milhões de usuários do Firefox OS através do Firefox "
+"Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:96
 msgid ""
@@ -8459,7 +8465,7 @@ msgstr "<b>Próximo passo:</b> preencha outros dos detalhes do seu aplicativo"
 
 #: mkt/submit/templates/submit/manifest.html:100
 msgid "Submit a website for TVs."
-msgstr ""
+msgstr "Submeter um website para TVs."
 
 #: mkt/submit/templates/submit/next_steps.html:22
 msgid "Published!"
