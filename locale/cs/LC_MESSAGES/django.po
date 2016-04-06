@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-03-31 09:58-0700\n"
-"PO-Revision-Date: 2016-03-31 18:07+0000\n"
+"PO-Revision-Date: 2016-04-06 10:09+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -2945,6 +2945,8 @@ msgid ""
 "You must <a href=\"payments\">enable your app for Firefox OS</a> before it "
 "can be reviewed or published."
 msgstr ""
+"Před kontrolou a publikováním musíte <a href=\"payments\">vaši aplikaci "
+"povolit pro systém Firefox OS</a>."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step
 #. of the
@@ -4864,6 +4866,9 @@ msgid ""
 "content, functionality and how apps are distributed, including access to "
 "millions of Firefox OS users through the Firefox Marketplace."
 msgstr ""
+"Webové aplikace poskytují vývojářům plnou kontrolu nad obsahem, funkcemi a "
+"distribucí, včetně přístupu k milionům uživatelů Firefoxu OS na Firefox "
+"Marketplace."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:96
 msgid ""
@@ -8356,7 +8361,7 @@ msgstr "<b>Co dále:</b> vyplňte zbývající informace o své aplikaci"
 
 #: mkt/submit/templates/submit/manifest.html:100
 msgid "Submit a website for TVs."
-msgstr ""
+msgstr "Přidat webovou stránku pro TV."
 
 #: mkt/submit/templates/submit/next_steps.html:22
 msgid "Published!"
