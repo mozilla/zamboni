@@ -5,9 +5,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-03-31 09:58-0700\n"
-"PO-Revision-Date: 2016-01-29 05:17+0000\n"
-"Last-Translator: Vanja Tumbas <tumbas93@gmail.com>\n"
+"POT-Creation-Date: 2016-04-20 10:33-0700\n"
+"PO-Revision-Date: 2016-04-18 20:10+0000\n"
+"Last-Translator: Aleksandra Uzelac <auzelac91@gmail.com>\n"
 "Language-Team: sr\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +51,7 @@ msgstr "Kod jezika {lang_code} je neispravan."
 #: mkt/api/fields.py:287
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist"
-msgstr ""
+msgstr "Neispravan pk ili slug \"%s\" - objekat ne postoji"
 
 #: mkt/api/forms.py:110 mkt/reviewers/forms.py:207
 msgid "Unknown"
@@ -2196,7 +2196,7 @@ msgstr "Tabla za ocenjivanje zabavnog softvera"
 
 #: mkt/constants/ratingsbodies.py:289
 msgid "Parental Guidance"
-msgstr ""
+msgstr "Roditeljski nadzor"
 
 #: mkt/constants/ratingsbodies.py:302
 msgid "Europe"
@@ -2627,6 +2627,8 @@ msgid ""
 "This Certificate ID is not recognized by IARC, or is already attached to "
 "another app in the Firefox Marketplace."
 msgstr ""
+"Ovaj ID sertifikata nije prepoznat od strane IARC, ili je već povezan sa "
+"drugom aplikacijom u Firefox Marketplace-u."
 
 #: mkt/developers/forms.py:1164
 msgid "Please enter a valid submission ID."
@@ -2942,6 +2944,8 @@ msgid ""
 "You must <a href=\"payments\">enable your app for Firefox OS</a> before it "
 "can be reviewed or published."
 msgstr ""
+"Morate <a href=\"payments\">omogućiti svoju aplikaciju za Firefox OS</a> pre "
+"nego što može biti pregledana ili objavljena."
 
 #. `next_step_name` is a plural noun, the title of the page of the next step of the
 #. submission process (e.g. 'Payments' or 'Content Ratings').
@@ -4444,6 +4448,11 @@ msgid ""
 "questionnaire about the contents of your app. Upon completion, the window "
 "will close and your app will then have an new age rating and certificate."
 msgstr ""
+"Vaša aplikacija je već starosno ocenjena i ima sertifikat od Međunarodne "
+"koalicije za starosno ocenjivanje (IARC). Da biste promenili ocenu, kliknite "
+"na dugme ispod: otvoriće se novi prozor gde možete popuniti novi upitnik o "
+"sadržaju vaše aplikacije. Nakon završetka, prozor će se zatvoriti i vaša "
+"aplikacija će imati novu starosnu ocenu i sertifikat."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:38
 msgid ""
@@ -4454,10 +4463,10 @@ msgid ""
 "your app will then have an age rating."
 msgstr ""
 "Da bi aplikacija bila prikazana na Marketplace-u, morate prvo da dobijete "
-"International Age Rating Coalition (IARC) sertifikat. Pritiskom na dugme "
-"ispod, otvorićete novi prozor u kojem možete popuniti kratak da-ne upitnik o "
-"sadržaju aplikacije. Nakon što završite, prozor će se zatvoriti i aplikacija "
-"će onda imati starosni rejting."
+"sertifikat od Međunarodne koalicije za starosno ocenjivanje (IARC). "
+"Pritiskom na dugme ispod, otvorićete novi prozor u kojem možete popuniti "
+"kratak da-ne upitnik o sadržaju vaše aplikacije. Nakon završetka, prozor će "
+"se zatvoriti i aplikacija će imati starosnu ocenu."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
 #, python-format
@@ -4466,7 +4475,7 @@ msgid ""
 "href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s"
 "\">Terms of Service agreement</a>."
 msgstr ""
-"Korišćenjem IARC rejting sertifikata alata, pristajete da ispoštujete "
+"Korišćenjem IARC sertifikata alata za ocenjivanje, pristajete da ispoštujete "
 "njihovu <a href=\"%(privacy_url)s\">polisu privatnosti</a> i <a href="
 "\"%(tos_url)s\">uslove korišćenja servisa</a>."
 
@@ -4490,11 +4499,11 @@ msgstr ""
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:93
 msgid "Create an IARC Ratings Certificate"
-msgstr "Napravite IARC Ratings Certificate"
+msgstr "Napravite IARC sertifikat za ocenjivanje"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:103
 msgid "Already Have an IARC Certificate?"
-msgstr ""
+msgstr "Već imate IARC sertifikat?"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
 msgid "Already Have Your App Rated?"
@@ -4506,12 +4515,17 @@ msgid ""
 "above and already have an IARC certificate, you can enter it here and we'll "
 "notify IARC to link your Marketplace submission with that certificate."
 msgstr ""
+"Ako ste već ocenili svoju apliakciju preko IARC globalnog alata za "
+"ocenjivanje i već imate IARC sertifikat, možete ga uneti ovde i mi ćemo "
+"obavestiti IARC da poveže vašu Marketplace objavu sa tim sertifikatom."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:121
 msgid ""
 "Warning: if a certificate is already attached to your app, this will "
 "overwrite it. Use with caution."
 msgstr ""
+"Upozorenje: ako je sertifikat već povezan sa vašom aplikacijom, ovo će ga "
+"prepisati. Koristite sa pažnjom."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:129
 msgid ""
@@ -4523,7 +4537,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:141
 msgid "Certificate ID"
-msgstr ""
+msgstr "ID sertifikata"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:146
 msgid ""
@@ -4531,6 +4545,10 @@ msgid ""
 "letters, numbers and dashes following the UUID canonical hexadecimal format "
 "like &quot;adb3261b-c657-4fd2-a057-bc9f85310b80&quot;."
 msgstr ""
+"ID sertifikata je jedinstven identifikator koji vam bude dostavljen. Sadrži "
+"mešavinu karaktera, brojeva i povlaka u pratnji sa UUID kanonskim "
+"heksadecimalnim formatom kao što je &quot;adb3261b-c657-4fd2-a057-"
+"bc9f85310b80&quot;."
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:160
 msgid "Submission ID"
@@ -4558,7 +4576,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:15
 msgid "Confirm your choice of IARC Certiticate"
-msgstr ""
+msgstr "Potvrdite vaš izbor IARC sertifikata"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:17
 #: mkt/lookup/templates/lookup/helpers/app_header.html:15
@@ -4568,11 +4586,11 @@ msgstr "Rezime"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
 msgid "IARC Certificate ID"
-msgstr ""
+msgstr "ID IARC sertifikata"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:34
 msgid "Confirm"
-msgstr ""
+msgstr "Potvrdi"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:50
 msgid "Rating System"
@@ -4816,6 +4834,8 @@ msgid ""
 "Learn how to design apps that provide a user experience optimized for "
 "Firefox OS"
 msgstr ""
+"Naučite kako da dizajnirate aplikacije koje pružaju optimizovano korisničko "
+"iskustvo za Firefox OS"
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:33
 msgid ""
@@ -4847,6 +4867,9 @@ msgid ""
 "content, functionality and how apps are distributed, including access to "
 "millions of Firefox OS users through the Firefox Marketplace."
 msgstr ""
+"Izrada veb aplikacija pruža programerima potpunu kontrolu sadržaja, "
+"funkcionalnosti i kako se aplikacije distribuiraju, uklljučujući pristup "
+"milionima Firefox OS korisnika preko Firefox Marketplace-a."
 
 #: mkt/ecosystem/templates/ecosystem/landing.html:96
 msgid ""
@@ -8309,7 +8332,7 @@ msgstr "<b>Šta je sledeće:</b> popunite ostale detalje aplikacije"
 
 #: mkt/submit/templates/submit/manifest.html:100
 msgid "Submit a website for TVs."
-msgstr ""
+msgstr "Pošaljite vebsajt za TV-e."
 
 #: mkt/submit/templates/submit/next_steps.html:22
 msgid "Published!"
