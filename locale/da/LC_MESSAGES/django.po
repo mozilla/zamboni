@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Marketplace\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-03-31 09:58-0700\n"
-"PO-Revision-Date: 2016-05-12 11:08+0000\n"
+"PO-Revision-Date: 2016-05-12 11:30+0000\n"
 "Last-Translator: joergenr <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -3095,7 +3095,7 @@ msgstr "Type"
 
 #: mkt/developers/templates/developers/transactions.html:45
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #: mkt/developers/templates/developers/transactions.html:46
 msgid "Amount"
@@ -3898,7 +3898,7 @@ msgstr "Sprog"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:28
 msgid "default"
-msgstr ""
+msgstr "standard"
 
 #: mkt/developers/templates/developers/apps/edit/language.html:31
 msgid "Edit language in your app manifest file"
@@ -4358,7 +4358,7 @@ msgstr ""
 #: mkt/lookup/templates/lookup/helpers/app_header.html:15
 #: mkt/lookup/templates/lookup/helpers/website_header.html:16
 msgid "Summary"
-msgstr "Summary"
+msgstr ""
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
 msgid "IARC Certificate ID"
@@ -4416,7 +4416,7 @@ msgstr ""
 #: mkt/developers/templates/developers/includes/macros.html:81
 #: mkt/lookup/templates/lookup/website_edit.html:87
 msgid "Pick one or two categories."
-msgstr ""
+msgstr "Vælg én eller to kategorier."
 
 #: mkt/developers/templates/developers/includes/macros.html:80
 msgid "Categories:"
@@ -4454,7 +4454,7 @@ msgstr "Vis alle"
 
 #: mkt/developers/templates/developers/includes/macros.html:126
 msgid "Hide all"
-msgstr ""
+msgstr "Skjul alle"
 
 #: mkt/developers/templates/developers/includes/testing_nav.html:3
 #: mkt/receipts/templates/receipts/test_manifest.html:3
@@ -4885,7 +4885,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/support.html:14
 msgid "Frequently Asked Questions"
-msgstr ""
+msgstr "Ofte stillede spørgsmål"
 
 #: mkt/ecosystem/templates/ecosystem/support.html:18
 msgid "What should I know before creating an App?"
@@ -5781,7 +5781,7 @@ msgstr ""
 #: mkt/lookup/templates/lookup/website_summary.html:40
 #: mkt/websites/forms.py:30
 msgid "Keywords"
-msgstr ""
+msgstr "Nøgleord"
 
 #: mkt/lookup/templates/lookup/website_edit.html:77
 #: mkt/lookup/templates/lookup/website_summary.html:44
