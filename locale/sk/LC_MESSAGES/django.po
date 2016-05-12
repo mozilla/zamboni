@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-13 09:49-0700\n"
-"PO-Revision-Date: 2016-04-20 16:30+0000\n"
+"PO-Revision-Date: 2016-05-12 15:38+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -3057,7 +3057,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/transactions.html:4
 msgid "Transaction Details"
-msgstr ""
+msgstr "Detaily transakcie"
 
 #: mkt/developers/templates/developers/transactions.html:24
 msgid "Filter Transactions"
