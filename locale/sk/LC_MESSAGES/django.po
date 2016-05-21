@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-04-13 09:49-0700\n"
-"PO-Revision-Date: 2016-05-12 15:38+0000\n"
+"PO-Revision-Date: 2016-05-21 21:37+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1837,7 +1837,7 @@ msgstr ""
 
 #: mkt/constants/features.py:230
 msgid "Screen Capture"
-msgstr ""
+msgstr "Snímka obrazovky"
 
 #: mkt/constants/features.py:231
 msgid ""
@@ -1847,7 +1847,7 @@ msgstr ""
 
 #: mkt/constants/features.py:237
 msgid "WebRTC MediaStream"
-msgstr ""
+msgstr "WebRTC MediaStream"
 
 #: mkt/constants/features.py:238
 msgid ""
@@ -1857,7 +1857,7 @@ msgstr ""
 
 #: mkt/constants/features.py:244
 msgid "WebRTC DataChannel"
-msgstr ""
+msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:245
 msgid ""
@@ -1867,7 +1867,7 @@ msgstr ""
 
 #: mkt/constants/features.py:251
 msgid "WebRTC PeerConnection"
-msgstr ""
+msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:252
 msgid ""
@@ -4049,7 +4049,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:80
 msgid "GUID"
-msgstr ""
+msgstr "GUID"
 
 #: mkt/developers/templates/developers/apps/edit/technical.html:82
 msgid "Internal identifier for this app on the Firefox Marketplace."
@@ -4112,15 +4112,14 @@ msgid "Upload a Custom Icon..."
 msgstr "Odoslať vlastnú ikonu..."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:75
-#, fuzzy
 msgid "PNG and JPG supported. Icons must be at least 128px by 128px."
 msgstr ""
-"Podporovány jsou PNG a JPG. Ikony musí mít rozměry alespoň 128px by 128px."
+"Podporované formáty sú PNG a JPG. Ikony musia mať rozmery najmenej 128px na "
+"128px."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:96
-#, fuzzy
 msgid "Screenshots or Videos"
-msgstr "Náhledy či videa"
+msgstr "Snímky obrazovky alebo videá"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:103
 #, fuzzy
@@ -4129,9 +4128,8 @@ msgstr "Přidejte prosím alespoň jeden náhled nebo video pro vaši aplikaci:"
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:139
 #: mkt/submit/templates/submit/details.html:172
-#, fuzzy
 msgid "Add a Screenshot or Video..."
-msgstr "Přidat náhled či video..."
+msgstr "Pridať snímku obrazovky alebo video..."
 
 #: mkt/developers/templates/developers/apps/forms_shared/media.html:143
 #, fuzzy
@@ -4326,7 +4324,7 @@ msgstr "<a href=\"%(rating_url)s\">Nastavenie hodnotení obsahu</a>"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
 msgid "Get My App Rated"
-msgstr ""
+msgstr "Získať hodnotenia mojej aplikácie"
 
 #: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:27
 msgid ""
@@ -4644,7 +4642,6 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/landing.html:48
 #: mkt/ecosystem/templates/ecosystem/macros.html:162
 #: mkt/submit/templates/submit/next_steps.html:35
-#, fuzzy
 msgid "Publish"
 msgstr "Publikovať"
 
@@ -4890,7 +4887,7 @@ msgstr ""
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:111
 msgid "You + Mozilla = Awesome"
-msgstr ""
+msgstr "Vy + Mozilla = Dokonalosť"
 
 #: mkt/ecosystem/templates/ecosystem/partners.html:112
 msgid "Stay connected."
@@ -5522,9 +5519,8 @@ msgstr "Manifest"
 #: mkt/lookup/templates/lookup/app_summary.html:41
 #: mkt/reviewers/templates/reviewers/includes/details.html:35
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:57
-#, fuzzy
 msgid "View"
-msgstr "Zobrazit"
+msgstr "Zobraziť"
 
 #: mkt/lookup/templates/lookup/app_summary.html:47
 #: mkt/reviewers/templates/reviewers/includes/details.html:13
@@ -5553,7 +5549,7 @@ msgstr "Odoslané"
 #: mkt/lookup/templates/lookup/app_summary.html:71
 #: mkt/lookup/templates/lookup/app_summary.html:162
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: mkt/lookup/templates/lookup/app_summary.html:78
 msgid "Review Prioritized"
@@ -5583,7 +5579,6 @@ msgid "Abuse Reports"
 msgstr "Hlásené zneužitia"
 
 #: mkt/lookup/templates/lookup/app_summary.html:94
-#, fuzzy
 msgid "Permissions"
 msgstr "Oprávnenia"
 
@@ -5598,9 +5593,8 @@ msgstr ""
 # 75%
 #: mkt/lookup/templates/lookup/app_summary.html:112
 #: mkt/lookup/templates/lookup/helpers/user_header.html:24
-#, fuzzy
 msgid "Purchases"
-msgstr "Koupě"
+msgstr "Nákupy"
 
 #: mkt/lookup/templates/lookup/app_summary.html:122
 #: mkt/lookup/templates/lookup/user_summary.html:63
@@ -5634,14 +5628,12 @@ msgid "Version History"
 msgstr "História verzií"
 
 #: mkt/lookup/templates/lookup/app_summary.html:145
-#, fuzzy
 msgid "Version (ID)"
-msgstr "Verze (ID)"
+msgstr "Verzia (ID)"
 
 #: mkt/lookup/templates/lookup/app_summary.html:146
-#, fuzzy
 msgid "Filename (ID, Size)"
-msgstr "Soubor (ID, velikost)"
+msgstr "Súbor (ID, veľkosť)"
 
 #: mkt/lookup/templates/lookup/base.html:3 mkt/site/context_processors.py:74
 #, fuzzy
@@ -5662,15 +5654,15 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/group_summary.html:18
 msgid "Group Details"
-msgstr ""
+msgstr "Podrobnosti o skupine"
 
 #: mkt/lookup/templates/lookup/group_summary.html:22
 msgid "Rules"
-msgstr ""
+msgstr "Pravidlá"
 
 #: mkt/lookup/templates/lookup/group_summary.html:24
 msgid "Notes"
-msgstr ""
+msgstr "Poznámky"
 
 #: mkt/lookup/templates/lookup/group_summary.html:26
 msgid "Restricted (no API changes possible)"
@@ -5678,7 +5670,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/group_summary.html:30
 msgid "Group Members"
-msgstr ""
+msgstr "Členovia skupiny"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:18
 msgid "Marketplace information"
@@ -5686,7 +5678,7 @@ msgstr ""
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:23
 msgid "Buyer"
-msgstr ""
+msgstr "Kupujúci"
 
 #: mkt/lookup/templates/lookup/transaction_summary.html:31
 msgid "Price Tier"
@@ -5792,7 +5784,7 @@ msgstr "Skupiny"
 
 #: mkt/lookup/templates/lookup/user_summary.html:33
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: mkt/lookup/templates/lookup/user_summary.html:58
 #, fuzzy
@@ -5833,9 +5825,8 @@ msgid "Submissions"
 msgstr ""
 
 #: mkt/lookup/templates/lookup/user_summary.html:108
-#, fuzzy
 msgid "Unnamed"
-msgstr "Nepojmenováno"
+msgstr "Bez názvu"
 
 #: mkt/lookup/templates/lookup/user_summary.html:119
 #: mkt/lookup/templates/lookup/user_summary.html:127
@@ -5880,7 +5871,7 @@ msgstr ""
 #: mkt/lookup/templates/lookup/website_summary.html:28
 #: mkt/websites/forms.py:40
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: mkt/lookup/templates/lookup/website_edit.html:55
 #: mkt/lookup/templates/lookup/website_summary.html:32
@@ -6243,7 +6234,6 @@ msgstr "Opakovaná kontrola"
 
 # 85%
 #: mkt/reviewers/helpers.py:44
-#, fuzzy
 msgid "Updates"
 msgstr "Aktualizácie"
 
@@ -6640,9 +6630,8 @@ msgstr "Udalosť"
 
 # 79%
 #: mkt/reviewers/templates/reviewers/logs.html:38
-#, fuzzy
 msgid "App has been deleted."
-msgstr "Aplikace byla smazána."
+msgstr "Aplikácia bola odstránená."
 
 #: mkt/reviewers/templates/reviewers/logs.html:44
 msgid "Show Comments"
@@ -6870,7 +6859,7 @@ msgstr "Požiadavky"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:67
 msgid "Show more"
-msgstr ""
+msgstr "Zobraziť viac"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:74
 #: mkt/reviewers/templates/reviewers/includes/mobile_details.html:61
@@ -6912,9 +6901,8 @@ msgstr "Obrázky"
 
 # 77%
 #: mkt/reviewers/templates/reviewers/includes/details.html:152
-#, fuzzy
 msgid "More about this app"
-msgstr "Více o této aplikaci"
+msgstr "Viac informácií o tejto aplikácii"
 
 #: mkt/reviewers/templates/reviewers/includes/details.html:155
 msgid "Nothing to see here! The developer did not include any details."
@@ -6997,6 +6985,8 @@ msgid ""
 "- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" "
 "target=\"_blank\" href=\"%(translate_url)s\">translate</a>"
 msgstr ""
+"- <a class=\"translate reviewers-desktop\" rel=\"nofollow\" "
+"target=\"_blank\" href=\"%(translate_url)s\">preložiť</a>"
 
 #: mkt/reviewers/templates/reviewers/includes/queue_abuse.html:62
 msgid "All abuse reports read. Good work!"
@@ -7056,6 +7046,8 @@ msgid ""
 "Version %(version)s &middot; %(developer_name)s &middot; %(created)s <span "
 "class=\"light\">&middot; %(version_status)s</span>"
 msgstr ""
+"Verzia %(version)s &middot; %(developer_name)s &middot; %(created)s <span "
+"class=\"light\">&middot; %(version_status)s</span>"
 
 #: mkt/reviewers/templates/reviewers/includes/review_history.html:28
 #, fuzzy
@@ -8029,9 +8021,8 @@ msgstr "Upraviť podrobnosti aplikácie"
 #: mkt/submit/templates/submit/manifest.html:22
 #: mkt/submit/templates/submit/next_steps.html:10
 #: mkt/submit/templates/submit/terms.html:8
-#, fuzzy
 msgid "Submit App"
-msgstr "Přidat aplikaci"
+msgstr "Zverejniť aplikáciu"
 
 #: mkt/submit/templates/submit/details.html:19
 #: mkt/submit/templates/submit/manifest.html:6
@@ -8127,9 +8118,8 @@ msgid "Manage My App"
 msgstr "Správa aplikácie"
 
 #: mkt/submit/templates/submit/done.html:54
-#, fuzzy
 msgid "Submit Another App"
-msgstr "Přidat další aplikaci"
+msgstr "Uverejniť ďalšiu aplikáciu"
 
 #: mkt/submit/templates/submit/manifest.html:81
 msgid "App Minimum Requirements"
