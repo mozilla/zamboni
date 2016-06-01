@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-03-31 09:58-0700\n"
-"PO-Revision-Date: 2016-06-01 06:55+0000\n"
+"PO-Revision-Date: 2016-06-01 07:38+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -1622,67 +1622,67 @@ msgstr "Aplikasi ini memerlukan sistem operasi untuk mendukung `addIdleObserver`
 
 #: mkt/constants/features.py:96
 msgid "Network Information"
-msgstr ""
+msgstr "Informasi Jaringan"
 
 #: mkt/constants/features.py:97
 msgid "The app requires the ability to get information about the network connection (the `navigator.mozConnection` API)."
-msgstr ""
+msgstr "Aplikasi ini memerlukan kemampuan untuk mendapatkan informasi mengenai koneksi jaringan (the `navigator.mozConnection` API)."
 
 #: mkt/constants/features.py:103
 msgid "Network Stats"
-msgstr ""
+msgstr "Status Jaringan"
 
 #: mkt/constants/features.py:104
 msgid "The app requires the `navigator.mozNetworkStats` API."
-msgstr ""
+msgstr "Aplikasi ini memerlukan `navigator.mozNetworkStats` API."
 
 #: mkt/constants/features.py:109
 msgid "Proximity"
-msgstr ""
+msgstr "Jarak"
 
 #: mkt/constants/features.py:110
 msgid "The app requires a proximity sensor (the `ondeviceproximity` API)."
-msgstr ""
+msgstr "Aplikasi ini memerlukan sensor jarak (the `ondeviceproximity` API)."
 
 #: mkt/constants/features.py:115
 msgid "Simple Push"
-msgstr ""
+msgstr "Tekanan Sederhana"
 
 #: mkt/constants/features.py:116
 msgid "The app requires the `navigator.mozPush` API."
-msgstr ""
+msgstr "Aplikasi ini memerlukan `navigator.mozPush` API."
 
 #: mkt/constants/features.py:120
 msgid "Screen Orientation"
-msgstr ""
+msgstr "Orientasi Layar"
 
 #: mkt/constants/features.py:121
 msgid "The app requires the platform to support the `ondeviceorientation` API."
-msgstr ""
+msgstr "Aplikasi ini memerlukan sistem operasi untuk mendukung `ondeviceorientation` API."
 
 #: mkt/constants/features.py:126
 msgid "Time/Clock"
-msgstr ""
+msgstr "Waktu/Jam"
 
 #: mkt/constants/features.py:127
 msgid "The app requires the `navigator.mozTime` API."
-msgstr ""
+msgstr "Aplikasi ini memerlukan `navigator.mozTime` API."
 
 #: mkt/constants/features.py:131
 msgid "Vibration"
-msgstr ""
+msgstr "Getaran"
 
 #: mkt/constants/features.py:132
 msgid "The app requires the device to support vibration (the `navigator.vibrate` API)."
-msgstr ""
+msgstr "Aplikasi ini memerlukan perangkat untuk mendukung getaran (the `navigator.vibrate` API)."
 
 #: mkt/constants/features.py:138
 msgid "The app requires the `navigator.mozFM` or `navigator.mozFMRadio` APIs."
-msgstr ""
+msgstr "Aplikasi ini memerlukan `navigator.mozFM` atau `navigator.mozFMRadio` APIs."
 
 #: mkt/constants/features.py:144
 msgid "The app requires the `navigator.mozSms` API."
-msgstr ""
+msgstr "Aplikasi ini memerlukan `navigator.mozSms` API."
 
 #: mkt/constants/features.py:148
 msgid "Touch"
@@ -1690,21 +1690,23 @@ msgstr "Sentuh"
 
 #: mkt/constants/features.py:149
 msgid "The app requires the platform to support touch events. This option indicates that the app will not function when used with a mouse."
-msgstr ""
+msgstr "Aplikasi ini memerlukan sistem operasi untuk mendukung saat-saat sentuhan. Pilihan ini menunjukkan bahwa aplikasi ini tidak akan berfungsi jika digunakan dengan tetikus."
 
 #: mkt/constants/features.py:155
 msgid "Smartphone-Sized Displays (qHD)"
-msgstr ""
+msgstr "Tampilan Seukuran Ponsel Pintar (qHD)"
 
 #: mkt/constants/features.py:156
 msgid ""
 "The app requires the platform to have a smartphone-sized display (having qHD resolution). This option indicates that the app will be unusable on larger displays (e.g., tablets, desktop, large or "
 "high-DPI phones)."
 msgstr ""
+"Aplikasi ini memerlukan sistem operasi untuk mendapatkan tampilan seukuran ponsel pintar (memiliki resolusi qHD). Pilihan ini menunjukkan bahwa aplikasi ini tidak akan dapat digunakan dengan "
+"tampilan yang lebih besar (e.g., tablet, desktop, ponsel yang tinggi atau lebar seperti DPI)."
 
 #: mkt/constants/features.py:166
 msgid "The app requires that the platform can decode and play MP3 files."
-msgstr ""
+msgstr "Aplikasi ini mensyaratjan bahwa sistem operasinya dapat dikode ulang dan memainkan berkas MP3."
 
 #: mkt/constants/features.py:171
 msgid "Audio"
