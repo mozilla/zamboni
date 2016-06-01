@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-03-31 09:58-0700\n"
-"PO-Revision-Date: 2016-06-01 07:38+0000\n"
+"PO-Revision-Date: 2016-06-01 09:02+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -1706,7 +1706,7 @@ msgstr ""
 
 #: mkt/constants/features.py:166
 msgid "The app requires that the platform can decode and play MP3 files."
-msgstr "Aplikasi ini mensyaratjan bahwa sistem operasinya dapat dikode ulang dan memainkan berkas MP3."
+msgstr "Aplikasi ini mensyaratkan bahwa sistem operasinya dapat dikode ulang dan memainkan berkas MP3."
 
 #: mkt/constants/features.py:171
 msgid "Audio"
@@ -1714,99 +1714,101 @@ msgstr "Suara"
 
 #: mkt/constants/features.py:172
 msgid "The app requires that the platform supports the HTML5 audio API."
-msgstr ""
+msgstr "Aplikasi ini memerlukan sistem operasi yang mendukung API audio HTML5."
 
 #: mkt/constants/features.py:177
 msgid "Web Audio"
-msgstr ""
+msgstr "Audio Web"
 
 #: mkt/constants/features.py:178
 msgid "The app requires that the platform supports the Web Audio API (`window.AudioContext`)."
-msgstr ""
+msgstr "Aplikasi ini memerlukan sistem operasi yang mendukung API Audio Web (`window.AudioContext`)."
 
 #: mkt/constants/features.py:184
 msgid "The app requires that the platform can decode and play H.264 video files."
-msgstr ""
+msgstr "Aplikasi ini mensyaratkan bahwa sistem operasinya dapat dikode ulang dan memainkan berkas video H.264."
 
 #: mkt/constants/features.py:190
 msgid "The app requires that the platform can decode and play WebM video files (VP8)."
-msgstr ""
+msgstr "Aplikasi ini mensyaratkan bahwa sistem operasinya dapat dikode ulang dan memainkan berkas video WebM (VP8)."
 
 #: mkt/constants/features.py:195
 msgid "Full Screen"
-msgstr ""
+msgstr "Layar Penuh"
 
 #: mkt/constants/features.py:196
 msgid "The app requires the Full Screen API (`requestFullScreen` or `mozRequestFullScreen`)."
-msgstr ""
+msgstr "Aplikasi ini memerlukan API Layar Penuh (`requestFullScreen` or `mozRequestFullScreen`)."
 
 #: mkt/constants/features.py:202
 msgid "Gamepad"
-msgstr ""
+msgstr "Gamepad"
 
 #: mkt/constants/features.py:203
 msgid "The app requires the platform to support the gamepad API (`navigator.getGamepads`)."
-msgstr ""
+msgstr "Aplikasi ini mensyaratkan sistem operasi untuk mendukung API gamepad (`navigator.getGamepads`)."
 
 #: mkt/constants/features.py:208
 msgid "Quota Management"
-msgstr ""
+msgstr "Manajemen Kuota"
 
 #: mkt/constants/features.py:209
 msgid "The app requires the platform to allow persistent storage limit increases above the normally allowed limits for an app (`window.StorageInfo` or `window.persistentStorage`)."
 msgstr ""
+"Aplikasi ini mensyaratkan sistem operasi untuk memungkinkan peningkatan batas penyimpanan secara terus-menerus melebihi batas yang umumnya diperkenankan untuk sebuah aplikasi (`window.StorageInfo` "
+"atau `window.persistentStorage`)."
 
 #: mkt/constants/features.py:217
 msgid "Camera"
-msgstr ""
+msgstr "Kamera"
 
 #: mkt/constants/features.py:218
 msgid "The app requires the platform to allow access to video from the device camera via a LocalMediaStream object."
-msgstr ""
+msgstr "Aplikasi ini mensyaratkan sistem operasi untuk memungkinkan akses ke video dari perangkat kamera melalui obyek LocalMediaStream."
 
 #: mkt/constants/features.py:224
 msgid "Microphone"
-msgstr ""
+msgstr "Mikrofon"
 
 #: mkt/constants/features.py:225
 msgid "The app requires the platform to allow access to audio from the device microphone."
-msgstr ""
+msgstr "Aplikasi memerlukan sistem operasi yang memungkinkan akses ke audio dari perangkat mikrofon."
 
 #: mkt/constants/features.py:230
 msgid "Screen Capture"
-msgstr ""
+msgstr "Tangkapan Layar"
 
 #: mkt/constants/features.py:231
 msgid "The app requires the platform to allow access to the device screen for capture."
-msgstr ""
+msgstr "Aplikasi ini memerlukan sistem operasi untuk memungkinkan akses ke layar perangkat untuk membuat tangkapan."
 
 #: mkt/constants/features.py:237
 msgid "WebRTC MediaStream"
-msgstr ""
+msgstr "WebRTC MediaStream"
 
 #: mkt/constants/features.py:238
 msgid "The app requires the platform to allow web real-time communication browser-to-browser inbound media streams."
-msgstr ""
+msgstr "Aplikasi ini memerlukan sistem operasi yang memungkinkan komunikasi antar peramban via web menuju aliran media pada waktu sebenarnya."
 
 #: mkt/constants/features.py:244
 msgid "WebRTC DataChannel"
-msgstr ""
+msgstr "WebRTC DataChannel"
 
 #: mkt/constants/features.py:245
 msgid "The app requires the platform to allow peer-to-peer exchange of data other than audio and video."
-msgstr ""
+msgstr "Aplikasi ini memerlukan sistem operasi yang memungkinkan pertukaran data antar-teman selain audio dan video."
 
 #: mkt/constants/features.py:251
 msgid "WebRTC PeerConnection"
-msgstr ""
+msgstr "WebRTC PeerConnection"
 
 #: mkt/constants/features.py:252
 msgid "The app requires the platform to allow communication of streaming data between peers."
-msgstr ""
+msgstr "Aplikasi ini memerlukan sistem operasi yang memungkinkan komunikasi aliran data antar teman."
 
 #: mkt/constants/features.py:258
 msgid "Web Speech Synthesis"
-msgstr ""
+msgstr "Sintesa Pidato Web"
 
 #: mkt/constants/features.py:259
 msgid "The app requires the platform to allow the use of text-to-speech."
@@ -4549,7 +4551,7 @@ msgstr ""
 
 #: mkt/files/utils.py:100
 msgid "Could not decode the webapp manifest file. Check your manifest file for special non-utf-8 characters."
-msgstr ""
+msgstr "Tidak dapat mengkode ulang berkas manifes webapp. Perikas berkas manifes Anda untuk karakter khusus non-utf-8."
 
 #: mkt/files/utils.py:108
 msgid "The webapp manifest is not valid JSON."
