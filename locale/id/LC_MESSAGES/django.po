@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2016-03-31 09:58-0700\n"
-"PO-Revision-Date: 2016-06-01 09:02+0000\n"
+"PO-Revision-Date: 2016-06-01 09:34+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -1812,19 +1812,19 @@ msgstr "Sintesa Pidato Web"
 
 #: mkt/constants/features.py:259
 msgid "The app requires the platform to allow the use of text-to-speech."
-msgstr ""
+msgstr "Aplikasi ini memerlukan sistem operasi yang memungkinkan perubahan teks ke percakapan."
 
 #: mkt/constants/features.py:264
 msgid "Web Speech Recognition"
-msgstr ""
+msgstr "Pengenalan Pidato Web"
 
 #: mkt/constants/features.py:265
 msgid "The app requires the platform to allow the use of speech-to-text."
-msgstr ""
+msgstr "Aplikasi ini memerlukan sistem operasi untuk memungkinkan perubahan percakapan ke teks."
 
 #: mkt/constants/features.py:270
 msgid "Pointer Lock"
-msgstr ""
+msgstr "Pengunci Penunjuk"
 
 #: mkt/constants/features.py:271
 msgid "The app requires the platform to provide additional information and control about the pointer."
@@ -1840,7 +1840,7 @@ msgstr ""
 
 #: mkt/constants/features.py:284
 msgid "Alarms"
-msgstr ""
+msgstr "Alarm"
 
 #: mkt/constants/features.py:285
 msgid "The app requires the platform to provide access to the device alarm settings to schedule notifications and events at specific time."
@@ -1856,15 +1856,15 @@ msgstr ""
 
 #: mkt/constants/features.py:299
 msgid "TCP Sockets"
-msgstr ""
+msgstr "Soket TCP"
 
 #: mkt/constants/features.py:300
 msgid "The app requires the platform to allow opening raw TCP sockets."
-msgstr ""
+msgstr "Aplikasi ini memerlukan sistem operasi yang memungkinkan pembukaan mentah-mentah TCP soket."
 
 #: mkt/constants/features.py:305
 msgid "Third-Party Keyboard Support"
-msgstr ""
+msgstr "Dukungan Kibor Pihak Ketiga"
 
 #: mkt/constants/features.py:306
 msgid "The app requires the platform to support third-party keyboards."
@@ -1872,7 +1872,7 @@ msgstr ""
 
 #: mkt/constants/features.py:311
 msgid "Multiple Network Information"
-msgstr ""
+msgstr "Kelipatan Informasi Jaringan"
 
 #: mkt/constants/features.py:312
 msgid "The app requires the ability to get information about multiple network connections."
@@ -2076,35 +2076,35 @@ msgstr ""
 
 #: mkt/constants/regions.py:61
 msgid "Rest of World"
-msgstr ""
+msgstr "Seluruh Dunia"
 
 #: mkt/constants/regions.py:89
 msgid "Bonaire, Sint Eustatius and Saba"
-msgstr ""
+msgstr "Bonaire, Sint Eustatius dan Saba"
 
 #: mkt/constants/regions.py:100
 msgid "Bolivia, Plurinational State of"
-msgstr ""
+msgstr "Negara Plurinasional Bolivia"
 
 #: mkt/constants/regions.py:115
 msgid "Congo, Democratic Republic of the"
-msgstr ""
+msgstr "Republik Demokratik Kongo"
 
 #: mkt/constants/regions.py:120
 msgid "Cabo Verde"
-msgstr ""
+msgstr "Tanjung Verde"
 
 #: mkt/constants/regions.py:153
 msgid "Guinea-Conakry"
-msgstr ""
+msgstr "Republik Guinea"
 
 #: mkt/constants/regions.py:166
 msgid "Heard Island and McDonald Islands"
-msgstr ""
+msgstr "Pulau Heard dan Kepulauan McDonald"
 
 #: mkt/constants/regions.py:192
 msgid "Lao People's Democratic Republic"
-msgstr ""
+msgstr "Republik Demokratik Rakyat Laos"
 
 #: mkt/constants/regions.py:195
 msgid "Libya"
@@ -2116,15 +2116,15 @@ msgstr "Liechtenstein"
 
 #: mkt/constants/regions.py:204
 msgid "Saint Martin (French part)"
-msgstr ""
+msgstr "Saint Martin (bagian Prancis)"
 
 #: mkt/constants/regions.py:212
 msgid "Macedonia, the former Yugoslav Republic of"
-msgstr ""
+msgstr "Republik Makedonia Bekas Yugoslavia"
 
 #: mkt/constants/regions.py:251
 msgid "Palestine, State of"
-msgstr ""
+msgstr "Negara Palestina"
 
 #: mkt/constants/regions.py:256
 msgid "Russia"
@@ -2132,11 +2132,11 @@ msgstr "Rusia"
 
 #: mkt/constants/regions.py:260
 msgid "Senegal"
-msgstr ""
+msgstr "Senegal"
 
 #: mkt/constants/regions.py:263
 msgid "Saint Helena, Ascension and Tristan da Cunha"
-msgstr ""
+msgstr "Saint Helena, Ascension dan Tristan da Cunha"
 
 #: mkt/constants/regions.py:295
 msgid "Taiwan"
@@ -2144,15 +2144,15 @@ msgstr "Taiwan"
 
 #: mkt/constants/regions.py:296
 msgid "Tanzania"
-msgstr ""
+msgstr "Tanzania"
 
 #: mkt/constants/regions.py:303
 msgid "Holy See"
-msgstr ""
+msgstr "Tahta Suci"
 
 #: mkt/constants/regions.py:305
 msgid "Venezuela"
-msgstr ""
+msgstr "Venezuela"
 
 #: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_app.html:16 mkt/search/forms.py:29 mkt/submit/templates/submit/manifest.html:31
 msgid "Hosted"
@@ -2386,11 +2386,11 @@ msgstr ""
 
 #: mkt/developers/forms.py:1005
 msgid "From"
-msgstr ""
+msgstr "Dari"
 
 #: mkt/developers/forms.py:1008
 msgid "To"
-msgstr ""
+msgstr "Untuk"
 
 #: mkt/developers/forms.py:1019
 msgid "Web site"
@@ -2430,7 +2430,7 @@ msgstr "Pengembang"
 
 #: mkt/developers/helpers.py:51 mkt/site/context_processors.py:66 templates/base.html:65
 msgid "My Submissions"
-msgstr ""
+msgstr "Pengajuan Saya"
 
 #. L10n: {0} is the name of the account.
 #: mkt/developers/models.py:134
@@ -2640,7 +2640,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:40 mkt/developers/templates/developers/api.html:66
 msgid "Application Name"
-msgstr ""
+msgstr "Nama Aplikasi"
 
 #: mkt/developers/templates/developers/api.html:43 mkt/developers/templates/developers/api.html:71
 msgid "Redirect URI"
@@ -2648,7 +2648,7 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:48
 msgid "Create"
-msgstr ""
+msgstr "Buat"
 
 #: mkt/developers/templates/developers/api.html:53
 msgid "OAuth Keys"
@@ -2656,11 +2656,11 @@ msgstr ""
 
 #: mkt/developers/templates/developers/api.html:59
 msgid "Key"
-msgstr ""
+msgstr "Kunci"
 
 #: mkt/developers/templates/developers/api.html:62
 msgid "Secret"
-msgstr ""
+msgstr "Rahasia"
 
 #: mkt/developers/templates/developers/api.html:80 mkt/developers/templates/developers/apps/status.html:236 mkt/developers/templates/developers/apps/listing/item_actions.html:14
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:27
@@ -2703,7 +2703,7 @@ msgstr ""
 #: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:302
 #: mkt/zadmin/templates/admin/base.html:19 templates/base.html:13
 msgid "Firefox Marketplace"
-msgstr ""
+msgstr "Firefox Marketplace"
 
 #: mkt/developers/templates/developers/login.html:9
 msgid "Sign in"
