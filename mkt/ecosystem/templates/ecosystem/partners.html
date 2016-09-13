@@ -15,15 +15,6 @@
           Partner with Mozilla to distribute your apps through an open
           marketplace to over 450 million users
         {% endtrans %}
-
-        <div class="submit-options">
-          {% trans submit_url=url('submit.app'),
-                   api_url='https://firefox-marketplace-api.readthedocs.org/en/latest/topics/submission.html' %}
-            <a href="{{ submit_url }}" class="button">Submit now</a>
-            <span>or</span>
-            <a href="{{ api_url }}" class="button api">Submit via API</a>
-          {% endtrans %}
-        </div>
       </h2>
       <img src="{{ media('img/ecosystem/rocket.png') }}">
     </div>

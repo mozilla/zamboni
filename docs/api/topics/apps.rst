@@ -7,7 +7,7 @@ Apps
 App Submission
 ==============
 
-See the dedicated :ref:`App Submission <app_submission>` topic.
+App Submissions for Marketplace is now closed.
 
 App
 ===

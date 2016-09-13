@@ -222,11 +222,7 @@ class TestManifest(TestSubmit):
         self._step()
         r = self.client.get(self.url)
         eq_(r.status_code, 200)
-        eq_(pq(r.content)('#upload-file').length, 1)
-
-    def test_progress_display(self):
-        self._step()
-        self._test_progress_display(['terms'], 'manifest')
+        eq_(pq(r.content)('#upload-file').length, 0)
 
 
 class UploadAddon(object):
