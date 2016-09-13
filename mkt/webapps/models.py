@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import datetime
-import hashlib
 import itertools
 import json
 import operator
@@ -11,7 +10,7 @@ import uuid
 
 from django.conf import settings
 from django.core.cache import cache
-from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse
 from django.db import models, transaction
 from django.db.models import signals as dbsignals, Max, Q
@@ -19,7 +18,6 @@ from django.dispatch import receiver
 from django.utils.translation import trans_real as translation
 
 import commonware.log
-import waffle
 from cache_nuggets.lib import memoize, memoize_key
 from django_extensions.db.fields.json import JSONField
 from jingo.helpers import urlparams
@@ -30,9 +28,7 @@ from uuidfield.fields import UUIDField
 
 import mkt
 from lib.crypto import packaged
-from lib.iarc.client import get_iarc_client
-from lib.iarc_v2.client import unpublish as iarc_unpublish
-from lib.iarc.utils import get_iarc_app_title, render_xml
+from lib.iarc.client import unpublish as iarc_unpublish
 from lib.utils import static_url
 from mkt.access import acl
 from mkt.constants import APP_FEATURES, apps
@@ -510,10 +506,7 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         id = self.id
 
         # Tell IARC this app is delisted.
-        if waffle.switch_is_active('iarc-upgrade-v2'):
-            iarc_unpublish.delay(self.pk)
-        else:
-            tasks.set_storefront_data.delay(self.pk, disable=True)
+        iarc_unpublish.delay(self.pk)
 
         # Fetch previews before deleting the addon instance, so that we can
         # pass the list of files to delete to the delete_preview_files task
@@ -1947,15 +1940,6 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         """
         return self.pk == settings.QA_APP_ID
 
-    def iarc_token(self):
-        """
-        Simple hash to verify token in pingback API (IARC v1 only).
-        """
-        if waffle.switch_is_active('iarc-upgrade-v2'):
-            raise ImproperlyConfigured(
-                'We should not be calling this method with IARC v2.')
-        return hashlib.sha512(settings.SECRET_KEY + str(self.id)).hexdigest()
-
     def get_content_ratings_by_body(self, es=False):
         """
         Gets content ratings on this app keyed by bodies.
@@ -1975,21 +1959,6 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             content_ratings[body.label] = rating_serialized
 
         return content_ratings
-
-    def set_iarc_info(self, submission_id, security_code):
-        """
-        Sets the iarc_info for this app (IARC v1 only).
-        """
-        if waffle.switch_is_active('iarc-upgrade-v2'):
-            raise ImproperlyConfigured(
-                'We should not be calling this method with IARC v2.')
-
-        data = {'submission_id': submission_id,
-                'security_code': security_code}
-        info, created = IARCInfo.objects.safer_get_or_create(
-            addon=self, defaults=data)
-        if not created:
-            info.update(**data)
 
     def set_iarc_certificate(self, cert_id):
         """
@@ -2110,60 +2079,6 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             addon=self, defaults=create_kwargs)
         if not created:
             instance.update(**create_kwargs)
-
-    def set_iarc_storefront_data(self, disable=False):
-        """Send app data to IARC for them to verify (IARC v1 only)."""
-
-        if waffle.switch_is_active('iarc-upgrade-v2'):
-            raise ImproperlyConfigured(
-                'We should not be calling this method with IARC v2.')
-
-        try:
-            iarc_info = self.iarc_info
-        except IARCInfo.DoesNotExist:
-            # App wasn't rated by IARC, return.
-            return
-
-        release_date = datetime.date.today()
-
-        if self.status in mkt.WEBAPPS_APPROVED_STATUSES:
-            version = self.current_version
-            if version and version.reviewed:
-                release_date = version.reviewed
-        elif self.status in mkt.WEBAPPS_EXCLUDED_STATUSES:
-            # Using `_latest_version` since the property returns None when
-            # deleted.
-            version = self._latest_version
-            # Send an empty string to signify the app was removed.
-            release_date = ''
-        else:
-            # If not approved or one of the disabled statuses, we shouldn't be
-            # calling SET_STOREFRONT_DATA. Ignore this call.
-            return
-
-        log.debug('Calling SET_STOREFRONT_DATA for app:%s' % self.id)
-
-        xmls = []
-        for cr in self.content_ratings.all():
-            xmls.append(render_xml('set_storefront_data.xml', {
-                'app_url': self.get_url_path(),
-                'submission_id': iarc_info.submission_id,
-                'security_code': iarc_info.security_code,
-                'rating_system': cr.get_body().iarc_name,
-                'release_date': '' if disable else release_date,
-                'title': get_iarc_app_title(self),
-                'company': version.developer_name if version else '',
-                'rating': cr.get_rating().iarc_name,
-                'descriptors': self.rating_descriptors.iarc_deserialize(
-                    body=cr.get_body()),
-                'interactive_elements':
-                    self.rating_interactives.iarc_deserialize(),
-            }))
-
-        for xml in xmls:
-            r = get_iarc_client('services').Set_Storefront_Data(XMLString=xml)
-            log.debug('IARC result app:%s, rating_body:%s: %s' % (
-                self.id, cr.get_body().iarc_name, r))
 
     def last_rated_time(self):
         """Most recent content rating modified time or None if not rated."""
@@ -2434,21 +2349,6 @@ def clean_memoized_exclusions(sender, **kw):
                            for k in mkt.regions.ALL_REGION_IDS])
 
 
-class IARCInfo(ModelBase):
-    """
-    Stored data for IARC (IARC v1 only).
-    """
-    addon = models.OneToOneField(Webapp, related_name='iarc_info')
-    submission_id = models.PositiveIntegerField(null=False)
-    security_code = models.CharField(max_length=10)
-
-    class Meta:
-        db_table = 'webapps_iarc_info'
-
-    def __unicode__(self):
-        return u'app:%s' % self.addon.app_slug
-
-
 class IARCCert(ModelBase):
     """
     IARC Certificate info for an app (IARC v2).
@@ -2560,13 +2460,9 @@ class RatingDescriptors(ModelBase, DynamicBoolFieldsMixin):
     def iarc_deserialize(self, body=None):
         """Map our descriptor strings back to the IARC ones (comma-sep.)."""
         keys = self.to_keys()
-        if waffle.switch_is_active('iarc-upgrade-v2'):
-            reverse_descriptors = REVERSE_DESCS_V2
-        else:
-            reverse_descriptors = REVERSE_DESCS
         if body:
             keys = [key for key in keys if body.iarc_name.lower() in key]
-        return ', '.join(reverse_descriptors.get(desc) for desc
+        return ', '.join(REVERSE_DESCS_V2.get(desc) for desc
                          in keys)
 
 # Add a dynamic field to `RatingDescriptors` model for each rating descriptor.
@@ -2594,11 +2490,7 @@ class RatingInteractives(ModelBase, DynamicBoolFieldsMixin):
 
     def iarc_deserialize(self):
         """Map our descriptor strings back to the IARC ones (comma-sep.)."""
-        if waffle.switch_is_active('iarc-upgrade-v2'):
-            reverse_interactives = REVERSE_INTERACTIVES_V2
-        else:
-            reverse_interactives = REVERSE_INTERACTIVES
-        return ', '.join(reverse_interactives.get(inter)
+        return ', '.join(REVERSE_INTERACTIVES_V2.get(inter)
                          for inter in self.to_keys())
 
 
@@ -2613,7 +2505,7 @@ for db_flag in set(REVERSE_INTERACTIVES.keys() +
 
 def iarc_cleanup(*args, **kwargs):
     instance = kwargs.get('instance')
-    IARCInfo.objects.filter(addon=instance).delete()
+    IARCCert.objects.filter(app=instance).delete()
     ContentRating.objects.filter(addon=instance).delete()
     RatingDescriptors.objects.filter(addon=instance).delete()
     RatingInteractives.objects.filter(addon=instance).delete()

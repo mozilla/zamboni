@@ -7,7 +7,6 @@ from contextlib import contextmanager
 from uuid import UUID, uuid4
 
 from django.conf import settings
-from django.contrib.messages.storage import default_storage
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
@@ -23,20 +22,18 @@ from pyquery import PyQuery as pq
 
 import mkt
 import mkt.site.tests
-from lib.iarc.utils import get_iarc_app_title
-from lib.iarc_v2.client import IARCException
+from lib.iarc.client import IARCException
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.developers import tasks
 from mkt.developers.models import IARCRequest
 from mkt.developers.views import (_filter_transactions, _get_transactions,
                                   _ratings_success_msg, _submission_msgs,
-                                  content_ratings, content_ratings_edit)
+                                  content_ratings)
 from mkt.files.models import File, FileUpload
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
 from mkt.prices.models import AddonPremium, Price
 from mkt.purchase.models import Contribution
 from mkt.site.fixtures import fixture
-from mkt.site.helpers import absolutify
 from mkt.site.storage_utils import private_storage
 from mkt.site.tests import assert_no_validation_errors
 from mkt.site.tests.test_utils_ import get_image_path
@@ -1252,52 +1249,6 @@ class TestContentRatings(mkt.site.tests.TestCase):
         self.req = mkt.site.tests.req_factory_factory(self.url, user=self.user)
         self.req.session = mock.MagicMock()
 
-    @override_settings(IARC_SUBMISSION_ENDPOINT='https://yo.lo',
-                       IARC_STOREFRONT_ID=1, IARC_PLATFORM='Firefox',
-                       IARC_PASSWORD='s3kr3t')
-    def test_edit(self):
-        self.req._messages = default_storage(self.req)
-        r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
-        doc = pq(r.content)
-
-        # Check the form action.
-        form = doc('#ratings-edit form')[0]
-        eq_(form.action, 'https://yo.lo')
-
-        # Check the hidden form values.
-        values = dict(form.form_values())
-        eq_(values['storefront'], '1')
-        # Note: The HTML is actually double escaped but pyquery shows it how it
-        # will be send to IARC, which is singly escaped.
-        eq_(values['company'], 'Lex Luthor <lex@kryptonite.org>')
-        eq_(values['email'], self.user.email)
-        eq_(values['appname'], get_iarc_app_title(self.app))
-        eq_(values['platform'], 'Firefox')
-        eq_(values['token'], self.app.iarc_token())
-        eq_(values['pingbackurl'],
-            absolutify(reverse('content-ratings-pingback',
-                               args=[self.app.app_slug])))
-
-    def test_edit_default_locale(self):
-        """Ensures the form uses the app's default locale."""
-        self.req._messages = default_storage(self.req)
-        self.app.name = {'es': u'Español', 'en-US': 'English'}
-        self.app.default_locale = 'es'
-        self.app.save()
-
-        r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
-        doc = pq(r.content.decode('utf-8'))
-        eq_(u'Español' in
-            dict(doc('#ratings-edit form')[0].form_values())['appname'],
-            True)
-
-        self.app.update(default_locale='en-US')
-        r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
-        doc = pq(r.content.decode('utf-8'))
-        eq_(u'English' in
-            dict(doc('#ratings-edit form')[0].form_values())['appname'],
-            True)
-
     def test_summary(self):
         rbs = mkt.ratingsbodies
         ratings = {
@@ -1322,21 +1273,8 @@ class TestContentRatings(mkt.site.tests.TestCase):
             [name.text.strip() for name in doc('.interactive')],
             ['Users Interact'])
 
-    def test_edit_iarc_app_form(self):
-        self.req._messages = default_storage(self.req)
-        r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
-        doc = pq(r.content)
-        assert not doc('#id_submission_id').attr('value')
-        assert not doc('#id_security_code').attr('value')
 
-        self.app.set_iarc_info(1234, 'abcd')
-        r = content_ratings_edit(self.req, app_slug=self.app.app_slug)
-        doc = pq(r.content)
-        eq_(doc('#id_submission_id').attr('value'), '1234')
-        eq_(doc('#id_security_code').attr('value'), 'abcd')
-
-
-class TestContentRatingsV2(mkt.site.tests.TestCase):
+class TestContentRatingsEdit(mkt.site.tests.TestCase):
     fixtures = fixture('user_admin', 'user_admin_group', 'group_admin')
 
     def setUp(self):
@@ -1348,7 +1286,6 @@ class TestContentRatingsV2(mkt.site.tests.TestCase):
                                 args=[self.app.app_slug])
         self.url = reverse('mkt.developers.apps.ratings',
                            args=[self.app.app_slug])
-        self.create_switch('iarc-upgrade-v2')
         self.client.login(self.user.email)
 
     @override_settings(IARC_V2_SUBMISSION_ENDPOINT='https://yo.lo',

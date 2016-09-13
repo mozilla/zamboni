@@ -11,7 +11,7 @@ from mkt.site.utils import cached_property
 log = commonware.log.getLogger('lib.iarc.serializers')
 
 
-class IARCV2RatingListSerializer(object):
+class IARCRatingListSerializer(object):
     """Class that is used to de-serialize json sent/received from IARC to our
     ratings/descriptors/interactive model instances for a given app.
 

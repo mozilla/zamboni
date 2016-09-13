@@ -3,12 +3,9 @@ import hashlib
 import json
 
 from django.core.cache import cache
-from django.core.exceptions import ImproperlyConfigured
 
 import commonware.log
-import waffle
 
-import lib.iarc
 import mkt
 from mkt.site.storage_utils import public_storage
 from mkt.site.utils import JSONEncoder
@@ -70,31 +67,6 @@ def dehydrate_content_ratings(content_ratings):
         # Dehydrate all content ratings.
         content_ratings[body] = dehydrate_content_rating(content_ratings[body])
     return content_ratings
-
-
-def iarc_get_app_info(app):
-    """
-    Return info from IARC using submission id / security code (IARC v1 only).
-    """
-    if waffle.switch_is_active('iarc-upgrade-v2'):
-        raise ImproperlyConfigured(
-            'We should not be calling this function with IARC v2.')
-
-    client = lib.iarc.client.get_iarc_client('services')
-    iarc = app.iarc_info
-    iarc_id = iarc.submission_id
-    iarc_code = iarc.security_code
-
-    # Generate XML.
-    xml = lib.iarc.utils.render_xml(
-        'get_app_info.xml',
-        {'submission_id': iarc_id, 'security_code': iarc_code})
-
-    # Process that shizzle.
-    resp = client.Get_App_Info(XMLString=xml)
-
-    # Handle response.
-    return lib.iarc.utils.IARC_XML_Parser().parse_string(resp)
 
 
 def get_cached_minifest(app_or_langpack, force=False):

@@ -3,8 +3,6 @@ from optparse import make_option
 
 from django.core.management.base import BaseCommand
 
-import waffle
-
 from mkt.developers.tasks import refresh_iarc_ratings
 from mkt.site.utils import chunked
 
@@ -27,10 +25,7 @@ class Command(BaseCommand):
         from mkt.webapps.models import Webapp
 
         # Get apps.
-        if waffle.switch_is_active('iarc-upgrade-v2'):
-            apps = Webapp.objects.filter(iarc_cert__isnull=False)
-        else:
-            apps = Webapp.objects.filter(iarc_info__isnull=False)
+        apps = Webapp.objects.filter(iarc_cert__isnull=False)
         ids = kw.get('apps')
         if ids:
             apps = apps.filter(
