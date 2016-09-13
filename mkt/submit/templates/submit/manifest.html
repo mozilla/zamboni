@@ -7,95 +7,16 @@
 
 {% block title %}{{ hub_page_title(title) }}{% endblock %}
 
-{%- macro button(form, item) -%}
-  <div class="wrapper">
-    <a href="#" class="island choice{{ ' selected' if form.data[item[0]] == 'on' }}"
-       id="{{ item[0] }}" data-value="{{ item[0] }}">
-      <h3>{{ item[1] }}</h3>
-      <div>{{ PLATFORMS_NAMES[item[0]] }}</div>
-      <div class="listing-footer"><input type="checkbox"></div>
-    </a>
-  </div>
-{%- endmacro %}
-
 {% block content %}
-  {{ hub_breadcrumbs(items=[(None, _('Submit App'))]) }}
   <header class="submit-header c">
     <h1>{{ _('Submit an App') }}</h1>
-    {{ progress(request, addon=None, step=step) }}
   </header>
 
 
-  <section id="upload-file" class="island tabbable spacer">
-    <div class="hosted tab active">
-      <h2 id="hosted-tab-header"><a href="#">{{ _('Hosted') }}</a></h2>
-      <h3>{{ _("Submit your app manifest URL") }}</h3>
-      <div class="upload-status">
-        <label>
-          <form id="validate-field">
-            <div class="vf-text">
-              <input type="text" id="upload-webapp-url" name="manifest" class="large"
-                     placeholder="http://" data-upload-url="{{ url('mkt.developers.upload_manifest') }}">
-            </div>
-            <div class="vf-button">
-              <button type="submit" class="disabled" id="validate_app">{{ _('Validate') }}</button>
-            </div>
-          </form>
-        </label>
-      </div>
-      <div class="upload-details">
-        <div id="validate-error-protocol" class="pretty-tooltip tl">
-          <span class="protocol">
-            {% trans http='http://', https='https://' %}
-              <strong>Don't forget a protocol!</strong>
-              Try adding either <a href="#">{{ http }}</a> or
-              <a href="#">{{ https }}</a>.
-            {% endtrans %}
-          </span>
-        </div>
-        <div class="hint">
-          {{ _('Manifest URLs must start with a protocol (for example, '
-               '<code>http://</code> or <code>https://</code>) and '
-               'typically use the <code>.webapp</code> extension.') }}
-        </div>
-      </div>
-    </div>
-
-    <div class="packaged tab">
-      <h2 id="packaged-tab-header"><a href="#">{{ _('Packaged') }}</a></h2>
-      <input type="file" id="upload-app" data-upload-url="{{ url('mkt.developers.upload') }}" />
-    </div>
-
-    <form method="post" id="upload-webapp">
-      {{ csrf() }}
-      <!--
-      {{ form.non_field_errors() }}
-      -->
-      {{ form.upload.errors }}
-      <div class="hidden">
-        {{ form.upload }}
-        {{ form.packaged }}
-      </div>
-
-      <div id="upload-webapp-features">
-        <h3>{{ _('App Minimum Requirements') }}</h3>
-        {{ upload_webapp_features(features_form) }}
-      </div>
-
-      <div class="listing-footer footer hidden">
-        {% trans %}
-          <b>What's next:</b> fill out the rest of your app's details
-        {% endtrans %}
-        <button class="upload-file-submit prominent" disabled type="submit">
-          {{ _('Continue') }}
-        </button>
-      </div>
-    </form>
+  <section class="island tabbable spacer">
+    <p> {{ _('App Submission is now closed. Thank you for your support.') }} </p>
   </section>
 
-  <p class="learn-mdn active"><a href="{{ doc_url }}" target="_blank">
-    {% trans %}Learn more about submitting an app.{% endtrans -%}
-  </a></p>
   <p class="learn-mdn active"><a href="https://docs.google.com/a/mozilla.com/forms/d/1dN3uooCQwZrBa6Fv5SG2R3oX295Heyb51mpb9irbc_M/viewform" target="_blank">
     {% trans %}Submit a website for TVs.{% endtrans -%}
   </a></p>
