@@ -176,7 +176,6 @@ class TestAppDashboard(AppHubTest):
         doc = pq(self.client.get(self.url).content)
         expected = [
             ('Edit Listing', app.get_dev_url()),
-            ('Add New Version', app.get_dev_url('versions')),
             ('Status & Versions', app.get_dev_url('versions')),
             ('Content Ratings', app.get_dev_url('ratings')),
             ('Team Members', app.get_dev_url('owner')),

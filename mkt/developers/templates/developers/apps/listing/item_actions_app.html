@@ -39,14 +39,6 @@
     </li>
   {% endif %}
 
-  {% if addon.is_packaged %}
-    <li>
-      <a href="{{ addon.get_dev_url('versions') }}" class="action-link tooltip"
-         title="{{ _('Add a new version of the packaged app.') }}">
-        {{ _('Add New Version') }}</a>
-    </li>
-  {% endif %}
-
   <li>
     <a class="action-link status-link" href="{{ addon.get_dev_url('versions') }}">
       {{ _('Status &amp; Versions') if addon.is_packaged else _('Status') }}</a>
