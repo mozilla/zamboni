@@ -27,13 +27,6 @@ class TestReceiptEmail(PurchaseTest):
         tasks.send_purchase_receipt(self.contrib.pk)
         eq_(len(mail.outbox), 1)
 
-    def test_localized_send(self):
-        self.contrib.user.lang = 'es'
-        self.contrib.user.save()
-        tasks.send_purchase_receipt(self.contrib.pk)
-        assert 'Precio' in mail.outbox[0].body
-        assert 'Algo Algo' in mail.outbox[0].body
-
     @patch('mkt.purchase.tasks.send_html_mail_jinja')
     def test_data(self, send_mail_jinja):
         with self.settings(SITE_URL='http://f.com'):
