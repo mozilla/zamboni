@@ -245,6 +245,7 @@
         </section>
       {% endif %}
 
+      {% if is_admin %}
       <h2 id="upload-new-version">{{ _('Upload New Version') }}</h2>
       <section>
         <div class="island">
@@ -280,6 +281,7 @@
           </form>
         </div>
       </section>
+      {% endif %}
     {% endif %}
 
     {% if is_tarako %}
