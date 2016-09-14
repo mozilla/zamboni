@@ -15,7 +15,7 @@ from nose.tools import eq_, ok_
 
 import mkt
 import mkt.site.tests
-from lib.iarc_v2.client import IARCException
+from lib.iarc.client import IARCException
 from mkt.constants import ratingsbodies
 from mkt.developers import forms
 from mkt.developers.tests.test_views_edit import TestAdmin
@@ -26,7 +26,7 @@ from mkt.site.tests.test_utils_ import get_image_path
 from mkt.site.utils import app_factory, version_factory
 from mkt.tags.models import Tag
 from mkt.users.models import UserProfile
-from mkt.webapps.models import Geodata, IARCCert, IARCInfo, Webapp
+from mkt.webapps.models import IARCCert, Webapp
 
 
 class TestPreviewForm(mkt.site.tests.TestCase):
@@ -577,7 +577,6 @@ class TestPublishForm(mkt.site.tests.TestCase):
 
     @mock.patch('mkt.developers.forms.iarc_publish')
     def test_iarc_publish_is_called(self, iarc_publish_mock):
-        self.create_switch('iarc-upgrade-v2')
         self.test_go_public()
         eq_(iarc_publish_mock.delay.call_count, 1)
         eq_(iarc_publish_mock.delay.call_args[0], (self.app.pk, ))
@@ -694,115 +693,14 @@ class TestAdminSettingsForm(TestAdmin):
         index_webapps_mock.assert_called_with([self.webapp.id])
 
 
-class TestIARCGetAppInfoForm(mkt.site.tests.WebappTestCase):
-
-    def _get_form(self, app=None, **kwargs):
-        data = {
-            'submission_id': 1,
-            'security_code': 'a'
-        }
-        data.update(kwargs)
-        return forms.IARCGetAppInfoForm(data=data, app=app or self.app)
-
-    def test_good(self):
-        with self.assertRaises(IARCInfo.DoesNotExist):
-            self.app.iarc_info
-
-        form = self._get_form()
-        assert form.is_valid(), form.errors
-        form.save()
-
-        iarc_info = IARCInfo.objects.get(addon=self.app)
-        eq_(iarc_info.submission_id, 1)
-        eq_(iarc_info.security_code, 'a')
-
-    @mock.patch.object(settings, 'IARC_ALLOW_CERT_REUSE', False)
-    def test_iarc_cert_reuse_on_self(self):
-        # Test okay to use on self.
-        self.app.set_iarc_info(1, 'a')
-        form = self._get_form()
-        ok_(form.is_valid())
-        form.save()
-        eq_(IARCInfo.objects.count(), 1)
-
-    @mock.patch.object(settings, 'IARC_ALLOW_CERT_REUSE', False)
-    def test_iarc_cert_already_used(self):
-        # Test okay to use on self.
-        self.app.set_iarc_info(1, 'a')
-        eq_(IARCInfo.objects.count(), 1)
-
-        some_app = app_factory()
-        form = self._get_form(app=some_app)
-        ok_(not form.is_valid())
-
-        form = self._get_form(app=some_app, submission_id=2)
-        ok_(form.is_valid())
-
-    @mock.patch.object(settings, 'IARC_ALLOW_CERT_REUSE', True)
-    def test_iarc_already_used_dev(self):
-        self.app.set_iarc_info(1, 'a')
-        form = self._get_form()
-        ok_(form.is_valid())
-
-    def test_changing_cert(self):
-        self.app.set_iarc_info(1, 'a')
-        form = self._get_form(submission_id=2, security_code='b')
-        ok_(form.is_valid(), form.errors)
-        form.save()
-
-        iarc_info = self.app.iarc_info.reload()
-        eq_(iarc_info.submission_id, 2)
-        eq_(iarc_info.security_code, 'b')
-
-    def test_iarc_unexclude(self):
-        geodata, created = Geodata.objects.get_or_create(addon=self.app)
-        geodata.update(region_br_iarc_exclude=True,
-                       region_de_iarc_exclude=True)
-
-        form = self._get_form()
-        ok_(form.is_valid())
-        form.save()
-
-        geodata = Geodata.objects.get(addon=self.app)
-        assert not geodata.region_br_iarc_exclude
-        assert not geodata.region_de_iarc_exclude
-
-    def test_allow_subm(self):
-        form = self._get_form(submission_id='subm-1231')
-        assert form.is_valid(), form.errors
-        form.save()
-
-        iarc_info = self.app.iarc_info
-        eq_(iarc_info.submission_id, 1231)
-        eq_(iarc_info.security_code, 'a')
-
-    def test_bad_submission_id(self):
-        form = self._get_form(submission_id='subwayeatfresh-133')
-        assert not form.is_valid()
-
-    def test_incomplete(self):
-        form = self._get_form(submission_id=None)
-        assert not form.is_valid(), 'Form was expected to be invalid.'
-
-    @mock.patch('lib.iarc.utils.IARC_XML_Parser.parse_string')
-    def test_rating_not_found(self, _mock):
-        _mock.return_value = {'rows': [
-            {'ActionStatus': 'No records found. Please try another criteria.'}
-        ]}
-        form = self._get_form()
-        assert form.is_valid(), form.errors
-        with self.assertRaises(django_forms.ValidationError):
-            form.save()
-
-
-class TestIARCV2ExistingCertificateForm(mkt.site.tests.WebappTestCase):
+class TestIARCExistingCertificateForm(mkt.site.tests.WebappTestCase):
     def setUp(self):
         self.app = app_factory(status=mkt.STATUS_PUBLIC, is_packaged=True)
-        super(TestIARCV2ExistingCertificateForm, self).setUp()
+        super(TestIARCExistingCertificateForm, self).setUp()
 
     def test_cert_id_required(self):
         data = {}
-        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        form = forms.IARCExistingCertificateForm(data=data, app=self.app)
         eq_(form.is_valid(), False)
         eq_(form.errors['cert_id'], ['This field is required.'])
 
@@ -810,7 +708,7 @@ class TestIARCV2ExistingCertificateForm(mkt.site.tests.WebappTestCase):
         data = {
             'cert_id': '0'
         }
-        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        form = forms.IARCExistingCertificateForm(data=data, app=self.app)
         eq_(form.is_valid(), False)
         eq_(form.errors['cert_id'], ['badly formed hexadecimal UUID string'])
 
@@ -819,7 +717,7 @@ class TestIARCV2ExistingCertificateForm(mkt.site.tests.WebappTestCase):
         data = {
             'cert_id': '0'
         }
-        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        form = forms.IARCExistingCertificateForm(data=data, app=self.app)
         eq_(form.is_valid(), True)
         eq_(form.errors, {})
         eq_(form.cleaned_data['cert_id'], None)  # Will be handled by save().
@@ -830,7 +728,7 @@ class TestIARCV2ExistingCertificateForm(mkt.site.tests.WebappTestCase):
         data = {
             'cert_id': unicode(cert)
         }
-        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        form = forms.IARCExistingCertificateForm(data=data, app=self.app)
         eq_(form.is_valid(), True)
         eq_(form.errors, {})
         eq_(form.cleaned_data['cert_id'], unicode(cert))
@@ -841,7 +739,7 @@ class TestIARCV2ExistingCertificateForm(mkt.site.tests.WebappTestCase):
         data = {
             'cert_id': cert.get_hex()
         }
-        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        form = forms.IARCExistingCertificateForm(data=data, app=self.app)
         eq_(form.is_valid(), True)
         eq_(form.errors, {})
         eq_(form.cleaned_data['cert_id'], unicode(cert))
@@ -853,7 +751,7 @@ class TestIARCV2ExistingCertificateForm(mkt.site.tests.WebappTestCase):
         }
         # If another app is using this cert, the form should be invalid.
         iarc_cert = IARCCert.objects.create(app=app_factory(), cert_id=cert)
-        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        form = forms.IARCExistingCertificateForm(data=data, app=self.app)
         eq_(form.is_valid(), False)
         eq_(form.errors['cert_id'],
             ['This IARC certificate is already being used for another '
@@ -861,7 +759,7 @@ class TestIARCV2ExistingCertificateForm(mkt.site.tests.WebappTestCase):
 
         # If the cert is used by the same app, then it should be valid:
         iarc_cert.update(app=self.app)
-        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        form = forms.IARCExistingCertificateForm(data=data, app=self.app)
         eq_(form.is_valid(), True)
         eq_(form.cleaned_data['cert_id'], unicode(cert))
 
@@ -872,7 +770,7 @@ class TestIARCV2ExistingCertificateForm(mkt.site.tests.WebappTestCase):
         }
         # If another app is using this cert, the form should be invalid.
         iarc_cert = IARCCert.objects.create(app=app_factory(), cert_id=cert)
-        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        form = forms.IARCExistingCertificateForm(data=data, app=self.app)
         eq_(form.is_valid(), False)
         eq_(form.errors['cert_id'],
             ['This IARC certificate is already being used for another '
@@ -880,7 +778,7 @@ class TestIARCV2ExistingCertificateForm(mkt.site.tests.WebappTestCase):
 
         # If the cert is used by the same app, then it should be valid:
         iarc_cert.update(app=self.app)
-        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        form = forms.IARCExistingCertificateForm(data=data, app=self.app)
         eq_(form.is_valid(), True)
         eq_(form.cleaned_data['cert_id'], unicode(cert))
 
@@ -888,7 +786,7 @@ class TestIARCV2ExistingCertificateForm(mkt.site.tests.WebappTestCase):
         data = {
             'cert_id': 'garbage'
         }
-        form = forms.IARCV2ExistingCertificateForm(data=data, app=self.app)
+        form = forms.IARCExistingCertificateForm(data=data, app=self.app)
         eq_(form.is_valid(), False)
         eq_(form.errors['cert_id'], ['badly formed hexadecimal UUID string'])
         return form

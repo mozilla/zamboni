@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import functools
-import hashlib
 import json
 import os
 import tempfile
@@ -56,7 +55,7 @@ from mkt.webapps.indexers import WebappIndexer
 from mkt.webapps.models import (AddonDeviceType, AddonExcludedRegion,
                                 AddonUpsell, AppFeatures, AppManifest,
                                 BlockedSlug, ContentRating, Geodata,
-                                get_excluded_in, IARCCert, IARCInfo, Installed,
+                                get_excluded_in, IARCCert, Installed,
                                 Preview, RatingDescriptors, RatingInteractives,
                                 version_changed, Webapp)
 from mkt.webapps.signals import version_changed as version_changed_signal
@@ -1170,15 +1169,19 @@ class TestWebappContentRatings(TestCase):
         app = app_factory(rated=True)
 
         # Ensure we have some data to start with.
-        ok_(IARCInfo.objects.filter(addon=app).exists())
+        ok_(IARCCert.objects.filter(app=app).exists())
         ok_(ContentRating.objects.filter(addon=app).exists())
         ok_(RatingDescriptors.objects.filter(addon=app).exists())
         ok_(RatingInteractives.objects.filter(addon=app).exists())
 
         # Delete.
-        app.delete()
+        with mock.patch('mkt.webapps.models.iarc_unpublish') as iarc_unpublish:
+            app.delete()
+        eq_(iarc_unpublish.delay.call_count, 1)
+        eq_(iarc_unpublish.delay.call_args[0][0], app.pk)
+
         msg = 'Related IARC data should be deleted.'
-        ok_(not IARCInfo.objects.filter(addon=app).exists(), msg)
+        ok_(not IARCCert.objects.filter(app=app).exists(), msg)
         ok_(not ContentRating.objects.filter(addon=app).exists(), msg)
         ok_(not RatingDescriptors.objects.filter(addon=app).exists(), msg)
         ok_(not RatingInteractives.objects.filter(addon=app).exists(), msg)
@@ -1275,126 +1278,11 @@ class TestWebappContentRatings(TestCase):
         assert not app_interactives.has_shares_info
         assert app_interactives.has_digital_purchases
 
-    @mock.patch('lib.iarc.client.MockClient.call')
-    @mock.patch('mkt.webapps.models.render_xml')
-    def test_set_iarc_storefront_data(self, render_mock, storefront_mock):
-        # Set up ratings/descriptors/interactives.
-        app = app_factory(name='LOL', app_slug='ha')
-        app.current_version.reviewed = datetime(2013, 1, 1, 12, 34, 56)
-        app.current_version._developer_name = 'Lex Luthor'
-
-        app.set_iarc_info(submission_id=1234, security_code='sektor')
-        app.set_descriptors(['has_esrb_blood', 'has_pegi_scary'])
-        app.set_interactives(['has_users_interact', 'has_shares_info'])
-        app.content_ratings.create(
-            ratings_body=mkt.ratingsbodies.ESRB.id,
-            rating=mkt.ratingsbodies.ESRB_A.id)
-        app.content_ratings.create(
-            ratings_body=mkt.ratingsbodies.PEGI.id,
-            rating=mkt.ratingsbodies.PEGI_3.id)
-
-        # Check the client was called.
-        app.set_iarc_storefront_data()
-        assert storefront_mock.called
-
-        eq_(render_mock.call_count, 2)
-        eq_(render_mock.call_args_list[0][0][0], 'set_storefront_data.xml')
-
-        # Check arguments to the XML template are all correct.
-        data = render_mock.call_args_list[0][0][1]
-        eq_(type(data['title']), unicode)
-        eq_(data['app_url'], app.get_url_path())
-        eq_(data['submission_id'], 1234)
-        eq_(data['security_code'], 'sektor')
-        eq_(data['rating_system'], 'ESRB')
-        eq_(data['release_date'], app.current_version.reviewed)
-        eq_(data['title'], 'LOL')
-        eq_(data['company'], 'Lex Luthor')
-        eq_(data['rating'], 'Adults Only')
-        eq_(data['descriptors'], 'Blood')
-        self.assertSetEqual(data['interactive_elements'].split(', '),
-                            ['Shares Info', 'Users Interact'])
-
-        data = render_mock.call_args_list[1][0][1]
-        eq_(type(data['title']), unicode)
-        eq_(data['submission_id'], 1234)
-        eq_(data['security_code'], 'sektor')
-        eq_(data['rating_system'], 'PEGI')
-        eq_(data['release_date'], app.current_version.reviewed)
-        eq_(data['title'], 'LOL')
-        eq_(data['company'], 'Lex Luthor')
-        eq_(data['rating'], '3+')
-        eq_(data['descriptors'], 'Fear')
-        self.assertSetEqual(data['interactive_elements'].split(', '),
-                            ['Shares Info', 'Users Interact'])
-
-    @mock.patch('lib.iarc.client.MockClient.call')
-    def test_set_iarc_storefront_data_not_rated_by_iarc(self, storefront_mock):
-        app_factory().set_iarc_storefront_data()
-        assert not storefront_mock.called
-
-    @mock.patch('mkt.webapps.models.Webapp.current_version', new=None)
-    @mock.patch('lib.iarc.client.MockClient.call')
-    def test_set_iarc_storefront_data_no_version(self, storefront_mock):
-        app = app_factory(rated=True, status=mkt.STATUS_PUBLIC)
-        ok_(not app.current_version)
-        app.set_iarc_storefront_data()
-        assert storefront_mock.called
-
-    @mock.patch('lib.iarc.client.MockClient.call')
-    def test_set_iarc_storefront_data_invalid_status(self, storefront_mock):
-        app = app_factory()
-        for status in (mkt.STATUS_NULL, mkt.STATUS_PENDING):
-            app.update(status=status)
-            app.set_iarc_storefront_data()
-            assert not storefront_mock.called
-
-    @mock.patch('mkt.webapps.models.render_xml')
-    @mock.patch('lib.iarc.client.MockClient.call')
-    def test_set_iarc_storefront_data_disable(self, storefront_mock,
-                                              render_mock):
-        app = app_factory(name='LOL', rated=True)
-        app.current_version.update(_developer_name='Lex Luthor')
-        app.set_iarc_info(123, 'abc')
-        app.set_iarc_storefront_data(disable=True)
-        data = render_mock.call_args_list[0][0][1]
-        eq_(data['submission_id'], 123)
-        eq_(data['security_code'], 'abc')
-        eq_(data['title'], 'LOL')
-        eq_(data['release_date'], '')
-
-        # Also test that a deleted app has the correct release_date.
-        app.delete()
-        app.set_iarc_storefront_data()
-        data = render_mock.call_args_list[0][0][1]
-        eq_(data['submission_id'], 123)
-        eq_(data['security_code'], 'abc')
-        eq_(data['title'], 'LOL')
-        eq_(data['release_date'], '')
-
-    @override_settings(SECRET_KEY='test')
-    def test_iarc_token(self):
-        app = Webapp()
-        app.id = 1
-        eq_(app.iarc_token(),
-            hashlib.sha512(settings.SECRET_KEY + str(app.id)).hexdigest())
-
-    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
-    def test_delete_with_iarc(self, set_iarc_storefront_data_mock):
-        app = app_factory()
-        app.delete()
-        eq_(app.status, mkt.STATUS_DELETED)
-        eq_(set_iarc_storefront_data_mock.call_count, 1)
-
-    @mock.patch('mkt.webapps.models.Webapp.set_iarc_storefront_data')
     @mock.patch('mkt.webapps.models.iarc_unpublish')
-    def test_delete_with_iarc_v2(
-            self, iarc_unpublish_mock, set_iarc_storefront_data_mock):
-        self.create_switch('iarc-upgrade-v2')
+    def test_delete_with_iarc(self, iarc_unpublish_mock):
         app = app_factory()
         app.delete()
         eq_(app.status, mkt.STATUS_DELETED)
-        eq_(set_iarc_storefront_data_mock.call_count, 0)
         eq_(iarc_unpublish_mock.delay.call_count, 1)
         eq_(iarc_unpublish_mock.delay.call_args[0], (app.pk, ))
 
@@ -2038,8 +1926,8 @@ class TestContentRatingsIn(mkt.site.tests.WebappTestCase):
             eq_(self.get_app().content_ratings_in(region=region), [])
 
     def test_in_region_and_category(self):
-        self.make_game()
         cat = 'games'
+        self.app.update(categories=[cat])
         for region in mkt.regions.ALL_REGIONS:
             eq_(self.app.listed_in(region=region, category=cat), True)
 
@@ -2060,19 +1948,6 @@ class TestContentRatingsIn(mkt.site.tests.WebappTestCase):
 
         # Test region with rating body does not include generic content rating.
         assert crs not in self.app.content_ratings_in(region=mkt.regions.BRA)
-
-
-class TestIARCInfo(mkt.site.tests.WebappTestCase):
-
-    def test_no_info(self):
-        with self.assertRaises(IARCInfo.DoesNotExist):
-            self.app.iarc_info
-
-    def test_info(self):
-        IARCInfo.objects.create(addon=self.app, submission_id=1,
-                                security_code='s3kr3t')
-        eq_(self.app.iarc_info.submission_id, 1)
-        eq_(self.app.iarc_info.security_code, 's3kr3t')
 
 
 class TestIARCCert(mkt.site.tests.WebappTestCase):
@@ -2287,17 +2162,6 @@ class TestRatingDescriptors(mkt.site.tests.TestCase):
             addon=app_factory(), has_esrb_blood=True, has_pegi_scary=True,
             has_classind_drugs_legal=True)
         self.assertSetEqual(descs.iarc_deserialize().split(', '),
-                            [u'Blood', u'Drogas L\xedcitas', u'Fear'])
-        eq_(descs.iarc_deserialize(body=mkt.ratingsbodies.ESRB), u'Blood')
-        eq_(descs.iarc_deserialize(
-            body=mkt.ratingsbodies.CLASSIND), u'Drogas L\xedcitas')
-
-    def test_iarc_deserialize_v2(self):
-        self.create_switch('iarc-upgrade-v2')
-        descs = RatingDescriptors.objects.create(
-            addon=app_factory(), has_esrb_blood=True, has_pegi_scary=True,
-            has_classind_drugs_legal=True)
-        self.assertSetEqual(descs.iarc_deserialize().split(', '),
                             [u'ClassInd_DrogasLicitas', u'PEGI_Fear',
                              u'ESRB_Blood'])
         eq_(descs.iarc_deserialize(body=mkt.ratingsbodies.ESRB), u'ESRB_Blood')
@@ -2321,14 +2185,6 @@ class TestRatingInteractives(mkt.site.tests.TestCase):
             ok_(isinstance(REVERSE_INTERACTIVES.get(field), basestring), field)
 
     def test_iarc_deserialize(self):
-        interactives = RatingInteractives.objects.create(
-            addon=app_factory(), has_users_interact=True, has_shares_info=True)
-        self.assertSetEqual(
-            interactives.iarc_deserialize().split(', '),
-            ['Shares Info', 'Users Interact'])
-
-    def test_iarc_deserialize_v2(self):
-        self.create_switch('iarc-upgrade-v2')
         interactives = RatingInteractives.objects.create(
             addon=app_factory(), has_users_interact=True, has_shares_info=True)
         self.assertSetEqual(

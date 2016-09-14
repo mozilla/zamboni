@@ -22,10 +22,9 @@ from appvalidator import validate_app, validate_packaged_app
 from django_statsd.clients import statsd
 from PIL import Image
 from post_request_task.task import task
-import waffle
 
 import mkt
-from lib.iarc_v2.client import refresh as iarc_refresh
+from lib.iarc.client import refresh as iarc_refresh
 from mkt.constants import APP_PREVIEW_SIZES
 from mkt.constants.regions import REGIONS_CHOICES_ID_DICT
 from mkt.files.models import File, FileUpload, FileValidation
@@ -38,7 +37,6 @@ from mkt.site.storage_utils import (copy_stored_file, local_storage,
 from mkt.site.utils import (remove_icons, remove_promo_imgs, resize_image,
                             strip_bom)
 from mkt.webapps.models import AddonExcludedRegion, Preview, Webapp
-from mkt.webapps.utils import iarc_get_app_info
 
 
 log = logging.getLogger('z.mkt.developers.task')
@@ -610,17 +608,5 @@ def refresh_iarc_ratings(ids, **kw):
     The caller is responsible for sending app ids that already have iarc
     information set.
     """
-    if waffle.switch_is_active('iarc-upgrade-v2'):
-        for app in Webapp.objects.filter(id__in=ids):
-            iarc_refresh(app)
-    else:
-        for app in Webapp.objects.filter(id__in=ids):
-            data = iarc_get_app_info(app)
-
-            if data.get('rows'):
-                row = data['rows'][0]
-
-                # We found a rating, so store the id and code for future use.
-                app.set_descriptors(row.get('descriptors', []))
-                app.set_interactives(row.get('interactives', []))
-                app.set_content_ratings(row.get('ratings', {}))
+    for app in Webapp.objects.filter(id__in=ids):
+        iarc_refresh(app)

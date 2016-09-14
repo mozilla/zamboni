@@ -281,36 +281,9 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         app = Webapp.objects.get(pk=app.pk)
         eq_(set(app.categories), set(self.categories))
 
-    @patch('mkt.developers.forms.IARCGetAppInfoForm.save')
-    def test_post_content_ratings(self, iarc_save_mock):
-        """Test the @action on AppViewSet to attach the content ratings."""
-        app = self.create_app(
-            support_email='a@a.com', categories=self.categories)
-        app.addondevicetype_set.create(device_type=mkt.DEVICE_GAIA.id)
-        app.addonuser_set.create(user=self.user)
-        url = reverse('app-content-ratings', kwargs={'pk': app.pk})
-        res = self.client.post(url, data=json.dumps(
-            {'submission_id': 50, 'security_code': 'AB12CD3'}))
-        eq_(res.status_code, 201)
-        eq_(res.content, '')
-
-    @patch('mkt.developers.forms.IARCGetAppInfoForm.save')
-    def test_post_content_ratings_bad(self, iarc_save_mock):
-        """Test the @action on AppViewSet to attach the content ratings."""
-        app = self.create_app()
-        app.addonuser_set.create(user=self.user)
-        url = reverse('app-content-ratings', kwargs={'pk': app.pk})
-        # Missing `security_code`.
-        res = self.client.post(url, data=json.dumps({'submission_id': 50}))
-        eq_(res.status_code, 400)
-        eq_(json.loads(res.content),
-            {'security_code': ['This field is required.']})
-        eq_(iarc_save_mock.call_count, 0)
-
     @patch('mkt.developers.forms.search_and_attach_cert')
-    def test_post_content_ratings_v2(self, search_and_attach_cert_mock):
+    def test_post_content_ratings(self, search_and_attach_cert_mock):
         """Test the @action on AppViewSet to attach the content ratings."""
-        self.create_switch('iarc-upgrade-v2')
         app = self.create_app()
         app.addonuser_set.create(user=self.user)
         url = reverse('app-content-ratings', kwargs={'pk': app.pk})
@@ -322,9 +295,8 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         eq_(search_and_attach_cert_mock.call_args[0],
             (app, 'adb3261b-c657-4fd2-a057-bc9f85310b80'))
 
-    def test_post_content_ratings_bad_v2(self):
+    def test_post_content_ratings_bad(self):
         """Test the @action on AppViewSet to attach the content ratings."""
-        self.create_switch('iarc-upgrade-v2')
         app = self.create_app()
         app.addonuser_set.create(user=self.user)
         url = reverse('app-content-ratings', kwargs={'pk': app.pk})

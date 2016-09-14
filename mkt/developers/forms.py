@@ -26,10 +26,9 @@ from quieter_formset.formset import BaseModelFormSet
 from django.utils.translation import (ugettext as _, ugettext_lazy as _lazy,
                                       ungettext as ngettext)
 
-import lib.iarc
 import mkt
-from lib.iarc_v2.client import (IARCException, publish as iarc_publish,
-                                search_and_attach_cert, search_cert)
+from lib.iarc.client import (IARCException, publish as iarc_publish,
+                             search_and_attach_cert, search_cert)
 from lib.video import tasks as vtasks
 from mkt import get_user
 from mkt.access import acl
@@ -52,10 +51,9 @@ from mkt.translations.forms import TranslationFormMixin
 from mkt.translations.models import Translation
 from mkt.translations.widgets import TranslationTextarea, TransTextarea
 from mkt.versions.models import Version
-from mkt.webapps.models import (AddonUser, BlockedSlug, IARCCert, IARCInfo,
+from mkt.webapps.models import (AddonUser, BlockedSlug, IARCCert,
                                 Preview, Webapp)
-from mkt.webapps.tasks import (index_webapps, set_storefront_data,
-                               update_manifests)
+from mkt.webapps.tasks import index_webapps, update_manifests
 
 from . import tasks
 
@@ -785,10 +783,7 @@ class PublishForm(happyforms.Form):
         self.addon.update_name_from_package_manifest()
         self.addon.update_supported_locales()
 
-        if waffle.switch_is_active('iarc-upgrade-v2'):
-            iarc_publish.delay(self.addon.pk)
-        else:
-            set_storefront_data.delay(self.addon.pk)
+        iarc_publish.delay(self.addon.pk)
 
 
 class RegionForm(forms.Form):
@@ -1062,13 +1057,13 @@ class AppVersionForm(happyforms.ModelForm):
         return rval
 
 
-class IARCV2ExistingCertificateForm(happyforms.Form):
+class IARCExistingCertificateForm(happyforms.Form):
     cert_id = forms.CharField(max_length=36, required=True)
     confirmed = forms.BooleanField(required=False)
 
     def __init__(self, app, *args, **kwargs):
         self.app = app
-        super(IARCV2ExistingCertificateForm, self).__init__(*args, **kwargs)
+        super(IARCExistingCertificateForm, self).__init__(*args, **kwargs)
 
     def clean_cert_id(self):
         cert_id = self.cleaned_data['cert_id']
@@ -1143,91 +1138,6 @@ class IARCV2ExistingCertificateForm(happyforms.Form):
             search_and_attach_cert(self.app, self.cleaned_data['cert_id'])
         except IARCException:
             self._raise_cert_id_validation_error()
-
-
-class IARCGetAppInfoForm(happyforms.Form):
-    submission_id = forms.CharField()
-    security_code = forms.CharField(max_length=10)
-
-    def __init__(self, app, *args, **kwargs):
-        self.app = app
-        super(IARCGetAppInfoForm, self).__init__(*args, **kwargs)
-
-    def clean_submission_id(self):
-        submission_id = (
-            # Also allow "subm-1234" since that's what IARC tool displays.
-            self.cleaned_data['submission_id'].lower().replace('subm-', ''))
-
-        if submission_id.isdigit():
-            return int(submission_id)
-
-        raise forms.ValidationError(_('Please enter a valid submission ID.'))
-
-    def clean(self):
-        cleaned_data = super(IARCGetAppInfoForm, self).clean()
-
-        app = self.app
-        iarc_id = cleaned_data.get('submission_id')
-
-        if not app or not iarc_id:
-            return cleaned_data
-
-        if (not settings.IARC_ALLOW_CERT_REUSE and
-            IARCInfo.objects.filter(submission_id=iarc_id)
-                            .exclude(addon=app).exists()):
-            del cleaned_data['submission_id']
-            raise forms.ValidationError(
-                _('This IARC certificate is already being used for another '
-                  'app. Please create a new IARC Ratings Certificate.'))
-
-        return cleaned_data
-
-    def save(self, *args, **kwargs):
-        app = self.app
-        iarc_id = self.cleaned_data['submission_id']
-        iarc_code = self.cleaned_data['security_code']
-        if settings.DEBUG and iarc_id == 0:
-            # A local developer is being lazy. Skip the hard work.
-            app.set_iarc_info(iarc_id, iarc_code)
-            app.set_descriptors([])
-            app.set_interactives([])
-            app.set_content_ratings({ratingsbodies.ESRB: ratingsbodies.ESRB_E})
-            return
-
-        # Generate XML.
-        xml = lib.iarc.utils.render_xml(
-            'get_app_info.xml',
-            {'submission_id': iarc_id, 'security_code': iarc_code})
-
-        # Process that shizzle.
-        client = lib.iarc.client.get_iarc_client('services')
-        resp = client.Get_App_Info(XMLString=xml)
-
-        # Handle response.
-        data = lib.iarc.utils.IARC_XML_Parser().parse_string(resp)
-
-        if data.get('rows'):
-            row = data['rows'][0]
-
-            if 'submission_id' not in row:
-                # [{'ActionStatus': 'No records found. Please try another
-                #                   'criteria.', 'rowId: 1}].
-                msg = _('Invalid submission ID or security code.')
-                self._errors['submission_id'] = self.error_class([msg])
-                log.info('[IARC] Bad GetAppInfo: %s' % row)
-                raise forms.ValidationError(msg)
-
-            # We found a rating, so store the id and code for future use.
-            app.set_iarc_info(iarc_id, iarc_code)
-            app.set_descriptors(row.get('descriptors', []))
-            app.set_interactives(row.get('interactives', []))
-            app.set_content_ratings(row.get('ratings', {}))
-
-        else:
-            msg = _('Invalid submission ID or security code.')
-            self._errors['submission_id'] = self.error_class([msg])
-            log.info('[IARC] Bad GetAppInfo. No rows: %s' % data)
-            raise forms.ValidationError(msg)
 
 
 class ContentRatingForm(happyforms.Form):

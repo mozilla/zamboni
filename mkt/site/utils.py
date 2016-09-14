@@ -665,19 +665,11 @@ def version_factory(file_kw={}, **kw):
     return v
 
 
-def make_game(app, rated):
-    app.update(categories=['games'])
-    if rated:
-        make_rated(app)
-    app = app.reload()
-    return app
-
-
 def make_rated(app):
     app.set_content_ratings(
         dict((body, body.ratings[0]) for body in
              mkt.ratingsbodies.ALL_RATINGS_BODIES))
-    app.set_iarc_info(123, 'abc')
+    app.set_iarc_certificate(uuid.uuid4())
     app.set_descriptors([])
     app.set_interactives([])
 

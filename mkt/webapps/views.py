@@ -3,7 +3,6 @@ from django.core.urlresolvers import reverse
 from django.http import Http404
 
 import commonware
-import waffle
 from rest_framework import exceptions, response, serializers, status, viewsets
 from rest_framework.decorators import detail_route
 from rest_framework.response import Response
@@ -18,8 +17,7 @@ from mkt.api.forms import IconJSONForm
 from mkt.api.permissions import (AllowAppOwner, AllowReadOnlyIfPublic,
                                  AllowReviewerReadOnly, AnyOf)
 from mkt.developers import tasks
-from mkt.developers.forms import (AppFormMedia, IARCGetAppInfoForm,
-                                  IARCV2ExistingCertificateForm)
+from mkt.developers.forms import AppFormMedia, IARCExistingCertificateForm
 from mkt.files.models import FileUpload
 from mkt.regions import get_region
 from mkt.submit.views import PreviewViewSet
@@ -136,10 +134,7 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
     @detail_route(methods=['POST'])
     def content_ratings(self, request, *args, **kwargs):
         app = self.get_object()
-        if waffle.switch_is_active('iarc-upgrade-v2'):
-            form = IARCV2ExistingCertificateForm(data=request.data, app=app)
-        else:
-            form = IARCGetAppInfoForm(data=request.data, app=app)
+        form = IARCExistingCertificateForm(data=request.data, app=app)
 
         if form.is_valid():
             try:

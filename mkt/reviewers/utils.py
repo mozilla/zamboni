@@ -11,11 +11,10 @@ from django.utils.translation import ugettext_lazy as _lazy
 import commonware.log
 from elasticsearch_dsl import Search
 from elasticsearch_dsl import filter as es_filter
-import waffle
 
 import mkt
-from lib.iarc_v2.client import (publish as iarc_publish,
-                                unpublish as iarc_unpublish)
+from lib.iarc.client import (publish as iarc_publish,
+                             unpublish as iarc_unpublish)
 from mkt.abuse.models import AbuseReport
 from mkt.access import acl
 from mkt.comm.utils import create_comm_note
@@ -30,7 +29,6 @@ from mkt.translations.query import order_by_translation
 from mkt.versions.models import Version
 from mkt.webapps.models import Webapp
 from mkt.webapps.indexers import HomescreenIndexer, WebappIndexer
-from mkt.webapps.tasks import set_storefront_data
 from mkt.websites.models import Website
 
 
@@ -251,10 +249,7 @@ class ReviewApp(ReviewBase):
             self.set_addon(status=status, highest_status=status)
         self.set_reviewed()
 
-        if waffle.switch_is_active('iarc-upgrade-v2'):
-            iarc_publish.delay(self.addon.pk)
-        else:
-            set_storefront_data.delay(self.addon.pk)
+        iarc_publish.delay(self.addon.pk)
 
         self.create_note(mkt.LOG.APPROVE_VERSION)
 
@@ -369,10 +364,7 @@ class ReviewApp(ReviewBase):
         if self.in_rereview:
             RereviewQueue.objects.filter(addon=self.addon).delete()
 
-        if waffle.switch_is_active('iarc-upgrade-v2'):
-            iarc_unpublish.delay(self.addon.pk)
-        else:
-            set_storefront_data.delay(self.addon.pk, disable=True)
+        iarc_unpublish.delay(self.addon.pk)
 
         self.create_note(mkt.LOG.APP_DISABLED)
         log.info(u'App %s has been banned by a reviewer.' % self.addon)

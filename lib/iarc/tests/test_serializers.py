@@ -6,7 +6,7 @@ from uuid import UUID
 
 
 import mkt.site.tests
-from lib.iarc_v2.serializers import IARCV2RatingListSerializer
+from lib.iarc.serializers import IARCRatingListSerializer
 from mkt.constants import ratingsbodies
 from mkt.constants.applications import DEVICE_GAIA
 from mkt.constants.base import STATUS_NULL, STATUS_PENDING
@@ -14,13 +14,10 @@ from mkt.site.utils import app_factory
 from mkt.webapps.models import IARCCert
 
 
-class TestIARCV2RatingListSerializer(mkt.site.tests.TestCase):
-    def setUp(self):
-        self.create_switch('iarc-upgrade-v2')
-
+class TestIARCRatingListSerializer(mkt.site.tests.TestCase):
     def test_validate_no_data(self):
         data = {}
-        serializer = IARCV2RatingListSerializer(mock.Mock(), data)
+        serializer = IARCRatingListSerializer(mock.Mock(), data)
         eq_(serializer.is_valid(), False)
         eq_(serializer.validated_data, None)
         eq_(serializer.errors, {'RatingList': 'This field is required.'})
@@ -32,7 +29,7 @@ class TestIARCV2RatingListSerializer(mkt.site.tests.TestCase):
                 'AgeRatingText': '12+',
             }]
         }
-        serializer = IARCV2RatingListSerializer(mock.Mock(), data)
+        serializer = IARCRatingListSerializer(mock.Mock(), data)
         eq_(serializer.is_valid(), False)
         eq_(serializer.validated_data, None)
         eq_(serializer.errors, {'CertID': 'This field is required.'})
@@ -45,7 +42,7 @@ class TestIARCV2RatingListSerializer(mkt.site.tests.TestCase):
                 'AgeRatingText': '12+',
             }]
         }
-        serializer = IARCV2RatingListSerializer(mock.Mock(), data)
+        serializer = IARCRatingListSerializer(mock.Mock(), data)
         eq_(serializer.is_valid(), False)
         eq_(serializer.validated_data, None)
         eq_(serializer.errors,
@@ -53,7 +50,7 @@ class TestIARCV2RatingListSerializer(mkt.site.tests.TestCase):
 
     def test_validate_no_rating_list(self):
         data = {'CertID': 'ae52b2d2-d4f7-4ebb-aade-28aa9795c5db'}
-        serializer = IARCV2RatingListSerializer(mock.Mock(), data)
+        serializer = IARCRatingListSerializer(mock.Mock(), data)
         eq_(serializer.is_valid(), False)
         eq_(serializer.validated_data, None)
         eq_(serializer.errors, {'RatingList': 'This field is required.'})
@@ -63,7 +60,7 @@ class TestIARCV2RatingListSerializer(mkt.site.tests.TestCase):
             'CertID': 'ae52b2d2-d4f7-4ebb-aade-28aa9795c5db',
             'RatingList': [],
         }
-        serializer = IARCV2RatingListSerializer(mock.Mock(), data)
+        serializer = IARCRatingListSerializer(mock.Mock(), data)
         eq_(serializer.is_valid(), False)
         eq_(serializer.validated_data, None)
         eq_(serializer.errors, {'RatingList': 'This field is required.'})
@@ -78,7 +75,7 @@ class TestIARCV2RatingListSerializer(mkt.site.tests.TestCase):
                 }
             ]
         }
-        serializer = IARCV2RatingListSerializer(None, data)
+        serializer = IARCRatingListSerializer(None, data)
         # The unknown body should *not* generate an error.
         eq_(serializer.is_valid(), True)
         eq_(serializer.validated_data,
@@ -134,7 +131,7 @@ class TestIARCV2RatingListSerializer(mkt.site.tests.TestCase):
                 ratingsbodies.PEGI: ratingsbodies.PEGI_12,
             },
         }
-        serializer = IARCV2RatingListSerializer(None, data)
+        serializer = IARCRatingListSerializer(None, data)
         eq_(serializer.is_valid(), True)
         eq_(serializer.errors, {})
         eq_(serializer.validated_data['cert_id'], expected_data['cert_id'])
@@ -148,14 +145,14 @@ class TestIARCV2RatingListSerializer(mkt.site.tests.TestCase):
         return serializer
 
     def test_save_with_no_instance(self):
-        serializer = IARCV2RatingListSerializer(data={})
+        serializer = IARCRatingListSerializer(data={})
         with self.assertRaises(ValueError):
             serializer.save()
 
-    @mock.patch.object(IARCV2RatingListSerializer, 'is_valid')
+    @mock.patch.object(IARCRatingListSerializer, 'is_valid')
     def test_save_with_invalid_data(self, is_valid_mock):
         is_valid_mock.return_value = False
-        serializer = IARCV2RatingListSerializer(instance=object())
+        serializer = IARCRatingListSerializer(instance=object())
         with self.assertRaises(ParseError):
             serializer.save()
 
@@ -243,9 +240,9 @@ class TestIARCV2RatingListSerializer(mkt.site.tests.TestCase):
             ['has_shares_location', 'has_digital_purchases',
              'has_users_interact'])
 
-    @mock.patch.object(IARCV2RatingListSerializer, 'is_valid')
+    @mock.patch.object(IARCRatingListSerializer, 'is_valid')
     def test_to_objects_with_invalid_data(self, is_valid_mock):
         is_valid_mock.return_value = False
-        serializer = IARCV2RatingListSerializer(instance=object())
+        serializer = IARCRatingListSerializer(instance=object())
         with self.assertRaises(ParseError):
             serializer.to_objects()

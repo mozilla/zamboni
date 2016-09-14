@@ -229,12 +229,9 @@ def _update_manifest(id, check_hash, failed_fetches):
     # updated, send to re-review queue.
     msg = []
     rereview = False
-    # Some changes require a new call to IARC's SET_STOREFRONT_DATA.
-    iarc_storefront = False
 
     if old and old.get('name') != new.get('name'):
         rereview = True
-        iarc_storefront = True
         msg.append(u'Manifest name changed from "%s" to "%s".' % (
             old.get('name'), new.get('name')))
 
@@ -246,7 +243,6 @@ def _update_manifest(id, check_hash, failed_fetches):
     # does, providing that it matches the original author name.
     if version.developer_name != new_version.developer_name:
         rereview = True
-        iarc_storefront = True
         msg.append(u'Developer name changed from "%s" to "%s".'
                    % (version.developer_name, new_version.developer_name))
 
@@ -279,9 +275,6 @@ def _update_manifest(id, check_hash, failed_fetches):
         _log(webapp, msg, rereview=True)
         if webapp.status in mkt.WEBAPPS_APPROVED_STATUSES:
             RereviewQueue.flag(webapp, mkt.LOG.REREVIEW_MANIFEST_CHANGE, msg)
-
-    if iarc_storefront:
-        webapp.set_iarc_storefront_data()
 
 
 @task
@@ -617,20 +610,6 @@ def pre_generate_apk(app_id, **kw):
     # The factory returns a binary APK blob but we don't need it.
     res.close()
     del res
-
-
-@task
-@use_master
-def set_storefront_data(app_id, disable=False, **kw):
-    """
-    Call IARC's SET_STOREFRONT_DATA endpoint (IARC v1 only).
-    """
-    try:
-        app = Webapp.with_deleted.get(pk=app_id)
-    except Webapp.DoesNotExist:
-        return
-
-    app.set_iarc_storefront_data(disable=disable)
 
 
 @task

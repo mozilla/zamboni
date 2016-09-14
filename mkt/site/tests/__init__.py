@@ -959,23 +959,3 @@ class WebappTestCase(TestCase):
 
     def get_app(self):
         return Webapp.objects.get(id=337141)
-
-    def make_game(self, app=None, rated=False):
-        app = make_game(self.app or app, rated)
-
-
-def make_game(app, rated):
-    app.update(categories=['games'])
-    if rated:
-        make_rated(app)
-    app = app.reload()
-    return app
-
-
-def make_rated(app):
-    app.set_content_ratings(
-        dict((body, body.ratings[0]) for body in
-             mkt.ratingsbodies.ALL_RATINGS_BODIES))
-    app.set_iarc_info(123, 'abc')
-    app.set_descriptors([])
-    app.set_interactives([])
