@@ -17,7 +17,7 @@ from mkt.api.forms import IconJSONForm
 from mkt.api.permissions import (AllowAppOwner, AllowReadOnlyIfPublic,
                                  AllowReviewerReadOnly, AnyOf)
 from mkt.developers import tasks
-from mkt.developers.forms import AppFormMedia, IARCExistingCertificateForm
+from mkt.developers.forms import AppFormMedia
 from mkt.files.models import FileUpload
 from mkt.regions import get_region
 from mkt.submit.views import PreviewViewSet
@@ -130,20 +130,6 @@ class AppViewSet(CORSMixin, SlugOrIdMixin, MarketplaceView,
 
     def partial_update(self, request, *args, **kwargs):
         raise exceptions.MethodNotAllowed('PATCH')
-
-    @detail_route(methods=['POST'])
-    def content_ratings(self, request, *args, **kwargs):
-        app = self.get_object()
-        form = IARCExistingCertificateForm(data=request.data, app=app)
-
-        if form.is_valid():
-            try:
-                form.save(app)
-                return Response(status=status.HTTP_201_CREATED)
-            except django_forms.ValidationError:
-                pass
-
-        return Response(form.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @detail_route(
         methods=['POST'],

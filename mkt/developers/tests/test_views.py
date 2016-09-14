@@ -4,13 +4,11 @@ import json
 import os
 import tempfile
 from contextlib import contextmanager
-from uuid import UUID, uuid4
 
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.core.urlresolvers import reverse
 from django.test.client import RequestFactory
-from django.test.utils import override_settings
 from django.utils.encoding import smart_unicode
 
 import mock
@@ -22,12 +20,9 @@ from pyquery import PyQuery as pq
 
 import mkt
 import mkt.site.tests
-from lib.iarc.client import IARCException
 from mkt.constants import MAX_PACKAGED_APP_SIZE
 from mkt.developers import tasks
-from mkt.developers.models import IARCRequest
 from mkt.developers.views import (_filter_transactions, _get_transactions,
-                                  _ratings_success_msg, _submission_msgs,
                                   content_ratings)
 from mkt.files.models import File, FileUpload
 from mkt.files.tests.test_models import UploadTest as BaseUploadTest
@@ -42,7 +37,7 @@ from mkt.submit.models import AppSubmissionChecklist
 from mkt.translations.models import Translation
 from mkt.users.models import UserProfile
 from mkt.versions.models import Version
-from mkt.webapps.models import AddonDeviceType, AddonUser, IARCCert, Webapp
+from mkt.webapps.models import AddonDeviceType, AddonUser, Webapp
 from mkt.zadmin.models import get_config, set_config
 
 
@@ -1271,183 +1266,6 @@ class TestContentRatings(mkt.site.tests.TestCase):
         self.assertSetEqual(
             [name.text.strip() for name in doc('.interactive')],
             ['Users Interact'])
-
-
-class TestContentRatingsEdit(mkt.site.tests.TestCase):
-    fixtures = fixture('user_admin', 'user_admin_group', 'group_admin')
-
-    def setUp(self):
-        self.app = app_factory()
-        self.app.latest_version.update(
-            _developer_name='Lex Luthor <lex@kryptonite.org>')
-        self.user = UserProfile.objects.get()
-        self.url_edit = reverse('mkt.developers.apps.ratings_edit',
-                                args=[self.app.app_slug])
-        self.url = reverse('mkt.developers.apps.ratings',
-                           args=[self.app.app_slug])
-        self.client.login(self.user.email)
-
-    @override_settings(IARC_V2_SUBMISSION_ENDPOINT='https://yo.lo',
-                       IARC_V2_STORE_ID='abc', IARC_PLATFORM='Firefox')
-    def test_edit_form(self):
-        response = self.client.get(self.url_edit)
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
-
-        # Check the form action.
-        form = doc('#ratings-edit form')[0]
-        eq_(form.action, 'https://yo.lo')
-
-        # Check the hidden form values.
-        values = dict(form.form_values())
-        eq_(values['StoreID'], 'abc')
-
-    def test_creates_store_request_id(self):
-        with self.assertRaises(IARCRequest.DoesNotExist):
-            self.app.iarc_request
-
-        response = self.client.get(self.url_edit)
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
-
-        # Check the form action.
-        form = doc('#ratings-edit form')[0]
-        values = dict(form.form_values())
-        eq_(values['StoreRequestID'],
-            unicode(UUID(IARCRequest.objects.get(app=self.app).uuid)))
-        ok_(IARCRequest.objects.filter(
-            uuid=UUID(values['StoreRequestID']).hex).exists())
-
-    def test_uses_store_request_id(self):
-        IARCRequest.objects.create(
-            app=self.app, uuid=UUID('515d56bbaf074be58748f0c8728ddc1d'))
-
-        response = self.client.get(self.url_edit)
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
-
-        # Check the form action.
-        form = doc('#ratings-edit form')[0]
-        values = dict(form.form_values())
-        eq_(values['StoreRequestID'], '515d56bb-af07-4be5-8748-f0c8728ddc1d')
-
-    def test_existing_cert_form(self):
-        response = self.client.get(self.url_edit)
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
-
-        # V1 fields are not present, V2 field is (and empty).
-        ok_(not doc('#id_submission_id'))
-        ok_(not doc('#id_security_code'))
-        ok_(doc('#id_cert_id'))
-        ok_(not doc('#id_cert_id').attr('value'))
-
-        cert_id = unicode(uuid4())
-        self.app.set_iarc_certificate(cert_id)
-        response = self.client.get(self.url_edit)
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
-
-        # Still empty, we don't want to prefill that form since re-submit it
-        # with the same cert is useless.
-        ok_(not doc('#id_cert_id').attr('value'))
-
-    def test_existing_cert_form_submit_error(self):
-        response = self.client.post(self.url_edit, {'cert_id': 'lol'})
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
-
-        eq_(doc('.iarc-cert .errorlist').text(),
-            'badly formed hexadecimal UUID string')
-
-    def _to_objects_mock(self):
-        return {
-            'cert': IARCCert(cert_id='12345678-1234-1234-1234-123412341234'),
-        }
-
-    @mock.patch('mkt.developers.forms.search_cert')
-    def test_existing_cert_form_submit_confirmation_page_is_shown(
-            self, search_cert_mock):
-        search_cert_mock.return_value.to_objects = self._to_objects_mock
-
-        cert_id = unicode(uuid4())
-        self.app.set_iarc_certificate(cert_id)
-        response = self.client.post(self.url_edit, {'cert_id': cert_id})
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
-        eq_(len(doc('#ratings-summary form')), 1)
-        eq_(doc('#ratings-summary form').attr('action'), None)
-        eq_(doc('#ratings-summary form [name=cert_id]').attr('value').strip(),
-            cert_id)
-        eq_(search_cert_mock.call_count, 1)
-        eq_(search_cert_mock.call_args[0], (self.app, cert_id))
-
-    @mock.patch('mkt.developers.forms.search_and_attach_cert')
-    def test_existing_cert_form_submit_success(
-            self, search_and_attach_cert_mock):
-        cert_id = unicode(uuid4())
-        self.app.set_iarc_certificate(cert_id)
-        response = self.client.post(self.url_edit, {
-            'cert_id': cert_id,
-            'confirmed': '1',
-        })
-        self.assert3xx(response, self.url, 302)
-        eq_(search_and_attach_cert_mock.call_count, 1)
-        eq_(search_and_attach_cert_mock.call_args[0], (self.app, cert_id))
-
-    @mock.patch('mkt.developers.forms.search_and_attach_cert')
-    def test_existing_cert_form_submit_iarc_server_error(
-            self, search_and_attach_cert_mock):
-        search_and_attach_cert_mock.side_effect = IARCException
-        cert_id = unicode(uuid4())
-        self.app.set_iarc_certificate(cert_id)
-        response = self.client.post(self.url_edit, {
-            'cert_id': cert_id,
-            'confirmed': '1',
-        })
-        eq_(response.status_code, 200)
-        doc = pq(response.content)
-        ok_(doc('.iarc-cert .errorlist').text().startswith(
-            'This Certificate ID is not recognized by IARC'))
-
-
-class TestContentRatingsSuccessMsg(mkt.site.tests.TestCase):
-
-    def setUp(self):
-        self.app = app_factory(status=mkt.STATUS_NULL)
-
-    def _make_complete(self, complete_errs):
-        complete_errs.return_value = {}
-
-    def _rate_app(self):
-        self.app.content_ratings.create(ratings_body=0, rating=0)
-
-    def test_create_rating_still_incomplete(self):
-        self._rate_app()
-        eq_(_ratings_success_msg(self.app, mkt.STATUS_NULL, None),
-            _submission_msgs()['content_ratings_saved'])
-
-    @mock.patch('mkt.webapps.models.Webapp.completion_errors')
-    def test_create_rating_now_complete(self, complete_errs):
-        self._rate_app()
-        self.app.update(status=mkt.STATUS_PENDING)
-        eq_(_ratings_success_msg(self.app, mkt.STATUS_NULL, None),
-            _submission_msgs()['complete'])
-
-    @mock.patch('mkt.webapps.models.Webapp.completion_errors')
-    def test_create_rating_public_app(self, complete_errs):
-        self._rate_app()
-        self.app.update(status=mkt.STATUS_PUBLIC)
-        eq_(_ratings_success_msg(self.app, mkt.STATUS_PUBLIC, None),
-            _submission_msgs()['content_ratings_saved'])
-
-    @mock.patch('mkt.webapps.models.Webapp.completion_errors')
-    def test_update_rating_still_complete(self, complete_errs):
-        self._rate_app()
-        self.app.update(status=mkt.STATUS_PENDING)
-        eq_(_ratings_success_msg(self.app, mkt.STATUS_PENDING,
-                                 self.days_ago(5).isoformat()),
-            _submission_msgs()['content_ratings_saved'])
 
 
 class TestMessageOfTheDay(mkt.site.tests.TestCase):

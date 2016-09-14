@@ -1421,7 +1421,6 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         response = self.client.get(self.url)
         eq_(response.status_code, 200)
 
-    @mock.patch('mkt.reviewers.utils.iarc_publish.delay', lambda app_id: None)
     def test_sr_can_review_blocklisted_app(self):
         self.app.update(status=mkt.STATUS_BLOCKED)
         self.login_as_senior_reviewer()
@@ -1453,8 +1452,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         self._check_email_dev_and_contact('Rejected')
         self._check_email_body()
 
-    @mock.patch('mkt.reviewers.utils.iarc_publish')
-    def test_pending_to_public_w_requirements_overrides(self, publish_mock):
+    def test_pending_to_public_w_requirements_overrides(self):
         data = {'action': 'public', 'comments': 'something',
                 'has_packaged_apps': True}
         data.update(self._attachment_management_form(num=0))
@@ -1472,12 +1470,7 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         # A reviewer changing features shouldn't generate a re-review.
         eq_(RereviewQueue.objects.count(), 0)
 
-        # Since the app is not really public yet (see above), there is no need
-        # to notify IARC.
-        eq_(publish_mock.delay.call_count, 0)
-
-    @mock.patch('mkt.reviewers.utils.iarc_publish')
-    def test_pending_to_public_w_requirements_removed(self, publish_mock):
+    def test_pending_to_public_w_requirements_removed(self):
         self.app.latest_version.features.update(has_packaged_apps=True)
         data = {'action': 'public', 'comments': 'something',
                 'has_packaged_apps': False}
@@ -1496,10 +1489,6 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         # A reviewer changing features shouldn't generate a re-review.
         eq_(RereviewQueue.objects.count(), 0)
 
-        # Since the app is not really public yet (see above), there is no need
-        # to notify IARC.
-        eq_(publish_mock.delay.call_count, 0)
-
     def test_pending_to_reject_w_requirements_overrides(self):
         # Rejecting an app doesn't let you override features requirements.
         data = {'action': 'reject', 'comments': 'something',
@@ -1513,7 +1502,6 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         eq_(app.publish_type, mkt.PUBLISH_IMMEDIATE)
         eq_(app.status, mkt.STATUS_REJECTED)
 
-    @mock.patch('mkt.reviewers.utils.iarc_publish.delay', lambda app_id: None)
     def test_pending_to_public_w_requirements_overrides_nothing_changed(self):
         self.version.features.update(has_packaged_apps=True)
         data = {'action': 'public', 'comments': 'something',
@@ -1599,11 +1587,8 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_HOSTED)
 
-    @mock.patch('mkt.reviewers.utils.iarc_publish')
-    def test_pending_to_public_iarc(self, iarc_publish_mock):
+    def test_pending_to_public(self):
         self._test_pending_to_public()
-        eq_(iarc_publish_mock.delay.call_count, 1)
-        eq_(iarc_publish_mock.delay.call_args[0], (self.app.pk, ))
 
     @mock.patch('mkt.reviewers.views.messages.success')
     def test_pending_to_escalation(self, messages):
@@ -1623,7 +1608,6 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
 
         eq_(messages.call_args_list[0][0][1], 'Review successfully processed.')
 
-    @mock.patch('mkt.reviewers.utils.iarc_unpublish.delay', lambda appid: None)
     def test_pending_to_disable_senior_reviewer(self):
         self.login_as_senior_reviewer()
 
@@ -1668,11 +1652,8 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         self._check_email_dev_and_contact('Approved')
         self._check_email_body()
 
-    @mock.patch('mkt.reviewers.utils.iarc_publish')
-    def test_escalation_to_public_iarc(self, iarc_publish_mock):
+    def test_escalation_to_public(self):
         self._test_escalation_to_public()
-        eq_(iarc_publish_mock.delay.call_count, 1)
-        eq_(iarc_publish_mock.delay.call_args[0], (self.app.pk, ))
 
     def test_escalation_to_reject(self):
         EscalationQueue.objects.create(addon=self.app)
@@ -1692,7 +1673,6 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_HOSTED)
 
-    @mock.patch('mkt.reviewers.utils.iarc_unpublish.delay', lambda appid: None)
     def test_escalation_to_disable_senior_reviewer(self):
         self.login_as_senior_reviewer()
         EscalationQueue.objects.create(addon=self.app)
@@ -1753,7 +1733,6 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         self._check_email_body()
         self._check_score(mkt.REVIEWED_WEBAPP_REREVIEW)
 
-    @mock.patch('mkt.reviewers.utils.iarc_unpublish.delay', lambda appid: None)
     def test_rereview_to_disable_senior_reviewer(self):
         self.login_as_senior_reviewer()
 
@@ -2024,7 +2003,6 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         return data
 
     @override_settings(REVIEWER_ATTACHMENTS_PATH=ATTACHMENTS_DIR)
-    @mock.patch('mkt.reviewers.utils.iarc_publish.delay', lambda app_id: None)
     @mock.patch('mkt.site.storage_utils.LocalFileStorage.save')
     def test_no_attachments(self, save_mock):
         """ Test addition of no attachment """
@@ -2049,7 +2027,6 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         assert '<script>alert(42)</script>' not in response.content
         assert '&lt;script&gt;alert(42)&lt;/script&gt;' in response.content
 
-    @mock.patch('mkt.reviewers.utils.iarc_publish.delay', lambda app_id: None)
     def test_priority_flag_cleared_for_public(self):
         self.get_app().update(priority_review=True)
         data = {'action': 'public', 'comments': 'something'}
@@ -2058,7 +2035,6 @@ class TestReviewApp(SetupFilesMixin, AppReviewerTest, TestReviewMixin,
         self.post(data)
         eq_(self.get_app().priority_review, False)
 
-    @mock.patch('mkt.reviewers.utils.iarc_unpublish.delay', lambda appid: None)
     def test_priority_flag_uncleared_for_reject(self):
         self.get_app().update(priority_review=True)
         data = {'action': 'reject', 'comments': 'something'}
@@ -2155,7 +2131,6 @@ class TestCannedResponses(AppReviewerTest):
         assert self.cr.response in choices[0]
 
 
-@mock.patch('mkt.reviewers.utils.iarc_publish')
 @mock.patch('mkt.reviewers.views.messages.success')
 @mock.patch('mkt.webapps.tasks.index_webapps')
 @mock.patch('mkt.webapps.tasks.update_cached_manifests')
@@ -2192,12 +2167,11 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
 
     def test_pending_to_public(self, update_name, update_locales,
                                update_cached_manifests,
-                               index_webapps, messages, publish_mock):
+                               index_webapps, messages):
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
 
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -2218,17 +2192,15 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
         eq_(index_webapps.delay.call_count, 1)
         # App is not packaged, no need to call update_cached_manifests.
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 1)
 
     def test_pending_to_hidden(self, update_name, update_locales,
                                update_cached_manifests, index_webapps,
-                               messages, publish_mock):
+                               messages):
         self.get_app().update(publish_type=mkt.PUBLISH_HIDDEN)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
 
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -2249,11 +2221,10 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
         eq_(index_webapps.delay.call_count, 1)
         # App is not packaged, no need to call update_cached_manifests.
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 1)
 
     def test_pending_to_approved(self, update_name, update_locales,
                                  update_cached_manifests, index_webapps,
-                                 messages, publish_mock):
+                                 messages):
         self.get_app().update(publish_type=mkt.PUBLISH_PRIVATE)
         index_webapps.reset_mock()
         eq_(update_name.call_count, 0)
@@ -2283,12 +2254,11 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
         # App is not packaged, no need to call update_cached_manifests.
         eq_(update_cached_manifests.delay.call_count, 0)
         # App is private so we don't send this yet.
-        eq_(publish_mock.delay.call_count, 0)
         eq_(index_webapps.delay.call_count, 1)
 
     def test_pending_to_reject(self, update_name, update_locales,
                                update_cached_manifests, index_webapps,
-                               messages, publish_mock):
+                               messages):
         index_webapps.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
@@ -2313,12 +2283,10 @@ class TestApproveHostedApp(AppReviewerTest, TestReviewMixin,
         eq_(update_name.call_count, 0)  # Not a packaged app.
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
         eq_(index_webapps.delay.call_count, 1)
 
 
 @mock.patch('lib.crypto.packaged.sign')
-@mock.patch('mkt.reviewers.utils.iarc_publish')
 @mock.patch('mkt.reviewers.views.messages.success')
 @mock.patch('mkt.webapps.tasks.index_webapps')
 @mock.patch('mkt.webapps.tasks.update_cached_manifests')
@@ -2356,12 +2324,11 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
 
     def test_pending_to_public(self, update_name, update_locales,
                                update_cached_manifests, index_webapps,
-                               messages, publish_mock, sign_mock):
+                               messages, sign_mock):
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
 
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -2381,18 +2348,16 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         eq_(update_locales.call_count, 1)
         eq_(index_webapps.delay.call_count, 1)
         eq_(update_cached_manifests.delay.call_count, 1)
-        eq_(publish_mock.delay.call_count, 1)
         eq_(sign_mock.call_args[0][0], self.get_app().current_version.pk)
 
     def test_pending_to_hidden(self, update_name, update_locales,
                                update_cached_manifests, index_webapps,
-                               messages, publish_mock, sign_mock):
+                               messages, sign_mock):
         self.get_app().update(publish_type=mkt.PUBLISH_HIDDEN)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
 
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -2412,18 +2377,16 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         eq_(update_locales.call_count, 1)
         eq_(index_webapps.delay.call_count, 1)
         eq_(update_cached_manifests.delay.call_count, 1)
-        eq_(publish_mock.delay.call_count, 1)
         eq_(sign_mock.call_args[0][0], self.get_app().current_version.pk)
 
     def test_pending_to_approved(self, update_name, update_locales,
                                  update_cached_manifests, index_webapps,
-                                 messages, publish_mock, sign_mock):
+                                 messages, sign_mock):
         self.get_app().update(publish_type=mkt.PUBLISH_PRIVATE)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
 
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -2443,17 +2406,15 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         eq_(update_locales.call_count, 1)
         eq_(index_webapps.delay.call_count, 1)
         eq_(update_cached_manifests.delay.call_count, 1)
-        eq_(publish_mock.delay.call_count, 0)
         eq_(sign_mock.call_args[0][0], self.get_app().current_version.pk)
 
     def test_pending_to_rejected(self, update_name, update_locales,
                                  update_cached_manifests, index_webapps,
-                                 messages, publish_mock, sign_mock):
+                                 messages, sign_mock):
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
 
         data = {'action': 'reject', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -2472,12 +2433,11 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         eq_(update_locales.call_count, 0)
         eq_(index_webapps.delay.call_count, 1)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
         eq_(sign_mock.call_count, 0)
 
     def test_pending_to_approved_app_private_prior_version_rejected(
             self, update_name, update_locales, update_cached_manifests,
-            index_webapps, messages, publish_mock, sign_mock):
+            index_webapps, messages, sign_mock):
         """
         Test that everything works out ok when v1.0 was rejected and developer
         submitted v1.1 that is then approved. This should still be considered a
@@ -2495,7 +2455,6 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         update_cached_manifests.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
 
         eq_(self.app.current_version, None)
         eq_(self.app.latest_version, self.new_version)
@@ -2520,12 +2479,10 @@ class TestApprovePackagedApp(AppReviewerTest, TestReviewMixin,
         eq_(update_locales.call_count, 1)
         eq_(index_webapps.delay.call_count, 1)
         eq_(update_cached_manifests.delay.call_count, 1)
-        eq_(publish_mock.delay.call_count, 0)
         eq_(sign_mock.call_args[0][0], self.new_version.pk)
 
 
 @mock.patch('lib.crypto.packaged.sign')
-@mock.patch('mkt.reviewers.utils.iarc_publish')
 @mock.patch('mkt.reviewers.views.messages.success')
 @mock.patch('mkt.webapps.tasks.index_webapps')
 @mock.patch('mkt.webapps.tasks.update_cached_manifests')
@@ -2566,12 +2523,11 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
 
     def test_version_pending_to_public(self, update_name, update_locales,
                                        update_cached_manifests, index_webapps,
-                                       messages, publish_mock, sign_mock):
+                                       messages, sign_mock):
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
 
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -2592,19 +2548,17 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(update_locales.call_count, 1)
         eq_(index_webapps.delay.call_count, 1)
         eq_(update_cached_manifests.delay.call_count, 1)
-        eq_(publish_mock.delay.call_count, 1)
         eq_(sign_mock.call_args[0][0], app.current_version.pk)
 
     def test_version_pending_to_approved(self, update_name, update_locales,
                                          update_cached_manifests,
                                          index_webapps, messages,
-                                         publish_mock, sign_mock):
+                                         sign_mock):
         self.app.update(publish_type=mkt.PUBLISH_PRIVATE)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
 
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -2626,18 +2580,16 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(update_locales.call_count, 1)
         eq_(index_webapps.delay.call_count, 1)
         eq_(update_cached_manifests.delay.call_count, 1)
-        eq_(publish_mock.delay.call_count, 0)
         eq_(sign_mock.call_args[0][0], self.new_version.pk)
 
     def test_version_pending_to_public_app_unlisted(
             self, update_name, update_locales, update_cached_manifests,
-            index_webapps, messages, publish_mock, sign_mock):
+            index_webapps, messages, sign_mock):
         self.app.update(status=mkt.STATUS_UNLISTED)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
 
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -2658,19 +2610,17 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(update_locales.call_count, 1)
         eq_(index_webapps.delay.call_count, 1)
         eq_(update_cached_manifests.delay.call_count, 1)
-        eq_(publish_mock.delay.call_count, 1)
         eq_(sign_mock.call_args[0][0], app.current_version.pk)
 
     def test_version_pending_to_approved_app_unlisted(
             self, update_name, update_locales, update_cached_manifests,
-            index_webapps, messages, publish_mock, sign_mock):
+            index_webapps, messages, sign_mock):
         self.app.update(status=mkt.STATUS_UNLISTED,
                         publish_type=mkt.PUBLISH_PRIVATE)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
 
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -2692,18 +2642,16 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(update_locales.call_count, 1)
         eq_(index_webapps.delay.call_count, 1)
         eq_(update_cached_manifests.delay.call_count, 1)
-        eq_(publish_mock.delay.call_count, 0)
         eq_(sign_mock.call_args[0][0], self.new_version.pk)
 
     def test_version_pending_to_public_app_private(
             self, update_name, update_locales, update_cached_manifests,
-            index_webapps, messages, publish_mock, sign_mock):
+            index_webapps, messages, sign_mock):
         self.app.update(status=mkt.STATUS_APPROVED)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
 
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -2724,19 +2672,17 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(update_locales.call_count, 1)
         eq_(index_webapps.delay.call_count, 1)
         eq_(update_cached_manifests.delay.call_count, 1)
-        eq_(publish_mock.delay.call_count, 1)
         eq_(sign_mock.call_args[0][0], app.current_version.pk)
 
     def test_version_pending_to_approved_app_private(
             self, update_name, update_locales, update_cached_manifests,
-            index_webapps, messages, publish_mock, sign_mock):
+            index_webapps, messages, sign_mock):
         self.app.update(status=mkt.STATUS_APPROVED,
                         publish_type=mkt.PUBLISH_PRIVATE)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
 
         data = {'action': 'public', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -2758,18 +2704,16 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(update_locales.call_count, 1)
         eq_(index_webapps.delay.call_count, 1)
         eq_(update_cached_manifests.delay.call_count, 1)
-        eq_(publish_mock.delay.call_count, 0)
         eq_(sign_mock.call_args[0][0], self.new_version.pk)
 
     def test_version_pending_to_rejected_app_public(
             self, update_name, update_locales, update_cached_manifests,
-            index_webapps, messages, publish_mock, sign_mock):
+            index_webapps, messages, sign_mock):
         self.app.update(status=mkt.STATUS_PUBLIC)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
 
         data = {'action': 'reject', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -2791,18 +2735,16 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(update_locales.call_count, 0)
         eq_(index_webapps.delay.call_count, 1)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
         eq_(sign_mock.call_count, 0)
 
     def test_version_pending_to_rejected_app_unlisted(
             self, update_name, update_locales, update_cached_manifests,
-            index_webapps, messages, publish_mock, sign_mock):
+            index_webapps, messages, sign_mock):
         self.app.update(status=mkt.STATUS_UNLISTED)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
 
         data = {'action': 'reject', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -2824,18 +2766,16 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(update_locales.call_count, 0)
         eq_(index_webapps.delay.call_count, 1)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
         eq_(sign_mock.call_count, 0)
 
     def test_version_pending_to_rejected_app_private(
             self, update_name, update_locales, update_cached_manifests,
-            index_webapps, messages, publish_mock, sign_mock):
+            index_webapps, messages, sign_mock):
         self.app.update(status=mkt.STATUS_APPROVED)
         index_webapps.delay.reset_mock()
         eq_(update_name.call_count, 0)
         eq_(update_locales.call_count, 0)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
 
         data = {'action': 'reject', 'comments': 'something'}
         data.update(self._attachment_management_form(num=0))
@@ -2857,7 +2797,6 @@ class TestApprovePackagedVersions(AppReviewerTest, TestReviewMixin,
         eq_(update_locales.call_count, 0)
         eq_(index_webapps.delay.call_count, 1)
         eq_(update_cached_manifests.delay.call_count, 0)
-        eq_(publish_mock.delay.call_count, 0)
         eq_(sign_mock.call_count, 0)
 
 
@@ -3112,8 +3051,6 @@ class TestMotd(AppReviewerTest, AccessMixin):
         eq_(get_config(self.key), u'new motd')
 
 
-@mock.patch('mkt.reviewers.utils.iarc_publish.delay', lambda app_id: None)
-@mock.patch('mkt.reviewers.utils.iarc_unpublish.delay', lambda app_id: None)
 class TestReviewAppComm(AppReviewerTest, AttachmentManagementMixin,
                         TestReviewMixin, TestedonManagementMixin):
     """
@@ -4134,7 +4071,7 @@ class TestReviewPage(mkt.site.tests.TestCase):
         self.grant_permission(self.reviewer, 'Apps:Review')
         self.url = reverse('reviewers.apps.review', args=[self.app.app_slug])
 
-    def test_iarc_ratingless_disable_approve_btn(self):
+    def test_status_null_disable_approve_btn(self):
         self.app.update(status=mkt.STATUS_NULL)
         req = req_factory_factory(self.url, user=self.reviewer)
         res = app_review(req, app_slug=self.app.app_slug)
@@ -4143,15 +4080,6 @@ class TestReviewPage(mkt.site.tests.TestCase):
                 .parents('li').hasClass('disabled'))
         assert not (doc('#review-actions input[value=reject]')
                     .parents('li').hasClass('disabled'))
-
-    def test_iarc_content_ratings(self):
-        for body in [mkt.ratingsbodies.CLASSIND.id, mkt.ratingsbodies.USK.id]:
-            self.app.content_ratings.create(ratings_body=body, rating=0)
-        req = req_factory_factory(self.url, user=self.reviewer)
-        res = app_review(req, app_slug=self.app.app_slug)
-        doc = pq(res.content)
-        eq_(doc('.reviewers-desktop .content-rating').length, 2)
-        eq_(doc('.reviewers-mobile .content-rating').length, 2)
 
 
 class TestAbusePage(AppReviewerTest):

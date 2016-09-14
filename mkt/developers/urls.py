@@ -9,7 +9,7 @@ from lib.misc.urlconf_decorator import decorate
 from mkt.api.base import SubRouter
 from mkt.developers.api_payments import (PaymentCheckViewSet,
                                          PaymentDebugViewSet)
-from mkt.developers.views import ContentRatingList, ContentRatingsPingback
+from mkt.developers.views import ContentRatingList
 from mkt.inapp.views import InAppProductViewSet, StubInAppProductViewSet
 from mkt.receipts.urls import test_patterns
 from mkt.site.decorators import use_master
@@ -39,8 +39,6 @@ app_detail_patterns = patterns(
     # IARC content ratings.
     url('^content_ratings$', views.content_ratings,
         name='mkt.developers.apps.ratings'),
-    url('^content_ratings/edit$', views.content_ratings_edit,
-        name='mkt.developers.apps.ratings_edit'),
 
     # TODO: '^versions/$'
     url('^versions/(?P<version_id>\d+)$', views.version_edit,
@@ -159,8 +157,6 @@ payments_api_patterns = patterns(
 
 dev_api_patterns = patterns(
     '',
-    url(r'^apps/iarc/pushcert/', ContentRatingsPingback.as_view(),
-        name='content-ratings-pingback'),
     url(r'^apps/app/(?P<pk>[^/<>"\']+)/content-ratings/',
         ContentRatingList.as_view(), name='content-ratings-list'),
 )

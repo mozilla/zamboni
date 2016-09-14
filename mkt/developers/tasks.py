@@ -24,7 +24,6 @@ from PIL import Image
 from post_request_task.task import task
 
 import mkt
-from lib.iarc.client import refresh as iarc_refresh
 from mkt.constants import APP_PREVIEW_SIZES
 from mkt.constants.regions import REGIONS_CHOICES_ID_DICT
 from mkt.files.models import File, FileUpload, FileValidation
@@ -597,16 +596,3 @@ def save_test_plan(f, filename, addon):
     with private_storage.open(path, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
-
-
-@task
-@use_master
-def refresh_iarc_ratings(ids, **kw):
-    """
-    Refresh old or corrupt IARC ratings.
-
-    The caller is responsible for sending app ids that already have iarc
-    information set.
-    """
-    for app in Webapp.objects.filter(id__in=ids):
-        iarc_refresh(app)

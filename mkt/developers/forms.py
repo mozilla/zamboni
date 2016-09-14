@@ -2,7 +2,6 @@
 import json
 import os
 from datetime import datetime
-from uuid import UUID
 
 from django import forms
 from django.conf import settings
@@ -27,14 +26,11 @@ from django.utils.translation import (ugettext as _, ugettext_lazy as _lazy,
                                       ungettext as ngettext)
 
 import mkt
-from lib.iarc.client import (IARCException, publish as iarc_publish,
-                             search_and_attach_cert, search_cert)
 from lib.video import tasks as vtasks
 from mkt import get_user
 from mkt.access import acl
 from mkt.api.models import Access
-from mkt.constants import (CATEGORY_CHOICES, MAX_PACKAGED_APP_SIZE,
-                           ratingsbodies)
+from mkt.constants import CATEGORY_CHOICES, MAX_PACKAGED_APP_SIZE
 from mkt.developers.utils import prioritize_app
 from mkt.files.models import FileUpload
 from mkt.files.utils import SafeUnzip, WebAppParser
@@ -51,8 +47,7 @@ from mkt.translations.forms import TranslationFormMixin
 from mkt.translations.models import Translation
 from mkt.translations.widgets import TranslationTextarea, TransTextarea
 from mkt.versions.models import Version
-from mkt.webapps.models import (AddonUser, BlockedSlug, IARCCert,
-                                Preview, Webapp)
+from mkt.webapps.models import AddonUser, BlockedSlug, Preview, Webapp
 from mkt.webapps.tasks import index_webapps, update_manifests
 
 from . import tasks
@@ -783,8 +778,6 @@ class PublishForm(happyforms.Form):
         self.addon.update_name_from_package_manifest()
         self.addon.update_supported_locales()
 
-        iarc_publish.delay(self.addon.pk)
-
 
 class RegionForm(forms.Form):
     regions = forms.MultipleChoiceField(
@@ -1055,93 +1048,6 @@ class AppVersionForm(happyforms.ModelForm):
                 publish_type = mkt.PUBLISH_PRIVATE
             self.instance.addon.update(publish_type=publish_type)
         return rval
-
-
-class IARCExistingCertificateForm(happyforms.Form):
-    cert_id = forms.CharField(max_length=36, required=True)
-    confirmed = forms.BooleanField(required=False)
-
-    def __init__(self, app, *args, **kwargs):
-        self.app = app
-        super(IARCExistingCertificateForm, self).__init__(*args, **kwargs)
-
-    def clean_cert_id(self):
-        cert_id = self.cleaned_data['cert_id']
-
-        if settings.DEBUG and cert_id == '0':
-            # For local developement without IARC server, accept '0' as a
-            # special value which will generate a rating locally.
-            return None
-        try:
-            value = UUID(cert_id)
-        except ValueError as e:
-            raise forms.ValidationError(e.message)
-
-        # Check for existence using the hexadecimal value without a separator.
-        if (IARCCert.objects.filter(
-                cert_id=value.get_hex()).exclude(app=self.app).exists()):
-            raise forms.ValidationError(
-                _('This IARC certificate is already being used for another '
-                  'app. Please create a new IARC Ratings Certificate.'))
-
-        # Return as string separated by dashes.
-        return unicode(value)
-
-    def _raise_cert_id_validation_error(self):
-        msg = _('This Certificate ID is not recognized by IARC, or is '
-                'already attached to another app in the Firefox Marketplace.')
-        self._errors['cert_id'] = self.error_class([msg])
-        raise forms.ValidationError(msg)
-
-    def cert_confirmation(self):
-        """Call search_cert() and return the ratings, descriptors, interactives
-        and cert objects to show the user as a dict to be used for the template
-        context.
-
-        Note that these instances are not meant to be saved, they are just
-        meant to be shown to the developer for confirmation. To prevent
-        accidental saving they are not attached to an app.
-
-        Can raise ValidationError."""
-        if not self.is_valid():
-            # Safeguard.
-            raise forms.ValidationError('Invalid Form')
-        if self.cleaned_data['cert_id'] is None:
-            # Dummy cert for local developement without IARC.
-            ctx = {
-                'cert': IARCCert(cert_id='00000000000000000000000000000000')
-            }
-        else:
-            serializer = search_cert(self.app, self.cleaned_data['cert_id'])
-            if not serializer.is_valid():
-                self._raise_cert_id_validation_error()
-            ctx = serializer.to_objects()
-        return ctx
-
-    def save(self, *args, **kwargs):
-        if not self.is_valid():
-            # Safeguard.
-            raise forms.ValidationError('Invalid Form')
-        if self.cleaned_data['cert_id'] is None:
-            # Dummy rating for local developement without IARC. Existing
-            # IARCCert is no longer relevant and has to be deleted. Since there
-            # is a unique constraint we can't hardcode something like
-            # 00000000-0000-0000-0000-000000000000 and we can't generate a fake
-            # one either, we might call IARC with it later on.
-            IARCCert.objects.filter(app=self.app).delete()
-            self.app.set_descriptors([])
-            self.app.set_interactives([])
-            self.app.set_content_ratings({
-                ratingsbodies.ESRB: ratingsbodies.ESRB_E})
-            return
-        try:
-            search_and_attach_cert(self.app, self.cleaned_data['cert_id'])
-        except IARCException:
-            self._raise_cert_id_validation_error()
-
-
-class ContentRatingForm(happyforms.Form):
-    since = forms.DateTimeField()
 
 
 class MOTDForm(happyforms.Form):

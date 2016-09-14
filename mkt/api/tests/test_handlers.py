@@ -281,31 +281,6 @@ class TestAppCreateHandler(CreateHandler, MktPaths):
         app = Webapp.objects.get(pk=app.pk)
         eq_(set(app.categories), set(self.categories))
 
-    @patch('mkt.developers.forms.search_and_attach_cert')
-    def test_post_content_ratings(self, search_and_attach_cert_mock):
-        """Test the @action on AppViewSet to attach the content ratings."""
-        app = self.create_app()
-        app.addonuser_set.create(user=self.user)
-        url = reverse('app-content-ratings', kwargs={'pk': app.pk})
-        res = self.client.post(url, data=json.dumps(
-            {'cert_id': 'adb3261b-c657-4fd2-a057-bc9f85310b80'}))
-        eq_(res.status_code, 201)
-        eq_(res.content, '')
-        eq_(search_and_attach_cert_mock.call_count, 1)
-        eq_(search_and_attach_cert_mock.call_args[0],
-            (app, 'adb3261b-c657-4fd2-a057-bc9f85310b80'))
-
-    def test_post_content_ratings_bad(self):
-        """Test the @action on AppViewSet to attach the content ratings."""
-        app = self.create_app()
-        app.addonuser_set.create(user=self.user)
-        url = reverse('app-content-ratings', kwargs={'pk': app.pk})
-        # Missing `cert_id`.
-        res = self.client.post(url, data=json.dumps({'lol': 42}))
-        eq_(res.status_code, 400)
-        eq_(json.loads(res.content),
-            {'cert_id': ['This field is required.']})
-
     def test_dehydrate(self):
         app = self.create_app(
             homepage=u'http://www.whatever.com', support_email='a@a.com',

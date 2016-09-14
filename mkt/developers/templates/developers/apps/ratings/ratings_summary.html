@@ -11,34 +11,13 @@
 
   <section id="ratings-summary" class="primary manage">
     <h2>
-      {% if form %}
-        {{ _('Confirm your choice of IARC Certiticate') }}
-      {% else %}
-        {{ _('Summary') }}
-        <a href="{{ addon.get_dev_url('ratings_edit') }}" class="button edit">
-          {{ _('Edit') }}
-        </a>
-      {% endif %}
+      {{ _('Summary') }}
     </h2>
 
     {% if cert %}
     <div class="island">
         <h3>{{ _('IARC Certificate ID') }}</h3>
-        {% if form %}
-          <form method="POST">
-            <p>
-              {{ cert.pretty_cert_id() }}&nbsp;
-              {{ csrf() }}
-              <input type="hidden" name="cert_id" value="{{ form.data.cert_id }} " />
-              <input type="hidden" name="confirmed" value="1" />
-              <button>{{ _('Confirm') }}</button>
-            </p>
-          </form>
-        {% else %}
-          <p>
-            {{ cert.pretty_cert_id() }}
-          </p>
-        {% endif %}
+        {{ cert.pretty_cert_id() }}
     </div>
     {% endif %}
 
