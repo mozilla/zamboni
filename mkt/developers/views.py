@@ -2,9 +2,8 @@ import json
 import os
 import sys
 import traceback
-import uuid
 from collections import defaultdict
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from django import forms as django_forms
 from django import http
@@ -19,18 +18,13 @@ from django.views.decorators.http import require_POST
 
 import commonware.log
 import waffle
-from rest_framework.exceptions import ParseError
-from rest_framework.generics import GenericAPIView, ListAPIView
-from rest_framework.mixins import UpdateModelMixin
+from rest_framework.generics import ListAPIView
 from rest_framework.permissions import AllowAny
-from rest_framework.status import is_success
 from session_csrf import anonymous_csrf, anonymous_csrf_exempt
 from django.utils.translation import ugettext as _
 from waffle.decorators import waffle_switch
 
 import mkt
-from lib.iarc.client import _iarc_app_data
-from lib.iarc.serializers import IARCRatingListSerializer
 from mkt.access import acl
 from mkt.api.base import CORSMixin, SlugOrIdMixin
 from mkt.api.models import Access
@@ -40,9 +34,9 @@ from mkt.developers.decorators import dev_required
 from mkt.developers.forms import (
     APIConsumerForm, AppFormBasic, AppFormDetails, AppFormMedia,
     AppFormSupport, AppFormTechnical, AppVersionForm, CategoryForm,
-    ContentRatingForm, IARCExistingCertificateForm, MOTDForm,
-    NewPackagedAppForm, PreviewFormSet, TransactionFilterForm, trap_duplicate)
-from mkt.developers.models import AppLog, IARCRequest
+    MOTDForm, NewPackagedAppForm, PreviewFormSet, TransactionFilterForm,
+    trap_duplicate)
+from mkt.developers.models import AppLog
 from mkt.developers.serializers import ContentRatingSerializer
 from mkt.developers.tasks import (fetch_manifest, file_validator,
                                   run_validator, validator)
@@ -327,25 +321,13 @@ def _ratings_success_msg(app, old_status, old_modified):
 @dev_required
 def content_ratings(request, addon_id, addon):
     if not addon.is_rated():
-        return redirect(addon.get_dev_url('ratings_edit'))
-
-    # Use _ratings_success_msg to display success message.
-    session = request.session
-    app_id = str(addon.id)
-    ratings = sorted(addon.content_ratings.all(),
-                     key=lambda r: r.get_body().name)
-    if 'ratings_edit' in session and app_id in session['ratings_edit']:
-        prev_state = session['ratings_edit'][app_id]
-        msg = _ratings_success_msg(
-            addon, prev_state['app_status'], prev_state['rating_modified'])
-        messages.success(request, msg) if msg else None
-        del session['ratings_edit'][app_id]  # Clear msg so not shown again.
-        request.session.modified = True
+        return redirect(addon.get_dev_url())
 
     ctx = {
         'addon': addon,
         'cert': None,
-        'ratings': ratings,
+        'ratings': sorted(addon.content_ratings.all(),
+                          key=lambda r: r.get_body().name),
         'rating_descriptors': addon.rating_descriptors,
         'rating_interactives': addon.rating_interactives,
     }
@@ -357,69 +339,6 @@ def content_ratings(request, addon_id, addon):
         pass
 
     return render(request, 'developers/apps/ratings/ratings_summary.html', ctx)
-
-
-@dev_required
-def content_ratings_edit(request, addon_id, addon):
-    if settings.DEBUG:
-        messages.debug(request,
-                       "DEBUG mode on; you may use IARC id 0 with any code")
-    initial = {}
-    data = request.POST if request.method == 'POST' else None
-    template_name = 'developers/apps/ratings/ratings_edit.html'
-
-    ctx = {}
-
-    form = IARCExistingCertificateForm(data=data, initial=initial, app=addon)
-    if request.method == 'POST' and form.is_valid():
-        try:
-            if not form.cleaned_data.get('confirmed'):
-                # We need to show a confirmation to the user using the summary
-                # template. If a ValidationError is raised, it means the Cert
-                # ID was not recognized by IARC - we want to show the error in
-                # the current template, so the cert_confirmation() call needs
-                # to happen before changing the template.
-                ctx.update(form.cert_confirmation())
-                template_name = 'developers/apps/ratings/ratings_summary.html'
-            else:
-                form.save()
-                return redirect(addon.get_dev_url('ratings'))
-        except django_forms.ValidationError:
-            pass  # Fall through to show the form error.
-
-    # Save some information for _ratings_success_msg.
-    if 'ratings_edit' not in request.session:
-        request.session['ratings_edit'] = {}
-    last_rated = addon.last_rated_time()
-    request.session['ratings_edit'][str(addon.id)] = {
-        'app_status': addon.status,
-        'rating_modified': last_rated.isoformat() if last_rated else None
-    }
-    request.session.modified = True
-
-    ctx.update({
-        'addon': addon,
-        'form': form,
-        'company': addon.latest_version.developer_name,
-        'now': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    })
-
-    try:
-        iarc_request = addon.iarc_request
-        outdated = (datetime.now() - iarc_request.created >
-                    timedelta(hours=1))
-        if outdated:
-            # IARC request outdated. Re-create.
-            iarc_request.delete()
-            iarc_request = IARCRequest.objects.create(
-                app=addon, uuid=uuid.uuid4())
-    except IARCRequest.DoesNotExist:
-        # No IARC request exists. Create.
-        iarc_request = IARCRequest.objects.create(
-            app=addon, uuid=uuid.uuid4())
-    ctx['iarc_request_id'] = unicode(uuid.UUID(iarc_request.uuid))
-
-    return render(request, template_name, ctx)
 
 
 @dev_required
@@ -1085,61 +1004,7 @@ class ContentRatingList(CORSMixin, SlugOrIdMixin, ListAPIView):
 
         self.queryset = app.content_ratings.all()
 
-        if 'since' in request.GET:
-            form = ContentRatingForm(request.GET)
-            if form.is_valid():
-                self.queryset = self.queryset.filter(
-                    modified__gt=form.cleaned_data['since'])
-
         if not self.queryset.exists():
             raise http.Http404()
 
         return super(ContentRatingList, self).get(self, request)
-
-
-class ContentRatingsPingback(CORSMixin, UpdateModelMixin, GenericAPIView):
-    """Pingback API for IARC.
-
-    Should conform to the PushCert API spec. Assumes that the RatingList is
-    always sent with PushCert, so we don't need to call SearchCert afterwards
-    to get the ratings."""
-    cors_allowed_methods = ['post']
-    permission_classes = (AllowAny,)
-    queryset = IARCRequest.objects.all()
-    serializer_class = IARCRatingListSerializer
-    lookup_field = 'uuid'
-
-    def get_object(self, queryset=None):
-        request = self.request
-        try:
-            self.kwargs[self.lookup_field] = uuid.UUID(
-                request.data['StoreRequestID']).get_hex()
-        except KeyError:
-            raise ParseError('Need a StoreRequestID')
-        except ValueError:
-            raise ParseError('StoreRequestID is not a valid UUID')
-        self.object = super(ContentRatingsPingback, self).get_object().app
-        return self.object
-
-    def finalize_response(self, request, response, *args, **kwargs):
-        """Alter response to conform to IARC spec (which is not REST)."""
-        if is_success(response.status_code):
-            # Override data, because IARC wants a specific response and does
-            # not care about our serialized data.
-            response.data = _iarc_app_data(self.object)
-            response.data['StatusCode'] = 'Success'
-            # Delete IARCRequest object now that we've been successful.
-            try:
-                self.object.iarc_request.delete()
-            except IARCRequest.DoesNotExist:
-                pass
-        else:
-            response.data['StatusCode'] = 'InvalidRequest'
-        return super(ContentRatingsPingback, self).finalize_response(
-            request, response, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        # IARC sends a POST, but what we really want is to update some data,
-        # passing an object to the serializer. So we implement post() to match
-        # the HTTP verb but really have it call update() behind the scenes.
-        return self.update(request, *args, **kwargs)

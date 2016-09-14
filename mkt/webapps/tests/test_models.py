@@ -1175,10 +1175,7 @@ class TestWebappContentRatings(TestCase):
         ok_(RatingInteractives.objects.filter(addon=app).exists())
 
         # Delete.
-        with mock.patch('mkt.webapps.models.iarc_unpublish') as iarc_unpublish:
-            app.delete()
-        eq_(iarc_unpublish.delay.call_count, 1)
-        eq_(iarc_unpublish.delay.call_args[0][0], app.pk)
+        app.delete()
 
         msg = 'Related IARC data should be deleted.'
         ok_(not IARCCert.objects.filter(app=app).exists(), msg)
@@ -1278,13 +1275,10 @@ class TestWebappContentRatings(TestCase):
         assert not app_interactives.has_shares_info
         assert app_interactives.has_digital_purchases
 
-    @mock.patch('mkt.webapps.models.iarc_unpublish')
-    def test_delete_with_iarc(self, iarc_unpublish_mock):
+    def test_delete(self):
         app = app_factory()
         app.delete()
         eq_(app.status, mkt.STATUS_DELETED)
-        eq_(iarc_unpublish_mock.delay.call_count, 1)
-        eq_(iarc_unpublish_mock.delay.call_args[0], (app.pk, ))
 
     @mock.patch('mkt.webapps.models.Webapp.details_complete')
     @mock.patch('mkt.webapps.models.Webapp.payments_complete')
@@ -1293,12 +1287,8 @@ class TestWebappContentRatings(TestCase):
         for mock_ in (mock1, mock2):
             mock_.return_value = True
 
-        assert app.completion_errors()
-        assert not app.is_fully_complete()
-
-        assert 'content_ratings' not in (
-            app.completion_errors(ignore_ratings=True))
-        assert app.is_fully_complete(ignore_ratings=True)
+        assert not app.completion_errors()
+        assert app.is_fully_complete()
 
 
 class DeletedAppTests(TestCase):

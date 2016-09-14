@@ -13,8 +13,6 @@ from elasticsearch_dsl import Search
 from elasticsearch_dsl import filter as es_filter
 
 import mkt
-from lib.iarc.client import (publish as iarc_publish,
-                             unpublish as iarc_unpublish)
 from mkt.abuse.models import AbuseReport
 from mkt.access import acl
 from mkt.comm.utils import create_comm_note
@@ -249,8 +247,6 @@ class ReviewApp(ReviewBase):
             self.set_addon(status=status, highest_status=status)
         self.set_reviewed()
 
-        iarc_publish.delay(self.addon.pk)
-
         self.create_note(mkt.LOG.APPROVE_VERSION)
 
         log.info(u'Making %s public' % self.addon)
@@ -363,8 +359,6 @@ class ReviewApp(ReviewBase):
             EscalationQueue.objects.filter(addon=self.addon).delete()
         if self.in_rereview:
             RereviewQueue.objects.filter(addon=self.addon).delete()
-
-        iarc_unpublish.delay(self.addon.pk)
 
         self.create_note(mkt.LOG.APP_DISABLED)
         log.info(u'App %s has been banned by a reviewer.' % self.addon)

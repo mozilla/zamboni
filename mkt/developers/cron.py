@@ -5,7 +5,6 @@ from celery.task.sets import TaskSet
 from django.utils.translation import ugettext as _
 
 import mkt
-from lib.iarc.client import get_rating_changes
 from mkt.developers.tasks import region_email, region_exclude
 from mkt.reviewers.models import RereviewQueue
 from mkt.site.utils import chunked
@@ -53,16 +52,6 @@ def exclude_new_region(regions):
            .filter(enable_new_regions=False)
            .values_list('id', flat=True))
     _region_exclude(ids, region_ids)
-
-
-@cronjobs.register
-def process_iarc_changes(date=None):
-    """
-    Queries IARC for recent changes in the past 24 hours (or date provided).
-
-    If date provided use it. It should be in the form YYYY-MM-DD.
-    """
-    get_rating_changes(date=date)
 
 
 def _flag_rereview_adult(app, ratings_body, rating):

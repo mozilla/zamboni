@@ -19,7 +19,6 @@ HOME=/tmp
 # Once per day.
 05 8 * * * %(z_cron)s email_daily_ratings --settings=settings_local_mkt
 10 8 * * * %(z_cron)s update_monolith_stats `/bin/date -d 'yesterday' +\%%Y-\%%m-\%%d`
-15 8 * * * %(z_cron)s process_iarc_changes --settings=settings_local_mkt
 30 8 * * * %(z_cron)s dump_user_installs_cron --settings=settings_local_mkt
 45 9 * * * %(z_cron)s mkt_gc --settings=settings_local_mkt
 45 9 * * * %(z_cron)s clean_old_signed --settings=settings_local_mkt

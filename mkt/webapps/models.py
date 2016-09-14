@@ -28,7 +28,6 @@ from uuidfield.fields import UUIDField
 
 import mkt
 from lib.crypto import packaged
-from lib.iarc.client import unpublish as iarc_unpublish
 from lib.utils import static_url
 from mkt.access import acl
 from mkt.constants import APP_FEATURES, apps
@@ -504,9 +503,6 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
             return  # We're already done.
 
         id = self.id
-
-        # Tell IARC this app is delisted.
-        iarc_unpublish.delay(self.pk)
 
         # Fetch previews before deleting the addon instance, so that we can
         # pass the list of files to delete to the delete_preview_files task
@@ -1385,19 +1381,14 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         """Also returns True if the app doesn't needs payments."""
         return not self.needs_payment() or self.has_payment_account()
 
-    def completion_errors(self, ignore_ratings=False):
+    def completion_errors(self):
         """
         Compiles all submission steps into a single error report.
-
-        ignore_ratings -- doesn't check for content_ratings for cases in which
-                          content ratings were just created.
         """
         errors = {}
 
         if not self.details_complete():
             errors['details'] = self.details_errors()
-        if not ignore_ratings and not self.is_rated():
-            errors['content_ratings'] = _('You must set up content ratings.')
         if not self.payments_complete():
             errors['payments'] = _('You must set up a payment account.')
 
@@ -1410,11 +1401,11 @@ class Webapp(UUIDModelMixin, OnChangeMixin, ModelBase):
         detail_errors = errors.pop('details', []) or []
         return detail_errors + errors.values()
 
-    def is_fully_complete(self, ignore_ratings=False):
+    def is_fully_complete(self):
         """
         Wrapper to submission errors for readability and testability (mocking).
         """
-        return not self.completion_errors(ignore_ratings)
+        return not self.completion_errors()
 
     def next_step(self):
         """

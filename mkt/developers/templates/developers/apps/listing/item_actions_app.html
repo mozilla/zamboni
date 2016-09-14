@@ -9,15 +9,6 @@
            title="{{ _('Resume the submission process for this app.') }}">
         {{ _('Resume') }}</a>
       </li>
-    {% else %}
-      {% if not addon.is_rated() %}
-        {# The app needs content ratings. #}
-        <li>
-          <a href="{{ addon.get_dev_url('ratings_edit') }}" class="tooltip"
-             title="{{ _('Get content ratings for the app.') }}">
-          {{ _('Set Up Content Ratings') }}</a>
-        </li>
-      {% endif %}
     {% endif %}
   {% endif %}
 
@@ -45,10 +36,7 @@
   </li>
 
   <li>
-    {% set rated = addon.is_pending() and addon.is_rated() %}
-    {% set unrated = not addon.is_rated() %}
-    <a class="action-link {% if unrated %} not-done{% endif%}{% if rated %} done{% endif %}"
-       href="{{ addon.get_dev_url('ratings') }}">
+    <a class="action-link" href="{{ addon.get_dev_url('ratings') }}">
       {{ _('Content Ratings') }}</a>
   </li>
 
