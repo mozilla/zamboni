@@ -8,9 +8,13 @@
 
 {% block content %}
   <div id="landing-page">
-    <h1>{{ _('Develop HTML5 Web Apps for an open marketplace.') }}</h1>
+    <h1>{{ _('App Submission is now closed.') }}</h1>
       <section class="island tabbable spacer">
-        <p> {{ _('App Submission is now closed. Thank you for your support.') }} </p>
+        <p class="intro">
+            {% trans url="https://wiki.mozilla.org/Marketplace" %}
+                Thank you for your support. <a href="{{ url }}">Learn more</a>.
+            {% endtrans %}
+        </p>
       </section>
   </div>
 {% endblock %}
