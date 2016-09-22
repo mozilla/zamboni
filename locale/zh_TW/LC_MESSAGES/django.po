@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-04-06 07:58-0700\n"
+"POT-Creation-Date: 2016-09-22 10:56-0700\n"
 "PO-Revision-Date: 2016-04-02 16:34+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -100,7 +100,7 @@ msgstr "Mozilla"
 msgid "The Firefox Marketplace is the official source of apps for the Web Platform."
 msgstr "Firefox Marketplace 是網頁平台的官方應用程式商城。"
 
-#: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:104 mkt/search/forms.py:45
+#: mkt/constants/applications.py:6 mkt/ecosystem/templates/ecosystem/partners.html:95 mkt/search/forms.py:45
 msgid "Desktop"
 msgstr "桌面"
 
@@ -113,7 +113,7 @@ msgid "Firefox Tablet"
 msgstr "Firefox Tablet"
 
 #: mkt/constants/applications.py:27 mkt/constants/platforms.py:6 mkt/constants/platforms.py:18 mkt/constants/tests/test_platforms.py:14 mkt/constants/tests/test_platforms.py:24
-#: mkt/constants/tests/test_platforms.py:32 mkt/ecosystem/templates/ecosystem/partners.html:91 mkt/search/forms.py:47 mkt/search/forms.py:55
+#: mkt/constants/tests/test_platforms.py:32 mkt/ecosystem/templates/ecosystem/partners.html:82 mkt/search/forms.py:47 mkt/search/forms.py:55
 msgid "Firefox OS"
 msgstr "Firefox OS"
 
@@ -1988,7 +1988,7 @@ msgstr "完全開放的手機平台生態系統"
 msgid "Windows, Mac and Linux"
 msgstr "Windows, Mac 與 Linux"
 
-#: mkt/constants/platforms.py:43 mkt/constants/platforms.py:47 mkt/ecosystem/templates/ecosystem/partners.html:95
+#: mkt/constants/platforms.py:43 mkt/constants/platforms.py:47 mkt/ecosystem/templates/ecosystem/partners.html:86
 msgid "Android smartphones"
 msgstr "Android 智慧手機"
 
@@ -2148,12 +2148,12 @@ msgstr "教廷"
 msgid "Venezuela"
 msgstr "委內瑞拉"
 
-#: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_app.html:16 mkt/search/forms.py:29 mkt/submit/templates/submit/manifest.html:31
+#: mkt/constants/reviewers.py:7 mkt/developers/templates/developers/validate_app.html:16 mkt/search/forms.py:29
 msgid "Hosted"
 msgstr "架設"
 
 # 動詞或名詞?
-#: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_app.html:54 mkt/search/forms.py:30 mkt/submit/templates/submit/manifest.html:65
+#: mkt/constants/reviewers.py:8 mkt/developers/templates/developers/validate_app.html:54 mkt/search/forms.py:30
 msgid "Packaged"
 msgstr "封裝"
 
@@ -2161,11 +2161,11 @@ msgstr "封裝"
 msgid "Agreement"
 msgstr "同意"
 
-#: mkt/constants/submit.py:6 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:194
+#: mkt/constants/submit.py:6
 msgid "Submit"
 msgstr "提交"
 
-#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1433
+#: mkt/constants/submit.py:7 mkt/reviewers/templates/reviewers/includes/details.html:5 mkt/reviewers/templates/reviewers/includes/mobile_details.html:39 mkt/webapps/models.py:1417
 msgid "Details"
 msgstr "詳細資訊"
 
@@ -2177,245 +2177,229 @@ msgstr "接下來的步驟"
 msgid "(Unsupported)"
 msgstr "（不支援）"
 
-#: mkt/developers/cron.py:140
+#: mkt/developers/cron.py:66
 msgid "Content rating changed to Adult."
 msgstr "內容分級已改為成人。"
 
-#: mkt/developers/forms.py:67
+#: mkt/developers/forms.py:60
 msgid "You cannot select {region}."
 msgstr "您無法選擇 {region}。"
 
-#: mkt/developers/forms.py:78
+#: mkt/developers/forms.py:71
 msgid "All team members must have read and agreed to the developer agreement."
 msgstr "全體團隊成員必須閱讀與同意開發者合約。"
 
-#: mkt/developers/forms.py:109
+#: mkt/developers/forms.py:102
 msgid "Must have at least one owner."
 msgstr "至少需要一位擁有者。"
 
-#: mkt/developers/forms.py:112
+#: mkt/developers/forms.py:105
 msgid "At least one team member must be listed."
 msgstr "必須至少列出一名團隊成員。"
 
-#: mkt/developers/forms.py:116
+#: mkt/developers/forms.py:109
 msgid "A team member can only be listed once."
 msgstr "每一名團隊成員只能列出一次。"
 
-#: mkt/developers/forms.py:143
+#: mkt/developers/forms.py:136
 #, python-format
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently public. <a href=\"%s\">Edit app</a>"
 msgstr "糟糕，您好像已經提交 %s 的安裝資訊檔，並且已經公開了。<a href=\"%s\">編輯應用程式</a>"
 
-#: mkt/developers/forms.py:147
+#: mkt/developers/forms.py:140
 #, python-format
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently pending. <a href=\"%s\">Edit app</a>"
 msgstr "糟糕，您好像已經提交 %s 的安裝資訊檔，並且正在等待確認。<a href=\"%s\">編輯應用程式</a>"
 
-#: mkt/developers/forms.py:151
+#: mkt/developers/forms.py:144
 #, python-format
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently incomplete. <a href=\"%s\">Resume app</a>"
 msgstr "糟糕，您好像已經提交 %s 的安裝資訊，但是目前不完整。<a href=\"%s\">編輯應用程式</a>"
 
-#: mkt/developers/forms.py:155
+#: mkt/developers/forms.py:148
 #, python-format
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently rejected. <a href=\"%s\">Edit app</a>"
 msgstr "糟糕，您好像已經提交 %s 的安裝資訊，但是被退回了。<a href=\"%s\">編輯應用程式</a>"
 
-#: mkt/developers/forms.py:159
+#: mkt/developers/forms.py:152
 #, python-format
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently banned on Marketplace. <a href=\"%s\">Edit app</a>"
 msgstr "喔喔，看來您已經送出了 %s 的安裝資訊，但這套程式目前被 Marketplace 封鎖。<a href=\"%s\">編輯應用程式</a>"
 
-#: mkt/developers/forms.py:163
+#: mkt/developers/forms.py:156
 #, python-format
 msgid "Oops, looks like you already submitted that manifest for %s, which is currently disabled. <a href=\"%s\">Edit app</a>"
 msgstr "糟糕，您好像已經提交 %s 的安裝資訊，但是被停用了。<a href=\"%s\">編輯應用程式</a>"
 
-#: mkt/developers/forms.py:178
+#: mkt/developers/forms.py:171
 msgid "An app already exists on this domain; only one app per domain is allowed."
 msgstr "此網域已有一 App 存在；一個網域只能對應一個 App。"
 
-#: mkt/developers/forms.py:328 mkt/webapps/models.py:1342
+#: mkt/developers/forms.py:321 mkt/webapps/models.py:1331
 msgid "You must upload at least one screenshot or video."
 msgstr "您必須至少上傳一個螢幕截圖或影片。"
 
-#: mkt/developers/forms.py:369
+#: mkt/developers/forms.py:362
 #, python-format
 msgid "Packaged app too large for submission. Packages must be smaller than %s."
 msgstr "封裝應用程式過大，安裝需小於 %s。"
 
-#: mkt/developers/forms.py:392
+#: mkt/developers/forms.py:385
 msgid "Error extracting manifest from zip file."
 msgstr "從 zip 檔案抽取 manifest 時發生錯誤。"
 
-#: mkt/developers/forms.py:463
+#: mkt/developers/forms.py:456
 msgid "Provide a detailed description of your app"
 msgstr "請提供您應用程式詳細的說明"
 
 # 93%
-#: mkt/developers/forms.py:464
+#: mkt/developers/forms.py:457
 msgid "This description will appear on the details page."
 msgstr "這個敘述會顯示在詳細資訊頁面。"
 
-#: mkt/developers/forms.py:467 mkt/submit/forms.py:202
+#: mkt/developers/forms.py:460 mkt/submit/forms.py:202
 msgid "Search Keywords:"
 msgstr "搜尋關鍵字:"
 
-#: mkt/developers/forms.py:469 mkt/developers/templates/developers/apps/edit/basic.html:131 mkt/submit/forms.py:204
+#: mkt/developers/forms.py:462 mkt/developers/templates/developers/apps/edit/basic.html:131 mkt/submit/forms.py:204
 msgid "The search keywords are used to return search results in the Firefox Marketplace. Be sure to include a keywords that accurately reflect your app."
 msgstr "搜尋關鍵字用來在 Firefox Marketplace 回傳搜尋結果，請確定您輸入能準確描述您的應用程式的關鍵字。"
 
-#: mkt/developers/forms.py:526 mkt/submit/forms.py:282
+#: mkt/developers/forms.py:519 mkt/submit/forms.py:282
 msgid "This slug is already in use. Please choose another."
 msgstr "這個 slug 已經有人使用。請嘗試另一個。"
 
-#: mkt/developers/forms.py:529 mkt/submit/forms.py:286
+#: mkt/developers/forms.py:522 mkt/submit/forms.py:286
 #, python-format
 msgid "The slug cannot be \"%s\". Please choose another."
 msgstr "這個 slug 不能為「%s」。請嘗試另一個。"
 
-#: mkt/developers/forms.py:557
+#: mkt/developers/forms.py:550
 msgid "Manifest URL changed from {before_url} to {after_url}"
 msgstr "安裝資訊網址已自 {before_url} 變更為 {after_url}"
 
 # 86%
-#: mkt/developers/forms.py:594
+#: mkt/developers/forms.py:587
 msgid "Please specify your app's Privacy Policy"
 msgstr "請註明您附加元件的隱私權保護政策："
 
-#: mkt/developers/forms.py:615
+#: mkt/developers/forms.py:608
 #, python-format
 msgid "Before changing your default locale you must have a name and description in that locale. You are missing %s."
 msgstr "在您修改預設語言之前，您必須有該語言的名稱和說明。您目前沒有 %s 。"
 
-#: mkt/developers/forms.py:674 mkt/submit/templates/submit/details.html:128
+#: mkt/developers/forms.py:667 mkt/submit/templates/submit/details.html:128
 msgid "You must provide either a website, an email, or both."
 msgstr "您必須至少提供網站、電子郵件地址，或兩者都提供。"
 
-#: mkt/developers/forms.py:699
+#: mkt/developers/forms.py:692
 msgid "Your comments"
 msgstr "您的留言"
 
-#: mkt/developers/forms.py:726
+#: mkt/developers/forms.py:719
 msgid "<b>Published</b>: Visible to everyone in the Marketplace and included in search results and listing pages."
 msgstr "<b>已發布</b>: 任何人都可以在 Marketplace 中看到，並會列出於搜尋結果與清單頁面。"
 
-#: mkt/developers/forms.py:730
+#: mkt/developers/forms.py:723
 msgid "<b>Unlisted</b>: Visible to only people with the URL and does not appear in search results and listing pages."
 msgstr "<b>未上架</b>: 僅有得到網址的能看到，且不會出現於搜尋結果與清單頁面。"
 
-#: mkt/developers/forms.py:746
+#: mkt/developers/forms.py:739
 msgid "App Visibility:"
 msgstr "應用程式可見度:"
 
-#: mkt/developers/forms.py:748
+#: mkt/developers/forms.py:741
 msgid "<b>Limit to my team</b>: Visible to only Team Members."
 msgstr "<b>僅限於我的團隊</b>: 只有團隊成員看的到。"
 
-#: mkt/developers/forms.py:797
+#: mkt/developers/forms.py:785
 msgid "Choose the regions your app will be listed in:"
 msgstr "選擇您 App 要上架的地區："
 
-#: mkt/developers/forms.py:799 mkt/developers/forms.py:853
+#: mkt/developers/forms.py:787 mkt/developers/forms.py:841
 msgid "You must select at least one region."
 msgstr "您必須至少選取一個地區。"
 
-#: mkt/developers/forms.py:801
+#: mkt/developers/forms.py:789
 msgid "Enable new regions"
 msgstr "啟用新區域"
 
-#: mkt/developers/forms.py:804
+#: mkt/developers/forms.py:792
 msgid "Make my app available in most regions"
 msgstr "讓我的應用程式可以在大部分的地區取得"
 
-#: mkt/developers/forms.py:805
+#: mkt/developers/forms.py:793
 msgid "Choose where my app is made available"
 msgstr "選擇我的應用程式可以在哪些地方取得"
 
-#: mkt/developers/forms.py:907 mkt/developers/templates/developers/apps/edit/basic.html:178 mkt/lookup/templates/lookup/website_edit.html:84 mkt/lookup/templates/lookup/website_summary.html:48
+#: mkt/developers/forms.py:895 mkt/developers/templates/developers/apps/edit/basic.html:178 mkt/lookup/templates/lookup/website_edit.html:84 mkt/lookup/templates/lookup/website_summary.html:48
 #: mkt/reviewers/templates/reviewers/includes/details.html:125 mkt/reviewers/templates/reviewers/includes/mobile_details.html:135 mkt/search/forms.py:102 mkt/websites/forms.py:23
 msgid "Categories"
 msgstr "類別"
 
 #. L10n: {0} is the number of categories.
-#: mkt/developers/forms.py:932 mkt/webapps/serializers.py:283 mkt/websites/forms.py:62
+#: mkt/developers/forms.py:920 mkt/webapps/serializers.py:283 mkt/websites/forms.py:62
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "您僅可選擇 {0} 個分類。"
 
-#: mkt/developers/forms.py:945
+#: mkt/developers/forms.py:933
 msgid "Agree"
 msgstr "同意"
 
-#: mkt/developers/forms.py:962
+#: mkt/developers/forms.py:950
 msgid "Please enter a valid email address."
 msgstr "請輸入一個有效的電子郵件地址。"
 
-#: mkt/developers/forms.py:965
+#: mkt/developers/forms.py:953
 msgid "Your email address"
 msgstr "您的電子郵件地址"
 
-#: mkt/developers/forms.py:968
+#: mkt/developers/forms.py:956
 msgid "Text"
 msgstr "文字"
 
-#: mkt/developers/forms.py:972
+#: mkt/developers/forms.py:960
 msgid "You must agree to the Privacy Policy."
 msgstr "您必須同意隱私權政策。"
 
-#: mkt/developers/forms.py:973 mkt/developers/templates/developers/apps/edit/language.html:9
+#: mkt/developers/forms.py:961 mkt/developers/templates/developers/apps/edit/language.html:9
 msgid "Country"
 msgstr "國家"
 
-#: mkt/developers/forms.py:994 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27 mkt/reviewers/templates/reviewers/apps_reviewing.html:21
+#: mkt/developers/forms.py:982 mkt/developers/templates/developers/transactions.html:41 mkt/lookup/templates/lookup/transaction_summary.html:27 mkt/reviewers/templates/reviewers/apps_reviewing.html:21
 #: mkt/reviewers/templates/reviewers/queue.html:31 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:18 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:20
 #: mkt/reviewers/templates/reviewers/includes/search_results.html:5
 msgid "App"
 msgstr "App"
 
-#: mkt/developers/forms.py:996
+#: mkt/developers/forms.py:984
 msgid "Transaction Type"
 msgstr "交易類型"
 
-#: mkt/developers/forms.py:999 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
+#: mkt/developers/forms.py:987 mkt/developers/templates/developers/transactions.html:44 mkt/lookup/templates/lookup/transaction_summary.html:20
 msgid "Transaction ID"
 msgstr "交易 ID"
 
-#: mkt/developers/forms.py:1005
+#: mkt/developers/forms.py:993
 msgid "From"
 msgstr "從"
 
-#: mkt/developers/forms.py:1008
+#: mkt/developers/forms.py:996
 msgid "To"
 msgstr "至"
 
-#: mkt/developers/forms.py:1019
+#: mkt/developers/forms.py:1007
 msgid "Web site"
 msgstr "網站"
 
-#: mkt/developers/forms.py:1020
+#: mkt/developers/forms.py:1008
 msgid "Command line"
 msgstr "命令列"
 
-#: mkt/developers/forms.py:1041
+#: mkt/developers/forms.py:1029
 msgid "Make this the Active version of my app as soon as it has been reviewed and approved."
 msgstr "當這個版本通過審查時將這個版本設為公開的版本。"
-
-#: mkt/developers/forms.py:1089 mkt/developers/forms.py:1180
-msgid "This IARC certificate is already being used for another app. Please create a new IARC Ratings Certificate."
-msgstr "此 IARC 證明已被其他應用程式使用，請建立新的 IARC 分級證明。"
-
-#: mkt/developers/forms.py:1096
-msgid "This Certificate ID is not recognized by IARC, or is already attached to another app in the Firefox Marketplace."
-msgstr "IARC 無法識別此分級 ID，或已附加到 Firefox Marketplace 中的另一套應用程式。"
-
-#: mkt/developers/forms.py:1164
-msgid "Please enter a valid submission ID."
-msgstr "請輸入一個有效的識別碼。"
-
-#: mkt/developers/forms.py:1215 mkt/developers/forms.py:1227
-msgid "Invalid submission ID or security code."
-msgstr "無效的提交 ID 或安全代碼。"
 
 #: mkt/developers/forms_payments.py:122
 msgid "No payment account set up for that app"
@@ -2425,7 +2409,7 @@ msgstr "該應用程式尚未設定付款帳號。"
 msgid "Developers"
 msgstr "開發者"
 
-#: mkt/developers/helpers.py:51 mkt/site/context_processors.py:66 templates/base.html:65
+#: mkt/developers/helpers.py:51 mkt/site/context_processors.py:66 templates/base.html:63
 msgid "My Submissions"
 msgstr "我的提交"
 
@@ -2446,37 +2430,37 @@ msgstr "版本 {0}"
 msgid "Reference Implementation"
 msgstr "參照工具"
 
-#: mkt/developers/tasks.py:476
+#: mkt/developers/tasks.py:473
 msgid "No manifest was found at that URL. Check the address and try again."
 msgstr "在該網址沒有找到安裝資訊檔。請確定網址並再試一次。"
 
-#: mkt/developers/tasks.py:482
+#: mkt/developers/tasks.py:479
 #, python-format
 msgid "Manifests must be served with the HTTP header \"Content-Type: application/x-web-app-manifest+json\". See %s for more information."
 msgstr "Manifest 並需包含 HTTP 標頭 \"Content-Type: application/x-web-app-manifest+json\"。詳情請參考 %s 。"
 
-#: mkt/developers/tasks.py:491
+#: mkt/developers/tasks.py:488
 #, python-format
 msgid "Your manifest must be less than %s bytes."
 msgstr "您的安裝資訊必須小於 %s 位元組。"
 
-#: mkt/developers/tasks.py:499
+#: mkt/developers/tasks.py:496
 msgid "Your manifest file was not encoded as valid UTF-8."
 msgstr "您的 manifest 沒有使用 UTF-8 編碼。"
 
-#: mkt/developers/tasks.py:510
+#: mkt/developers/tasks.py:507
 msgid "The manifest's encoding does not match the charset provided in the HTTP Content-Type."
 msgstr "Manifest 的編碼與傳入的 HTTP Content-Type 不符。"
 
-#: mkt/developers/tasks.py:541 mkt/developers/tasks.py:547 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
+#: mkt/developers/tasks.py:538 mkt/developers/tasks.py:544 mkt/reviewers/forms.py:42 mkt/reviewers/forms.py:66
 msgid "and"
 msgstr "至"
 
-#: mkt/developers/tasks.py:561
+#: mkt/developers/tasks.py:558
 msgid "{region} region added to the Firefox Marketplace"
 msgstr "{region} 區域已新增至 Firefox Marketplace"
 
-#: mkt/developers/tasks.py:565
+#: mkt/developers/tasks.py:562
 msgid "New regions added to the Firefox Marketplace"
 msgstr "新區域已新增至 Firefox Marketplace"
 
@@ -2533,84 +2517,84 @@ msgid "App previews must be at least {0}px by {1}px or {1}px by {0}px."
 msgstr "應用程式預覽圖應至少有 {0}px * {1}px 或 {1}px * {0}px。"
 
 # 75%
-#: mkt/developers/views.py:157
+#: mkt/developers/views.py:145
 msgid "Paid apps cannot be deleted. Disable this app instead."
 msgstr "無法刪除此付費附加元件，請直接停用。"
 
-#: mkt/developers/views.py:167
+#: mkt/developers/views.py:155
 msgid "App deleted."
 msgstr "已刪除應用程式。"
 
-#: mkt/developers/views.py:172
+#: mkt/developers/views.py:160
 msgid "Password was incorrect. App was not deleted."
 msgstr "密碼不正確。尚未刪除應用程式。"
 
-#: mkt/developers/views.py:216
+#: mkt/developers/views.py:204
 msgid "App successfully resubmitted."
 msgstr "已重新提交應用程式。"
 
-#: mkt/developers/views.py:249
+#: mkt/developers/views.py:237
 msgid "New version successfully added."
 msgstr "成功新增新版本。"
 
-#: mkt/developers/views.py:297 mkt/developers/views.py:564 mkt/developers/views_payments.py:38 mkt/reviewers/views.py:679
+#: mkt/developers/views.py:285 mkt/developers/views.py:462 mkt/developers/views_payments.py:38 mkt/reviewers/views.py:679
 msgid "Changes successfully saved."
 msgstr "已成功儲存變更。"
 
-#: mkt/developers/views.py:304
+#: mkt/developers/views.py:292
 msgid "Congratulations, your app submission is now complete and will be reviewed shortly!"
 msgstr "恭喜，您的應用程式已經送出，很會就會審核完成！"
 
-#: mkt/developers/views.py:306
+#: mkt/developers/views.py:294
 msgid "Content ratings successfully saved."
 msgstr "已儲存內容分級。"
 
-#: mkt/developers/views.py:468
+#: mkt/developers/views.py:366
 msgid "Version successfully edited."
 msgstr "編輯版本成功。"
 
-#: mkt/developers/views.py:503
+#: mkt/developers/views.py:401
 msgid "Version successfully made active."
 msgstr "成功公開版本。"
 
 # 77%
-#: mkt/developers/views.py:517
+#: mkt/developers/views.py:415
 msgid "Version \"{0}\" deleted."
 msgstr "已刪除版本 \"{0}\"。"
 
-#: mkt/developers/views.py:652
+#: mkt/developers/views.py:550
 msgid "There was an error with the submission."
 msgstr "提交時發生錯誤。"
 
-#: mkt/developers/views.py:694
+#: mkt/developers/views.py:592
 msgid "An error occurred validating the manifest."
 msgstr "驗證安裝資訊時發生錯誤。"
 
-#: mkt/developers/views.py:946
+#: mkt/developers/views.py:844
 msgid "There was an error uploading your preview."
 msgstr "上傳截圖的過程中發生錯誤。"
 
-#: mkt/developers/views.py:997
+#: mkt/developers/views.py:895
 msgid "Terms of service accepted."
 msgstr "已接受服務條款。"
 
-#: mkt/developers/views.py:1013
+#: mkt/developers/views.py:911
 msgid "Users with the admin role cannot use the API."
 msgstr "擁有管理員資格的使用者不能使用這個 API。"
 
-#: mkt/developers/views.py:1022
+#: mkt/developers/views.py:920
 msgid "No such API key."
 msgstr "沒有此 API 金錀。"
 
-#: mkt/developers/views.py:1028
+#: mkt/developers/views.py:926
 msgid "New API key generated."
 msgstr "已產生新的 API 金鑰。"
 
-#: mkt/developers/views.py:1046
+#: mkt/developers/views.py:944
 msgid "Created blocklisted version."
 msgstr "封鎖的版本已建立。"
 
-#: mkt/developers/views.py:1048
+#: mkt/developers/views.py:946
 msgid "App already blocklisted."
 msgstr "應用程式已被封鎖。"
 
@@ -2665,7 +2649,7 @@ msgid "Secret"
 msgstr "密鑰"
 
 #: mkt/developers/templates/developers/api.html:80 mkt/developers/templates/developers/apps/status.html:236 mkt/developers/templates/developers/apps/listing/item_actions.html:14
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:27
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:18
 msgid "Delete"
 msgstr "刪除"
 
@@ -2699,9 +2683,8 @@ msgstr "您必須先設定 <a href=\"%(next_url)s\">%(next_step_name)s</a> 才�
 msgid "You must set up <a href=\"%(next_url)s\">%(next_step_name)s</a>."
 msgstr "您必須先設定 <a href=\"%(next_url)s\">%(next_step_name)s</a>。"
 
-#: mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:13 mkt/ecosystem/templates/ecosystem/landing.html:94
-#: mkt/ecosystem/templates/ecosystem/partners.html:12 mkt/ecosystem/templates/ecosystem/partners.html:81 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:302
-#: mkt/zadmin/templates/admin/base.html:19 templates/base.html:13
+#: mkt/developers/templates/developers/login.html:3 mkt/developers/templates/developers/skeleton_impala.html:13 mkt/ecosystem/templates/ecosystem/partners.html:12
+#: mkt/ecosystem/templates/ecosystem/partners.html:72 mkt/purchase/templates/purchase/receipt.html:59 mkt/site/helpers.py:302 mkt/zadmin/templates/admin/base.html:19 templates/base.html:13
 msgid "Firefox Marketplace"
 msgstr "Firefox Marketplace"
 
@@ -2713,7 +2696,7 @@ msgstr "登入"
 msgid "You must sign in to proceed."
 msgstr "您必須登入才能繼續。"
 
-#: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:133 templates/base.html:139
+#: mkt/developers/templates/developers/login.html:12 mkt/developers/templates/developers/skeleton_impala.html:131 templates/base.html:137
 msgid "Sign in / Sign up"
 msgstr "登入 / 註冊"
 
@@ -2736,10 +2719,6 @@ msgstr "文件集"
 #: mkt/developers/templates/developers/nav.html:9 mkt/developers/templates/developers/testing.html:3
 msgid "Testing Apps"
 msgstr "測試應用程式"
-
-#: mkt/developers/templates/developers/nav.html:15
-msgid "Submit a New App"
-msgstr "提交新的應用程式"
 
 #: mkt/developers/templates/developers/oauth_authorize.html:2
 msgid "Authorize Access"
@@ -2766,36 +2745,32 @@ msgstr "Firefox Marketplace 開發者"
 msgid "API Reference"
 msgstr "API 參考"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:62 templates/base.html:63
-msgid "Submit an app"
-msgstr "提交應用程式"
-
-#: mkt/developers/templates/developers/skeleton_impala.html:64 mkt/ecosystem/templates/ecosystem/partners.html:115 templates/base.html:67
+#: mkt/developers/templates/developers/skeleton_impala.html:62 mkt/ecosystem/templates/ecosystem/partners.html:106 templates/base.html:65
 msgid "Marketplace"
 msgstr "Marketplace"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:68 mkt/templates/mkt/header.html:28 templates/base.html:74
+#: mkt/developers/templates/developers/skeleton_impala.html:66 mkt/templates/mkt/header.html:28 templates/base.html:72
 msgid "Sign In"
 msgstr "登入"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:75 mkt/templates/mkt/header.html:21 templates/base.html:81
+#: mkt/developers/templates/developers/skeleton_impala.html:73 mkt/templates/mkt/header.html:21 templates/base.html:79
 msgid "Settings"
 msgstr "設定"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:92 mkt/zadmin/templates/admin/base.html:49 templates/base.html:98
+#: mkt/developers/templates/developers/skeleton_impala.html:90 mkt/zadmin/templates/admin/base.html:49 templates/base.html:96
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "我們正在進行網站維護，部分功能暫時無法使用。我們將盡快完全復原。"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:98 templates/base.html:104
+#: mkt/developers/templates/developers/skeleton_impala.html:96 templates/base.html:102
 #, python-format
 msgid "The Terms of Service have changed since you last agreed to them. Please read and agree to the <a href=\"%(url)s\">new terms</a>."
 msgstr "使用條款從您上次同意至今已有修改。請閱讀並同意 <a href=\"%(url)s\">新的條款</a>。"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:125 templates/base.html:131
+#: mkt/developers/templates/developers/skeleton_impala.html:123 templates/base.html:129
 msgid "Please sign in"
 msgstr "請登入"
 
-#: mkt/developers/templates/developers/skeleton_impala.html:127 templates/base.html:133
+#: mkt/developers/templates/developers/skeleton_impala.html:125 templates/base.html:131
 #, python-format
 msgid "Just log in or register with <a href=\"%(url)s\">Firefox Accounts</a> below."
 msgstr "只要在下方登入或使用 <a href=\"%(url)s\">Firefox 帳號</a> 註冊。"
@@ -2864,24 +2839,24 @@ msgstr "數量"
 msgid "Test App Validation"
 msgstr "測試應用程式驗證"
 
-#: mkt/developers/templates/developers/validate_app.html:17 mkt/submit/templates/submit/manifest.html:32
+#: mkt/developers/templates/developers/validate_app.html:17
 msgid "Submit your app manifest URL"
 msgstr "送出您的應用程式安裝資訊檔網址"
 
-#: mkt/developers/templates/developers/validate_app.html:27 mkt/submit/templates/submit/manifest.html:41
+#: mkt/developers/templates/developers/validate_app.html:27
 msgid "Validate"
 msgstr "驗證"
 
-#: mkt/developers/templates/developers/validate_app.html:35 mkt/submit/templates/submit/manifest.html:49
+#: mkt/developers/templates/developers/validate_app.html:35
 #, python-format
 msgid "<strong>Don't forget a protocol!</strong> Try adding either <a href=\"#\">%(http)s</a> or <a href=\"#\">%(https)s</a>."
 msgstr "<strong>別忘了傳輸協定！</strong> 試試看使用 <a href=\"#\">%(http)s</a> 或者 <a href=\"#\">%(https)s</a>。"
 
-#: mkt/developers/templates/developers/validate_app.html:43 mkt/submit/templates/submit/manifest.html:57
+#: mkt/developers/templates/developers/validate_app.html:43
 msgid "Manifest URLs must start with a protocol (for example, <code>http://</code> or <code>https://</code>) and typically use the <code>.webapp</code> extension."
 msgstr "安裝資訊網址必須以一個通訊協定開頭（像是 <code>http://</code> 或者是 <code>https://</code> ），並且通常以 <code>.webapp</code> 為副檔名。"
 
-#: mkt/developers/templates/developers/validate_app.html:61 mkt/submit/templates/submit/manifest.html:97
+#: mkt/developers/templates/developers/validate_app.html:61
 msgid "Learn more about submitting an app."
 msgstr "了解更多送出應用程式的相關資訊。"
 
@@ -2921,8 +2896,7 @@ msgstr "略過這個消息"
 
 #: mkt/developers/templates/developers/apps/dashboard.html:15 mkt/developers/templates/developers/apps/edit/admin.html:9 mkt/developers/templates/developers/apps/edit/basic.html:10
 #: mkt/developers/templates/developers/apps/edit/details.html:8 mkt/developers/templates/developers/apps/edit/media.html:6 mkt/developers/templates/developers/apps/edit/support.html:7
-#: mkt/developers/templates/developers/apps/edit/technical.html:8 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:12
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:19 mkt/submit/templates/submit/details.html:91
+#: mkt/developers/templates/developers/apps/edit/technical.html:8 mkt/submit/templates/submit/details.html:91
 msgid "Edit"
 msgstr "編輯"
 
@@ -2935,11 +2909,7 @@ msgstr "歡迎來到開發者儀表板"
 msgid "You haven't yet submitted an app to the Firefox Marketplace. Once you've <a href=\"%(app_url)s\">created your app</a>, click Submit Your App below."
 msgstr "您尚未提交任何應用程式到 Firefox Marketplace。當您<a href=\"%(app_url)s\">建立好您的應用程式</a>，按一下下方「送出應用程式」。"
 
-#: mkt/developers/templates/developers/apps/dashboard.html:37
-msgid "Submit An App"
-msgstr "送出應用程式"
-
-#: mkt/developers/templates/developers/apps/edit.html:3 mkt/developers/templates/developers/apps/listing/item_actions.html:25 mkt/developers/templates/developers/apps/listing/item_actions_app.html:38
+#: mkt/developers/templates/developers/apps/edit.html:3 mkt/developers/templates/developers/apps/listing/item_actions.html:25 mkt/developers/templates/developers/apps/listing/item_actions_app.html:29
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:2 mkt/lookup/templates/lookup/helpers/app_header.html:33 mkt/lookup/templates/lookup/helpers/website_header.html:22
 #: mkt/reviewers/templates/reviewers/review.html:54
 msgid "Edit Listing"
@@ -2951,7 +2921,7 @@ msgstr "編輯資訊"
 msgid "None"
 msgstr "無"
 
-#: mkt/developers/templates/developers/apps/owner.html:3 mkt/developers/templates/developers/apps/owner.html:26 mkt/developers/templates/developers/apps/listing/item_actions_app.html:64
+#: mkt/developers/templates/developers/apps/owner.html:3 mkt/developers/templates/developers/apps/owner.html:26 mkt/developers/templates/developers/apps/listing/item_actions_app.html:44
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:17 mkt/reviewers/templates/reviewers/includes/details.html:118 mkt/reviewers/templates/reviewers/includes/mobile_details.html:128
 msgid "Team Members"
 msgstr "團隊成員"
@@ -3003,7 +2973,7 @@ msgstr "可以檢視應用程式設定"
 msgid "Status & Versions"
 msgstr "狀態 & 版本"
 
-#: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:52
+#: mkt/developers/templates/developers/apps/status.html:7 mkt/developers/templates/developers/apps/status.html:202 mkt/developers/templates/developers/apps/listing/item_actions_app.html:35
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:8 mkt/lookup/forms.py:71 mkt/lookup/forms.py:76 mkt/lookup/templates/lookup/app_summary.html:61
 #: mkt/lookup/templates/lookup/app_summary.html:147 mkt/lookup/templates/lookup/website_edit.html:105 mkt/lookup/templates/lookup/website_summary.html:56 mkt/reviewers/forms.py:186
 #: mkt/reviewers/forms.py:231 mkt/reviewers/templates/reviewers/review.html:29 mkt/reviewers/templates/reviewers/includes/details.html:21
@@ -3147,29 +3117,29 @@ msgstr "下載"
 msgid "Make Active"
 msgstr "公開"
 
-#: mkt/developers/templates/developers/apps/status.html:248
+#: mkt/developers/templates/developers/apps/status.html:249
 msgid "Upload New Version"
 msgstr "上傳新版本"
 
-#: mkt/developers/templates/developers/apps/status.html:253
+#: mkt/developers/templates/developers/apps/status.html:254
 msgid "Upload a new version of this packaged app. New versions must be reviewed before they will be available for installation."
 msgstr "上船此封裝的程式新版本的新版本。新版本必須先經審查才會供他人安裝。"
 
-#: mkt/developers/templates/developers/apps/status.html:259
+#: mkt/developers/templates/developers/apps/status.html:260
 #, python-format
 msgid "Remember to update the app's <a href=\"%(ratings_url)s\">content ratings</a> if a large portion of the app's content has changed."
 msgstr "如果應用程式內容有大幅度更動，記得更新應用程式的 <a href=\"%(ratings_url)s\">內容分級</a>。"
 
-#: mkt/developers/templates/developers/apps/status.html:275 mkt/developers/templates/developers/apps/forms_shared/media.html:171 mkt/submit/templates/submit/details.html:191
-#: mkt/submit/templates/submit/manifest.html:90 mkt/submit/templates/submit/next_steps.html:103
+#: mkt/developers/templates/developers/apps/status.html:276 mkt/developers/templates/developers/apps/forms_shared/media.html:171 mkt/submit/templates/submit/details.html:191
+#: mkt/submit/templates/submit/next_steps.html:103
 msgid "Continue"
 msgstr "繼續"
 
-#: mkt/developers/templates/developers/apps/status.html:287
+#: mkt/developers/templates/developers/apps/status.html:289
 msgid "Low-Memory Devices"
 msgstr "低記憶體裝置"
 
-#: mkt/developers/templates/developers/apps/status.html:290
+#: mkt/developers/templates/developers/apps/status.html:292
 #, python-format
 msgid ""
 "Your app is shown on <a href=\"https://developer.mozilla.org/Apps/Build/Performance/Apps_for_low-memory_Firefox_OS_devices\" target=\"_blank\">low-memory devices</a>. If you want to stop showing "
@@ -3178,53 +3148,53 @@ msgstr ""
 "您的應用程式將標示為可供 <a href=\"https://developer.mozilla.org/Apps/Build/Performance/Apps_for_low-memory_Firefox_OS_devices\" target=\"_blank\">低記憶體裝置</a> 使用。若您不想要被如此標示，請 <a "
 "href=\"%(support_url)s\">聯絡我們</a>。"
 
-#: mkt/developers/templates/developers/apps/status.html:302 mkt/developers/templates/developers/apps/status.html:320
+#: mkt/developers/templates/developers/apps/status.html:304 mkt/developers/templates/developers/apps/status.html:322
 msgid "List App"
 msgstr "上架應用程式"
 
-#: mkt/developers/templates/developers/apps/status.html:302 mkt/developers/templates/developers/apps/status.html:323 mkt/developers/templates/developers/apps/status.html:383
-#: mkt/developers/templates/developers/apps/status.html:388
+#: mkt/developers/templates/developers/apps/status.html:304 mkt/developers/templates/developers/apps/status.html:325 mkt/developers/templates/developers/apps/status.html:385
+#: mkt/developers/templates/developers/apps/status.html:390
 msgid "Delist App"
 msgstr "下架應用程式"
 
-#: mkt/developers/templates/developers/apps/status.html:306
+#: mkt/developers/templates/developers/apps/status.html:308
 msgid "Your app's listing is disabled and will not appear in the Firefox Marketplace. You may re-list it at any time."
 msgstr "您的應用程式被停止列出，因此不會顯示在 Firefox Marketplace。您可以隨時重新列出應用程式。"
 
-#: mkt/developers/templates/developers/apps/status.html:311
+#: mkt/developers/templates/developers/apps/status.html:313
 msgid "Delisting your app will prevent it from appearing anywhere in the Marketplace."
 msgstr "一旦您下架這個應用程式，Marketplace 完全不會顯示這個應用程式。"
 
-#: mkt/developers/templates/developers/apps/status.html:331 mkt/developers/templates/developers/apps/status.html:342 mkt/developers/templates/developers/apps/listing/delete_form.html:9
+#: mkt/developers/templates/developers/apps/status.html:333 mkt/developers/templates/developers/apps/status.html:344 mkt/developers/templates/developers/apps/listing/delete_form.html:9
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:22
 msgid "Delete App"
 msgstr "刪除應用程式"
 
-#: mkt/developers/templates/developers/apps/status.html:336
+#: mkt/developers/templates/developers/apps/status.html:338
 msgid "Deleting your app will permanently delete it from the site. <strong>There is no going back.</strong>"
 msgstr "刪除您的應用程式會從這個網站永久刪除。<strong>此步驟無法復原。</strong>"
 
-#: mkt/developers/templates/developers/apps/status.html:349
+#: mkt/developers/templates/developers/apps/status.html:351
 msgid "Blocklist App"
 msgstr "封鎖應用程式"
 
-#: mkt/developers/templates/developers/apps/status.html:355
+#: mkt/developers/templates/developers/apps/status.html:357
 msgid ""
 "Blocklisting an app will upgrade the users to a special version which will make the app unusable on their Firefox OS devices. This will also remove this app from public pages until a new version is "
 "submitted and approved. These changes cannot be undone. Please proceed with caution."
 msgstr "封鎖應用程式會升級該應用程式至一個特殊版本，使其無法在使用者的 Firefox OS 裝置上運作，同時也會從公開頁面移除這個應用程式，直到新的版本提交並審核通過。您無法復原這個動作。請小心操作。"
 
-#: mkt/developers/templates/developers/apps/status.html:364
+#: mkt/developers/templates/developers/apps/status.html:366
 msgid "Blocklist"
 msgstr "封鎖清單"
 
-#: mkt/developers/templates/developers/apps/status.html:385
+#: mkt/developers/templates/developers/apps/status.html:387
 msgid "Are you sure you wish to delist your app?"
 msgstr "您確定要下架這個應用程式嗎?"
 
 # This is a separator between the graphical [contribute] button and the
 # graphical [download now] button
-#: mkt/developers/templates/developers/apps/status.html:389 mkt/developers/templates/developers/apps/status.html:411 mkt/developers/templates/developers/apps/version_edit.html:67
+#: mkt/developers/templates/developers/apps/status.html:391 mkt/developers/templates/developers/apps/status.html:413 mkt/developers/templates/developers/apps/version_edit.html:67
 #: mkt/developers/templates/developers/apps/edit/admin.html:130 mkt/developers/templates/developers/apps/edit/basic.html:200 mkt/developers/templates/developers/apps/edit/details.html:79
 #: mkt/developers/templates/developers/apps/edit/support.html:62 mkt/developers/templates/developers/apps/edit/technical.html:94 mkt/developers/templates/developers/apps/forms_shared/media.html:164
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/lookup/templates/lookup/website_edit.html:121 mkt/submit/templates/submit/done.html:48
@@ -3232,7 +3202,7 @@ msgstr "您確定要下架這個應用程式嗎?"
 msgid "or"
 msgstr "或"
 
-#: mkt/developers/templates/developers/apps/status.html:389 mkt/developers/templates/developers/apps/status.html:411 mkt/developers/templates/developers/apps/version_edit.html:68
+#: mkt/developers/templates/developers/apps/status.html:391 mkt/developers/templates/developers/apps/status.html:413 mkt/developers/templates/developers/apps/version_edit.html:68
 #: mkt/developers/templates/developers/apps/edit/admin.html:132 mkt/developers/templates/developers/apps/edit/basic.html:202 mkt/developers/templates/developers/apps/edit/details.html:81
 #: mkt/developers/templates/developers/apps/edit/support.html:64 mkt/developers/templates/developers/apps/edit/technical.html:96 mkt/developers/templates/developers/apps/forms_shared/media.html:166
 #: mkt/developers/templates/developers/apps/listing/delete_form.html:23 mkt/developers/templates/developers/apps/listing/delete_form.html:27 mkt/lookup/templates/lookup/user_summary.html:136
@@ -3241,35 +3211,35 @@ msgstr "或"
 msgid "Cancel"
 msgstr "取消"
 
-#: mkt/developers/templates/developers/apps/status.html:399
+#: mkt/developers/templates/developers/apps/status.html:401
 msgid "Delete Version &quot;{version}&quot;"
 msgstr "刪除版本 &quot;{version}&quot;"
 
-#: mkt/developers/templates/developers/apps/status.html:400
+#: mkt/developers/templates/developers/apps/status.html:402
 msgid "Deleting the only version will result in the following:"
 msgstr "刪除唯一的版本會造成下列結果："
 
-#: mkt/developers/templates/developers/apps/status.html:402
+#: mkt/developers/templates/developers/apps/status.html:404
 msgid "the app status will be marked as &quot;incomplete&quot;"
 msgstr "應用程式的狀態會被標為「未完成」"
 
-#: mkt/developers/templates/developers/apps/status.html:403
+#: mkt/developers/templates/developers/apps/status.html:405
 msgid "the app will be removed from our review queue"
 msgstr "應用程式會從我們的待審區移除"
 
-#: mkt/developers/templates/developers/apps/status.html:404
+#: mkt/developers/templates/developers/apps/status.html:406
 msgid "the app will not be listed in our public pages"
 msgstr "應用程式不會被列在我們的公開頁面"
 
-#: mkt/developers/templates/developers/apps/status.html:406
+#: mkt/developers/templates/developers/apps/status.html:408
 msgid "These changes cannot be undone."
 msgstr "這些更動無法還原。"
 
-#: mkt/developers/templates/developers/apps/status.html:407
+#: mkt/developers/templates/developers/apps/status.html:409
 msgid "Are you sure you wish to delete this version?"
 msgstr "您確定要刪除這個版本嗎？"
 
-#: mkt/developers/templates/developers/apps/status.html:410
+#: mkt/developers/templates/developers/apps/status.html:412
 msgid "Delete Version"
 msgstr "刪除版本"
 
@@ -3377,7 +3347,7 @@ msgstr "應用程式網址"
 msgid "Select a unique URL for your detail page. By default we use your app name to create this URL."
 msgstr "為您的詳細資訊頁面選擇一個獨一無二的 URL。該 URL 預設為您應用程式的名稱。"
 
-#: mkt/developers/templates/developers/apps/edit/basic.html:64 mkt/developers/templates/developers/apps/listing/item_actions_app.html:68
+#: mkt/developers/templates/developers/apps/edit/basic.html:64 mkt/developers/templates/developers/apps/listing/item_actions_app.html:48
 #: mkt/developers/templates/developers/includes/addons_edit_nav.html:18 mkt/reviewers/templates/reviewers/review.html:51
 msgid "View Listing"
 msgstr "檢視附加元件頁面"
@@ -3505,7 +3475,7 @@ msgstr "支援資訊"
 msgid "Support Information for {0}"
 msgstr "{0} 的支援資訊"
 
-#: mkt/developers/templates/developers/apps/edit/support.html:21 mkt/ecosystem/templates/ecosystem/partners.html:126 mkt/ecosystem/templates/ecosystem/partners.html:127
+#: mkt/developers/templates/developers/apps/edit/support.html:21 mkt/ecosystem/templates/ecosystem/partners.html:117 mkt/ecosystem/templates/ecosystem/partners.html:118
 #: mkt/lookup/templates/lookup/user_summary.html:19
 msgid "Email"
 msgstr "電子郵件"
@@ -3729,52 +3699,34 @@ msgstr "檢視附加元件頁面"
 msgid "Resume the submission process for this app."
 msgstr "繼續這個應用程式的提交程序。"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:17
-msgid "Get content ratings for the app."
-msgstr "為此應用程式取得內容分級。"
-
 #: mkt/developers/templates/developers/apps/listing/item_actions_app.html:18
-msgid "Set Up Content Ratings"
-msgstr "設定內容分級"
-
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:27
 msgid "Delete this app."
 msgstr "刪除這個應用程式。"
 
 # 78%
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:37
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:28
 msgid "Edit details for this app's listing page."
 msgstr "編輯這個應用程式的詳細資訊。"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:45
-msgid "Add a new version of the packaged app."
-msgstr "新增一個已封裝應用程式的新版本。"
-
-# 82%
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:46
-msgid "Add New Version"
-msgstr "新增一個新版本"
-
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:52
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:35
 msgid "Status &amp; Versions"
 msgstr "狀態 &amp; 版本"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:60 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:4
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:11 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:15
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:47 mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1440
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:40 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:3
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:8 mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
+#: mkt/developers/templates/developers/includes/addons_edit_nav.html:12 mkt/webapps/models.py:1424
 msgid "Content Ratings"
 msgstr "內容分級"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:73 mkt/developers/templates/developers/includes/addons_edit_nav.html:22
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:53 mkt/developers/templates/developers/includes/addons_edit_nav.html:22
 msgid "Messages"
 msgstr "訊息"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:77 mkt/developers/templates/developers/includes/addons_edit_nav.html:23 mkt/lookup/templates/lookup/helpers/app_header.html:27
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:57 mkt/developers/templates/developers/includes/addons_edit_nav.html:23 mkt/lookup/templates/lookup/helpers/app_header.html:27
 msgid "Statistics"
 msgstr "統計資訊"
 
-#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:83 mkt/developers/templates/developers/includes/addons_edit_nav.html:28
+#: mkt/developers/templates/developers/apps/listing/item_actions_app.html:63 mkt/developers/templates/developers/includes/addons_edit_nav.html:28
 msgid "Transactions"
 msgstr "交易"
 
@@ -3800,124 +3752,31 @@ msgstr "關聯版本："
 msgid "<a href=\"%(rating_url)s\">Set up Content Ratings</a>"
 msgstr "<a href=\"%(rating_url)s\">設定內容評等</a>"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:22
-msgid "Get My App Rated"
-msgstr "取得我的應用程式評分"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:27
-msgid ""
-"Your app has already been age rated and has an International Age Rating Coalition (IARC) certificate attached. To change the rating, click on the button below: that will open a new window where you "
-"can fill out a new questionnaire about the contents of your app. Upon completion, the window will close and your app will then have an new age rating and certificate."
-msgstr ""
-"您的應用程式已做過內容分級，並附加了國際分級聯盟（IARC）的證書。若要修改分級內容，請點擊下面的按鈕，將會開啟能夠讓您填寫應用程式內容的問卷的新視窗。完成後，視窗將關閉，您的應用程式就會新的評等資訊與"
-"證書。"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:38
-msgid ""
-"To have your app listed on the Marketplace, you must attain an International Age Rating Coalition (IARC) certificate. Clicking on the button below will open a new window where you can fill out a "
-"short yes-or-no questionnaire about the contents of your app. Upon completion, the window will close and your app will then have an age rating."
-msgstr ""
-"為了將您的應用程式於商城中上架，您必須取得 International Age Rating Coalition (IRAC) 的認可，點選下方按鈕開啟新視窗並為您的應用程式內容完成簡短的是否問卷，視窗將關閉您的應用程式將獲得年齡分級。"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:49
-#, python-format
-msgid "By using the IARC ratings certificate tool, you agree to abide by their <a href=\"%(privacy_url)s\">Privacy Policy</a> and <a href=\"%(tos_url)s\">Terms of Service agreement</a>."
-msgstr "使用 IARC 分級工具即代表您願意遵守其 <a href=\"%(privacy_url)s\">隱私權保護政策</a> 與 <a href=\"%(tos_url)s\">服務使用條款</a>。"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:56
-#, python-format
-msgid "IARC content rating process complete, you will be redirected to your app's <a href=\"%(ratings_url)s\">content ratings page</a>."
-msgstr "IARC 內容評等完成，您將會被重導至您應用程式的 <a href=\"%(ratings_url)s\">內容評等頁面</a>。"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:62
-msgid "Sorry, there was an error on our side processing content ratings. You can keep trying or try again later."
-msgstr "很抱歉，我們這邊在處理內容評等時遇到了一些問題，您可以繼續嘗試，或稍後再試。"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:77 mkt/developers/templates/developers/apps/ratings/ratings_edit.html:93
-msgid "Create an IARC Ratings Certificate"
-msgstr "建立 IARC 分級認證"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:103
-msgid "Already Have an IARC Certificate?"
-msgstr "已經做過 IARC 分級認證了嗎？"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:105
-msgid "Already Have Your App Rated?"
-msgstr "您的應用程式分級了嗎？"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:112
-msgid ""
-"If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC certificate, you can enter it here and we'll notify IARC to link your Marketplace "
-"submission with that certificate."
-msgstr "若您已經透過上面的 IARC Global Ratings Tool 為您的應用程式分級，並取得了分級證書，您可以在此處輸入憑證號碼，以通知 IARC 將您送出的 Marketplace 資源與該憑證連結起來。"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:121
-msgid "Warning: if a certificate is already attached to your app, this will overwrite it. Use with caution."
-msgstr "警告: 若您的應用程式已附加分級憑證，將會蓋過該憑證。使用前請小心。"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:129
-msgid "If you have already gotten your app rated via the IARC Global Ratings Tool above and already have an IARC security code, you can manually enter it here."
-msgstr "若您已透過上面的 IARC 全球分級工具分級您的應用程式，並且已取得 IARC 安全編號，您可以在此輸入編號。"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:141
-msgid "Certificate ID"
-msgstr "分級證書 ID"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:146
-msgid ""
-"The certificate ID is an unique identifier sent to you. It is a mix of letters, numbers and dashes following the UUID canonical hexadecimal format like &quot;adb3261b-c657-4fd2-a057-"
-"bc9f85310b80&quot;."
-msgstr "分級證書 ID 是一組寄給您的獨特識別號碼，當中依照 UUID 的標準格式混和了字母、數字與連接號，像是 &quot;adb3261b-c657-4fd2-a057-bc9f85310b80&quot;。"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:160
-msgid "Submission ID"
-msgstr "送出識別碼"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:167
-msgid "The submission ID can be found on the certificate sent to you. It is a numeric value like &quot;14&quot;."
-msgstr "您可以在認證書中找到該識別碼。識別碼由數字組成，例如 &quot;14&quot;。"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:176
-msgid "Security Code"
-msgstr "安全碼"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_edit.html:183
-msgid "The security code can be found on the certificate sent to you. It is a mix of letters and numbers like &quot;AB12CD3&quot;."
-msgstr "您可以在憑證中找到該識別碼。識別碼由數字和英文字母組成，例如 &quot;AB12CD3&quot;。"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:15
-msgid "Confirm your choice of IARC Certiticate"
-msgstr "確認您的 IARC 分級選擇"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:17 mkt/lookup/templates/lookup/helpers/app_header.html:15 mkt/lookup/templates/lookup/helpers/website_header.html:16
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:14 mkt/lookup/templates/lookup/helpers/app_header.html:15 mkt/lookup/templates/lookup/helpers/website_header.html:16
 msgid "Summary"
 msgstr "摘要"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:26
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:19
 msgid "IARC Certificate ID"
 msgstr "IARC 分級 ID"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:34
-msgid "Confirm"
-msgstr "確認"
-
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:50
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:29
 msgid "Rating System"
 msgstr "分級系統"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:51
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:30
 msgid "Region"
 msgstr "地區"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:52
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:31
 msgid "Rating Category"
 msgstr "分級類別"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:53
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:32
 msgid "Descriptors"
 msgstr "描述"
 
-#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:82
+#: mkt/developers/templates/developers/apps/ratings/ratings_summary.html:61
 msgid "Interactive Elements"
 msgstr "互動元素"
 
@@ -4023,99 +3882,38 @@ msgstr "感謝訂閱!"
 msgid "We apologize, but an error occurred in our system. Please try again later."
 msgstr "抱歉，我們的系統發生錯誤。請稍後重試。"
 
-#: mkt/ecosystem/templates/ecosystem/base.html:16 mkt/ecosystem/templates/ecosystem/landing.html:14 mkt/ecosystem/templates/ecosystem/macros.html:6
+#: mkt/ecosystem/templates/ecosystem/landing.html:11
+msgid "App Submission is now closed."
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/landing.html:14
+#, python-format
+msgid "Thank you for your support. <a href=\"%(url)s\">Learn more</a>."
+msgstr ""
+
+#: mkt/ecosystem/templates/ecosystem/macros.html:6
 msgid "Design"
 msgstr "設計"
 
-#: mkt/ecosystem/templates/ecosystem/base.html:20 mkt/ecosystem/templates/ecosystem/landing.html:23 mkt/ecosystem/templates/ecosystem/macros.html:10
+#: mkt/ecosystem/templates/ecosystem/macros.html:10
 msgid "Concept: A Great App"
 msgstr "概念: 一套好的應用程式"
 
-#: mkt/ecosystem/templates/ecosystem/base.html:24 mkt/ecosystem/templates/ecosystem/landing.html:25 mkt/ecosystem/templates/ecosystem/macros.html:14
+#: mkt/ecosystem/templates/ecosystem/macros.html:14
 msgid "Design Fundamentals"
 msgstr "設計基本原則"
 
-#: mkt/ecosystem/templates/ecosystem/base.html:28 mkt/ecosystem/templates/ecosystem/landing.html:27 mkt/ecosystem/templates/ecosystem/macros.html:19
+#: mkt/ecosystem/templates/ecosystem/macros.html:19
 msgid "UI Guidelines"
 msgstr "UI 指導方針"
 
-#: mkt/ecosystem/templates/ecosystem/base.html:33 mkt/ecosystem/templates/ecosystem/landing.html:31 mkt/ecosystem/templates/ecosystem/macros.html:25
+#: mkt/ecosystem/templates/ecosystem/macros.html:25
 msgid "Build"
 msgstr "建構"
 
-#: mkt/ecosystem/templates/ecosystem/base.html:37 mkt/ecosystem/templates/ecosystem/landing.html:40 mkt/ecosystem/templates/ecosystem/macros.html:29
+#: mkt/ecosystem/templates/ecosystem/macros.html:29
 msgid "Quick Start"
 msgstr "快速開始"
-
-#: mkt/ecosystem/templates/ecosystem/base.html:41 mkt/ecosystem/templates/ecosystem/landing.html:42 mkt/ecosystem/templates/ecosystem/macros.html:151
-msgid "Firefox OS Simulator"
-msgstr "Firefox OS Simulator"
-
-#: mkt/ecosystem/templates/ecosystem/base.html:45 mkt/ecosystem/templates/ecosystem/landing.html:44 mkt/ecosystem/templates/ecosystem/macros.html:48
-msgid "Reference Apps"
-msgstr "參考應用程式"
-
-#: mkt/ecosystem/templates/ecosystem/base.html:50 mkt/ecosystem/templates/ecosystem/landing.html:48 mkt/ecosystem/templates/ecosystem/macros.html:162 mkt/submit/templates/submit/next_steps.html:35
-msgid "Publish"
-msgstr "發佈"
-
-#: mkt/ecosystem/templates/ecosystem/base.html:54 mkt/ecosystem/templates/ecosystem/landing.html:57 mkt/ecosystem/templates/ecosystem/macros.html:175
-msgid "Deploying Your App"
-msgstr "部署您的應用程式"
-
-#: mkt/ecosystem/templates/ecosystem/base.html:58 mkt/ecosystem/templates/ecosystem/landing.html:59 mkt/ecosystem/templates/ecosystem/macros.html:180
-msgid "Hosted Apps"
-msgstr "架設的應用程式"
-
-#: mkt/ecosystem/templates/ecosystem/base.html:62 mkt/ecosystem/templates/ecosystem/landing.html:61 mkt/ecosystem/templates/ecosystem/macros.html:184
-msgid "Packaged Apps"
-msgstr "已封裝的應用程式"
-
-#: mkt/ecosystem/templates/ecosystem/base.html:66 mkt/ecosystem/templates/ecosystem/macros.html:197
-msgid "Badges, Banners, and Icons"
-msgstr "徽章、橫幅與圖示"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:11
-msgid "Develop HTML5 Web Apps for an open marketplace."
-msgstr "為開放的商城開發 HTML5 網頁應用程式。"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:16
-msgid "Learn how to design apps that provide a user experience optimized for Firefox OS"
-msgstr "了解如何設計出能讓 Firefox OS 使用者有最佳使用體驗的應用程式"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:33
-msgid "All the tools, docs and references you'll need for development and testing of your app"
-msgstr "您開發、測試應用程式需要的所有工具、文件、參考資料。"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:50
-msgid "Find out how to distribute your apps on an open marketplace that puts users and developers first"
-msgstr "瞭解如何將您的應用程式發布至將使用者和開發者擺在首位的商城"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:75
-msgid "Submit your app to the Marketplace"
-msgstr "提交您的應用程式至 Marketplace"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:83
-msgid "The Mozilla apps platform"
-msgstr "Mozilla 應用程式平台"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:85
-msgid ""
-"Building apps for the Web provides developers with full control over content, functionality and how apps are distributed, including access to millions of Firefox OS users through the Firefox "
-"Marketplace."
-msgstr "為 Web 打造應用程式可讓開發者完整控制內容、功能，以及要如何銷售應用程式，也可透過 Firefox Marketplace 接觸數以百萬計的 Firefox OS 使用者。"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:96
-msgid ""
-"The Firefox Marketplace gives users the opportunity to find, try and buy apps and content that matters most to them. This means exciting, useful and high-quality Apps relevant to local markets "
-"across all categories that users can use to get the most out of their daily lives."
-msgstr "Firefox Marketplace 提供使用者尋找、測試並購買與他們最相關內容的應用程式的機會。這代表了使用者可以得到適合在地市場，最令人驚艷、最好用的高品質應用程式的不同分類應用程式。"
-
-#: mkt/ecosystem/templates/ecosystem/landing.html:105
-msgid ""
-"Mozilla's global reach extends to hundreds of millions of Firefox users worldwide. Through intelligent Marketplace curation and effective use of Mozilla’s marketing channels, Mozilla can help "
-"developers can get their app into the hands of their target users around the world."
-msgstr "Mozilla 在全球有數以億計的 Firefox 使用者。透過智慧的 Marketplace 策展並有效地使用 Mozilla 的行銷頻道，Mozilla 可幫助開發者將應用程式傳送到目標族群使用者的掌上。"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:33
 msgid "Intro to Open Web Apps"
@@ -4124,6 +3922,10 @@ msgstr "Open Web Apps 的介紹"
 #: mkt/ecosystem/templates/ecosystem/macros.html:37
 msgid "Intro to Firefox OS"
 msgstr "Firefox OS 介紹"
+
+#: mkt/ecosystem/templates/ecosystem/macros.html:48
+msgid "Reference Apps"
+msgstr "參考應用程式"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:57
 msgid "Chrono"
@@ -4170,7 +3972,7 @@ msgid "Developing Game Apps"
 msgstr "開發遊戲應用程式"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:129 mkt/lookup/templates/lookup/app_summary.html:110 mkt/lookup/templates/lookup/user_summary.html:56 mkt/lookup/templates/lookup/user_summary.html:60
-#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1446
+#: mkt/reviewers/templates/reviewers/queue.html:35 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:26 mkt/webapps/models.py:1430
 msgid "Payments"
 msgstr "付款"
 
@@ -4187,9 +3989,17 @@ msgstr "應用程式驗證工具"
 msgid "App Manager"
 msgstr "應用程式管理員"
 
+#: mkt/ecosystem/templates/ecosystem/macros.html:151
+msgid "Firefox OS Simulator"
+msgstr "Firefox OS Simulator"
+
 #: mkt/ecosystem/templates/ecosystem/macros.html:155
 msgid "Firefox Developer Tools"
 msgstr "Firefox 開發者工具"
+
+#: mkt/ecosystem/templates/ecosystem/macros.html:162 mkt/submit/templates/submit/next_steps.html:35
+msgid "Publish"
+msgstr "發佈"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:166
 msgid "Marketplace Submission"
@@ -4199,9 +4009,25 @@ msgstr "提交至 Marketplace"
 msgid "Marketplace Review Criteria"
 msgstr "Marketplace 審查標準"
 
+#: mkt/ecosystem/templates/ecosystem/macros.html:175
+msgid "Deploying Your App"
+msgstr "部署您的應用程式"
+
+#: mkt/ecosystem/templates/ecosystem/macros.html:180
+msgid "Hosted Apps"
+msgstr "架設的應用程式"
+
+#: mkt/ecosystem/templates/ecosystem/macros.html:184
+msgid "Packaged Apps"
+msgstr "已封裝的應用程式"
+
 #: mkt/ecosystem/templates/ecosystem/macros.html:189
 msgid "Payments Status"
 msgstr "付款狀態"
+
+#: mkt/ecosystem/templates/ecosystem/macros.html:197
+msgid "Badges, Banners, and Icons"
+msgstr "徽章、橫幅與圖示"
 
 #: mkt/ecosystem/templates/ecosystem/macros.html:236
 msgid "View with subtitles"
@@ -4219,68 +4045,63 @@ msgstr "快來看看！"
 msgid "Partner with Mozilla to distribute your apps through an open marketplace to over 450 million users"
 msgstr "Mozilla 的合作夥伴可以透過 Mozilla 的開放商城，直接發行應用程式，讓超過 4 億 5 千萬的使用者使用。"
 
-#: mkt/ecosystem/templates/ecosystem/partners.html:20
-#, python-format
-msgid "<a href=\"%(submit_url)s\" class=\"button\">Submit now</a> <span>or</span> <a href=\"%(api_url)s\" class=\"button api\">Submit via API</a>"
-msgstr "<a href=\"%(submit_url)s\" class=\"button\">直接提交</a> <span>或</span> <a href=\"%(api_url)s\" class=\"button api\">透過 API 提交</a>"
-
-#: mkt/ecosystem/templates/ecosystem/partners.html:33
+#: mkt/ecosystem/templates/ecosystem/partners.html:24
 msgid "With a powerful web platform, an open marketplace, and partners like you, we are ready to welcome the next 2 billion users online"
 msgstr "藉由強大的網路平台、開放的商城服務，以及如您一般優秀的合作夥伴；我們已經準備好迎接未來 20 億的線上使用者。"
 
-#: mkt/ecosystem/templates/ecosystem/partners.html:45
+#: mkt/ecosystem/templates/ecosystem/partners.html:36
 msgid "<strong>The Web is the Platform</strong> &ndash; write your HTML5 app once and distribute it across the entire web."
 msgstr "<strong>網路即是平台</strong> &ndash; 您的 HTML5 應用程式只需撰寫一次，就可以在整個網路世界中發布。"
 
-#: mkt/ecosystem/templates/ecosystem/partners.html:51
+#: mkt/ecosystem/templates/ecosystem/partners.html:42
 msgid "<strong>Seamless Payments</strong> &ndash; with multiple payment models and carrier-integrated billing, we bring you frictionless monetization to your app."
 msgstr "<strong>無縫接軌的付款方式</strong> &ndash; 透過多種付款方式和營運計費整合，讓您的應用程式能夠輕鬆地創造收入。"
 
-#: mkt/ecosystem/templates/ecosystem/partners.html:58
+#: mkt/ecosystem/templates/ecosystem/partners.html:49
 msgid "<strong>A Massive Audience</strong> &ndash; over 450 million users call Firefox home, put your app in their hands today."
 msgstr "<strong>大量使用者</strong> &ndash; 超過 4 億 5 千萬的使用者將 Firefox 設為首頁，並將您的應用程式載入他們的行動裝置中。"
 
-#: mkt/ecosystem/templates/ecosystem/partners.html:68
+#: mkt/ecosystem/templates/ecosystem/partners.html:59
 msgid "Join the biggest and the best"
 msgstr "加入最大與最棒的"
 
-#: mkt/ecosystem/templates/ecosystem/partners.html:70
+#: mkt/ecosystem/templates/ecosystem/partners.html:61
 msgid "The world's most popular brands and all your favorite apps are building their experience on Firefox Marketplace."
 msgstr "世界知名的品牌與您最愛的應用程式都在 Firefox Marketplace 中打造他們的創新體驗。"
 
-#: mkt/ecosystem/templates/ecosystem/partners.html:83
+#: mkt/ecosystem/templates/ecosystem/partners.html:74
 msgid "A truly cross-platform, cross-device, non-proprietary home for the world's best global and local HTML5 apps."
 msgstr "一個最棒的全球與在地 HTML5 應用程式 真正跨平台，跨裝置，非專屬的園地。"
 
-#: mkt/ecosystem/templates/ecosystem/partners.html:96
+#: mkt/ecosystem/templates/ecosystem/partners.html:87
 msgid "Available now!"
 msgstr "現在可用！"
 
-#: mkt/ecosystem/templates/ecosystem/partners.html:100
+#: mkt/ecosystem/templates/ecosystem/partners.html:91
 msgid "Android Tablets"
 msgstr "Android 平板"
 
-#: mkt/ecosystem/templates/ecosystem/partners.html:111
+#: mkt/ecosystem/templates/ecosystem/partners.html:102
 msgid "You + Mozilla = Awesome"
 msgstr "您＋ Mozilla ＝ 出類拔萃"
 
-#: mkt/ecosystem/templates/ecosystem/partners.html:112
+#: mkt/ecosystem/templates/ecosystem/partners.html:103
 msgid "Stay connected."
 msgstr "持續關注。"
 
-#: mkt/ecosystem/templates/ecosystem/partners.html:116
+#: mkt/ecosystem/templates/ecosystem/partners.html:107
 msgid "The Apps Blog"
 msgstr "應用程式部落格"
 
-#: mkt/ecosystem/templates/ecosystem/partners.html:118
+#: mkt/ecosystem/templates/ecosystem/partners.html:109
 msgid "Twitter"
 msgstr "Twitter"
 
-#: mkt/ecosystem/templates/ecosystem/partners.html:121
+#: mkt/ecosystem/templates/ecosystem/partners.html:112
 msgid "YouTube"
 msgstr "YouTube"
 
-#: mkt/ecosystem/templates/ecosystem/partners.html:123
+#: mkt/ecosystem/templates/ecosystem/partners.html:114
 msgid "Firefox Marketplace YouTube channel"
 msgstr "Firefox Marketplace 的 YouTube 頻道"
 
@@ -5549,76 +5370,76 @@ msgstr "評論"
 msgid "Rejected or Unreviewed"
 msgstr "被退回或未審核"
 
-#: mkt/reviewers/utils.py:410 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
+#: mkt/reviewers/utils.py:396 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:48 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:59
 msgid "Approve"
 msgstr "同意"
 
-#: mkt/reviewers/utils.py:411
+#: mkt/reviewers/utils.py:397
 msgid "This will approve the app and allow the author(s) to publish it."
 msgstr "將會通過此應用程式並允許作者發布。"
 
-#: mkt/reviewers/utils.py:415 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
+#: mkt/reviewers/utils.py:401 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:49 mkt/reviewers/templates/reviewers/includes/additional_review_table.html:60
 msgid "Reject"
 msgstr "退回"
 
-#: mkt/reviewers/utils.py:417
+#: mkt/reviewers/utils.py:403
 msgid "This will reject the app, remove it from the review queue and un-publish it if already published."
 msgstr "將會退回應用程式、自審核佇列中移除、若已發布也將會下架。"
 
-#: mkt/reviewers/utils.py:422
+#: mkt/reviewers/utils.py:408
 msgid "Message developer"
 msgstr "訊息開發者"
 
-#: mkt/reviewers/utils.py:424
+#: mkt/reviewers/utils.py:410
 msgid "This will send the author(s) - and other thread subscribers - a message. This will not change the app's status."
 msgstr "將會傳送訊息給作者與其他討論串訂閱者。將不會變更應用程式狀態。"
 
 # 88%
-#: mkt/reviewers/utils.py:429
+#: mkt/reviewers/utils.py:415
 msgid "Escalate"
 msgstr "向上呈報"
 
-#: mkt/reviewers/utils.py:431
+#: mkt/reviewers/utils.py:417
 msgid "Flag this app for an admin to review. The comments are sent to the admins, not the author(s)."
 msgstr "標示此應用程式交由管理員審查。留言將傳送給管理員，而非程式作者。"
 
-#: mkt/reviewers/utils.py:436
+#: mkt/reviewers/utils.py:422
 msgid "Private comment"
 msgstr "私人留言"
 
-#: mkt/reviewers/utils.py:438
+#: mkt/reviewers/utils.py:424
 msgid "Make a private reviewer comment on this app. The message won't be visible to the author(s), and no notification will be sent them."
 msgstr "為此應用程式留下審查者的私人留言，作者將無法看到此訊息，也不會發送通知給他們。"
 
-#: mkt/reviewers/utils.py:444
+#: mkt/reviewers/utils.py:430
 msgid "Request Re-review"
 msgstr "請求重新審查"
 
-#: mkt/reviewers/utils.py:446
+#: mkt/reviewers/utils.py:432
 msgid "Add this app to the re-review queue. Any comments here won't be visible to the author(s), and no notification will be sent to them."
 msgstr "新增此應用程式至重新審查佇列。在此留下的任何評論不會讓作者看到，也不會傳送通知。"
 
-#: mkt/reviewers/utils.py:452
+#: mkt/reviewers/utils.py:438
 msgid "Clear Escalation"
 msgstr "清除向上呈報"
 
-#: mkt/reviewers/utils.py:454
+#: mkt/reviewers/utils.py:440
 msgid "Clear this app from the escalation queue. The author(s) will get no email or see comments here."
 msgstr "將此應用程式自提升審核佇列中移除。作者將不會收到通知或看到此處的留言。"
 
-#: mkt/reviewers/utils.py:459
+#: mkt/reviewers/utils.py:445
 msgid "Clear Re-review"
 msgstr "清除再次審核"
 
-#: mkt/reviewers/utils.py:461
+#: mkt/reviewers/utils.py:447
 msgid "Clear this app from the re-review queue. The author(s) will get no email or see comments here."
 msgstr "將此應用程式自重新審核佇列中移除。作者將不會收到通知或看到此處的留言。"
 
-#: mkt/reviewers/utils.py:466
+#: mkt/reviewers/utils.py:452
 msgid "Ban app"
 msgstr "封鎖應用程式"
 
-#: mkt/reviewers/utils.py:468
+#: mkt/reviewers/utils.py:454
 msgid "Ban the app from Marketplace. Similar to Reject but the author(s) can't resubmit. To only be used in extreme cases."
 msgstr "自 Marketplace 封鎖應用程式，與退回審查相同，但作者無法重新送出審查，僅在特殊案例使用。"
 
@@ -7084,12 +6905,11 @@ msgstr "我的應用程式可在沒有網際網路連線時使用。"
 msgid "Edit App Details"
 msgstr "編輯應用程式詳細資訊"
 
-#: mkt/submit/templates/submit/details.html:16 mkt/submit/templates/submit/done.html:8 mkt/submit/templates/submit/manifest.html:22 mkt/submit/templates/submit/next_steps.html:10
-#: mkt/submit/templates/submit/terms.html:8
+#: mkt/submit/templates/submit/details.html:16 mkt/submit/templates/submit/done.html:8 mkt/submit/templates/submit/next_steps.html:10 mkt/submit/templates/submit/terms.html:8
 msgid "Submit App"
 msgstr "提交應用程式"
 
-#: mkt/submit/templates/submit/details.html:19 mkt/submit/templates/submit/manifest.html:6 mkt/submit/templates/submit/manifest.html:24 mkt/submit/templates/submit/terms.html:3
+#: mkt/submit/templates/submit/details.html:19 mkt/submit/templates/submit/manifest.html:6 mkt/submit/templates/submit/manifest.html:12 mkt/submit/templates/submit/terms.html:3
 msgid "Submit an App"
 msgstr "提交應用程式"
 
@@ -7155,15 +6975,11 @@ msgstr "管理我的應用程式"
 msgid "Submit Another App"
 msgstr "提交另一個應用程式"
 
-#: mkt/submit/templates/submit/manifest.html:81
-msgid "App Minimum Requirements"
-msgstr "應用程式最低需求"
+#: mkt/submit/templates/submit/manifest.html:17
+msgid "App Submission is now closed. Thank you for your support."
+msgstr ""
 
-#: mkt/submit/templates/submit/manifest.html:86
-msgid "<b>What's next:</b> fill out the rest of your app's details"
-msgstr "<b>下一步:</b> 補充您應用程式的其他詳細資訊"
-
-#: mkt/submit/templates/submit/manifest.html:100
+#: mkt/submit/templates/submit/manifest.html:21
 msgid "Submit a website for TVs."
 msgstr "為電視送審網站。"
 
@@ -7462,43 +7278,39 @@ msgid "Please use the verified email for this account."
 msgstr "請為此帳號使用已驗證過的電子郵件地址。"
 
 # Column name in a table.
-#: mkt/webapps/models.py:207
+#: mkt/webapps/models.py:202
 msgid "Listed"
 msgstr "顯示"
 
-#: mkt/webapps/models.py:1333
+#: mkt/webapps/models.py:1322
 msgid "You must provide a support email or URL."
 msgstr "您必須提供技術支援信箱或網址。"
 
-#: mkt/webapps/models.py:1335
+#: mkt/webapps/models.py:1324
 msgid "You must provide an app name."
 msgstr "您必須提供一個應用程式名稱。"
 
-#: mkt/webapps/models.py:1337
+#: mkt/webapps/models.py:1326
 msgid "You must provide at least one device type."
 msgstr "您必須指定至少一種裝置。"
 
-#: mkt/webapps/models.py:1340
+#: mkt/webapps/models.py:1329
 msgid "You must provide at least one category."
 msgstr "您必須至少提供一種類別。"
 
-#: mkt/webapps/models.py:1407
-msgid "You must set up content ratings."
-msgstr "您必須設定內容分級。"
-
-#: mkt/webapps/models.py:1409
+#: mkt/webapps/models.py:1393
 msgid "You must set up a payment account."
 msgstr "您必須設定付款帳號。"
 
-#: mkt/webapps/models.py:1434
+#: mkt/webapps/models.py:1418
 msgid "This app's submission process has not been fully completed."
 msgstr "此應用程式的送出過程尚未完成。"
 
-#: mkt/webapps/models.py:1441
+#: mkt/webapps/models.py:1425
 msgid "This app needs to get a content rating."
 msgstr "此應用程式需要取得內容分級。"
 
-#: mkt/webapps/models.py:1447
+#: mkt/webapps/models.py:1431
 msgid "This app needs a payment account set up."
 msgstr "此應用程式需要設定付費帳號。"
 
@@ -7526,7 +7338,7 @@ msgstr "選擇了無效裝置。"
 msgid "Log out"
 msgstr "登出"
 
-#: templates/base.html:72
+#: templates/base.html:70
 msgid "Register"
 msgstr "註冊"
 
