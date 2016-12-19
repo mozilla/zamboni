@@ -16,7 +16,6 @@ from PIL import Image
 from lib.crypto import packaged, receipt
 from lib.crypto.packaged import SigningError as PackageSigningError
 from lib.crypto.receipt import SigningError
-from lib.pay_server import client
 from mkt.site.storage_utils import local_storage
 
 
@@ -255,16 +254,3 @@ def settings_check():
             return msg, msg
 
     return '', 'Required settings ok'
-
-
-def solitude():
-    try:
-        res = client.api.services.request.get()
-    except Exception as err:
-        return repr(err), repr(err)
-    auth = res.get('authenticated', None)
-    if auth != 'marketplace':
-        msg = 'Solitude authenticated as: %s' % auth
-        return msg, msg
-
-    return '', 'Solitude authentication ok'
