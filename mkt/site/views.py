@@ -195,7 +195,7 @@ def monitor(request, format=None):
     results = {}
 
     checks = ['memcache', 'libraries', 'elastic', 'package_signer', 'path',
-              'receipt_signer', 'settings_check', 'solitude']
+              'receipt_signer', 'settings_check']
 
     for check in checks:
         with statsd.timer('monitor.%s' % check) as timer:
