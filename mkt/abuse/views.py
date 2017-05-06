@@ -27,7 +27,7 @@ class BaseAbuseViewSet(CORSMixin, generics.CreateAPIView,
     permission_classes = (AllowAny,)
 
     def perform_create(self, serializer):
-        serializer.save().send()
+        serializer.save()
 
 
 class AppAbuseViewSet(BaseAbuseViewSet):
