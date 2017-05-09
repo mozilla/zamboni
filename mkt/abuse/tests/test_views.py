@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
 
-from django.core import mail
 from django.core.urlresolvers import reverse
 from django.utils.http import urlencode
 
@@ -90,9 +89,6 @@ class AbuseResourceTests(object):
         newest_report = AbuseReport.objects.order_by('-id')[0]
         eq_(newest_report.message, data['text'])
         eq_(newest_report.ip_address, self.headers['REMOTE_ADDR'])
-
-        eq_(len(mail.outbox), 1)
-        assert self.default_data['text'] in mail.outbox[0].body
 
     def test_get(self):
         res = self.client.get(self.list_url)
